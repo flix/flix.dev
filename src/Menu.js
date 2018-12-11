@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-import {Button, ButtonGroup} from 'reactstrap';
-
 import {
     Collapse,
     Navbar,
@@ -24,9 +22,9 @@ class Menu extends Component {
 
     render() {
         return (
-            <div className="Menu mb-3">
+            <div className="Menu mb-5">
                 <Navbar color="light" light expand="md">
-                    <Nav className="mr-auto" navbar>
+                    <Nav className="mr-lg-auto" navbar>
                         <MenuButton name="Home" changePage={() => this.changePage("home")}/>
 
                         <MenuButton name="Getting Started" changePage={() => this.changePage("getting-started")}/>
@@ -34,8 +32,6 @@ class Menu extends Component {
                         <MenuButton name="Design Principles" changePage={() => this.changePage("design-principles")}/>
 
                         <MenuButton name="Research" changePage={() => this.changePage("research")}/>
-
-                        <MenuButton name="Try Online"/>
 
                         <MenuButton name="Standard Library"/>
                     </Nav>

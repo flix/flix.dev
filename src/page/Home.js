@@ -6,7 +6,7 @@ class Home extends Component {
         return (
             <Container>
                 <Row>
-                    <Col xs="8">
+                    <Col xs="7">
                         <h1>A functional programming language with emphasis on safety.</h1>
 
                         <p>
@@ -38,58 +38,61 @@ class Home extends Component {
                             <li>abc</li>
                         </ul>
 
-                        <Row>
-                            <Col xs="6">
-                                <h3>Something or other</h3>
-
-                                <p>
-                                    Flix is a statically typed programming language with. Flix is a statically typed
-                                    programming
-                                    language with. Flix is a statically typed programming language with. Flix is a
-                                    statically
-                                    typed programming language with.
-                                </p>
-                            </Col>
-                            <Col xs="6">
-                                <h3>Something or other</h3>
-                                <p>
-                                    Flix is a statically typed programming language with. Flix is a statically typed
-                                    programming
-                                    language with. Flix is a statically typed programming language with. Flix is a
-                                    statically
-                                    typed programming language with.
-                                </p>
-                            </Col>
-                        </Row>
-
-                        <Row>
-                            <Col xs="6">
-                                <h3>Something or other</h3>
-
-                                <p>
-                                    Flix is a statically typed programming language with. Flix is a statically typed
-                                    programming
-                                    language with. Flix is a statically typed programming language with. Flix is a
-                                    statically
-                                    typed programming language with.
-                                </p>
-                            </Col>
-                            <Col xs="6">
-                                <h3>Something or other</h3>
-                                <p>
-                                    Flix is a statically typed programming language with. Flix is a statically typed
-                                    programming
-                                    language with. Flix is a statically typed programming language with. Flix is a
-                                    statically
-                                    typed programming language with.
-                                </p>
-                            </Col>
-                        </Row>
                     </Col>
-                    <Col xs="4">
+                    <Col xs="5">
                         <Codebox/>
                     </Col>
                 </Row>
+
+
+                <Row>
+                    <Col xs="6">
+                        <h3>Something or other</h3>
+
+                        <p>
+                            Flix is a statically typed programming language with. Flix is a statically typed
+                            programming
+                            language with. Flix is a statically typed programming language with. Flix is a
+                            statically
+                            typed programming language with.
+                        </p>
+                    </Col>
+                    <Col xs="6">
+                        <h3>Something or other</h3>
+                        <p>
+                            Flix is a statically typed programming language with. Flix is a statically typed
+                            programming
+                            language with. Flix is a statically typed programming language with. Flix is a
+                            statically
+                            typed programming language with.
+                        </p>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col xs="6">
+                        <h3>Something or other</h3>
+
+                        <p>
+                            Flix is a statically typed programming language with. Flix is a statically typed
+                            programming
+                            language with. Flix is a statically typed programming language with. Flix is a
+                            statically
+                            typed programming language with.
+                        </p>
+                    </Col>
+                    <Col xs="6">
+                        <h3>Something or other</h3>
+                        <p>
+                            Flix is a statically typed programming language with. Flix is a statically typed
+                            programming
+                            language with. Flix is a statically typed programming language with. Flix is a
+                            statically
+                            typed programming language with.
+                        </p>
+                    </Col>
+                </Row>
+
                 <Row>
                     Copyright 2018
                 </Row>
@@ -105,7 +108,7 @@ class Codebox extends Component {
                 <select>
                     <option>abc</option>
                 </select>
-            <pre>
+                <pre>
                 def foo(): Int = 123
             </pre>
             </Container>
