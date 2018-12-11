@@ -106,10 +106,13 @@ class Codebox extends Component {
         return (
             <Container>
                 <select>
-                    <option>abc</option>
+                    <option>Hello World</option>
+                    <option>Working with Lists</option>
                 </select>
                 <pre>
-                def foo(): Int = 123
+                def foo(): Int =
+                    let xs = List.range(1, 10);
+                        List.sum(xs)
             </pre>
             </Container>
         );
