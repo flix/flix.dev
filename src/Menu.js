@@ -10,7 +10,7 @@ class Menu extends Component {
 
     render() {
         return (
-            <div className="Menu">
+            <div className="Menu mb-3">
                 <ButtonGroup>
                     <MenuButton name="Home" changePage={() => this.changePage("home")}/>
 
@@ -32,7 +32,7 @@ class Menu extends Component {
 class MenuButton extends Component {
     render() {
         return (
-            <Button color="primary" onClick={this.props.changePage}>
+            <Button color="primary" size="lg" onClick={this.props.changePage}>
                 {this.props.name}
             </Button>
         );

@@ -1,8 +1,10 @@
-html {
+body {
     font-family: 'Open Sans', sans-serif;
+    overflow: scroll;
 }
 
 h1 {
     font-size: 2em;
+    margin-bottom: 1em;
 }
 

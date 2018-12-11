@@ -90,6 +90,9 @@ class Home extends Component {
                         <Codebox/>
                     </Col>
                 </Row>
+                <Row>
+                    Copyright 2018
+                </Row>
             </Container>
         );
     }
@@ -99,6 +102,9 @@ class Codebox extends Component {
     render() {
         return (
             <Container>
+                <select>
+                    <option>abc</option>
+                </select>
             <pre>
                 def foo(): Int = 123
             </pre>
