@@ -23,8 +23,6 @@ class Menu extends Component {
                     <MenuButton name="Try Online"/>
 
                     <MenuButton name="Standard Library"/>
-
-                    <MenuButton name="GitHub"/>
                 </ButtonGroup>
             </div>
         );
