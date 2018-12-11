@@ -12,7 +12,7 @@ import {Button} from "reactstrap";
 
 class Editor extends React.Component {
     state = {
-        input: this.props.children,
+        input: this.props.children.replace(/\\\\/g, "\n"),
         output: undefined,
         waiting: false
     };
@@ -80,7 +80,7 @@ class Editor extends React.Component {
                     </div>
 
                     <div>
-                        <Button onClick={this.onClick}>
+                        <Button className="btn-sm" onClick={this.onClick}>
                             Run
                         </Button>
                     </div>

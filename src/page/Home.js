@@ -110,14 +110,17 @@ class Codebox extends Component {
                     <option>Hello World</option>
                     <option>Working with Lists</option>
                 </select>
-                <pre>
-                def foo(): Int =
-                    let xs = List.range(1, 10);
-                        List.sum(xs)
-            </pre>
+
                 <Editor flix={this.props.flix}>
                     def f(): Int = 123
                 </Editor>
+
+                <Editor flix={this.props.flix} lines={3}>
+                    def f(): Int = 123 \\
+                    def g(): Int = 213
+                </Editor>
+
+
             </Container>
         );
     }

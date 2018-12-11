@@ -20,4 +20,5 @@ h3 {
 
 .nav-item {
     font-weight: bold;
+    cursor: pointer;
 }

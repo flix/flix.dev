@@ -35,8 +35,6 @@ class Menu extends Component {
 
                         <MenuButton name="Standard Library"/>
                     </Nav>
-
-                    <NavbarBrand href="/">flix</NavbarBrand>
                 </Navbar>
             </div>
         );
