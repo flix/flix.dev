@@ -1,0 +1,10 @@
+.Menu {
+    width: 80vw;
+}
+
+
+.Menu .Button {
+    background-color: gray;
+    width: 150px;
+    float: left;
+}
