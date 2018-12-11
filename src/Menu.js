@@ -2,6 +2,20 @@ import React, {Component} from 'react';
 
 import {Button, ButtonGroup} from 'reactstrap';
 
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
+} from 'reactstrap';
+
 class Menu extends Component {
 
     changePage(page) {
@@ -11,19 +25,23 @@ class Menu extends Component {
     render() {
         return (
             <div className="Menu mb-3">
-                <ButtonGroup>
-                    <MenuButton name="Home" changePage={() => this.changePage("home")}/>
+                <Navbar color="light" light expand="md">
+                    <Nav className="mr-auto" navbar>
+                        <MenuButton name="Home" changePage={() => this.changePage("home")}/>
 
-                    <MenuButton name="Getting Started" changePage={() => this.changePage("getting-started")}/>
+                        <MenuButton name="Getting Started" changePage={() => this.changePage("getting-started")}/>
 
-                    <MenuButton name="Design Principles" changePage={() => this.changePage("design-principles")}/>
+                        <MenuButton name="Design Principles" changePage={() => this.changePage("design-principles")}/>
 
-                    <MenuButton name="Research" changePage={() => this.changePage("research")}/>
+                        <MenuButton name="Research" changePage={() => this.changePage("research")}/>
 
-                    <MenuButton name="Try Online"/>
+                        <MenuButton name="Try Online"/>
 
-                    <MenuButton name="Standard Library"/>
-                </ButtonGroup>
+                        <MenuButton name="Standard Library"/>
+                    </Nav>
+
+                    <NavbarBrand href="/">flix</NavbarBrand>
+                </Navbar>
             </div>
         );
     }
@@ -32,9 +50,9 @@ class Menu extends Component {
 class MenuButton extends Component {
     render() {
         return (
-            <Button color="primary" size="lg" onClick={this.props.changePage}>
-                {this.props.name}
-            </Button>
+            <NavItem>
+                <NavLink onClick={this.props.changePage}>{this.props.name}</NavLink>
+            </NavItem>
         );
     }
 }
