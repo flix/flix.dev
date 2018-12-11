@@ -6,6 +6,8 @@ import Home from "./page/Home";
 import GettingStarted from "./page/GettingStarted";
 import DesignPrinciples from "./page/DesignPrinciples";
 import Research from "./page/Research";
+import News from "./page/News";
+import Features from "./page/Features";
 
 class App extends Component {
     constructor(props) {
@@ -27,6 +29,12 @@ class App extends Component {
         }
         if (this.state.page === "research") {
             return <Research/>
+        }
+        if (this.state.page === "news") {
+            return <News/>
+        }
+        if (this.state.page === "Features") {
+            return <Features/>
         }
 
         return <Home/>;
