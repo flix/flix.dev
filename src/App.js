@@ -9,11 +9,40 @@ import Research from "./page/Research";
 import News from "./page/News";
 import Features from "./page/Features";
 
+const SocketAddress = 'ws://flix.aau.dk:8080';
+
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {page: null}
+
+        console.log("Connecting to: " + SocketAddress);
+
+        this.state = {
+            page: null,
+            websocket: new window.WebSocket(SocketAddress)
+        };
+
+        this.state.websocket.onopen = event => {
+            console.log("Connected to: " + SocketAddress);
+            this.connected = true;
+        };
     }
+
+    runProgram = (src, f) => {
+        this.state.websocket.onmessage = event => {
+            console.log("Received reply from: " + SocketAddress);
+            const data = JSON.parse(event.data);
+
+            console.log(data);
+            f(data);
+        };
+
+        if (!this.connected) {
+            console.log("Not connected yet");
+            return;
+        }
+        this.state.websocket.send(src);
+    };
 
     notifyChangePage(page) {
         console.log("Changing page to: " + page);
@@ -37,7 +66,7 @@ class App extends Component {
             return <Features/>
         }
 
-        return <Home/>;
+        return <Home flix={this.runProgram.bind(this)}/>;
     }
 
     render() {

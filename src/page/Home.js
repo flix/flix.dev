@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
+import Editor from "../util/Editor";
 
 class Home extends Component {
     render() {
@@ -40,7 +41,7 @@ class Home extends Component {
 
                     </Col>
                     <Col xs="5">
-                        <Codebox/>
+                        <Codebox flix={this.props.flix}/>
                     </Col>
                 </Row>
 
@@ -114,6 +115,9 @@ class Codebox extends Component {
                     let xs = List.range(1, 10);
                         List.sum(xs)
             </pre>
+                <Editor flix={this.props.flix}>
+                    def f(): Int = 123
+                </Editor>
             </Container>
         );
     }
