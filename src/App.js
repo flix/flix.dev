@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
+
 import Menu from "./Menu";
-import Home from "./Home";
-import GettingStarted from "./GettingStarted";
+import Home from "./page/Home";
+import GettingStarted from "./page/GettingStarted";
+import DesignPrinciples from "./page/DesignPrinciples";
+import Research from "./page/Research";
 
 class App extends Component {
     constructor(props) {
@@ -16,24 +19,24 @@ class App extends Component {
     }
 
     getPage() {
-        if (this.state.page === "home") {
-            return <Home/>;
-        }
         if (this.state.page === "getting-started") {
             return <GettingStarted/>;
         }
+        if (this.state.page === "design-principles") {
+            return <DesignPrinciples/>
+        }
+        if (this.state.page === "research") {
+            return <Research/>
+        }
 
-        return <div/>
+        return <Home/>;
     }
 
     render() {
         return (
             <div className="App">
                 <Menu notifyChangePage={this.notifyChangePage.bind(this)}/>
-                <h1>Flix Programming Language</h1>
-
                 {this.getPage()}
-
             </div>
         );
     }

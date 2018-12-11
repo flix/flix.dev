@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import './Menu.css';
 
-import {Button} from 'reactstrap';
+import {Button, ButtonGroup} from 'reactstrap';
 
 class Menu extends Component {
 
@@ -12,25 +11,21 @@ class Menu extends Component {
     render() {
         return (
             <div className="Menu">
-                <MenuButton name="Home" changePage={() => this.changePage("home")}/>
+                <ButtonGroup>
+                    <MenuButton name="Home" changePage={() => this.changePage("home")}/>
 
-                <MenuButton name="Getting Started" changePage={() => this.changePage("getting-started")}/>
+                    <MenuButton name="Getting Started" changePage={() => this.changePage("getting-started")}/>
 
-                <MenuButton name="Try Online"/>
+                    <MenuButton name="Design Principles" changePage={() => this.changePage("design-principles")}/>
 
-                <MenuButton name="Getting Started"/>
+                    <MenuButton name="Research" changePage={() => this.changePage("research")}/>
 
-                <MenuButton name="Documentation"/>
+                    <MenuButton name="Try Online"/>
 
-                <MenuButton name="Standard Library"/>
+                    <MenuButton name="Standard Library"/>
 
-                <MenuButton name="GitHub"/>
-
-                <MenuButton name="News"/>
-
-                <MenuButton name="Research"/>
-
-                <Button color="danger">foo</Button>
+                    <MenuButton name="GitHub"/>
+                </ButtonGroup>
             </div>
         );
     }
@@ -39,13 +34,11 @@ class Menu extends Component {
 class MenuButton extends Component {
     render() {
         return (
-            <div className="Button" onClick={this.props.changePage}>
+            <Button color="primary" onClick={this.props.changePage}>
                 {this.props.name}
-            </div>
+            </Button>
         );
     }
-
-
 }
 
 export default Menu;
