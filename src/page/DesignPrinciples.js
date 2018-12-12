@@ -71,10 +71,12 @@ class DesignPrinciples extends Component {
                         </div>
                     </Principle>
 
-                    <Principle name="               Private visibility by default">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="Private Visibility by Default">
+                        In Flix, declarations are assigned the least visibility by default.
+                        That is, e.g. declarations cannot be accessed outside their own namespace (or a sub-namespace).
+                        For a declaration to be globally visible it must explicitly be declared as public.
+                        We believe this forces the programmer to make a choice about whether some definition or data type
+                        should be considered internal (the default) or available to other parts of the program.
                     </Principle>
 
                     <Principle name=" Simple is not easy, will not sacrifice a principle for practicality">
@@ -93,6 +95,7 @@ class DesignPrinciples extends Component {
                         <div className="alert alert-dark">
                             {lipsum({count: 3, units: 'sentences'})}
                         </div>
+                        <Badge>in progress</Badge>
                     </Principle>
 
                     <Principle name="No Nulls">
@@ -111,16 +114,19 @@ class DesignPrinciples extends Component {
                         </div>
                     </Principle>
 
-                    <Principle name=" All warnings are compile-time errors">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="No Compiler Warnings, Only Compile-Time Errors">
+                        The Flix compiler never emits warnings; only compile-time errors. The problem with warnings
+                        is that they can be ignored or that people disagree on what warnings are important. For Flix
+                        our goal is that anything that looks incorrect or troublesome should outright be rejected.
+                        In this we are inspired by language such as Rust where e.g. dead code is considered not as a warning,
+                        but a compile-time error.
                     </Principle>
 
                     <Principle name="            Human-Readable error messages">
                         <div className="alert alert-dark">
                             {lipsum({count: 3, units: 'sentences'})}
                         </div>
+                        <Badge>in progress</Badge>
                     </Principle>
 
                     <Principle name="    Patterns must be exhaustive">
