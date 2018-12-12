@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, Container, Media, Row} from "reactstrap";
+import {Card, CardBody, CardText, Col, Container, Media, Row} from "reactstrap";
 import InstallGif from '../gif/install.gif'
 
 class GettingStarted extends Component {
@@ -43,7 +43,6 @@ class GettingStarted extends Component {
                 </Row>
 
                 <Row>
-
                     <Col md="12">
                         <h2>Next Steps</h2>
                     </Col>
@@ -54,13 +53,36 @@ class GettingStarted extends Component {
                     <Col md="6">
 
                         <ol>
-                            <li>Ensure you have java installed</li>
-                            <li>Download the Flix jar from GitHub</li>
-                            <li>Run the command java -jar flix.jar</li>
+                            <li>
+                                Open a file <code>test.flix</code>
+                            </li>
+                            <li>
+                                Enter the following content:
+                                <Card>
+                                    <CardBody>
+                                        <CardText>
+                                            <code>
+                                                def main(): Str = "Hello World"
+                                            </code>
+                                        </CardText>
+                                    </CardBody>
+                                </Card>
+                            </li>
+                            <li>
+                                Run the command <code>java -jar flix.jar test.flix --interactive</code> to start Flix in
+                                interactive mode.
+                            </li>
+                            <li>
+                                Type <code>main()</code> into the command prompt to run the main function.
+                            </li>
+                            <li>
+                                Type <code>:w</code> to watch the file for changes.
+                                You can now edit <code>test.flix</code> as much as you want.
+                                Every time you save, flix will automatically reload the file, and print any errors.
+                            </li>
                         </ol>
                     </Col>
                 </Row>
-
             </Container>
         );
     }
