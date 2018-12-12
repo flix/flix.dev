@@ -117,7 +117,7 @@ def main(): Str = "Hello World!"`
             },
             {
                 name: "Working with Lists",
-                code: `def main(): Str =fdafds`
+                code: `def f(): Str = 1 :: 2 :: 3 :: Nil`
             },
             {
                 name: "Writing your own type",
@@ -165,6 +165,16 @@ def main(): Str = "Hello World!"`
                 {this.getExample()}
             </Container>
         );
+    }
+}
+
+// TODO: Remove
+class Editor2 extends Component {
+    render() {
+        return (
+            <Container>
+                {this.props.code}
+            </Container>)
     }
 }
 

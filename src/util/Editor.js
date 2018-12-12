@@ -12,7 +12,7 @@ import {Button} from "reactstrap";
 
 class Editor extends React.Component {
     state = {
-        input: this.props.children.replace(/\\\\/g, "\n"),
+        input: this.props.code,
         output: undefined,
         waiting: false
     };
@@ -74,7 +74,7 @@ class Editor extends React.Component {
                             showPrintMargin={false}
                             highlightActiveLine={false}
                             onChange={this.onChange}
-                            value={this.state.input}
+                            value={this.props.code}
                             editorProps={{$blockScrolling: true}}/>
                         {this.state.waiting}
                     </div>
