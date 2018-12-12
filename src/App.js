@@ -4,7 +4,7 @@ import './App.css';
 import Menu from "./Menu";
 import Home from "./page/Home";
 import GettingStarted from "./page/GettingStarted";
-import DesignPrinciples from "./page/DesignPrinciples";
+import Principles from "./page/Principles";
 import Research from "./page/Research";
 import News from "./page/News";
 import Documentation from "./page/Documentation";
@@ -54,7 +54,7 @@ class App extends Component {
             return <GettingStarted/>;
         }
         if (this.state.page === "design-principles") {
-            return <DesignPrinciples/>
+            return <Principles/>
         }
         if (this.state.page === "research") {
             return <Research/>

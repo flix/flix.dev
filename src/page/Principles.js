@@ -4,16 +4,18 @@ import {Container, Row, Col} from 'reactstrap';
 
 import lipsum from 'lorem-ipsum';
 
-class DesignPrinciples extends Component {
+class Principles extends Component {
     render() {
         return (
             <Container>
                 <h1>Design Principles</h1>
 
                 <p>
-                    Flix embraces a set of design principles. The purpose is to outline these design principles and relate them to other existing languages.
+                    Flix embraces a set of design principles. The purpose is to outline these design principles and
+                    relate them to other existing languages.
                     Understanding these principles will help you decide if Flix is something for you.
-                    You will that many of these principles come from or are also embraced by languages such as Haskell, OCaml, Rust, Elm, Scala.
+                    You will that many of these principles come from or are also embraced by languages such as Haskell,
+                    OCaml, Rust, Elm, Scala.
                 </p>
 
                 <CardColumns>
@@ -140,10 +142,13 @@ class DesignPrinciples extends Component {
                         but a compile-time error.
                     </Principle>
 
-                    <Principle name="            Human-Readable error messages">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="Human-Readable Error Messages">
+                        In the spirit of <a href="https://elm-lang.org/blog/compilers-as-assistants">Elm</a>, Clang, and
+                        Rust, Flix aims to have human readable error message. We believe compiler messages should offer
+                        rich detail about the problem at hand, including potentially relevant information know to the
+                        compiler, and suggestions for how to correct the problem.
+
+                        <br/>
                         <Badge>in progress</Badge>
                     </Principle>
 
@@ -181,4 +186,4 @@ class Principle extends Component {
     }
 }
 
-export default DesignPrinciples;
+export default Principles;
