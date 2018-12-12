@@ -31,12 +31,13 @@ class Home extends Component {
                         <h2>Features</h2>
 
                         <ul>
-                            <li>abc</li>
-                            <li>abc</li>
-                            <li>abc</li>
-                            <li>abc</li>
-                            <li>abc</li>
-                            <li>abc</li>
+                            <li>algebraic data types &amp; pattern matching</li>
+                            <li>parametric polymorphism</li>
+                            <li>channel-based concurrency</li>
+                            <li>Hindley-Milner type inference</li>
+                            <li>first-class datalog constraints</li>
+                            <li>full tail call elimination</li>
+                            <li>compilation to JVM bytecode</li>
                         </ul>
 
                     </Col>
