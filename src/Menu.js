@@ -29,7 +29,7 @@ class Menu extends Component {
 
                         <MenuButton name="Getting Started" changePage={() => this.changePage("getting-started")}/>
 
-                        <MenuButton name="Design Principles" changePage={() => this.changePage("design-principles")}/>
+                        <MenuButton name="Principles" changePage={() => this.changePage("design-principles")}/>
 
                         <MenuButton name="Research" changePage={() => this.changePage("research")}/>
 

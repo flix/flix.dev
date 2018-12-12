@@ -11,8 +11,7 @@ class DesignPrinciples extends Component {
                 <h1>Design Principles</h1>
 
                 <p>
-                    We
-                    <strike> With Flix we set out.</strike>
+                    Flix embraces a set of design principles.
                 </p>
 
                 <CardColumns>
@@ -96,10 +95,14 @@ class DesignPrinciples extends Component {
                         </div>
                     </Principle>
 
-                    <Principle name="    No-nulls.">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="No Nulls">
+                        Flix does not have a special <code>null</code> value.
+                        The presence of null as a subtype of any type is now widely considered a mistake.
+                        The inventor of null, Sir Tony Hoare, has famously called it his billion dollar mistake.
+                        Languages with null, such as C#, Dart, Kotlin, Scala, etc. are rapidly scrambling to adopt
+                        mechanism to ensure non-nullness. In Flix, we adopt the standard solution to the represent
+                        the absence of a value using the <code>Option</code> type. This solution is simple to understand,
+                        works well, and guarantees the absence of dreaded <code>NullPointerException</code>s.
                     </Principle>
 
                     <Principle name="          No Initialization code before main">
