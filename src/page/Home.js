@@ -111,7 +111,9 @@ class Codebox extends Component {
         let samples = [
             {
                 name: "Hello World",
-                code: `def main(): Str = "Hello World!"`
+                code: `
+// Returns a string which is printed.
+def main(): Str = "Hello World!"`
             },
             {
                 name: "Working with Lists",
@@ -149,13 +151,13 @@ class Codebox extends Component {
     getExample() {
         let choice = this.state.choice;
         let sample = this.state.samples[choice];
-        return <Editor flix={this.props.flix} code={sample.code}>{sample.code}</Editor>
+        return <Editor flix={this.props.flix} code={sample.code} lines={10}>{sample.code}</Editor>
     }
 
     render() {
         return (
             <Container>
-                <select value={this.state.choice} onChange={this.onChange.bind(this)}>
+                <select className="mb-1" value={this.state.choice} onChange={this.onChange.bind(this)}>
                     {this.state.samples.map((sample, index) =>
                         <option key={index} value={index}>{sample.name}</option>)
                     }
