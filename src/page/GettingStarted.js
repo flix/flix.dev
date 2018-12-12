@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Card, CardBody, CardText, Col, Container, Media, Row} from "reactstrap";
 import InstallGif from '../gif/install.gif'
+import NextStepsGif from '../gif/next-steps.gif'
 
 class GettingStarted extends Component {
     render() {
@@ -48,7 +49,7 @@ class GettingStarted extends Component {
                     </Col>
 
                     <Col md="6">
-                        <Media object src={InstallGif} alt="install.gif" style={{width: '100%'}}/>
+                        <Media object src={NextStepsGif} alt="install.gif" style={{width: '100%'}}/>
                     </Col>
                     <Col md="6">
 
