@@ -27,6 +27,8 @@ class Menu extends Component {
                         <MenuButton name="Research" changePage={() => this.changePage("research")}/>
 
                         <MenuButton name="Documentation" changePage={() => this.changePage("documentation")}/>
+
+                        <MenuButton name="Contribute" changePage={() => this.changePage("contribute")}/>
                     </Nav>
                 </Navbar>
             </div>

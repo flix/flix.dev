@@ -34,16 +34,26 @@ class Principles extends Component {
                     </Principle>
 
                     <Principle name="No Implicit Coercions">
+                        In flix a value of one type is never coerced or converted into another type automatically.
+                        For example,
 
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                        <ul>
+                            <li>Only booleans may be used in an if-then-else expression.</li>
+                            <li>Integers are never truncated or promoted.</li>
+                            <li>Values are never coerced to strings.</li>
+                        </ul>
                     </Principle>
 
-                    <Principle name="   No global state.">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="No Global State">
+                        In flix there is no global state.
+                        This avoids a large class of problems related to initialization,
+                        dependencies, and concurrency.
+                        A flix programmer is of course free construct some state in the main function
+                        and pass this throughout the program, but there is no built-in mechanism to declare
+                        a global variable.
+
+                        Of course a real system still has to deal with some global state since the file system,
+                        network, etc. is all part of a larger global state.
                     </Principle>
 
                     <Principle name="     Keyword-based syntax">

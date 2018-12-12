@@ -44,6 +44,7 @@ class Home extends Component {
                     <Col md="6">
                         <ul>
                             <li>algebraic data types &amp; pattern matching</li>
+                            <li>first-class functions &amp; currying</li>
                             <li>parametric polymorphism</li>
                             <li>channel-based concurrency</li>
                             <li>first-class datalog constraints</li>
@@ -61,18 +62,14 @@ class Home extends Component {
 
                 <Row>
                     <Col xs="6">
-                        <h3>Something or other</h3>
+                        <h3>Bread- and Butter Functional Programming</h3>
 
                         <p>
-                            Flix is a statically typed programming language with. Flix is a statically typed
-                            programming
-                            language with. Flix is a statically typed programming language with. Flix is a
-                            statically
-                            typed programming language with.
+                            Algebraic Data Types and Pattern Matching
                         </p>
                     </Col>
                     <Col xs="6">
-                        <h3>Something or other</h3>
+                        <h3>Process and Channel-based Concurrency</h3>
                         <p>
                             Flix is a statically typed programming language with. Flix is a statically typed
                             programming
@@ -85,7 +82,7 @@ class Home extends Component {
 
                 <Row>
                     <Col xs="6">
-                        <h3>Something or other</h3>
+                        <h3>Principled Design</h3>
 
                         <p>
                             Flix is a statically typed programming language with. Flix is a statically typed
@@ -96,7 +93,7 @@ class Home extends Component {
                         </p>
                     </Col>
                     <Col xs="6">
-                        <h3>Something or other</h3>
+                        <h3>...</h3>
                         <p>
                             Flix is a statically typed programming language with. Flix is a statically typed
                             programming
