@@ -75,7 +75,8 @@ class DesignPrinciples extends Component {
                         In Flix, declarations are assigned the least visibility by default.
                         That is, e.g. declarations cannot be accessed outside their own namespace (or a sub-namespace).
                         For a declaration to be globally visible it must explicitly be declared as public.
-                        We believe this forces the programmer to make a choice about whether some definition or data type
+                        We believe this forces the programmer to make a choice about whether some definition or data
+                        type
                         should be considered internal (the default) or available to other parts of the program.
                     </Principle>
 
@@ -104,21 +105,23 @@ class DesignPrinciples extends Component {
                         The inventor of null, Sir Tony Hoare, has famously called it his billion dollar mistake.
                         Languages with null, such as C#, Dart, Kotlin, Scala, etc. are rapidly scrambling to adopt
                         mechanism to ensure non-nullness. In Flix, we adopt the standard solution to the represent
-                        the absence of a value using the <code>Option</code> type. This solution is simple to understand,
-                        works well, and guarantees the absence of dreaded <code>NullPointerException</code>s.
+                        the absence of a value using the <code>Option</code> type. This solution is simple to
+                        understand, works well, and guarantees the absence of dreaded <code>NullPointerException</code>s.
                     </Principle>
 
-                    <Principle name="          No Initialization code before main">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="Nothing Before Main">
+                        In Flix the <code>main</code> function is the entry point of the program.
+                        No other (user-defined) code is executed before <code>main</code>.
+                        This makes it easier to reason about startup behaviour, compared to say, Java where
+                        things such as static initializers may be executed before entering <code>main</code>.
                     </Principle>
 
                     <Principle name="No Compiler Warnings, Only Compile-Time Errors">
                         The Flix compiler never emits warnings; only compile-time errors. The problem with warnings
                         is that they can be ignored or that people disagree on what warnings are important. For Flix
                         our goal is that anything that looks incorrect or troublesome should outright be rejected.
-                        In this we are inspired by language such as Rust where e.g. dead code is considered not as a warning,
+                        In this we are inspired by language such as Rust where e.g. dead code is considered not as a
+                        warning,
                         but a compile-time error.
                     </Principle>
 
