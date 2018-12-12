@@ -9,10 +9,11 @@ class GettingStarted extends Component {
                 <h1>Getting Started</h1>
 
                 <Row className="mb-lg-5">
-
-                    <Col md="4">
+                    <Col md="12">
                         <h2>Installation</h2>
+                    </Col>
 
+                    <Col md="6">
                         <ol>
                             <li>
                                 Ensure that you have Java 1.8 or later installed.
@@ -36,20 +37,22 @@ class GettingStarted extends Component {
                         </ol>
                     </Col>
 
-                    <Col md="8">
-                        <Media object src={InstallGif} alt="install.gif"/>
+                    <Col md="6">
+                        <Media object src={InstallGif} alt="install.gif" style={{width: '100%'}}/>
                     </Col>
                 </Row>
 
                 <Row>
 
-                    <Col md="8">
-                        <a href="https://asciinema.org/a/153283" target="_blank"><img
-                            src="https://asciinema.org/a/153283.svg"/></a>
+                    <Col md="12">
+                        <h2>Next Steps</h2>
                     </Col>
 
-                    <Col md="4">
-                        <h2>Next Steps</h2>
+                    <Col md="6">
+                        <Media object src={InstallGif} alt="install.gif" style={{width: '100%'}}/>
+                    </Col>
+                    <Col md="6">
+
                         <ol>
                             <li>Ensure you have java installed</li>
                             <li>Download the Flix jar from GitHub</li>
