@@ -6,7 +6,7 @@ class Home extends Component {
     render() {
         return (
             <Container>
-                <Row>
+                <Row className="mb-3">
                     <Col xs="7">
                         <h1>A typed functional programming language that runs on the JVM.</h1>
 
@@ -17,6 +17,7 @@ class Home extends Component {
 
                         <p>
                             Flix visually resembles Scala, but its type system is closer to OCaml and Haskell.
+                            Its concurrency model is based on Go-style processes and channels.
                         </p>
 
                         <p>
@@ -30,25 +31,33 @@ class Home extends Component {
                             declarative programming in the shape of Datalog.
                         </p>
 
-                        <h2>Features at a Glance</h2>
-
-                        <ul>
-                            <li>algebraic data types &amp; pattern matching</li>
-                            <li>parametric polymorphism</li>
-                            <li>channel-based concurrency</li>
-                            <li>Hindley-Milner type inference</li>
-                            <li>first-class datalog constraints</li>
-                            <li>full tail call elimination</li>
-                            <li>standard library</li>
-                            <li>compilation to JVM bytecode</li>
-                        </ul>
-
                     </Col>
                     <Col xs="5">
                         <Codebox flix={this.props.flix}/>
                     </Col>
                 </Row>
 
+                <Row className="mb-3">
+                    <Col md="12">
+                        <h2>Features at a Glance</h2>
+                    </Col>
+                    <Col md="6">
+                        <ul>
+                            <li>algebraic data types &amp; pattern matching</li>
+                            <li>parametric polymorphism</li>
+                            <li>channel-based concurrency</li>
+                            <li>first-class datalog constraints</li>
+                        </ul>
+                    </Col>
+                    <Col md="6">
+                        <ul>
+                            <li>Hindley-Milner type inference</li>
+                            <li>full tail call elimination</li>
+                            <li>compilation to JVM bytecode</li>
+                            <li>a standard library</li>
+                        </ul>
+                    </Col>
+                </Row>
 
                 <Row>
                     <Col xs="6">
