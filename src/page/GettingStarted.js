@@ -39,7 +39,7 @@ class GettingStarted extends Component {
                     </Col>
 
                     <Col md="6">
-                        <Media object src={InstallGif} alt="install.gif" style={{width: '100%'}}/>
+                        <Media object src={InstallGif} alt="install.gif"/>
                     </Col>
                 </Row>
 
@@ -49,7 +49,7 @@ class GettingStarted extends Component {
                     </Col>
 
                     <Col md="6">
-                        <Media object src={NextStepsGif} alt="install.gif" style={{width: '100%'}}/>
+                        <Media object src={NextStepsGif} alt="install.gif"/>
                     </Col>
                     <Col md="6">
 

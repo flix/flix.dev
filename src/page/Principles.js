@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Card, CardText, CardBody, CardTitle, CardColumns, Badge} from 'reactstrap';
-import {Container, Row, Col} from 'reactstrap';
+import {Container} from 'reactstrap';
 
 import lipsum from 'lorem-ipsum';
 
@@ -98,12 +98,6 @@ class Principles extends Component {
                     </Principle>
 
                     <Principle name=" Simple is not easy, will not sacrifice a principle for practicality">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
-                    </Principle>
-
-                    <Principle name=" Arbitrary-precision Arithmetic.">
                         <div className="alert alert-dark">
                             {lipsum({count: 3, units: 'sentences'})}
                         </div>

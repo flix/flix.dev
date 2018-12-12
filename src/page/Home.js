@@ -8,27 +8,29 @@ class Home extends Component {
             <Container>
                 <Row>
                     <Col xs="7">
-                        <h1>A functional programming language with emphasis on safety.</h1>
+                        <h1>A typed functional programming language that runs on the JVM.</h1>
 
                         <p>
-
-                            Flix is a statically typed functional- and logic programming language inspired by Scala,
-                            OCaml, F#,
-                            Haskell, and Datalog. The syntax of Flix resembles Scala and Datalog. The type system
-                            supports local
-                            type inference and is based on Hindley-Milner. Flix runs on the Java Virtual Machine and
-                            compiles
-                            directly to JVM bytecode. Flix supports hybrid functional and logic programming featuring a
-                            built-in
-                            fixed point engine based on semi-naive evaluation. The functional and logic languages can be
-                            used
-                            independently, if so desired. For example, a Flix program can be purely functional, or Flix
-                            can be used
-                            as a standalone Datalog engine.
-
+                            Flix is a principled and opinionated functional programming language that takes inspiration
+                            from F#, Go, OCaml, Haskell, Rust, and Scala.
                         </p>
 
-                        <h2>Features</h2>
+                        <p>
+                            Flix visually resembles Scala, but its type system is closer to OCaml and Haskell.
+                        </p>
+
+                        <p>
+                            Flix runs on the Java Virtual Machine and compiles to JVM bytecode.
+                            It uses a custom calling convention to guarantee full tail call elimination.
+                            Its performance is close to Scala, but up to a factor two slower, for comparable programs.
+                        </p>
+
+                        <p>
+                            Flix is also a research project exploring the connections between functional progrmaming and
+                            declarative programming in the shape of Datalog.
+                        </p>
+
+                        <h2>Features at a Glance</h2>
 
                         <ul>
                             <li>algebraic data types &amp; pattern matching</li>
