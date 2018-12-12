@@ -105,29 +105,62 @@ class Home extends Component {
 }
 
 class Codebox extends Component {
+
+    constructor(props) {
+        super(props);
+        let samples = [
+            {
+                name: "Hello World",
+                code: `def main(): Str = "Hello World!"`
+            },
+            {
+                name: "Working with Lists",
+                code: `def main(): Str =fdafds`
+            },
+            {
+                name: "Writing your own type",
+                code: `def main(): Str = "abc!"`
+            },
+            {
+                name: "Using Spawn and Channels",
+                code: `def main(): Str = "Hfs!"`
+            },
+            {
+                name: "Using Channels and Select",
+                code: `def main(): Str = fsa"`
+            },
+            {
+                name: "Using First-class Constraints",
+                code: `def main(): Str = faWorld!"`
+            },
+            {
+                name: "Recursion and Tail-call Elimination",
+                code: `def main(): Str = fallo World!"`
+            }
+        ];
+        this.state = {choice: 0, samples: samples};
+    }
+
+    onChange(event) {
+        let newChoice = event.target.value;
+        this.setState({choice: newChoice});
+    }
+
+    getExample() {
+        let choice = this.state.choice;
+        let sample = this.state.samples[choice];
+        return <Editor flix={this.props.flix} code={sample.code}>{sample.code}</Editor>
+    }
+
     render() {
         return (
             <Container>
-                <select>
-                    <option>Hello World!</option>
-                    <option>Working with Lists</option>
-                    <option>Writing your own type</option>
-                    <option>Using Spawn and Channels</option>
-                    <option>Using Channels and Select</option>
-                    <option>Using First-class Constraints</option>
-                    <option>Recursion and Tail-call elimination</option>
+                <select value={this.state.choice} onChange={this.onChange.bind(this)}>
+                    {this.state.samples.map((sample, index) =>
+                        <option key={index} value={index}>{sample.name}</option>)
+                    }
                 </select>
-
-                <Editor flix={this.props.flix}>
-                    def f(): Int = 123
-                </Editor>
-
-                <Editor flix={this.props.flix} lines={3}>
-                    def f(): Int = 123 \\
-                    def g(): Int = 213
-                </Editor>
-
-
+                {this.getExample()}
             </Container>
         );
     }

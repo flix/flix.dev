@@ -126,7 +126,7 @@ class Principles extends Component {
                         understand, works well, and guarantees the absence of dreaded <code>NullPointerException</code>s.
                     </Principle>
 
-                    <Principle name="Nothing Before Main">
+                    <Principle name="Nothing is Executed Before Main">
                         In Flix the <code>main</code> function is the entry point of the program.
                         No other (user-defined) code is executed before <code>main</code>.
                         This makes it easier to reason about startup behaviour, compared to say, Java where
@@ -147,24 +147,22 @@ class Principles extends Component {
                         Rust, Flix aims to have human readable error message. We believe compiler messages should offer
                         rich detail about the problem at hand, including potentially relevant information know to the
                         compiler, and suggestions for how to correct the problem.
-
                         <br/>
                         <Badge>in progress</Badge>
                     </Principle>
 
-                    <Principle name="    Patterns must be exhaustive">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="Pattern Matches must be Exhaustive">
+                        Flix enforces that a pattern match handles all cases of an algebraic data type.
+                        If a match is non-exhaustive, the program is rejected.
                     </Principle>
 
-                    <Principle name="    Checked array accesses.">
-                        <div className="alert alert-dark">
-                            <div className="alert alert-dark">
-                                {lipsum({count: 3, units: 'sentences'})}
-                            </div>
-                        </div>
+                    <Principle name="Dead and Unreachable Code is Rejected">
+                        Flix aims to enforce that programs with dead and unreachable code are rejected, similarly to how
+                        Rust rejects such code.
+                        <br/>
+                        <Badge>in progress</Badge>
                     </Principle>
+
                 </CardColumns>
             </Container>
         );
