@@ -11,7 +11,8 @@ class DesignPrinciples extends Component {
                 <h1>Design Principles</h1>
 
                 <p>
-                    Flix embraces a set of design principles.
+                    Flix embraces a set of design principles. The purpose is to outline these design principles and relate them to other existing languages.
+                    Understanding these principles will help you decide if Flix is something for you.
                 </p>
 
                 <CardColumns>
