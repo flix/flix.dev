@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import Home from "./page/Home";
 import GettingStarted from "./page/GettingStarted";
 import Principles from "./page/Principles";
+import Contribute from "./page/Contribute";
 import Research from "./page/Research";
 import News from "./page/News";
 import Documentation from "./page/Documentation";
@@ -64,6 +65,9 @@ class App extends Component {
         }
         if (this.state.page === "documentation") {
             return <Documentation/>
+        }
+        if (this.state.page === "contribute") {
+            return <Contribute/>
         }
 
         return <Home flix={this.runProgram.bind(this)}/>;
