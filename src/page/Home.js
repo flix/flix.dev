@@ -109,8 +109,13 @@ class Codebox extends Component {
         return (
             <Container>
                 <select>
-                    <option>Hello World</option>
+                    <option>Hello World!</option>
                     <option>Working with Lists</option>
+                    <option>Writing your own type</option>
+                    <option>Using Spawn and Channels</option>
+                    <option>Using Channels and Select</option>
+                    <option>Using First-class Constraints</option>
+                    <option>Recursion and Tail-call elimination</option>
                 </select>
 
                 <Editor flix={this.props.flix}>
