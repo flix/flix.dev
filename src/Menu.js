@@ -1,17 +1,10 @@
 import React, {Component} from 'react';
 
 import {
-    Collapse,
     Navbar,
-    NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
 } from 'reactstrap';
 
 class Menu extends Component {
@@ -33,7 +26,7 @@ class Menu extends Component {
 
                         <MenuButton name="Research" changePage={() => this.changePage("research")}/>
 
-                        <MenuButton name="Standard Library"/>
+                        <MenuButton name="Documentation" changePage={() => this.changePage("documentation")}/>
                     </Nav>
                 </Navbar>
             </div>

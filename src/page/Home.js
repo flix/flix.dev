@@ -37,6 +37,7 @@ class Home extends Component {
                             <li>Hindley-Milner type inference</li>
                             <li>first-class datalog constraints</li>
                             <li>full tail call elimination</li>
+                            <li>standard library</li>
                             <li>compilation to JVM bytecode</li>
                         </ul>
 

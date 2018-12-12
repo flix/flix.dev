@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Col, Container, Row} from "reactstrap";
+import {Col, Container, Media, Row} from "reactstrap";
+import InstallGif from '../gif/install.gif'
 
 class GettingStarted extends Component {
     render() {
@@ -13,15 +14,30 @@ class GettingStarted extends Component {
                         <h2>Installation</h2>
 
                         <ol>
-                            <li>Ensure you have java installed</li>
-                            <li>Download the Flix jar from GitHub</li>
-                            <li>Run the command java -jar flix.jar</li>
+                            <li>
+                                Ensure that you have Java 1.8 or later installed.
+                                You can check your Java version with
+                                the command <code>java -version</code>.
+                                You should see something like <code>openjdk version "1.8.0_102"</code>.
+                            </li>
+                            <li>
+                                Download <a href="https://github.com/flix/flix/releases">flix.jar</a> from the GitHub
+                                releases page.
+                            </li>
+                            <li>Run the command <code>java -jar flix.jar --version</code> to verify that you have the
+                                expected Flix version.
+                            </li>
+                            <li>
+                                Run the command <code>java -jar flix.jar</code> to start Flix in interactive mode.
+                            </li>
+                            <li>
+                                You can now enter an expression, e.g. <code>21 + 42</code>, to have it evaluated.
+                            </li>
                         </ol>
                     </Col>
 
                     <Col md="8">
-                        <a href="https://asciinema.org/a/153283" target="_blank"><img
-                            src="https://asciinema.org/a/153283.svg"/></a>
+                        <Media object src={InstallGif} alt="install.gif"/>
                     </Col>
                 </Row>
 
