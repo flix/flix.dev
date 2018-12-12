@@ -13,6 +13,7 @@ class DesignPrinciples extends Component {
                 <p>
                     Flix embraces a set of design principles. The purpose is to outline these design principles and relate them to other existing languages.
                     Understanding these principles will help you decide if Flix is something for you.
+                    You will that many of these principles come from or are also embraced by languages such as Haskell, OCaml, Rust, Elm, Scala.
                 </p>
 
                 <CardColumns>
@@ -30,7 +31,8 @@ class DesignPrinciples extends Component {
                         </div>
                     </Principle>
 
-                    <Principle name=" No coercions">
+                    <Principle name="No Implicit Coercions">
+
                         <div className="alert alert-dark">
                             {lipsum({count: 3, units: 'sentences'})}
                         </div>
