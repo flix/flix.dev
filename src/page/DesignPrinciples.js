@@ -53,10 +53,18 @@ class DesignPrinciples extends Component {
                         </div>
                     </Principle>
 
-                    <Principle name="        Local type inference">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="Local Type Inference">
+                        The Flix type system is based on <a
+                        href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> which
+                        supports full type inference. However, as a design choice, we require all functions to be
+                        annotated with their argument and return types. We believe that requiring these types signatures
+                        has three benefits that outweigh the disadvantages:
+
+                        <ol>
+                            <li>It is useful as documentation and for understanding the code.</li>
+                            <li>It accurately assigns blame for type errors.</li>
+                            <li>It enables parallel type checking.</li>
+                        </ol>
                     </Principle>
 
                     <Principle name="Uniform Function Call Syntax">
