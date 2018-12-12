@@ -59,10 +59,14 @@ class DesignPrinciples extends Component {
                         </div>
                     </Principle>
 
-                    <Principle name="      Uniform function call syntax (UFCS)">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="Uniform Function Call Syntax">
+                        Flix supports <a href="https://en.wikipedia.org/wiki/Uniform_Function_Call_Syntax">Uniform
+                        Function Call Syntax (UFCS)</a>. In Flix a function application is of the form: <code>f(a, b,
+                        c)</code>, but UFCS allows us to adopt an object-oriented style for functions that "feel like"
+                        they belong on an object. For example, we can get the length of a list
+                        with <code>length(xs)</code> or using UFCS with <code>xs.length()</code>. In other words,
+                        UFCS allows us to write any function <code>f(a, b, c)</code> as <code>a.f(b, c)</code>.
+                        It is purely a syntactic mechanism and has no influence on the semantics of a call.
                     </Principle>
 
                     <Principle name="         Consistent syntax for expressions and types">
