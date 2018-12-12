@@ -113,31 +113,52 @@ class Codebox extends Component {
                 name: "Hello World",
                 code: `
 // Returns a string which is printed.
-def main(): Str = "Hello World!"`
+def main(): Str = "Hello World!"
+`
             },
             {
                 name: "Working with Lists",
-                code: `def f(): Str = 1 :: 2 :: 3 :: Nil`
+                code: `
+def f(): Str = 1 :: 2 :: 3 :: Nil
+`
             },
             {
                 name: "Writing your own type",
-                code: `def main(): Str = "abc!"`
+                code: `
+def f(): Str = 1 :: 2 :: 3 :: Nil
+`
             },
             {
                 name: "Using Spawn and Channels",
-                code: `def main(): Str = "Hfs!"`
+                code: `
+def f(): Str = 1 :: 2 :: 3 :: Nil
+`
             },
             {
                 name: "Using Channels and Select",
-                code: `def main(): Str = fsa"`
+                code: `
+def main(): Unit = 
+    let c = channel;
+        spawn f(c);
+    ()
+
+def f(c: Channel[Int]): Unit = 
+    select {
+        case x <- c => ...
+    }
+`
             },
             {
                 name: "Using First-class Constraints",
-                code: `def main(): Str = faWorld!"`
+                code: `
+def f(): Str = 1 :: 2 :: 3 :: Nil
+`
             },
             {
                 name: "Recursion and Tail-call Elimination",
-                code: `def main(): Str = fallo World!"`
+                code: `
+def f(): Str = 1 :: 2 :: 3 :: Nil
+`
             }
         ];
         this.state = {choice: 0, samples: samples};
@@ -165,16 +186,6 @@ def main(): Str = "Hello World!"`
                 {this.getExample()}
             </Container>
         );
-    }
-}
-
-// TODO: Remove
-class Editor2 extends Component {
-    render() {
-        return (
-            <Container>
-                {this.props.code}
-            </Container>)
     }
 }
 
