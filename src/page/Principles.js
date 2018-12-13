@@ -59,13 +59,8 @@ class Principles extends Component {
                         network, etc. is all part of a larger global state.
                     </Principle>
 
-                    <Principle name="     Keyword-based syntax">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
-                    </Principle>
+                    <Principle name="Keyword-based Syntax">
 
-                    <Principle name="    Every function is curried">
                         <div className="alert alert-dark">
                             {lipsum({count: 3, units: 'sentences'})}
                         </div>
@@ -111,10 +106,21 @@ class Principles extends Component {
                         should be considered internal (the default) or available to other parts of the program.
                     </Principle>
 
-                    <Principle name="     Illegal states should be unrepresentable.">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="Illegal States should be Unrepresentable.">
+
+                        We believe that a good design should aim to make illegal states unrepresentable.
+                        Ideally we enforce most of these properties in the type system. For example, with algebraic
+                        data types we can easily define a type <code>Color</code> and that is has three variants
+                        <code>Red</code>, <code>Green</code>, and <code>Blue</code>. The type system ensures that
+                        nothing else is a color.
+
+                        In Flix, we would like to take this further, and allow refinement on some types. For example,
+                        we could express that not only must some type be an integer, but also that it must fall
+                        within a range, e.g. <code>[0-99]</code>. Checking such refinement types at compile-time
+                        is an open research problem, but in Flix we aim to at least provide the means to express
+                        such invariants, and then to rely on run-time checks until the theory matures more.
+
+                        <br/>
                         <Badge>in progress</Badge>
                     </Principle>
 
