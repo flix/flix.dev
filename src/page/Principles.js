@@ -60,10 +60,9 @@ class Principles extends Component {
                     </Principle>
 
                     <Principle name="Keyword-based Syntax">
-
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                        The Flix syntax is inspired by Scala and Python. We believe in short keywords that make it
+                        visually easy to identify the overall structure of a
+                        piece of code.
                     </Principle>
 
                     <Principle name="Local Type Inference">
