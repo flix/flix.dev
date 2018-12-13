@@ -221,9 +221,22 @@ def f(): Str = 1 :: 2 :: 3 :: Nil
 `
             },
             {
-                name: "Recursion and Tail-call Elimination",
-                code: `
-def f(): Str = 1 :: 2 :: 3 :: Nil
+                name: "Mutual Recursion with Tail-call Elimination",
+                code: `// Flix, despite being a JVM-language, 
+// supports full tail call elimination.
+
+// We can demonstrate this by a naive implementation of
+// two mutually recursive functions that determine if
+// a number is odd or even.
+
+// A number i
+def isOdd(n: Int): Bool = 
+    if (n == 0) true else !isEven(n - 1)
+     
+
+def main(): Bool = isOdd(12345)
+
+ 
 `
             }
         ];
