@@ -183,6 +183,10 @@ class Principles extends Component {
                     </Principle>
 
 
+                    <Principle name="Standard Library">
+
+                    </Principle>
+
                 </CardColumns>
             </Container>
         );

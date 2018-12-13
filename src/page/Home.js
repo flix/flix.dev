@@ -165,10 +165,6 @@ class Home extends Component {
                         </div>
                     </Col>
                 </Row>
-
-                <Row>
-                    Copyright 2018
-                </Row>
             </Container>
         );
     }
