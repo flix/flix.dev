@@ -221,22 +221,26 @@ def f(): Str = 1 :: 2 :: 3 :: Nil
 `
             },
             {
-                name: "Mutual Recursion with Tail-call Elimination",
-                code: `// Flix, despite being a JVM-language, 
-// supports full tail call elimination.
+                name: "Mutual Recursion with Full Tail-Call Elimination",
+                code: `/// Flix, despite being a JVM-language, 
+/// supports full tail call elimination.
 
-// We can demonstrate this by a naive implementation of
-// two mutually recursive functions that determine if
-// a number is odd or even.
+/// We can demonstrate this with a naive implementation
+/// of a program that computes whether a number is odd 
+/// or even.
 
-// A number i
+/// Returns true if n is odd.
 def isOdd(n: Int): Bool = 
-    if (n == 0) true else !isEven(n - 1)
-     
+    if (n == 0) false else !isEvn(n - 1)
 
-def main(): Bool = isOdd(12345)
+/// Returns true if n is even.
+def isEvn(n: Int): Bool = 
+    if (n == 0) true else !isOdd(n - 1)
 
- 
+/// We can now compute if 12345 is odd.
+/// In a language without TCE this would
+/// quick consume all stack space.
+def main(): Bool = isOdd(123456)
 `
             }
         ];
@@ -251,7 +255,7 @@ def main(): Bool = isOdd(12345)
     getExample() {
         let choice = this.state.choice;
         let sample = this.state.samples[choice];
-        return <Editor flix={this.props.flix} code={sample.code} lines={10}>{sample.code}</Editor>
+        return <Editor flix={this.props.flix} code={sample.code} lines={14}>{sample.code}</Editor>
     }
 
     render() {
