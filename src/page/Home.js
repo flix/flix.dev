@@ -183,13 +183,25 @@ def main(): Str = "Hello World!"
 `
             },
             {
-                name: "Working with Lists",
+                name: "Algebraic Data Types and Pattern Matching",
                 code: `
-def f(): Str = 1 :: 2 :: 3 :: Nil
+enum Shape {
+    case Circle(Int),
+    case Square(Int),
+    case Rectangle(Int, Int)
+}
+
+def area(s: Shape): Int match s with {
+    case Circle(r)       => 3 * (r * r)
+    case Square(w)       => w * w
+    case Rectangle(h, w) => h * w
+}
+
+def main(): Int = area(Rectangle(2, 4))
 `
             },
             {
-                name: "Writing your own type",
+                name: "Lists",
                 code: `
 def f(): Str = 1 :: 2 :: 3 :: Nil
 `
@@ -226,8 +238,7 @@ def f(): Str = 1 :: 2 :: 3 :: Nil
 /// supports full tail call elimination.
 
 /// We can demonstrate this with a naive implementation
-/// of a program that computes whether a number is odd 
-/// or even.
+/// of a program that computes if a number is odd.
 
 /// Returns true if n is odd.
 def isOdd(n: Int): Bool = 
@@ -239,7 +250,7 @@ def isEvn(n: Int): Bool =
 
 /// We can now compute if 12345 is odd.
 /// In a language without TCE this would
-/// quick consume all stack space.
+/// quickly consume all stack space.
 def main(): Bool = isOdd(123456)
 `
             }
