@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {Card, CardText, CardBody, CardTitle, CardColumns, Badge} from 'reactstrap';
 import {Container} from 'reactstrap';
 
-import lipsum from 'lorem-ipsum';
-
 class Principles extends Component {
     render() {
         return (
@@ -27,12 +25,18 @@ class Principles extends Component {
                         scale.
                     </Principle>
 
+                    <Principle name="(Almost) Everything is an Expression">
+                        Flix embraces the functional creed that everything is an expression. Flix has no if-then-else
+                        statement, but it has an if-then-else expression.
+                    </Principle>
+
                     <Principle name="Safety First, Performance Second">
                         We value safety higher than performance. Unlike language such as C and C++ we are willing to
                         pay (small) performance overheads if it improves the safety and robustness of programs.
                         Two classical examples of this array bounds checks and garbage collection. In Flix we plan
                         to support additional safety mechanisms.
 
+                        <br/>
                         <Badge>in progress</Badge>
                     </Principle>
 

@@ -7,7 +7,6 @@ import GettingStarted from "./page/GettingStarted";
 import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
 import Research from "./page/Research";
-import News from "./page/News";
 import Documentation from "./page/Documentation";
 
 const SocketAddress = 'ws://flix.aau.dk:8080';
@@ -59,9 +58,6 @@ class App extends Component {
         }
         if (this.state.page === "research") {
             return <Research/>
-        }
-        if (this.state.page === "news") {
-            return <News/>
         }
         if (this.state.page === "documentation") {
             return <Documentation/>
