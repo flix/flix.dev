@@ -20,17 +20,20 @@ class Principles extends Component {
 
                 <CardColumns>
 
-                    <Principle name="Safety first, performance second">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
-                        <Badge>in progress</Badge>
+                    <Principle name="Simple Is Not Easy">
+                        We value simplicity of design, but <a
+                        href="https://www.infoq.com/presentations/Simple-Made-Easy">simplicity does not necessarily mean
+                        easy</a>. We prefer to have the right design, which may take longer to learn, but pays off at
+                        scale.
                     </Principle>
 
-                    <Principle name="    No order of declarations">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="Safety First, Performance Second">
+                        We value safety higher than performance. Unlike language such as C and C++ we are willing to
+                        pay (small) performance overheads if it improves the safety and robustness of programs.
+                        Two classical examples of this array bounds checks and garbage collection. In Flix we plan
+                        to support additional safety mechanisms.
+
+                        <Badge>in progress</Badge>
                     </Principle>
 
                     <Principle name="No Implicit Coercions">
@@ -107,12 +110,6 @@ class Principles extends Component {
                         should be considered internal (the default) or available to other parts of the program.
                     </Principle>
 
-                    <Principle name=" Simple is not easy, will not sacrifice a principle for practicality">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
-                    </Principle>
-
                     <Principle name="     Illegal states should be unrepresentable.">
                         <div className="alert alert-dark">
                             {lipsum({count: 3, units: 'sentences'})}
@@ -155,17 +152,26 @@ class Principles extends Component {
                         <Badge>in progress</Badge>
                     </Principle>
 
-                    <Principle name="Pattern Matches must be Exhaustive">
-                        Flix enforces that a pattern match handles all cases of an algebraic data type.
-                        If a match is non-exhaustive, the program is rejected.
-                    </Principle>
-
                     <Principle name="Dead and Unreachable Code is Rejected">
                         Flix aims to enforce that programs with dead and unreachable code are rejected, similarly to how
                         Rust rejects such code.
                         <br/>
                         <Badge>in progress</Badge>
                     </Principle>
+
+                    <Principle name="Pattern Matches must be Exhaustive">
+                        Flix enforces that a pattern match handles all cases of an algebraic data type.
+                        If a match is non-exhaustive, the program is rejected.
+                    </Principle>
+
+                    <Principle name="Declare and then Use">
+                        Flix requires things to be declared before they can be used.
+                        Algebraic data types, functions, and other programming elements must be declared
+                        before they can be used by other program parts. Declarations make it easy to assign blame.
+                        We assume the declaration to be correct and then check any usage against its specification.
+                        E.g. the cases of an algebraic data type or the arguments to a function.
+                    </Principle>
+
 
                 </CardColumns>
             </Container>
