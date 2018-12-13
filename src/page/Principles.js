@@ -95,10 +95,11 @@ class Principles extends Component {
                         It is purely a syntactic mechanism and has no influence on the semantics of a call.
                     </Principle>
 
-                    <Principle name="         Consistent syntax for expressions and types">
-                        <div className="alert alert-dark">
-                            {lipsum({count: 3, units: 'sentences'})}
-                        </div>
+                    <Principle name="Consistent Syntax">
+                        Flix aims to have consistent syntax. For example, a function application is written as <code>f(a,
+                        b, c)</code>. Similarly, a type application is written as <code>f[a, b, c]</code> mirroring the
+                        syntax of the function application. In the samey way, a function expression is written as <code>x
+                        -&gt; x + 1</code> and its type is written <code>Int -&gt; Int</code>.
                     </Principle>
 
                     <Principle name="Private Visibility by Default">
