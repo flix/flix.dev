@@ -63,7 +63,7 @@ class Home extends Component {
                     </Col>
                 </Row>
 
-                <Row>
+                <Row className="mb-3">
                     <Col xs="6">
                         <h3>Principled Design</h3>
 
@@ -87,7 +87,7 @@ class Home extends Component {
                     </Col>
                 </Row>
 
-                <Row>
+                <Row className="mb-3">
                     <Col xs="6">
                         <h3>Safety First</h3>
 
@@ -111,7 +111,7 @@ class Home extends Component {
                     </Col>
                 </Row>
 
-                <Row>
+                <Row className="mb-3">
                     <Col xs="6">
                         <h3>News</h3>
                         <ul>

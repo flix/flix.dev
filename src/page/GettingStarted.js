@@ -50,7 +50,7 @@ class GettingStarted extends Component {
                     </Col>
                 </Row>
 
-                <Row>
+                <Row className="mb-lg-5">
                     <Col md="12">
                         <h2>Next Steps</h2>
                     </Col>
