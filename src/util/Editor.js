@@ -1,5 +1,4 @@
-import React from 'react'
-import _ from 'lodash/fp'
+import React, {Component} from 'react';
 
 import nl2br from 'react-newline-to-break';
 
@@ -10,7 +9,7 @@ import 'brace/theme/crimson_editor'
 import 'brace/theme/xcode'
 import {Button} from "reactstrap";
 
-class Editor extends React.Component {
+class Editor extends Component {
     state = {
         input: this.props.code,
         output: undefined,
@@ -19,11 +18,8 @@ class Editor extends React.Component {
 
     run = () => {
         this.setState({waiting: true}, () => {
-            var src = this.state.input;
-
-            if (this.props.main === "none") {
-                src += "\ndef f(): Unit = ()"
-            }
+            // An ugly hack, because the server expects main to be named f.
+            let src = this.state.input.replace("def main()", "def f()");
 
             this.props.flix(src, data =>
                 this.setState({waiting: false, output: data})
@@ -31,10 +27,8 @@ class Editor extends React.Component {
         })
     };
 
-    debounced = _.debounce(1000, this.run);
-
     onChange = input => {
-        this.setState({input}, this.debounced);
+        this.setState({input: input});
     };
 
     onClick = () => {
@@ -74,7 +68,7 @@ class Editor extends React.Component {
                             showPrintMargin={false}
                             highlightActiveLine={false}
                             onChange={this.onChange}
-                            value={this.props.code}
+                            value={this.state.input}
                             editorProps={{$blockScrolling: true}}/>
                         {this.state.waiting}
                     </div>

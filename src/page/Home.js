@@ -370,7 +370,7 @@ tbd.
 `
             },
             {
-                name: "Fixpoint Computations and First-Class Constraints",
+                name: "Fixpoint Computations with First-Class Constraints",
                 code: `/// Declare two predicate symbols.
 rel ParentOf(x: Str, y: Str)
 rel AncestorOf(x: Str, y: Str)
@@ -408,7 +408,8 @@ def main(): Schema = { ParentOf, AncestorOf } =
         let choice = this.state.choice;
         let sample = this.state.samples[choice];
         let lines = getNumberOfLines(sample.code);
-        return <Editor flix={this.props.flix} code={sample.code} lines={18}>{sample.code}</Editor>
+        // NB: The use of the key ensures that the editor is refreshed when the dropdown is changed.
+        return <Editor key={sample.name} flix={this.props.flix} code={sample.code} lines={18}>{sample.code}</Editor>
     }
 
     render() {
