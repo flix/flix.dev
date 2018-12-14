@@ -8,6 +8,7 @@ import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
 import Research from "./page/Research";
 import Documentation from "./page/Documentation";
+import {Container} from "reactstrap";
 
 const SocketAddress = 'ws://flix.aau.dk:8080';
 
@@ -72,11 +73,11 @@ class App extends Component {
 
     render() {
         return (
-            <div className="container">
+            <Container className="page">
                 <Menu notifyChangePage={this.notifyChangePage.bind(this)}/>
 
                 {this.getPage()}
-            </div>
+            </Container>
         );
     }
 }

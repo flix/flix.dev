@@ -44,7 +44,7 @@ class GettingStarted extends Component {
                     </Col>
 
                     <Col md="6">
-                        <Card>
+                        <Card className="p-2">
                             <CardImg top src={InstallGif}/>
                         </Card>
                     </Col>
@@ -56,7 +56,7 @@ class GettingStarted extends Component {
                     </Col>
 
                     <Col md="6">
-                        <Card>
+                        <Card className="p-2">
                             <CardImg top src={NextStepsGif}/>
                         </Card>
                     </Col>
@@ -73,7 +73,7 @@ class GettingStarted extends Component {
                                     <CardBody>
                                         <CardText>
                                             <code>
-                                                def main(): Str = "Hello World"
+                                                def main(): Unit = ()
                                             </code>
                                         </CardText>
                                     </CardBody>

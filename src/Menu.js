@@ -15,23 +15,21 @@ class Menu extends Component {
 
     render() {
         return (
-            <div className="Menu mb-5">
-                <Navbar color="light" light expand="md">
-                    <Nav className="mr-lg-auto" navbar>
-                        <MenuButton name="Home" changePage={() => this.changePage("home")}/>
+            <Navbar color="light" light expand="md" className="menu mb-5">
+                <Nav className="mr-lg-auto" navbar>
+                    <MenuButton name="Home" changePage={() => this.changePage("home")}/>
 
-                        <MenuButton name="Getting Started" changePage={() => this.changePage("getting-started")}/>
+                    <MenuButton name="Getting Started" changePage={() => this.changePage("getting-started")}/>
 
-                        <MenuButton name="Principles" changePage={() => this.changePage("design-principles")}/>
+                    <MenuButton name="Principles" changePage={() => this.changePage("design-principles")}/>
 
-                        <MenuButton name="Research" changePage={() => this.changePage("research")}/>
+                    <MenuButton name="Research" changePage={() => this.changePage("research")}/>
 
-                        <MenuButton name="Documentation" changePage={() => this.changePage("documentation")}/>
+                    <MenuButton name="Documentation" changePage={() => this.changePage("documentation")}/>
 
-                        <MenuButton name="Contribute" changePage={() => this.changePage("contribute")}/>
-                    </Nav>
-                </Navbar>
-            </div>
+                    <MenuButton name="Contribute" changePage={() => this.changePage("contribute")}/>
+                </Nav>
+            </Navbar>
         );
     }
 }
