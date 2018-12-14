@@ -199,13 +199,6 @@ class Codebox extends Component {
         super(props);
         let samples = [
             {
-                name: "Hello World",
-                code: `
-// Returns a string which is printed.
-def main(): Str = "Hello World!"
-`
-            },
-            {
                 name: "Algebraic Data Types and Pattern Matching",
                 code: `
 enum Shape {
@@ -271,23 +264,21 @@ def main(): Bool =
 `
             },
             {
-                name: "Using Spawn and Channels",
+                name: "Channel 1",
                 code: `
-def f(): Str = 1 :: 2 :: 3 :: Nil
+tbd
 `
             },
             {
-                name: "Using Channels and Select",
+                name: "Channel 2",
                 code: `
-def main(): Unit = 
-    let c = channel;
-        spawn f(c);
-    ()
-
-def f(c: Channel[Int]): Unit = 
-    select {
-        case x <- c => ...
-    }
+tbd.
+`
+            },
+            {
+                name: "Channel 3",
+                code: `
+tbd.
 `
             },
             {
@@ -319,7 +310,8 @@ def main(): Bool = isOdd(123456)
 `
             }
         ];
-        this.state = {choice: 0, samples: samples};
+        let randomChoice = getRandomInt(samples.length);
+        this.state = {choice: randomChoice, samples: samples};
     }
 
     onChange(event) {
@@ -330,7 +322,8 @@ def main(): Bool = isOdd(123456)
     getExample() {
         let choice = this.state.choice;
         let sample = this.state.samples[choice];
-        return <Editor flix={this.props.flix} code={sample.code} lines={14}>{sample.code}</Editor>
+        let lines = getNumberOfLines(sample.code);
+        return <Editor flix={this.props.flix} code={sample.code} lines={16}>{sample.code}</Editor>
     }
 
     render() {
@@ -345,6 +338,14 @@ def main(): Bool = isOdd(123456)
             </Container>
         );
     }
+}
+
+function getNumberOfLines(s) {
+    return s.split(/\r\n|\r|\n/).length
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
 }
 
 export default Home;
