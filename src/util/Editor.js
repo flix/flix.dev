@@ -64,15 +64,12 @@ class Editor extends Component {
         }
     };
 
-    getHeight = () => (this.props.lines || 1) * 20;
-
     render() {
         return (
-            <div className={"editor"}>
+            <div>
                 <div>
                     <div>
                         <AceEditor
-                            style={{width: '100%', height: this.getHeight() + 'px'}}
                             mode='scala'
                             theme='xcode'
                             showGutter={false}
@@ -80,6 +77,9 @@ class Editor extends Component {
                             highlightActiveLine={false}
                             onChange={this.onChange}
                             value={this.state.input}
+                            autoScrollEditorIntoView={true}
+                            minLines={5}
+                            maxLines={24}
                             editorProps={{$blockScrolling: true}}/>
                         {this.state.waiting}
                     </div>
