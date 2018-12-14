@@ -247,9 +247,20 @@ def main(): Bool =
             },
             {
                 name: "Higher-Order Functions",
-                code: `/// We can define our own HO.
-enum Tree[] {
-}
+                code: `/// Returns the sum of x and y.
+def add(x: Int, y: Int): Int = x + y
+
+/// Returns x plus one.
+def inc(x: Int): Int = add(x, 1)
+
+/// Returns a function that applies f twice.
+def twice(f: Int -> Int): Int -> Int = x -> f(f(x))
+
+/// Returns x plus two.
+def two(x: Int): Int = twice(inc)(x)
+
+/// Returns 123 plus 4 = 127.
+def main(): Int = twice(two)(123)
 `
             },
             {
@@ -333,18 +344,27 @@ def main(): Bool = isOdd(123456)
             },
             {
                 name: "Fixpoint Computations and First-Class Constraints",
-                code: `/// Flix supports first-class Datalog constraints
-/// which allow us to construct, compose, and solve 
-/// fixpoint problems at run-time.
+                code: `/// Declare two predicate symbols.
+rel ParentOf(x: Str, y: Str)
+rel AncestorOf(x: Str, y: Str)
 
-/// We declare two predicate symbols.
-rel ColorEdge(x: Str, c: Color, y: Str)
-rel ColorPath(x: Str, y: Str)
-
-/// A function that returns a collection of facts.
-def getFacts(): = {
-    
+/// Returns a collection of facts.
+def getFacts(): Schema { ParentOf, AncestorOf } = {
+    ParentOf("Pompey", "Strabo").
+    ParentOf("Gnaeus", "Pompey").
+    ParentOf("Pompeia", "Pompey").
+    ParentOf("Sextus", "Pompey").
 }
+
+/// Returns a collection of rules to compute ancestors.
+def getRules(): Schema { ParentOf, AncestorOf } = {
+    AncestorOf(x, y) : − ParentOf(x, y).
+    AncestorOf(x, z) : − AncestorOf(x, y), AncestorOf(y, z)
+}
+
+/// Composes the facts and rules, and computes the lfp.
+def main(): Schema = { ParentOf, AncestorOf } = 
+    solve getFacts() <+> getRules()
 `
             }
         ];
@@ -361,7 +381,7 @@ def getFacts(): = {
         let choice = this.state.choice;
         let sample = this.state.samples[choice];
         let lines = getNumberOfLines(sample.code);
-        return <Editor flix={this.props.flix} code={sample.code} lines={16}>{sample.code}</Editor>
+        return <Editor flix={this.props.flix} code={sample.code} lines={18}>{sample.code}</Editor>
     }
 
     render() {
