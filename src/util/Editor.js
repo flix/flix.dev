@@ -10,11 +10,18 @@ import 'brace/theme/xcode'
 import {Button} from "reactstrap";
 
 class Editor extends Component {
-    state = {
-        input: this.props.code,
-        output: undefined,
-        waiting: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = this.getInitialState();
+    }
+
+    getInitialState() {
+        return {
+            input: this.props.code,
+            output: undefined,
+            waiting: false
+        }
+    }
 
     run = () => {
         this.setState({waiting: true}, () => {
@@ -31,8 +38,12 @@ class Editor extends Component {
         this.setState({input: input});
     };
 
-    onClick = () => {
+    onRunClick = () => {
         this.run();
+    };
+
+    onResetClick = () => {
+        this.setState(this.getInitialState())
     };
 
     resultBox = () => {
@@ -74,12 +85,14 @@ class Editor extends Component {
                     </div>
 
                     <div>
-                        <Button className="btn-sm" onClick={this.onClick}>
-                            Run
-                        </Button>
+                        <Button color="success" className="btn-sm" onClick={this.onRunClick}>Run</Button>
+                        <Button color="secondary" className="btn-sm" onClick={this.onResetClick}>Reset</Button>
+
                     </div>
                 </div>
-                {this.resultBox()}
+                <code>
+                    {this.resultBox()}
+                </code>
             </div>
         )
     }
