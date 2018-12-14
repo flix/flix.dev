@@ -240,7 +240,7 @@ def length[a](l: List[a]): Int = match l with {
 def main(): Bool = 
     let l1 = List.range(0, 10);
     let l2 = List.intersperse(42, l1);
-    let l3 = aList() :: aList() :: Nil;
+    let l3 = List.map(x -> x :: x :: Nil, aList());
     let l4 = List.flatten(l3);
     List.exists(x -> x == 0, l4)
 `
