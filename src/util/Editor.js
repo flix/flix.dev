@@ -7,7 +7,7 @@ import AceEditor from 'react-ace'
 import 'brace/mode/scala'
 import 'brace/theme/crimson_editor'
 import 'brace/theme/xcode'
-import {Badge, Button, ButtonGroup, Card, CardText, CardTitle} from "reactstrap";
+import {Badge, Button, ButtonGroup, Card, CardText} from "reactstrap";
 
 class Editor extends Component {
     constructor(props) {

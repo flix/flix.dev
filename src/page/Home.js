@@ -212,7 +212,6 @@ class Codebox extends Component {
     getEditor() {
         let choice = this.state.choice;
         let sample = this.state.samples[choice];
-        let lines = getNumberOfLines(sample.code);
         // NB: The use of the key ensures that the editor is refreshed when the dropdown is changed.
         return <Editor key={sample.name} flix={this.props.flix} code={sample.code} lines={18}>{sample.code}</Editor>
     }
@@ -229,10 +228,6 @@ class Codebox extends Component {
             </Container>
         );
     }
-}
-
-function getNumberOfLines(s) {
-    return s.split(/\r\n|\r|\n/).length
 }
 
 function getRandomInt(max) {
