@@ -7,7 +7,7 @@ import AceEditor from 'react-ace'
 import 'brace/mode/scala'
 import 'brace/theme/crimson_editor'
 import 'brace/theme/xcode'
-import {Button, ButtonGroup} from "reactstrap";
+import {Badge, Button, ButtonGroup, Card, CardText, CardTitle} from "reactstrap";
 
 class Editor extends Component {
     constructor(props) {
@@ -28,11 +28,19 @@ class Editor extends Component {
             // An ugly hack, because the server expects main to be named f.
             let src = this.state.input.replace("def main()", "def f()");
 
-            this.props.flix(src, data =>
+            this.props.flix.run(src, data =>
                 this.setState({waiting: false, output: data})
             );
         })
     };
+
+    isConnected() {
+        if (this.props.flix.connected) {
+            return <Badge color="info" className="float-right">Connected</Badge>
+        } else {
+            return <Badge color="secondary">Disconnected</Badge>
+        }
+    }
 
     onChange = input => {
         this.setState({input: input});
@@ -52,14 +60,20 @@ class Editor extends Component {
         } else {
             if (this.state.output.status === "success") {
                 return (
-                    <div>
-                        {this.state.output.result}
-                    </div>);
+                    <Card body outline color="success" className="mt-2">
+                        <CardText>
+                            Main returned: <code>{this.state.output.result}</code>
+                        </CardText>
+                    </Card>);
             } else {
                 return (
-                    <div>
-                        {nl2br(this.state.output.message)}
-                    </div>);
+                    <Card body outline color="danger" className="mt-2">
+                        <CardText>
+                            <code>
+                                {nl2br(this.state.output.message)}
+                            </code>
+                        </CardText>
+                    </Card>);
             }
         }
     };
@@ -85,13 +99,13 @@ class Editor extends Component {
                     </div>
 
                     <ButtonGroup>
-                        <Button color="success" outline className="btn-sm" onClick={this.onRunClick}>Run</Button>
+                        <Button color="primary" outline className="btn-sm" onClick={this.onRunClick}>Run</Button>
                         <Button color="secondary" outline className="btn-sm" onClick={this.onResetClick}>Reset</Button>
                     </ButtonGroup>
+
+                    {this.isConnected()}
                 </div>
-                <code>
-                    {this.resultBox()}
-                </code>
+                {this.resultBox()}
             </div>
         )
     }

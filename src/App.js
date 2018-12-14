@@ -19,13 +19,14 @@ class App extends Component {
 
         this.state = {
             page: null,
-            websocket: new window.WebSocket(SocketAddress)
+            websocket: new window.WebSocket(SocketAddress),
+            connected: false
         };
 
         this.state.websocket.onopen = event => {
             console.log("Connected to: " + SocketAddress);
-            this.connected = true;
-        };
+            this.setState({connected: true})
+        }
     }
 
     runProgram = (src, f) => {
@@ -37,7 +38,7 @@ class App extends Component {
             f(data);
         };
 
-        if (!this.connected) {
+        if (!this.state.connected) {
             console.log("Not connected yet");
             return;
         }
@@ -66,7 +67,7 @@ class App extends Component {
             return <Contribute/>
         }
 
-        return <Home flix={this.runProgram.bind(this)}/>;
+        return <Home flix={{connected: this.state.connected, run: this.runProgram.bind(this)}}/>;
     }
 
     render() {
