@@ -30,7 +30,7 @@ class Home extends Component {
                         </p>
 
                         <p>
-                            Flix is also a research project exploring the connections between functional progrmaming and
+                            Flix is also a research project exploring the connections between functional programming and
                             declarative programming in the shape of Datalog.
                         </p>
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardText, Col, Container, Media, Row} from "reactstrap";
+import {Card, CardBody, CardImg, CardText, Col, Container, Row} from "reactstrap";
 import InstallGif from '../gif/install.gif'
 import NextStepsGif from '../gif/next-steps.gif'
 
@@ -9,9 +9,14 @@ class GettingStarted extends Component {
             <Container>
                 <h1>Getting Started</h1>
 
+                <p>
+                    Flix runs on any platform that supports the Java Virtual Machine.
+                    Installation is as easy as downloading and running the flix jar.
+                </p>
+
                 <Row className="mb-lg-5">
                     <Col md="12">
-                        <h2>Installation</h2>
+                        <h2>Installation Details</h2>
                     </Col>
 
                     <Col md="6">
@@ -27,19 +32,21 @@ class GettingStarted extends Component {
                                 releases page.
                             </li>
                             <li>Run the command <code>java -jar flix.jar --version</code> to verify that you have the
-                                expected Flix version.
+                                expected version of Flix.
                             </li>
                             <li>
                                 Run the command <code>java -jar flix.jar</code> to start Flix in interactive mode.
                             </li>
                             <li>
-                                You can now enter an expression, e.g. <code>21 + 42</code>, to have it evaluated.
+                                Enter any expression to have it evaluated, e.g. <code>21 + 42</code>.
                             </li>
                         </ol>
                     </Col>
 
                     <Col md="6">
-                        <Media object src={InstallGif} alt="install.gif"/>
+                        <Card>
+                            <CardImg top src={InstallGif}/>
+                        </Card>
                     </Col>
                 </Row>
 
@@ -49,13 +56,16 @@ class GettingStarted extends Component {
                     </Col>
 
                     <Col md="6">
-                        <Media object src={NextStepsGif} alt="install.gif"/>
+                        <Card>
+                            <CardImg top src={NextStepsGif}/>
+                        </Card>
                     </Col>
+
                     <Col md="6">
 
                         <ol>
                             <li>
-                                Open a file <code>test.flix</code>
+                                Open the file <code>test.flix</code>.
                             </li>
                             <li>
                                 Enter the following content:
@@ -71,7 +81,7 @@ class GettingStarted extends Component {
                             </li>
                             <li>
                                 Run the command <code>java -jar flix.jar test.flix --interactive</code> to start Flix in
-                                interactive mode.
+                                interactive mode with the file loaded.
                             </li>
                             <li>
                                 Type <code>main()</code> into the command prompt to run the main function.
