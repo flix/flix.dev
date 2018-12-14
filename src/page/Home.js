@@ -303,21 +303,30 @@ def main(): Bool =
 `
             },
             {
-                name: "Channel 1",
-                code: `
-tbd
-`
-            },
-            {
-                name: "Channel 2",
-                code: `
-tbd.
-`
-            },
-            {
-                name: "Channel 3",
-                code: `
-tbd.
+                name: "Uniform Function Call Syntax (UFCS)",
+                code: `/// Returns x plus one.
+def inc(x: Int): Int = x + 1
+
+/// Returns the sum of x and y.
+def sum(x: Int, y: Int): Int = x + y
+
+/// We can call these functions in the standard way:
+def example01(): Int = 
+    let i = inc(123);
+    let s = sum(123, 456);
+        i + s
+
+/// Or with uniform function call syntax:
+def example02(): Int = 
+    let i = 123.inc()
+    let s = 123.sum(456);
+        i + s
+
+/// Or even using an infix notation for sum:
+def example03(): Int = 
+    let i = 123.inc()
+    let s = 123 \`sum\` 456;
+        i + s
 `
             },
             {
@@ -340,6 +349,24 @@ def isEvn(n: Int): Bool =
 /// In a language without TCE this would
 /// quickly consume all stack space.
 def main(): Bool = isOdd(123456)
+`
+            },
+            {
+                name: "Channel 1",
+                code: `
+tbd
+`
+            },
+            {
+                name: "Channel 2",
+                code: `
+tbd.
+`
+            },
+            {
+                name: "Channel 3",
+                code: `
+tbd.
 `
             },
             {
