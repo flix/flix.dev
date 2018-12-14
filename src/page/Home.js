@@ -263,10 +263,15 @@ def main(): Tree[Int] = map(x -> x * x, tree())
             },
             {
                 name: "Function Composition, Pipelines, and Currying",
-                code: `
+                code: `/// Flix supports function composition with
+/// the |> operator (among others) and currying.
+/// This makes it easy to construct pipelines:
+                
+/// Constructs a list with ten elements and performs
+/// various operations on it in a pipeline.
 def main(): Bool = 
-    List.range(1, 10) |>
-    List.map(x -> 2 * x) |>
+    List.range(0, 10) |>
+    List.map(x -> x * x) |>
     List.drop(5) |> 
     List.exists(x -> x == 10)
 `
@@ -290,12 +295,6 @@ tbd.
 `
             },
             {
-                name: "Fixpoint Computations and First-Class Constraints",
-                code: `
-def f(): Str = 1 :: 2 :: 3 :: Nil
-`
-            },
-            {
                 name: "Mutual Recursion with Full Tail-Call Elimination",
                 code: `/// Flix, despite being a JVM-language, 
 /// supports full tail call elimination.
@@ -315,6 +314,22 @@ def isEvn(n: Int): Bool =
 /// In a language without TCE this would
 /// quickly consume all stack space.
 def main(): Bool = isOdd(123456)
+`
+            },
+            {
+                name: "Fixpoint Computations and First-Class Constraints",
+                code: `/// Flix supports first-class Datalog constraints
+/// which allow us to construct, compose, and solve 
+/// fixpoint problems at run-time.
+
+/// We declare two predicate symbols.
+rel ColorEdge(x: Str, c: Color, y: Str)
+rel ColorPath(x: Str, y: Str)
+
+/// A function that returns a collection of facts.
+def getFacts(): = {
+    
+}
 `
             }
         ];
