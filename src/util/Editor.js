@@ -7,7 +7,7 @@ import AceEditor from 'react-ace'
 import 'brace/mode/scala'
 import 'brace/theme/crimson_editor'
 import 'brace/theme/xcode'
-import {Button} from "reactstrap";
+import {Button, ButtonGroup} from "reactstrap";
 
 class Editor extends Component {
     constructor(props) {
@@ -84,11 +84,10 @@ class Editor extends Component {
                         {this.state.waiting}
                     </div>
 
-                    <div>
-                        <Button color="success" className="btn-sm" onClick={this.onRunClick}>Run</Button>
-                        <Button color="secondary" className="btn-sm" onClick={this.onResetClick}>Reset</Button>
-
-                    </div>
+                    <ButtonGroup>
+                        <Button color="success" outline className="btn-sm" onClick={this.onRunClick}>Run</Button>
+                        <Button color="secondary" outline className="btn-sm" onClick={this.onResetClick}>Reset</Button>
+                    </ButtonGroup>
                 </div>
                 <code>
                     {this.resultBox()}

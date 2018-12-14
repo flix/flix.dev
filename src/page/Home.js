@@ -7,7 +7,7 @@ class Home extends Component {
         return (
             <Container>
                 <Row className="mb-3">
-                    <Col xs="7">
+                    <Col xs="6">
                         <h1>A typed functional programming language that runs on the JVM.</h1>
 
                         <p>
@@ -32,7 +32,7 @@ class Home extends Component {
                         </p>
 
                     </Col>
-                    <Col xs="5">
+                    <Col xs="6">
                         <Codebox flix={this.props.flix}/>
                     </Col>
                 </Row>
@@ -209,7 +209,7 @@ enum Shape {
 
 /// Computes the area of the given shape using 
 /// pattern matching and basic arithmetic.
-def area(s: Shape): Int match s with {
+def area(s: Shape): Int = match s with {
     case Circle(r)       => 3 * (r * r)
     case Square(w)       => w * w
     case Rectangle(h, w) => h * w
@@ -240,7 +240,7 @@ def length[a](l: List[a]): Int = match l with {
 def main(): Bool = 
     let l1 = List.range(0, 10);
     let l2 = List.intersperse(42, l1);
-    let l3 = List.map(x -> x :: x :: Nil, aList());
+    let l3 = List.map(x -> x :: x :: Nil, l2);
     let l4 = List.flatten(l3);
     List.exists(x -> x == 0, l4)
 `
@@ -298,8 +298,8 @@ def main(): Tree[Int] = map(x -> x * x, tree())
 def main(): Bool = 
     List.range(0, 10) |>
     List.map(x -> x * x) |>
-    List.drop(5) |> 
-    List.exists(x -> x == 10)
+    List.take(5) |> 
+    List.exists(x -> x == 1)
 `
             },
             {
@@ -311,20 +311,20 @@ def inc(x: Int): Int = x + 1
 def sum(x: Int, y: Int): Int = x + y
 
 /// We can call these functions in the standard way:
-def example01(): Int = 
+def main(): Int = 
     let i = inc(123);
     let s = sum(123, 456);
         i + s
 
 /// Or with uniform function call syntax:
-def example02(): Int = 
-    let i = 123.inc()
+def main2(): Int = 
+    let i = 123.inc();
     let s = 123.sum(456);
         i + s
 
 /// Or even using an infix notation for sum:
-def example03(): Int = 
-    let i = 123.inc()
+def main3(): Int = 
+    let i = 123.inc();
     let s = 123 \`sum\` 456;
         i + s
 `
@@ -339,16 +339,16 @@ def example03(): Int =
 
 /// Returns true if n is odd.
 def isOdd(n: Int): Bool = 
-    if (n == 0) false else !isEvn(n - 1)
+    if (n == 0) false else isEvn(n - 1)
 
 /// Returns true if n is even.
 def isEvn(n: Int): Bool = 
-    if (n == 0) true else !isOdd(n - 1)
+    if (n == 0) true else isOdd(n - 1)
 
 /// We can now compute if 12345 is odd.
 /// In a language without TCE this would
 /// quickly consume all stack space.
-def main(): Bool = isOdd(123456)
+def main(): Bool = isOdd(12345)
 `
             },
             {
@@ -376,7 +376,7 @@ rel ParentOf(x: Str, y: Str)
 rel AncestorOf(x: Str, y: Str)
 
 /// Returns a collection of facts.
-def getFacts(): Schema { ParentOf, AncestorOf } = {
+def getFacts(): Schema { ParentOf(Str, Str), AncestorOf(Str, Str) } = {
     ParentOf("Pompey", "Strabo").
     ParentOf("Gnaeus", "Pompey").
     ParentOf("Pompeia", "Pompey").
@@ -384,13 +384,13 @@ def getFacts(): Schema { ParentOf, AncestorOf } = {
 }
 
 /// Returns a collection of rules to compute ancestors.
-def getRules(): Schema { ParentOf, AncestorOf } = {
+def getRules(): Schema { ParentOf(Str, Str), AncestorOf(Str, Str) } = {
     AncestorOf(x, y) : − ParentOf(x, y).
-    AncestorOf(x, z) : − AncestorOf(x, y), AncestorOf(y, z)
+    AncestorOf(x, z) : − AncestorOf(x, y), AncestorOf(y, z).
 }
 
 /// Composes the facts and rules, and computes the lfp.
-def main(): Schema = { ParentOf, AncestorOf } = 
+def main(): Schema = { ParentOf(Str, Str), AncestorOf(Str, Str) } = 
     solve getFacts() <+> getRules()
 `
             }
@@ -404,7 +404,7 @@ def main(): Schema = { ParentOf, AncestorOf } =
         this.setState({choice: newChoice});
     }
 
-    getExample() {
+    getEditor() {
         let choice = this.state.choice;
         let sample = this.state.samples[choice];
         let lines = getNumberOfLines(sample.code);
@@ -415,12 +415,12 @@ def main(): Schema = { ParentOf, AncestorOf } =
     render() {
         return (
             <Container>
-                <select className="mb-1" value={this.state.choice} onChange={this.onChange.bind(this)}>
+                <select className="mb-2" value={this.state.choice} onChange={this.onChange.bind(this)}>
                     {this.state.samples.map((sample, index) =>
                         <option key={index} value={index}>{sample.name}</option>)
                     }
                 </select>
-                {this.getExample()}
+                {this.getEditor()}
             </Container>
         );
     }
