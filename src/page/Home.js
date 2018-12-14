@@ -201,9 +201,24 @@ def main(): Int = area(Rectangle(2, 4))
 `
             },
             {
-                name: "List and ",
+                name: "Lists Processing",
+                code: `/// Lists...
+def listA(): List[Int] = 1 :: 2 :: 3 :: Nil
+def listB(): List[Int] = 4 :: 5 :: 6 :: Nil
+
+def list(): List[Int] = listA() ::: listB()
+
+def main(): List[Int] = List.map() 
+`
+            },
+            {
+                name: "Function Composition, Pipelines, and Currying",
                 code: `
-def f(): Str = 1 :: 2 :: 3 :: Nil
+def main(): Bool = 
+    List.range(1, 10) |>
+    List.map(x -> 2 * x) |>
+    List.drop(5) |> 
+    List.exists(x -> x == 10)
 `
             },
             {
