@@ -7,9 +7,9 @@ class Research extends Component {
                 <h1>Research</h1>
 
                 <p>
-                    <strike>
-                        Flix
-                    </strike>
+                    Research on Flix takes places at Aarhus University and the University of Waterloo.
+                    A significant part of the research centers on declarative formulations of program analyses
+                    in Flix using first-class Datalog constraints enriched with lattice semantics.
                 </p>
 
                 <h3>Peer-Reviewed Conferences and Journals</h3>

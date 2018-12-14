@@ -62,26 +62,6 @@ class Home extends Component {
 
                 <Row>
                     <Col xs="6">
-                        <h3>Bread- and Butter Functional Programming</h3>
-
-                        <p>
-                            Algebraic Data Types and Pattern Matching
-                        </p>
-                    </Col>
-                    <Col xs="6">
-                        <h3>Process and Channel-based Concurrency</h3>
-                        <p>
-                            Flix is a statically typed programming language with. Flix is a statically typed
-                            programming
-                            language with. Flix is a statically typed programming language with. Flix is a
-                            statically
-                            typed programming language with.
-                        </p>
-                    </Col>
-                </Row>
-
-                <Row>
-                    <Col xs="6">
                         <h3>Principled Design</h3>
 
                         <p>
@@ -93,78 +73,112 @@ class Home extends Component {
                         </p>
                     </Col>
                     <Col xs="6">
-                        <h3>News</h3>
+                        <h3>Bread- and Butter Functional Programming</h3>
+
+                        <p>
+                            Flix supports the basic building blocks of most typed functional programming languages:
+                            algebraic data types, pattern matching, and parametric polymorphism (generics).
+                            Knowledge of just these three features makes it easy to get started on writing
+                            real programs in flix.
+                        </p>
                     </Col>
                 </Row>
 
                 <Row>
-                    <Col xs="12">
+                    <Col xs="6">
+                        <h3>Safety First</h3>
+
+                        <p>
+                            With Flix, we are trying to design a programming language that puts program correctness
+                            first. For example, flix does not support nulls to prevent null pointer exceptions. Flix has
+                            no global mutable state. Flix discourages mutable state. We believe an expressive type
+                            system can be used to prevent many programming errors, and so forth.
+                        </p>
+                    </Col>
+                    <Col xs="6">
+                        <h3>Process and Channel-based Concurrency</h3>
+                        <p>
+                            Flix embraces Go-style concurrency with processes and channels which is also known as the <a
+                            href="https://en.wikipedia.org/wiki/Communicating_sequential_processes">communicating
+                            sequential process (CSP)</a> model. Processes communicate by sharing immutable messages
+                            which helps prevent some race conditions. In the current implementation, processes are
+                            backed by threads, but when/if the JVM gains more lightweight green-threads or fibers, we
+                            plan to switch to those.
+                        </p>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col xs="6">
 
                         <h3>News</h3>
 
-                        <div>
-                            <div className="panel panel-info">
-                                <div className="panel-heading"> Recent News</div>
-                                <div className="panel-body">
-                                    <ul>
-                                        <li>
-                                            2018-05-01 The paper <a href="https://flix.github.io/pub/cc2018/paper.pdf">Tail
-                                            Call
-                                            Elimination and Data Representation for Functional Languages on the Java
-                                            Virtual
-                                            Machine
-                                        </a> is now available!
-                                        </li>
-                                        <li>
-                                            2017-10-11 Flix <a href="https://github.com/flix/flix/releases/tag/v0.2">version
-                                            0.2</a> is
-                                            now available!
-                                        </li>
-                                        <li>
-                                            2017-04-18 Flix <a href="https://github.com/flix/flix/releases/tag/v0.1">version
-                                            0.1</a> is
-                                            now available!
-                                        </li>
-                                        <li>2016-09-25 Ming-Ho Yee's master thesis <a
-                                            href="https://flix.github.io/pub/theses/ming-ho-yee.pdf">
-                                            Implementing a Functional Language for Flix
-                                        </a> is now available.
-                                        </li>
-                                        <li>2016-09-13 The extended abstract
-                                            <a href="https://flix.github.io/pub/tapas2016/abstract.pdf">
-                                                Programming a Dataflow Analysis in Flix
-                                            </a>
-                                            from <a href="http://staticanalysis.org/tapas2016/">TAPAS 2016</a> is now
-                                            available.
-                                        </li>
-                                        <li>2016-07-14 The poster <a
-                                            href="https://flix.github.io/pub/ecoop2016/poster.pdf">
-                                            Flix and its Implementation: A Language for Static Analysis</a> from ECOOP
-                                            2016
-                                            is now available!
-                                        </li>
-                                        <li>2016-07-14 The <a
-                                            href="https://www.youtube.com/watch?v=9EC8gnKIUII">video</a> from
-                                            PLDI 2016 is now online!
-                                        </li>
-                                        <li>2016-06-20 The <a
-                                            href="https://flix.github.io/pub/pldi2016/slides.pdf">slides</a> from
-                                            the presentation at PLDI 2016 are now available!
-                                        </li>
-                                        <li>2016-06-10 The first preview version of Flix is now available!
-                                        </li>
-                                        <li>2016-06-10 The paper <a
-                                            href="https://flix.github.io/pub/pldi2016/paper.pdf">From
-                                            Datalog to
-                                            Flix: A Declarative Language for Fixed
-                                            Points on Lattices</a> is now available.
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        <ul>
+                            <li>
+                                2018-05-01 The paper <a href="https://flix.github.io/pub/cc2018/paper.pdf">Tail
+                                Call
+                                Elimination and Data Representation for Functional Languages on the Java
+                                Virtual
+                                Machine
+                            </a> is now available!
+                            </li>
+                            <li>
+                                2017-10-11 Flix <a href="https://github.com/flix/flix/releases/tag/v0.2">version
+                                0.2</a> is
+                                now available!
+                            </li>
+                            <li>
+                                2017-04-18 Flix <a href="https://github.com/flix/flix/releases/tag/v0.1">version
+                                0.1</a> is
+                                now available!
+                            </li>
+                            <li>2016-09-25 Ming-Ho Yee's master thesis <a
+                                href="https://flix.github.io/pub/theses/ming-ho-yee.pdf">
+                                Implementing a Functional Language for Flix
+                            </a> is now available.
+                            </li>
+                            <li>2016-09-13 The extended abstract
+                                <a href="https://flix.github.io/pub/tapas2016/abstract.pdf">
+                                    Programming a Dataflow Analysis in Flix
+                                </a>
+                                from <a href="http://staticanalysis.org/tapas2016/">TAPAS 2016</a> is now
+                                available.
+                            </li>
+                            <li>2016-07-14 The poster <a
+                                href="https://flix.github.io/pub/ecoop2016/poster.pdf">
+                                Flix and its Implementation: A Language for Static Analysis</a> from ECOOP
+                                2016
+                                is now available!
+                            </li>
+                            <li>2016-07-14 The <a
+                                href="https://www.youtube.com/watch?v=9EC8gnKIUII">video</a> from
+                                PLDI 2016 is now online!
+                            </li>
+                            <li>2016-06-20 The <a
+                                href="https://flix.github.io/pub/pldi2016/slides.pdf">slides</a> from
+                                the presentation at PLDI 2016 are now available!
+                            </li>
+                            <li>2016-06-10 The first preview version of Flix is now available!
+                            </li>
+                            <li>2016-06-10 The paper <a
+                                href="https://flix.github.io/pub/pldi2016/paper.pdf">From
+                                Datalog to
+                                Flix: A Declarative Language for Fixed
+                                Points on Lattices</a> is now available.
+                            </li>
+                        </ul>
+                    </Col>
+
+                    <Col xs="6">
+                        <h3>Flix for Research</h3>
+
+                        <p>
+
+                        </p>
+
                     </Col>
                 </Row>
+
             </Container>
         );
     }
