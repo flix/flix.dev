@@ -154,21 +154,9 @@ def main(): Bool = isOdd(12345)
 `
         },
         {
-            name: "Channel 1",
+            name: "Channels...",
             code: `
 tbd
-`
-        },
-        {
-            name: "Channel 2",
-            code: `
-tbd.
-`
-        },
-        {
-            name: "Channel 3",
-            code: `
-tbd.
 `
         },
         {

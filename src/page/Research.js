@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
+import {Container} from "reactstrap";
 
 class Research extends Component {
     render() {
         return (
-            <div>
+            <Container>
                 <h1>Research</h1>
 
                 <p>
@@ -61,7 +62,7 @@ class Research extends Component {
                     />
                 </ul>
 
-            </div>
+            </Container>
         );
     }
 }
