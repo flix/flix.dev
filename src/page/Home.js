@@ -173,6 +173,15 @@ class Home extends Component {
                         <h3>Flix for Research</h3>
 
                         <p>
+                            Flix is also a language for research exploring various aspects of programming language
+                            design. A large part of the research on Flix is on connections between functional
+                            programming
+                            and logic programming in the form of Datalog. Flix, as probably the first language, features
+                            first-class Datalog constraints enriched with lattice semantics.
+
+                            We believe these features make Flix an interesting platform for experimentation with
+                            and implementation of program analyses as these often rely on fixpoint computation.
+                            For more information on this aspect of flix, we refer to our research papers.
 
                         </p>
 
