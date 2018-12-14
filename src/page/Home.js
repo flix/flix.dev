@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
 import Editor from "../util/Editor";
 
-import Samples from './Samples.js'
+import NewsData from '../data/News.js'
+import SamplesData from '../data/Samples.js'
 
 class Home extends Component {
     render() {
@@ -116,6 +117,15 @@ class Home extends Component {
                         <h3>News</h3>
 
                         <ul>
+                            {NewsData().map(item =>
+                                <li>
+                                    {item.date} - {item.name}
+                                    <br/>
+                                </li>
+                            )}
+                        </ul>
+
+                        <ul>
                             <li>
                                 2018-05-01 The paper <a href="https://flix.github.io/pub/cc2018/paper.pdf">Tail
                                 Call
@@ -199,7 +209,7 @@ class Codebox extends Component {
 
     constructor(props) {
         super(props);
-        let samples = Samples();
+        let samples = SamplesData();
         let randomChoice = getRandomInt(samples.length);
         this.state = {choice: randomChoice, samples: samples};
     }
