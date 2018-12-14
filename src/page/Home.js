@@ -201,7 +201,7 @@ def main(): Int = area(Rectangle(2, 4))
 `
             },
             {
-                name: "Lists",
+                name: "List and ",
                 code: `
 def f(): Str = 1 :: 2 :: 3 :: Nil
 `
@@ -227,7 +227,7 @@ def f(c: Channel[Int]): Unit =
 `
             },
             {
-                name: "Using First-class Constraints",
+                name: "Fixpoint Computations and First-Class Constraints",
                 code: `
 def f(): Str = 1 :: 2 :: 3 :: Nil
 `
