@@ -212,6 +212,32 @@ def main(): List[Int] = List.map()
 `
             },
             {
+                name: "Higher-Order Functions",
+                code: `/// We can define our own HO.
+enum Tree[] {
+}
+`
+            },
+            {
+                name: "Enums and Parametric Polymorphism",
+                code: `/// We can define our own ADT
+enum Tree[a] {
+    case Leaf(a),
+    case Node(Tree[a], Tree[a])
+}
+
+/// We can define our own higher-order map function
+/// that takes a function from a to b, and transforms
+/// a tree with elements of type a to a tree with
+/// elements of type b.
+def map[a, b](f: a -> b, t: Tree[a]): Tree[b] = 
+  match t with {
+    case Leaf(x)    => Leaf(f(x))
+    case Node(l, r) => Node(map(f, l), map(f, r))        
+  }
+`
+            },
+            {
                 name: "Function Composition, Pipelines, and Currying",
                 code: `
 def main(): Bool = 
