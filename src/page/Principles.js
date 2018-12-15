@@ -182,9 +182,12 @@ class Principles extends Component {
                         E.g. the cases of an algebraic data type or the arguments to a function.
                     </Principle>
 
-
                     <Principle name="Standard Library">
-
+                        We believe its important that a programming language provides a core library that has common
+                        abstractions to provide better interoperability. Flix aims to provide a small core library
+                        with the most common data types, e.g. <code>Option</code>, <code>List</code>, <code>Set</code>,
+                        and <code>Map</code> along with their most common operations. On the other hand, we don't
+                        believe that a standard library should be a kitchen-sink and provide everything.
                     </Principle>
 
                 </CardColumns>
