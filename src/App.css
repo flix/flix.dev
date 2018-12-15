@@ -27,6 +27,7 @@ h3 {
 
 .page {
     background-color: white;
+    min-height: 95vh;
 }
 
 .nav-item {

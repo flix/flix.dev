@@ -11,7 +11,7 @@ class Home extends Component {
             <Container>
                 <Row className="mb-3">
                     <Col xs="6">
-                        <h1 className="font-weight-bold">A functional programming language that runs on the JVM.</h1>
+                        <h1 className="font-weight-bold">A functional programming language that runs on the JVM</h1>
 
                         <p>
                             Flix is a principled and opinionated functional programming language that takes inspiration
@@ -44,18 +44,22 @@ class Home extends Component {
                     <Col md="12">
                         <h2>Features at a Glance</h2>
                     </Col>
-                    <Col md="6">
+                    <Col md="4">
                         <ul>
                             <li>algebraic data types &amp; pattern matching</li>
                             <li>first-class functions &amp; currying</li>
                             <li>parametric polymorphism</li>
+                        </ul>
+                    </Col>
+                    <Col md="4">
+                        <ul>
+                            <li>Hindley-Milner type inference</li>
                             <li>channel-based concurrency</li>
                             <li>first-class datalog constraints</li>
                         </ul>
                     </Col>
-                    <Col md="6">
+                    <Col md="4">
                         <ul>
-                            <li>Hindley-Milner type inference</li>
                             <li>full tail call elimination</li>
                             <li>compilation to JVM bytecode</li>
                             <li>a standard library</li>
@@ -68,11 +72,10 @@ class Home extends Component {
                         <h3>Principled Design</h3>
 
                         <p>
-                            Flix is a statically typed programming language with. Flix is a statically typed
-                            programming
-                            language with. Flix is a statically typed programming language with. Flix is a
-                            statically
-                            typed programming language with.
+                            Flix is built on a set of design principles. It is our hope that these principles
+                            leads us to a consistent design that fits a particular set of use cases. We aim to build
+                            a language with a strong foundation in programming language feature combined with
+                            knowledge learned of the past thirty years.
                         </p>
                     </Col>
                     <Col xs="6">
@@ -125,7 +128,7 @@ class Home extends Component {
                     </Col>
 
                     <Col xs="6">
-                        <h3>Flix for Research</h3>
+                        <h3>Flix as a Research Language</h3>
 
                         <p>
                             Flix is also a language for research exploring various aspects of programming language

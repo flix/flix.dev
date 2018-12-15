@@ -1,7 +1,7 @@
 export default function () {
     return [
         {
-            name: "New website!",
+            name: "The new Flix website is now online!",
             date: "2018-12-24"
         },
         {
