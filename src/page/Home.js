@@ -44,25 +44,28 @@ class Home extends Component {
                     <Col md="12">
                         <h2>Features at a Glance</h2>
                     </Col>
-                    <Col md="4">
+                    <Col md="4" style={{"font-size": '1.2em'}}>
                         <ul>
-                            <li>algebraic data types &amp; pattern matching</li>
-                            <li>first-class functions &amp; currying</li>
+                            <li>algebraic data types</li>
+                            <li>pattern matching</li>
+                            <li>first-class functions</li>
                             <li>parametric polymorphism</li>
                         </ul>
                     </Col>
-                    <Col md="4">
+                    <Col md="4" style={{"font-size": '1.2em'}}>
                         <ul>
                             <li>Hindley-Milner type inference</li>
                             <li>channel-based concurrency</li>
                             <li>first-class datalog constraints</li>
+                            <li>typed holes ala Idris</li>
                         </ul>
                     </Col>
-                    <Col md="4">
+                    <Col md="4" style={{"font-size": '1.2em'}}>
                         <ul>
                             <li>full tail call elimination</li>
                             <li>compilation to JVM bytecode</li>
-                            <li>a standard library</li>
+                            <li>core standard library</li>
+                            <li>interactive mode</li>
                         </ul>
                     </Col>
                 </Row>
@@ -75,7 +78,8 @@ class Home extends Component {
                             Flix is built on a set of design principles. It is our hope that these principles
                             leads us to a consistent design that fits a particular set of use cases. We aim to build
                             a language with a strong foundation in programming language feature combined with
-                            knowledge learned of the past thirty years.
+                            knowledge learned of the past thirty years. Flix aims to take many of the best ideas from
+                            languages such as OCaml, Haskell, Rust, and Scala and incorporate them into a new language.
                         </p>
                     </Col>
                     <Col xs="6">
