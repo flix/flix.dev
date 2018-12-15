@@ -1,94 +1,114 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardColumns, CardText, CardTitle, Container} from "reactstrap";
+import {Card, CardBody, CardColumns, CardText, CardTitle, Col, Container, Row} from "reactstrap";
 
 class Contribute extends Component {
     render() {
         return (
             <Container>
-                <h1>Contribute</h1>
+                <Row className="mb-3">
+                    <Col md="12">
 
-                <p>
-                    Flix is open-source and freely available under the <a
-                    href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.
-                </p>
+                        <h1>Contribute</h1>
 
-                <p>
-                    Most development is research-driven and happens at <a href="http://cs.au.dk/">Aarhus
-                    University</a> and the <a href="http://uwaterloo.ca/"> University of Waterloo</a>.
-                </p>
+                        <p>
+                            Flix is an open-source project and made freely available under the <a
+                            href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.
+                        </p>
 
-                <p>
-                    All source code is available online and hosted at <a href="https://github.com/flix/flix">GitHub</a>.
+                        <p>
+                            Most development is research-driven and takes place at <a href="http://cs.au.dk/">Aarhus
+                            University</a> and the <a href="http://uwaterloo.ca/"> University of Waterloo</a>.
+                        </p>
 
-                    We organize using GitHub <a href="https://github.com/flix/flix/issues">issues</a> and occasionally
-                    on <a href="https://gitter.im/flix/Lobby">Gitter</a>.
-                </p>
+                        <p>
+                            All source code is available online and hosted at <a
+                            href="https://github.com/flix/flix">GitHub</a>.
 
-                <p>
-                    If you are interested in helping out with Flix, please reach out to us on GitHub or Gitter.
-                </p>
+                            We organize development using GitHub <a
+                            href="https://github.com/flix/flix/issues">issues</a> and
+                            on <a href="https://gitter.im/flix/Lobby">Gitter</a>.
+                        </p>
 
-                <h2>Projects</h2>
+                        <p>
+                            If you are interested in learning more about Flix or in working on flix, please feel free to
+                            reach out.
+                        </p>
+                    </Col>
+                </Row>
 
-                <p>
-                    We encourage students at Aarhus University and the University of Waterloo who are interested in
-                    programming language design and implementation to reach out to us to hear about potential projects.
-                </p>
+                <Row className="mb-3">
+                    <Col md="12">
+                        <h2>Projects</h2>
 
-                <CardColumns>
-                    <Card>
-                        <CardBody>
-                            <CardTitle>Talent Track Projects</CardTitle>
-                            <CardText>
-                                <p>
-                                    Aarhus University offers a talent track program for second and third year students
-                                    who are interested in working on research project for up to one year as an extra
-                                    curricular activity.
-                                </p>
-                                <p>
-                                    We try maintain a collection of ideas for <a
-                                    href="https://github.com/flix/flix/labels/talent-track">talent
-                                    track projects</a> on GitHub.
-                                </p>
-                            </CardText>
-                        </CardBody>
-                    </Card>
+                        <p>
+                            We encourage students at Aarhus University and the University of Waterloo that are
+                            interested in compilers, programming language design, and implementation to reach out to us
+                            to learn about potential projects.
+                        </p>
 
-                    <Card>
-                        <CardBody>
-                            <CardTitle>Bachelor and Master Projects</CardTitle>
-                            <CardText>
-                                <p>
-                                    We also try to maintain a collection of ideas for <a
-                                    href="https://github.com/flix/flix/labels/bachelor-project">bachelor</a>- or <a
-                                    href="https://github.com/flix/flix/labels/bachelor-project">master</a> level
-                                    projects. In many cases though, you will want to reach out to us, to hear
-                                    more about the kind of research we are currently involved in. We might also not list
-                                    all project ideas since some may involve potential research that want to publish.
-                                </p>
-                            </CardText>
-                        </CardBody>
-                    </Card>
+                        <CardColumns>
+                            <Card>
+                                <CardBody>
+                                    <CardTitle>Talent Track Projects</CardTitle>
+                                    <CardText>
+                                        <p>
+                                            Aarhus University offers a talent track program for capable students
+                                            that are in their second or third year of students and are interested
+                                            in working on a research project for up to one year as an extra
+                                            curricular activity.
+                                        </p>
+                                        <p>
+                                            We maintain a collection of <a
+                                            href="https://github.com/flix/flix/labels/talent-track">talent
+                                            track project ideas</a> on GitHub.
+                                        </p>
+                                    </CardText>
+                                </CardBody>
+                            </Card>
 
-                    <Card>
-                        <CardBody>
-                            <CardTitle>Research Collaboration</CardTitle>
-                            <CardText>
-                                <p>
-                                    If you are a researcher working on programming language design, program analysis,
-                                    logic programming, Datalog, or any other related topics, and are interested in
-                                    collaboration on flix or perhaps to use flix in your research, you are most welcome
-                                    to reach out to us.
-                                </p>
+                            <Card>
+                                <CardBody>
+                                    <CardTitle>Bachelor and Master Projects</CardTitle>
+                                    <CardText>
+                                        <p>
+                                            If you are a bachelor or master student at Aarhus University it is possible
+                                            to write your thesis on a topic related to Flix.
+                                        </p>
+                                        <p>
+                                            We maintain a collection of ideas for <a
+                                            href="https://github.com/flix/flix/labels/bachelor-project">bachelor</a>-
+                                            and <a
+                                            href="https://github.com/flix/flix/labels/master-project">master</a> level
+                                            projects. But, we don't necessarily list all our project ideas, as some
+                                            might involve research that we want to publish. In any case, you should
+                                            reach out to us to hear what kind of research we are currently working on.
+                                        </p>
+                                    </CardText>
+                                </CardBody>
+                            </Card>
 
-                                <p>
-                                    (You can find our e-mails on our respective academic web pages.)
-                                </p>
-                            </CardText>
-                        </CardBody>
-                    </Card>
-                </CardColumns>
+                            <Card>
+                                <CardBody>
+                                    <CardTitle>Research Collaboration</CardTitle>
+                                    <CardText>
+                                        <p>
+                                            If you are a research interested in the space of programming language design
+                                            and implementation, program analysis, logic programming, Datalog, or
+                                            any other related topic, you should feel free to reach out to us to talk
+                                            about the potential for collaboration.
+                                        </p>
 
+                                        <p>
+                                            If you want to use Flix in your research, e.g. for program analysis, you
+                                            are welcome to reach out to us to us to hear about the current
+                                            state-of-affairs and to get information about how to best get started.
+                                        </p>
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+                        </CardColumns>
+                    </Col>
+                </Row>
             </Container>
         );
     }
