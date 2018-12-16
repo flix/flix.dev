@@ -8,24 +8,28 @@ class Principles extends Component {
             <Container>
                 <h1>Design Principles</h1>
 
-                <p>
-                    Flix embraces a set of design principles. The purpose is to outline these design principles and
-                    relate them to other existing languages.
-                    Understanding these principles will help you decide if Flix is something for you.
-                    You will that many of these principles come from or are also embraced by languages such as Haskell,
-                    OCaml, Rust, Elm, Scala.
+                <p className="mb-3">
+                    We think that a programming language should followed a principled design.
+                    That is, when a design decision is made, there should be some rationale for why that
+                    decision was made. By outlining some of the principles that influence Flix,
+                    we hope to keep ourselves honest and also to communicate to you what kind of language Flix is.
+                </p>
+
+                <p className="mb-3">
+                    Many of these ideas and principles come from languages that have inspired Flix, including Ada, Elm,
+                    Haskell, OCaml, Rust, and Scala.
                 </p>
 
                 <CardColumns>
 
-                    <Principle name="Simple Is Not Easy">
-                        We value simplicity of design, but <a
-                        href="https://www.infoq.com/presentations/Simple-Made-Easy">simplicity does not necessarily mean
-                        easy</a>. We prefer to have the right design, which may take longer to learn, but pays off at
-                        scale.
+                    <Principle name="Simple is not easy">
+                        We believe in Rich Hickey's <a href="https://www.infoq.com/presentations/Simple-Made-Easy">simple
+                        is not easy</a> creed. We prefer a language that gets things right to one that makes things
+                        easy. Such a language might take longer to learn in the short run, but its simplicity pays of
+                        in the long run.
                     </Principle>
 
-                    <Principle name="(Almost) Everything is an Expression">
+                    <Principle name="Everything is an expression">
                         Flix embraces the functional creed that everything is an expression. Flix has no if-then-else
                         statement, but it has an if-then-else expression.
                     </Principle>
