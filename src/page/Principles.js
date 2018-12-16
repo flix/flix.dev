@@ -82,7 +82,7 @@ class Principles extends Component {
                             </li>
                             <li>
                                 A function expression is written as <code>x -&gt; x + 1</code> whereas a function type
-                                is written as <code>Int =&gt; Int</code>.
+                                is written as <code>Int -&gt; Int</code>.
                             </li>
                             <li>
                                 A tuple is written as <code>(true, 12345)</code> whereas a tuple type
