@@ -39,7 +39,7 @@ class Principles extends Component {
                         declarations, namespaces, and so forth that are not expressions.
                     </Principle>
 
-                    <Principle name="Local Type Inference">
+                    <Principle name="Local type inference">
                         The Flix type system is based on <a
                         href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> which
                         supports full type inference. As a design choice, we require all functions to be annotated with
@@ -53,14 +53,15 @@ class Principles extends Component {
                         Of these, we think the former two are significantly more important than the latter.
                     </Principle>
 
-                    <Principle name="Uniform Function Call Syntax">
-                        Flix supports <a href="https://en.wikipedia.org/wiki/Uniform_Function_Call_Syntax">Uniform
-                        Function Call Syntax (UFCS)</a>. In Flix a function application is of the form: <code>f(a, b,
-                        c)</code>, but UFCS allows us to adopt an object-oriented style for functions that "feel like"
-                        they belong on an object. For example, we can get the length of a list
-                        with <code>length(xs)</code> or using UFCS with <code>xs.length()</code>. In other words,
-                        UFCS allows us to write any function <code>f(a, b, c)</code> as <code>a.f(b, c)</code>.
-                        It is purely a syntactic mechanism and has no influence on the semantics of a call.
+                    <Principle name="Uniform function call syntax">
+                        Flix supports <a href="https://en.wikipedia.org/wiki/Uniform_Function_Call_Syntax">uniform
+                        function call syntax (UFCS)</a>. In Flix, the syntax for function application is: <code>f(a, b,
+                        c)</code>. UFCS enables an "object-oriented" style where we can write the same function
+                        call as <code>a.f(b, c)</code>.
+                        <br/>
+                        For example, the function call <code>length(xs)</code> can also be written
+                        as <code>xs.length()</code>. UFCS is a purely syntatic mechanism and does not influence the
+                        semantics of a call.
                     </Principle>
 
                     <Principle name="Keyword-based Syntax">
