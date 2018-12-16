@@ -39,28 +39,18 @@ class Principles extends Component {
                         declarations, namespaces, and so forth that are not expressions.
                     </Principle>
 
-                    <Principle name="Safety First, Performance Second">
-                        We value safety higher than performance. Unlike language such as C and C++ we are willing to
-                        pay (small) performance overheads if it improves the safety and robustness of programs.
-                        Two classical examples of this array bounds checks and garbage collection. In Flix we plan
-                        to support additional safety mechanisms.
-
-                        <br/>
-                        <Badge>in progress</Badge>
-                    </Principle>
-
                     <Principle name="Local Type Inference">
                         The Flix type system is based on <a
                         href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> which
-                        supports full type inference. However, as a design choice, we require all functions to be
-                        annotated with their argument and return types. We believe that requiring these types signatures
-                        has three benefits that outweigh the disadvantages:
-
+                        supports full type inference. As a design choice, we require all functions to be annotated with
+                        their argument and return types. We believe that requiring type signatures has three distinct
+                        advantages the outweigh the disadvantages.
                         <ol>
-                            <li>It is useful as documentation and for understanding the code.</li>
-                            <li>It accurately assigns blame for type errors.</li>
-                            <li>It enables parallel type checking.</li>
+                            <li>Type signatures are useful as documentation and to aid program understanding.</li>
+                            <li>Type signatures more accurately assign blame.</li>
+                            <li>Type signatures enable parallel type checking.</li>
                         </ol>
+                        Of these, we think the former two are significantly more important than the latter.
                     </Principle>
 
                     <Principle name="Uniform Function Call Syntax">
@@ -143,6 +133,16 @@ class Principles extends Component {
                         before they can be used by other program parts. Declarations make it easy to assign blame.
                         We assume the declaration to be correct and then check any usage against its specification.
                         E.g. the cases of an algebraic data type or the arguments to a function.
+                    </Principle>
+
+                    <Principle name="No Undefined Behaviour">
+                        We value safety higher than performance. Unlike language such as C and C++ we are willing to
+                        pay (small) performance overheads if it improves the safety and robustness of programs.
+                        Two classical examples of this array bounds checks and garbage collection. In Flix we plan
+                        to support additional safety mechanisms.
+
+                        <br/>
+                        <Badge>in progress</Badge>
                     </Principle>
 
                     <Principle name="No Global State">
