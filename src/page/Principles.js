@@ -64,10 +64,12 @@ class Principles extends Component {
                         semantics of a call.
                     </Principle>
 
-                    <Principle name="Keyword-based Syntax">
-                        The Flix syntax is inspired by Scala and Python. We believe in short keywords that make it
-                        visually easy to identify the overall structure of a
-                        piece of code.
+                    <Principle name="Keyword-based syntax">
+                        The Flix syntax is inspired by Scala and Python. We believe that short key words make it
+                        easy to visually identify the overall structure of a piece of code. Flix tries to use
+                        three letter keywords were appropriate: <code>def</code>, <code>let</code>, <code>law</code>,
+                        <code>rel</code>, but not for commonly established concepts: <code>if ... else </code>
+                        and <code>match .... with</code>.
                     </Principle>
 
                     <Principle name="Consistent Syntax">
