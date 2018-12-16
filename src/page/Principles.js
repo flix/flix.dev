@@ -40,35 +40,6 @@ class Principles extends Component {
                         <Badge>in progress</Badge>
                     </Principle>
 
-                    <Principle name="No Implicit Coercions">
-                        In flix a value of one type is never coerced or converted into another type automatically.
-                        For example,
-
-                        <ul>
-                            <li>Only booleans may be used in an if-then-else expression.</li>
-                            <li>Integers are never truncated or promoted.</li>
-                            <li>Values are never coerced to strings.</li>
-                        </ul>
-                    </Principle>
-
-                    <Principle name="No Global State">
-                        In flix there is no global state.
-                        This avoids a large class of problems related to initialization,
-                        dependencies, and concurrency.
-                        A flix programmer is of course free construct some state in the main function
-                        and pass this throughout the program, but there is no built-in mechanism to declare
-                        a global variable.
-
-                        Of course a real system still has to deal with some global state since the file system,
-                        network, etc. is all part of a larger global state.
-                    </Principle>
-
-                    <Principle name="Keyword-based Syntax">
-                        The Flix syntax is inspired by Scala and Python. We believe in short keywords that make it
-                        visually easy to identify the overall structure of a
-                        piece of code.
-                    </Principle>
-
                     <Principle name="Local Type Inference">
                         The Flix type system is based on <a
                         href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> which
@@ -93,11 +64,26 @@ class Principles extends Component {
                         It is purely a syntactic mechanism and has no influence on the semantics of a call.
                     </Principle>
 
+                    <Principle name="Keyword-based Syntax">
+                        The Flix syntax is inspired by Scala and Python. We believe in short keywords that make it
+                        visually easy to identify the overall structure of a
+                        piece of code.
+                    </Principle>
+
                     <Principle name="Consistent Syntax">
                         Flix aims to have consistent syntax. For example, a function application is written as <code>f(a,
                         b, c)</code>. Similarly, a type application is written as <code>f[a, b, c]</code> mirroring the
                         syntax of the function application. In the samey way, a function expression is written as <code>x
                         -&gt; x + 1</code> and its type is written <code>Int -&gt; Int</code>.
+                    </Principle>
+
+                    <Principle name="Human-Readable Error Messages">
+                        In the spirit of <a href="https://elm-lang.org/blog/compilers-as-assistants">Elm</a>, Clang, and
+                        Rust, Flix aims to have human readable error message. We believe compiler messages should offer
+                        rich detail about the problem at hand, including potentially relevant information know to the
+                        compiler, and suggestions for how to correct the problem.
+                        <br/>
+                        <Badge>in progress</Badge>
                     </Principle>
 
                     <Principle name="Private Visibility by Default">
@@ -127,6 +113,41 @@ class Principles extends Component {
                         <Badge>in progress</Badge>
                     </Principle>
 
+                    <Principle name="Nothing is Executed Before Main">
+                        In Flix the <code>main</code> function is the entry point of the program.
+                        No other (user-defined) code is executed before <code>main</code>.
+                        This makes it easier to reason about startup behaviour, compared to say, Java where
+                        things such as static initializers may be executed before entering <code>main</code>.
+                    </Principle>
+
+                    <Principle name="Standard Library">
+                        We believe its important that a programming language provides a core library that has common
+                        abstractions to provide better interoperability. Flix aims to provide a small core library
+                        with the most common data types, e.g. <code>Option</code>, <code>List</code>, <code>Set</code>,
+                        and <code>Map</code> along with their most common operations. On the other hand, we don't
+                        believe that a standard library should be a kitchen-sink and provide everything.
+                    </Principle>
+
+                    <Principle name="Declare and then Use">
+                        Flix requires things to be declared before they can be used.
+                        Algebraic data types, functions, and other programming elements must be declared
+                        before they can be used by other program parts. Declarations make it easy to assign blame.
+                        We assume the declaration to be correct and then check any usage against its specification.
+                        E.g. the cases of an algebraic data type or the arguments to a function.
+                    </Principle>
+
+                    <Principle name="No Global State">
+                        In flix there is no global state.
+                        This avoids a large class of problems related to initialization,
+                        dependencies, and concurrency.
+                        A flix programmer is of course free construct some state in the main function
+                        and pass this throughout the program, but there is no built-in mechanism to declare
+                        a global variable.
+
+                        Of course a real system still has to deal with some global state since the file system,
+                        network, etc. is all part of a larger global state.
+                    </Principle>
+
                     <Principle name="No Nulls">
                         Flix does not have a special <code>null</code> value.
                         The presence of null as a subtype of any type is now widely considered a mistake.
@@ -137,11 +158,15 @@ class Principles extends Component {
                         understand, works well, and guarantees the absence of dreaded <code>NullPointerException</code>s.
                     </Principle>
 
-                    <Principle name="Nothing is Executed Before Main">
-                        In Flix the <code>main</code> function is the entry point of the program.
-                        No other (user-defined) code is executed before <code>main</code>.
-                        This makes it easier to reason about startup behaviour, compared to say, Java where
-                        things such as static initializers may be executed before entering <code>main</code>.
+                    <Principle name="No Implicit Coercions">
+                        In flix a value of one type is never coerced or converted into another type automatically.
+                        For example,
+
+                        <ul>
+                            <li>Only booleans may be used in an if-then-else expression.</li>
+                            <li>Integers are never truncated or promoted.</li>
+                            <li>Values are never coerced to strings.</li>
+                        </ul>
                     </Principle>
 
                     <Principle name="No Compiler Warnings, Only Compile-Time Errors">
@@ -151,15 +176,6 @@ class Principles extends Component {
                         In this we are inspired by language such as Rust where e.g. dead code is considered not as a
                         warning,
                         but a compile-time error.
-                    </Principle>
-
-                    <Principle name="Human-Readable Error Messages">
-                        In the spirit of <a href="https://elm-lang.org/blog/compilers-as-assistants">Elm</a>, Clang, and
-                        Rust, Flix aims to have human readable error message. We believe compiler messages should offer
-                        rich detail about the problem at hand, including potentially relevant information know to the
-                        compiler, and suggestions for how to correct the problem.
-                        <br/>
-                        <Badge>in progress</Badge>
                     </Principle>
 
                     <Principle name="Dead and Unreachable Code is Rejected">
@@ -172,22 +188,6 @@ class Principles extends Component {
                     <Principle name="Pattern Matches must be Exhaustive">
                         Flix enforces that a pattern match handles all cases of an algebraic data type.
                         If a match is non-exhaustive, the program is rejected.
-                    </Principle>
-
-                    <Principle name="Declare and then Use">
-                        Flix requires things to be declared before they can be used.
-                        Algebraic data types, functions, and other programming elements must be declared
-                        before they can be used by other program parts. Declarations make it easy to assign blame.
-                        We assume the declaration to be correct and then check any usage against its specification.
-                        E.g. the cases of an algebraic data type or the arguments to a function.
-                    </Principle>
-
-                    <Principle name="Standard Library">
-                        We believe its important that a programming language provides a core library that has common
-                        abstractions to provide better interoperability. Flix aims to provide a small core library
-                        with the most common data types, e.g. <code>Option</code>, <code>List</code>, <code>Set</code>,
-                        and <code>Map</code> along with their most common operations. On the other hand, we don't
-                        believe that a standard library should be a kitchen-sink and provide everything.
                     </Principle>
 
                 </CardColumns>
