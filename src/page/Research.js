@@ -8,9 +8,30 @@ class Research extends Component {
                 <h1>Research</h1>
 
                 <p>
-                    Research on Flix takes places at Aarhus University and the University of Waterloo.
-                    A significant part of the research centers on declarative formulations of program analyses
-                    in Flix using first-class Datalog constraints enriched with lattice semantics.
+                    Research on Flix takes places at <a href="http://cs.au.dk">Aarhus University</a> and the <a
+                    href="http://plg.uwaterloo.ca">University of Waterloo</a>.
+                </p>
+
+                <p>
+                    A significant part of Research is centered on the Datalog aspects of Flix, including:
+                    <ul>
+                        <li>the design of a language with first-class Datalog constraints.</li>
+                        <li>the extensions of Datalog semantics to lattice semantics.</li>
+                        <li>the implementation of efficient fixpoint engines.</li>
+                        <li>the use of Flix for program analysis.</li>
+                        <li>the verification of such program analyses.</li>
+                    </ul>
+                </p>
+
+                <p>
+                    As the above suggests, a major research focus is on how to write declarative
+                    program analyses using Flix that are correct and scalable. The workshop paper <a
+                    href="http://staticanalysis.org/tapas2016/abstracts/TAPAS_2016_MadsenEtAl.pdf">Programming a
+                    Dataflow Analysis in Flix</a> gives a good introduction to this topic.
+                </p>
+
+                <p>
+                    Below is a selection of research papers published on Flix:
                 </p>
 
                 <h3>Peer-Reviewed Conferences and Journals</h3>
