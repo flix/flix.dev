@@ -23,15 +23,20 @@ class Principles extends Component {
                 <CardColumns>
 
                     <Principle name="Simple is not easy">
-                        We believe in Rich Hickey's <a href="https://www.infoq.com/presentations/Simple-Made-Easy">simple
-                        is not easy</a> creed. We prefer a language that gets things right to one that makes things
+                        We believe in Rich Hickey's creed: <a
+                        href="https://www.infoq.com/presentations/Simple-Made-Easy">simple
+                        is not easy</a>. We prefer a language that gets things right to one that makes things
                         easy. Such a language might take longer to learn in the short run, but its simplicity pays of
                         in the long run.
                     </Principle>
 
                     <Principle name="Everything is an expression">
-                        Flix embraces the functional creed that everything is an expression. Flix has no if-then-else
-                        statement, but it has an if-then-else expression.
+                        Flix is a functional language and embraces the idea that everything should be an expression.
+                        Flix has no local variable declarations or if-then-else statements, instead it has
+                        let-bindings and if-then-else expressions.
+
+                        However, Flix does not take this idea as far as the Scheme languages. Flix still has
+                        declarations, namespaces, and so forth that are not expressions.
                     </Principle>
 
                     <Principle name="Safety First, Performance Second">
