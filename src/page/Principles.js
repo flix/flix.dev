@@ -73,10 +73,22 @@ class Principles extends Component {
                     </Principle>
 
                     <Principle name="Consistent Syntax">
-                        Flix aims to have consistent syntax. For example, a function application is written as <code>f(a,
-                        b, c)</code>. Similarly, a type application is written as <code>f[a, b, c]</code> mirroring the
-                        syntax of the function application. In the samey way, a function expression is written as <code>x
-                        -&gt; x + 1</code> and its type is written <code>Int -&gt; Int</code>.
+                        Flix aims to have consistent and predictable syntax. As a concrete example, we try to have the
+                        syntax of types mirror that of expressions:
+                        <ul>
+                            <li>
+                                A function application is written as <code>f(a, b, c)</code> whereas a type application
+                                is written as <code>f[a, b, c]</code>.
+                            </li>
+                            <li>
+                                A function expression is written as <code>x -&gt; x + 1</code> whereas a function type
+                                is written as <code>Int =&gt; Int</code>.
+                            </li>
+                            <li>
+                                A tuple is written as <code>(true, 12345)</code> whereas a tuple type
+                                is written as <code>(Bool, Int)</code>.
+                            </li>
+                        </ul>
                     </Principle>
 
                     <Principle name="Human-Readable Error Messages">
