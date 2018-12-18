@@ -72,7 +72,7 @@ class Principles extends Component {
                         and <code>match .... with</code>.
                     </Principle>
 
-                    <Principle name="Consistent Syntax">
+                    <Principle name="Consistent syntax">
                         Flix aims to have consistent and predictable syntax. As a concrete example, we try to have the
                         syntax of types mirror that of expressions:
                         <ul>
@@ -91,63 +91,54 @@ class Principles extends Component {
                         </ul>
                     </Principle>
 
-                    <Principle name="Human-Readable Error Messages">
-                        In the spirit of <a href="https://elm-lang.org/blog/compilers-as-assistants">Elm</a>, Clang, and
-                        Rust, Flix aims to have human readable error message. We believe compiler messages should offer
-                        rich detail about the problem at hand, including potentially relevant information know to the
-                        compiler, and suggestions for how to correct the problem.
+                    <Principle name="Human-readable errors">
+                        In the spirit of <a href="https://elm-lang.org/blog/compilers-as-assistants">Elm</a> and <a
+                        href="https://blog.rust-lang.org/2016/08/10/Shape-of-errors-to-come.html">Rust</a>,
+                        Flix aims to have human readable compiler messages. Messages should describe the problem in
+                        detail and provide information about the context, including suggestions for how to correct
+                        the problem.
+                    </Principle>
+
+                    <Principle name="Private by default">
+                        Flix embraces the principle of least privilege. In Flix, declarations are by default
+                        hidden (i.e. private) and cannot be accessed from outside of their namespace (or
+                        sub-namespaces). We believe it is important that programmers are forced to make a conscious
+                        choice about whether to make a declaration publicly visible.
+                    </Principle>
+
+                    <Principle name="Illegal states should be unrepresentable">
+                        We believe that a language should make it easy to make illegal states unrepresentable.
+                        For example, algebraic data types can be used to precisely define the possible values of a type.
+                        In Flix, in the future, we want to take this a step further, and allow refinement of some types.
+                        For example, to express that some value must not only be an integer, but also that it must
+                        fall within a range, e.g. <code>[0-99]</code>.
                         <br/>
                         <Badge>in progress</Badge>
                     </Principle>
 
-                    <Principle name="Private Visibility by Default">
-                        In Flix, declarations are assigned the least visibility by default.
-                        That is, e.g. declarations cannot be accessed outside their own namespace (or a sub-namespace).
-                        For a declaration to be globally visible it must explicitly be declared as public.
-                        We believe this forces the programmer to make a choice about whether some definition or data
-                        type
-                        should be considered internal (the default) or available to other parts of the program.
+                    <Principle name="Nothing is executed before main">
+                        In Flix, <code>main</code> is the entry point of a program.
+                        No (user-defined) code is ever executed before <code>main</code>.
+                        No static initializers, no static fields. No class loaders. Main is always first.
+                        This makes it easy to reason about startup behavior.
                     </Principle>
 
-                    <Principle name="Illegal States should be Unrepresentable.">
-
-                        We believe that a good design should aim to make illegal states unrepresentable.
-                        Ideally we enforce most of these properties in the type system. For example, with algebraic
-                        data types we can easily define a type <code>Color</code> and that is has three variants
-                        <code>Red</code>, <code>Green</code>, and <code>Blue</code>. The type system ensures that
-                        nothing else is a color.
-
-                        In Flix, we would like to take this further, and allow refinement on some types. For example,
-                        we could express that not only must some type be an integer, but also that it must fall
-                        within a range, e.g. <code>[0-99]</code>. Checking such refinement types at compile-time
-                        is an open research problem, but in Flix we aim to at least provide the means to express
-                        such invariants, and then to rely on run-time checks until the theory matures more.
-
-                        <br/>
-                        <Badge>in progress</Badge>
+                    <Principle name="Small, but comprehensive standard library">
+                        Flix has a small standard library with a few common data types,
+                        e.g. <code>Option</code>, <code>List</code>, <code>Set</code>,
+                        and <code>Map</code>, but for these it offers a comprehensive collection of functionality.
+                        For example, the standard library has more than 65 functions for working with lists.
+                        We want the standard library to offer a common set of abstractions which are usable
+                        by most programs, but not much else.
                     </Principle>
 
-                    <Principle name="Nothing is Executed Before Main">
-                        In Flix the <code>main</code> function is the entry point of the program.
-                        No other (user-defined) code is executed before <code>main</code>.
-                        This makes it easier to reason about startup behaviour, compared to say, Java where
-                        things such as static initializers may be executed before entering <code>main</code>.
-                    </Principle>
-
-                    <Principle name="Standard Library">
-                        We believe its important that a programming language provides a core library that has common
-                        abstractions to provide better interoperability. Flix aims to provide a small core library
-                        with the most common data types, e.g. <code>Option</code>, <code>List</code>, <code>Set</code>,
-                        and <code>Map</code> along with their most common operations. On the other hand, we don't
-                        believe that a standard library should be a kitchen-sink and provide everything.
-                    </Principle>
-
-                    <Principle name="Declare and then Use">
-                        Flix requires things to be declared before they can be used.
-                        Algebraic data types, functions, and other programming elements must be declared
-                        before they can be used by other program parts. Declarations make it easy to assign blame.
-                        We assume the declaration to be correct and then check any usage against its specification.
-                        E.g. the cases of an algebraic data type or the arguments to a function.
+                    <Principle name="Declare before use">
+                        In Flix things must be defined before they can be used.
+                        Algebraic data types, functions, local variables, and other programming elements must be
+                        declared before they can be used by other program parts. Declarations make it easy to assign
+                        blame; we assume declarations to be correct and check every use against its declaration.
+                        For example, an algebraic data type declares a set of cases, and the compiler checks that
+                        every use refers to one of these cases, and that every case is covered.
                     </Principle>
 
                     <Principle name="No Undefined Behaviour">
