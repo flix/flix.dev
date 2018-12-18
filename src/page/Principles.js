@@ -141,56 +141,40 @@ class Principles extends Component {
                         every use refers to one of these cases, and that every case is covered.
                     </Principle>
 
-                    <Principle name="No Undefined Behaviour">
-                        We value safety higher than performance. Unlike language such as C and C++ we are willing to
-                        pay (small) performance overheads if it improves the safety and robustness of programs.
-                        Two classical examples of this array bounds checks and garbage collection. In Flix we plan
-                        to support additional safety mechanisms.
-
-                        <br/>
-                        <Badge>in progress</Badge>
+                    <Principle name="No global state">
+                        In Flix there is no global shared state.
+                        This avoids a plethora of issues, including difficulties with initialization order and race
+                        conditions in the presence of concurrency. A Flix programmer is free to construct some
+                        state in the main function and pass it around, but there is no built-in mechanism to declare
+                        global variables. In a real system, the programmer still has to deal with the state of
+                        the world, e.g. the state of the file system, the network, and other resources.
                     </Principle>
 
-                    <Principle name="No Global State">
-                        In flix there is no global state.
-                        This avoids a large class of problems related to initialization,
-                        dependencies, and concurrency.
-                        A flix programmer is of course free construct some state in the main function
-                        and pass this throughout the program, but there is no built-in mechanism to declare
-                        a global variable.
-
-                        Of course a real system still has to deal with some global state since the file system,
-                        network, etc. is all part of a larger global state.
-                    </Principle>
-
-                    <Principle name="No Nulls">
-                        Flix does not have a special <code>null</code> value.
-                        The presence of null as a subtype of any type is now widely considered a mistake.
-                        The inventor of null, Sir Tony Hoare, has famously called it his billion dollar mistake.
-                        Languages with null, such as C#, Dart, Kotlin, Scala, etc. are rapidly scrambling to adopt
-                        mechanism to ensure non-nullness. In Flix, we adopt the standard solution to the represent
+                    <Principle name="No null value">
+                        Flix does not have the <code>null</code> value. The null value is now widely considered a
+                        mistake and languages such as C#, Dart, Kotlin and Scala are scrambling to adopt mechanisms to
+                        ensure non-nullness.
+                        In Flix, we adopt the standard solution from functional languages which is to represent
                         the absence of a value using the <code>Option</code> type. This solution is simple to
                         understand, works well, and guarantees the absence of dreaded <code>NullPointerException</code>s.
                     </Principle>
 
-                    <Principle name="No Implicit Coercions">
-                        In flix a value of one type is never coerced or converted into another type automatically.
-                        For example,
+                    <Principle name="No implicit coercions">
+                        In Flix, a value of one type is never implicitly coerced or converted into a value of another
+                        type. For example,
 
                         <ul>
-                            <li>Only booleans may be used in an if-then-else expression.</li>
-                            <li>Integers are never truncated or promoted.</li>
-                            <li>Values are never coerced to strings.</li>
+                            <li>No value is ever coerced to a boolean.</li>
+                            <li>No value is ever coerced to a string.</li>
+                            <li>Integers and floating-point are never truncated or promoted.</li>
                         </ul>
                     </Principle>
 
-                    <Principle name="No Compiler Warnings, Only Compile-Time Errors">
-                        The Flix compiler never emits warnings; only compile-time errors. The problem with warnings
-                        is that they can be ignored or that people disagree on what warnings are important. For Flix
-                        our goal is that anything that looks incorrect or troublesome should outright be rejected.
-                        In this we are inspired by language such as Rust where e.g. dead code is considered not as a
-                        warning,
-                        but a compile-time error.
+                    <Principle name="No warnings, only errors">
+                        The Flix compiler never emits warnings; only compile-time errors which abort compilation.
+                        Warnings can be ignored or turned off. People disagree on whether a warning is harmless or not.
+                        For Flix, we believe that any code that appears troublesome or incorrect to the compiler should
+                        outright be rejected.
                     </Principle>
 
                     <Principle name="Dead and Unreachable Code is Rejected">

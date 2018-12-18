@@ -13,7 +13,7 @@ class Research extends Component {
                 </p>
 
                 <p>
-                    A significant part of Research is centered on the Datalog aspects of Flix, including:
+                    A significant part of our research is centered on the Datalog aspects of Flix, including:
                     <ul>
                         <li>the design of a language with first-class Datalog constraints.</li>
                         <li>the extensions of Datalog semantics to lattice semantics.</li>
