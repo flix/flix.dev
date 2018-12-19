@@ -43,7 +43,7 @@ class Home extends Component {
                     <Col md="12">
                         <h2>Features at a Glance</h2>
                     </Col>
-                    <Col md="4" style={{"font-size": '1.2em'}}>
+                    <Col md="4" style={{"fontSize": '1.2em'}}>
                         <ul>
                             <li>algebraic data types</li>
                             <li>pattern matching</li>
@@ -52,7 +52,7 @@ class Home extends Component {
                             <li>Hindley-Milner type inference</li>
                         </ul>
                     </Col>
-                    <Col md="4" style={{"font-size": '1.2em'}}>
+                    <Col md="4" style={{"fontSize": '1.2em'}}>
                         <ul>
                             <li>channel-based concurrency</li>
                             <li>first-class datalog constraints</li>
@@ -61,7 +61,7 @@ class Home extends Component {
                             <li>typed holes</li>
                         </ul>
                     </Col>
-                    <Col md="4" style={{"font-size": '1.2em'}}>
+                    <Col md="4" style={{"fontSize": '1.2em'}}>
                         <ul>
                             <li>full tail call elimination</li>
                             <li>compiles to JVM bytecode</li>
@@ -77,7 +77,7 @@ class Home extends Component {
                         <h3>Recent News</h3>
                         <ul>
                             {NewsData().map(item =>
-                                <li>
+                                <li key={item.name}>
                                     {item.date} - {item.name}
                                     <br/>
                                 </li>

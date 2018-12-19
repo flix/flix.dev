@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-
 import nl2br from 'react-newline-to-break';
-
 import AceEditor from 'react-ace'
-
 import 'brace/mode/scala'
-import 'brace/theme/crimson_editor'
-import 'brace/theme/xcode'
 import {Badge, Button, ButtonGroup, Card, CardText} from "reactstrap";
+
+import FlixMode from './FlixMode'
+import 'brace/theme/chrome';
 
 class Editor extends Component {
     constructor(props) {
@@ -21,6 +19,11 @@ class Editor extends Component {
             output: undefined,
             waiting: false
         }
+    }
+
+    componentDidMount() {
+        const customMode = new FlixMode();
+        this.refs.aceEditor.editor.getSession().setMode(customMode);
     }
 
     run = () => {
@@ -84,8 +87,9 @@ class Editor extends Component {
                 <div>
                     <div>
                         <AceEditor
-                            mode='scala'
-                            theme='eclipse'
+                            mode='text'
+                            theme='chrome'
+                            ref="aceEditor"
                             showGutter={false}
                             showPrintMargin={false}
                             highlightActiveLine={false}
