@@ -11,7 +11,7 @@ class Home extends Component {
             <Container>
                 <Row className="mb-3">
                     <Col xs="6">
-                        <h1 className="font-weight-bold">A functional programming language that runs on the JVM</h1>
+                        <h1 className="font-weight-bold">A principled functional language that runs on the JVM</h1>
 
                         <p>
                             Flix is a principled and opinionated functional programming language that takes inspiration
@@ -19,19 +19,18 @@ class Home extends Component {
                         </p>
 
                         <p>
-                            Flix visually resembles Scala, but its type system is closer to OCaml and Haskell.
-                            Its concurrency model is based on Go-style processes and channels.
+                            Flix visually resembles Scala, but its type system is closer to that of OCaml and Haskell.
+                            Its concurrency model is inspired by Go-style processes and channels.
                         </p>
 
                         <p>
-                            Flix runs on the Java Virtual Machine and compiles to JVM bytecode.
-                            It uses a custom calling convention to guarantee full tail call elimination.
-                            Its performance is close to Scala, but up to a factor two slower, for comparable programs.
+                            Flix compiles to JVM bytecode and runs on the Java Virtual Machine.
+                            Flix supports full tail call elimination. Its performance is within a few factors of Scala.
                         </p>
 
                         <p>
-                            Flix is also a research project exploring the connections between functional programming and
-                            declarative programming in the shape of Datalog.
+                            Research on Flix explores connections between functional and logic programming in the
+                            area of declarative fixpoint computations.
                         </p>
 
                     </Col>
@@ -50,21 +49,24 @@ class Home extends Component {
                             <li>pattern matching</li>
                             <li>first-class functions</li>
                             <li>parametric polymorphism</li>
+                            <li>Hindley-Milner type inference</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"font-size": '1.2em'}}>
                         <ul>
-                            <li>Hindley-Milner type inference</li>
                             <li>channel-based concurrency</li>
                             <li>first-class datalog constraints</li>
-                            <li>typed holes ala Idris</li>
+                            <li>namespaces</li>
+                            <li>garbage collected</li>
+                            <li>typed holes</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"font-size": '1.2em'}}>
                         <ul>
                             <li>full tail call elimination</li>
-                            <li>compilation to JVM bytecode</li>
+                            <li>compiles to JVM bytecode</li>
                             <li>core standard library</li>
+                            <li>human friendly errors</li>
                             <li>interactive mode</li>
                         </ul>
                     </Col>
@@ -72,55 +74,7 @@ class Home extends Component {
 
                 <Row className="mb-3">
                     <Col xs="6">
-                        <h3>Principled Design</h3>
-
-                        <p>
-                            Flix is built on a set of design principles. It is our hope that these principles
-                            leads us to a consistent design that fits a particular set of use cases. We aim to build
-                            a language with a strong foundation in programming language feature combined with
-                            knowledge learned of the past thirty years. Flix aims to take many of the best ideas from
-                            languages such as OCaml, Haskell, Rust, and Scala and incorporate them into a new language.
-                        </p>
-                    </Col>
-                    <Col xs="6">
-                        <h3>Bread- and Butter Functional Programming</h3>
-
-                        <p>
-                            Flix supports the basic building blocks of most typed functional programming languages:
-                            algebraic data types, pattern matching, and parametric polymorphism (generics).
-                            Knowledge of just these three features makes it easy to get started on writing
-                            real programs in flix.
-                        </p>
-                    </Col>
-                </Row>
-
-                <Row className="mb-3">
-                    <Col xs="6">
-                        <h3>Safety First</h3>
-
-                        <p>
-                            With Flix, we are trying to design a programming language that puts program correctness
-                            first. For example, flix does not support nulls to prevent null pointer exceptions. Flix has
-                            no global mutable state. Flix discourages mutable state. We believe an expressive type
-                            system can be used to prevent many programming errors, and so forth.
-                        </p>
-                    </Col>
-                    <Col xs="6">
-                        <h3>Process and Channel-based Concurrency</h3>
-                        <p>
-                            Flix embraces Go-style concurrency with processes and channels which is also known as the <a
-                            href="https://en.wikipedia.org/wiki/Communicating_sequential_processes">communicating
-                            sequential process (CSP)</a> model. Processes communicate by sharing immutable messages
-                            which helps prevent some race conditions. In the current implementation, processes are
-                            backed by threads, but when/if the JVM gains more lightweight green-threads or fibers, we
-                            plan to switch to those.
-                        </p>
-                    </Col>
-                </Row>
-
-                <Row className="mb-3">
-                    <Col xs="6">
-                        <h3>News</h3>
+                        <h3>Recent News</h3>
                         <ul>
                             {NewsData().map(item =>
                                 <li>
@@ -132,21 +86,64 @@ class Home extends Component {
                     </Col>
 
                     <Col xs="6">
-                        <h3>Flix as a Research Language</h3>
+                        <h3>Bread- and Butter Functional Programming</h3>
 
                         <p>
-                            Flix is also a language for research exploring various aspects of programming language
-                            design. A large part of the research on Flix is on connections between functional
-                            programming
-                            and logic programming in the form of Datalog. Flix, as probably the first language, features
-                            first-class Datalog constraints enriched with lattice semantics.
+                            Flix supports the basic building blocks of typed functional programs:
+                            algebraic data types, pattern matching, and parametric polymorphism (generics).
+                            It uses a Hindley-Milner style type system which supports local type inference with
+                            a function. Its syntax is inspired by Scala with an emphasis on the use of keywords.
+                        </p>
+                    </Col>
+                </Row>
 
-                            We believe these features make Flix an interesting platform for experimentation with
-                            and implementation of program analyses as these often rely on fixpoint computation.
-                            For more information on this aspect of flix, we refer to our research papers.
+                <Row className="mb-3">
+                    <Col xs="6">
+                        <h3>Process and Channel-based Concurrency</h3>
+                        <p>
+                            Flix embraces a Go-style concurrency model based on processes and channels. Processes
+                            communicate by sharing immutable messages which help prevent race conditions. Our
+                            implementation is currently based on threads, but once the JVM gains support for
+                            light-weight threads or support for continuations we can change the backend to use those
+                            features.
+                        </p>
+                    </Col>
 
+                    <Col xs="6">
+                        <h3>Principled Design</h3>
+
+                        <p>
+
+                            <strike> Flix is built on a set of design principles. It is our hope that these principles
+                                leads us to a consistent design that fits a particular set of use cases. We aim to build
+                                a language with a strong foundation in programming language feature combined with
+                                knowledge learned of the past thirty years. Flix aims to take many of the best ideas
+                                from
+                                languages such as OCaml, Haskell, Rust, and Scala and incorporate them into a new
+                                language.</strike>
+                        </p>
+                    </Col>
+                </Row>
+
+                <Row className="mb-3">
+                    <Col xs="6">
+                        <h3>Planned Features</h3>
+
+                    </Col>
+
+                    <Col xs="6">
+                        <h3>Research and Flix</h3>
+
+                        <p>
+                            Flix is also a research project to explore various aspects of programming language design.
+                            A large part of the research explores connections between functional and logic programming,
+                            specifically Datalog and extensions of Datalog. Flix, as probably the only language in the
+                            world, supports first-class Datalog constraints enriched with lattice semantics.
                         </p>
 
+                        <p>
+                            For more information, we refer to our research papers.
+                        </p>
                     </Col>
                 </Row>
 

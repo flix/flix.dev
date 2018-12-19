@@ -85,7 +85,7 @@ class Editor extends Component {
                     <div>
                         <AceEditor
                             mode='scala'
-                            theme='xcode'
+                            theme='eclipse'
                             showGutter={false}
                             showPrintMargin={false}
                             highlightActiveLine={false}
