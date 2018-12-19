@@ -126,9 +126,8 @@ def main2(): Int =
 
 /// Or even using an infix notation for sum:
 def main3(): Int = 
-    let i = 123.inc();
     let s = 123 \`sum\` 456;
-        i + s
+        s
 `
         },
         {

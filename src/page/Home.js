@@ -11,7 +11,8 @@ class Home extends Component {
             <Container>
                 <Row className="mb-3">
                     <Col xs="6">
-                        <h1 className="font-weight-bold">A principled functional language that runs on the JVM</h1>
+                        <h1 className="font-weight-bold">Flix is a principled, functional-first, open source programming
+                            language that runs on the JVM</h1>
 
                         <p>
                             Flix is a principled and opinionated functional programming language that takes inspiration
@@ -38,6 +39,8 @@ class Home extends Component {
                         <Codebox flix={this.props.flix}/>
                     </Col>
                 </Row>
+
+                <hr className="mb-3"/>
 
                 <Row className="mb-3">
                     <Col md="12">
@@ -71,6 +74,8 @@ class Home extends Component {
                         </ul>
                     </Col>
                 </Row>
+
+                <hr className="mb-3"/>
 
                 <Row className="mb-3">
                     <Col xs="6">
