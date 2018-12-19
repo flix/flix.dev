@@ -177,16 +177,20 @@ class Principles extends Component {
                         outright be rejected.
                     </Principle>
 
-                    <Principle name="Dead and Unreachable Code is Rejected">
-                        Flix aims to enforce that programs with dead and unreachable code are rejected, similarly to how
-                        Rust rejects such code.
+                    <Principle name="No dead or unreachable code">
+                        Inspired by <a href="https://doc.rust-lang.org/rust-by-example/attribute/unused.html">Rust</a>,
+                        the Flix compiler will reject programs that contain dead or unreachable code. We believe
+                        that rejecting such programs will help programmers avoid mistakes where some algebraic data
+                        type or function is unintentionally left unused.
                         <br/>
                         <Badge>in progress</Badge>
                     </Principle>
 
-                    <Principle name="Pattern Matches must be Exhaustive">
-                        Flix enforces that a pattern match handles all cases of an algebraic data type.
-                        If a match is non-exhaustive, the program is rejected.
+                    <Principle name="Exhaustive pattern matches">
+                        The Flix compiler enforces that pattern matches handle all cases of an algebraic data type.
+                        If a match is found to be non-exhaustive, the program is rejected. We believe this
+                        encourages more robust code and to refactor algebraic data types whenever some situation
+                        is, in fact, impossible.
                     </Principle>
 
                 </CardColumns>
