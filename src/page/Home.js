@@ -91,7 +91,7 @@ class Home extends Component {
                         <p>
                             Flix supports the basic building blocks of typed functional programs:
                             algebraic data types, pattern matching, and parametric polymorphism (generics).
-                            It uses a Hindley-Milner style type system which supports local type inference with
+                            It uses a Hindley-Milner style type system which supports type inference within
                             a function. Its syntax is inspired by Scala with an emphasis on the use of keywords.
                         </p>
                     </Col>
@@ -112,16 +112,10 @@ class Home extends Component {
                     <Col xs="6">
                         <h3>Principled Design</h3>
 
-                        <p>
-
-                            <strike> Flix is built on a set of design principles. It is our hope that these principles
-                                leads us to a consistent design that fits a particular set of use cases. We aim to build
-                                a language with a strong foundation in programming language feature combined with
-                                knowledge learned of the past thirty years. Flix aims to take many of the best ideas
-                                from
-                                languages such as OCaml, Haskell, Rust, and Scala and incorporate them into a new
-                                language.</strike>
-                        </p>
+                        We aim to build Flix on a solid foundation of ideas from programming language research.
+                        In our design, we try to identify and guide ourselves by a collection of principles each
+                        with a well-documented rationale. In short, we want Flix to adopt great ideas from
+                        languages such as F#, Go, OCaml, Haskell, Rust, and Scala.
                     </Col>
                 </Row>
 
@@ -129,16 +123,23 @@ class Home extends Component {
                     <Col xs="6">
                         <h3>Planned Features</h3>
 
+                        <p>
+                            Flix currently has the feature set of a ML-style language. We are currently working
+                            on adding support for two features that are essential to real-world programming:
+                            an abstraction mechanism in some form of <a href="https://en.wikipedia.org/wiki/Type_class">type
+                            classes</a> and an <a href="https://en.wikipedia.org/wiki/Effect_system">effect
+                            system</a> to support interoperability with the outside world.
+                        </p>
                     </Col>
 
                     <Col xs="6">
                         <h3>Research and Flix</h3>
 
                         <p>
-                            Flix is also a research project to explore various aspects of programming language design.
+                            Flix is also a research project to explore aspects of programming language design.
                             A large part of the research explores connections between functional and logic programming,
-                            specifically Datalog and extensions of Datalog. Flix, as probably the only language in the
-                            world, supports first-class Datalog constraints enriched with lattice semantics.
+                            specifically Datalog. Flix, as probably the only language in the world, supports first-class
+                            Datalog constraints enriched with lattice semantics.
                         </p>
 
                         <p>
