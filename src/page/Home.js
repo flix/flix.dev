@@ -6,6 +6,11 @@ import NewsData from '../data/News.js'
 import SamplesData from '../data/Samples.js'
 
 class Home extends Component {
+
+    componentDidMount() {
+        document.title = "The Flix Programming Language"
+    }
+
     render() {
         return (
             <Container>

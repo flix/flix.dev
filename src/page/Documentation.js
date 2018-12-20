@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {Col, Container, Row} from "reactstrap";
 
 class Documentation extends Component {
+
+    componentDidMount() {
+        document.title = "Flix | Documentation"
+    }
+
     render() {
         return (
             <Container>

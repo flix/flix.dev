@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
-import {Card, CardText, CardBody, CardTitle, CardColumns, Badge} from 'reactstrap';
+import {Card, CardBody, CardTitle, CardColumns, Badge} from 'reactstrap';
 import {Container} from 'reactstrap';
 
 class Principles extends Component {
+
+    componentDidMount() {
+        document.title = "Flix | Principles"
+    }
+
     render() {
         return (
             <Container>
@@ -206,7 +211,7 @@ class Principle extends Component {
                 <Card>
                     <CardBody>
                         <CardTitle>{this.props.name}</CardTitle>
-                        <CardText>{this.props.children}</CardText>
+                        {this.props.children}
                     </CardBody>
                 </Card>
             </div>

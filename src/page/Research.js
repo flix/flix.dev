@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {Container} from "reactstrap";
 
 class Research extends Component {
+
+    componentDidMount() {
+        document.title = "Flix | Research"
+    }
+
     render() {
         return (
             <Container>
@@ -12,7 +17,7 @@ class Research extends Component {
                     href="http://plg.uwaterloo.ca">University of Waterloo</a>.
                 </p>
 
-                <p>
+                <div>
                     A significant part of our research is centered on the Datalog aspects of Flix, including:
                     <ul>
                         <li>the design of a language with first-class Datalog constraints.</li>
@@ -21,7 +26,7 @@ class Research extends Component {
                         <li>the use of Flix for program analysis.</li>
                         <li>the verification of such program analyses.</li>
                     </ul>
-                </p>
+                </div>
 
                 <p>
                     As the above suggests, a major research focus is on how to write declarative

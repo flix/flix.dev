@@ -4,6 +4,11 @@ import InstallGif from '../gif/install.gif'
 import NextStepsGif from '../gif/next-steps.gif'
 
 class GettingStarted extends Component {
+
+    componentDidMount() {
+        document.title = "Flix | Getting Started"
+    }
+
     render() {
         return (
             <Container>
