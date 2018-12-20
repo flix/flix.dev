@@ -191,6 +191,13 @@ class Principles extends Component {
                         <Badge>in progress</Badge>
                     </Principle>
 
+                    <Principle name="No fashions">
+                        A few years ago HTML was all the rage. Hence it was only natural that Java adopted HTML-style
+                        comments. A bit later, XML was all the rage, hence it was only natural that Scala
+                        added support for native XML literals. Today, JSON and Markdown are all the rage, but if
+                        history is any guide, we should not add any special support for these to Flix.
+                    </Principle>
+
                     <Principle name="Exhaustive pattern matches">
                         The Flix compiler enforces that pattern matches handle all cases of an algebraic data type.
                         If a match is found to be non-exhaustive, the program is rejected. We believe this
