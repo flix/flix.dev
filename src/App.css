@@ -31,6 +31,13 @@ h3 {
 }
 
 .nav-item {
-    font-weight: bold;
     cursor: pointer;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: rgba(255, 255, 255, .85)
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: rgba(255, 255, 255, 1.00)
 }

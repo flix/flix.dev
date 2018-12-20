@@ -54,14 +54,14 @@ class App extends Component {
     render() {
         return (
             <Container className="page">
-                <Navbar light color="light" expand="md" className="menu mb-4">
+                <Navbar dark color="info" expand="md" className="menu mb-4">
                     <Nav className="mr-lg-auto" navbar>
-                        <NavItem><NavLink tag={Link} to="/">Home</NavLink></NavItem>
-                        <NavItem><NavLink tag={Link} to="/getting-started/">Getting Started</NavLink></NavItem>
-                        <NavItem><NavLink tag={Link} to="/principles/">Principles</NavLink></NavItem>
-                        <NavItem><NavLink tag={Link} to="/research/">Research</NavLink></NavItem>
-                        <NavItem><NavLink tag={Link} to="/documentation/">Documentation</NavLink></NavItem>
-                        <NavItem><NavLink tag={Link} to="/contribute/">Contribute</NavLink></NavItem>
+                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/">Home</NavLink></NavItem>
+                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/getting-started/">Getting Started</NavLink></NavItem>
+                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/principles/">Principles</NavLink></NavItem>
+                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/research/">Research</NavLink></NavItem>
+                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/documentation/">Documentation</NavLink></NavItem>
+                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/contribute/">Contribute</NavLink></NavItem>
                     </Nav>
                 </Navbar>
 
@@ -71,7 +71,6 @@ class App extends Component {
                 <Route path="/research/" exact component={Research}/>
                 <Route path="/documentation/" exact component={Documentation}/>
                 <Route path="/contribute/" exact component={Contribute}/>
-
             </Container>
         );
     }

@@ -30,7 +30,12 @@ class Home extends Component {
 
                         <p>
                             Flix compiles to JVM bytecode and runs on the Java Virtual Machine.
-                            Flix supports full tail call elimination. Its performance is within a few factors of Scala.
+                            Flix supports full tail call elimination which means that tail calls (even to other
+                            functions) never overflow the stack.
+                        </p>
+
+                        <p>
+                            Flix performance is typically within 1-3x of equivalent Scala code.
                         </p>
 
                         <p>
@@ -63,9 +68,9 @@ class Home extends Component {
                         <ul>
                             <li>channel-based concurrency</li>
                             <li>first-class datalog constraints</li>
+                            <li>unboxed primitives</li>
                             <li>namespaces</li>
-                            <li>garbage collected</li>
-                            <li>typed holes</li>
+                            <li>expressions holes</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
