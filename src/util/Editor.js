@@ -41,7 +41,7 @@ class Editor extends Component {
         if (this.props.flix.connected) {
             return <Badge color="info" className="float-right">Connected</Badge>
         } else {
-            return <Badge color="secondary">Disconnected</Badge>
+            return <Badge color="secondary" className="float-right">Disconnected</Badge>
         }
     }
 
@@ -97,7 +97,7 @@ class Editor extends Component {
                             value={this.state.input}
                             autoScrollEditorIntoView={true}
                             minLines={5}
-                            maxLines={24}
+                            maxLines={23}
                             editorProps={{$blockScrolling: true}}/>
                         {this.state.waiting}
                     </div>
