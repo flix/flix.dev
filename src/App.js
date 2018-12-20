@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import Menu from "./Menu";
 import Home from "./page/Home";
 import GettingStarted from "./page/GettingStarted";
 import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
 import Research from "./page/Research";
 import Documentation from "./page/Documentation";
-import {Container} from "reactstrap";
+import {Container, Navbar, Nav, NavItem, NavLink} from 'reactstrap';
+import {Route} from "react-router";
+import {Link} from "react-router-dom";
 
 const SocketAddress = 'ws://flix.aau.dk:8080';
 
@@ -46,37 +47,31 @@ class App extends Component {
         this.state.websocket.send(src);
     };
 
-    notifyChangePage(page) {
-        console.log("Changing page to: " + page);
-        this.setState({"page": page});
-    }
-
-    getPage() {
-        if (this.state.page === "getting-started") {
-            return <GettingStarted/>;
-        }
-        if (this.state.page === "design-principles") {
-            return <Principles/>
-        }
-        if (this.state.page === "research") {
-            return <Research/>
-        }
-        if (this.state.page === "documentation") {
-            return <Documentation/>
-        }
-        if (this.state.page === "contribute") {
-            return <Contribute/>
-        }
-
-        return <Home flix={{connected: this.state.connected, run: this.runProgram.bind(this)}}/>;
+    getHome() {
+        return <Home flix={{connected: this.state.connected, run: this.runProgram.bind(this)}}/>
     }
 
     render() {
         return (
             <Container className="page">
-                <Menu notifyChangePage={this.notifyChangePage.bind(this)}/>
+                <Navbar color="light" light expand="md" className="menu mb-5">
+                    <Nav className="mr-lg-auto" navbar>
+                        <NavItem><NavLink tag={Link} to="/">Home</NavLink></NavItem>
+                        <NavItem><NavLink tag={Link} to="/getting-started/">Getting Started</NavLink></NavItem>
+                        <NavItem><NavLink tag={Link} to="/principles/">Principles</NavLink></NavItem>
+                        <NavItem><NavLink tag={Link} to="/research/">Research</NavLink></NavItem>
+                        <NavItem><NavLink tag={Link} to="/documentation/">Documentation</NavLink></NavItem>
+                        <NavItem><NavLink tag={Link} to="/contribute/">Contribute</NavLink></NavItem>
+                    </Nav>
+                </Navbar>
 
-                {this.getPage()}
+                <Route path="/" exact render={() => this.getHome()}/>
+                <Route path="/getting-started/" exact component={GettingStarted}/>
+                <Route path="/principles/" exact component={Principles}/>
+                <Route path="/research/" exact component={Research}/>
+                <Route path="/documentation/" exact component={Documentation}/>
+                <Route path="/contribute/" exact component={Contribute}/>
+
             </Container>
         );
     }
