@@ -11,8 +11,7 @@ class Home extends Component {
             <Container>
                 <Row className="mb-3">
                     <Col xs="6">
-                        <h1 className="font-weight-bold">Flix is a principled, functional-first, open source programming
-                            language that runs on the JVM</h1>
+                        <h1>Flix is a principled, functional-first, safe programming language that runs on the JVM</h1>
 
                         <p>
                             Flix is a principled and opinionated functional programming language that takes inspiration
