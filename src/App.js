@@ -54,14 +54,17 @@ class App extends Component {
     render() {
         return (
             <Container className="page">
-                <Navbar dark color="info" expand="md" className="menu mb-4">
+                <Navbar dark color="info" expand="md" className="menu shadow-sm mb-4">
                     <Nav className="mr-lg-auto" navbar>
                         <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/">Home</NavLink></NavItem>
-                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/getting-started/">Getting Started</NavLink></NavItem>
-                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/principles/">Principles</NavLink></NavItem>
+                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/getting-started/">Getting
+                            Started</NavLink></NavItem>
+                        <NavItem className="pl-1 pr-1"><NavLink tag={Link}
+                                                                to="/principles/">Principles</NavLink></NavItem>
                         <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/research/">Research</NavLink></NavItem>
                         <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/documentation/">Documentation</NavLink></NavItem>
-                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/contribute/">Contribute</NavLink></NavItem>
+                        <NavItem className="pl-1 pr-1"><NavLink tag={Link}
+                                                                to="/contribute/">Contribute</NavLink></NavItem>
                     </Nav>
                 </Navbar>
 

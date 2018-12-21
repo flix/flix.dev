@@ -95,8 +95,8 @@ class Editor extends Component {
                     </div>
 
                     <ButtonGroup>
-                        <Button color="primary" outline className="btn-sm" onClick={this.onRunClick}>Run</Button>
-                        <Button color="secondary" outline className="btn-sm" onClick={this.onResetClick}>Reset</Button>
+                        <Button color="primary" outline className="btn-xs" onClick={this.onRunClick}>Run Main</Button>
+                        <Button color="secondary" outline className="btn-xs" onClick={this.onResetClick}>Reset</Button>
                     </ButtonGroup>
                 </div>
                 {this.resultBox()}
