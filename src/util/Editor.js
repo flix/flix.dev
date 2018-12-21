@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import nl2br from 'react-newline-to-break';
 import AceEditor from 'react-ace'
 import 'brace/mode/scala'
-import {Badge, Button, ButtonGroup, Card, CardText} from "reactstrap";
+import {Button, ButtonGroup, Card, CardText} from "reactstrap";
 
 import FlixMode from './FlixMode'
 import 'brace/theme/chrome';
@@ -36,14 +36,6 @@ class Editor extends Component {
             );
         })
     };
-
-    isConnected() {
-        if (this.props.flix.connected) {
-            return <Badge color="info" className="float-right">Connected</Badge>
-        } else {
-            return <Badge color="secondary" className="float-right">Disconnected</Badge>
-        }
-    }
 
     onChange = input => {
         this.setState({input: input});
@@ -106,8 +98,6 @@ class Editor extends Component {
                         <Button color="primary" outline className="btn-sm" onClick={this.onRunClick}>Run</Button>
                         <Button color="secondary" outline className="btn-sm" onClick={this.onResetClick}>Reset</Button>
                     </ButtonGroup>
-
-                    {this.isConnected()}
                 </div>
                 {this.resultBox()}
             </div>

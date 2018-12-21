@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Row, Col} from 'reactstrap';
+import {Container, Row, Col, Badge} from 'reactstrap';
 import Editor from "../util/Editor";
 
 import NewsData from '../data/News.js'
@@ -188,6 +188,14 @@ class Codebox extends Component {
         return <Editor key={sample.name} flix={this.props.flix} code={sample.code} lines={18}>{sample.code}</Editor>
     }
 
+    isConnected() {
+        if (this.props.flix.connected) {
+            return <Badge color="info" className="float-right mt-1">Connected</Badge>
+        } else {
+            return <Badge color="secondary" className="float-right mt-1">Disconnected</Badge>
+        }
+    }
+
     render() {
         return (
             <Container>
@@ -196,6 +204,7 @@ class Codebox extends Component {
                         <option key={index} value={index}>{sample.name}</option>)
                     }
                 </select>
+                {this.isConnected()}
                 {this.getEditor()}
             </Container>
         );
