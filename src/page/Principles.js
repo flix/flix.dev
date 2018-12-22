@@ -187,6 +187,13 @@ class Principles extends Component {
                         </ul>
                     </Principle>
 
+                    <Principle name="No Reflection">
+                        Flix does not support reflection, i.e. the ability to inspect the structure of the program
+                        at run-time. Reflection tends to break the kind of program reasoning that both compilers and
+                        humans rely on. At some point in the future, Flix might support some notion of compile-time
+                        meta programming.
+                    </Principle>
+
                     <Principle name="No warnings, only errors">
                         The Flix compiler never emits warnings; only compile-time errors which abort compilation.
                         Warnings can be ignored or turned off. People disagree on whether a warning is harmless or not.
