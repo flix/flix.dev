@@ -111,6 +111,18 @@ class Principles extends Component {
                         choice about whether to make a declaration publicly visible.
                     </Principle>
 
+                    <Principle name="Closed World Assumption">
+                        Flix requires all code to be available at compile-time. This enables a range of
+                        compilation techniques, such as:
+
+                        <ul>
+                            <li>Monomorphization to avoid unnecessary boxing of primitives.</li>
+                            <li>Aggressive dead code elimination ("tree shaking") to remove unused functions.</li>
+                            <li>Inlining across namespaces.</li>
+                            <li>Whole-program analysis.</li>
+                        </ul>
+                    </Principle>
+
                     <Principle name="Illegal states should be unrepresentable">
                         We believe that a language should make it easy to make illegal states unrepresentable.
                         For example, algebraic data types can be used to precisely define the possible values of a type.
