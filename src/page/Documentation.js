@@ -41,7 +41,8 @@ class Documentation extends Component {
                     <Col>
                         <h3>Programming Language Checklist</h3>
                         <p>
-                            For completeness (and fun), here is the programming language check list for Flix:
+                            For completeness (and fun), here is the <a href="http://colinm.org/language_checklist.html">programming
+                            language check list</a> for Flix:
                         </p>
                         <code>
                             <pre>{`You appear to be advocating a new:

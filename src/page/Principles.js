@@ -217,6 +217,18 @@ class Principles extends Component {
                         history is any guide, we should not add any special support for these to Flix.
                     </Principle>
 
+                    <Principle name="No blessed library">
+                        The Flix standard library is implemented in Flix. The library does not rely on any special
+                        compiler hooks nor does the compiler expose any special primitives to it. If you don't like
+                        the standard library, you can replace it by a different one.
+                    </Principle>
+
+                    <Principle name="Minimal prelude">
+                        The Flix prelude contains algebraic data types and functions that are by default imported
+                        into every compilation unit. The prelude provides access to extremely common functionality.
+                        To avoid pollution of the default namespace, we try to keep the prelude very small.
+                    </Principle>
+
                     <Principle name="Exhaustive pattern matches">
                         The Flix compiler enforces that pattern matches handle all cases of an algebraic data type.
                         If a match is found to be non-exhaustive, the program is rejected. We believe this
