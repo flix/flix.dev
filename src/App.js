@@ -19,19 +19,28 @@ class App extends Component {
 
         console.log("Connecting to: " + SocketAddress);
 
-        this.state = {
-            page: null,
-            websocket: new window.WebSocket(SocketAddress),
-            connected: false
-        };
+        try {
+            this.state = {
+                page: null,
+                websocket: new window.WebSocket(SocketAddress),
+                connected: false
+            };
 
-        this.state.websocket.onopen = event => {
-            console.log("Connected to: " + SocketAddress);
-            this.setState({connected: true})
+            this.state.websocket.onopen = event => {
+                console.log("Connected to: " + SocketAddress);
+                this.setState({connected: true})
+            }
+        } catch (ex) {
+            console.log("Unable to connect: " + ex)
         }
     }
 
     runProgram = (src, f) => {
+        if (!this.state.connected) {
+            console.log("Not connected yet");
+            return;
+        }
+
         this.state.websocket.onmessage = event => {
             console.log("Received reply from: " + SocketAddress);
             const data = JSON.parse(event.data);
@@ -40,10 +49,6 @@ class App extends Component {
             f(data);
         };
 
-        if (!this.state.connected) {
-            console.log("Not connected yet");
-            return;
-        }
         this.state.websocket.send(src);
     };
 
