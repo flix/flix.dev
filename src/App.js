@@ -19,12 +19,13 @@ class App extends Component {
 
         console.log("Connecting to: " + SocketAddress);
 
+        this.state = {
+            connected: false,
+            websocket: null
+        };
+
         try {
-            this.state = {
-                page: null,
-                websocket: new window.WebSocket(SocketAddress),
-                connected: false
-            };
+            this.state.websocket = new window.WebSocket(SocketAddress);
 
             this.state.websocket.onopen = event => {
                 console.log("Connected to: " + SocketAddress);
