@@ -1,8 +1,12 @@
 export default function () {
     return [
         {
+            name: "Flix version 0.4.0 released!",
+            date: "2019-01-03"
+        },
+        {
             name: "The new Flix website is now online!",
-            date: "2018-12-24"
+            date: "2019-01-03"
         },
         {
             name: "Jonathan and Simon are working on Go-style processes and channels for Flix.",
@@ -11,10 +15,6 @@ export default function () {
         {
             name: "The paper entitled: 'Implicit Parameters for Logic Programming' is now available.",
             date: "2018-09-03"
-        },
-        {
-            name: "The paper entitled: 'Call Elimination and Data Representation for Functional Languages on the Java Virtual Machine' is now available.",
-            date: "2018-05-01"
         }
     ];
 }
