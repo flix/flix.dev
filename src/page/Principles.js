@@ -172,7 +172,7 @@ class Principles extends Component {
                         Flix follows the Go mantra: <a href="https://blog.golang.org/share-memory-by-communicating"><i>Do
                         not communicate by sharing memory; instead, share memory by
                         communicating.</i></a> In other words: mutable memory should never be shared between processes.
-                        Processes should only share immutable massages (and data structures). We believe this
+                        Processes should only share immutable messages (and data structures). We believe this
                         significantly reduces the risk of <a href="https://en.wikipedia.org/wiki/Race_condition">race
                         conditions</a>.
                     </Principle>
