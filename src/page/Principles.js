@@ -168,6 +168,15 @@ class Principles extends Component {
                         the world, e.g. the state of the file system, the network, and other resources.
                     </Principle>
 
+                    <Principle name="Share memory by communicating">
+                        Flix follows the Go mantra: <a href="https://blog.golang.org/share-memory-by-communicating"><i>Do
+                        not communicate by sharing memory; instead, share memory by
+                        communicating.</i></a> In other words: mutable memory should never be shared between processes.
+                        Processes should only share immutable massages (and data structures). We believe this
+                        significantly reduces the risk of <a href="https://en.wikipedia.org/wiki/Race_condition">race
+                        conditions</a>.
+                    </Principle>
+
                     <Principle name="No null value">
                         Flix does not have the <code>null</code> value. The null value is now widely considered a
                         mistake and languages such as C#, Dart, Kotlin and Scala are scrambling to adopt mechanisms to
