@@ -35,7 +35,7 @@ class Contribute extends Component {
                         </p>
 
                         <p>
-                            If you are interested in learning more about Flix or in working on flix, please feel free to
+                            If you are interested in learning more about Flix or in working on Flix, please feel free to
                             reach out.
                         </p>
                     </Col>
@@ -57,7 +57,7 @@ class Contribute extends Component {
                                     <CardTitle>Talent Track Projects</CardTitle>
                                     <p>
                                         Aarhus University offers a talent track program for capable students
-                                        that are in their second or third year of students and are interested
+                                        that are in their second or third year of studies and are interested
                                         in working on a research project for up to one year as an extra
                                         curricular activity.
                                     </p>
@@ -74,8 +74,8 @@ class Contribute extends Component {
                                 <CardBody>
                                     <CardTitle>Bachelor and Master Projects</CardTitle>
                                     <p>
-                                        If you are a bachelor or master student at Aarhus University it is possible
-                                        to write your thesis on a topic related to Flix.
+                                        If you are a bachelor or master student at Aarhus University you can
+                                        write your thesis on a topic related to Flix.
                                     </p>
 
                                     <p>
@@ -84,8 +84,8 @@ class Contribute extends Component {
                                         and <a
                                         href="https://github.com/flix/flix/labels/master-project">master</a> level
                                         projects. But, we don't necessarily list all our project ideas, as some
-                                        might involve research that we want to publish. In any case, you should
-                                        reach out to us to hear what kind of research we are currently working on.
+                                        might involve research that we intend to publish. In any case, you should
+                                        reach out to us to hear what is currently going on.
                                     </p>
                                 </CardBody>
                             </Card>
@@ -94,16 +94,15 @@ class Contribute extends Component {
                                 <CardBody>
                                     <CardTitle>Research Collaboration</CardTitle>
                                     <p>
-                                        If you are a research interested in the space of programming language design
+                                        If you are a researcher interested in the space of programming language design
                                         and implementation, program analysis, logic programming, Datalog, or
                                         any other related topic, you should feel free to reach out to us to talk
-                                        about the potential for collaboration.
+                                        about potential collaboration.
                                     </p>
 
                                     <p>
                                         If you want to use Flix in your research, e.g. for program analysis, you
-                                        are welcome to reach out to us to us to hear about the current
-                                        state-of-affairs and to get information about how to best get started.
+                                        are welcome to reach out to us for information about how to get started.
                                     </p>
                                 </CardBody>
                             </Card>

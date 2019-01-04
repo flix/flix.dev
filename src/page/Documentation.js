@@ -20,7 +20,7 @@ class Documentation extends Component {
                         </p>
 
                         <p>
-                            The <a href="http://flix.github.io/programming-flix">Programming Flix</a> books an
+                            The <a href="http://flix.github.io/programming-flix">Programming Flix</a> book offers an
                             introduction to Flix for programmers who are already familiar with functional
                             programming.
                         </p>
@@ -94,7 +94,6 @@ The following philosophical objections apply:
 [ ] Your language relies on an optimization which has never been shown possible
 [ ] There are less than 100 programmers on Earth smart enough to use your language
 [x] Hindley-Milner type inference takes exponential time
-[x] refinement types is known to be undecidable
 
 Your implementation has the following flaws:
 [x] CPUs do not work that way
@@ -125,12 +124,12 @@ handwritten assembly through your FFI
 [ ] Noone really believes that your language is faster than:
 [ ] assembly [ ] C [ ] FORTRAN [ ] Java [ ] Ruby [ ] Prolog
 [ ] Rejection of orthodox programming-language theory without justification
-[x] Rejection of orthodox systems programming without justification
+[ ] Rejection of orthodox systems programming without justification
 [ ] Rejection of orthodox algorithmic theory without justification
 [ ] Rejection of basic computer science without justification
 
 Taking the wider ecosystem into account, I would like to note that:
-[x] Your complex sample code would be one line in: Haskell, Go, Scala, ...
+[x] Your complex sample code would be one line in: Haskell, Prolog, Scala, ...
 [ ] We already have an unsafe imperative language
 [ ] We already have a safe imperative OO language
 [x] We already have a safe statically-typed eager functional language
