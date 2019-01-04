@@ -76,7 +76,7 @@ class Home extends Component {
                     <Col md="4" style={{"fontSize": '1.2em'}}>
                         <ul>
                             <li>full tail call elimination</li>
-                            <li>compiles to JVM bytecode</li>
+                            <li>compilation to JVM bytecode</li>
                             <li>core standard library</li>
                             <li>human friendly errors</li>
                             <li>interactive mode</li>
@@ -116,19 +116,18 @@ class Home extends Component {
                         <h3>Process and Channel-based Concurrency</h3>
                         <p>
                             Flix embraces a Go-style concurrency model based on processes and channels. Processes
-                            communicate by sharing immutable messages which help prevent race conditions. Our
-                            implementation is currently based on threads, but once the JVM gains support for
-                            light-weight threads or support for continuations we can change the backend to use those
-                            features.
+                            communicate by sharing immutable messages which help prevent race conditions. The current
+                            implementation is based on threads, but when the JVM gains support for light-weight
+                            threads or continuations, we plan to switch to one of those.
                         </p>
                     </Col>
 
                     <Col xs="6">
                         <h3>Principled Design</h3>
 
-                        We aim to build Flix on a solid foundation of ideas from programming language research.
+                        It is our goal to build Flix on a solid foundation of ideas from programming language research.
                         In our design, we try to identify and guide ourselves by a collection of principles each
-                        with a well-documented rationale. In short, we want Flix to adopt great ideas from
+                        with a well-documented rationale. We want Flix to adopt great ideas from
                         languages such as F#, Go, OCaml, Haskell, Rust, and Scala.
                     </Col>
                 </Row>
@@ -138,11 +137,11 @@ class Home extends Component {
                         <h3>Planned Features</h3>
 
                         <p>
-                            Flix currently has the feature set of a ML-style language. We are currently working
-                            on adding support for two features that are essential to real-world programming:
-                            an abstraction mechanism in some form of <a href="https://en.wikipedia.org/wiki/Type_class">type
+                            At the moment, Flix has the feature set of a ML-style language. We are actively working
+                            on adding support for two features essential to real-world programming:
+                            an abstraction mechanism based on <a href="https://en.wikipedia.org/wiki/Type_class">type
                             classes</a> and an <a href="https://en.wikipedia.org/wiki/Effect_system">effect
-                            system</a> to support interoperability with the outside world.
+                            system</a> to allow safe interaction with the outside world.
                         </p>
                     </Col>
 
@@ -150,8 +149,8 @@ class Home extends Component {
                         <h3>Research and Flix</h3>
 
                         <p>
-                            Flix is also a research project to explore aspects of programming language design.
-                            A large part of the research explores connections between functional and logic programming,
+                            Flix is also a research project which explores various aspects of programming language design.
+                            A large part of the research is on connections between functional and logic programming,
                             specifically Datalog. Flix, as probably the only language in the world, supports first-class
                             Datalog constraints enriched with lattice semantics.
                         </p>
