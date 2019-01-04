@@ -63,14 +63,13 @@ class Principles extends Component {
                         function call syntax (UFCS)</a>. In Flix, the syntax for function application is: <code>f(a, b,
                         c)</code>. UFCS enables an "object-oriented" style where we can write the same function
                         call as <code>a.f(b, c)</code>.
-                        <br/>
-                        For example, the function call <code>length(xs)</code> can also be written
-                        as <code>xs.length()</code>. UFCS is a purely syntatic mechanism and does not influence the
+                        As another example, the function call <code>length(xs)</code> can also be written
+                        as <code>xs.length()</code>. UFCS is a purely syntactic mechanism and does not influence the
                         semantics of a call.
                     </Principle>
 
                     <Principle name="Keyword-based syntax">
-                        The Flix syntax is inspired by Scala and Python. We believe that short key words make it
+                        The Flix syntax is inspired by Scala. We believe that short key words make it
                         easy to visually identify the overall structure of a piece of code. Flix tries to use
                         three letter keywords were appropriate: <code>def</code>, <code>let</code>, <code>law</code>,
                         <code>rel</code>, but not for commonly established concepts: <code>if ... else </code>
@@ -78,7 +77,7 @@ class Principles extends Component {
                     </Principle>
 
                     <Principle name="Consistent syntax">
-                        Flix aims to have consistent and predictable syntax. As a concrete example, we try to have the
+                        Flix aims to have consistent and predictable syntax. As an example, we try to have the
                         syntax of types mirror that of expressions:
                         <ul>
                             <li>
@@ -99,16 +98,18 @@ class Principles extends Component {
                     <Principle name="Human-readable errors">
                         In the spirit of <a href="https://elm-lang.org/blog/compilers-as-assistants">Elm</a> and <a
                         href="https://blog.rust-lang.org/2016/08/10/Shape-of-errors-to-come.html">Rust</a>,
-                        Flix aims to have human readable compiler messages. Messages should describe the problem in
+                        Flix aims to have human readable and understandable compiler messages.
+                        Messages should describe the problem in
                         detail and provide information about the context, including suggestions for how to correct
                         the problem.
                     </Principle>
 
                     <Principle name="Private by default">
-                        Flix embraces the principle of least privilege. In Flix, declarations are by default
-                        hidden (i.e. private) and cannot be accessed from outside of their namespace (or
-                        sub-namespaces). We believe it is important that programmers are forced to make a conscious
-                        choice about whether to make a declaration publicly visible.
+                        Flix embraces the principle of least privilege. In Flix, declarations are hidden by default
+                        (i.e. private) and cannot be accessed from outside of their namespace (or
+                        sub-namespaces).
+                        We believe it is important that programmers are forced to make a conscious
+                        choice about when to make a declaration publicly visible.
                     </Principle>
 
                     <Principle name="Closed world assumption">
