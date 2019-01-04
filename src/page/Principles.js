@@ -178,13 +178,12 @@ class Principles extends Component {
                     </Principle>
 
                     <Principle name="Fail fast, fail hard">
-                        Flix tries to abort execution as soon as possible when an unrecoverable error is encountered.
-                        We believe that failing fast aids debugging and prevents potential harmful behaviour.
+                        Flix aborts execution as soon as possible when an unrecoverable error is encountered.
+                        We believe that this aids debugging and prevents potential harmful behaviour.
 
-                        In the presence of concurrency, if one process fails from an unrecoverable error the
-                        entire program aborts as soon as possible. This ensures that the outside environment
-                        is notified that an error occurred and allows it to take corrective action, e.g. to restart
-                        the program.
+                        In the presence of concurrency, if one process fails, the entire program aborts as soon
+                        as possible. This ensures that the outside environment is duly notified and can take
+                        corrective action, e.g. to restart the program.
                     </Principle>
 
                     <Principle name="No null value">
