@@ -111,7 +111,7 @@ class Principles extends Component {
                         choice about whether to make a declaration publicly visible.
                     </Principle>
 
-                    <Principle name="Closed World Assumption">
+                    <Principle name="Closed world assumption">
                         Flix requires all code to be available at compile-time. This enables a range of
                         compilation techniques, such as:
 
@@ -187,7 +187,7 @@ class Principles extends Component {
                         </ul>
                     </Principle>
 
-                    <Principle name="No Reflection">
+                    <Principle name="No reflection">
                         Flix does not support reflection, i.e. the ability to inspect the structure of the program
                         at run-time. Reflection tends to break the kind of program reasoning that both compilers and
                         humans rely on. At some point in the future, Flix might support some notion of compile-time
@@ -230,9 +230,8 @@ class Principles extends Component {
 
                     <Principle name="Exhaustive pattern matches">
                         The Flix compiler enforces that pattern matches handle all cases of an algebraic data type.
-                        If a match is found to be non-exhaustive, the program is rejected. We believe this
-                        encourages more robust code and to refactor algebraic data types whenever some situation
-                        is, in fact, impossible.
+                        If a match expression is found to be non-exhaustive, the program is rejected. We believe this
+                        encourages more robust code and enables safer refactoring of algebraic data types.
                     </Principle>
 
                 </CardColumns>
