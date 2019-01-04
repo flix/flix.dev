@@ -15,7 +15,7 @@ class Principles extends Component {
 
                 <p className="mb-3">
                     We believe that the development of a programming language should follow a set of principles.
-                    That is, when a design decision is made, there should exist some rationale for why that
+                    That is, when a design decision is made there should exist some rationale for why that
                     decision was made. By outlining these principles, as we develop Flix, we hope to keep ourselves
                     honest and to communicate the kind of language Flix aspires to be.
                 </p>
