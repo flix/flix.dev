@@ -14,15 +14,15 @@ class Principles extends Component {
                 <h1>Design Principles</h1>
 
                 <p className="mb-3">
-                    We think that a programming language should followed a principled design.
-                    That is, when a design decision is made, there should be some rationale for why that
-                    decision was made. By outlining some of the principles that influence Flix,
-                    we hope to keep ourselves honest and also to communicate to you what kind of language Flix is.
+                    We believe that the development of a programming language should follow a set of principles.
+                    That is, when a design decision is made, there should exist some rationale for why that
+                    decision was made. By outlining these principles, as we develop Flix, we hope to keep ourselves
+                    honest and to communicate the kind of language Flix aspires to be.
                 </p>
 
                 <p className="mb-3">
                     Many of these ideas and principles come from languages that have inspired Flix, including Ada, Elm,
-                    Haskell, OCaml, Rust, and Scala.
+                    F#, Go, Haskell, OCaml, Rust, and Scala.
                 </p>
 
                 <CardColumns>
