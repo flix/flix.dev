@@ -13,18 +13,18 @@ class Research extends Component {
                 <h1>Research</h1>
 
                 <p>
-                    Research on Flix takes places at <a href="http://cs.au.dk">Aarhus University</a> and the <a
+                    Research on Flix takes place at <a href="http://cs.au.dk/research/programming-languages/">Aarhus University</a> and the <a
                     href="http://plg.uwaterloo.ca">University of Waterloo</a>.
                 </p>
 
                 <div>
                     A significant part of our research is centered on the Datalog aspects of Flix, including:
                     <ul>
-                        <li>the design of a language with first-class Datalog constraints.</li>
-                        <li>the extensions of Datalog semantics to lattice semantics.</li>
-                        <li>the implementation of efficient fixpoint engines.</li>
-                        <li>the use of Flix for program analysis.</li>
-                        <li>the verification of such program analyses.</li>
+                        <li>design of a language with first-class Datalog constraints.</li>
+                        <li>extensions of Datalog semantics to lattice semantics.</li>
+                        <li>implementation of efficient fixpoint engines.</li>
+                        <li>use of Flix for program analysis.</li>
+                        <li>verification of such program analyses.</li>
                     </ul>
                 </div>
 

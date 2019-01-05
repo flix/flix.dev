@@ -21,8 +21,9 @@ class Contribute extends Component {
                         </p>
 
                         <p>
-                            Most development is research-driven and takes place at <a href="http://cs.au.dk/">Aarhus
-                            University</a> and the <a href="http://uwaterloo.ca/"> University of Waterloo</a>.
+                            Most development is research-driven and takes place at <a
+                            href="http://cs.au.dk/research/programming-languages/">Aarhus
+                            University</a> and the <a href="http://plg.uwaterloo.ca"> University of Waterloo</a>.
                         </p>
 
                         <p>
@@ -58,8 +59,8 @@ class Contribute extends Component {
                                     <p>
                                         Aarhus University offers a talent track program for capable students
                                         that are in their second or third year of studies and are interested
-                                        in working on a research project for up to one year as an extra
-                                        curricular activity.
+                                        in working on a research project for up to one year as an extracurricular
+                                        activity.
                                     </p>
 
                                     <p>

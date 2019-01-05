@@ -31,7 +31,7 @@ class Principles extends Component {
                         We believe in Rich Hickey's creed: <a
                         href="https://www.infoq.com/presentations/Simple-Made-Easy">simple
                         is not easy</a>. We prefer a language that gets things right to one that makes things
-                        easy. Such a language might take longer to learn in the short run, but its simplicity pays of
+                        easy. Such a language might take longer to learn in the short run, but its simplicity pays off
                         in the long run.
                     </Principle>
 
@@ -49,10 +49,10 @@ class Principles extends Component {
                         href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> which
                         supports full type inference. As a design choice, we require all functions to be annotated with
                         their argument and return types. We believe that requiring type signatures has three distinct
-                        advantages the outweigh the disadvantages.
+                        advantages that outweigh the disadvantages.
                         <ol>
                             <li>Type signatures are useful as documentation and to aid program understanding.</li>
-                            <li>Type signatures more accurately assign blame.</li>
+                            <li>Type signatures accurately assign blame for type errors.</li>
                             <li>Type signatures enable parallel type checking.</li>
                         </ol>
                         Of these, we think the former two are significantly more important than the latter.
@@ -229,16 +229,16 @@ class Principles extends Component {
                         <Badge>in progress</Badge>
                     </Principle>
 
-                    <Principle name="No fashions">
+                    <Principle name="No Craze Following">
                         A few years ago HTML was all the rage. Hence it was only natural that Java adopted HTML-style
                         comments. A bit later, XML was all the rage, hence it was only natural that Scala
                         added support for native XML literals. Today, JSON and Markdown are all the rage, but if
                         history is any guide, we should not add any special support for these to Flix.
                     </Principle>
 
-                    <Principle name="No library hacks">
-                        The Flix standard library is implemented in Flix. The library is not privileged by the compiler
-                        nor is it required; if you don't like it, you can replace it.
+                    <Principle name="No blessed library">
+                        The Flix standard library is implemented in Flix. It has no special support from the compiler.
+                        If you don't like it or if you don't need it, you can replace it.
                     </Principle>
 
                     <Principle name="Minimal prelude">
