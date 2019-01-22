@@ -11,7 +11,7 @@ import {Container, Navbar, Nav, NavItem, NavLink} from 'reactstrap';
 import {Route} from "react-router";
 import {Link} from "react-router-dom";
 
-const SocketAddress = 'ws://flix.aau.dk:8080';
+const SocketAddress = 'wss://flix-evaluator.cs.au.dk/ws';
 
 class App extends Component {
     constructor(props) {

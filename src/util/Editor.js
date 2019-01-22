@@ -28,8 +28,7 @@ class Editor extends Component {
 
     run = () => {
         this.setState({waiting: true}, () => {
-            // An ugly hack, because the server expects main to be named f.
-            let src = this.state.input.replace("def main()", "def f()");
+            let src = this.state.input;
 
             this.props.flix.run(src, data =>
                 this.setState({waiting: false, output: data})
