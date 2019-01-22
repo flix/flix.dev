@@ -220,22 +220,56 @@ def main(): Str =
 `
         },
         {
+            name: "Select with Defaults and Timers",
+            code: `/// Sends the value \`x\` on the channel \`c\` after a delay.
+def slow(x: Int, c: Channel[Int]): Unit =
+    sleep(Duration.oneMinute());
+    c <- x;
+    ()
+
+/// Reads a value from the channel \`c\`.
+/// Returns the default value \`1\` if \`c\` is not ready.
+def recvWithDefault(c: Channel[Int]): Int = select {
+    case x <- c => x
+    case _      => 1
+}
+
+/// Reads a value from the channel \`c\`.
+/// Returns the default value \`2\` if after a timeout.
+def recvWithTimeout(c: Channel[Int]): Int = select {
+    case x <- c                   => x
+    case y <- Timer.seconds(1i64) => 2
+}
+
+/// Creates two channels \`c1\` and \`c2\`.
+/// Sends values on both after one minute.
+/// Receives from both using defaults and timeouts.
+def main(): Int = {
+  let c1 = chan Int 1;
+  let c2 = chan Int 1;
+  spawn slow(123, c1);
+  spawn slow(456, c2);
+  recvWithDefault(c1) + recvWithTimeout(c2)
+}
+`
+        },
+        {
             name: "Fixpoint Computations with Top-Level Constraints",
             code: `/// We can use Flix as an ordinary Datalog solver.
-            
+
 /// Declare two predicate symbols.
-rel Edge(x: Int, y: Int)
-rel Path(x: Int, y: Int)
+rel DirectedEdge(x: Int, y: Int)
+rel Connected(x: Int, y: Int)
 
 /// Declare some edge facts.
-Edge(1, 2). 
-Edge(2, 3).
-Edge(2, 4).
-Edge(3, 5).
+DirectedEdge(1, 2).
+DirectedEdge(2, 3).
+DirectedEdge(2, 4).
+DirectedEdge(3, 5).
 
 // Declare some constraints.
-Path(x, y) :- Edge(x, y).
-Path(x, z) :- Path(x, y), Edge(y, z).
+Connected(x, y) :- DirectedEdge(x, y).
+Connected(x, z) :- Connected(x, y), DirectedEdge(y, z).
 `
         },
         {
@@ -245,7 +279,7 @@ rel ParentOf(x: Str, y: Str)
 rel AncestorOf(x: Str, y: Str)
 
 /// Returns a collection of facts.
-def getFacts(): Schema { ParentOf(Str, Str), AncestorOf(Str, Str) } = {
+def getFacts(): Schema { ParentOf, AncestorOf } = {
     ParentOf("Pompey", "Strabo").
     ParentOf("Gnaeus", "Pompey").
     ParentOf("Pompeia", "Pompey").
@@ -253,13 +287,13 @@ def getFacts(): Schema { ParentOf(Str, Str), AncestorOf(Str, Str) } = {
 }
 
 /// Returns a collection of rules to compute ancestors.
-def getRules(): Schema { ParentOf(Str, Str), AncestorOf(Str, Str) } = {
-    AncestorOf(x, y) : − ParentOf(x, y).
-    AncestorOf(x, z) : − AncestorOf(x, y), AncestorOf(y, z).
+def getRules(): Schema { ParentOf, AncestorOf } = {
+    AncestorOf(x, y) :- ParentOf(x, y).
+    AncestorOf(x, z) :- AncestorOf(x, y), AncestorOf(y, z).
 }
 
 /// Composes the facts and rules, and computes the lfp.
-def main(): Schema = { ParentOf(Str, Str), AncestorOf(Str, Str) } = 
+def main(): Schema { ParentOf, AncestorOf } =
     solve getFacts() <+> getRules()
 `
         },
