@@ -64,7 +64,7 @@ class Editor extends Component {
                     <Card body outline color="danger" className="mt-2">
                         <CardText>
                             <code>
-                                {nl2br(this.state.output.message)}
+                                {nl2br(this.state.output.result)}
                             </code>
                         </CardText>
                     </Card>);
