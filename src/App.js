@@ -6,6 +6,7 @@ import GettingStarted from "./page/GettingStarted";
 import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
 import Research from "./page/Research";
+import Faq from "./page/Faq";
 import Documentation from "./page/Documentation";
 import {Container, Navbar, Nav, NavItem, NavLink} from 'reactstrap';
 import {Route} from "react-router";
@@ -62,15 +63,33 @@ class App extends Component {
             <Container className="page">
                 <Navbar dark color="info" expand="md" className="menu shadow-sm mb-4">
                     <Nav className="mr-lg-auto" navbar>
-                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/">Home</NavLink></NavItem>
-                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/getting-started/">Getting
-                            Started</NavLink></NavItem>
-                        <NavItem className="pl-1 pr-1"><NavLink tag={Link}
-                                                                to="/principles/">Principles</NavLink></NavItem>
-                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/research/">Research</NavLink></NavItem>
-                        <NavItem className="pl-1 pr-1"><NavLink tag={Link} to="/documentation/">Documentation</NavLink></NavItem>
-                        <NavItem className="pl-1 pr-1"><NavLink tag={Link}
-                                                                to="/contribute/">Contribute</NavLink></NavItem>
+                        <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/">Home</NavLink>
+                        </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/getting-started/">Getting Started</NavLink>
+                        </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link}
+                                     to="/principles/">Principles</NavLink>
+                        </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/research/">Research</NavLink></NavItem>
+
+                        <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/documentation/">Documentation</NavLink>
+                        </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/faq/">FAQ</NavLink>
+                        </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/contribute/">Contribute</NavLink>
+                        </NavItem>
                     </Nav>
                 </Navbar>
 
@@ -79,6 +98,7 @@ class App extends Component {
                 <Route path="/principles/" exact component={Principles}/>
                 <Route path="/research/" exact component={Research}/>
                 <Route path="/documentation/" exact component={Documentation}/>
+                <Route path="/faq/" exact component={Faq}/>
                 <Route path="/contribute/" exact component={Contribute}/>
             </Container>
         );
