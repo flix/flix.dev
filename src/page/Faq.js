@@ -135,6 +135,41 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        I want to learn Flix! What should I know about before hand?
+                    </Question>
+                    <Answer>
+                        <p>
+                            At the moment Flix has not yet reached version 1.0. That means you will be an early adopter,
+                            so you should expect for the language to evolve and be prepared for eventual compiler bugs.
+                        </p>
+
+                        <p>
+                            To write Flix programs, a solid background in functional programming is useful. That means
+                            prior experience with OCaml, Haskell, Scala, or similar programming languages.
+                        </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        What is the best way to start learning Flix?
+                    </Question>
+                    <Answer>
+                        <p>
+                            We recommend you start with a small offering to the Great Dreamer, the Sleeper of R'lyeh,
+                            Cthulhu. And coffee. Lots of coffee.
+                        </p>
+
+                        <p>
+                            All kidding aside, the examples on the front page and the research literature are probably
+                            the best starting points for learning the syntax, semantics, and type system of Flix.
+                            Prior experience with functional programming is also useful.
+                        </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         Is Flix a domain specific language (DSL)?
                     </Question>
                     <Answer>
@@ -194,47 +229,6 @@ class Faq extends Component {
                         </p>
                     </Answer>
                 </QA>
-
-                -----------------------------------------
-
-                <QA>
-                    <Question>
-                        I want to learn Flix! Am I in the right target audience?
-                    </Question>
-                    <Answer>
-                        At the moment Flix is still in at a pre-1.0 release. That means you will be an early adopter.
-                        Ideally that means you are someone who already has a background in functional programming,
-                        e.g. from Scala/OCaml/Haskell/etc and is interested in this space and perhaps has an interest
-                        in helping shape the language before a 1.0 release.
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        What is the best way to start learning Flix?
-                    </Question>
-                    <Answer>
-                        We recommend you start with a small offering to the Great Dreamer, the Sleeper of R'lyeh,
-                        Cthulhu and coffee, lots of coffee. Kidding aside, the examples on the front page are
-                        probably the best starting point for learning the syntax, semantics, and type system of Flix.
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        Why is Flix not purely functional?
-                    </Question>
-                    <Answer>
-                        We believe that it can be natural to program with side-effects; to perform I/O or to work with
-                        arrays in low-level code. But we also believe such side-effects should be carefully tracked
-                        by the type system. That way, we can cleanly separate impure code for pure code, and you can
-                        be absolute certain that a function is pure. Thus, Flix does allow you write purely functional
-                        code, if so desired.
-                    </Answer>
-                </QA>
-
-
-                -------------------------------------------
 
                 <QA>
                     <Question>
