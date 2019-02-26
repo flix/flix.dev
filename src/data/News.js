@@ -1,6 +1,10 @@
 export default function () {
     return [
         {
+            name: "Flix version 0.5.0 released with support for extensible records and unbuffered channels!",
+            date: "2019-02-26"
+        },
+        {
             name: "Flix version 0.4.0 released!",
             date: "2019-01-03"
         },
