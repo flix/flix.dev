@@ -149,7 +149,8 @@ class Home extends Component {
                         <h3>Research and Flix</h3>
 
                         <p>
-                            Flix is also a research project which explores various aspects of programming language design.
+                            Flix is also a research project which explores various aspects of programming language
+                            design.
                             A large part of the research is on connections between functional and logic programming,
                             specifically Datalog. Flix, as probably the only language in the world, supports first-class
                             Datalog constraints enriched with lattice semantics.
@@ -157,6 +158,20 @@ class Home extends Component {
 
                         <p>
                             For more information, we refer to our research papers.
+                        </p>
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
+                    <Col xs="12">
+                        <p className="small float-right">
+                            We kindly thank <a href="https://www.ej-technologies.com/">EJ Technologies</a> for providing
+                            us with <a
+                            href="https://www.ej-technologies.com/products/jprofiler/overview.html">JProfiler</a> and <a
+                            href="https://www.jetbrains.com/">JetBrains</a> for providing us with <a
+                            href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>.
                         </p>
                     </Col>
                 </Row>
