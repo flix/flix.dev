@@ -60,16 +60,18 @@ class Home extends Component {
                             <li>algebraic data types</li>
                             <li>pattern matching</li>
                             <li>first-class functions</li>
+                            <li>extensible records</li>
                             <li>parametric polymorphism</li>
                             <li>Hindley-Milner type inference</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
                         <ul>
-                            <li>channel-based concurrency</li>
+                            <li>CSP-style concurrency</li>
+                            <li>buffered &amp; unbuffered channels</li>
                             <li>first-class datalog constraints</li>
+                            <li>stratified negation</li>
                             <li>unboxed primitives</li>
-                            <li>namespaces</li>
                             <li>expressions holes</li>
                         </ul>
                     </Col>
