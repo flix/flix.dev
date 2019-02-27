@@ -44,6 +44,25 @@ class Principles extends Component {
                         declarations, namespaces, and so forth that are not expressions.
                     </Principle>
 
+                    <Principle name="Developer productivity over runtime performance">
+                        Flix aims to support developer productivity; the ability to do a lot with little ceremony or
+                        boilerplate. A hand-crafted C program might run faster than a Flix program, but it won't be as
+                        short, concise, or expressive as the Flix program. Flix aims to be a language with powerful
+                        constructs and high-level abstractions. This does not mean that Flix is slow.
+                    </Principle>
+
+                    <Principle name="Correctness over performance">
+                        Flix aims to ensure program correctness and considers it more important than raw performance.
+                        Languages such as C and C++ often rely on undefined behaviour to achieve stellar performance,
+                        whereas most other languages, including Flix, try to eschew undefined behaviour in favor of
+                        runtime checks for things that are hard to statically ensure. For example, most languages will
+                        dynamically check that array accesses are not out of bounds. The cost is a small performance
+                        hit, but in our view the benefit towards correctness is immense. Inspired by Ada, Flix aims to
+                        offer strong guarantees, ideally ensured statically, but when necessary with dynamic checks.
+                        <br/>
+                        <Badge>in progress</Badge>
+                    </Principle>
+
                     <Principle name="Local type inference">
                         The Flix type system is based on <a
                         href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> which
@@ -229,7 +248,7 @@ class Principles extends Component {
                         <Badge>in progress</Badge>
                     </Principle>
 
-                    <Principle name="No Craze Following">
+                    <Principle name="No fashion-driven development">
                         A few years ago HTML was all the rage. Hence it was only natural that Java adopted HTML-style
                         comments. A bit later, XML was all the rage, hence it was only natural that Scala
                         added support for native XML literals. Today, JSON and Markdown are all the rage, but if
