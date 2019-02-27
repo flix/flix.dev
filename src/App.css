@@ -20,6 +20,10 @@ h3 {
     margin-bottom: 0.75rem;
 }
 
+p:last-child {
+    margin-bottom: 0;
+}
+
 .menu {
     margin-left: -15px;
     margin-right: -15px;

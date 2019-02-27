@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardTitle, CardText} from 'reactstrap';
+import {Card, CardBody, CardTitle} from 'reactstrap';
 import {Container} from 'reactstrap';
 
 class Faq extends Component {
@@ -22,10 +22,16 @@ class Faq extends Component {
                         What is on the development road map for Flix?
                     </Question>
                     <Answer>
-                        We don't want to over-promise and under-deliver, hence we try to only discuss what has already
-                        been delivered. That said, two major features we want to implement for Flix are a polymorphic
-                        effect system and support for type classes. If you want a peek behind the curtain, the
-                        GitHub issue tracker gives an idea of the kinds of things we are currently working on.
+                        <p>
+                            We don't want to over-promise and under-deliver, hence we try to only discuss what has
+                            already been implemented. That said, two major features we want to support in Flix are a
+                            polymorphic effect system and type classes.
+                        </p>
+
+                        <p>
+                            For smaller features, the GitHub issue tracker gives an idea of the kinds of things we are
+                            currently working on.
+                        </p>
                     </Answer>
                 </QA>
 
@@ -45,18 +51,25 @@ class Faq extends Component {
                         Does Flix support integration with Java, Kotlin, Scala etc?
                     </Question>
                     <Answer>
-                        No, not at the moment. We have experimental support for calling into Java, but that API
-                        is likely to change in the future. We want to get interoperability <i>right</i>, but it
-                        is a huge challenge, since we do not want to sacrifice any of the Flix principles.
+                        <p>
+                            No, not at the moment. We have experimental support for calling into Java, but that API
+                            is likely to change in the future. We want to get interoperability <i>right</i>, but it
+                            is a big challenge, since we do not want to sacrifice any of the Flix principles in doing
+                            so.
+                        </p>
 
-                        As an example of the complexity involved, we will have to deal with Java's <code>null</code> but
-                        in a way that does not pollute Flix itself with <code>null</code> values.
+                        <p>
+                            For example, to support proper interoperability with Java we will need to
+                            support <code>null</code>, but at the same time we don't want to pollute the Flix language
+                            with <code>null</code> values. Dealing with such issues is complicated, but something
+                            we plan to address long-term.
+                        </p>
                     </Answer>
                 </QA>
 
                 <QA>
                     <Question>
-                        Flix looks similar to Scala. How are the two languages related?
+                        Flix looks quite similar to Scala. How are the two languages related?
                     </Question>
                     <Answer>
                         <p>
@@ -64,19 +77,17 @@ class Faq extends Component {
                             We think Scala made many good design choices with respect to syntax, including:
                             (a) the use of short keywords,
                             (b) the <code>x : T</code> syntax for type annotations,
-                            (c) the use of <code>[ ]</code> for type parameters, and
+                            (c) the <code>List[Int]</code> syntax for type parameters, and
                             (d) <code>if</code>, <code>match</code>, etc. as expressions.
                         </p>
 
                         <p>
-                            But other than syntax, the languages are different: Scala is object-oriented, Flix is not.
+                            Other than syntax, the two languages are different: Scala is object-oriented, Flix is not.
                             Scala has sub-typing, Flix does not. The Scala type system is unsound and has imperfect
-                            type inference, the Flix type system is based on Hindley-Milner, is sound and supports
-                            type inference.
+                            type inference, whereas the Flix type system is both sound and supports type inference.
                         </p>
                     </Answer>
                 </QA>
-
 
                 <QA>
                     <Question>
@@ -84,9 +95,9 @@ class Faq extends Component {
                     </Question>
 
                     <Answer>
-                        Flix has a shell that allows expression to be entered and evaluated on-the-fly. The source
-                        code of a program can be loaded into the shell. However, the shell does not permit the
-                        definition of new declarations. The shell is started with
+                        Flix has a shell that allows expressions to be entered and evaluated on-the-fly. The source
+                        code of a program can also be loaded into the shell. However, the shell does not permit the
+                        definition of new declarations. The shell can be started with
                         the <code>--interactive</code> argument.
                     </Answer>
                 </QA>
@@ -96,9 +107,9 @@ class Faq extends Component {
                         Does Flix have IDE support? Editor support? Language Server Protocol (LSP) support?
                     </Question>
                     <Answer>
-                        No. At the moment, the best you can do is to syntax highlighting. We would be happy if someone
-                        would pick up a project to add language server protocol (LSP) support. Otherwise, we believe
-                        that this is something that will come over time as the language matures.
+                        No. At the moment we only have keyword based syntax highlighting. We would be happy if someone
+                        would pick up a project to add language server protocol (LSP) support. We believe that this is
+                        something that will come eventually as the language matures.
                     </Answer>
                 </QA>
 
@@ -139,8 +150,10 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            At the moment Flix has not yet reached version 1.0. That means you will be an early adopter,
-                            so you should expect for the language to evolve and be prepared for eventual compiler bugs.
+                            At the moment, Flix has not yet reached version 1.0. That means you will be an early
+                            adopter, so you should expect for the language to evolve and be prepared for the rare
+                            compiler bug. (The Flix compiler has 5,500 manually written tests and we
+                            take correctness seriously.)
                         </p>
 
                         <p>
@@ -156,14 +169,18 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            We recommend you start with a small offering to the Great Dreamer, the Sleeper of R'lyeh,
-                            Cthulhu. And coffee. Lots of coffee.
+                            We recommend that you start with a small offering to the Great Dreamer, the Sleeper of
+                            R'lyeh, Cthulhu. And coffee. Lots of coffee.
                         </p>
 
                         <p>
                             All kidding aside, the examples on the front page and the research literature are probably
                             the best starting points for learning the syntax, semantics, and type system of Flix.
                             Prior experience with functional programming is also useful.
+                        </p>
+
+                        <p>
+                            If you get stuck or need help feel free to reach out to us on Gitter.
                         </p>
                     </Answer>
                 </QA>
@@ -198,8 +215,8 @@ class Faq extends Component {
                         </p>
 
                         <p>
-                            It is our goal to be faster than any interpreted language, e.g. Python and Javascript,
-                            and within a few factors for equivalent Scala code.
+                            It is our goal to be faster than any interpreted language and within a few factors of
+                            equivalent functional Scala code.
                         </p>
                     </Answer>
                 </QA>
@@ -223,9 +240,16 @@ class Faq extends Component {
 
                         <p>
                             A simple experiment shows that the compiler runs about <code>20.0x</code> times faster
-                            when warm compared to when cold. We estimate that when warm the compiler compiles
+                            when warmed uo compared to when cold. We estimate that Flix, when warmed up, compiles
                             around <code>20,000</code> lines of code per second, which we believe to better than scalac,
                             but worse than javac.
+                        </p>
+
+                        <p>
+                            At the moment, the compilation of a Flix program pulls in the entire standard library (a few
+                            thousand lines of code) and compiles it along with the program. This behaviour can be
+                            avoided, by passing the <code>--Xcore</code> flag, but then data types such
+                            as <code>List</code> will be unavailable. In the future, it is our plan to compile-by-need.
                         </p>
                     </Answer>
                 </QA>
@@ -242,12 +266,22 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        Where does the "Flix" name come from?
+                    </Question>
+                    <Answer>
+                        We do not entirely remember, but we believe it arose out of <span className="text-monospace">FIXpoint Language</span>.
+                        Today it is just name.
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         You do not seem to understand parsing / type theory / code generation / computers!
                     </Question>
                     <Answer>
                         We are happy to learn and to revisit design decisions if we come to a greater understanding
                         of the problem at hand. If you think we have overlooked something, we would be happy to talk
-                        about it if you post a GitHub ticket or write to us on Gitter.
+                        about it if you post a ticket on GitHub or write to us on Gitter.
                     </Answer>
                 </QA>
 
@@ -271,7 +305,7 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        Does Flix have a net library for streaming?
+                        Does Flix have a network library with streaming support?
                     </Question>
                     <Answer>
                         Not yet, but maybe we could call it net-flix?
@@ -329,11 +363,10 @@ class Question extends Component {
 class Answer extends Component {
     render() {
         return (
-            <CardText>{this.props.children}</CardText>
+            <div>{this.props.children}</div>
         );
     }
 }
-
 
 class QA extends Component {
     render() {
@@ -341,7 +374,6 @@ class QA extends Component {
             <Card className="mb-3">
                 <CardBody>
                     {this.props.children}
-
                 </CardBody>
             </Card>);
     }

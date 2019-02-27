@@ -166,7 +166,7 @@ class Home extends Component {
 
                 <hr className="mb-3"/>
 
-                <Row className="mb-3">
+                <Row className="mb-3 pb-3">
                     <Col xs="12">
                         <p className="small float-right">
                             We kindly thank <a href="https://www.ej-technologies.com/">EJ Technologies</a> for providing
