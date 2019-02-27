@@ -240,9 +240,9 @@ class Faq extends Component {
 
                         <p>
                             A simple experiment shows that the compiler runs about <code>20.0x</code> times faster
-                            when warmed uo compared to when cold. We estimate that Flix, when warmed up, compiles
-                            around <code>20,000</code> lines of code per second, which we believe to better than scalac,
-                            but worse than javac.
+                            when warmed up compared to when cold. We estimate that Flix, when warmed up, compiles
+                            around <code>20,000</code> lines of code per second, which we believe to better than the
+                            Scala compiler, but worse than the Java compiler.
                         </p>
 
                         <p>
@@ -270,7 +270,6 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         We do not entirely remember, but we believe it arose out of <span className="text-monospace">FIXpoint Language</span>.
-                        Today it is just name.
                     </Answer>
                 </QA>
 
