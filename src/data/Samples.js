@@ -90,6 +90,84 @@ def main(): Tree[Int] = map(x -> x * x, tree())
 `
         },
         {
+            name: "Record Construction and Use",
+            code: `/// Returns the area of the rectangle \`r\`.
+/// The record \`r\` must have \`x\` and \`y\` labels, and no other labels.
+def area(r: {x: Int, y: Int}): Int = r.x * r.y
+
+/// Computes the area of various rectangle records.
+/// Note that the order of labels is immaterial.
+def areas(): List[Int] =
+    area({x = 1, y = 2}) ::
+    area({y = 2, x = 3}) :: Nil
+
+/// Returns the area of the polymorphic record \`r\`.
+/// Note that the use of the type variable \`a\` permits the record \`r\`
+/// to have labels other than \`x\` and \`y\`.
+def polyArea[a](r: {x: Int, y: Int | a}): Int = r.x * r.y
+
+/// Computes the area of various rectangle records.
+/// Note that some records have additional fields.
+def polyAreas(): List[Int] =
+    polyArea({x = 1, y = 2}) ::
+    polyArea({x = 2, y = 3, z = 4}) :: Nil
+
+def main(): List[Int] = polyAreas()
+`
+        },
+        {
+            name: "Polymorphic Record Update",
+            code: `/// Returns the record \`r\` with a new value of its \`x\` label.
+def setX(r: {x: Int, y: Int}, v: Int): {x: Int, y: Int} =
+    { x = v | r }
+
+/// Returns the value 1 + 3 = 4.
+def main2(): Int =
+    let r1 = {x = 1, y = 2};
+    let r2 = setX(r1, 3);
+    r1.x + r2.x
+
+/// Returns the record \`r\` with a new value of its \`y\` label.
+/// Preserves (retains) all other labels polymorphically.
+def setY[a](r: {y: Int | a}, v: Int): {y: Int | a} =
+    { y = v | r }
+
+/// Returns the value 0 + 1 + 3 = 4.
+def main(): Int =
+    let r1 = {x = 1, y = 2};
+    let r2 = {x = 1, y = 2, z = 3};
+    let r3 = setY(r1, 0);
+    let r4 = setY(r2, 1);
+    r3.y + r4.y + r4.z
+`
+        },
+        {
+            name: "Polymorphic Record Extension and Restriction",
+            code: `/// Polymorphically extends the record \`r\` with an \`age\` label.
+/// Preserves (retains) all other labels polymorphically.
+def withAge[a](r: a, v: Int): {age: Int | a} =
+    { +age = v | r }
+
+/// Polymorphically restricts (removes) the \`age\` label from \`r\`.
+/// Preserves (retains) all other labels polymorphically.
+def withoutAge[a](r: {age: Int | a}): a = {-age | r}
+
+/// Construct several records and extend them with an age.
+def main(): Int =
+    let r1 = withAge({fstName = "Julius", lstName = "Caesar"}, 55);
+    let r2 = withAge({monument = "Flavian Amphitheatre"}, 2019 - 80);
+    let r3 = withAge({country = "United States"}, 2019 - 1776);
+    r1.age + r2.age + r3.age
+
+/// Constructs a record, extends it with an age, and restricts it.
+def main2(): Unit =
+    let r1 = {fstName = "Julius", lstName = "Caesar"};
+    let r2 = withAge(r1, 55);
+    let r3 = withoutAge(r2);
+    ()
+`
+        },
+        {
             name: "Function Composition, Pipelines, and Currying",
             code: `/// Flix supports function composition with
 /// the |> operator (among others) and currying.
