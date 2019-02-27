@@ -196,6 +196,17 @@ class Principles extends Component {
                         conditions</a>.
                     </Principle>
 
+                    <Principle name="Bugs are not recoverable errors">
+                        We believe in the <a href="http://joeduffyblog.com/2016/02/07/the-error-model/">Midori Error
+                        Model</a>; that is, there are two kinds of errors: <i>recoverable errors</i> and <i>program
+                        bugs</i>. Recoverable errors are things like illegal user input, network errors, etc. Errors
+                        that can be anticipated and where there is a chance of recovery. Program bugs, on the other
+                        hand, are unanticipated and we cannot expect to recover from them. We should treat these two
+                        types of errors differently: For recoverable errors, we should enforce that they are checked
+                        and handled. For program bugs, we should terminate execution as quickly as possible to prevent
+                        data corruption and security issues.
+                    </Principle>
+
                     <Principle name="Fail fast, fail hard">
                         To aid debugging and prevent potential harmful behaviour, Flix aborts execution when an
                         unrecoverable error is encountered.
