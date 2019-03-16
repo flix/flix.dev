@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {Card, CardBody, CardTitle} from 'reactstrap';
 import {Container} from 'reactstrap';
+import ReactGA from 'react-ga';
 
 class Faq extends Component {
 
     componentDidMount() {
-        document.title = "Flix | FAQ"
+        document.title = "Flix | FAQ";
+        ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
     render() {

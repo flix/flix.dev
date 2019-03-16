@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, Badge} from 'reactstrap';
 import Editor from "../util/Editor";
+import ReactGA from 'react-ga';
 
 import NewsData from '../data/News.js'
 import SamplesData from '../data/Samples.js'
@@ -8,7 +9,8 @@ import SamplesData from '../data/Samples.js'
 class Home extends Component {
 
     componentDidMount() {
-        document.title = "The Flix Programming Language"
+        document.title = "The Flix Programming Language";
+        ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
     render() {
@@ -195,6 +197,11 @@ class Codebox extends Component {
     onChange(event) {
         let newChoice = event.target.value;
         this.setState({choice: newChoice});
+        ReactGA.event({
+            category: 'Codebox',
+            action: 'Selected an example',
+            label: this.state.samples[newChoice].name
+        });
     }
 
     getEditor() {

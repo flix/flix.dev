@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {Card, CardBody, CardTitle, CardColumns, Badge} from 'reactstrap';
 import {Container} from 'reactstrap';
+import ReactGA from 'react-ga';
 
 class Principles extends Component {
 
     componentDidMount() {
-        document.title = "Flix | Principles"
+        document.title = "Flix | Principles";
+        ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
     render() {

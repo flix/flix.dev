@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {Card, CardBody, CardColumns, CardTitle, Col, Container, Row} from "reactstrap";
+import ReactGA from 'react-ga';
 
 class Contribute extends Component {
 
     componentDidMount() {
-        document.title = "Flix | Contribute"
+        document.title = "Flix | Contribute";
+        ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
     render() {

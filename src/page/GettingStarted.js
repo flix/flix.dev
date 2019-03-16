@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import {Card, CardBody, CardImg, CardText, Col, Container, Row} from "reactstrap";
 import InstallGif from '../gif/install.gif'
 import NextStepsGif from '../gif/next-steps.gif'
+import ReactGA from 'react-ga';
 
 class GettingStarted extends Component {
 
     componentDidMount() {
-        document.title = "Flix | Getting Started"
+        document.title = "Flix | Getting Started";
+        ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
     render() {
@@ -33,8 +35,9 @@ class GettingStarted extends Component {
                                 You should see something like <code>openjdk version "11.0.1"</code>.
                             </li>
                             <li className="mb-2">
-                                Download <a href="https://github.com/flix/flix/releases">flix.jar</a> from the GitHub
-                                releases page.
+                                Download <ReactGA.OutboundLink eventLabel="https://github.com/flix/flix/releases"
+                                                               to="https://github.com/flix/flix/releases"> flix.jar </ReactGA.OutboundLink>
+                                from the GitHub releases page.
                             </li>
                             <li className="mb-2">Run the command <code>java -jar flix.jar --version</code> to verify
                                 that you have the
