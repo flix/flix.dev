@@ -72,13 +72,14 @@ class Home extends Component {
                             <li>CSP-style concurrency</li>
                             <li>buffered &amp; unbuffered channels</li>
                             <li>first-class datalog constraints</li>
+                            <li>polymorphic datalog predicates</li>
                             <li>stratified negation</li>
                             <li>unboxed primitives</li>
-                            <li>expressions holes</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
                         <ul>
+                            <li>expressions holes</li>
                             <li>full tail call elimination</li>
                             <li>compilation to JVM bytecode</li>
                             <li>core standard library</li>
