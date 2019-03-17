@@ -22,7 +22,7 @@ class Documentation extends Component {
                         </p>
 
                         <p>
-                            The <a href="http://flix.github.io/programming-flix">Programming Flix</a> book offers an
+                            The <a href="https://flix.dev/programming-flix">Programming Flix</a> book offers an
                             introduction to Flix for programmers who are already familiar with functional
                             programming.
                         </p>
