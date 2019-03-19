@@ -101,6 +101,18 @@ class GettingStarted extends Component {
                         </ol>
                     </Col>
                 </Row>
+
+                <Row className="mb-lg-5">
+                    <Col md="12">
+                        <h2>The Programming Flix Book</h2>
+
+                        <p>
+                            The next steps would be to take a look through the <a
+                            href="https://flix.dev/programming-flix">Programming Flix</a> interactive tutorial.
+                        </p>
+                    </Col>
+                </Row>
+
             </Container>
         );
     }
