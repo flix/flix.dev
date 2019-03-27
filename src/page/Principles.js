@@ -65,6 +65,14 @@ class Principles extends Component {
                         <Badge>in progress</Badge>
                     </Principle>
 
+                    <Principle name="Principle of least surprise">
+                        We should strive to adhere to the <a
+                        href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment">principle of least
+                        surprise</a>. That is, we should favor sane defaults, and when there is no immediately obvious
+                        default, we should not have a default at all, but force the programmer to be explicit about his
+                        or her intention.
+                    </Principle>
+
                     <Principle name="Local type inference">
                         The Flix type system is based on <a
                         href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> which
