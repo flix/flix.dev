@@ -87,8 +87,8 @@ class Editor extends Component {
                             onChange={this.onChange}
                             value={this.state.input}
                             autoScrollEditorIntoView={true}
-                            minLines={23}
-                            maxLines={23}
+                            minLines={25}
+                            maxLines={25}
                             editorProps={{$blockScrolling: true}}/>
                         {this.state.waiting}
                     </div>

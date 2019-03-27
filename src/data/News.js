@@ -19,10 +19,6 @@ export default function () {
         {
             name: "Jonathan and Simon are working on Go-style processes and channels for Flix.",
             date: "2018-12-20"
-        },
-        {
-            name: "The paper entitled: 'Implicit Parameters for Logic Programming' is now available.",
-            date: "2018-09-03"
         }
     ];
 }

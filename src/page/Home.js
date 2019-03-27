@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Container, Row, Col, Badge} from 'reactstrap';
+import {Container, Row, Col, Badge, Button} from 'reactstrap';
 import Editor from "../util/Editor";
 import ReactGA from 'react-ga';
+import {Link} from "react-router-dom";
 
 import NewsData from '../data/News.js'
 import SamplesData from '../data/Samples.js'
@@ -43,6 +44,18 @@ class Home extends Component {
                         <p>
                             Research on Flix explores connections between functional and logic programming in the
                             area of declarative fixpoint computations.
+                        </p>
+
+                        <p>
+                            <Button outline color="success" tag={Link} to="/getting-started/">
+                                Getting Started
+                            </Button>
+
+                            <Button outline color="info" className="ml-3" onClick={() => {
+                                window.location = "https://flix.dev/programming-flix"
+                            }}>
+                                Read the Manual
+                            </Button>
                         </p>
 
                     </Col>
@@ -209,7 +222,7 @@ class Codebox extends Component {
         let choice = this.state.choice;
         let sample = this.state.samples[choice];
         // NB: The use of the key ensures that the editor is refreshed when the dropdown is changed.
-        return <Editor key={sample.name} flix={this.props.flix} code={sample.code} lines={18}>{sample.code}</Editor>
+        return <Editor key={sample.name} flix={this.props.flix} code={sample.code}>{sample.code}</Editor>
     }
 
     isConnected() {
