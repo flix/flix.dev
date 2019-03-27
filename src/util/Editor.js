@@ -56,7 +56,7 @@ class Editor extends Component {
                 return (
                     <Card body outline color="success" className="mt-2">
                         <CardText>
-                            Main returned: <code>{this.state.output.result}</code>
+                            <code>{this.state.output.result}</code>
                         </CardText>
                     </Card>);
             } else {
