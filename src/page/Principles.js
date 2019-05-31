@@ -274,8 +274,20 @@ class Principles extends Component {
                         the Flix compiler will reject programs that contain dead or unreachable code. We believe
                         that rejecting such programs will help programmers avoid mistakes where some algebraic data
                         type or function is unintentionally left unused.
-                        <br/>
-                        <Badge>in progress</Badge>
+                    </Principle>
+
+                    <Principle name="No unused variables">
+                        Flix disallows unused local variables, whether they are introduced by let, introduced by pattern
+                        matching, or part of the formal parameters of a function. Research [<a
+                        href="https://dl.acm.org/citation.cfm?id=587060">1</a>] [<a
+                        href="https://dl.acm.org/citation.cfm?id=1052895">2</a>] has repeatedly shown that minor
+                        mistakes are a common source of bugs, e.g. using the wrong local variable. Disallowing unused
+                        local variables help avoid such mistakes.
+                    </Principle>
+
+                    <Principle name="No variable shadowing">
+                        Flix disallows variable shadowing for the same reasons why it disallows unused local variables:
+                        it is a persistent and common source of minor mistakes leading to bugs.
                     </Principle>
 
                     <Principle name="No fashion-driven development">
