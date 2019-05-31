@@ -87,6 +87,15 @@ class Principles extends Component {
                         Of these, we think the former two are significantly more important than the latter.
                     </Principle>
 
+                    <Principle name="Syntax vs. Semantics">
+                        Syntax is important. Semantics are important. But we should not confuse the two. A syntactic
+                        issue should not be resolved by a enrichment of the semantics. For example, <a
+                        href=" https://en.wikipedia.org/wiki/Extension_method">extension methods</a> and <a
+                        href="https://docs.scala-lang.org/overviews/core/implicit-classes.html">implicit
+                        classes</a> seem to be semantic solutions to (mostly) syntactic issues. Flix aims to avoid such
+                        pitfalls.
+                    </Principle>
+
                     <Principle name="Uniform function call syntax">
                         Flix supports <a href="https://en.wikipedia.org/wiki/Uniform_Function_Call_Syntax">uniform
                         function call syntax (UFCS)</a>. In Flix, the syntax for function application is: <code>f(a, b,
