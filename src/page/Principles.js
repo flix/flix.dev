@@ -290,6 +290,12 @@ class Principles extends Component {
                         it is a persistent and common source of minor mistakes leading to bugs.
                     </Principle>
 
+                    <Principle name="Exhaustive pattern matches">
+                        The Flix compiler enforces that pattern matches handle all cases of an algebraic data type.
+                        If a match expression is found to be non-exhaustive, the program is rejected. We believe this
+                        encourages more robust code and enables safer refactoring of algebraic data types.
+                    </Principle>
+
                     <Principle name="No fashion-driven development">
                         A few years ago HTML was all the rage. Hence it was only natural that Java adopted HTML-style
                         comments. A bit later, XML was all the rage, hence it was only natural that Scala
@@ -306,12 +312,6 @@ class Principles extends Component {
                         The Flix prelude contains algebraic data types and functions that are imported into every
                         compilation unit. Therefore we aim to keep the prelude very small and only include extremely
                         common functionality.
-                    </Principle>
-
-                    <Principle name="Exhaustive pattern matches">
-                        The Flix compiler enforces that pattern matches handle all cases of an algebraic data type.
-                        If a match expression is found to be non-exhaustive, the program is rejected. We believe this
-                        encourages more robust code and enables safer refactoring of algebraic data types.
                     </Principle>
 
                 </CardColumns>
