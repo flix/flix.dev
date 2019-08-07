@@ -508,7 +508,7 @@ rel ParentOf(x: Str, y: Str)
 rel AncestorOf(x: Str, y: Str)
 
 /// Returns a collection of facts.
-def getFacts(): #{ ParentOf, AncestorOf } = {
+def getFacts(): #{ ParentOf, AncestorOf } = #{
     ParentOf("Pompey", "Strabo").
     ParentOf("Gnaeus", "Pompey").
     ParentOf("Pompeia", "Pompey").
@@ -516,7 +516,7 @@ def getFacts(): #{ ParentOf, AncestorOf } = {
 }
 
 /// Returns a collection of rules to compute ancestors.
-def getRules(): #{ ParentOf, AncestorOf } = {
+def getRules(): #{ ParentOf, AncestorOf } = #{
     AncestorOf(x, y) :- ParentOf(x, y).
     AncestorOf(x, z) :- AncestorOf(x, y), AncestorOf(y, z).
 }
@@ -537,7 +537,7 @@ rel LabelPath[l](x: Str, l: l, y: Str)
 /// Note that the return type is \`closed\` which means that the
 /// facts can *only* be used within a constraint system that
 /// has labelled edges and paths of ints.
-def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = {
+def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = #{
     LabelEdge("a", 1, "b").
     LabelEdge("b", 1, "c").
     LabelEdge("c", 2, "d").
@@ -547,7 +547,7 @@ def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = {
 /// Note that the return type is \`open\` (polymorphic) which
 /// means that the facts can be used within any constraint
 /// as long as the edges are labelled with strings.
-def getEdgesWithColor[r](): #{ LabelEdge[Str] | r } = {
+def getEdgesWithColor[r](): #{ LabelEdge[Str] | r } = #{
     LabelEdge("a", "red", "b").
     LabelEdge("b", "red", "c").
     LabelEdge("c", "blu", "d").
@@ -555,7 +555,7 @@ def getEdgesWithColor[r](): #{ LabelEdge[Str] | r } = {
 
 /// Returns a set of polymorphic rules to compute the transitive
 /// closure of edges with the *same* label.
-def getRules[l](): #{ LabelEdge[l], LabelPath[l] } = {
+def getRules[l](): #{ LabelEdge[l], LabelPath[l] } = #{
     LabelPath(x, l, y) :- LabelEdge(x, l, y).
     LabelPath(x, l, z) :- LabelPath(x, l, y), LabelPath(y, l, z).
 }
@@ -585,17 +585,17 @@ rel ColorlessPath(x: Int, y: Int)
 
 def main(): Bool =
     // Introduce some facts for colored paths.
-    let f1 = {
+    let f1 = #{
         ColorEdge(1, "blue", 2).
         ColorEdge(2, "blue", 3).
     };
     // Introduce some rules for computing paths.
-    let r1 = {
+    let r1 = #{
         ColorPath(x, c, y) :- ColorEdge(x, c, y).
         ColorPath(x, c, z) :- ColorPath(x, c, y), ColorEdge(y, c, z).
     };
     // Introduce some rules for computing colorless paths.
-    let r2 = {
+    let r2 = #{
         ColorlessPath(x, y) :- ColorPath(x, _, y).
     };
     // Compute all the color paths.
