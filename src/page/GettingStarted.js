@@ -29,10 +29,10 @@ class GettingStarted extends Component {
                     <Col md="6">
                         <ol>
                             <li className="mb-2">
-                                Ensure that you have Java 11 or later installed.
+                                Ensure that you have Java 12 or later installed.
                                 You can check your Java version with
                                 the command <code>java -version</code>.
-                                You should see something like <code>openjdk version "11.0.1"</code>.
+                                You should see something like <code>openjdk version "12.0.0"</code>.
                             </li>
                             <li className="mb-2">
                                 Download <ReactGA.OutboundLink eventLabel="https://github.com/flix/flix/releases"

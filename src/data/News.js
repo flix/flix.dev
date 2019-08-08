@@ -1,6 +1,10 @@
 export default function () {
     return [
         {
+            name: "Flix version 0.7.0 released!",
+            date: "2019-08-08"
+        },
+        {
             name: "The \"Programming Flix\" book has been updated!",
             date: "2019-03-19"
         },
@@ -15,10 +19,6 @@ export default function () {
         {
             name: "The new Flix website is now online!",
             date: "2019-01-03"
-        },
-        {
-            name: "Jonathan and Simon are working on Go-style processes and channels for Flix.",
-            date: "2018-12-20"
         }
     ];
 }

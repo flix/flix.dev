@@ -61,8 +61,6 @@ class Principles extends Component {
                         dynamically check that array accesses are not out of bounds. The cost is a small performance
                         hit, but in our view the benefit towards correctness is immense. Inspired by Ada, Flix aims to
                         offer strong guarantees, ideally ensured statically, but when necessary with dynamic checks.
-                        <br/>
-                        <Badge>in progress</Badge>
                     </Principle>
 
                     <Principle name="Principle of least surprise">

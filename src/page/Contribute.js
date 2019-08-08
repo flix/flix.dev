@@ -18,12 +18,12 @@ class Contribute extends Component {
                         <h1>Contribute</h1>
 
                         <p>
-                            Flix is an open-source project and made freely available under the <a
+                            Flix is an open-source project available under the <a
                             href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.
                         </p>
 
                         <p>
-                            Most development is research-driven and takes place at <a
+                            Development is mostly research-driven and takes place at <a
                             href="http://cs.au.dk/research/programming-languages/">Aarhus
                             University</a> and the <a href="http://plg.uwaterloo.ca"> University of Waterloo</a>.
                         </p>
@@ -38,8 +38,8 @@ class Contribute extends Component {
                         </p>
 
                         <p>
-                            If you are interested in learning more about Flix or in working on Flix, please feel free to
-                            reach out.
+                            If you are interested in learning more about Flix, please feel free to reach out. We don't
+                            bite.
                         </p>
                     </Col>
                 </Row>
