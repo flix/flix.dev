@@ -22,13 +22,13 @@ class Documentation extends Component {
                         </p>
 
                         <p>
-                            The <a href="https://flix.dev/programming-flix">Programming Flix</a> book offers an
+                            The <a href="https://flix.dev/programming-flix/">Programming Flix</a> book offers an
                             introduction to Flix for programmers who are already familiar with functional
                             programming.
                         </p>
 
                         <p>
-                            The <a href="http://flix.github.io/api/">Standard Library</a> documentation provides a
+                            The <a href="https://flix.dev/api/">Standard Library</a> documentation provides a
                             Javadoc-style description of the Flix API, including the operations available on important
                             types such as <code>Option</code>, <code>Result</code>, and <code>List</code>.
                         </p>
