@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardTitle, CardColumns, Badge} from 'reactstrap';
-import {Container} from 'reactstrap';
+import {Badge, Card, CardBody, CardColumns, CardTitle, Container} from 'reactstrap';
 import ReactGA from 'react-ga';
 
 class Principles extends Component {
@@ -286,6 +285,20 @@ class Principles extends Component {
                     <Principle name="No variable shadowing">
                         Flix disallows variable shadowing for the same reasons why it disallows unused local variables:
                         it is a persistent and common source of minor mistakes leading to bugs.
+                    </Principle>
+
+                    <Principle name="No unprincipled overloading">
+                        Flix does not support function overloading (using the same name for different functions).
+                        Instead, Flix encourages the use of meaningful names,
+                        e.g. <code>Map.filter</code> and <code>Map.filterWithKey</code>, for functions that share
+                        similar functionality.
+                    </Principle>
+
+                    <Principle name="No variadic (varargs) functions">
+                        Flix does not support variadic (varargs) functions. It is not clear to us how a language design
+                        can support both currying and variadic functions cleanly. Moreover, it seems that the supposed
+                        benefits of variadic functions is not that great in a language which already has concise syntax
+                        for list and array literals.
                     </Principle>
 
                     <Principle name="Exhaustive pattern matches">
