@@ -301,6 +301,15 @@ class Principles extends Component {
                         for list and array literals.
                     </Principle>
 
+                    <Principle name="No labelled function arguments">
+                        Flix does not support labelled function arguments. The motivation for labelled arguments is a
+                        reasonable: to avoid calling a function with arguments of the same type, but in the wrong order.
+                        Unfortunately, labelled function arguments do not work in the presence of higher-order
+                        functions. Instead, we suggest to overcome the problem by either (i) using richer types
+                        (e.g. <code>Celsius</code> instead of <code>Int</code>) or alternatively (ii) using record types
+                        which can be used to emulate the same functionality and works with higher-order functions.
+                    </Principle>
+
                     <Principle name="Exhaustive pattern matches">
                         The Flix compiler enforces that pattern matches handle all cases of an algebraic data type.
                         If a match expression is found to be non-exhaustive, the program is rejected. We believe this
