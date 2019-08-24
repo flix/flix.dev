@@ -84,6 +84,13 @@ class Principles extends Component {
                         Of these, we think the former two are significantly more important than the latter.
                     </Principle>
 
+                    <Principle name="Type parameter elision">
+                        While we require type signatures, we also believe that such signatures should be as minimal
+                        as possible. Thus, while the full type signature of <code>List.map</code> is <code>def map[a,
+                        b](f: a -> b, xs: List[a]): List[b]</code>, we can use <i>type parameter elision</i> to write it
+                        simply as: <code>def map(f: a -> b, xs: List[a]): List[b]</code> omitting the type arguments.
+                    </Principle>
+
                     <Principle name="Syntax vs. Semantics">
                         Syntax is important. Semantics are important. But we should not confuse the two. A syntactic
                         issue should not be resolved by a enrichment of the semantics. For example, <a
@@ -108,7 +115,7 @@ class Principles extends Component {
                         easy to visually identify the overall structure of a piece of code. Flix tries to use
                         three letter keywords were appropriate: <code>def</code>, <code>let</code>, <code>law</code>,
                         <code>rel</code>, but not for commonly established concepts: <code>if ... else </code>
-                        and <code>match .... with</code>.
+                        and <code>match</code>.
                     </Principle>
 
                     <Principle name="Consistent syntax">
