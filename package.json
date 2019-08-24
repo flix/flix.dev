@@ -5,17 +5,17 @@
   "homepage": "https://flix.dev/",
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "lorem-ipsum": "^2.0.2",
-    "npm": "^6.11.1",
-    "react": "^16.8.6",
-    "react-ace": "^7.0.1",
-    "react-dom": "^16.8.6",
-    "react-ga": "^2.5.7",
+    "lorem-ipsum": "^2.0.3",
+    "npm": "^6.11.2",
+    "react": "^16.9.0",
+    "react-ace": "^7.0.2",
+    "react-dom": "^16.9.0",
+    "react-ga": "^2.6.0",
     "react-newline-to-break": "^1.0.6",
-    "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.0.1",
-    "reactstrap": "^8.0.0"
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "^3.1.1",
+    "reactstrap": "^8.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
