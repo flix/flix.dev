@@ -243,7 +243,7 @@ class Faq extends Component {
                         <p>
                             A simple experiment shows that the compiler runs about <code>20.0x</code> times faster
                             when warmed up compared to when cold. We estimate that Flix, when warmed up, compiles
-                            around <code>20,000</code> lines of code per second, which we believe to better than the
+                            around <code>10,000</code> lines of code per second, which we believe to better than the
                             Scala compiler, but worse than the Java compiler.
                         </p>
 

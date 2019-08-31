@@ -47,18 +47,24 @@ class Home extends Component {
                         </p>
 
                         <p>
-                            <Button outline color="success" tag={Link} to="/getting-started/">
+                            <Button color="success" tag={Link} to="/getting-started/">
                                 Getting Started
                             </Button>
 
+                            <a href="https://play.flix.dev/">
+                                <Button color="info" className="ml-2">
+                                    Play
+                                </Button>
+                            </a>
+
                             <a href="https://flix.dev/programming-flix/">
-                                <Button outline color="info" className="ml-3">
+                                <Button outline color="info" className="ml-2">
                                     Documentation
                                 </Button>
                             </a>
 
                             <a href="https://flix.dev/api/">
-                                <Button outline color="info" className="ml-3">
+                                <Button outline color="info" className="ml-2">
                                     Standard Library
                                 </Button>
                             </a>

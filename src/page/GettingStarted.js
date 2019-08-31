@@ -21,6 +21,10 @@ class GettingStarted extends Component {
                     Installation is as easy as downloading and running a jar file.
                 </p>
 
+                <p>
+                    You can also try Flix online at <a href="https://play.flix.dev/">play.flix.dev</a>.
+                </p>
+
                 <Row className="mb-lg-5">
                     <Col md="12">
                         <h2>Up and Running</h2>
