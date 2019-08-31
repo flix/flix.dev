@@ -51,17 +51,17 @@ class Home extends Component {
                                 Getting Started
                             </Button>
 
-                            <Button outline color="info" className="ml-3" onClick={() => {
-                                window.location = "https://flix.dev/programming-flix/"
-                            }}>
-                                Documentation
-                            </Button>
+                            <a href="https://flix.dev/programming-flix/">
+                                <Button outline color="info" className="ml-3">
+                                    Documentation
+                                </Button>
+                            </a>
 
-                            <Button outline color="info" className="ml-3" onClick={() => {
-                                window.location = "https://flix.dev/api/"
-                            }}>
-                                Standard Library
-                            </Button>
+                            <a href="https://flix.dev/api/">
+                                <Button outline color="info" className="ml-3">
+                                    Standard Library
+                                </Button>
+                            </a>
                         </p>
 
                     </Col>
