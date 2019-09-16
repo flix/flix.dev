@@ -15,7 +15,8 @@ class Research extends Component {
                 <h1>Research</h1>
 
                 <p>
-                    Research on Flix takes place at <a href="http://cs.au.dk/research/programming-languages/">Aarhus University</a> and the <a
+                    Research on Flix takes place at <a href="http://cs.au.dk/research/programming-languages/">Aarhus
+                    University</a> and the <a
                     href="http://plg.uwaterloo.ca">University of Waterloo</a>.
                 </p>
 
@@ -87,6 +88,17 @@ class Research extends Component {
                         authors="Ming-Ho Yee"
                         venue="University of Waterloo"
                         url="https://uwspace.uwaterloo.ca/bitstream/handle/10012/10856/Yee_Ming-Ho.pdf?sequence=1"
+                    />
+                </ul>
+
+                <h3>Other</h3>
+
+                <ul>
+                    <Paper
+                        title="Flix Koans"
+                        authors="Magnus Madsen"
+                        venue="Aarhus University"
+                        url="https://flix.dev/papers/flix-koans.pdf"
                     />
                 </ul>
 

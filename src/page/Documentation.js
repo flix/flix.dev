@@ -34,6 +34,11 @@ class Documentation extends Component {
                         </p>
 
                         <p>
+                            The <a href="https://flix.dev/papers/flix-koans.pdf">Flix Koans</a> gives several
+                            examples of logic programming in Flix.
+                        </p>
+
+                        <p>
                             The research aspects of Flix are mostly described in the literature.
                         </p>
                     </Col>
