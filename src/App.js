@@ -6,8 +6,9 @@ import GettingStarted from "./page/GettingStarted";
 import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
 import Research from "./page/Research";
-import Faq from "./page/Faq";
 import Documentation from "./page/Documentation";
+import Faq from "./page/Faq";
+import Checklist from "./page/misc/Checklist";
 import {Container, Navbar, Nav, NavItem, NavLink} from 'reactstrap';
 import {Route} from "react-router";
 import {Link} from "react-router-dom";
@@ -101,6 +102,8 @@ class App extends Component {
                 <Route path="/documentation/" exact component={Documentation}/>
                 <Route path="/faq/" exact component={Faq}/>
                 <Route path="/contribute/" exact component={Contribute}/>
+
+                <Route path="/misc/checklist/" exact component={Checklist}/>
             </Container>
         );
     }
