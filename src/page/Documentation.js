@@ -76,7 +76,7 @@ class Documentation extends Component {
                 <Row className="mb-3">
                     <Col>
                         <p>
-                            For completeness and fun, we also have the <Link to="/misc/checklist">programming language
+                            You may also want to check out the humorous <Link to="/misc/checklist">programming language
                             checklist</Link>.
                         </p>
                     </Col>
