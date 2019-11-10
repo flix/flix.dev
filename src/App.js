@@ -3,10 +3,10 @@ import './App.css';
 
 import Home from "./page/Home";
 import GettingStarted from "./page/GettingStarted";
+import Documentation from "./page/Documentation";
 import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
 import Research from "./page/Research";
-import Documentation from "./page/Documentation";
 import Faq from "./page/Faq";
 import Checklist from "./page/misc/Checklist";
 import {Container, Navbar, Nav, NavItem, NavLink} from 'reactstrap';
@@ -73,16 +73,16 @@ class App extends Component {
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/documentation/">Documentation</NavLink>
+                        </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
                             <NavLink tag={Link}
                                      to="/principles/">Principles</NavLink>
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
                             <NavLink tag={Link} to="/research/">Research</NavLink>
-                        </NavItem>
-
-                        <NavItem className="pl-1 pr-1">
-                            <NavLink tag={Link} to="/documentation/">Documentation</NavLink>
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
@@ -97,9 +97,9 @@ class App extends Component {
 
                 <Route path="/" exact render={() => this.getHome()}/>
                 <Route path="/getting-started/" exact component={GettingStarted}/>
+                <Route path="/documentation/" exact component={Documentation}/>
                 <Route path="/principles/" exact component={Principles}/>
                 <Route path="/research/" exact component={Research}/>
-                <Route path="/documentation/" exact component={Documentation}/>
                 <Route path="/faq/" exact component={Faq}/>
                 <Route path="/contribute/" exact component={Contribute}/>
 
