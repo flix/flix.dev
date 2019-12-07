@@ -1,6 +1,10 @@
 export default function () {
     return [
         {
+            name: "Magnus Madsen has received 2.5 million DKK from the Independent Research Fund of Denmark for research on first-class Datalog constraints in Flix!",
+            date: "2019-12-08"
+        },
+        {
             name: "The Flix online playground is now available!",
             date: "2019-08-31"
         },
@@ -11,14 +15,6 @@ export default function () {
         {
             name: "The \"Programming Flix\" book has been updated!",
             date: "2019-03-19"
-        },
-        {
-            name: "Flix version 0.5.0 released with support for extensible records and unbuffered channels. Thanks Miguel Angelo Nicolau Fialho for help with the backend!",
-            date: "2019-02-26"
-        },
-        {
-            name: "The new Flix website is now online!",
-            date: "2019-01-03"
         }
     ];
 }
