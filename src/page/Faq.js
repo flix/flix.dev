@@ -174,7 +174,7 @@ class Faq extends Component {
                         <p>
                             We recommend that you start with a small offering to the Great Dreamer, the Sleeper of
                             R'lyeh, Cthulhu. And coffee. Lots of coffee. All kidding aside, the best place to start is
-                            to a look at the examples and to read the <a href="https://flix.dev/programming-flix/">Programming
+                            to look at the examples and to read the <a href="https://flix.dev/programming-flix/">Programming
                             Flix</a> book.
                         </p>
 
@@ -201,20 +201,20 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        What is the expected runtime performance of Flix programs?
+                        What is the runtime performance of Flix programs?
                     </Question>
                     <Answer>
                         <p>
                             Flix runs on the Java Virtual Machine (JVM) hence the performance of Flix is limited by the
                             performance of the JVM. Luckily, the JVM is a mature and performant virtual machine. Flix
                             uses monomorphization which eliminates boxing and in theory can make code execute faster
-                            than ordinary Java / Kotlin / Scala code. However, Flix also features tail call elimination
-                            and (in the future) delimited continuations, and each of these come with their own
-                            performance cost.
+                            than ordinary Java / Kotlin / Scala code. However, Flix also features full tail call
+                            elimination
+                            which has some run-time performance cost.
                         </p>
 
                         <p>
-                            It is our goal to be faster than any interpreted language and within a few factors of
+                            Our goal to be faster than any interpreted language and within a few factors of
                             equivalent functional Scala code.
                         </p>
                     </Answer>
@@ -222,7 +222,7 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        What is the expected performance of the Flix compiler?
+                        What is the performance of the Flix compiler?
                     </Question>
                     <Answer>
                         <p>
@@ -241,7 +241,9 @@ class Faq extends Component {
                             A simple experiment shows that the compiler runs about <code>20.0x</code> times faster
                             when warmed up compared to when cold. We estimate that Flix, when warmed up, compiles
                             around <code>10,000</code> lines of code per second, which we believe to better than the
-                            Scala compiler, but worse than the Java compiler.
+                            Scala compiler, but worse than the Java compiler. We take compiler performance
+                            seriously and continuously track the <a href="https://arewefast.flix.dev/">performance of
+                            the compiler</a>.
                         </p>
 
                         <p>
