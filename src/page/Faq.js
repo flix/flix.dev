@@ -44,7 +44,8 @@ class Faq extends Component {
                     <Answer>
                         Yes! We welcome any contributions and we are happy to mentor someone who wants to work
                         on the compiler. We are also open to general feedback and discussion about the language
-                        design. Head on over to GitHub / Gitter and reach out to us!
+                        design. Head on over to <a href="https://github.com/flix/flix">GitHub</a> or <a
+                        href="https://gitter.im/flix/Lobby">Gitter</a> and reach out to us!
                     </Answer>
                 </QA>
 
@@ -84,7 +85,8 @@ class Faq extends Component {
                         </p>
 
                         <p>
-                            Other than syntax, the two languages are different: Scala is object-oriented, Flix is not.
+                            Other than syntax, the two languages are very different: Scala is object-oriented, Flix is
+                            not.
                             Scala has sub-typing, Flix does not. The Scala type system is unsound and has imperfect
                             type inference, whereas the Flix type system is both sound and supports type inference.
                         </p>
@@ -141,8 +143,7 @@ class Faq extends Component {
                         Is the Flix type system sound?
                     </Question>
                     <Answer>
-                        Yes. It is based on Hindley-Milner. Of course the implementation might have bugs, but those
-                        are fixable.
+                        Yes. It is based on Hindley-Milner.
                     </Answer>
                 </QA>
 
@@ -154,7 +155,7 @@ class Faq extends Component {
                         <p>
                             At the moment, Flix has not yet reached version 1.0. That means you will be an early
                             adopter, so you should expect for the language to evolve and be prepared for the rare
-                            compiler bug. (The Flix compiler has 5,500 manually written tests and we
+                            compiler bug. (The Flix compiler has 6,500 manually written tests and we
                             take correctness seriously.)
                         </p>
 
@@ -172,13 +173,9 @@ class Faq extends Component {
                     <Answer>
                         <p>
                             We recommend that you start with a small offering to the Great Dreamer, the Sleeper of
-                            R'lyeh, Cthulhu. And coffee. Lots of coffee.
-                        </p>
-
-                        <p>
-                            All kidding aside, the examples on the front page and the research literature are probably
-                            the best starting points for learning the syntax, semantics, and type system of Flix.
-                            Prior experience with functional programming is also useful.
+                            R'lyeh, Cthulhu. And coffee. Lots of coffee. All kidding aside, the best place to start is
+                            to a look at the examples and to read the <a href="https://flix.dev/programming-flix/">Programming
+                            Flix</a> book.
                         </p>
 
                         <p>
