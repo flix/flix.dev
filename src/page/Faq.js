@@ -274,7 +274,7 @@ class Faq extends Component {
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row">Exceptions</th>
+                                <td>Exceptions</td>
                                 <td>Exceptions has been used to deal with two types of errors that may arise during
                                     execution of a program: predictable errors (e.g. a file does not exist) and program
                                     bugs (e.g. stack overflow). Flix has no exceptions. Instead, all predictable errors
@@ -283,7 +283,7 @@ class Faq extends Component {
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">Null Values</th>
+                                <td>Null Values</td>
                                 <td>
                                     Null, called <a href="https://en.wikipedia.org/wiki/Tony_Hoare">Tony Hoare's
                                     billion dollar mistake</a>, is simply a bad solution to the problem of how to
@@ -292,7 +292,7 @@ class Faq extends Component {
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">Non-Total Functions</th>
+                                <td>Non-Total Functions</td>
                                 <td>
                                     The Flix standard library has been deliberately designed to avoid common
                                     programming mistakes. We want functions that are safe and have accurate type
@@ -302,7 +302,7 @@ class Faq extends Component {
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">Silent Coercions</th>
+                                <td>Silent Coercions</td>
                                 <td>
                                     Implicit coercions between data types (e.g. between booleans and other values or
                                     between enums and integers) has been a rich source of programming mistakes. In Flix,
@@ -311,7 +311,7 @@ class Faq extends Component {
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">Equality and Assignment Confusion</th>
+                                <td>Equality and Assignment Confusion</td>
                                 <td>
                                     In Flix, the equality test operator (<code>==</code>) is different from the
                                     assignment operator (<code>:=</code>) which is different from the equality sign
@@ -321,7 +321,7 @@ class Faq extends Component {
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">Undefined Behavior</th>
+                                <td>Undefined Behavior</td>
                                 <td>Undefined behavior is frequently the cause of program bugs and
                                     vulnerabilities. We want every Flix program to have a well-defined semantics.
                                 </td>
