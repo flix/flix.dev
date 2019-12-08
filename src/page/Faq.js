@@ -275,19 +275,20 @@ class Faq extends Component {
                             <tbody>
                             <tr>
                                 <td>Exceptions</td>
-                                <td>Exceptions has been used to deal with two types of errors that may arise during
+                                <td>Exceptions have been used to deal with two types of errors that may arise during
                                     execution of a program: predictable errors (e.g. a file does not exist) and program
                                     bugs (e.g. stack overflow). Flix has no exceptions. Instead, all predictable errors
                                     should be encoded as partial functions (e.g. using <code>Option</code>) or as
-                                    potentially error returning functions (e.g. using <code>Result</code>).
+                                    potentially error returning functions (e.g. using <code>Result</code>). We are still
+                                    in the process of deciding how to handle program bugs.
                                 </td>
                             </tr>
                             <tr>
                                 <td>Null Values</td>
                                 <td>
-                                    Null, called <a href="https://en.wikipedia.org/wiki/Tony_Hoare">Tony Hoare's
-                                    billion dollar mistake</a>, is simply a bad solution to the problem of how to
-                                    represent the (potential) absence of a value. Instead, in Flix, you should use
+                                    Null, famously called <a href="https://en.wikipedia.org/wiki/Tony_Hoare">Tony
+                                    Hoare's billion dollar mistake</a>, is simply a bad solution to the problem of how
+                                    to represent the (potential) absence of a value. Instead, in Flix, you should use
                                     the <code>Option</code> data type.
                                 </td>
                             </tr>
@@ -305,16 +306,17 @@ class Faq extends Component {
                                 <td>Silent Coercions</td>
                                 <td>
                                     Implicit coercions between data types (e.g. between booleans and other values or
-                                    between enums and integers) has been a rich source of programming mistakes. In Flix,
-                                    no type is ever converted to another type without an explicit instruction from the
+                                    between enums and integers) is a rich source of programming mistakes. In Flix,
+                                    no type is ever converted to another type without explicit instruction from the
                                     programmer.
                                 </td>
                             </tr>
                             <tr>
-                                <td>Code Before Main</td>
+                                <td>No Code Before Main</td>
                                 <td>
-                                    In Flix, no code is ever executed before main. Flix has no static initializers or
-                                    the like which can easily lead to race conditions during initialization.
+                                    In Flix, no code is ever executed before main. Flix has no static initializers (or
+                                    similar constructs) which are difficult to reason about, error-prone, and often lead
+                                    to buggy code.
                                 </td>
                             </tr>
                             <tr>
@@ -322,9 +324,8 @@ class Faq extends Component {
                                 <td>
                                     In Flix, the equality test operator (<code>==</code>) is different from the
                                     assignment operator (<code>:=</code>) which is different from the equality sign
-                                    (<code>=</code>) used in definitions and let-bindings. Confusion between the
-                                    three is unlikely to lead to programming mistakes since the syntax and types will
-                                    rarely permit one to be accidentally used in place of another.
+                                    (<code>=</code>) used in definitions and let-bindings. Flix has been designed such
+                                    that programs that mistake one for the other is unlikely to compile.
                                 </td>
                             </tr>
                             <tr>
@@ -359,8 +360,16 @@ class Faq extends Component {
                         Who works on Flix? Is Flix a hobby project?
                     </Question>
                     <Answer>
-                        Flix is a research project carried out by faculty and students at Aarhus University and the
-                        University of Waterloo.
+                        <p>
+                            Flix is a research project carried out by faculty and students at <a
+                            href="http://cs.au.dk/">Aarhus University</a> and the <a href="http://uwaterloo.ca/">University
+                            of Waterloo</a>.
+                        </p>
+
+                        <p>
+                            Flix is partially supported by a grant of 2,500,000 DKK from the <a href="http://dff.dk/">Independent
+                            Research Fund of Denmark.</a>
+                        </p>
                     </Answer>
                 </QA>
 
