@@ -311,6 +311,13 @@ class Faq extends Component {
                                 </td>
                             </tr>
                             <tr>
+                                <td>Code Before Main</td>
+                                <td>
+                                    In Flix, no code is ever executed before main. Flix has no static initializers or
+                                    the like which can easily lead to race conditions during initialization.
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>Equality and Assignment Confusion</td>
                                 <td>
                                     In Flix, the equality test operator (<code>==</code>) is different from the
