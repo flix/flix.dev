@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardTitle} from 'reactstrap';
+import {Card, CardBody, CardTitle, Table} from 'reactstrap';
 import {Container} from 'reactstrap';
 import ReactGA from 'react-ga';
 
@@ -252,6 +252,64 @@ class Faq extends Component {
                             avoided, by passing the <code>--Xcore</code> flag, but then data types such
                             as <code>List</code> will be unavailable. In the future, it is our plan to compile-by-need.
                         </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        What features are <i>not</i> supported by Flix?
+                    </Question>
+
+                    <Answer>
+                        <p>
+                            Flix will, <i>by design</i>, not support any of the following features:
+                        </p>
+
+                        <Table striped>
+                            <thead>
+                            <tr>
+                                <th style={{"width": "20%"}}>Feature</th>
+                                <th>Reason</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Exceptions</td>
+                                <td>Exceptions has been used to deal with two types of errors that may arise during
+                                    execution of a program: predictable errors (e.g. a file does not exist) and program
+                                    bugs (e.g. stack overflow). Flix has no exceptions. Instead, all predictable errors
+                                    should be encoded as partial functions (e.g. using <code>Option</code>) or as
+                                    potentially error returning functions (e.g. using <code>Result</code>).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Null Values</td>
+                                <td>
+                                    Null, called <a href="https://en.wikipedia.org/wiki/Tony_Hoare">Tony Hoare's
+                                    billion dollar mistake</a>, is simply a bad solution to the problem of how to
+                                    represent the (potential) absence of a value. Instead, in Flix, you should use
+                                    the <code>Option</code> data type.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Undefined Behavior</td>
+                                <td>Undefined behavior is frequently the cause of program bugs and
+                                    vulnerabilities. We want every Flix program to have a well-defined semantics.
+                                </td>
+                            </tr>
+                            </tbody>
+                        </Table>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        What controversial design choices are made in Flix?
+                    </Question>
+
+                    <Answer>
+                        We are planning to define <a href="https://www.hillelwayne.com/post/divide-by-zero/">division by
+                        zero</a> as yielding zero.
                     </Answer>
                 </QA>
 
