@@ -292,6 +292,25 @@ class Faq extends Component {
                                 </td>
                             </tr>
                             <tr>
+                                <td>Non-Total Functions</td>
+                                <td>
+                                    The Flix standard library has been deliberately designed to avoid common
+                                    programming mistakes. We want functions that are safe and have accurate type
+                                    signatures. For example, unlike Scala or Haskell,
+                                    the <code>List.head</code> function returns an <code>Option</code> since we cannot
+                                    in general guarantee that a list is non-empty.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Silent Coercions</td>
+                                <td>
+                                    Implicit coercions between data types (e.g. between booleans and other values or
+                                    between enums and integers) has been a rich source of programming mistakes. In Flix,
+                                    no type is ever converted to another type without an explicit instruction from the
+                                    programmer.
+                                </td>
+                            </tr>
+                            <tr>
                                 <td>Undefined Behavior</td>
                                 <td>Undefined behavior is frequently the cause of program bugs and
                                     vulnerabilities. We want every Flix program to have a well-defined semantics.
@@ -299,6 +318,11 @@ class Faq extends Component {
                             </tr>
                             </tbody>
                         </Table>
+
+                        <p>
+                            This list was partially inspired by the blog post <a
+                            href="https://graydon2.dreamwidth.org/218040.html">things rust shipped without</a>.
+                        </p>
                     </Answer>
                 </QA>
 
