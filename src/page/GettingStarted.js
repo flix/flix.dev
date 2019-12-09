@@ -17,8 +17,9 @@ class GettingStarted extends Component {
                 <h1>Getting Started</h1>
 
                 <p>
-                    Flix runs on any platform that supports the Java Virtual Machine.
-                    Installation is as easy as downloading and running a jar file.
+                    Flix runs on any platform that supports the <a href="https://adoptopenjdk.net/">Java Virtual
+                    Machine</a>. Installation is as simple as <a href="https://github.com/flix/flix/releases">downloading
+                    and running a jar file</a>.
                 </p>
 
                 <p>
@@ -108,11 +109,11 @@ class GettingStarted extends Component {
 
                 <Row className="mb-lg-5">
                     <Col md="12">
-                        <h2>The Programming Flix Book</h2>
+                        <h2>Onwards: The Programming Flix Book</h2>
 
                         <p>
-                            The next steps would be to take a look through the <a
-                            href="https://flix.dev/programming-flix">Programming Flix</a> interactive tutorial.
+                            The <a href="https://flix.dev/programming-flix">Programming
+                            Flix</a> book provides an in-depth introduction to programming in Flix.
                         </p>
                     </Col>
                 </Row>

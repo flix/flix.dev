@@ -36,6 +36,7 @@ p:last-child {
 
 .dropdown-samples {
     width: 420px;
+    text-align: left;
 }
 
 .editor-output h5 {
