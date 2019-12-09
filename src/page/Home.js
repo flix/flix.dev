@@ -181,10 +181,6 @@ class Home extends Component {
                             specifically Datalog. Flix, as probably the only language in the world, supports first-class
                             Datalog constraints enriched with lattice semantics.
                         </p>
-
-                        <p>
-                            For more information, we refer to our research papers.
-                        </p>
                     </Col>
                 </Row>
 
