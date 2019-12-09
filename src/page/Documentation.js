@@ -155,9 +155,6 @@ class Documentation extends Component {
                         </Card>
                     </Col>
                 </Row>
-
-                <Row/>
-
             </Container>
         );
     }

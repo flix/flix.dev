@@ -9,7 +9,7 @@ import Contribute from "./page/Contribute";
 import Research from "./page/Research";
 import Faq from "./page/Faq";
 import Checklist from "./page/misc/Checklist";
-import {Container, Navbar, Nav, NavItem, NavLink} from 'reactstrap';
+import {Container, Navbar, Nav, NavItem, NavLink, Row} from 'reactstrap';
 import {Route} from "react-router";
 import {Link} from "react-router-dom";
 
@@ -104,6 +104,9 @@ class App extends Component {
                 <Route path="/contribute/" exact component={Contribute}/>
 
                 <Route path="/misc/checklist/" exact component={Checklist}/>
+
+                <Row/>
+
             </Container>
         );
     }
