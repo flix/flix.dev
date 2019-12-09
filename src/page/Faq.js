@@ -140,6 +140,21 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        Why does Flix target the Java Virtual Machine (JVM)?
+                    </Question>
+                    <Answer>
+                        The Java Virtual Machine is a state-of-the-art virtual machine that runs on virtually every
+                        platform, comes with a huge ecosystem of libraries, and supports garbage collection. While not
+                        the ideal target for functional programming languages, due to its absence of tail call
+                        instructions, it is still a strong choice. Moreover, if <a
+                        href="https://openjdk.java.net/projects/loom/">Project Loom</a> (or similar efforts) turn out
+                        successful then the JVM will offer an unbeatable feature set. That said, we are keeping a keen
+                        eye on developments in the WebAssembly space.
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         Is the Flix type system sound?
                     </Question>
                     <Answer>
