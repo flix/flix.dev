@@ -4,14 +4,12 @@ import ReactGA from "react-ga";
 import Editor from "./Editor";
 import {
     Button,
-    Card,
-    CardText, Col,
+    Col,
     Container,
     DropdownItem,
     DropdownMenu,
     DropdownToggle, InputGroup, InputGroupAddon, InputGroupButtonDropdown, Row
 } from "reactstrap";
-import nl2br from 'react-newline-to-break';
 import FontAwesome from 'react-fontawesome';
 import PulseLoader from 'react-spinners/PulseLoader';
 
@@ -119,20 +117,16 @@ class Codebox extends Component {
         } else {
             if (this.state.output.status === "success") {
                 return (
-                    <Card className="mt-3">
-                        <CardText>
-                            {this.state.output.result}
-                        </CardText>
-                    </Card>);
+                    <Container className="mt-3 editor-output">
+                        <h5>Standard Output</h5>
+                        <pre>{this.state.output.result}</pre>
+                    </Container>);
             } else {
                 return (
-                    <Card body outline color="danger" className="mt-3">
-                        <CardText>
-                            <code>
-                                {nl2br(this.state.output.result)}
-                            </code>
-                        </CardText>
-                    </Card>);
+                    <Container className="mt-3 editor-output">
+                        <h5>Standard Output</h5>
+                        <pre>{this.state.output.result}</pre>
+                    </Container>);
             }
         }
     }

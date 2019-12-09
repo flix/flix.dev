@@ -34,6 +34,22 @@ p:last-child {
     min-height: 95vh;
 }
 
+.dropdown-samples {
+    width: 420px;
+}
+
+.editor-output h5 {
+    font-size: 1.1rem;
+    color: gray;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #b7b7b7;
+}
+
+.editor-output pre {
+    font-family: monospace;
+}
+
 .nav-item {
     cursor: pointer;
 }
@@ -55,8 +71,4 @@ p:last-child {
 
 .card-title {
     font-size: 1.2rem;
-}
-
-.dropdown-samples {
-    width: 420px;
 }
