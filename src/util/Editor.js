@@ -6,10 +6,6 @@ import FlixMode from './FlixMode'
 import 'brace/theme/chrome';
 
 class Editor extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         let customMode = new FlixMode();
         this.refs.aceEditor.editor.getSession().setMode(customMode);

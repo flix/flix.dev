@@ -91,6 +91,14 @@ class Principles extends Component {
                         simply as: <code>def map(f: a -> b, xs: List[a]): List[b]</code> omitting the type arguments.
                     </Principle>
 
+                    <Principle name="Reduce the need for declarations">
+                        We believe that a programming language should strive to reduce its dependence on explicit
+                        declarations. Declarations are often useful and even necessary, e.g. when defining
+                        algebraic data types, but Flix aims to avoid declarations whenever possible. For example, Flix
+                        supports <i>extensible records</i> which permits the usage of flexible and type-safe
+                        records <i>without</i> a strict requirement that record types must be declared upfront.
+                    </Principle>
+
                     <Principle name="Syntax vs. Semantics">
                         Syntax is important. Semantics are important. But we should not confuse the two. A syntactic
                         issue should not be resolved by a enrichment of the semantics. For example, <a
