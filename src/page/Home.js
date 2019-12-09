@@ -86,6 +86,7 @@ class Home extends Component {
                             <li>extensible records</li>
                             <li>parametric polymorphism</li>
                             <li>Hindley-Milner type inference</li>
+                            <li>opaque types and type aliases</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
@@ -94,15 +95,17 @@ class Home extends Component {
                             <li>buffered &amp; unbuffered channels</li>
                             <li>first-class datalog constraints</li>
                             <li>polymorphic datalog predicates</li>
+                            <li>constraints with lattice semantics</li>
                             <li>stratified negation</li>
                             <li>unboxed primitives</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
                         <ul>
+                            <li>monadic let* expressions</li>
                             <li>expressions holes</li>
-                            <li>full tail call elimination</li>
                             <li>compilation to JVM bytecode</li>
+                            <li>full tail call elimination</li>
                             <li>core standard library</li>
                             <li>human friendly errors</li>
                             <li>interactive mode</li>
