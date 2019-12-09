@@ -20,23 +20,15 @@ class Home extends Component {
                         <h1>The Flix Programming Language</h1>
 
                         <p>
-                            Flix is a principled and opinionated functional programming language that takes inspiration
-                            from F#, Go, OCaml, Haskell, Rust, and Scala.
+                            Flix is a principled and flexible functional-, logic-, and imperative- programming language
+                            that takes inspiration from F#, Go, OCaml, Haskell, Rust, and Scala. Flix looks like Scala,
+                            but its type system is closer to that of OCaml and Haskell. Its concurrency model is
+                            inspired by Go-style processes and channels.
                         </p>
 
                         <p>
-                            Flix visually resembles Scala, but its type system is closer to that of OCaml and Haskell.
-                            Its concurrency model is inspired by Go-style processes and channels.
-                        </p>
-
-                        <p>
-                            Flix compiles to JVM bytecode and runs on the Java Virtual Machine.
-                            Flix supports full tail call elimination which means that tail calls (even to other
-                            functions) never overflow the stack.
-                        </p>
-
-                        <p>
-                            Flix performance is typically within 1-3x of equivalent Scala code.
+                            Flix compiles to JVM bytecode, runs on the Java Virtual Machine, and supports full tail call
+                            elimination.
                         </p>
 
                         <p>
