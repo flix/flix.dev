@@ -55,14 +55,18 @@ class Codebox extends Component {
 
     getDropDown() {
         return <Dropdown isOpen={this.state.dropdown} toggle={this.toggleDropDown.bind(this)} size="sm">
-            <DropdownToggle caret>
+            <DropdownToggle caret color="secondary" outline>
                 {this.getNameOfSelection()}
             </DropdownToggle>
             <DropdownMenu>
                 <DropdownItem header>Programs</DropdownItem>
                 {this.state.samples.map((sample, index) =>
-                    <DropdownItem key={index} choice={index}
-                                  onClick={this.onDropdownChoice.bind(this)}>{sample.name}</DropdownItem>)
+                    <DropdownItem key={index}
+                                  choice={index}
+                                  onClick={this.onDropdownChoice.bind(this)}
+                                  className="small">
+                        {sample.name}
+                    </DropdownItem>)
                 }
             </DropdownMenu>
         </Dropdown>
