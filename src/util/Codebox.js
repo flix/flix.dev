@@ -31,7 +31,7 @@ class Codebox extends Component {
     }
 
     onDropdownChoice(event) {
-        let newChoice = event.target.getAttribute("choice");
+        let newChoice = Number(event.target.getAttribute("choice"));
         this.setState({
             choice: newChoice,
             output: undefined
