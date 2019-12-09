@@ -134,7 +134,7 @@ class Codebox extends Component {
     render() {
         return (
             <Container>
-                <InputGroup className="mb-2">
+                <InputGroup className="mt-2 mb-3">
                     <InputGroupAddon addonType="prepend">
                         {this.getRunButton()}
                     </InputGroupAddon>
