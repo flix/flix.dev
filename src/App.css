@@ -56,3 +56,7 @@ p:last-child {
 .card-title {
     font-size: 1.2rem;
 }
+
+.dropdown-samples {
+    width: 430px;
+}

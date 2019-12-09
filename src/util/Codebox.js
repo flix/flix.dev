@@ -8,10 +8,9 @@ import {
     Card,
     CardText,
     Container,
-    Dropdown,
     DropdownItem,
     DropdownMenu,
-    DropdownToggle, InputGroup, InputGroupAddon
+    DropdownToggle, InputGroup, InputGroupAddon, InputGroupButtonDropdown
 } from "reactstrap";
 import nl2br from 'react-newline-to-break';
 import FontAwesome from 'react-fontawesome';
@@ -55,28 +54,33 @@ class Codebox extends Component {
     };
 
     getRunButton() {
-        return <Button color="success" className="btn-xs" onClick={this.onRunClick}>
+        return <Button color="success" onClick={this.onRunClick} size="sm">
             Run <FontAwesome name="play" className="ml-2"/>
         </Button>;
     }
 
     getDropDown() {
-        return <Dropdown isOpen={this.state.dropdown} toggle={this.toggleDropDown.bind(this)} size="sm">
-            <DropdownToggle caret color="secondary" outline>
+        return <InputGroupButtonDropdown addonType="append"
+                                         isOpen={this.state.dropdown}
+                                         toggle={this.toggleDropDown.bind(this)}
+                                         size="sm">
+            <DropdownToggle caret color="secondary" outline className="dropdown-samples">
                 {this.getNameOfSelection()}
             </DropdownToggle>
             <DropdownMenu>
-                <DropdownItem header>Programs</DropdownItem>
+                <DropdownItem header>Example Programs</DropdownItem>
+                <DropdownItem divider/>
                 {this.state.samples.map((sample, index) =>
                     <DropdownItem key={index}
                                   choice={index}
                                   onClick={this.onDropdownChoice.bind(this)}
+                                  active={index === this.state.choice}
                                   className="small">
                         {sample.name}
                     </DropdownItem>)
                 }
             </DropdownMenu>
-        </Dropdown>
+        </InputGroupButtonDropdown>
     }
 
     getConnectedStatus() {
@@ -131,11 +135,11 @@ class Codebox extends Component {
     render() {
         return (
             <Container>
-                <InputGroup>
-                    {this.getDropDown()}
-                    <InputGroupAddon addonType="append">
+                <InputGroup className="mb-1">
+                    <InputGroupAddon addonType="prepend">
                         {this.getRunButton()}
                     </InputGroupAddon>
+                    {this.getDropDown()}
                 </InputGroup>
                 {this.getEditor()}
                 {this.getOutput()}
