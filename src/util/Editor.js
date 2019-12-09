@@ -8,9 +8,6 @@ import 'brace/theme/chrome';
 class Editor extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            input: this.props.code
-        }
     }
 
     componentDidMount() {
@@ -19,9 +16,7 @@ class Editor extends Component {
     }
 
     onChange(input) {
-        this.setState({input: input}, () => {
-            this.props.notifyTextChanged(input)
-        });
+        this.props.notifyTextChanged(input)
     };
 
     render() {
@@ -35,7 +30,7 @@ class Editor extends Component {
                     showPrintMargin={false}
                     highlightActiveLine={false}
                     onChange={this.onChange.bind(this)}
-                    value={this.state.input}
+                    value={this.props.code}
                     autoScrollEditorIntoView={true}
                     minLines={25}
                     maxLines={25}

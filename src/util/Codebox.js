@@ -3,17 +3,17 @@ import SamplesData from "../data/Samples";
 import ReactGA from "react-ga";
 import Editor from "./Editor";
 import {
-    Badge,
     Button,
     Card,
-    CardText,
+    CardText, Col,
     Container,
     DropdownItem,
     DropdownMenu,
-    DropdownToggle, InputGroup, InputGroupAddon, InputGroupButtonDropdown
+    DropdownToggle, InputGroup, InputGroupAddon, InputGroupButtonDropdown, Row
 } from "reactstrap";
 import nl2br from 'react-newline-to-break';
 import FontAwesome from 'react-fontawesome';
+import PulseLoader from 'react-spinners/PulseLoader';
 
 class Codebox extends Component {
 
@@ -25,15 +25,20 @@ class Codebox extends Component {
             choice: randomChoice,
             samples: samples,
             dropdown: false,
-            input: "",
+            input: samples[randomChoice].code,
             output: undefined
         };
+    }
+
+    toggleDropDown() {
+        this.setState({dropdown: !this.state.dropdown});
     }
 
     onDropdownChoice(event) {
         let newChoice = Number(event.target.getAttribute("choice"));
         this.setState({
             choice: newChoice,
+            input: this.state.samples[newChoice].code,
             output: undefined
         });
         ReactGA.event({
@@ -48,9 +53,11 @@ class Codebox extends Component {
     }
 
     onRunClick = () => {
-        this.props.flix.run(this.state.input, data =>
-            this.setState({output: data})
-        );
+        this.setState({output: null}, () => {
+            this.props.flix.run(this.state.input, data =>
+                this.setState({output: data})
+            );
+        });
     };
 
     getRunButton() {
@@ -89,28 +96,37 @@ class Codebox extends Component {
     }
 
     getEditor() {
-        let choice = this.state.choice;
-        let sample = this.state.samples[choice];
-        // NB: The use of the key ensures that the editor is refreshed when the dropdown is changed.
-        return <Editor key={sample.name}
-                       code={sample.code}
+        return <Editor key={this.state.input.leading}
+                       code={this.state.input}
                        notifyTextChanged={this.onTextChanged.bind(this)}/>
     }
 
     getOutput() {
-        if (!this.state.output) {
+        if (this.state.output === undefined) {
             return undefined;
+        } else if (this.state.output === null) {
+            return <Row>
+                <Col md="12" className="text-center">
+                    <PulseLoader
+                        size={16}
+                        sizeUnit={"px"}
+                        color={'#28a745'}
+                        loading={true}
+                        className="loader"
+                    />
+                </Col>
+            </Row>
         } else {
             if (this.state.output.status === "success") {
                 return (
-                    <Card body outline color="success" className="mt-2">
+                    <Card className="mt-3">
                         <CardText>
-                            <code>{this.state.output.result}</code>
+                            {this.state.output.result}
                         </CardText>
                     </Card>);
             } else {
                 return (
-                    <Card body outline color="danger" className="mt-2">
+                    <Card body outline color="danger" className="mt-3">
                         <CardText>
                             <code>
                                 {nl2br(this.state.output.result)}
@@ -119,10 +135,6 @@ class Codebox extends Component {
                     </Card>);
             }
         }
-    }
-
-    toggleDropDown() {
-        this.setState({dropdown: !this.state.dropdown});
     }
 
     render() {
