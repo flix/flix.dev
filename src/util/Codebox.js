@@ -54,7 +54,8 @@ class Codebox extends Component {
     };
 
     getRunButton() {
-        return <Button color="success" onClick={this.onRunClick} size="sm">
+        let enabled = this.props.flix.connected;
+        return <Button color="success" onClick={this.onRunClick} size="sm" disabled={!enabled}>
             Run <FontAwesome name="play" className="ml-2"/>
         </Button>;
     }
@@ -64,7 +65,7 @@ class Codebox extends Component {
                                          isOpen={this.state.dropdown}
                                          toggle={this.toggleDropDown.bind(this)}
                                          size="sm">
-            <DropdownToggle caret color="secondary" outline className="dropdown-samples">
+            <DropdownToggle caret color="success" outline className="dropdown-samples text-body">
                 {this.getNameOfSelection()}
             </DropdownToggle>
             <DropdownMenu>
@@ -81,14 +82,6 @@ class Codebox extends Component {
                 }
             </DropdownMenu>
         </InputGroupButtonDropdown>
-    }
-
-    getConnectedStatus() {
-        if (this.props.flix.connected) {
-            return <Badge color="info" className="float-right mt-1">Connected</Badge>
-        } else {
-            return <Badge color="secondary" className="float-right mt-1">Disconnected</Badge>
-        }
     }
 
     getNameOfSelection() {
@@ -135,7 +128,7 @@ class Codebox extends Component {
     render() {
         return (
             <Container>
-                <InputGroup className="mb-1">
+                <InputGroup className="mb-2">
                     <InputGroupAddon addonType="prepend">
                         {this.getRunButton()}
                     </InputGroupAddon>
@@ -143,8 +136,6 @@ class Codebox extends Component {
                 </InputGroup>
                 {this.getEditor()}
                 {this.getOutput()}
-                {this.getConnectedStatus()}
-
             </Container>
         );
     }
