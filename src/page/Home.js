@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import {Container, Row, Col, Badge, Button} from 'reactstrap';
-import Editor from "../util/Editor";
+import {Container, Row, Col, Button} from 'reactstrap';
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
-
 import NewsData from '../data/News.js'
-import SamplesData from '../data/Samples.js'
+import Codebox from "../util/Codebox";
 
 class Home extends Component {
 
@@ -207,59 +205,6 @@ class Home extends Component {
             </Container>
         );
     }
-}
-
-class Codebox extends Component {
-
-    constructor(props) {
-        super(props);
-        let samples = SamplesData();
-        let randomChoice = getRandomInt(samples.length);
-        this.state = {choice: randomChoice, samples: samples};
-    }
-
-    onChange(event) {
-        let newChoice = event.target.value;
-        this.setState({choice: newChoice});
-        ReactGA.event({
-            category: 'Codebox',
-            action: 'Selected an example',
-            label: this.state.samples[newChoice].name
-        });
-    }
-
-    getEditor() {
-        let choice = this.state.choice;
-        let sample = this.state.samples[choice];
-        // NB: The use of the key ensures that the editor is refreshed when the dropdown is changed.
-        return <Editor key={sample.name} flix={this.props.flix} code={sample.code}>{sample.code}</Editor>
-    }
-
-    isConnected() {
-        if (this.props.flix.connected) {
-            return <Badge color="info" className="float-right mt-1">Connected</Badge>
-        } else {
-            return <Badge color="secondary" className="float-right mt-1">Disconnected</Badge>
-        }
-    }
-
-    render() {
-        return (
-            <Container>
-                <select className="mb-2" value={this.state.choice} onChange={this.onChange.bind(this)}>
-                    {this.state.samples.map((sample, index) =>
-                        <option key={index} value={index}>{sample.name}</option>)
-                    }
-                </select>
-                {this.isConnected()}
-                {this.getEditor()}
-            </Container>
-        );
-    }
-}
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
 }
 
 export default Home;
