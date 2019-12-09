@@ -21,22 +21,14 @@ class Research extends Component {
                 </p>
 
                 <div>
-                    A significant part of our research is centered on the Datalog aspects of Flix, including:
+                    A significant part of our research is dedicated to the Datalog aspect of Flix, including:
                     <ul>
                         <li>design of a language with first-class Datalog constraints.</li>
                         <li>extensions of Datalog semantics to lattice semantics.</li>
                         <li>implementation of efficient fixpoint engines.</li>
                         <li>use of Flix for program analysis.</li>
-                        <li>verification of such program analyses.</li>
                     </ul>
                 </div>
-
-                <p>
-                    As the above suggests, a major research focus is on how to write declarative
-                    program analyses using Flix that are correct and scalable. The workshop paper <a
-                    href="http://staticanalysis.org/tapas2016/abstracts/TAPAS_2016_MadsenEtAl.pdf">Programming a
-                    Dataflow Analysis in Flix</a> gives a good introduction to this topic.
-                </p>
 
                 <p>
                     Below is a selection of research papers published on Flix:
