@@ -2,7 +2,17 @@ import React, {Component} from "react";
 import SamplesData from "../data/Samples";
 import ReactGA from "react-ga";
 import Editor from "./Editor";
-import {Badge, Button, Card, CardText, Container} from "reactstrap";
+import {
+    Badge,
+    Button,
+    Card,
+    CardText,
+    Container,
+    Dropdown,
+    DropdownItem,
+    DropdownMenu,
+    DropdownToggle
+} from "reactstrap";
 import nl2br from 'react-newline-to-break';
 
 class Codebox extends Component {
@@ -14,13 +24,14 @@ class Codebox extends Component {
         this.state = {
             choice: randomChoice,
             samples: samples,
+            dropdown: false,
             input: "",
             output: undefined
         };
     }
 
     onDropdownChoice(event) {
-        let newChoice = event.target.value;
+        let newChoice = event.target.getAttribute("choice");
         this.setState({
             choice: newChoice,
             output: undefined
@@ -42,12 +53,31 @@ class Codebox extends Component {
         );
     };
 
+    getDropDown() {
+        return <Dropdown isOpen={this.state.dropdown} toggle={this.toggleDropDown.bind(this)} size="sm">
+            <DropdownToggle caret>
+                {this.getNameOfSelection()}
+            </DropdownToggle>
+            <DropdownMenu>
+                <DropdownItem header>Programs</DropdownItem>
+                {this.state.samples.map((sample, index) =>
+                    <DropdownItem key={index} choice={index}
+                                  onClick={this.onDropdownChoice.bind(this)}>{sample.name}</DropdownItem>)
+                }
+            </DropdownMenu>
+        </Dropdown>
+    }
+
     getConnectedStatus() {
         if (this.props.flix.connected) {
             return <Badge color="info" className="float-right mt-1">Connected</Badge>
         } else {
             return <Badge color="secondary" className="float-right mt-1">Disconnected</Badge>
         }
+    }
+
+    getNameOfSelection() {
+        return this.state.samples[this.state.choice].name;
     }
 
     getEditor() {
@@ -83,14 +113,14 @@ class Codebox extends Component {
         }
     }
 
+    toggleDropDown() {
+        this.setState({dropdown: !this.state.dropdown});
+    }
+
     render() {
         return (
             <Container>
-                <select className="mb-2" value={this.state.choice} onChange={this.onDropdownChoice.bind(this)}>
-                    {this.state.samples.map((sample, index) =>
-                        <option key={index} value={index}>{sample.name}</option>)
-                    }
-                </select>
+                {this.getDropDown()}
                 {this.getConnectedStatus()}
                 <Button color="primary" outline className="btn-xs" onClick={this.onRunClick}>Run</Button>
                 {this.getEditor()}
