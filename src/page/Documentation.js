@@ -6,6 +6,11 @@ import {Link} from "react-router-dom";
 import {FaBookReader} from 'react-icons/fa';
 import {FaStream} from 'react-icons/fa';
 import {FaVihara} from 'react-icons/fa';
+import {FaGitter} from 'react-icons/fa';
+import {FaGithub} from 'react-icons/fa';
+import {FaRegLaughSquint} from 'react-icons/fa';
+import {MdSchool} from 'react-icons/md';
+import {GoGraph} from 'react-icons/go';
 
 class Documentation extends Component {
 
@@ -20,12 +25,10 @@ class Documentation extends Component {
                 <Row className="mb-3">
                     <Col>
                         <h1>Documentation</h1>
-
-
                     </Col>
                 </Row>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col>
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
@@ -35,9 +38,9 @@ class Documentation extends Component {
                             </CardSubtitle>
                             <CardTitle className="text-center">Programming Flix</CardTitle>
                             <CardText>
-                                The <a href="https://flix.dev/programming-flix/">Programming Flix</a> book offers an
-                                introduction to Flix for programmers who are already familiar with functional
-                                programming. The book covers all the core concepts of Flix with runnable examples.
+                                The <a href="https://flix.dev/programming-flix/">Programming Flix</a> book provides an
+                                introduction to Flix for functional programmers. The book demonstrates the core concepts
+                                of Flix through several examples.
                             </CardText>
                         </Card>
                     </Col>
@@ -51,8 +54,9 @@ class Documentation extends Component {
                             <CardTitle className="text-center">Standard Library</CardTitle>
                             <CardText>
                                 The <a href="https://flix.dev/api/">Standard Library</a> documentation provides a
-                                Javadoc-style description of the Flix API. The standard library includes important data
-                                types such as <code>Option</code>, <code>Result</code>, and <code>List</code>.
+                                Javadoc-style description of the Flix standard library with API documentation for
+                                important data types such as <code>Option</code>, <code>Result</code>,
+                                and <code>List</code>.
                             </CardText>
                         </Card>
                     </Col>
@@ -65,9 +69,8 @@ class Documentation extends Component {
                             </CardSubtitle>
                             <CardTitle className="text-center">Flix Koans</CardTitle>
                             <CardText>
-                                The <a href="https://flix.dev/papers/flix-koans.pdf">Flix Koans</a> gives several
-                                examples of logic programming in Flix. These examples illustrate how first-class Datalog
-                                constraints can be used to solve a variety of graph problems.
+                                The <a href="https://flix.dev/papers/flix-koans.pdf">Flix Koans</a> presents several
+                                realistic examples of logic programming with first-class Datalog constraints in Flix.
                             </CardText>
                         </Card>
                     </Col>
@@ -76,11 +79,84 @@ class Documentation extends Component {
                 <Row className="mb-3">
                     <Col>
                         <p>
-                            You may also want to check out the humorous <Link to="/misc/checklist">programming language
-                            checklist</Link>.
+                            You may also be interested in these additional resources:
                         </p>
                     </Col>
                 </Row>
+
+                <Row className="mb-3">
+                    <Col>
+                        <Card body className="h-100">
+                            <CardSubtitle className="text-center m-4">
+                                <Link to="/research" className="text-black-50">
+                                    <MdSchool style={{fontSize: '3em'}}/>
+                                </Link>
+                            </CardSubtitle>
+                            <CardTitle className="text-center">Research Papers</CardTitle>
+                            <CardText>
+                                Read published scientific papers on the foundations of Flix.
+                            </CardText>
+                        </Card>
+                    </Col>
+
+                    <Col>
+                        <Card body className="h-100">
+                            <CardSubtitle className="text-center m-4">
+                                <a href="https://gitter.im/flix/Lobby" className="text-black-50">
+                                    <FaGitter style={{fontSize: '3em'}}/>
+                                </a>
+                            </CardSubtitle>
+                            <CardTitle className="text-center">Gitter</CardTitle>
+                            <CardText>
+                                Chat with us on Gitter. Ask questions and get help.
+                            </CardText>
+                        </Card>
+                    </Col>
+
+                    <Col>
+                        <Card body className="h-100">
+                            <CardSubtitle className="text-center m-4">
+                                <a href="https://github.com/flix/flix/issues" className="text-black-50">
+                                    <FaGithub style={{fontSize: '3em'}}/>
+                                </a>
+                            </CardSubtitle>
+                            <CardTitle className="text-center">GitHub</CardTitle>
+                            <CardText>
+                                Report bugs or participate in discussions.
+                            </CardText>
+                        </Card>
+                    </Col>
+
+                    <Col>
+                        <Card body className="h-100">
+                            <CardSubtitle className="text-center m-4">
+                                <a href="https://arewefast.flix.dev/" className="text-black-50">
+                                    <GoGraph style={{fontSize: '3em'}}/>
+                                </a>
+                            </CardSubtitle>
+                            <CardTitle className="text-center">Compiler Perf</CardTitle>
+                            <CardText>
+                                Track compiler performance over time.
+                            </CardText>
+                        </Card>
+                    </Col>
+
+                    <Col>
+                        <Card body className="h-100">
+                            <CardSubtitle className="text-center m-4">
+                                <Link to="/misc/checklist" className="text-black-50">
+                                    <FaRegLaughSquint style={{fontSize: '3em'}}/>
+                                </Link>
+                            </CardSubtitle>
+                            <CardTitle className="text-center">Language Checklist</CardTitle>
+                            <CardText>
+                                Enjoy a quick laugh.
+                            </CardText>
+                        </Card>
+                    </Col>
+                </Row>
+
+                <Row/>
 
             </Container>
         );
