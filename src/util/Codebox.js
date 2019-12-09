@@ -11,9 +11,10 @@ import {
     Dropdown,
     DropdownItem,
     DropdownMenu,
-    DropdownToggle
+    DropdownToggle, InputGroup, InputGroupAddon
 } from "reactstrap";
 import nl2br from 'react-newline-to-break';
+import FontAwesome from 'react-fontawesome';
 
 class Codebox extends Component {
 
@@ -52,6 +53,12 @@ class Codebox extends Component {
             this.setState({output: data})
         );
     };
+
+    getRunButton() {
+        return <Button color="success" className="btn-xs" onClick={this.onRunClick}>
+            Run <FontAwesome name="play" className="ml-2"/>
+        </Button>;
+    }
 
     getDropDown() {
         return <Dropdown isOpen={this.state.dropdown} toggle={this.toggleDropDown.bind(this)} size="sm">
@@ -124,11 +131,16 @@ class Codebox extends Component {
     render() {
         return (
             <Container>
-                {this.getDropDown()}
-                {this.getConnectedStatus()}
-                <Button color="primary" outline className="btn-xs" onClick={this.onRunClick}>Run</Button>
+                <InputGroup>
+                    {this.getDropDown()}
+                    <InputGroupAddon addonType="append">
+                        {this.getRunButton()}
+                    </InputGroupAddon>
+                </InputGroup>
                 {this.getEditor()}
                 {this.getOutput()}
+                {this.getConnectedStatus()}
+
             </Container>
         );
     }
