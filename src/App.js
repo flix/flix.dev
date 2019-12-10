@@ -13,46 +13,57 @@ import {Container, Navbar, Nav, NavItem, NavLink, Row} from 'reactstrap';
 import {Route} from "react-router";
 import {Link} from "react-router-dom";
 
+import ReconnectingWebSocket from 'reconnecting-websocket';
+
 const SocketAddress = 'wss://evaluator.flix.dev/ws';
 
 class App extends Component {
     constructor(props) {
         super(props);
 
-        console.log("Connecting to: " + SocketAddress);
-
         this.state = {
-            connected: false,
-            websocket: null
+            connected: false
         };
 
-        try {
-            this.state.websocket = new window.WebSocket(SocketAddress);
+        console.log("Connecting to: " + SocketAddress);
 
-            this.state.websocket.onopen = event => {
-                console.log("Connected to: " + SocketAddress);
-                this.setState({connected: true})
-            }
-        } catch (ex) {
-            console.log("Unable to connect: " + ex)
-        }
+        let options = {
+            connectionTimeout: 2500
+        };
+
+        this.websocket = new ReconnectingWebSocket(SocketAddress, [], options);
+
+        this.websocket.addEventListener("open", event => {
+            console.log("Connected to: " + SocketAddress);
+            this.setState({connected: true});
+        });
+        this.websocket.addEventListener("close", event => {
+            console.log("Disconnected from: " + SocketAddress);
+            console.log(event);
+            this.setState({connected: false});
+        });
+        this.websocket.addEventListener("error", event => {
+            console.log("Disconnected from: " + SocketAddress);
+            console.log(event);
+            this.setState({connected: false});
+        });
     }
 
-    runProgram = (src, f) => {
+    runProgram = (src, callback) => {
         if (!this.state.connected) {
             console.log("Not connected yet");
             return;
         }
 
-        this.state.websocket.onmessage = event => {
+        this.websocket.onmessage = event => {
             console.log("Received reply from: " + SocketAddress);
             const data = JSON.parse(event.data);
 
             console.log(data);
-            f(data);
+            callback(data);
         };
 
-        this.state.websocket.send(src);
+        this.websocket.send(src);
     };
 
     getHome() {
