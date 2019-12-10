@@ -75,7 +75,35 @@ def main(): Int = area(Rectangle(2, 4))
 `}
                 </InlineEditor>
 
+                <h2>Concurrency</h2>
 
+                <p>
+                    The concurrency model of Flix is inspired by Go. In Flix, a concurrency unit of execution is a
+                    process that communicates via message passing. While not yet the case, it is our goal for processes
+                    to be light-weight, like they are in Go.
+                </p>
+
+                <p>
+                    The following program spawns a new process to perform a (trivial) computation and then sends the
+                    result to the main process using a channel.
+                </p>
+
+                <InlineEditor>
+                    {`/// Computes the sum of \`x\` and \`y\` and sends the result on the channel \`c\`.
+def sum(x: Int, y: Int, c: Channel[Int]): Unit = 
+    c <- (x + y); ()
+
+/// Computes the sum of 21 and 42 using a fresh process.
+def main(): Int = 
+    let c = chan Int 1;     // construct a new empty channel for the result.
+    spawn sum(21, 42, c);   // spawn sum to run in a separate process.
+    <- c                    // wait for the result to arrive on the channel.
+`}
+                </InlineEditor>
+
+                <p>
+
+                </p>
 
             </Container>);
     }
