@@ -102,8 +102,33 @@ def main(): Int =
                 </InlineEditor>
 
                 <p>
-
+                    We can use the powerful <code>select</code> expression to choose the first element that becomes
+                    available from a collection of channels. The select expression can be used to implement many useful
+                    features, such as load balancing, producer-consumer patterns, and timeouts.
                 </p>
+
+                <InlineEditor>
+                    {`/// Sends the string \`s\` on the channel \`c\` up to \`n\` times.
+def animal(s: Str, c: Channel[Str], n: Int): Unit = match n {
+    case 0 => ()
+    case n => c <- s; animal(s, c, n - 1)
+}
+
+/// Returns "mooo", "meow", or "hiss".
+def main(): Str =
+    let c1 = chan Str 1;         /// constructs a new empty channel with a buffer of one.
+    let c2 = chan Str 1;         /// constructs a new empty channel with a buffer of one.
+    let c3 = chan Str 1;         /// constructs a new empty channel with a buffer of one.
+    spawn animal("mooo", c1, 0); /// spawns a process that sends "mooo" on c1.
+    spawn animal("meow", c2, 3); /// spawns a process that sends "meow" on c2.
+    spawn animal("hiss", c3, 7); /// spawns a process that sends "hiss" on c3.
+    select {                     /// selects an element from c1, c2 or c3.
+        case mooo <- c1 => mooo  /// c1 became ready first.
+        case meow <- c2 => meow  /// c2 became ready first.
+        case hiss <- c3 => hiss  /// c3 became ready first.
+    }
+`}
+                </InlineEditor>
 
             </Container>);
     }
