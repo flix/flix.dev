@@ -78,9 +78,8 @@ def main(): Int = area(Rectangle(2, 4))
                 <h2>Concurrency</h2>
 
                 <p>
-                    The concurrency model of Flix is inspired by Go. In Flix, a concurrency unit of execution is a
-                    process that communicates via message passing. While not yet the case, it is our goal for processes
-                    to be light-weight, like they are in Go.
+                    The concurrency model of Flix is inspired by Go. In Flix, processes communicate
+                    via immutable message-passing over channels.
                 </p>
 
                 <p>
@@ -102,7 +101,7 @@ def main(): Int =
                 </InlineEditor>
 
                 <p>
-                    We can use the powerful <code>select</code> expression to choose the first element that becomes
+                    The powerful <code>select</code> expression can be used to choose the first element that becomes
                     available from a collection of channels. The select expression can be used to implement many useful
                     features, such as load balancing, producer-consumer patterns, and timeouts.
                 </p>
@@ -134,8 +133,11 @@ def main(): Str =
 
                 <p>
                     A unique feature of Flix is its support for logic programming with first-class Datalog constraints.
-                    Logic programming, in the form of Datalog, is exceptionally well-suited for a specific class of
-                    computations, in particular recursive computations on graphs.
+                    Datalog is a simple, yet surprisingly powerful, declarative logic programming language particularly
+                    well-suited for recursive queries on graphs. In Flix, Datalog constraints can be
+                    embedded <i>inside</i> Flix programs as first-class values that can be stored in local variables,
+                    passed and returned from functions, and composed with other Datalog program values. In a way, Flix
+                    is a strongly-typed meta-programming language for Datalog.
                 </p>
 
                 <InlineEditor>
@@ -165,6 +167,50 @@ def main(): Bool =
     drivable(g, "Aarhus", "Berlin", 110)
 `}
                 </InlineEditor>
+
+                <p>
+                    The solution to a Datalog program, its minimal model, is itself a Datalog program (i.e. a set of
+                    facts). Consequently, with first-class constraints, it becomes possible to construct pipelines of
+                    Datalog programs.
+                </p>
+
+                <p>
+                    First-class Datalog constraints can also be polymorphic, as this example demonstrates:
+                </p>
+
+                <InlineEditor>
+                    {`/// Declare two polymorphic predicate symbols. Here an edge and a path are labelled with some value of type \`l\`.
+rel LabelEdge[l](x: Str, l: l, y: Str)
+rel LabelPath[l](x: Str, l: l, y: Str)
+
+/// Returns a set of edge facts labelled with numbers.
+def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = #{
+    LabelEdge("a", 1, "b").
+    LabelEdge("b", 1, "c").
+    LabelEdge("c", 2, "d").
+}
+
+/// Returns a set of edge facts labelled with colors (strings).
+def getEdgesWithColor[r](): #{ LabelEdge[Str] | r } = #{
+    LabelEdge("a", "red", "b").
+    LabelEdge("b", "red", "c").
+    LabelEdge("c", "blu", "d").
+}
+
+/// Returns a set of polymorphic constraints to compute the transitive closure of edges with the *same* label.
+def getRules[l](): #{ LabelEdge[l], LabelPath[l] } = #{
+    LabelPath(x, l, y) :- LabelEdge(x, l, y).
+    LabelPath(x, l, z) :- LabelPath(x, l, y), LabelPath(y, l, z).
+}
+
+/// Computes paths for two graphs with different labels. Note the use of polymorphism.
+def main(): Unit =
+    let r1 = solve getEdgesWithColor() <+> getRules();
+    let r2 = solve getEdgesWithNumbers() <+> getRules();
+    ()
+`}
+                </InlineEditor>
+
 
             </Container>);
     }
