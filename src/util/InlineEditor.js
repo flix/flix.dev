@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import nl2br from 'react-newline-to-break';
 import AceEditor from 'react-ace'
 import 'brace/mode/scala'
-import {Button, Card, CardText} from "reactstrap";
 
 import FlixMode from './FlixMode'
 import 'brace/theme/chrome';
@@ -29,10 +27,11 @@ class InlineEditor extends Component {
             <div className="editor-frame">
                 <div className="inline-editor-code">
                     <AceEditor
-                        style={{"background": "inherit", "width": "90%"}}
+                        style={{"background": "inherit", "width": "85%"}}
                         mode='text'
                         theme='chrome'
                         ref="aceEditor"
+                        readOnly={true}
                         showGutter={false}
                         showPrintMargin={false}
                         highlightActiveLine={false}

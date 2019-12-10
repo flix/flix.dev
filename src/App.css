@@ -89,3 +89,7 @@ p:last-child {
 .card-title {
     font-size: 1.2rem;
 }
+
+.ace_hidden-cursors {
+    opacity: 0
+}
