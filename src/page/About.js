@@ -52,7 +52,7 @@ class About extends Component {
                 <h2>Basic Functional Programming</h2>
 
                 <p>
-                    We can define our own data types and use pattern matching to take them apart:
+                    Flix allows us to define our own data types and use pattern matching to take them apart:
                 </p>
 
                 <InlineEditor>
