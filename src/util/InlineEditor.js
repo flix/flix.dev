@@ -24,7 +24,7 @@ class InlineEditor extends Component {
 
     render() {
         return (
-            <div className="editor-frame">
+            <div className="inline-editor-frame">
                 <div className="inline-editor-code">
                     <AceEditor
                         style={{"background": "inherit", "width": "85%"}}
