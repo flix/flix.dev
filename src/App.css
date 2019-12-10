@@ -56,6 +56,17 @@ p:last-child {
     font-family: monospace;
 }
 
+.inline-editor-frame {
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+.inline-editor-code {
+    margin-top: 1.3em;
+    padding: 1em 1.5em;
+    background-color: #f7f7f7;
+}
+
 .nav-item {
     cursor: pointer;
 }

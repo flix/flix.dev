@@ -19,7 +19,7 @@ class Home extends Component {
                     <Col xs="6">
                         <h1>The Flix Programming Language</h1>
 
-                        <h2 className="motto">Next-generation reliable, safe, and beautiful functional programming
+                        <h2 className="motto">Next-generation reliable, safe, concise, and functional-first programming
                             language.</h2>
 
                         <p>
