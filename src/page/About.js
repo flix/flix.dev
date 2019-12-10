@@ -130,6 +130,42 @@ def main(): Str =
 `}
                 </InlineEditor>
 
+                <h2>First-class Datalog Constraints</h2>
+
+                <p>
+                    A unique feature of Flix is its support for logic programming with first-class Datalog constraints.
+                    Logic programming, in the form of Datalog, is exceptionally well-suited for a specific class of
+                    computations, in particular recursive computations on graphs.
+                </p>
+
+                <InlineEditor>
+                    {`// Declarations of predicate symbols.
+rel Road(src: Str, speed: Int, dst: Str)
+rel Connected(src: Str, dst: Str)
+
+/// Determines if it is possible to drive from  \`src\` to  \`dst\` going at least  \`minSpeed\`.
+def drivable(g: #{Road}, src: Str, dst: Str, minSpeed: Int): Bool =
+    // a first-class Datalog program that computes connectivity subject to speed limits.
+    let p = #{
+        Connected(x, y) :- Road(x, maxSpeed, y), if maxSpeed >= minSpeed.
+        Connected(x, z) :- Connected(x, y), Road(y, maxSpeed, z), if maxSpeed >= minSpeed.
+    };
+    // solve the Datalog program and determine if  \`src\` is connected to  \`dst\`.
+    (solve g <+> p) |= Connected(src, dst).
+
+/// Determines if it possible to drive from Aarhus to Berling going at least 110 km/h.
+def main(): Bool = 
+    // the road network modelled as a set of Datalog facts.
+    let g = #{
+        Road("Aarhus", 110, "Vejle").
+        Road("Vejle", 130, "Fredericia").
+        Road("Fredericia", 130, "Hamburg").
+        Road("Hamburg", 130, "Berlin").
+    };
+    drivable(g, "Aarhus", "Berlin", 110)
+`}
+                </InlineEditor>
+
             </Container>);
     }
 }
