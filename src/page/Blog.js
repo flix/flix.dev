@@ -24,12 +24,12 @@ class Blog extends Component {
                                 <p>
                                     We maintain a blog about the development of the Flix programming language.
                                     The blog is slow-moving since most of our writing bandwidth is directed towards
-                                    writing good documentation and research papers.
+                                    writing documentation and research papers.
                                 </p>
 
                                 <p>
-                                    The blog has a personal flair and its intended audience is programming language
-                                    enthusiasts.
+                                    The blog has a more personal style and its intended audience is primarily
+                                    programming language enthusiasts.
                                 </p>
 
                             </Col>

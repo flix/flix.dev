@@ -22,7 +22,10 @@ class DesignFlaws extends Component {
                         </p>
 
                         <p>
-
+                            Inspired by the blog post <a
+                            href="https://futhark-lang.org/blog/2019-12-18-design-flaws-in-futhark.html">Design Flaws in
+                            Futhark</a>, I decided to take stock and reflect on some of the design flaws we made
+                            during the development of the Flix programming language.
                         </p>
 
                     </Col>
