@@ -15,6 +15,7 @@ import {Link} from "react-router-dom";
 
 import ReconnectingWebSocket from 'reconnecting-websocket';
 import About from "./page/About";
+import Blog from "./page/Blog";
 
 const SocketAddress = 'wss://evaluator.flix.dev/ws';
 
@@ -106,6 +107,10 @@ class App extends Component {
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/blog/">Blog</NavLink>
+                        </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
                             <NavLink tag={Link} to="/contribute/">Contribute</NavLink>
                         </NavItem>
                     </Nav>
@@ -118,6 +123,7 @@ class App extends Component {
                 <Route path="/principles/" exact component={Principles}/>
                 <Route path="/research/" exact component={Research}/>
                 <Route path="/faq/" exact component={Faq}/>
+                <Route path="/blog/" exact component={Blog}/>
                 <Route path="/contribute/" exact component={Contribute}/>
 
                 <Route path="/misc/checklist/" exact component={Checklist}/>
