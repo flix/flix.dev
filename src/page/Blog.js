@@ -3,6 +3,7 @@ import {Col, Container, Row} from "reactstrap";
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
+import DesignFlaws from "./blog/DesignFlaws";
 
 class Blog extends Component {
 
@@ -19,12 +20,18 @@ class Blog extends Component {
                         <Row className="mb-3">
                             <Col>
                                 <h1>Blog</h1>
-                                <p> We maintain a blog related to the Flix programming language. </p>
 
                                 <p>
-                                    The blog has a more personal flair and is mostly intended
-                                    for programming language enthusiasts.
+                                    We maintain a blog about the development of the Flix programming language.
+                                    The blog is slow-moving since most of our writing bandwidth is directed towards
+                                    writing good documentation and research papers.
                                 </p>
+
+                                <p>
+                                    The blog has a personal flair and its intended audience is programming language
+                                    enthusiasts.
+                                </p>
+
                             </Col>
                         </Row>
 
@@ -42,7 +49,7 @@ class Blog extends Component {
                     </Route>
 
                     <Route path="/blog/design-flaws-in-flix/">
-                        blog1
+                        <DesignFlaws/>
                     </Route>
 
                 </Switch>
