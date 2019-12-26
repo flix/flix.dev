@@ -117,16 +117,16 @@ class App extends Component {
                 </Navbar>
 
                 <Route path="/" exact render={() => this.getHome()}/>
-                <Route path="/about/" exact component={About}/>
-                <Route path="/getting-started/" exact component={GettingStarted}/>
-                <Route path="/documentation/" exact component={Documentation}/>
-                <Route path="/principles/" exact component={Principles}/>
-                <Route path="/research/" exact component={Research}/>
-                <Route path="/faq/" exact component={Faq}/>
-                <Route path="/blog/" exact component={Blog}/>
-                <Route path="/contribute/" exact component={Contribute}/>
+                <Route path="/about/" component={About}/>
+                <Route path="/getting-started/" component={GettingStarted}/>
+                <Route path="/documentation/" component={Documentation}/>
+                <Route path="/principles/" component={Principles}/>
+                <Route path="/research/" component={Research}/>
+                <Route path="/faq/" component={Faq}/>
+                <Route path="/blog/" component={Blog}/>
+                <Route path="/contribute/" component={Contribute}/>
 
-                <Route path="/misc/checklist/" exact component={Checklist}/>
+                <Route path="/misc/checklist/" component={Checklist}/>
 
                 <Row/>
 

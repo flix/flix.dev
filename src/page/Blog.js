@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Col, Container, Row} from "reactstrap";
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
+import {Route, Switch} from "react-router";
 
 class Blog extends Component {
 
@@ -13,33 +14,38 @@ class Blog extends Component {
     render() {
         return (
             <Container>
-                <Row className="mb-3">
-                    <Col>
-                        <h1>Blog</h1>
+                <Switch>
+                    <Route exact path="/blog/">
+                        <Row className="mb-3">
+                            <Col>
+                                <h1>Blog</h1>
+                                <p> We maintain a blog related to the Flix programming language. </p>
 
-                        <p>
-                            We maintain slow paced blog of developments related to the Flix programming language.
-                        </p>
+                                <p>
+                                    The blog has a more personal flair and is mostly intended
+                                    for programming language enthusiasts.
+                                </p>
+                            </Col>
+                        </Row>
 
-                        <p>
-                            The blog has a more personal flair than the rest of the site.
-                        </p>
+                        <Row className="mb-3">
+                            <Col>
+                                <ul>
+                                    <li>
+                                        <Link to="/blog/design-flaws-in-flix/">
+                                            Design Flaws in the Flix Programming Language
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </Col>
+                        </Row>
+                    </Route>
 
-                    </Col>
-                </Row>
+                    <Route path="/blog/design-flaws-in-flix/">
+                        blog1
+                    </Route>
 
-                <Row className="mb-3">
-                    <Col>
-                        <ul>
-                            <li>
-                                <Link to="/blog/">
-                                    Design Flaws in the Flix Programming Language
-                                </Link>
-                            </li>
-                        </ul>
-                    </Col>
-                </Row>
-
+                </Switch>
             </Container>
         );
     }
