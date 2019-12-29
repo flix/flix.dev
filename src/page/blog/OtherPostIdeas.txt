@@ -1,0 +1,3 @@
+- Programming with first-class Datalog constraints
+- Redundancies as Compilation Errors
+- Implementing Full Tail Call Elimination for the JVM.
