@@ -76,10 +76,7 @@ class DesignFlaws extends Component {
                             We plan to remove it in future versions of Flix.
                         </p>
 
-                        <hr/>
-
                         <h2>Design Flaws No Longer Present in Flix</h2>
-
 
                         <h5>Infix Type Application</h5>
 
@@ -107,7 +104,36 @@ class DesignFlaws extends Component {
                             in every place does not seem worth it.
                         </p>
 
-                        <hr/>
+                        <h5>Unit Tests that Manually Construct Abstract Syntax Trees</h5>
+
+                        <p>
+                            The Flix compiler comes with more than 6,500 manually written unit tests. Each unit test is
+                            a Flix function that performs some computation typically with an expected result. The unit
+                            tests are expressed in Flix itself. For example:
+                        </p>
+
+                        <InlineEditor>
+                            {`@test
+def testArrayStore01(): Unit = let x = [1]; x[0] = 42
+`}
+                        </InlineEditor>
+
+                        <p>
+                            In earlier versions of Flix such unit tests were expressed by manually constructing "small"
+                            abstract syntax tree fragments. For example, the above test would be expressed as something
+                            like:
+                        </p>
+
+                        <InlineEditor>
+                            {`Let(Var("x", ...), ArrayNew(...), ArrayStore(Var("x"), Int32(0), Int32(42)))`}
+                        </InlineEditor>
+
+                        <p>
+                            The problem with such tests are at least two-fold: (i) the examples turn out to be anything
+                            but small and (ii) maintenance becomes an absolute nightmare. In practice, we found that the
+                            surface syntax of Flix stabilized fairly quickly, but the internal abstract syntax tree
+                            underwent significantly more changes (and is still undergoing changes).
+                        </p>
 
                         <h2>Potential Design Flaws</h2>
 
