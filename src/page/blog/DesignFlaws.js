@@ -12,8 +12,8 @@ class DesignFlaws extends Component {
 
     render() {
         return (
-            <Container>
-                <Row>
+            <Container style={{"text-align": "justify"}}>
+                <Row className="mb-3">
                     <Col>
 
                         <h1>Design Flaws in Flix</h1>
@@ -47,7 +47,7 @@ class DesignFlaws extends Component {
                             We begin with what I consider to be design flaws that are still present in Flix.
                         </p>
 
-                        <h3>The Switch Expression</h3>
+                        <h5>The Switch Expression</h5>
 
                         <p>
                             Flix supports the <code>switch</code> expression:
@@ -81,7 +81,7 @@ class DesignFlaws extends Component {
                         <h2>Design Flaws No Longer Present in Flix</h2>
 
 
-                        <h3>Infix Type Application</h3>
+                        <h5>Infix Type Application</h5>
 
                         <p>
                             In Flix, a function <code>f</code> can be called with the
@@ -115,7 +115,7 @@ class DesignFlaws extends Component {
                             I wish to close with a feature that I am not yet sure whether is a design flaw.
                         </p>
 
-                        <h3> Built-in Syntax for Lists, Sets, and Maps </h3>
+                        <h5> Built-in Syntax for Lists, Sets, and Maps </h5>
 
                         <p>
                             Flix has a principle that states that the standard library should not be "blessed".
@@ -130,8 +130,8 @@ class DesignFlaws extends Component {
                         <InlineEditor>
                             {`1 :: 2 :: Nil
 Set#{1, 2, 3}
-Map#{1 -> 2, 3 -> 4}`
-                            }
+Map#{1 -> 2, 3 -> 4}
+`}
                         </InlineEditor>
 
                         <p>
@@ -142,6 +142,37 @@ Map#{1 -> 2, 3 -> 4}`
                             library. In particular, it is <i>not</i> possible to define your
                             own <code>Foo#...</code> syntax for
                             anything.
+                        </p>
+
+                        <h2>Bad, Bad Ideas that Fortunately Never Saw the Light of Day</h2>
+
+                        <h5>The Itself Keyword</h5>
+
+                        <p>
+                            The idea was to introduce a special keyword that within a pattern match would refer to
+                            the match value. For example:
+                        </p>
+
+                        <InlineEditor>
+                            {`def foo(e: Exp): Exp = match e {
+                                // ... many lines ...
+                                case IfThenElse(e1, e2, e3) => itself // refer to the value of e.
+                    }
+`}
+                        </InlineEditor>
+
+                        <p>
+                            Here the keyword <code>itself</code> refers to the value of the match expression, i.e. the
+                            value of <code>e</code>. The idea was that in very large and complicated pattern matches,
+                            with many local variables, the <code>itself</code> keyword could always be used to refer to
+                            the match value. The thought was that this would make it easier to avoid mistakes such as
+                            returning <code>e0</code> instead of <code>e</code> or the like.
+                        </p>
+
+                        <p>
+                            The problem with this idea is at least three-fold: (i) it seems like an oddly-specific
+                            feature for a niche problem, (ii) it is not worth it on the complexity and "strangeness"
+                            budget, and finally (iii) it is brittle in the presence of nested pattern matches.
                         </p>
 
                     </Col>
