@@ -8,7 +8,9 @@ import DesignFlaws from "./blog/DesignFlaws";
 class Blog extends Component {
 
     componentDidMount() {
-        document.title = "Flix | Blog";
+        if (!document.title) {
+            document.title = "Flix | Blog";
+        }
         ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 

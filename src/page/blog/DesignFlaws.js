@@ -6,7 +6,7 @@ import InlineEditor from "../../util/InlineEditor";
 class DesignFlaws extends Component {
 
     componentDidMount() {
-        document.title = "Flix | Design Flaws in Flix";
+        document.title = "Flix | Blog | Design Flaws in Flix";
         ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
