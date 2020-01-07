@@ -181,9 +181,9 @@ Map#{1 -> 2, 3 -> 4}
 
                         <InlineEditor>
                             {`def foo(e: Exp): Exp = match e {
-                                // ... many lines ...
-                                case IfThenElse(e1, e2, e3) => itself // refer to the value of e.
-                    }
+    // ... many lines ...
+    case IfThenElse(e1, e2, e3) => itself // refer to the value of e.
+}
 `}
                         </InlineEditor>
 
