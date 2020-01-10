@@ -76,6 +76,18 @@ class DesignFlaws extends Component {
                             We plan to remove it in future versions of Flix.
                         </p>
 
+                        <h5>String Concatenation with Plus</h5>
+
+                        <p>
+                            Flix uses <code>+</code> for string concatenation like most contemporary languages. While
+                            this is an uncontroversial design choice, it does not make much sense since strings are not
+                            commutative, e.g. <code>"abc" + "def"</code> is <i>not</i> the same as <code>"def" +
+                            "abc"</code>. A better alternative would be to use <code>++</code> as in Haskell. But, I
+                            believe an even better design choice would be to forgo string concatenation and
+                            instead rely entirely on string interpolation. String interpolation is a more powerful and
+                            elegant solution to the problem of building strings with rich structure.
+                        </p>
+
                         <h2>Design Flaws No Longer Present in Flix</h2>
 
                         <h5>Infix Type Application</h5>
