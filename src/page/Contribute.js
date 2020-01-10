@@ -18,28 +18,27 @@ class Contribute extends Component {
                         <h1>Contribute</h1>
 
                         <p>
-                            Flix is an open-source project available under the <a
+                            Flix is an open-source and available under the <a
                             href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.
                         </p>
 
                         <p>
-                            Development is mostly research-driven and takes place at <a
+                            All source code is available on <a
+                            href="https://github.com/flix/flix">GitHub</a>.
+
+                            We organize development using GitHub <a
+                            href="https://github.com/flix/flix/issues">issues</a> and <a
+                            href="https://gitter.im/flix/Lobby">Gitter</a>.
+                        </p>
+
+                        <p>
+                            Development mostly takes place at <a
                             href="http://cs.au.dk/research/programming-languages/">Aarhus
                             University</a> and the <a href="http://plg.uwaterloo.ca"> University of Waterloo</a>.
                         </p>
 
                         <p>
-                            All source code is available online and hosted at <a
-                            href="https://github.com/flix/flix">GitHub</a>.
-
-                            We organize development using GitHub <a
-                            href="https://github.com/flix/flix/issues">issues</a> and
-                            on <a href="https://gitter.im/flix/Lobby">Gitter</a>.
-                        </p>
-
-                        <p>
-                            If you are interested in learning more about Flix, please feel free to reach out. We don't
-                            bite.
+                            If you are interested in learning more about Flix, please feel free to reach out.
                         </p>
                     </Col>
                 </Row>
@@ -50,8 +49,8 @@ class Contribute extends Component {
 
                         <p>
                             We encourage students at Aarhus University and the University of Waterloo that are
-                            interested in compilers, programming language design, and implementation to reach out to us
-                            to learn about potential projects.
+                            interested in compilers and programming languages to reach out to us to learn about
+                            potential projects.
                         </p>
 
                         <CardColumns>

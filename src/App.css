@@ -34,6 +34,38 @@ p:last-child {
     min-height: 95vh;
 }
 
+.motto {
+    font-size: 1.35rem;
+    color: #17a2b8;
+}
+
+.dropdown-samples {
+    width: 420px;
+    text-align: left;
+}
+
+.editor-output h5 {
+    font-size: 1.1rem;
+    color: gray;
+    text-align: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #b7b7b7;
+}
+
+.editor-output pre {
+    font-family: monospace;
+}
+
+.inline-editor-frame {
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+.inline-editor-code {
+    padding: 1em 1.5em;
+    background-color: #f7f7f7;
+}
+
 .nav-item {
     cursor: pointer;
 }
@@ -55,4 +87,8 @@ p:last-child {
 
 .card-title {
     font-size: 1.2rem;
+}
+
+.ace_hidden-cursors {
+    opacity: 0
 }

@@ -201,6 +201,14 @@ class Principles extends Component {
                         every use refers to one of these cases, and that every case is covered.
                     </Principle>
 
+                    <Principle name="No unnecessary declarations">
+                        We believe that a programming language should reduce the volume of declarations
+                        it <i>requires</i>. Declarations may be useful and are sometimes necessary, but Flix aims to
+                        minimize its internal dependence on them. To give an example, Flix supports <i>extensible
+                        records</i> which permits the usage of flexible and type-safe records <i>without</i> a strict
+                        requirement that record types must be declared upfront.
+                    </Principle>
+
                     <Principle name="No global state">
                         In Flix there is no global shared state.
                         This avoids a plethora of issues, including difficulties with initialization order and race

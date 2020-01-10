@@ -209,6 +209,51 @@ def main3(): Int =
 `
         },
         {
+            name: "Opaque Types",
+            code: `/// An opaque type declares a new type that is different from any other
+/// existing type. Opaque types can be used to differentiate types
+/// that would otherwise be the same. For example:
+
+/// An opaque type for US dollars.
+opaque type USD = Int
+
+/// An opaque type for Canadian dollars.
+opaque type CAD = Int
+
+///
+/// A function that adds two US dollar amounts.
+/// Cannot be used to add USD and Canadian dollars.
+///
+def sum(x: USD, y: USD): USD =
+  let USD(u) = x;
+  let USD(v) = y;
+  USD(u + v)
+
+/// Adds two dollar amounts.
+def main(): USD = sum(USD(1), USD(5))
+`
+        },
+        {
+            name: "Type Aliases",
+            code: `/// A type alias introduces a short-hand for an existing type.
+
+/// A type alias for the type Map[Int, Str].
+type alias M = Map[Int, Str]
+
+/// A function that returns a map of type M.
+def f(): M = Map#{ 1 -> "Hello", 2 -> "World"}
+
+// A polymorphic type alias for the type Map[a, Result[Int, Str]].
+type alias N[a] = Map[a, Result[Int, Str]]
+
+/// A function that returns a map of type N.
+def g(): N[Int] = Map#{ 1 -> Ok(123), 2 -> Err("Hello") }
+
+/// Another function that returns a map of type N.
+def h(): N[Bool] = Map#{ true -> Ok(456) }
+`
+        },
+        {
             name: "Reading and Writing a Text File",
             code: `/// An example of how to read and write a text file.
 

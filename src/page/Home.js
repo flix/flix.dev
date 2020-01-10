@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import {Container, Row, Col, Badge, Button} from 'reactstrap';
-import Editor from "../util/Editor";
+import {Container, Row, Col, Button} from 'reactstrap';
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
-
 import NewsData from '../data/News.js'
-import SamplesData from '../data/Samples.js'
+import Codebox from "../util/Codebox";
 
 class Home extends Component {
 
@@ -21,24 +19,19 @@ class Home extends Component {
                     <Col xs="6">
                         <h1>The Flix Programming Language</h1>
 
+                        <h2 className="motto">Next-generation reliable, safe, concise, and functional-first programming
+                            language.</h2>
+
                         <p>
-                            Flix is a principled and opinionated functional programming language that takes inspiration
-                            from F#, Go, OCaml, Haskell, Rust, and Scala.
+                            Flix is a principled and flexible functional-, logic-, and imperative- programming language
+                            that takes inspiration from F#, Go, OCaml, Haskell, Rust, and Scala. Flix looks like Scala,
+                            but its type system is closer to that of OCaml and Haskell. Its concurrency model is
+                            inspired by Go-style processes and channels.
                         </p>
 
                         <p>
-                            Flix visually resembles Scala, but its type system is closer to that of OCaml and Haskell.
-                            Its concurrency model is inspired by Go-style processes and channels.
-                        </p>
-
-                        <p>
-                            Flix compiles to JVM bytecode and runs on the Java Virtual Machine.
-                            Flix supports full tail call elimination which means that tail calls (even to other
-                            functions) never overflow the stack.
-                        </p>
-
-                        <p>
-                            Flix performance is typically within 1-3x of equivalent Scala code.
+                            Flix compiles to JVM bytecode, runs on the Java Virtual Machine, and supports full tail call
+                            elimination.
                         </p>
 
                         <p>
@@ -88,6 +81,7 @@ class Home extends Component {
                             <li>extensible records</li>
                             <li>parametric polymorphism</li>
                             <li>Hindley-Milner type inference</li>
+                            <li>opaque types and type aliases</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
@@ -96,15 +90,17 @@ class Home extends Component {
                             <li>buffered &amp; unbuffered channels</li>
                             <li>first-class datalog constraints</li>
                             <li>polymorphic datalog predicates</li>
+                            <li>constraints with lattice semantics</li>
                             <li>stratified negation</li>
                             <li>unboxed primitives</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
                         <ul>
+                            <li>monadic let* expressions</li>
                             <li>expressions holes</li>
-                            <li>full tail call elimination</li>
                             <li>compilation to JVM bytecode</li>
+                            <li>full tail call elimination</li>
                             <li>core standard library</li>
                             <li>human friendly errors</li>
                             <li>interactive mode</li>
@@ -183,10 +179,6 @@ class Home extends Component {
                             specifically Datalog. Flix, as probably the only language in the world, supports first-class
                             Datalog constraints enriched with lattice semantics.
                         </p>
-
-                        <p>
-                            For more information, we refer to our research papers.
-                        </p>
                     </Col>
                 </Row>
 
@@ -207,59 +199,6 @@ class Home extends Component {
             </Container>
         );
     }
-}
-
-class Codebox extends Component {
-
-    constructor(props) {
-        super(props);
-        let samples = SamplesData();
-        let randomChoice = getRandomInt(samples.length);
-        this.state = {choice: randomChoice, samples: samples};
-    }
-
-    onChange(event) {
-        let newChoice = event.target.value;
-        this.setState({choice: newChoice});
-        ReactGA.event({
-            category: 'Codebox',
-            action: 'Selected an example',
-            label: this.state.samples[newChoice].name
-        });
-    }
-
-    getEditor() {
-        let choice = this.state.choice;
-        let sample = this.state.samples[choice];
-        // NB: The use of the key ensures that the editor is refreshed when the dropdown is changed.
-        return <Editor key={sample.name} flix={this.props.flix} code={sample.code}>{sample.code}</Editor>
-    }
-
-    isConnected() {
-        if (this.props.flix.connected) {
-            return <Badge color="info" className="float-right mt-1">Connected</Badge>
-        } else {
-            return <Badge color="secondary" className="float-right mt-1">Disconnected</Badge>
-        }
-    }
-
-    render() {
-        return (
-            <Container>
-                <select className="mb-2" value={this.state.choice} onChange={this.onChange.bind(this)}>
-                    {this.state.samples.map((sample, index) =>
-                        <option key={index} value={index}>{sample.name}</option>)
-                    }
-                </select>
-                {this.isConnected()}
-                {this.getEditor()}
-            </Container>
-        );
-    }
-}
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
 }
 
 export default Home;
