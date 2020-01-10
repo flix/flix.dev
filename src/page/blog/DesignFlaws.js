@@ -44,7 +44,7 @@ class DesignFlaws extends Component {
                         <h2>Design Flaws Present in Flix</h2>
 
                         <p>
-                            We begin with what I consider to be design flaws that are still present in Flix.
+                            The following design flaws are still present in Flix. Hopefully some day they will be fixed.
                         </p>
 
                         <h5>The Switch Expression</h5>
@@ -89,6 +89,10 @@ class DesignFlaws extends Component {
                         </p>
 
                         <h2>Design Flaws No Longer Present in Flix</h2>
+
+                        <p>
+                            The following design flaws have been fixed.
+                        </p>
 
                         <h5>Compilation of Option to Null</h5>
 
@@ -178,7 +182,7 @@ def testArrayStore01(): Unit = let x = [1]; x[0] = 42
                         <h2>Potential Design Flaws</h2>
 
                         <p>
-                            I wish to close with a feature that I am not yet sure whether is a design flaw.
+                            It is debatable whether the following feature is a design flaw or not.
                         </p>
 
                         <h5> Built-in Syntax for Lists, Sets, and Maps </h5>
@@ -211,6 +215,10 @@ Map#{1 -> 2, 3 -> 4}
                         </p>
 
                         <h2>Bad Ideas that where Never Implemented</h2>
+
+                        <p>
+                            These ideas were fortunately never implemented in Flix.
+                        </p>
 
                         <h5>The Itself Keyword</h5>
 
