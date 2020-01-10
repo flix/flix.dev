@@ -90,6 +90,34 @@ class DesignFlaws extends Component {
 
                         <h2>Design Flaws No Longer Present in Flix</h2>
 
+                        <h5>Compilation of Option to Null</h5>
+
+                        <p>
+                            Flix compiles to JVM bytecode and runs on the virtual machine. In an earlier version of Flix
+                            we had an optimization that would take the <code>Option</code> enum:
+                        </p>
+
+                        <InlineEditor>
+                            {`Option[a] {
+    case None,
+    case Some(a)
+}
+`}
+                        </InlineEditor>
+
+                        <p>
+                            and compile the <code>None</code> value to <code>null</code> and <code>Some(a)</code> to
+                            just the underlying value of <code>a</code>. The idea was to save allocation and
+                            de-allocation of <code>Some</code> values, just speeding evaluation.
+                        </p>
+
+                        <p>
+                            But this does not work out of the box, if you intend to have interoperability with Java
+                            library. The reason is that many Java libraries assign meaning to <code>null</code> which is
+                            not necessarily compatible with the intended meaning of <code>None</code>. Consequently, we
+                            had to take this optimization out.
+                        </p>
+
                         <h5>Infix Type Application</h5>
 
                         <p>
