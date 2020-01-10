@@ -105,8 +105,7 @@ class DesignFlaws extends Component {
                             {`Option[a] {
     case None,
     case Some(a)
-}
-`}
+}`}
                         </InlineEditor>
 
                         <p>
@@ -130,8 +129,7 @@ class DesignFlaws extends Component {
                             functions and types have consistent names, e.g. <code>map</code> is
                             called <code>map</code> for both <code>Option</code> and <code>List</code>, and (ii) to
                             avoid partial functions, such as <code>List.head</code> and <code>List.tail</code> which are
-                            not
-                            defined for empty lists.
+                            not defined for empty lists.
                         </p>
 
                         <p>
@@ -143,6 +141,10 @@ class DesignFlaws extends Component {
                             information cannot be used to unwrap the option anyway. Thus having such functions is not
                             really helpful.
                         </p>
+
+
+
+
 
                         <h5>Infix Type Application</h5>
 
@@ -180,8 +182,7 @@ class DesignFlaws extends Component {
 
                         <InlineEditor>
                             {`@test
-def testArrayStore01(): Unit = let x = [1]; x[0] = 42
-`}
+def testArrayStore01(): Unit = let x = [1]; x[0] = 42`}
                         </InlineEditor>
 
                         <p>
@@ -222,8 +223,7 @@ def testArrayStore01(): Unit = let x = [1]; x[0] = 42
                         <InlineEditor>
                             {`1 :: 2 :: Nil
 Set#{1, 2, 3}
-Map#{1 -> 2, 3 -> 4}
-`}
+Map#{1 -> 2, 3 -> 4}`}
                         </InlineEditor>
 
                         <p>
@@ -253,8 +253,7 @@ Map#{1 -> 2, 3 -> 4}
                             {`def foo(e: Exp): Exp = match e {
     // ... many lines ...
     case IfThenElse(e1, e2, e3) => itself // refer to the value of e.
-}
-`}
+}`}
                         </InlineEditor>
 
                         <p>
