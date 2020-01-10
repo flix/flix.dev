@@ -142,9 +142,44 @@ class DesignFlaws extends Component {
                             really helpful.
                         </p>
 
+                        <h2>Function Call Syntax</h2>
+
+                        <p>
+                            Inspired by Scala, early versions of Flix did not always parenthesis to mark a
+                            function call. For example, the function:
+                        </p>
+
+                        <InlineEditor>
+                            {`def f: Int = 21`}
+                        </InlineEditor>
+
+                        <p>
+                            could be called by writing:
+                        </p>
+
+                        <InlineEditor>
+                            {`def g: Int = f + 42 // returns 63`}
+                        </InlineEditor>
+
+                        <p>
+                            The problem with this design is at least two-fold: it hides when a function is applied,
+                            which is really bad in a language with side-effects, and (ii) how do you express if you want
+                            a closure of <code>f</code>?
+                        </p>
+
+                        <p>
+                            Today, in Flix, the code above is written as:
+                        </p>
 
 
+                        <InlineEditor>
+                            {`def f(): Int = 21
+def g: Int = f() + 42 // returns 63`}
+                        </InlineEditor>
 
+                        <p>
+                            which makes it clear when there is a function call.
+                        </p>
 
                         <h5>Infix Type Application</h5>
 
