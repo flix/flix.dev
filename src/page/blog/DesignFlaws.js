@@ -122,6 +122,28 @@ class DesignFlaws extends Component {
                             had to take this optimization out.
                         </p>
 
+                        <h5>Useless Library Functions</h5>
+
+                        <p>
+                            Flix aims to have a robust standard library that avoids some of the pitfalls of other
+                            standard libraries. We have been particularly focused on two aspects: (i) ensuring that
+                            functions and types have consistent names, e.g. <code>map</code> is
+                            called <code>map</code> for both <code>Option</code> and <code>List</code>, and (ii) to
+                            avoid partial functions, such as <code>List.head</code> and <code>List.tail</code> which are
+                            not
+                            defined for empty lists.
+                        </p>
+
+                        <p>
+                            Yet, despite these principles, we still managed to implement some problematic functions in
+                            the library. For example, we used to have the
+                            functions <code>Option.isNone</code> and <code>Options.isSome</code>. The problem with these
+                            functions is that they are not really useful and they lead to brittle code. For
+                            example, <i>if</i> <code>Options.isSome</code> returns <code>true</code> then that
+                            information cannot be used to unwrap the option anyway. Thus having such functions is not
+                            really helpful.
+                        </p>
+
                         <h5>Infix Type Application</h5>
 
                         <p>
