@@ -14,7 +14,7 @@ class DesignFlaws extends Component {
         return (
             <Container style={{"text-align": "justify"}}>
                 <Row className="mb-3">
-                    <Col>
+                    <Col xs={8}>
 
                         <h1>Design Flaws in Flix</h1>
 
@@ -182,7 +182,7 @@ Map#{1 -> 2, 3 -> 4}
                             anything.
                         </p>
 
-                        <h2>Bad, Bad Ideas that Fortunately Never Saw the Light of Day</h2>
+                        <h2>Bad Ideas that where Never Implemented</h2>
 
                         <h5>The Itself Keyword</h5>
 
