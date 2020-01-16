@@ -29,7 +29,7 @@ class DesignFlaws extends Component {
                             we have made during the development of the Flix programming language. I went through old
                             Github issues and pull requests to discover the challenging issues that have been or still
                             are struggling with. I will classify the design flaws into four categories:
-                            (i) design flaws that still plague the Flix languages, (ii) design flaws that have been
+                            (i) design flaws that still plague the Flix language, (ii) design flaws that have been
                             fixed, (iii) flawed designs that were thankfully never implemented, and (iv) designs
                             where the jury is still out.
                         </p>
@@ -70,7 +70,7 @@ class DesignFlaws extends Component {
                         </p>
 
                         <p>
-                            But in hind-sight, the <code>switch</code> expression is nothing more than a
+                            In hind-sight, the <code>switch</code> expression is nothing more than a
                             glorified <code>if-then-else-if</code> construct that does not carry its own weight:
                             it is an expenditure on the complexity and "strangeness" budget that offers too little gain.
                             We plan to remove it in future versions of Flix.
@@ -82,7 +82,7 @@ class DesignFlaws extends Component {
                             Flix uses <code>+</code> for string concatenation like most contemporary languages. While
                             this is an uncontroversial design choice, it does not make much sense since strings are not
                             commutative, e.g. <code>"abc" + "def"</code> is <i>not</i> the same as <code>"def" +
-                            "abc"</code>. A better alternative would be to use <code>++</code> as in Haskell. But, I
+                            "abc"</code>. A better alternative would be to use <code>++</code> as in Haskell. However, I
                             believe an even better design choice would be to forgo string concatenation and
                             instead rely entirely on string interpolation. String interpolation is a more powerful and
                             elegant solution to the problem of building strings with rich structure.
@@ -145,7 +145,7 @@ class DesignFlaws extends Component {
                         <h2>Function Call Syntax</h2>
 
                         <p>
-                            Inspired by Scala, early versions of Flix did not always parenthesis to mark a
+                            Inspired by Scala, early versions of Flix did not always use parenthesis to mark a
                             function call. For example, the function:
                         </p>
 
@@ -162,9 +162,9 @@ class DesignFlaws extends Component {
                         </InlineEditor>
 
                         <p>
-                            The problem with this design is at least two-fold: it hides when a function is applied,
-                            which is really bad in a language with side-effects, and (ii) how do you express if you want
-                            a closure of <code>f</code>?
+                            The problem with this design is at least two-fold: (i) it hides when a function is applied,
+                            which is really bad in a language with side-effects, and (ii) how does one express the
+                            closure of <code>f</code>?
                         </p>
 
                         <p>
@@ -201,7 +201,7 @@ def g: Int = f() + 42 // returns 63`}
                             functions hence it makes sense that their syntax should mirror function applications. For
                             example, we can write the type applications <code>Option[Int]</code> and <code>Result[Int,
                             Int]</code> mirroring the prefix style of regular function applications. Similarly, for a
-                            while, Flix support infix and postfix <i>type applications</i>. That is, the former could
+                            while, Flix supported infix and postfix <i>type applications</i>. That is, the former could
                             also be expressed as: <code>Int.Option[]</code> and <code>Int.Result[Int]</code>, or even
                             as <code>Int `Result` Int</code>. Thankfully, those days are gone. Striving for uniformity
                             in every place does not seem worth it.
