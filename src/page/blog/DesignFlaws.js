@@ -241,7 +241,7 @@ def testArrayStore01(): Unit = let x = [1]; x[0] = 42`}
                             consuming.
                         </p>
 
-                        <h2>Bad Ideas that where Never Implemented</h2>
+                        <h2>Bad Ideas that were Never Implemented</h2>
 
                         <p>
                             These ideas were fortunately never implemented in Flix.
