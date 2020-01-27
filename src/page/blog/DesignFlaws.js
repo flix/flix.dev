@@ -118,8 +118,10 @@ class DesignFlaws extends Component {
 
                         <p>
                             But, this screws up interoperability with Java libraries. In Java <code>null</code> might
-                            be given a special meaning that is incompatible with the meaning <code>None</code>.
-                            Consequently, Flix no longer has this optimization.
+                            be given a special meaning that is incompatible with the meaning <code>None</code>. For
+                            example, certain Java collections cannot contain <code>null</code> and trying to
+                            put <code>None</code> into one of these would raise an unexpected exception. Consequently,
+                            Flix no longer has this optimization.
                         </p>
 
                         <h5>Useless Library Functions</h5>
@@ -302,8 +304,8 @@ Map#{1 -> 2, 3 -> 4}`}
                         <p>
                             which is built-in to the language. While technically these constructs are merely
                             syntactic sugar for <code>Cons</code>, and calls
-                            to <code>Set.empty</code>, <code>Set.insert</code>, <code>Map.empty</code> and <code>Map.insert</code>
-                            there is no getting around the fact that this is a special kind of blessing of the standard
+                            to <code>Set.empty</code>, <code>Set.insert</code>, <code>Map.empty</code> and <code>Map.insert</code> there
+                            is no getting around the fact that this is a special kind of blessing of the standard
                             library. In particular, it is <i>not</i> possible to define your
                             own <code>Foo#...</code> syntax for anything.
                         </p>
