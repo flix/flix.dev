@@ -16,7 +16,7 @@ class Home extends Component {
         return (
             <Container>
                 <Row className="mb-3">
-                    <Col xs="6">
+                    <Col md="6">
                         <h1>The Flix Programming Language</h1>
 
                         <h2 className="motto">Next-generation reliable, safe, concise, and functional-first programming

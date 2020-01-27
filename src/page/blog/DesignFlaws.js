@@ -14,7 +14,7 @@ class DesignFlaws extends Component {
         return (
             <Container style={{"text-align": "justify"}}>
                 <Row className="mb-3">
-                    <Col xs={8}>
+                    <Col sm={12} md={8}>
 
                         <h1>Design Flaws in Flix: Past and Present</h1>
 
