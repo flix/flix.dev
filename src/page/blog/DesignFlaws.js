@@ -16,7 +16,7 @@ class DesignFlaws extends Component {
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
 
-                        <h1>Design Flaws in Flix: Past and Present</h1>
+                        <h1>Design Flaws in Flix</h1>
 
                         <p>
                             Posted January 2020 by <i>Magnus Madsen</i>.

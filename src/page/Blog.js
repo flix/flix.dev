@@ -4,6 +4,7 @@ import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import DesignFlaws from "./blog/DesignFlaws";
+import Redundancies from "./blog/Redundancies";
 
 class Blog extends Component {
 
@@ -41,6 +42,11 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
+                                        <Link to="/blog/redundancies-as-compile-time-errors/">
+                                            Redundancies as Compile-Time Errors
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/blog/design-flaws-in-flix/">
                                             Design Flaws in the Flix Programming Language
                                         </Link>
@@ -52,6 +58,10 @@ class Blog extends Component {
 
                     <Route path="/blog/design-flaws-in-flix/">
                         <DesignFlaws/>
+                    </Route>
+
+                    <Route path="/blog/redundancies-as-compile-time-errors/">
+                        <Redundancies/>
                     </Route>
 
                 </Switch>
