@@ -99,6 +99,7 @@ class Home extends Component {
                         <ul>
                             <li>monadic let* expressions</li>
                             <li>expressions holes</li>
+                            <li>Interoperability with Java</li>
                             <li>compilation to JVM bytecode</li>
                             <li>full tail call elimination</li>
                             <li>core standard library</li>
