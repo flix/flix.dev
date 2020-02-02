@@ -6,7 +6,7 @@ import InlineEditor from "../../util/InlineEditor";
 class Redundancies extends Component {
 
     componentDidMount() {
-        document.title = "Flix | Blog | Redundancies as Compile-Time Errors";
+        document.title = "Flix | Redundancies as Compile-Time Errors";
         ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
