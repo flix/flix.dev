@@ -19,9 +19,7 @@ class Redundancies extends Component {
                         <h1>Redundancies as Compile-Time Errors</h1>
 
                         <p>
-                            Preamble...
-                            Talk about maintinable. WOrking on a large project. Deadcode being maintained.
-                            Bugs lurking.
+                            As software developers, we hopefully all want to write correct and maintainable code.
                         </p>
 
                         <p>
@@ -88,6 +86,15 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
   }
 `}
                         </InlineEditor>
+
+
+                        <p>
+                            Preamble...
+                            Xie and Engler paper.
+                            Talk about maintinable. WOrking on a large project. Deadcode being maintained.
+                            Bugs lurking.
+                            Spoil it here or start with
+                        </p>
 
 
                         <p>
