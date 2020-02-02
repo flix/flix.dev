@@ -82,6 +82,7 @@ class Home extends Component {
                             <li>parametric polymorphism</li>
                             <li>Hindley-Milner type inference</li>
                             <li>opaque types and type aliases</li>
+                            <li>keyword-based syntax</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
@@ -92,6 +93,7 @@ class Home extends Component {
                             <li>polymorphic datalog predicates</li>
                             <li>constraints with lattice semantics</li>
                             <li>stratified negation</li>
+                            <li>interoperability with Java</li>
                             <li>unboxed primitives</li>
                         </ul>
                     </Col>
@@ -99,10 +101,10 @@ class Home extends Component {
                         <ul>
                             <li>monadic let* expressions</li>
                             <li>expressions holes</li>
-                            <li>Interoperability with Java</li>
                             <li>compilation to JVM bytecode</li>
                             <li>full tail call elimination</li>
                             <li>core standard library</li>
+                            <li>parallel compiler architecture</li>
                             <li>human friendly errors</li>
                             <li>interactive mode</li>
                         </ul>
