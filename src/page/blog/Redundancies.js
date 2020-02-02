@@ -124,8 +124,7 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                                 <li>UnusedFormalParam</li>
                                 <li>UnusedRel/Lat</li>
                                 <li>Unused Type param</li>
-                                <li>Unused Loval var</li>
-                                <li>Useless expr - work in progress</li>
+                                <li><b>Unused Local Variables</b> &mdash; </li>
                             </ul>
 
                             In the future, we plan to extend this reporting to any new language feature that may be
