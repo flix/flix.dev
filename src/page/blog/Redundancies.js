@@ -52,8 +52,10 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                             stored in the local variable <code>e</code>, the constructor mistakenly uses
                             the <code>exp</code> local variable.
 
-                            XXX: This has been in the compiler for a long time. What could have helped? More tests cases, sure.
-                            Or: What about a compiler that warns or gives errors about unused variables? The Scala compiler is mum.
+                            XXX: This has been in the compiler for a long time. What could have helped? More tests
+                            cases, sure.
+                            Or: What about a compiler that warns or gives errors about unused variables? The Scala
+                            compiler is mum.
                         </p>
 
 
@@ -107,11 +109,14 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                         </p>
 
                         <p>
-                            For these reasons, the Flix compiler/language is very aggressive in reporting suspcious or dead code.
+                            For these reasons, the Flix compiler/language is very aggressive in reporting suspcious or
+                            dead code.
                             Specifically, the compiler checks for:
 
                             <ul>
-                                <li><b>Shadowed Local Variables</b> -- When a local variable hides another local variable.</li>
+                                <li><b>Shadowed Local Variables</b> -- When a local variable hides another local
+                                    variable.
+                                </li>
                                 <li>Hidden Vars -- those with _ in front</li>
                                 <li>Unsed Def</li>
                                 <li>Unused Enum</li>
@@ -123,8 +128,102 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                                 <li>Useless expr - work in progress</li>
                             </ul>
 
-                            In the future, we plan to extend this reporting to any new language feature that may be unused.
+                            In the future, we plan to extend this reporting to any new language feature that may be
+                            unused.
                         </p>
+
+                        <p>
+                            What does it look like when the compiler yells at you?
+                        </p>
+
+                        <p>
+                            Given:
+                        </p>
+
+
+                        <InlineEditor>
+                            {`
+def foo(x: Int, y: Int): Int = x + y
+`}
+                        </InlineEditor>
+
+                        <p>
+                            We get:
+                        </p>
+
+
+
+                        <InlineEditor>
+                            {`
+-- Redundancy Error -------------------------------------------------- foo.flix
+
+>> Unused definition 'foo'. The definition is never referenced.
+
+1 | def foo(x: Int, y: Int): Int = x + y
+        ^^^
+        unused definition.
+
+
+Possible fixes:
+
+  (1)  Use the definition.
+  (2)  Remove the definition.
+  (3)  Mark the definition as public.
+  (4)  Prefix the definition name with an underscore.
+
+
+
+Compilation failed with 1 error(s).
+`}
+                        </InlineEditor>
+
+                        <p>
+                            Notice that we include suggested fixes.
+                        </p>
+
+
+                        <p>
+                            Here is another:
+                        </p>
+
+                        <InlineEditor>
+                            {`
+enum Color {
+    case Red,
+    case Green,
+    case Blue
+}
+`}
+                        </InlineEditor>
+
+
+                        <InlineEditor>
+                            {`
+-- Redundancy Error -------------------------------------------------- foo.flix
+
+>> Unused case 'Blue' in enum 'Color'.
+
+4 |     case Blue
+             ^^^^
+             unused tag.
+
+
+Possible fixes:
+
+  (1)  Use the case.
+  (2)  Remove the case.
+  (3)  Prefix the case with an underscore.
+
+
+
+Compilation failed with 1 error(s).
+
+`}
+                        </InlineEditor>
+
+
+
+                        <h5>Opting Out or Getting Used to It</h5>
 
 
                         <p>
