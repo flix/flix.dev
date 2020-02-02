@@ -20,6 +20,8 @@ class Redundancies extends Component {
 
                         <p>
                             Preamble...
+                            Talk about maintinable. WOrking on a large project. Deadcode being maintained.
+                            Bugs lurking.
                         </p>
 
                         <p>
@@ -58,12 +60,70 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
 
 
                         <p>
-                            Now
+                            Now consider the following:
+                        </p>
+
+                        <InlineEditor>
+                            {`
+  /**
+    * Returns the result of looking up the given \`fieldName\` on the given \`className\`.
+    */
+  def lookupNativeField(className: String, fieldName: String, loc: SourceLocation): Result[Field, NameError] = try {
+    // retrieve class object.
+    val clazz = Class.forName(className)
+
+    // retrieve the matching static fields.
+    val fields = clazz.getDeclaredFields.toList.filter {
+      case field => field.getName == fieldName && Modifier.isStatic(field.getModifiers)
+    }
+
+    // match on the number of fields.
+    fields.size match {
+      case 0 => Err(NameError.UndefinedNativeField(className, fieldName, loc))
+      case 1 => Ok(fields.head)
+      case _ => throw InternalCompilerException("Ambiguous native field?")
+    }
+  } catch {
+    case ex: ClassNotFoundException => Err(NameError.UndefinedNativeClass(className, loc))
+  }
+`}
+                        </InlineEditor>
+
+
+                        <p>
+                            Do you see the problem? Well, the function is never called, and is in fact deadcode.
+                            That did not prevent it from surving in the source code for an extended period.
                         </p>
 
                         <p>
                             Flix treats unused and dead-code as compile-time errors.
                         </p>
+
+                        <p>
+                            For these reasons, the Flix compiler/language is very aggressive in reporting suspcious or dead code.
+                            Specifically, the compiler checks for:
+
+                            <ul>
+                                <li><b>Shadowed Local Variables</b> -- When a local variable hides another local variable.</li>
+                                <li>Hidden Vars -- those with _ in front</li>
+                                <li>Unsed Def</li>
+                                <li>Unused Enum</li>
+                                <li>Unused Enum Variant/Constructor</li>
+                                <li>UnusedFormalParam</li>
+                                <li>UnusedRel/Lat</li>
+                                <li>Unused Type param</li>
+                                <li>Unused Loval var</li>
+                                <li>Useless expr - work in progress</li>
+                            </ul>
+
+                            In the future, we plan to extend this reporting to any new language feature that may be unused.
+                        </p>
+
+
+                        <p>
+                            Opting out and getting used to it.
+                        </p>
+
                     </Col>
                 </Row>
             </Container>
