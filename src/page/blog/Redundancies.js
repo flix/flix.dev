@@ -99,6 +99,20 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
           resultEff <- unifyEffM(evar, eff1, eff2, loc)
         } yield (resultTyp, resultEff)
 
+
+    /**
+      * Returns the disjunction of the two effects \`eff1\` and \`eff2\`.
+      */
+    def mkOr(ef1f: Type, eff2: Type): Type = eff1 match { // TODO: Notice ef1f
+      case Type.Cst(TypeConstructor.Pure) => Pure
+      case Type.Cst(TypeConstructor.Impure) => eff2
+      case _ => eff2 match {
+        case Type.Cst(TypeConstructor.Pure) => Pure
+        case Type.Cst(TypeConstructor.Impure) => eff1
+        case _ => Type.Apply(Type.Apply(Type.Cst(TypeConstructor.Or), eff1), eff2)
+      }
+    }
+
 `}
                         </InlineEditor>
 
