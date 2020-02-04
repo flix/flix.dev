@@ -190,6 +190,24 @@ Possible fixes:
 
 
 Compilation failed with 1 error(s).
+
+
+  /**
+    * Returns the Flix Type of a Java Type
+    */
+  private def getGenericFlixType(t: java.lang.reflect.Type)(implicit flix: Flix): Type = {
+    t match {
+      case arrayType: java.lang.reflect.GenericArrayType =>
+        val comp = arrayType.getGenericComponentType
+        val elmType = getGenericFlixType(comp)
+        mkArray(elmType)
+      case c: Class[_] =>
+        getFlixType(c)
+      case _ =>
+        // TODO: Can we do better than this for Parametric Types?
+        Type.freshTypeVar()
+    }
+  }
 `}
                         </InlineEditor>
 
