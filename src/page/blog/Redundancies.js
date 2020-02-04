@@ -149,6 +149,10 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                         </p>
 
                         <p>
+                            XXX: Should have examples with unused type param
+                        </p>
+
+                        <p>
                             Given:
                         </p>
 
