@@ -107,33 +107,37 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                             but this function is an inne rfunction.
                         </p>
 
+                        <p>
+                            What about the beast of the following function?
+                        </p>
 
                         <InlineEditor>
-                            {`
-  /**
-    * Returns the result of looking up the given \`fieldName\` on the given \`className\`.
-    */
-  def lookupNativeField(className: String, fieldName: String, loc: SourceLocation): Result[Field, NameError] = try {
+                            {`/**
+ * Returns the result of looking up the given \`fieldName\` on the given \`className\`.
+ */
+def lookupNativeField(className: String, fieldName: String, loc: SourceLocation): Result[Field, NameError] = try {
     // retrieve class object.
     val clazz = Class.forName(className)
-
+    
     // retrieve the matching static fields.
     val fields = clazz.getDeclaredFields.toList.filter {
       case field => field.getName == fieldName && Modifier.isStatic(field.getModifiers)
     }
-
+    
     // match on the number of fields.
     fields.size match {
       case 0 => Err(NameError.UndefinedNativeField(className, fieldName, loc))
       case 1 => Ok(fields.head)
       case _ => throw InternalCompilerException("Ambiguous native field?")
     }
-  } catch {
+} catch {
     case ex: ClassNotFoundException => Err(NameError.UndefinedNativeClass(className, loc))
-  }
-  
-`}
-                        </InlineEditor>
+}`}
+                    </InlineEditor>
+
+                        <p>
+                            Do you see any problems?
+                        </p>
 
                         <InlineEditor>
                             {`
