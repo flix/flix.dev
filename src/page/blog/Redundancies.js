@@ -301,8 +301,30 @@ Compilation failed with 1 error(s).
 
                         <p>
 
-                            I am sure
-                            Opting out and getting used to it.
+                            It is reasonable to wonder how this impacts the development experience.
+                            Afterall, while a program is being written, it is not yet complete
+                            and not all definitions, types, variable might be in used.
+                        </p>
+
+                        <p>
+                            I will admit that in the beginning it can feel like a pain that the compiler is so strict.
+                            But after a while you learn to work with the compiler. Now, when I am introducing a new
+                            local variable -- not yet used --
+                            I simply name it with an underscore and then later when I return to use it, I rename it to
+                            its proper name.
+                            The same goes for a function. (XXX: Allow functions with undersore)
+                            The same applies for enums, etc.
+                        </p>
+
+                        <p>
+                            While there might be an adjustment period, the upside is huge: I can now be sure that all
+                            my code is being used and I can immediately be warned when some code becomes unused.
+                            If there is onething I have learned When building a big project, I think maintainability
+                            beocmes much more important than writing the initial code.
+                        </p>
+
+                        <p>
+                            Until next time, happy hacking.
                         </p>
 
                     </Col>
