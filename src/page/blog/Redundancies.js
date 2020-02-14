@@ -20,10 +20,14 @@ class Redundancies extends Component {
 
                         <p>
                             As software developers, we hopefully all want to write correct and maintainable code.
+                            As we go through these examples, imagine that they are only a small fraction of a large
+                            codebase written
+                            several people.
+                            All of these examples real-world examples taken from the Flix compiler.
                         </p>
 
                         <p>
-                            Consider the following Scala program fragment from the Flix compiler:
+                            We begin with the following code fragment:
                         </p>
 
                         <InlineEditor>
@@ -63,6 +67,47 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                             Now consider the following:
                         </p>
 
+
+                        <InlineEditor>
+                            {`
+  
+        case ResolvedAst.Expression.IfThenElse(exp1, exp2, exp3, tvar, evar, loc) =>
+        for {
+          (tpe1, eff1) <- visitExp(exp1)
+          (tpe2, eff2) <- visitExp(exp2)
+          (tpe3, eff3) <- visitExp(exp3)
+          condType <- unifyTypM(mkBoolType(), tpe1, loc)
+          resultTyp <- unifyTypM(tvar, tpe2, tpe3, loc)
+          resultEff <- unifyEffM(evar, eff1, eff2, loc)
+        } yield (resultTyp, resultEff)
+                          
+                            `}
+                        </InlineEditor>
+
+                        <InlineEditor>
+                            {`
+                            
+    /**
+      * Returns the disjunction of the two effects \`eff1\` and \`eff2\`.
+      */
+    def mkOr(ef1f: Type, eff2: Type): Type = eff1 match { // TODO: Notice ef1f
+      case Type.Cst(TypeConstructor.Pure) => Pure
+      case Type.Cst(TypeConstructor.Impure) => eff2
+      case _ => eff2 match {
+        case Type.Cst(TypeConstructor.Pure) => Pure
+        case Type.Cst(TypeConstructor.Impure) => eff1
+        case _ => Type.Apply(Type.Apply(Type.Cst(TypeConstructor.Or), eff1), eff2)
+      }
+    }
+                            `}
+                        </InlineEditor>
+
+                        <p>
+                            Notice the spelling mistake off the argument,
+                            but this function is an inne rfunction.
+                        </p>
+
+
                         <InlineEditor>
                             {`
   /**
@@ -87,35 +132,30 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
     case ex: ClassNotFoundException => Err(NameError.UndefinedNativeClass(className, loc))
   }
   
-  
-  
-        case ResolvedAst.Expression.IfThenElse(exp1, exp2, exp3, tvar, evar, loc) =>
-        for {
-          (tpe1, eff1) <- visitExp(exp1)
-          (tpe2, eff2) <- visitExp(exp2)
-          (tpe3, eff3) <- visitExp(exp3)
-          condType <- unifyTypM(mkBoolType(), tpe1, loc)
-          resultTyp <- unifyTypM(tvar, tpe2, tpe3, loc)
-          resultEff <- unifyEffM(evar, eff1, eff2, loc)
-        } yield (resultTyp, resultEff)
-
-
-    /**
-      * Returns the disjunction of the two effects \`eff1\` and \`eff2\`.
-      */
-    def mkOr(ef1f: Type, eff2: Type): Type = eff1 match { // TODO: Notice ef1f
-      case Type.Cst(TypeConstructor.Pure) => Pure
-      case Type.Cst(TypeConstructor.Impure) => eff2
-      case _ => eff2 match {
-        case Type.Cst(TypeConstructor.Pure) => Pure
-        case Type.Cst(TypeConstructor.Impure) => eff1
-        case _ => Type.Apply(Type.Apply(Type.Cst(TypeConstructor.Or), eff1), eff2)
-      }
-    }
-
 `}
                         </InlineEditor>
 
+                        <InlineEditor>
+                            {`
+                            
+  /**
+    * Returns the Flix Type of a Java Type
+    */
+  private def getGenericFlixType(t: java.lang.reflect.Type)(implicit flix: Flix): Type = {
+    t match {
+      case arrayType: java.lang.reflect.GenericArrayType =>
+        val comp = arrayType.getGenericComponentType
+        val elmType = getGenericFlixType(comp)
+        mkArray(elmType)
+      case c: Class[_] =>
+        getFlixType(c)
+      case _ =>
+        // TODO: Can we do better than this for Parametric Types?
+        Type.freshTypeVar()
+    }
+  }
+                            `}
+                        </InlineEditor>
 
                         <p>
                             Preamble...
@@ -167,6 +207,10 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                         </p>
 
                         <p>
+                            XXX: Exmple with no side-effect.
+                        </p>
+
+                        <p>
                             Given:
                         </p>
 
@@ -180,7 +224,6 @@ def foo(x: Int, y: Int): Int = x + y
                         <p>
                             We get:
                         </p>
-
 
 
                         <InlineEditor>
@@ -206,22 +249,6 @@ Possible fixes:
 Compilation failed with 1 error(s).
 
 
-  /**
-    * Returns the Flix Type of a Java Type
-    */
-  private def getGenericFlixType(t: java.lang.reflect.Type)(implicit flix: Flix): Type = {
-    t match {
-      case arrayType: java.lang.reflect.GenericArrayType =>
-        val comp = arrayType.getGenericComponentType
-        val elmType = getGenericFlixType(comp)
-        mkArray(elmType)
-      case c: Class[_] =>
-        getFlixType(c)
-      case _ =>
-        // TODO: Can we do better than this for Parametric Types?
-        Type.freshTypeVar()
-    }
-  }
 `}
                         </InlineEditor>
 
@@ -270,11 +297,11 @@ Compilation failed with 1 error(s).
                         </InlineEditor>
 
 
-
-                        <h5>Opting Out or Getting Used to It</h5>
-
+                        <h5>The Development Experience</h5>
 
                         <p>
+
+                            I am sure
                             Opting out and getting used to it.
                         </p>
 
