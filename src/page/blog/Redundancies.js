@@ -70,14 +70,14 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
 
                         <InlineEditor>
                             {`case ResolvedAst.Expression.IfThenElse(exp1, exp2, exp3, tvar, evar, loc) =>
-for {
-    (tpe1, eff1) <- visitExp(exp1)
-    (tpe2, eff2) <- visitExp(exp2)
-    (tpe3, eff3) <- visitExp(exp3)
-    condType <- unifyTypM(mkBoolType(), tpe1, loc)
-    resultTyp <- unifyTypM(tvar, tpe2, tpe3, loc)
-    resultEff <- unifyEffM(evar, eff1, eff2, loc)
-} yield (resultTyp, resultEff)`}
+    for {
+        (tpe1, eff1) <- visitExp(exp1)
+        (tpe2, eff2) <- visitExp(exp2)
+        (tpe3, eff3) <- visitExp(exp3)
+        condType <- unifyTypM(mkBoolType(), tpe1, loc)
+        resultTyp <- unifyTypM(tvar, tpe2, tpe3, loc)
+        resultEff <- unifyEffM(evar, eff1, eff2, loc)
+    } yield (resultTyp, resultEff)`}
                         </InlineEditor>
 
                         <p>
