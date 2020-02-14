@@ -69,20 +69,27 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
 
 
                         <InlineEditor>
-                            {`
-  
-        case ResolvedAst.Expression.IfThenElse(exp1, exp2, exp3, tvar, evar, loc) =>
-        for {
-          (tpe1, eff1) <- visitExp(exp1)
-          (tpe2, eff2) <- visitExp(exp2)
-          (tpe3, eff3) <- visitExp(exp3)
-          condType <- unifyTypM(mkBoolType(), tpe1, loc)
-          resultTyp <- unifyTypM(tvar, tpe2, tpe3, loc)
-          resultEff <- unifyEffM(evar, eff1, eff2, loc)
-        } yield (resultTyp, resultEff)
-                          
-                            `}
+                            {`case ResolvedAst.Expression.IfThenElse(exp1, exp2, exp3, tvar, evar, loc) =>
+for {
+    (tpe1, eff1) <- visitExp(exp1)
+    (tpe2, eff2) <- visitExp(exp2)
+    (tpe3, eff3) <- visitExp(exp3)
+    condType <- unifyTypM(mkBoolType(), tpe1, loc)
+    resultTyp <- unifyTypM(tvar, tpe2, tpe3, loc)
+    resultEff <- unifyEffM(evar, eff1, eff2, loc)
+} yield (resultTyp, resultEff)`}
                         </InlineEditor>
+
+                        <p>
+                            Do you see the problem? If not, look closer... Ok, got it?
+                        </p>
+
+                        <p>
+                            The problem is that the local variable <code>eff3</code> is not used; it should have been
+                            used in the next-to-last line where the effect of the entire if-then-else expression is
+                            computed. While this particular bug did not make it into any release of Flix, it did
+                            cause a lot of head-scratching until it was discovered.
+                        </p>
 
                         <InlineEditor>
                             {`
@@ -133,7 +140,7 @@ def lookupNativeField(className: String, fieldName: String, loc: SourceLocation)
 } catch {
     case ex: ClassNotFoundException => Err(NameError.UndefinedNativeClass(className, loc))
 }`}
-                    </InlineEditor>
+                        </InlineEditor>
 
                         <p>
                             Do you see any problems?
