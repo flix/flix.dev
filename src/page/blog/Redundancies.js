@@ -257,20 +257,23 @@ Compilation failed with 1 error(s).
                         </p>
 
 
+                        <h5>Example: Unused Cases in Enums</h5>
+
                         <p>
-                            Here is another:
+                            If we define an enum <code>Color</code> with three cases:
                         </p>
 
                         <InlineEditor>
-                            {`
-enum Color {
+                            {`enum Color {
     case Red,
     case Green,
     case Blue
-}
-`}
+}`}
                         </InlineEditor>
 
+                        <p>
+                            and we forget to use one of its cases:
+                        </p>
 
                         <InlineEditor>
                             {`
@@ -282,18 +285,13 @@ enum Color {
              ^^^^
              unused tag.
 
-
 Possible fixes:
 
   (1)  Use the case.
   (2)  Remove the case.
   (3)  Prefix the case with an underscore.
 
-
-
-Compilation failed with 1 error(s).
-
-`}
+Compilation failed with 1 error(s).`}
                         </InlineEditor>
 
 
