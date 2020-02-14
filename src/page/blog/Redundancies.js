@@ -187,21 +187,19 @@ def lookupNativeField(className: String, fieldName: String, loc: SourceLocation)
                         </p>
 
                         <p>
-                            For these reasons, the Flix compiler/language is very aggressive in reporting suspcious or
-                            dead code.
-                            Specifically, the compiler checks for:
+                            The Flix compiler emits a compile-time error for:
 
                             <ul>
                                 <li>
                                     <b>Shadowed Local Variables</b>
                                     &mdash;
-                                    A local variable cannot hide another variable.
+                                    A local variable hides another local variable.
                                 </li>
 
                                 <li>
                                     <b>Unused Def</b>
                                     &mdash;
-                                    A top-level definition must be used.
+                                    A top-level definition is declared, but never used.
                                 </li>
 
                                 <li>Unused Enum</li>
