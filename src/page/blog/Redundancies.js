@@ -192,11 +192,18 @@ def lookupNativeField(className: String, fieldName: String, loc: SourceLocation)
                             Specifically, the compiler checks for:
 
                             <ul>
-                                <li><b>Shadowed Local Variables</b> -- When a local variable hides another local
-                                    variable.
+                                <li>
+                                    <b>Shadowed Local Variables</b>
+                                    &mdash;
+                                    A local variable cannot hide another variable.
                                 </li>
-                                <li>Hidden Vars -- those with _ in front</li>
-                                <li>Unsed Def</li>
+
+                                <li>
+                                    <b>Unused Def</b>
+                                    &mdash;
+                                    A top-level definition must be used.
+                                </li>
+
                                 <li>Unused Enum</li>
                                 <li>Unused Enum Variant/Constructor</li>
                                 <li>UnusedFormalParam</li>
@@ -207,6 +214,12 @@ def lookupNativeField(className: String, fieldName: String, loc: SourceLocation)
 
                             In the future, we plan to extend this reporting to any new language feature that may be
                             unused.
+                        </p>
+
+                        <p>
+                            People have previously argued that shadowing a variable helps prevent them from using the
+                            "wrong" local variable in some code. But I believe that by reporting unused local variables
+                            such problems are likely to be avoided anyway.
                         </p>
 
                         <p>
