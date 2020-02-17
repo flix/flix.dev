@@ -83,6 +83,7 @@ class Home extends Component {
                             <li>Hindley-Milner type inference</li>
                             <li>opaque types and type aliases</li>
                             <li>keyword-based syntax</li>
+                            <li>light-weight polymorphic effects</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
@@ -95,6 +96,7 @@ class Home extends Component {
                             <li>stratified negation</li>
                             <li>interoperability with Java</li>
                             <li>unboxed primitives</li>
+                            <li>redundancy checks</li>
                         </ul>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
