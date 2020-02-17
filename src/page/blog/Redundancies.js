@@ -316,6 +316,8 @@ Possible fixes:
 Compilation failed with 1 error(s).`}
                         </InlineEditor>
 
+                        <h5>Example: Useless Expression</h5>
+
                         <InlineEditor>
                             {`def main(): Int =
     List.map(x -> x + 1, 1 :: 2 :: Nil);
