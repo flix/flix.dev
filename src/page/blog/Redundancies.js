@@ -316,6 +316,32 @@ Possible fixes:
 Compilation failed with 1 error(s).`}
                         </InlineEditor>
 
+                        <InlineEditor>
+                            {`def main(): Int =
+    List.map(x -> x + 1, 1 :: 2 :: Nil);
+    123`}
+                        </InlineEditor>
+
+                        <InlineEditor>
+                            {`-- Redundancy Error -------------------------------------------------- foo.flix
+
+>> Useless expression: It has no side-effect(s) and its result is discarded.
+
+2 |     List.map(x -> x + 1, 1 :: 2 :: Nil);
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        useless expression.
+
+
+Possible fixes:
+
+  (1)  Use the result computed by the expression.
+  (2)  Remove the expression statement.
+  (3)  Introduce a let-binding with a wildcard name.
+
+
+
+Compilation failed with 1 error(s).`}
+                        </InlineEditor>
 
                         <h5>The Development Experience</h5>
 
