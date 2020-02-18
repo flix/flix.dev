@@ -416,28 +416,20 @@ Compilation failed with 1 error(s).`}
                             stupid mistakes that wastes time during development.
                         </p>
 
-                        <p style={{"color": "grey"}}>
-                            It is reasonable to wonder how this impacts the development experience.
-                            Afterall, while a program is being written, it is not yet complete
-                            and not all definitions, types, variable might be in used.
+                        <p>
+                            A reasonable concern is whether working with a compiler that rejects programs with unused
+                            code fragments is too cumbersome or annoying. In my experience, the answer is no. After
+                            a small learning period, whenever you want to introduce a new code fragment that will not
+                            immediately be used, you simple remember to prefix it with an underscore, and then later you
+                            come back and remove the underscore when you want to use it.
                         </p>
 
-                        <p style={{"color": "grey"}}>
-
-                            I will admit that in the beginning it can feel like a pain that the compiler is so strict.
-                            But after a while you learn to work with the compiler. Now, when I am introducing a new
-                            local variable -- not yet used --
-                            I simply name it with an underscore and then later when I return to use it, I rename it to
-                            its proper name.
-                            The same goes for a function. (XXX: Allow functions with undersore)
-                            The same applies for enums, etc.
-                        </p>
-
-                        <p style={{"color": "grey"}}>
-                            While there might be an adjustment period, the upside is huge: I can now be sure that all
-                            my code is being used and I can immediately be warned when some code becomes unused.
-                            If there is onething I have learned When building a big project, I think maintainability
-                            beocmes much more important than writing the initial code.
+                        <p>
+                            While there might be a short adjustment period, the upside is <i>huge</i>: The compiler
+                            provides an iron-clad guarantee that all my code is, in fact, useful. Moreover, whenever I
+                            refactor some potentially very old code, I am immediately informed if some code fragment
+                            becomes unused. I think such long-term maintainability concerns are significantly more
+                            important than doing a little bit of extra work during the initial development.
                         </p>
 
                         <p>
