@@ -118,7 +118,7 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                             {`/**
   * Returns the disjunction of the two effects \`eff1\` and \`eff2\`.
   */
-def mkOr(ef1f: Type, eff2: Type): Type = eff1 match { // TODO: Notice ef1f
+def mkOr(ef1f: Type, eff2: Type): Type = eff1 match {
   case Type.Cst(TypeConstructor.Pure) => Pure
   case Type.Cst(TypeConstructor.Impure) => eff2
   case _ => eff2 match {
@@ -208,15 +208,10 @@ def lookupNativeField(klass: String, field: String, loc: Location): ... = try {
                         </p>
 
                         <p>
-                            :surprised_pickachu:
+                            As these examples demonstrate, and as has been demonstrated in the research literature (see
+                            e.g. <a href="https://web.stanford.edu/~engler/p401-xie.pdf">Xie and Engler 2002</a>),
+                            unused code is often indicative of buggy code. With Flix, we want to avoid such bugs.
                         </p>
-
-
-                        <p style={{"color": "grey"}}>
-                            Preamble...
-                            Xie and Engler paper.
-                        </p>
-
 
                         <h5>Flix Disallows Unused Code</h5>
 
