@@ -18,18 +18,21 @@ class Redundancies extends Component {
 
                         <h1>Redundancies as Compile-Time Errors</h1>
 
-                        <p style={{"color": "grey"}}>
-
-                            As software developers, we hopefully all want to write correct and maintainable code.
-                            As we go through these examples, imagine that they are only a small fraction of a large
-                            codebase written
-                            several people.
-                            All of these examples real-world examples taken from the Flix compiler.
+                        <p>
+                            As software developers, I hope we all strive to write correct and maintainable code.
+                            Today, I want to share some code fragments where by accident I failed in these two goals.
                         </p>
 
-                        <p style={{"color": "grey"}}>
+                        <p>
+                            I want to show you some real-world code, taken from the Flix compiler, and then ask you to
+                            discover what is wrong with the code. Then, later, I will argue how programming languages
+                            can help avoid such problems. (Note: The Flix compiler is currently written in Scala, so the
+                            examples are in Scala, but the lessons learned are applied to the Flix programming language.
+                            I hope that makes sense.)
+                        </p>
 
-                            We begin with the following code fragment:
+                        <p>
+                            Let us begin with the following code fragment:
                         </p>
 
                         <InlineEditor>
