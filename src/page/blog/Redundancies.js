@@ -80,7 +80,6 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                             Let us continue our journey with the following code fragment:
                         </p>
 
-
                         <InlineEditor>
                             {`case ResolvedAst.Expression.IfThenElse(exp1, exp2, exp3, tvar, evar, loc) =>
     for {
@@ -105,37 +104,49 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                             Ok, got it?
                         </p>
 
+                        <p>
+                            The problem is the following: The local variable <code>eff3</code> is not used, but it
+                            should have been used to compute <code>resultEff</code>. While this bug never made it into
+                            any release of Flix, it did cause a lot of head-scratching.
+                        </p>
 
-                        <p style={{"color": "grey"}}>
-
-                            The problem is that the local variable <code>eff3</code> is not used; it should have been
-                            used in the next-to-last line where the effect of the entire if-then-else expression is
-                            computed. While this particular bug did not make it into any release of Flix, it did
-                            cause a lot of head-scratching until it was discovered.
+                        <p>
+                            Now we are getting the hang of things. What about this code fragment:
                         </p>
 
                         <InlineEditor>
-                            {`
-                            
-    /**
-      * Returns the disjunction of the two effects \`eff1\` and \`eff2\`.
-      */
-    def mkOr(ef1f: Type, eff2: Type): Type = eff1 match { // TODO: Notice ef1f
-      case Type.Cst(TypeConstructor.Pure) => Pure
-      case Type.Cst(TypeConstructor.Impure) => eff2
-      case _ => eff2 match {
-        case Type.Cst(TypeConstructor.Pure) => Pure
-        case Type.Cst(TypeConstructor.Impure) => eff1
-        case _ => Type.Apply(Type.Apply(Type.Cst(TypeConstructor.Or), eff1), eff2)
-      }
-    }
-                            `}
+                            {`/**
+  * Returns the disjunction of the two effects \`eff1\` and \`eff2\`.
+  */
+def mkOr(ef1f: Type, eff2: Type): Type = eff1 match { // TODO: Notice ef1f
+  case Type.Cst(TypeConstructor.Pure) => Pure
+  case Type.Cst(TypeConstructor.Impure) => eff2
+  case _ => eff2 match {
+    case Type.Cst(TypeConstructor.Pure) => Pure
+    case Type.Cst(TypeConstructor.Impure) => eff1
+    case _ => Type.Apply(Type.Apply(Type.Cst(TypeConstructor.Or), eff1), eff2)
+  }
+}`}
                         </InlineEditor>
 
-                        <p style={{"color": "grey"}}>
+                        <p>
+                            Did you spot the issue?
+                        </p>
 
-                            Notice the spelling mistake off the argument,
-                            but this function is an inne rfunction.
+                        <p>
+                            I am sure you did.
+                        </p>
+
+                        <p>
+                            The problem is the following: The formal parameter to <code>mkOr</code> is
+                            misspelled <code>ef1f</code> instead of <code>eff1</code>. But how does this even compile,
+                            you ask? Well, unfortunately the <code>mkOr</code> function was nested inside another
+                            function that just so happened to have an argument also named <code>eff1</code>.
+                            The intention was for the formal parameters of <code>mkOr</code> to
+                            shadow <code>eff1</code> (and <code>eff2</code>), but because of the
+                            misspelling, <code>ef1f</code> ended up as unused and <code>eff1</code> (a completely
+                            unrelated variable) was used instead. The issue was found during development, but not
+                            before several hours of wasted work.
                         </p>
 
                         <p style={{"color": "grey"}}>
