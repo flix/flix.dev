@@ -237,8 +237,8 @@ def lookupNativeField(className: String, fieldName: String, loc: SourceLocation)
                                     <td>A function unconditionally recurses on all control-flow paths.</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Useless Statement Expression</th>
-                                    <td>A statement expression discards the result of a pure expression.</td>
+                                    <th scope="row">Useless Expression Statement</th>
+                                    <td>An expression statement discards the result of a pure expression.</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -304,7 +304,7 @@ Compilation failed with 1 error(s).`}
                             Programming languages like Elm and Rust implement a similar feature.
                         </p>
 
-                        <h5>Example: Unused Enum Case</h5>
+                        <h5>Example II: Unused Enum Case</h5>
 
                         <p>
                             Given the enum declaration:
@@ -345,13 +345,21 @@ Compilation failed with 1 error(s).`}
                             Again, programming languages like Elm and Rust implement a similar feature.
                         </p>
 
-                        <h5>Example: Useless Expression</h5>
+                        <h5>Example III: Useless Expression Statement</h5>
+
+                        <p>
+                            Given the program fragment:
+                        </p>
 
                         <InlineEditor>
                             {`def main(): Int =
     List.map(x -> x + 1, 1 :: 2 :: Nil);
     123`}
                         </InlineEditor>
+
+                        <p>
+                            The Flix compiler emits the compile-time error:
+                        </p>
 
                         <InlineEditor>
                             {`-- Redundancy Error -------------------------------------------------- foo.flix
@@ -369,21 +377,39 @@ Possible fixes:
   (2)  Remove the expression statement.
   (3)  Introduce a let-binding with a wildcard name.
 
-
-
 Compilation failed with 1 error(s).`}
                         </InlineEditor>
 
 
-                        <p style={{"color": "grey"}}>
-
-                            XXX: Should have examples with unused type param
+                        <p>
+                            The problem is that the evaluation of <code>List.map(x -> x + 1, 1 :: 2 :: Nil)</code> has
+                            no side-effect and the result is simply discarded.
                         </p>
 
+                        <p>
+                            But this is <i>not</i> your Grandma's average compile-time error. At the time of writing, I
+                            know of no other programming language that offers a similar warning / error with
+                            the same precision as Flix. (If you do, please drop me a line on Gitter).
+                        </p>
+
+                        <p>
+                            The key challenge is to (automatically) determine whether an expression is pure
+                            (side-effect free) in the presence of polymorphism. Specifically, the call
+                            to <code>List.map</code> is pure because the <i>function argument</i> <code>x -> x +
+                            1</code> is pure. In other words, the purity of <code>List.map</code> depends on the purity
+                            of its argument: it is <i>effect polymorphic</i>. The combination of type inference,
+                            fine-grained effect inference, and effect polymorphism is a strong cocktail that I plan to
+                            cover in a future blog post.
+                        </p>
+
+                        <p>
+                            Note: The above is fully implemented in master, but has not yet been "released".
+                        </p>
 
                         <h5>The Development Experience</h5>
 
                         <p style={{"color": "grey"}}>
+                            XXX: Should have examples with unused type param
 
 
                             It is reasonable to wonder how this impacts the development experience.
