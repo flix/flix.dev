@@ -204,24 +204,21 @@ def lookupNativeField(klass: String, field: String, loc: Location): ... = try {
                         </p>
 
                         <p>
-                            Morpheus: But that <i>there is no</i> place where the function is called! :surprised_pickachu:
+                            Morpheus: But that <i>there is no place where the function is called!</i>
                         </p>
 
+                        <p>
+                            :surprised_pickachu:
+                        </p>
 
 
                         <p style={{"color": "grey"}}>
                             Preamble...
                             Xie and Engler paper.
-                            Talk about maintinable. WOrking on a large project. Deadcode being maintained.
-                            Bugs lurking.
-                            Spoil it here or start with
                         </p>
 
 
-                        <p style={{"color": "grey"}}>
-                            Do you see the problem? Well, the function is never called, and is in fact deadcode.
-                            That did not prevent it from surving in the source code for an extended period.
-                        </p>
+                        <h5>Flix Disallows Unused Code</h5>
 
                         <p>
                             The Flix compiler emits a <i>compile-time error</i> for the following redundancies:
