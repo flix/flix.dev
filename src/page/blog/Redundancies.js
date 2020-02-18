@@ -406,12 +406,17 @@ Compilation failed with 1 error(s).`}
                             Note: The above is fully implemented in master, but has not yet been "released".
                         </p>
 
-                        <h5>The Development Experience</h5>
+                        <h5>Final Thoughts</h5>
+
+                        <p>
+                            I believe that unused program fragments are a threat to long-term software maintenance.
+                            But it is a threat that can be neutralized by better programming language support and
+                            minor changes to development practices. I also believe that reporting unused program
+                            fragments can help programmers &ndash; whether inexperienced or seasoned &ndash; avoid
+                            stupid mistakes that wastes time during development.
+                        </p>
 
                         <p style={{"color": "grey"}}>
-                            XXX: Should have examples with unused type param
-
-
                             It is reasonable to wonder how this impacts the development experience.
                             Afterall, while a program is being written, it is not yet complete
                             and not all definitions, types, variable might be in used.
@@ -429,15 +434,13 @@ Compilation failed with 1 error(s).`}
                         </p>
 
                         <p style={{"color": "grey"}}>
-
                             While there might be an adjustment period, the upside is huge: I can now be sure that all
                             my code is being used and I can immediately be warned when some code becomes unused.
                             If there is onething I have learned When building a big project, I think maintainability
                             beocmes much more important than writing the initial code.
                         </p>
 
-                        <p style={{"color": "grey"}}>
-
+                        <p>
                             Until next time, happy hacking.
                         </p>
 
