@@ -149,61 +149,65 @@ def mkOr(ef1f: Type, eff2: Type): Type = eff1 match { // TODO: Notice ef1f
                             before several hours of wasted work.
                         </p>
 
-                        <p style={{"color": "grey"}}>
-
-                            What about the beast of the following function?
+                        <p>
+                            We are almost at the end of our journey. But what about this beast:
                         </p>
 
                         <InlineEditor>
                             {`/**
- * Returns the result of looking up the given \`fieldName\` on the given \`className\`.
+ * Returns the result of looking up the given \`field\` on the given \`klass\`.
  */
-def lookupNativeField(className: String, fieldName: String, loc: SourceLocation): Result[Field, NameError] = try {
+def lookupNativeField(klass: String, field: String, loc: Location): ... = try {
     // retrieve class object.
-    val clazz = Class.forName(className)
+    val clazz = Class.forName(klass)
     
     // retrieve the matching static fields.
     val fields = clazz.getDeclaredFields.toList.filter {
-      case field => field.getName == fieldName && Modifier.isStatic(field.getModifiers)
+      case field => field.getName == field && 
+                    Modifier.isStatic(field.getModifiers)
     }
     
     // match on the number of fields.
     fields.size match {
-      case 0 => Err(NameError.UndefinedNativeField(className, fieldName, loc))
+      case 0 => Err(NameError.UndefinedNativeField(klass, field, loc))
       case 1 => Ok(fields.head)
       case _ => throw InternalCompilerException("Ambiguous native field?")
     }
 } catch {
-    case ex: ClassNotFoundException => Err(NameError.UndefinedNativeClass(className, loc))
+    case ex: ClassNotFoundException => 
+        Err(NameError.UndefinedNativeClass(klass, loc))
 }`}
                         </InlineEditor>
 
-                        <p style={{"color": "grey"}}>
-
-                            Do you see any problems?
+                        <p>
+                            Did you spot the issue?
                         </p>
 
-                        <InlineEditor>
-                            {`
-                            
-  /**
-    * Returns the Flix Type of a Java Type
-    */
-  private def getGenericFlixType(t: java.lang.reflect.Type)(implicit flix: Flix): Type = {
-    t match {
-      case arrayType: java.lang.reflect.GenericArrayType =>
-        val comp = arrayType.getGenericComponentType
-        val elmType = getGenericFlixType(comp)
-        mkArray(elmType)
-      case c: Class[_] =>
-        getFlixType(c)
-      case _ =>
-        // TODO: Can we do better than this for Parametric Types?
-        Type.freshTypeVar()
-    }
-  }
-                            `}
-                        </InlineEditor>
+                        <p>
+                            If not, look again.
+                        </p>
+
+                        <p>
+                            Ok, got it?
+                        </p>
+
+                        <p>
+                            Still nothing?
+                        </p>
+
+                        <p>
+                            Morpheus: What if I told you...
+                        </p>
+
+                        <p>
+                            Morpheus: ... that the function has been maintained over a long period of time...
+                        </p>
+
+                        <p>
+                            Morpheus: But that <i>there is no</i> place where the function is called! :surprised_pickachu:
+                        </p>
+
+
 
                         <p style={{"color": "grey"}}>
                             Preamble...
