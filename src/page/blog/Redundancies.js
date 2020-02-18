@@ -301,14 +301,13 @@ Compilation failed with 1 error(s).`}
                         </p>
 
                         <p>
-                            Languages such as Elm and Rust already offer similar features.
+                            Programming languages like Elm and Rust implement a similar feature.
                         </p>
 
-                        <h5>Example: Unused Cases in Enums</h5>
+                        <h5>Example: Unused Enum Case</h5>
 
-                        <p style={{"color": "grey"}}>
-
-                            If we define an enum <code>Color</code> with three cases:
+                        <p>
+                            Given the enum declaration:
                         </p>
 
                         <InlineEditor>
@@ -319,14 +318,13 @@ Compilation failed with 1 error(s).`}
 }`}
                         </InlineEditor>
 
-                        <p style={{"color": "grey"}}>
-
-                            and we forget to use one of its cases:
+                        <p>
+                            If only <code>Red</code> and <code>Green</code> are used then we get the Flix compile-time
+                            error:
                         </p>
 
                         <InlineEditor>
-                            {`
--- Redundancy Error -------------------------------------------------- foo.flix
+                            {`-- Redundancy Error -------------------------------------------------- foo.flix
 
 >> Unused case 'Blue' in enum 'Color'.
 
@@ -342,6 +340,10 @@ Possible fixes:
 
 Compilation failed with 1 error(s).`}
                         </InlineEditor>
+
+                        <p>
+                            Again, programming languages like Elm and Rust implement a similar feature.
+                        </p>
 
                         <h5>Example: Useless Expression</h5>
 
