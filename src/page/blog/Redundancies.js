@@ -18,7 +18,8 @@ class Redundancies extends Component {
 
                         <h1>Redundancies as Compile-Time Errors</h1>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             As software developers, we hopefully all want to write correct and maintainable code.
                             As we go through these examples, imagine that they are only a small fraction of a large
                             codebase written
@@ -26,7 +27,8 @@ class Redundancies extends Component {
                             All of these examples real-world examples taken from the Flix compiler.
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             We begin with the following code fragment:
                         </p>
 
@@ -50,7 +52,8 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
     Expression.Binary(op, e1, e2, tpe, loc)`}
                         </InlineEditor>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             Do you spot the issue? If not look closer... OK, got it? The problem is that in the case for
                             unary expressions, while there is a recursive call on <code>exp</code> with its result
                             stored in the local variable <code>e</code>, the constructor mistakenly uses
@@ -63,7 +66,8 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                         </p>
 
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             Now consider the following:
                         </p>
 
@@ -80,11 +84,13 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
     } yield (resultTyp, resultEff)`}
                         </InlineEditor>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             Do you see the problem? If not, look closer... Ok, got it?
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             The problem is that the local variable <code>eff3</code> is not used; it should have been
                             used in the next-to-last line where the effect of the entire if-then-else expression is
                             computed. While this particular bug did not make it into any release of Flix, it did
@@ -109,12 +115,14 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                             `}
                         </InlineEditor>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             Notice the spelling mistake off the argument,
                             but this function is an inne rfunction.
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             What about the beast of the following function?
                         </p>
 
@@ -142,7 +150,8 @@ def lookupNativeField(className: String, fieldName: String, loc: SourceLocation)
 }`}
                         </InlineEditor>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             Do you see any problems?
                         </p>
 
@@ -168,7 +177,7 @@ def lookupNativeField(className: String, fieldName: String, loc: SourceLocation)
                             `}
                         </InlineEditor>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
                             Preamble...
                             Xie and Engler paper.
                             Talk about maintinable. WOrking on a large project. Deadcode being maintained.
@@ -177,62 +186,97 @@ def lookupNativeField(className: String, fieldName: String, loc: SourceLocation)
                         </p>
 
 
-                        <p>
+                        <p style={{"color": "grey"}}>
                             Do you see the problem? Well, the function is never called, and is in fact deadcode.
                             That did not prevent it from surving in the source code for an extended period.
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
                             Flix treats unused and dead-code as compile-time errors.
                         </p>
 
                         <p>
-                            The Flix compiler emits a compile-time error for:
+                            The Flix compiler emits a <i>compile-time error</i> for the following redundancies:
+                        </p>
 
-                            <ul>
-                                <li>
-                                    <b>Shadowed Local Variables</b>
-                                    &mdash;
-                                    A local variable hides another local variable.
-                                </li>
+                        <p>
+                            <table className="table table-striped small">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Description</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Unused Def</th>
+                                    <td>A function is declared, but never used.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Unused Enum</th>
+                                    <td>An enum type is declared, but never used.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Unused Enum Case</th>
+                                    <td>A case (variant) of an enum is declared, but never used.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Unused Formal Parameter</th>
+                                    <td>A formal parameter is declared, but never used.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Unused Type Parameter</th>
+                                    <td>A function or enum declares a type parameter, but it is never used.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Unused Local Variable</th>
+                                    <td>A function declares a local variable, but it is never used.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Shadowed Local Variable</th>
+                                    <td>A local variable hides another local variable.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Unconditional Recursion</th>
+                                    <td>A function unconditionally recurses on all control-flow paths.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Useless Statement Expression</th>
+                                    <td>A statement expression discards the result of a pure expression.</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </p>
 
-                                <li>
-                                    <b>Unused Def</b>
-                                    &mdash;
-                                    A top-level definition is declared, but never used.
-                                </li>
-
-                                <li>Unused Enum</li>
-                                <li>Unused Enum Variant/Constructor</li>
-                                <li>UnusedFormalParam</li>
-                                <li>UnusedRel/Lat</li>
-                                <li>Unused Type param</li>
-                                <li><b>Unused Local Variables</b> &mdash; </li>
-                            </ul>
-
+                        <p style={{"color": "grey"}}>
                             In the future, we plan to extend this reporting to any new language feature that may be
                             unused.
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             People have previously argued that shadowing a variable helps prevent them from using the
                             "wrong" local variable in some code. But I believe that by reporting unused local variables
                             such problems are likely to be avoided anyway.
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             What does it look like when the compiler yells at you?
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             XXX: Should have examples with unused type param
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             XXX: Exmple with no side-effect.
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             Given:
                         </p>
 
@@ -243,7 +287,8 @@ def foo(x: Int, y: Int): Int = x + y
 `}
                         </InlineEditor>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             We get:
                         </p>
 
@@ -274,14 +319,16 @@ Compilation failed with 1 error(s).
 `}
                         </InlineEditor>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             Notice that we include suggested fixes.
                         </p>
 
 
                         <h5>Example: Unused Cases in Enums</h5>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             If we define an enum <code>Color</code> with three cases:
                         </p>
 
@@ -293,7 +340,8 @@ Compilation failed with 1 error(s).
 }`}
                         </InlineEditor>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             and we forget to use one of its cases:
                         </p>
 
@@ -347,14 +395,16 @@ Compilation failed with 1 error(s).`}
 
                         <h5>The Development Experience</h5>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
 
                             It is reasonable to wonder how this impacts the development experience.
                             Afterall, while a program is being written, it is not yet complete
                             and not all definitions, types, variable might be in used.
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             I will admit that in the beginning it can feel like a pain that the compiler is so strict.
                             But after a while you learn to work with the compiler. Now, when I am introducing a new
                             local variable -- not yet used --
@@ -364,14 +414,16 @@ Compilation failed with 1 error(s).`}
                             The same applies for enums, etc.
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             While there might be an adjustment period, the upside is huge: I can now be sure that all
                             my code is being used and I can immediately be warned when some code becomes unused.
                             If there is onething I have learned When building a big project, I think maintainability
                             beocmes much more important than writing the initial code.
                         </p>
 
-                        <p>
+                        <p style={{"color": "grey"}}>
+
                             Until next time, happy hacking.
                         </p>
 
