@@ -191,10 +191,6 @@ def lookupNativeField(className: String, fieldName: String, loc: SourceLocation)
                             That did not prevent it from surving in the source code for an extended period.
                         </p>
 
-                        <p style={{"color": "grey"}}>
-                            Flix treats unused and dead-code as compile-time errors.
-                        </p>
-
                         <p>
                             The Flix compiler emits a <i>compile-time error</i> for the following redundancies:
                         </p>
@@ -248,82 +244,65 @@ def lookupNativeField(className: String, fieldName: String, loc: SourceLocation)
                             </table>
                         </p>
 
-                        <p style={{"color": "grey"}}>
-                            In the future, we plan to extend this reporting to any new language feature that may be
-                            unused.
+                        <p>
+                            As the Flix language grows, we will continue to expand the above list, and to ensure that
+                            the Flix compiler rejects programs with unused program constructs.
                         </p>
 
-                        <p style={{"color": "grey"}}>
-
-                            People have previously argued that shadowing a variable helps prevent them from using the
-                            "wrong" local variable in some code. But I believe that by reporting unused local variables
-                            such problems are likely to be avoided anyway.
+                        <p>
+                            Let us look at three examples of these compile-time errors.
                         </p>
 
-                        <p style={{"color": "grey"}}>
+                        <h5>Example I: Unused Local Variable</h5>
 
-                            What does it look like when the compiler yells at you?
-                        </p>
-
-                        <p style={{"color": "grey"}}>
-
-                            XXX: Should have examples with unused type param
-                        </p>
-
-                        <p style={{"color": "grey"}}>
-
-                            XXX: Exmple with no side-effect.
-                        </p>
-
-                        <p style={{"color": "grey"}}>
-
-                            Given:
+                        <p>
+                            Given the program fragment:
                         </p>
 
 
                         <InlineEditor>
-                            {`
-def foo(x: Int, y: Int): Int = x + y
-`}
+                            {`def main(): Bool =
+    let l1 = List.range(0, 10);
+    let l2 = List.intersperse(42, l1);
+    let l3 = List.range(0, 10);
+    let l4 = List.map(x -> x :: x :: Nil, l2);
+    let l5 = List.flatten(l4);
+    List.exists(x -> x == 0, l5)`}
                         </InlineEditor>
 
-                        <p style={{"color": "grey"}}>
-
-                            We get:
+                        <p>
+                            The Flix compiler emits the compile-time error:
                         </p>
 
 
                         <InlineEditor>
-                            {`
--- Redundancy Error -------------------------------------------------- foo.flix
+                            {`-- Redundancy Error -------------------------------------------------- foo.flix
 
->> Unused definition 'foo'. The definition is never referenced.
+>> Unused local variable 'l3'. The variable is not referenced within its scope.
 
-1 | def foo(x: Int, y: Int): Int = x + y
-        ^^^
-        unused definition.
+4 |     let l3 = List.range(0, 10);
+            ^^
+            unused local variable.
 
 
 Possible fixes:
 
-  (1)  Use the definition.
-  (2)  Remove the definition.
-  (3)  Mark the definition as public.
-  (4)  Prefix the definition name with an underscore.
+  (1)  Use the local variable.
+  (2)  Remove local variable declaration.
+  (3)  Prefix the variable name with an underscore.
 
 
-
-Compilation failed with 1 error(s).
-
-
-`}
+Compilation failed with 1 error(s).`}
                         </InlineEditor>
 
-                        <p style={{"color": "grey"}}>
-
-                            Notice that we include suggested fixes.
+                        <p>
+                            The error message offers suggestions for how to fix the problem or how to make the compiler
+                            shut up (by explicitly marking the variable as unused with an underscore).
                         </p>
 
+                        <p>
+                            Languages such as Elm and Rust already offer similar features.
+                        </p>
 
                         <h5>Example: Unused Cases in Enums</h5>
 
@@ -392,6 +371,13 @@ Possible fixes:
 
 Compilation failed with 1 error(s).`}
                         </InlineEditor>
+
+
+                        <p style={{"color": "grey"}}>
+
+                            XXX: Should have examples with unused type param
+                        </p>
+
 
                         <h5>The Development Experience</h5>
 
