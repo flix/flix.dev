@@ -32,7 +32,7 @@ class Redundancies extends Component {
                         </p>
 
                         <p>
-                            Let us begin with the following code fragment:
+                            Let us begin our journey with the following code fragment:
                         </p>
 
                         <InlineEditor>
@@ -55,23 +55,29 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
     Expression.Binary(op, e1, e2, tpe, loc)`}
                         </InlineEditor>
 
-                        <p style={{"color": "grey"}}>
-
-                            Do you spot the issue? If not look closer... OK, got it? The problem is that in the case for
-                            unary expressions, while there is a recursive call on <code>exp</code> with its result
-                            stored in the local variable <code>e</code>, the constructor mistakenly uses
-                            the <code>exp</code> local variable.
-
-                            XXX: This has been in the compiler for a long time. What could have helped? More tests
-                            cases, sure.
-                            Or: What about a compiler that warns or gives errors about unused variables? The Scala
-                            compiler is mum.
+                        <p>
+                            Did you spot the issue?
                         </p>
 
+                        <p>
+                            If not, look again.
+                        </p>
 
-                        <p style={{"color": "grey"}}>
+                        <p>
+                            Ok, got it?
+                        </p>
 
-                            Now consider the following:
+                        <p>
+                            The problem is the following: In the case for <code>Unary</code> the local
+                            variable <code>e</code> holds the result of the recursion on <code>exp</code>. But by
+                            mistake the reconstruction of <code>Unary</code> uses <code>exp</code> and
+                            not <code>e</code> as intended. The local variable <code>e</code> is unused. Consequently,
+                            the specific transformations applied by <code>visitExp</code> under unary expressions are
+                            silently discarded. This bug was in Flix compiler for some time.
+                        </p>
+
+                        <p>
+                            Let us continue our journey with the following code fragment:
                         </p>
 
 
@@ -87,10 +93,18 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
     } yield (resultTyp, resultEff)`}
                         </InlineEditor>
 
-                        <p style={{"color": "grey"}}>
-
-                            Do you see the problem? If not, look closer... Ok, got it?
+                        <p>
+                            Did you spot the issue?
                         </p>
+
+                        <p>
+                            If not, look again.
+                        </p>
+
+                        <p>
+                            Ok, got it?
+                        </p>
+
 
                         <p style={{"color": "grey"}}>
 
