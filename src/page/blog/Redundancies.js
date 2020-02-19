@@ -19,6 +19,10 @@ class Redundancies extends Component {
                         <h1>Redundancies as Compile-Time Errors</h1>
 
                         <p>
+                            Posted February 2020 by <i>Magnus Madsen</i>.
+                        </p>
+
+                        <p>
                             As software developers, we strive to write correct and maintainable code.
                             Today, I want to share some code where I failed in these two goals.
                         </p>
