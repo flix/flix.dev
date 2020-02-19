@@ -213,6 +213,11 @@ def lookupNativeField(klass: String, field: String, loc: Location): ... = try {
                         </p>
 
                         <p>
+                            I am sorry if that was unfair. But was it really? The Flix code base is more than 100,000
+                            lines of code, so it is hard to imagine that a single person can hold it in his or her head.
+                        </p>
+
+                        <p>
                             As these examples demonstrate, and as has been demonstrated in the research literature (see
                             e.g. <a href="https://web.stanford.edu/~engler/p401-xie.pdf">Xie and Engler 2002</a>),
                             redundant or unused code is often buggy code.
