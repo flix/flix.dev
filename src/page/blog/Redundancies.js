@@ -19,20 +19,20 @@ class Redundancies extends Component {
                         <h1>Redundancies as Compile-Time Errors</h1>
 
                         <p>
-                            As software developers, I hope we all strive to write correct and maintainable code.
-                            Today, I want to share some code fragments where by accident I failed in these two goals.
+                            As software developers, we strive to write correct and maintainable code.
+                            Today, I want to share some code where I failed in these two goals.
                         </p>
 
                         <p>
-                            I want to show you some real-world code, taken from the Flix compiler, and then ask you to
-                            discover what is wrong with the code. Then, later, I will argue how programming languages
-                            can help avoid such problems. (Note: The Flix compiler is currently written in Scala, so the
-                            examples are in Scala, but the lessons learned are applied to the Flix programming language.
-                            I hope that makes sense.)
+                            I will show you real-world code from the Flix compiler and ask you to determine what is
+                            wrong with the code. Then, later, I will argue how programming languages can help avoid the
+                            type of problems you will see. (Note to the reader: The Flix compiler is (currently) written
+                            in Scala, so the code is in Scala, but the lessons learned are applied to the Flix
+                            programming language. I hope that makes sense.)
                         </p>
 
                         <p>
-                            Let us begin our journey with the following code fragment:
+                            Let us begin our journey by looking at the following code fragment:
                         </p>
 
                         <InlineEditor>
@@ -56,7 +56,7 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                         </InlineEditor>
 
                         <p>
-                            Did you spot the issue?
+                            Do you see any issues?
                         </p>
 
                         <p>
@@ -68,12 +68,13 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                         </p>
 
                         <p>
-                            The problem is the following: In the case for <code>Unary</code> the local
+                            The code has a subtle bug: In the case for <code>Unary</code> the local
                             variable <code>e</code> holds the result of the recursion on <code>exp</code>. But by
                             mistake the reconstruction of <code>Unary</code> uses <code>exp</code> and
                             not <code>e</code> as intended. The local variable <code>e</code> is unused. Consequently,
                             the specific transformations applied by <code>visitExp</code> under unary expressions are
-                            silently discarded. This bug was in Flix compiler for some time.
+                            silently discarded. This bug was in the Flix compiler for some time before it was
+                            discovered.
                         </p>
 
                         <p>
@@ -93,7 +94,7 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                         </InlineEditor>
 
                         <p>
-                            Did you spot the issue?
+                            Do you see any issues?
                         </p>
 
                         <p>
@@ -105,13 +106,13 @@ case Expression.Binary(op, exp1, exp2, tpe, loc) =>
                         </p>
 
                         <p>
-                            The problem is the following: The local variable <code>eff3</code> is not used, but it
+                            The code has a similar bug: The local variable <code>eff3</code> is not used, but it
                             should have been used to compute <code>resultEff</code>. While this bug never made it into
                             any release of Flix, it did cause a lot of head-scratching.
                         </p>
 
                         <p>
-                            Now we are getting the hang of things. What about this code fragment:
+                            Now we are getting the hang of things! What about this code fragment?:
                         </p>
 
                         <InlineEditor>
@@ -130,7 +131,7 @@ def mkOr(ef1f: Type, eff2: Type): Type = eff1 match {
                         </InlineEditor>
 
                         <p>
-                            Did you spot the issue?
+                            Do you see any issues?
                         </p>
 
                         <p>
@@ -138,19 +139,19 @@ def mkOr(ef1f: Type, eff2: Type): Type = eff1 match {
                         </p>
 
                         <p>
-                            The problem is the following: The formal parameter to <code>mkOr</code> is
+                            The bug is the following: The formal parameter to <code>mkOr</code> is
                             misspelled <code>ef1f</code> instead of <code>eff1</code>. But how does this even compile,
-                            you ask? Well, unfortunately the <code>mkOr</code> function was nested inside another
-                            function that just so happened to have an argument also named <code>eff1</code>.
-                            The intention was for the formal parameters of <code>mkOr</code> to
-                            shadow <code>eff1</code> (and <code>eff2</code>), but because of the
+                            you ask? Well, unfortunately the <code>mkOr</code> function is nested inside another
+                            function that just so happens to have an argument also named <code>eff1</code>!
+                            Damn Murphy and his laws. The intention was for the formal parameters
+                            of <code>mkOr</code> to shadow <code>eff1</code> (and <code>eff2</code>), but because of the
                             misspelling, <code>ef1f</code> ended up as unused and <code>eff1</code> (a completely
                             unrelated variable) was used instead. The issue was found during development, but not
-                            before several hours of wasted work.
+                            before several hours of wasted work. Not that I am bitter or anything...
                         </p>
 
                         <p>
-                            We are almost at the end of our journey. But what about this beast:
+                            We are almost at the end of our journey! But what about this beast:
                         </p>
 
                         <InlineEditor>
@@ -180,7 +181,7 @@ def lookupNativeField(klass: String, field: String, loc: Location): ... = try {
                         </InlineEditor>
 
                         <p>
-                            Did you spot the issue?
+                            Do you see any issues?
                         </p>
 
                         <p>
@@ -196,6 +197,10 @@ def lookupNativeField(klass: String, field: String, loc: Location): ... = try {
                         </p>
 
                         <p>
+                            <i>Pause for dramatic effect.</i>
+                        </p>
+
+                        <p>
                             Morpheus: What if I told you...
                         </p>
 
@@ -204,16 +209,20 @@ def lookupNativeField(klass: String, field: String, loc: Location): ... = try {
                         </p>
 
                         <p>
-                            Morpheus: But that <i>there is no place where the function is called!</i>
+                            Morpheus: <i>But that there is no place where the function is called!</i>
                         </p>
 
                         <p>
                             As these examples demonstrate, and as has been demonstrated in the research literature (see
                             e.g. <a href="https://web.stanford.edu/~engler/p401-xie.pdf">Xie and Engler 2002</a>),
-                            unused code is often indicative of buggy code. With Flix, we want to avoid such bugs.
+                            redundant or unused code is often buggy code.
                         </p>
 
-                        <h5>Flix Disallows Unused Code</h5>
+                        <p>
+                            To overcome such issues, Flix is very strict about redundant and unused code.
+                        </p>
+
+                        <h5>Flix Treats Unused Code as Compile-Time Errors</h5>
 
                         <p>
                             The Flix compiler emits a <i>compile-time error</i> for the following redundancies:
