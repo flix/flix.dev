@@ -278,12 +278,11 @@ def lookupNativeField(klass: String, field: String, loc: Location): ... = try {
                         </p>
 
                         <p>
-                            As the Flix language grows, we will continue to expand the above list, and to ensure that
-                            the Flix compiler rejects programs with unused program constructs.
+                            As the Flix language grows, we will continue to expand the list.
                         </p>
 
                         <p>
-                            Let us look at three examples of these compile-time errors.
+                            Let us look at three concrete examples of such compile-time errors.
                         </p>
 
                         <h5>Example I: Unused Local Variable</h5>
@@ -291,7 +290,6 @@ def lookupNativeField(klass: String, field: String, loc: Location): ... = try {
                         <p>
                             Given the program fragment:
                         </p>
-
 
                         <InlineEditor>
                             {`def main(): Bool =
@@ -329,12 +327,12 @@ Compilation failed with 1 error(s).`}
                         </InlineEditor>
 
                         <p>
-                            The error message offers suggestions for how to fix the problem or how to make the compiler
-                            shut up (by explicitly marking the variable as unused with an underscore).
+                            The error message offers suggestions for how to fix the problem or alternatively how to make
+                            the compiler shut up (by explicitly marking the variable as unused).
                         </p>
 
                         <p>
-                            Programming languages like Elm and Rust implement a similar feature.
+                            Modern programming languages like Elm and Rust offer a similar feature.
                         </p>
 
                         <h5>Example II: Unused Enum Case</h5>
@@ -375,7 +373,7 @@ Compilation failed with 1 error(s).`}
                         </InlineEditor>
 
                         <p>
-                            Again, programming languages like Elm and Rust implement a similar feature.
+                            Again, programming languages like Elm and Rust offer a similar feature.
                         </p>
 
                         <h5>Example III: Useless Expression Statement</h5>
