@@ -413,14 +413,23 @@ Compilation failed with 1 error(s).`}
 
 
                         <p>
-                            The problem is that the evaluation of <code>List.map(x -> x + 1, 1 :: 2 :: Nil)</code> has
-                            no side-effect and the result is simply discarded.
+                            The problem with the code is that the evaluation of <code>List.map(x -> x + 1, 1 :: 2 ::
+                            Nil)</code> has no side-effect(s) and its result is discarded.
+                        </p>
+
+                        <p>
+                            Another classic instance of this problem is when someone calls
+                            e.g. <code>checkPermission(...)</code> and expects it to throw an exception if the user has
+                            insufficient permissions, but in fact, the function simply returns a boolean which is then
+                            discarded.
                         </p>
 
                         <p>
                             But this is <i>not</i> your Grandma's average compile-time error. At the time of writing, I
-                            know of no other programming language that offers a similar warning / error with
-                            the same precision as Flix. (If you do, please drop me a line on Gitter).
+                            know of no other programming language that offers a similar warning or error with
+                            the same precision as Flix. If you do, please drop me a line on Gitter. (Before someone
+                            rushes to suggest <code>must_use</code> and friends, please consider whether they work in
+                            the presence of polymorphism as outlined below).
                         </p>
 
                         <p>
