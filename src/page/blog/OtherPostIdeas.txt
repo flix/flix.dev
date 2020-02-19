@@ -1,3 +1,5 @@
 - Programming with first-class Datalog constraints
 - Implementing Full Tail Call Elimination for the JVM.
-- Light-weight effects.
+- Light-weight polymorphic effects.
+- Linting
+

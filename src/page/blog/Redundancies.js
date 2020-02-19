@@ -449,27 +449,27 @@ Compilation failed with 1 error(s).`}
                         <h5>Final Thoughts</h5>
 
                         <p>
-                            I believe that unused program fragments are a threat to long-term software maintenance.
-                            But it is a threat that can be neutralized by better programming language support and
-                            minor changes to development practices. I also believe that reporting unused program
-                            fragments can help programmers &ndash; whether inexperienced or seasoned &ndash; avoid
-                            stupid mistakes that wastes time during development.
+                            I hope that I have convinced you that unused code is a threat to correct and maintainable
+                            code. But it is a threat that can be neutralized by better programming language design and
+                            with minor changes to development practices. Moreover, I believe that a compiler that
+                            reports redundant or unused code can help programmers &ndash; whether inexperienced or
+                            seasoned &ndash; avoid stupid mistakes that wastes time during development.
                         </p>
 
                         <p>
                             A reasonable concern is whether working with a compiler that rejects programs with unused
-                            code fragments is too cumbersome or annoying. In my experience, the answer is no. After
+                            code is too cumbersome or annoying. In my experience, the answer is no. After
                             a small learning period, whenever you want to introduce a new code fragment that will not
                             immediately be used, you simple remember to prefix it with an underscore, and then later you
-                            come back and remove the underscore when you want to use it.
+                            come back and remove the underscore when you are ready to use it.
                         </p>
 
                         <p>
                             While there might be a short adjustment period, the upside is <i>huge</i>: The compiler
-                            provides an iron-clad guarantee that all my code is, in fact, useful. Moreover, whenever I
-                            refactor some potentially very old code, I am immediately informed if some code fragment
-                            becomes unused. I think such long-term maintainability concerns are significantly more
-                            important than doing a little bit of extra work during the initial development.
+                            provides an iron-clad guarantee that all my code is used. Moreover, whenever I refactor some
+                            code, I am immediately informed if some code fragment becomes unused. I think such long-term
+                            maintainability concerns are significantly more important than a little bit of extra work
+                            during initial development.
                         </p>
 
                         <p>
