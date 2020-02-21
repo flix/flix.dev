@@ -42,11 +42,6 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
-                                        <Link to="/blog/redundancies-as-compile-time-errors/">
-                                            Redundancies as Compile-Time Errors
-                                        </Link>
-                                    </li>
-                                    <li>
                                         <Link to="/blog/design-flaws-in-flix/">
                                             Design Flaws in the Flix Programming Language
                                         </Link>
