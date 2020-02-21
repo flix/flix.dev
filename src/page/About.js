@@ -123,11 +123,11 @@ def main(): Tree[Int] = map(x -> x * x, tree())
 
                 <InlineEditor>
                     {`/// Computes the sum of \`x\` and \`y\` and sends the result on the channel \`c\`.
-def sum(x: Int, y: Int, c: Channel[Int]): Unit = 
+def sum(x: Int, y: Int, c: Channel[Int]): Unit & Impure = 
     c <- (x + y); ()
 
 /// Computes the sum of 21 and 42 using a fresh process.
-def main(): Int = 
+def main(): Int & Impure = 
     let c = chan Int 1;     // construct a new empty channel for the result.
     spawn sum(21, 42, c);   // spawn sum to run in a separate process.
     <- c                    // wait for the result to arrive on the channel.
@@ -142,13 +142,13 @@ def main(): Int =
 
                 <InlineEditor>
                     {`/// Sends the string \`s\` on the channel \`c\` up to \`n\` times.
-def animal(s: Str, c: Channel[Str], n: Int): Unit = match n {
+def animal(s: Str, c: Channel[Str], n: Int): Unit & Impure = match n {
     case 0 => ()
     case n => c <- s; animal(s, c, n - 1)
 }
 
 /// Returns "mooo", "meow", or "hiss".
-def main(): Str =
+def main(): Str & Impure =
     let c1 = chan Str 1;         /// constructs a new empty channel with a buffer of one.
     let c2 = chan Str 1;         /// constructs a new empty channel with a buffer of one.
     let c3 = chan Str 1;         /// constructs a new empty channel with a buffer of one.

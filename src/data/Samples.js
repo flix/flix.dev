@@ -258,21 +258,21 @@ def h(): N[Bool] = Map#{ true -> Ok(456) }
             code: `/// An example of how to read and write a text file.
 
 /// Returns a list of prominent public figures.
-def getData(): List[Str] =
+def getData(): List[String] =
     "Luke, Lucky" :: "Duck, Donald" :: Nil
 
 /// Writes the list of prominent figures to a file.
-def writeData(path: Path): Result[Unit, Path.IOError] =
+def writeData(path: Path): Result[Unit, Path.IOError] & Impure =
     Path.writeLines(path, getData())
 
 /// Reads the list of prominent figures back, returning surnames.
-def readData(path: Path): Result[List[Str], Path.IOError] =
-    let splitAndGetFirst = (s: Str -> String.split(s, ",")[0]);
+def readData(path: Path): Result[List[Str], Path.IOError] & Impure =
+    let splitAndGetFirst = (s: String -> String.split(s, ",")[0]);
     let getSurname = (xs: List[Str]) -> List.map(splitAndGetFirst, xs);
     Result.map(getSurname, Path.readLines(path))
 
 /// Writes the text file and then reads it back in again.
-def main(): Result[List[Str], Path.IOError] =
+def main(): Result[List[String], Path.IOError] & Impure =
     let path = Path.new("members.txt");
     Result.flatMap(_ -> readData(path), writeData(path))
 `
@@ -351,27 +351,27 @@ def main(): Bool = isOdd(12345)
         {
             name: "Sending and Receiving on Channels",
             code: `/// A function that sends every element of a list
-def send(o: Channel[Int], l: List[Int]): Unit =
+def send(o: Channel[Int], l: List[Int]): Unit & Impure =
     match l with {
         case Nil     => ()
         case x :: xs => o <- x; send(o, xs)
     }
 
-/// A function that receives n elements 
+/// A function that receives n elements
 /// and collects them into a list.
-def recv(i: Channel[Int], n: Int): List[Int] =
+def recv(i: Channel[Int], n: Int): List[Int] & Impure =
     match n with {
         case 0 => Nil
         case _ => (<- i) :: recv(i, n - 1)
     }
 
 /// A function that calls receive and sends the result on d.
-def wait(i: Channel[Int], n: Int, d: Channel[List[Int]]): Unit =
+def wait(i: Channel[Int], n: Int, d: Channel[List[Int]]): Unit & Impure =
     d <- recv(i, n);
     ()
 
 /// Spawn a process for send and wait, and print the result.
-def main(): List[Int] =
+def main(): List[Int] & Impure =
     let l = 1 :: 2 :: 3 :: Nil;
     let c = chan Int 100;
     let d = chan List[Int] 100;
@@ -382,26 +382,29 @@ def main(): List[Int] =
         },
         {
             name: "Using Channels and Select",
-            code: ` /// Mooo's \`n\` times on channel \`c\`.
-def mooo(c: Channel[Str], n: Int): Unit = match n with {
-    case 0 => ()
-    case n => c <- "Mooo!"; mooo(c, n - 1)
-}
+            code: `/// Mooo's \`n\` times on channel \`c\`.
+def mooo(c: Channel[Str], n: Int): Unit & Impure =
+    match n with {
+        case 0 => ()
+        case x => c <- "Mooo!"; mooo(c, x - 1)
+    }
 
 /// Meow's \`n\` times on channel \`c\`.
-def meow(c: Channel[Str], n: Int): Unit = match n with {
-    case 0 => ()
-    case n => c <- "Meow!"; meow(c, n - 1)
-}
+def meow(c: Channel[Str], n: Int): Unit & Impure =
+    match n with {
+        case 0 => ()
+        case x => c <- "Meow!"; meow(c, x - 1)
+    }
 
 /// Hiss'es \`n\` times on channel \`c\`.
-def hiss(c: Channel[Str], n: Int): Unit = match n with {
-    case 0 => ()
-    case n => c <- "Hiss!"; hiss(c, n - 1)
-}
+def hiss(c: Channel[Str], n: Int): Unit & Impure =
+    match n with {
+        case 0 => ()
+        case x => c <- "Hiss!"; hiss(c, x - 1)
+    }
 
 /// Start the animal farm...
-def main(): Str =
+def main(): String & Impure =
     let c1 = chan Str 1;
     let c2 = chan Str 1;
     let c3 = chan Str 1;
@@ -418,21 +421,22 @@ def main(): Str =
         {
             name: "Select with Defaults and Timers",
             code: `/// Sends the value \`x\` on the channel \`c\` after a delay.
-def slow(x: Int, c: Channel[Int]): Unit =
-    sleep(Duration.oneMinute());
+def slow(x: Int, c: Channel[Int]): Unit & Impure =
+    import java.lang.Thread:sleep(Int64);
+    sleep(Duration.oneMinute() / 1000000i64);
     c <- x;
     ()
 
 /// Reads a value from the channel \`c\`.
 /// Returns the default value \`1\` if \`c\` is not ready.
-def recvWithDefault(c: Channel[Int]): Int = select {
+def recvWithDefault(c: Channel[Int]): Int & Impure = select {
     case x <- c => x
     case _      => 1
 }
 
 /// Reads a value from the channel \`c\`.
 /// Returns the default value \`2\` if after a timeout.
-def recvWithTimeout(c: Channel[Int]): Int = select {
+def recvWithTimeout(c: Channel[Int]): Int & Impure = select {
     case x <- c                   => x
     case y <- Timer.seconds(1i64) => 2
 }
@@ -440,7 +444,7 @@ def recvWithTimeout(c: Channel[Int]): Int = select {
 /// Creates two channels \`c1\` and \`c2\`.
 /// Sends values on both after one minute.
 /// Receives from both using defaults and timeouts.
-def main(): Int = {
+def main(): Int & Impure = {
   let c1 = chan Int 1;
   let c2 = chan Int 1;
   spawn slow(123, c1);
