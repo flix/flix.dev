@@ -455,14 +455,14 @@ Compilation failed with 1 error(s).`}
                             Note: The above is fully implemented in master, but has not yet been "released".
                         </p>
 
-                        <h5>Final Thoughts</h5>
+                        <h5>Closing Thoughts</h5>
 
                         <p>
                             I hope that I have convinced you that unused code is a threat to correct and maintainable
-                            code. But it is a threat that can be neutralized by better programming language design and
-                            with minor changes to development practices. Moreover, I believe that a compiler that
+                            code. However, it is a threat that can be neutralized by better programming language design
+                            and with minor changes to development practices. Moreover, I believe that a compiler that
                             reports redundant or unused code can help programmers &ndash; whether inexperienced or
-                            seasoned &ndash; avoid stupid mistakes that wastes time during development.
+                            seasoned &ndash; avoid stupid mistakes that waste time during development.
                         </p>
 
                         <p>

@@ -42,6 +42,11 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
+                                        <Link to="/blog/redundancies-as-compile-time-errors/">
+                                            Redundancies as Compile-Time Errors
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/blog/design-flaws-in-flix/">
                                             Design Flaws in the Flix Programming Language
                                         </Link>
@@ -51,12 +56,12 @@ class Blog extends Component {
                         </Row>
                     </Route>
 
-                    <Route path="/blog/design-flaws-in-flix/">
-                        <DesignFlaws/>
-                    </Route>
-
                     <Route path="/blog/redundancies-as-compile-time-errors/">
                         <Redundancies/>
+                    </Route>
+
+                    <Route path="/blog/design-flaws-in-flix/">
+                        <DesignFlaws/>
                     </Route>
 
                 </Switch>
