@@ -368,7 +368,7 @@ class Principles extends Component {
                         same name. On the other hand, <code>Array.transform!</code> is
                         called <code>transform!</code> and not <code>map!</code> because its type signature is
                         dissimilar to map (i.e. map works on functions of type <code>a -> b</code>, but transform
-                        requires functions of type <code>a -> b</code>.)
+                        requires functions of type <code>a -> a</code>.)
                     </Principle>
 
                     <Principle name="Library: No blessed library">
