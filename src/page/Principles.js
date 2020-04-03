@@ -338,15 +338,42 @@ class Principles extends Component {
                         history is any guide, we should not add any special support for these to Flix.
                     </Principle>
 
-                    <Principle name="No blessed library">
-                        The Flix standard library is implemented in Flix. It has no special support from the compiler.
-                        If you don't like it or if you don't need it, you can replace it.
-                    </Principle>
-
-                    <Principle name="Minimal prelude">
+                    <Principle name="Library: Minimal prelude">
                         The Flix prelude contains algebraic data types and functions that are imported into every
                         compilation unit. Therefore we aim to keep the prelude very small and only include extremely
                         common functionality.
+                    </Principle>
+
+                    <Principle name="Library: Mutable Data is Functional Data">
+                        In Flix, every mutable data structure supports functional operations.
+                        For example, mutable collections, such as <code>Array</code> and <code>MutSet</code> support
+                        the <code>map</code> operation. Flix, being functional-first, reserves functional names for
+                        functional operations. Across the standard library <code>map</code> has the same name and the
+                        same type signature.
+                    </Principle>
+
+                    <Principle name="Library: Destructive Operations are Marked with !">
+                        In Flix, every destructive operation is suffixed with an exclamation point. For
+                        example, <code>Array.reverse(a)</code> returns a new array with the elements
+                        of <code>a</code> in reverse
+                        order, whereas <code>Array.reverse!(a)</code> destructively re-orders the elements
+                        of <code>a</code>. Note: This principle applies to destructive operations that operate on data
+                        structures, not to impure functions in general, e.g. <code>Console.printLine</code>.
+                    </Principle>
+
+                    <Principle name="Library: Consistent Names of Functional and Destructive Operations">
+                        In Flix, functional and destructive operations that share (i) similar behavior and (ii) similar
+                        type signatures share similar names. For
+                        example, <code>Array.reverse</code> and <code>Array.reverse!</code> share the
+                        same name. On the other hand, <code>Array.transform!</code> is
+                        called <code>transform!</code> and not <code>map!</code> because its type signature is
+                        dissimilar to map (i.e. map works on functions of type <code>a -> b</code>, but transform
+                        requires functions of type <code>a -> b</code>.)
+                    </Principle>
+
+                    <Principle name="Library: No blessed library">
+                        The Flix standard library is implemented in Flix. It has no special support from the compiler.
+                        If you don't like it or if you don't need it, you can replace it.
                     </Principle>
 
                 </CardColumns>
