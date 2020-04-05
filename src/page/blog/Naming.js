@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
-import {Col, Container, Row} from "reactstrap";
+import {Card, CardColumns, CardText, CardTitle, Col, Container, Row} from "reactstrap";
 import InlineEditor from "../../util/InlineEditor";
 
 class Naming extends Component {
@@ -153,14 +153,20 @@ class Naming extends Component {
                             We tried to explore the design space and we came up with the following potential solutions:
                         </p>
 
-                        <h5>Proposal I: Distinct names</h5>
-
-                        <p>
-                            We can try to come up with distinct names. For example, we might have MutSet.map and
-                            MutSet.transform. Similarly, we might have MutSet.union and MutSet.addAll. The challenge is
-                            to come up with reasonable names. For example, what should we call the two versions of
-                            reverse?
-                        </p>
+                        <Card body>
+                            <CardTitle>Proposal I: Distinct name</CardTitle>
+                            <CardText>
+                                <b>Proposal:</b> We can try to come up with distinct names. For example, we might have
+                                MutSet.map and
+                                MutSet.transform. Similarly, we might have MutSet.union and MutSet.addAll. The challenge
+                                is
+                                to come up with reasonable names. For example, what should we call the two versions of
+                                reverse?
+                            </CardText>
+                            <CardText>
+                                <b>Discussion:</b>
+                            </CardText>
+                        </Card>
 
                         <h5>Proposal II: Prefixed or suffixed-names</h5>
 
@@ -217,13 +223,68 @@ class Naming extends Component {
                             This leads us to the principles:
                         </p>
 
+
+                        <Card body>
+                            <CardTitle>Library: Mutable Data is Functional Data</CardTitle>
+                            <CardText>
+                                In Flix, every mutable data structure supports functional operations.
+                                For example, mutable collections, such
+                                as <code>Array</code> and <code>MutSet</code> support
+                                the <code>map</code> operation. Flix, being functional-first, reserves functional names
+                                for
+                                functional operations. Across the standard library <code>map</code> has the same name
+                                and the
+                                same type signature.
+                            </CardText>
+                        </Card>
+
+                        <Card body>
+                            <CardTitle>Library: Destructive Operations are Marked with !</CardTitle>
+                            <CardText>
+                                In Flix, every destructive operation is suffixed with an exclamation point. For
+                                example, <code>Array.reverse(a)</code> returns a new array with the elements
+                                of <code>a</code> in reverse
+                                order, whereas <code>Array.reverse!(a)</code> destructively re-orders the elements
+                                of <code>a</code>. Note: This principle applies to destructive operations that operate
+                                on data
+                                structures, not to impure functions in general, e.g. <code>Console.printLine</code>.
+                            </CardText>
+                        </Card>
+
+                        <Card body>
+                            <CardTitle>Library: Consistent Names of Functional and Destructive Operations</CardTitle>
+                            <CardText>
+                                In Flix, functional and destructive operations that share (i) similar behavior and (ii)
+                                similar
+                                type signatures share similar names. For
+                                example, <code>Array.reverse</code> and <code>Array.reverse!</code> share the
+                                same name. On the other hand, <code>Array.transform!</code> is
+                                called <code>transform!</code> and not <code>map!</code> because its type signature is
+                                dissimilar to map (i.e. map works on functions of type <code>a -> b</code>, but
+                                transform
+                                requires functions of type <code>a -> a</code>.)
+                            </CardText>
+                        </Card>
+
                         <p>
-                            Restate here.
+                            What are the concerns going forward? I see at least two potential issues:
+
+                            <ul>
+                                <li>Aesthetics - People may not like names !.</li>
+                                <li>Misunderstandings of when ! is required.</li>
+                                <li>Rust users may think that ! is a macro.</li>
+                            </ul>
                         </p>
 
                         <p>
-                            While we now have some principles, whether they are sufficient is yet to be seen.
-                            The downside of the alieng naming may be off putting.
+                            As Flix develops, we will continue to evaluate these drawbacks.
+                        </p>
+
+                        <p>
+                            Finally, one funny new thing did come out of our experiments. The idea of "forwarders" like
+                            an HTML page that forwards you to another page, we could add a notation that says
+                            "Array.map" does not exist, but perhaps you meant X.
+                            This has yet to be implemented.
                         </p>
 
                         <p>
