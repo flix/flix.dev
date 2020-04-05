@@ -39,26 +39,30 @@ class Naming extends Component {
                         </p>
 
                         <p>
-                            Flix, being imperative, want to support mutable data structures
-
-                            In Flix we support both functional and imperative programming (and logic programming, but
-                            that is for another day).
-                            We have recently extended the standard library with support for arrays. This is where the
-                            naming issue comes in.
+                            Flix, being imperative, wants to support mutable data structures such as arrays, mutable
+                            sets and maps. We were recently adding support for all three.
                         </p>
 
                         <p>
-                            Let us take one of our favorite data structures, the list. We can <code>map</code> over a
-                            list:
+                            Let us for a moment consider our favorite data structure: the humble list.
+                        </p>
+
+                        <p>
+                            We can <code>map</code> a function <code>f: a -> b</code> over a list <code>l</code> to
+                            obtain a new list of type <code>List[b]</code>:
                         </p>
 
                         <InlineEditor>
-                            {` def map(f: a -> b & e, xs: List[a]): List[b] & e`}
+                            {` def map(f: a -> b & e, l: List[a]): List[b] & e`}
                         </InlineEditor>
 
                         <p>
-                            But we can also map over an Option (which w can think of as an empty list or a list with one
-                            element)
+                            (Here the <code>e</code> denotes that the function is <i>effect polymorphic</i>, but that
+                            is for another day.)
+                        </p>
+
+                        <p>
+                            We can also <code>map</code> a function over an option:
                         </p>
 
                         <InlineEditor>
@@ -66,13 +70,12 @@ class Naming extends Component {
                         </InlineEditor>
 
                         <p>
-                            Category theorists will tell us that this is no accident, but that is a discussion for
-                            another day.
+                            Category Theorists will claim that this is a conspiracy with deeper and darker forces at
+                            play, but I digress...
                         </p>
 
                         <p>
-                            Let us return to arrays. If we have an array of some elements, we should be able to map a
-                            function over its elements and obtain a new array. And indeed we can:
+                            We can also map a function over an array:
                         </p>
 
                         <InlineEditor>
