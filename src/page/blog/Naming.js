@@ -83,9 +83,15 @@ class Naming extends Component {
                         </InlineEditor>
 
                         <p>
-                            This is great and as we would expect, but one of the major reasons for having arrays in the
-                            first place is that we want to <i>mutably</i> change their contents.
+                            This is great: we can program with arrays in a functional-style. This is certainly useful,
+                            but the main reason for having arrays (and mutable sets and maps) is to program with them
+                            imperatively. We <i>want</i> to have operations that <i>mutate</i> their content.
                         </p>
+
+
+
+
+
 
                         <p>
                             What we would like is an operation that applies a function to every element <i>changing the
