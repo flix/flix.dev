@@ -89,18 +89,22 @@ class Naming extends Component {
                         </p>
 
 
-
-
-
+                        <p>
+                            We want an operation that applies a function to every element of an array <i>changing
+                            it in place</i>. <b>What should this operation be called?</b> We cannot name
+                            it <code>map</code> because that name is already taken by the functional version (and Flix
+                            being functional-first, rightly so).
+                        </p>
 
                         <p>
-                            What we would like is an operation that applies a function to every element <i>changing the
-                            array in place</i>. What should this function be called? Our first idea was:
+                            Let us simply call it <code>mapInPlace</code> for now:
                         </p>
 
                         <InlineEditor>
                             {`def mapInPlace(f: a -> a, a: Array[a]): Unit & Impure`}
                         </InlineEditor>
+
+
 
                         <p>
                             Notice that the signature of <code>mapInPlace</code> is different from <code>map</code> in
