@@ -192,109 +192,95 @@ class Naming extends Component {
                         </p>
 
                         <Card body className="mb-3">
-                            <CardTitle>Option I: Distinct Names</CardTitle>
+                            <CardTitle>Option I: Distinct names</CardTitle>
                             <CardText>
                                 <b>Proposal:</b> We give distinct names to functional and destructive operations. For
                                 example, we will have <code>Array.map</code> and <code>Array.transform</code>,
-                                and <code>MutSet.union</code> and <code>MutSet.addAll</code>. We use reserve the most
+                                and <code>MutSet.union</code> and <code>MutSet.addAll</code>. We reserve the most
                                 common names (e.g. <code>map</code>) for the functional operations.
                             </CardText>
                             <CardText>
-                                <b>Discussion:</b> With distinct names there is little room for confusion, but the
-                                programmer may have to consult the documentation more frequently. It may be difficult to
-                                come up with distinct, but meaningful, names. For example, what should the destructive
-                                version of <code>reverse</code> be
-                                called?
+                                <b>Discussion:</b> With distinct names there is little room for confusion, but it may be
+                                difficult to come up with meaningful names. For example, what should the
+                                destructive version of <code>reverse</code> be called?
                             </CardText>
                         </Card>
 
                         <Card body className="mb-3">
-                            <CardTitle>Option II: Use Similar Names but with a Prefix or Suffix</CardTitle>
+                            <CardTitle>Option II: Use similar names but with a prefix or suffix</CardTitle>
                             <CardText>
-                                <b>Proposal:</b> We reuse names between functional and destructive operations as much as
-                                possible. To distinguish names, we prefix or suffix the names with a word. For
-                                example, <code>reverseInPlace</code>, <code>mutReverse</code>, or the like.
+                                <b>Proposal:</b> We reuse names between functional and destructive operations. To
+                                distinguish operations, we add a prefix or suffix to the name. For
+                                example, <code>reverseInPlace</code>, <code>inPlaceReverse</code>, <code>reverseMut</code>,
+                                or similar.
                             </CardText>
                             <CardText>
                                 <b>Discussion:</b> The advantage of this approach is that names are immediately
-                                consistent. The disadvantages are (i) that it may be difficult to come up with a good
-                                prefix or suffix word, (ii) some people may find that it looks ugly, and (iii) it may be
-                                confusing that signatures for two similarly named operations differ not only in the
-                                return type, but also in the polymorphism of the arguments.
+                                consistent. The disadvantages are that: (i) it may be difficult to come up with a good
+                                prefix or suffix word, (ii) some users may dislike the prefix or suffix, and (iii) it
+                                may be confusing that the signatures for two similarly named operations differ not only
+                                in the return type, but also in the polymorphism of the arguments.
                             </CardText>
                         </Card>
 
                         <Card body className="mb-3">
-                            <CardTitle>Option III: Use Similar Names but with a Prefix or Suffix Symbol</CardTitle>
+                            <CardTitle>Option III: Use similar names but with a prefix or suffix symbol</CardTitle>
                             <CardText>
-                                <b>Proposal:</b> Like the previous proposal, but instead we use a symbol. For
+                                <b>Proposal:</b> Similar to the previous proposal, but instead we use a symbol. For
                                 example: <code>reverse!</code>, <code>reverse*</code>, or the like.
                             </CardText>
                             <CardText>
-                                <b>Discussion:</b> The advantage and disadvantages of this approach are similar to the
-                                previous proposal, with the difference that a symbol may be more or less appealing to
-                                users. Moreover, the symbol may clash with similar symbols used by other programming
-                                languages.
+                                <b>Discussion:</b> The same advantages and disadvantages of the previous proposal, but
+                                with the difference that a symbol may be more or less appealing to the user.
                             </CardText>
                         </Card>
 
-
                         <Card body className="mb-3">
-                            <CardTitle>Option IV: We leverage namespaces</CardTitle>
+                            <CardTitle>Option IV: Use namespaces</CardTitle>
                             <CardText>
-                                <b>Proposal:</b> We place functional operations into one namespaces and all destructive
-                                operations into another. For example, we might
+                                <b>Proposal:</b> We place all functional operations into one namespace and all
+                                destructive operations into another. For example, we might
                                 have <code>Array.reverse</code> and <code>MutArray.reverse</code>.
-
-
-                                For Set and MutSet it is more complicated. We would need Set.map,
-                                MutSet.Mut.map, and MutSet.Imm.map. That is, Set is for the pure functional data
-                                structure,
-                                MutSet.Mut is for the mutable set where we use mutable map and MutSet.Imm is for the
-                                mutable
-                                set but where we use immutable map.
                             </CardText>
                             <CardText>
                                 <b>Discussion:</b> While this solution appears simple, it has two downsides: (i) We now
-                                have multiple functions named <code>reverse</code> with different semantics. If a
-                                programmer imports one or the other, it might be difficult to understand locally which
-                                one we are using. (ii) We get a plethora of names for data structures that exist in both
+                                have multiple functions named <code>reverse</code> with different semantics. (ii) We get
+                                a plethora of namespaces for data structures that exist in both
                                 immutable and mutable variants. For example, we might end up
-                                with <code>Set.map</code> (functional map on immutable
-                                set), <code>MutSet.Mut.map</code> (destructive map on mutable set),
-                                and <code>MutSet.Imm.map</code> (functional map on mutable set). The naming gets weird.
+                                with <code>Set.map</code> (functional map on an immutable
+                                set), <code>MutSet.Mut.map</code> (destructive map on a mutable set),
+                                and <code>MutSet.Imm.map</code> (functional map on a mutable set).
                             </CardText>
                         </Card>
 
                         <Card body className="mb-3">
-                            <CardTitle>Option V: The Python Approach: Sort vs. Sorted</CardTitle>
+                            <CardTitle>Option V: The Python approach: sort vs. sorted</CardTitle>
                             <CardText>
-                                <b>Proposal:</b> In Python <code>sort</code> destructively sorts a list in place
-                                whereas <code>sorted</code> functionally returns a new sorted list. We could use the
+                                <b>Proposal:</b> In Python <code>sorted</code> functionally returns a new sorted list
+                                whereas <code>sort</code> destructively sorts a list in place. We use the
                                 same scheme
                                 for <code>reverse</code> and <code>reversed</code>, <code>map</code> and <code>mapped</code>,
                                 and so forth.
                             </CardText>
                             <CardText>
-                                <b>Discussion:</b> A quick internet search reveals that many users are puzzled by this
-                                naming scheme. Another disadvantage is that the typically functional names,
+                                <b>Discussion:</b> An internet search reveals that many programmers are puzzled by the
+                                Python naming scheme. Another disadvantage is that the common functional names,
                                 e.g. <code>map</code> and <code>reverse</code> would be reserved for destructive
-                                operations (unless one were to adopt the <i>opposite</i> scheme of Python).
+                                operations (unless we adopt the <i>opposite</i> convention of Python).
                             </CardText>
                         </Card>
 
                         <Card body className="mb-3">
-                            <CardTitle>Option VI: Drop Functional Operations for Mutable Data</CardTitle>
+                            <CardTitle>Option VI: Drop functional operations for mutable data</CardTitle>
                             <CardText>
-                                <b>Proposal:</b> We simply drop support for functional operations on mutable data
-                                structures. If the user wants to map a function over an array, mutable set, or mutable
+                                <b>Proposal:</b> We drop support for functional operations on mutable data structures.
+                                If the user wants to map a function over an array, mutable set, or mutable
                                 map he or she must first convert it to an immutable data structure. For example, to
                                 functionally reverse an array one would
                                 write <code>a.toList().reverse().toArray()</code>.
                             </CardText>
                             <CardText>
-                                <b>Discussion:</b> The "stick your head in the sand approach". The solution is simple
-                                and leaves no room for confusion but at the cost of tediousness and performance.
+                                <b>Discussion:</b> The "stick your head in the sand approach".
                             </CardText>
                         </Card>
 
