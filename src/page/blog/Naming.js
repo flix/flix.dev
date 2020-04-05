@@ -264,23 +264,29 @@ class Naming extends Component {
                             set but where we use immutable map.
                         </p>
 
-                        <h5>Option 5: We drop the idea of multiple operations</h5>
 
-                        <p>
-                            If Array and MutSet are mutable then they simply do not come with a functional map or
-                            reverse. If you need that then you must convert the functional to an immutable version and
-                            then call the appropriate operation. For example, a.toImmutable().reverse(). Possibly
-                            toImmutable() (or maybe just toImm) can be implemented more efficiently than building the
-                            entire data structure (but maybe not).
-                        </p>
-
-                        <h5>Option 6: Sort vs. Sorted</h5>
+                        <h5>Option 5: Sort vs. Sorted</h5>
 
                         <p>
                             We use words like sort and sorted, reverse and reversed to distinguish between pure and
                             impure functions.
                         </p>
 
+                        <Card body className="mb-3">
+                            <CardTitle>Option VI: Drop Functional Operations for Mutable Data</CardTitle>
+                            <CardText>
+                                <b>Proposal:</b> We simply drop support for functional operations on mutable data
+                                structures. If the user wants to map a function over an array, mutable set, or mutable
+                                map he or she must first convert it to an immutable data structure. For example, to
+                                functionally reverse an array one would
+                                write <code>a.toList().reverse().toArray()</code>. Alternatively, a hand-written fold
+                                could also get the job done.
+                            </CardText>
+                            <CardText>
+                                <b>Discussion:</b> The "stick your head in the sand approach". The solution is simple
+                                and leaves no room for confusion but at the cost of tediousness and performance.
+                            </CardText>
+                        </Card>
 
                         <h2>The Principles</h2>
 
@@ -334,7 +340,8 @@ class Naming extends Component {
                             Going forward, we are sensitive to at least four potential issues:
 
                             <ul>
-                                <li>Whether users come to like the aesthetics of names that end in exclamation point.</li>
+                                <li>Whether users come to like the aesthetics of names that end in exclamation point.
+                                </li>
                                 <li>If there is confusion about when exclamation points should be part of a name.</li>
                                 <li>If there is confusion about when two operations should share the same name.</li>
                                 <li>Rust uses exclamation points for macro applications.</li>
