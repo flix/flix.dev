@@ -253,19 +253,36 @@ class Naming extends Component {
                             </CardText>
                         </Card>
 
-                        <h5>Option 4: We leverage namespaces</h5>
-
-                        <p>
-                            We use namespaces to disambiguate the operations. For example, we might have Array.reverse
-                            and MutArray.reverse. Problem: For array there is one data structure trying to supports two
-                            types of operations. For Set and MutSet it is more complicated. We would need Set.map,
-                            MutSet.Mut.map, and MutSet.Imm.map. That is, Set is for the pure functional data structure,
-                            MutSet.Mut is for the mutable set where we use mutable map and MutSet.Imm is for the mutable
-                            set but where we use immutable map.
-                        </p>
 
                         <Card body className="mb-3">
-                            <CardTitle>Option VI: The Python Approach: Sort vs. Sorted</CardTitle>
+                            <CardTitle>Option IV: We leverage namespaces</CardTitle>
+                            <CardText>
+                                <b>Proposal:</b> We place functional operations into one namespaces and all destructive
+                                operations into another. For example, we might
+                                have <code>Array.reverse</code> and <code>MutArray.reverse</code>.
+
+
+                                For Set and MutSet it is more complicated. We would need Set.map,
+                                MutSet.Mut.map, and MutSet.Imm.map. That is, Set is for the pure functional data
+                                structure,
+                                MutSet.Mut is for the mutable set where we use mutable map and MutSet.Imm is for the
+                                mutable
+                                set but where we use immutable map.
+                            </CardText>
+                            <CardText>
+                                <b>Discussion:</b> While this solution appears simple, it has two downsides: (i) We now
+                                have multiple functions named <code>reverse</code> with different semantics. If a
+                                programmer imports one or the other, it might be difficult to understand locally which
+                                one we are using. (ii) We get a plethora of names for data structures that exist in both
+                                immutable and mutable variants. For example, we might end up
+                                with <code>Set.map</code> (functional map on immutable
+                                set), <code>MutSet.Mut.map</code> (destructive map on mutable set),
+                                and <code>MutSet.Imm.map</code> (functional map on mutable set). The naming gets weird.
+                            </CardText>
+                        </Card>
+
+                        <Card body className="mb-3">
+                            <CardTitle>Option V: The Python Approach: Sort vs. Sorted</CardTitle>
                             <CardText>
                                 <b>Proposal:</b> In Python <code>sort</code> destructively sorts a list in place
                                 whereas <code>sorted</code> functionally returns a new sorted list. We could use the
