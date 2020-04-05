@@ -104,26 +104,44 @@ class Naming extends Component {
                             {`def mapInPlace(f: a -> a, a: Array[a]): Unit & Impure`}
                         </InlineEditor>
 
-
-
                         <p>
-                            Notice that the signature of <code>mapInPlace</code> is different from <code>map</code> in
-                            two important ways:
-                            (i) It returns <code>Unit</code> instead of <code>Array[b]</code> which makes sense since it
-                            is mutating and more interestingly (ii) it takes a function from <code>a -> a</code> instead
-                            of from <code>a -> b</code>. The latter point will become important later on when we try to
-                            formulate some principles for
-                            naming. The reason is that, in general, if you have an array of some
-                            type then you cannot change it, in place, to a different type because the memory layout
-                            might not work out. For example, if you have an array of bytes, you cannot suddenly replace
-                            that by an array of strings.
+                            The signature of <code>mapInPlace</code> is different from the signature
+                            of <code>map</code> in two important ways:
+
+                            <ul>
+                                <li>The function <i>returns</i> <code>Unit</code> instead of an array.</li>
+                                <li>The function takes a function of type <code>a -> a</code> rather than a function of
+                                    type <code>a -> b</code>.
+                                </li>
+                            </ul>
                         </p>
 
                         <p>
-                            <code>map</code> and <code>mapInPlace</code> is not the only operations where we want to
-                            have both a functional and a destructive operation. In fact, we came up with the following
-                            table:
+                            The latter is necessary because the type of an array is fixed. An array of bytes cannot
+                            (type safely) be replaced by an array of strings.
+                        </p>
 
+                        <p>
+                            The <code>map</code> and <code>mapInPlace</code> functions illustrate the dichotomy between
+                            functional and destructive operations. It lead us down to path to questions such as:
+
+                            <ul>
+                                <li>What should the two functions be called?</li>
+                                <li>Are the two functions sufficiently similar that they should share some common name?
+                                    And if so, how should these names be related such that their intent is obvious to
+                                    the programmer?
+                                </li>
+                                <li>When exactly are two functions "sufficiently similar" that they should share the
+                                    same name? Is this even true <code>map</code> and <code>mapInPlace</code> given that
+                                    only do they differ in functional vs. mutable behavior, but also in the type
+                                    signature of <code>f</code>?
+                                </li>
+                            </ul>
+                        </p>
+
+                        <p>
+                            To understand the design space, we surveyed the Flix standard library to understand what
+                            names were currently being used. The table below lists a small subset of the results:
                         </p>
 
                         <p>
@@ -131,40 +149,54 @@ class Naming extends Component {
                                 <thead>
                                 <tr>
                                     <th scope="col">Functional</th>
-                                    <th scope="col">Destructive</th>
+                                    <th scope="col">Destructive Equivalent</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>map</td>
-                                    <td>mapInPlace</td>
+                                    <td>Array.map</td>
+                                    <td>Array.mapInPlace</td>
                                 </tr>
                                 <tr>
-                                    <td>mapWithIndex</td>
-                                    <td>mapWithIndexInPlace</td>
+                                    <td>Array.reverse</td>
+                                    <td>Array.reverseInPlace</td>
                                 </tr>
                                 <tr>
-                                    <td>reverse</td>
-                                    <td>mapWithIndexInPlace</td>
+                                    <td><i>missing</i></td>
+                                    <td>Array.sortByInPlace</td>
                                 </tr>
                                 <tr>
-                                    <td>replace</td>
-                                    <td>mapWithIndexInPlace</td>
-                                </tr>
-                                <tr>
-                                    <td>sort</td>
-                                    <td>mapWithIndexInPlace</td>
+                                    <td>Set.insert</td>
+                                    <td>not relevant &ndash; immutable</td>
                                 </tr>
                                 <tr>
                                     <td>Set.union</td>
-                                    <td>???</td>
+                                    <td>not relevant &ndash; immutable</td>
+                                </tr>
+                                <tr>
+                                    <td><i>missing</i></td>
+                                    <td>MutSet.add</td>
+                                </tr>
+                                <tr>
+                                    <td><i>missing</i></td>
+                                    <td>MutSet.addAll</td>
+                                </tr>
+                                <tr>
+                                    <td>MutSet.map</td>
+                                    <td>MutSet.transform</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </p>
 
                         <p>
-                            We then realized we had a general problem and a so a general policy was called for.
+                            The table shows a naming convention all over the place. Let us consider some of the many
+                            inconsistencies: For arrays, the functional and destructive operations are
+                            named <code>Array.map</code> and <code>Array.mapInPlace</code>, but for mutable sets the
+                            operations are named <code>MutSet.map</code> and <code>MutSet.transform</code>.
+                            For immutable sets, we have <code>Set.insert</code> and <code>Set.union</code>, but these
+                            functional operations are missing on the mutable set. Moreover, the mutable version
+                            of <code>Set.union</code> is called <code>Set.addAll</code>.
                         </p>
 
                         <p>
