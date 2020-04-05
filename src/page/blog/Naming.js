@@ -285,76 +285,64 @@ class Naming extends Component {
                         <h2>The Principles</h2>
 
                         <p>
-                            We debate these principles, I have already mentioned the discussion below each point, and
-                            ultimately we ended up with the following hybrid solution.
+                            We debated these principles and slept on them for a few nights before we ultimately ended up
+                            with the following hybrid principles:
                         </p>
 
-                        <p>
-                            This leads us to the principles:
-                        </p>
-
-
-                        <Card body>
+                        <Card body className="mb-3">
                             <CardTitle>Library: Mutable Data is Functional Data</CardTitle>
                             <CardText>
                                 In Flix, every mutable data structure supports functional operations.
                                 For example, mutable collections, such
                                 as <code>Array</code> and <code>MutSet</code> support
                                 the <code>map</code> operation. Flix, being functional-first, reserves functional names
-                                for
-                                functional operations. Across the standard library <code>map</code> has the same name
-                                and the
-                                same type signature.
+                                for functional operations. Across the standard library <code>map</code> has the same
+                                name and the same type signature.
                             </CardText>
                         </Card>
 
-                        <Card body>
+                        <Card body className="mb-3">
                             <CardTitle>Library: Destructive Operations are Marked with !</CardTitle>
                             <CardText>
                                 In Flix, every destructive operation is suffixed with an exclamation point. For
                                 example, <code>Array.reverse(a)</code> returns a new array with the elements
-                                of <code>a</code> in reverse
-                                order, whereas <code>Array.reverse!(a)</code> destructively re-orders the elements
-                                of <code>a</code>. Note: This principle applies to destructive operations that operate
-                                on data
-                                structures, not to impure functions in general, e.g. <code>Console.printLine</code>.
+                                of <code>a</code> in reverse order, whereas <code>Array.reverse!(a)</code> destructively
+                                re-orders the elements of <code>a</code>. Note: This principle applies to destructive
+                                operations that operate on data structures, not to impure functions in general,
+                                e.g. <code>Console.printLine</code>.
                             </CardText>
                         </Card>
 
-                        <Card body>
+                        <Card body className="mb-3">
                             <CardTitle>Library: Consistent Names of Functional and Destructive Operations</CardTitle>
                             <CardText>
                                 In Flix, functional and destructive operations that share (i) similar behavior and (ii)
-                                similar
-                                type signatures share similar names. For
+                                similar type signatures share similar names. For
                                 example, <code>Array.reverse</code> and <code>Array.reverse!</code> share the
                                 same name. On the other hand, <code>Array.transform!</code> is
                                 called <code>transform!</code> and not <code>map!</code> because its type signature is
                                 dissimilar to map (i.e. map works on functions of type <code>a -> b</code>, but
-                                transform
-                                requires functions of type <code>a -> a</code>.)
+                                transform requires functions of type <code>a -> a</code>.)
                             </CardText>
                         </Card>
 
                         <p>
-                            What are the concerns going forward? I see at least two potential issues:
+                            We are in the process of refactoring the standard library to satisfy these new principles.
+                        </p>
+
+                        <p>
+                            Going forward, we are sensitive to at least four potential issues:
 
                             <ul>
-                                <li>Aesthetics - People may not like names !.</li>
-                                <li>Misunderstandings of when ! is required.</li>
-                                <li>Rust users may think that ! is a macro.</li>
+                                <li>Whether users come to like the aesthetics of names that end in exclamation point.</li>
+                                <li>If there is confusion about when exclamation points should be part of a name.</li>
+                                <li>If there is confusion about when two operations should share the same name.</li>
+                                <li>Rust uses exclamation points for macro applications.</li>
                             </ul>
                         </p>
 
                         <p>
-                            As Flix develops, we will continue to evaluate these drawbacks.
-                        </p>
-
-                        <p>
-                            Finally, one funny new thing did come out of our experiments. The idea of "forwarders" like
-                            an HTML page that forwards you to another page, we could add a notation that says
-                            "Array.map" does not exist, but perhaps you meant X.
-                            This has yet to be implemented.
+                            As Flix continues to mature, we will keep an eye on these issues.
                         </p>
 
                         <p>
