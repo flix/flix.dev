@@ -24,27 +24,24 @@ class Naming extends Component {
 
                         <p>
                             It has been said that there are only two hard problems in computer-science: (i) naming, (ii)
-                            cache invalidation, and (iii) off-by-one errors. In this blog post, I will explain a name
-                            consistency issue that arise when you want to have both functional and destructive
-                            operations. (A functional operation work on data by returning new data, whereas a
-                            destructive operation work on data by mutating existing data.)
+                            cache invalidation, and (iii) off-by-one errors. In this blog post, I will explain a <i>name
+                            consistency issue</i> that arise when a programming language wants to support both
+                            functional and destructive operations. (A functional operation always returns new data,
+                            whereas a destructive operation mutates existing data.)
                         </p>
 
                         <p>
                             Flix supports functional, imperative, and logic programming. Flix is intended to
-                            be <i>functional-first</i> which simply means that if there are trade-offs between
-                            functional and imperative programming, we tend to favor design choices that support
-                            functional programming. For example, the Flix effect system separates pure and impure
-                            functions.
+                            be <i>functional-first</i> which simply means that if there is a trade-off between
+                            having better functional- or imperative programming support, we tend to favor design choices
+                            that support functional programming. For example, the Flix effect system separates pure
+                            and impure functions mostly to the benefit of functional programming.
                         </p>
 
                         <p>
                             Flix, being imperative, wants to support mutable data structures such as arrays, mutable
-                            sets and maps. We were recently adding support for all three.
-                        </p>
-
-                        <p>
-                            Let us for a moment consider our favorite data structure: the humble list.
+                            sets and maps. We have recently added support for all three. But let us for a moment
+                            consider a simpler data structure: the humble list.
                         </p>
 
                         <p>
@@ -53,7 +50,7 @@ class Naming extends Component {
                         </p>
 
                         <InlineEditor>
-                            {` def map(f: a -> b & e, l: List[a]): List[b] & e`}
+                            {`def map(f: a -> b & e, l: List[a]): List[b] & e`}
                         </InlineEditor>
 
                         <p>
@@ -83,20 +80,16 @@ class Naming extends Component {
                         </InlineEditor>
 
                         <p>
-                            This is great: we can program with arrays in a functional-style. Mapping over an array is
-                            certainly meaningful and useful, it might even be faster than mapping over a list!
+                            This is good news: we can program with arrays in a functional-style. Mapping over an array
+                            is certainly meaningful and useful. Hell, it might even be faster than mapping over a list!
                             Nevertheless, the main reason for having arrays (and mutable sets and maps) is to program
-                            with them imperatively. We <i>want</i> to have operations that <i>mutate</i> their content.
+                            with them imperatively. We <i>want</i> to have operations that <i>mutate</i> their data.
                         </p>
 
                         <p>
                             We want an operation that applies a function to every element of an array <i>changing
-                            it in place</i>. <b>What should this operation be called?</b> We cannot name
-                            it <code>map</code> because that name is already taken by the functional version (and Flix
-                            being functional-first, rightly so).
-                        </p>
-
-                        <p>
+                            it in place</i>. <b>What should such an operation be called?</b> We cannot name
+                            it <code>map</code> because that name is already taken by the functional version.
                             Let us simply call it <code>mapInPlace</code> for now:
                         </p>
 
@@ -109,7 +102,7 @@ class Naming extends Component {
                             of <code>map</code> in two important ways:
 
                             <ul>
-                                <li>The function <i>returns</i> <code>Unit</code> instead of an array.</li>
+                                <li>The function returns <code>Unit</code> instead of returning an array.</li>
                                 <li>The function takes a function of type <code>a -> a</code> rather than a function of
                                     type <code>a -> b</code>.
                                 </li>
@@ -117,38 +110,28 @@ class Naming extends Component {
                         </p>
 
                         <p>
-                            The latter is necessary because the type of an array is fixed. An array of bytes cannot
-                            (type safely) be replaced by an array of strings.
+                            The latter is required because the type of an array is fixed. An array of bytes cannot
+                            be replaced by an array of strings. Consequently, <code>mapInPlace</code> must take a
+                            less generic function of type <code>a -> a</code>.
                         </p>
 
                         <p>
-                            The <code>map</code> and <code>mapInPlace</code> functions illustrate the dichotomy between
-                            functional and destructive operations. It lead us down to path to questions such as:
-
-                            <ul>
-                                <li>What should the two functions be called?</li>
-                                <li>Are the two functions sufficiently similar that they should share some common name?
-                                    And if so, how should these names be related such that their intent is obvious to
-                                    the programmer?
-                                </li>
-                                <li>When exactly are two functions "sufficiently similar" that they should share the
-                                    same name? Is this even true <code>map</code> and <code>mapInPlace</code> given that
-                                    only do they differ in functional vs. mutable behavior, but also in the type
-                                    signature of <code>f</code>?
-                                </li>
-                            </ul>
+                            We have seen that it is useful to have both functional and destructive functions such
+                            as <code>map</code> and <code>mapInPlace</code>, but what should such functions be called?
+                            Are they sufficiently similar that they should share similar names? What should be the
+                            general rule for naming functional operations and their counter-part destructive operations?
                         </p>
 
                         <p>
-                            To understand the design space, we surveyed the Flix standard library to understand what
-                            names were currently being used. The table below lists a small subset of the results:
+                            To answer these questions, we surveyed the Flix standard library to understand what
+                            names are currently being used. The table below shows a small cross section of the results:
                         </p>
 
                         <p>
                             <table className="table table-striped small">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Functional</th>
+                                    <th scope="col">Functional Operation</th>
                                     <th scope="col">Destructive Equivalent</th>
                                 </tr>
                                 </thead>
@@ -190,20 +173,22 @@ class Naming extends Component {
                         </p>
 
                         <p>
-                            The table shows a naming convention all over the place. Let us consider some of the many
-                            inconsistencies: For arrays, the functional and destructive operations are
+                            The table exposes the lack of any established naming convention. Let us consider some of the
+                            many inconsistencies: For arrays, the functional and destructive operations are
                             named <code>Array.map</code> and <code>Array.mapInPlace</code>, but for mutable sets the
                             operations are named <code>MutSet.map</code> and <code>MutSet.transform</code>.
-                            For immutable sets, we have <code>Set.insert</code> and <code>Set.union</code>, but these
+                            As another example, for immutable sets, we
+                            have <code>Set.insert</code> and <code>Set.union</code>, but these
                             functional operations are missing on the mutable set. Moreover, the mutable version
                             of <code>Set.union</code> is called <code>Set.addAll</code>.
+                            Finally, <code>Array.sortByInPlace</code>, what a name!
                         </p>
 
                         <h2>Exploring the Design Space</h2>
 
                         <p>
-                            With these challenges at hand, we tried to come up with principled approaches to naming. In
-                            particular, we explored the following options:
+                            With these examples in mind, we tried to come up with a principled approach to naming. Our
+                            exploration ended up with the following options:
                         </p>
 
                         <Card body className="mb-3">
