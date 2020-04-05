@@ -6,7 +6,7 @@ import InlineEditor from "../../util/InlineEditor";
 class Naming extends Component {
 
     componentDidMount() {
-        document.title = "Flix | How to name Functional and Destructive Operations";
+        document.title = "Flix | How should Functional and Destructive Operations be Named?";
         ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
@@ -16,7 +16,7 @@ class Naming extends Component {
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
 
-                        <h1>How to Name Functional and Destructive Operations</h1>
+                        <h1>How should Functional and Destructive Operations be Named?</h1>
 
                         <p>
                             Posted April 2020 by <i>Magnus Madsen</i>.
