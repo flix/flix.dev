@@ -215,34 +215,43 @@ class Naming extends Component {
                                 common names (e.g. <code>map</code>) for the functional operations.
                             </CardText>
                             <CardText>
-                                <p>
-                                    <b>Advantages:</b> With distinct names there is little room for confusion, but the
-                                    programmer may have to consult the documentation more frequently.
-
-                                </p>
-
-                                <p>
-                                    <b>Disadvantages:</b> It may be difficult to come with distinct, but meaningful,
-                                    names. For example, what should the destructive version of <code>reverse</code> be
-                                    called?
-                                </p>
+                                <b>Discussion:</b> With distinct names there is little room for confusion, but the
+                                programmer may have to consult the documentation more frequently. It may be difficult to
+                                come up with distinct, but meaningful, names. For example, what should the destructive
+                                version of <code>reverse</code> be
+                                called?
                             </CardText>
                         </Card>
 
-                        <h5>Proposal II: Prefixed or suffixed-names</h5>
+                        <Card body className="mb-3">
+                            <CardTitle>Option II: Use Similar Names but with a Prefix or Suffix</CardTitle>
+                            <CardText>
+                                <b>Proposal:</b> We reuse names between functional and destructive operations as much as
+                                possible. To distinguish names, we prefix or suffix the names with a word. For
+                                example, <code>reverseInPlace</code>, <code>mutReverse</code>, or the like.
+                            </CardText>
+                            <CardText>
+                                <b>Discussion:</b> The advantage of this approach is that names are immediately
+                                consistent. The disadvantages are (i) that it may be difficult to come up with a good
+                                prefix or suffix word, (ii) some people may find that it looks ugly, and (iii) it may be
+                                confusing that signatures for two similarly named operations differ not only in the
+                                return type, but also in the polymorphism of the arguments.
+                            </CardText>
+                        </Card>
 
-                        <p>
-                            We keep names like map and reverse for the functional variants. For the mutable in place
-                            variants, we prepend or append some specific words, e.g. reverseInPlace or mutReverse.
-                        </p>
-
-                        <h5> Option 3: Prefixed or suffixed-names with symbols </h5>
-
-                        <p>
-                            We go old school. We keep the names map and reverse for the function variants. We name the
-                            mutable variants map! and reverse! using the bang (or some other symbol) to signify
-                            mutation. This seems very principled, but people might really really dislike the aesthetics.
-                        </p>
+                        <Card body className="mb-3">
+                            <CardTitle>Option III: Use Similar Names but with a Prefix or Suffix Symbol</CardTitle>
+                            <CardText>
+                                <b>Proposal:</b> Like the previous proposal, but instead we use a symbol. For
+                                example: <code>reverse!</code>, <code>reverse*</code>, or the like.
+                            </CardText>
+                            <CardText>
+                                <b>Discussion:</b> The advantage and disadvantages of this approach are similar to the
+                                previous proposal, with the difference that a symbol may be more or less appealing to
+                                users. Moreover, the symbol may clash with similar symbols used by other programming
+                                languages.
+                            </CardText>
+                        </Card>
 
                         <h5>Option 4: We leverage namespaces</h5>
 
