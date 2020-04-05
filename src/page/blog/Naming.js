@@ -267,12 +267,17 @@ class Naming extends Component {
                         <Card body className="mb-3">
                             <CardTitle>Option VI: The Python Approach: Sort vs. Sorted</CardTitle>
                             <CardText>
-                                <b>Proposal:</b> We use words like sort and sorted, reverse and reversed to distinguish
-                                between pure and
-                                impure functions.
+                                <b>Proposal:</b> In Python <code>sort</code> destructively sorts a list in place
+                                whereas <code>sorted</code> functionally returns a new sorted list. We could use the
+                                same scheme
+                                for <code>reverse</code> and <code>reversed</code>, <code>map</code> and <code>mapped</code>,
+                                and so forth.
                             </CardText>
                             <CardText>
-                                <b>Discussion:</b>
+                                <b>Discussion:</b> A quick internet search reveals that many users are puzzled by this
+                                naming scheme. Another disadvantage is that the typically functional names,
+                                e.g. <code>map</code> and <code>reverse</code> would be reserved for destructive
+                                operations (unless one were to adopt the <i>opposite</i> scheme of Python).
                             </CardText>
                         </Card>
 
