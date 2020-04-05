@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
-import {Card, CardColumns, CardText, CardTitle, Col, Container, Row} from "reactstrap";
+import {Card, CardText, CardTitle, Col, Container, Row} from "reactstrap";
 import InlineEditor from "../../util/InlineEditor";
 
 class Naming extends Component {
@@ -264,13 +264,17 @@ class Naming extends Component {
                             set but where we use immutable map.
                         </p>
 
-
-                        <h5>Option 5: Sort vs. Sorted</h5>
-
-                        <p>
-                            We use words like sort and sorted, reverse and reversed to distinguish between pure and
-                            impure functions.
-                        </p>
+                        <Card body className="mb-3">
+                            <CardTitle>Option VI: The Python Approach: Sort vs. Sorted</CardTitle>
+                            <CardText>
+                                <b>Proposal:</b> We use words like sort and sorted, reverse and reversed to distinguish
+                                between pure and
+                                impure functions.
+                            </CardText>
+                            <CardText>
+                                <b>Discussion:</b>
+                            </CardText>
+                        </Card>
 
                         <Card body className="mb-3">
                             <CardTitle>Option VI: Drop Functional Operations for Mutable Data</CardTitle>
@@ -279,8 +283,7 @@ class Naming extends Component {
                                 structures. If the user wants to map a function over an array, mutable set, or mutable
                                 map he or she must first convert it to an immutable data structure. For example, to
                                 functionally reverse an array one would
-                                write <code>a.toList().reverse().toArray()</code>. Alternatively, a hand-written fold
-                                could also get the job done.
+                                write <code>a.toList().reverse().toArray()</code>.
                             </CardText>
                             <CardText>
                                 <b>Discussion:</b> The "stick your head in the sand approach". The solution is simple
