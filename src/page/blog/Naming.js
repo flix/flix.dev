@@ -83,11 +83,11 @@ class Naming extends Component {
                         </InlineEditor>
 
                         <p>
-                            This is great: we can program with arrays in a functional-style. This is certainly useful,
-                            but the main reason for having arrays (and mutable sets and maps) is to program with them
-                            imperatively. We <i>want</i> to have operations that <i>mutate</i> their content.
+                            This is great: we can program with arrays in a functional-style. Mapping over an array is
+                            certainly meaningful and useful, it might even be faster than mapping over a list!
+                            Nevertheless, the main reason for having arrays (and mutable sets and maps) is to program
+                            with them imperatively. We <i>want</i> to have operations that <i>mutate</i> their content.
                         </p>
-
 
                         <p>
                             We want an operation that applies a function to every element of an array <i>changing
@@ -199,26 +199,33 @@ class Naming extends Component {
                             of <code>Set.union</code> is called <code>Set.addAll</code>.
                         </p>
 
-                        <p>
-                            The set union is interesting because ...
-                        </p>
+                        <h2>Exploring the Design Space</h2>
 
                         <p>
-                            We tried to explore the design space and we came up with the following potential solutions:
+                            With these challenges at hand, we tried to come up with principled approaches to naming. In
+                            particular, we explored the following options:
                         </p>
 
-                        <Card body>
-                            <CardTitle>Proposal I: Distinct name</CardTitle>
+                        <Card body className="mb-3">
+                            <CardTitle>Option I: Distinct Names</CardTitle>
                             <CardText>
-                                <b>Proposal:</b> We can try to come up with distinct names. For example, we might have
-                                MutSet.map and
-                                MutSet.transform. Similarly, we might have MutSet.union and MutSet.addAll. The challenge
-                                is
-                                to come up with reasonable names. For example, what should we call the two versions of
-                                reverse?
+                                <b>Proposal:</b> We give distinct names to functional and destructive operations. For
+                                example, we will have <code>Array.map</code> and <code>Array.transform</code>,
+                                and <code>MutSet.union</code> and <code>MutSet.addAll</code>. We use reserve the most
+                                common names (e.g. <code>map</code>) for the functional operations.
                             </CardText>
                             <CardText>
-                                <b>Discussion:</b>
+                                <p>
+                                    <b>Advantages:</b> With distinct names there is little room for confusion, but the
+                                    programmer may have to consult the documentation more frequently.
+
+                                </p>
+
+                                <p>
+                                    <b>Disadvantages:</b> It may be difficult to come with distinct, but meaningful,
+                                    names. For example, what should the destructive version of <code>reverse</code> be
+                                    called?
+                                </p>
                             </CardText>
                         </Card>
 
@@ -266,7 +273,7 @@ class Naming extends Component {
                         </p>
 
 
-                        <h2>Principles</h2>
+                        <h2>The Principles</h2>
 
                         <p>
                             We debate these principles, I have already mentioned the discussion below each point, and
