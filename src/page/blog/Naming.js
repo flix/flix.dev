@@ -16,22 +16,31 @@ class Naming extends Component {
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
 
-                        <h1>How to name Functional and Destructive Operations</h1>
+                        <h1>How to Name Functional and Destructive Operations</h1>
 
                         <p>
                             Posted April 2020 by <i>Magnus Madsen</i>.
                         </p>
 
                         <p>
-                            It is said that there are only two hard problems in computer science: (i) naming, (ii) cache
-                            invalidation, and (iii) off-by-one errors. This post is about the former: Naming.
+                            It has been said that there are only two hard problems in computer-science: (i) naming, (ii)
+                            cache invalidation, and (iii) off-by-one errors. In this blog post, I will explain a name
+                            consistency issue that arise when you want to have both functional and destructive
+                            operations. (A functional operation work on data by returning new data, whereas a
+                            destructive operation work on data by mutating existing data.)
                         </p>
 
                         <p>
-                            I recently stumbled into a problem with naming that I was not aware existed.
+                            Flix supports functional, imperative, and logic programming. Flix is intended to
+                            be <i>functional-first</i> which simply means that if there are trade-offs between
+                            functional and imperative programming, we tend to favor design choices that support
+                            functional programming. For example, the Flix effect system separates pure and impure
+                            functions.
                         </p>
 
                         <p>
+                            Flix, being imperative, want to support mutable data structures
+
                             In Flix we support both functional and imperative programming (and logic programming, but
                             that is for another day).
                             We have recently extended the standard library with support for arrays. This is where the
