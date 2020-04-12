@@ -43,8 +43,8 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
-                                        <Link to="/blog/how-should-functional-and-destructive-operations-be-named/">
-                                            How should Functional and Destructive Operations be Named?
+                                        <Link to="/blog/naming-functional-and-destructive-operations/">
+                                            Naming Functional and Destructive Operations
                                         </Link>
                                     </li>
                                     <li>
@@ -62,7 +62,7 @@ class Blog extends Component {
                         </Row>
                     </Route>
 
-                    <Route path="/blog/how-should-functional-and-destructive-operations-be-named/">
+                    <Route path="/blog/naming-functional-and-destructive-operations/">
                         <Naming/>
                     </Route>
 

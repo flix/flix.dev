@@ -6,7 +6,7 @@ import InlineEditor from "../../util/InlineEditor";
 class Naming extends Component {
 
     componentDidMount() {
-        document.title = "Flix | How should Functional and Destructive Operations be Named?";
+        document.title = "Flix | Naming Functional and Destructive Operations";
         ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
@@ -16,18 +16,20 @@ class Naming extends Component {
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
 
-                        <h1>How should Functional and Destructive Operations be Named?</h1>
+                        <h1>Naming Functional and Destructive Operations</h1>
 
                         <p>
                             Posted April 2020 by <i>Magnus Madsen</i>.
                         </p>
 
                         <p>
-                            It has been said that there are only two hard problems in computer-science: (i) naming, (ii)
+                            It has been said that there are only two hard problems in computer science: (i) naming, (ii)
                             cache invalidation, and (iii) off-by-one errors. In this blog post, I will explain a <i>name
-                            consistency issue</i> that arise when a programming language wants to support both
+                            consistency issue</i> that arises when a programming language wants to support both
                             functional and destructive operations. (A functional operation always returns new data,
-                            whereas a destructive operation mutates existing data.)
+                            whereas a destructive operation mutates existing data. For example, functionally reversing
+                            an array returns a <i>new</i> array with its elements reversed, whereas destructively
+                            reversing an array mutates the array in place.)
                         </p>
 
                         <p>
@@ -67,12 +69,7 @@ class Naming extends Component {
                         </InlineEditor>
 
                         <p>
-                            Category Theorists will claim that this is a conspiracy with deeper and darker forces at
-                            play, but I digress...
-                        </p>
-
-                        <p>
-                            We can also map a function over an array:
+                            We can also <code>map</code> a function over an array:
                         </p>
 
                         <InlineEditor>
@@ -81,7 +78,7 @@ class Naming extends Component {
 
                         <p>
                             This is good news: we can program with arrays in a functional-style. Mapping over an array
-                            is certainly meaningful and useful. Hell, it might even be faster than mapping over a list!
+                            is certainly meaningful and useful. It might even be faster than mapping over a list!
                             Nevertheless, the main reason for having arrays (and mutable sets and maps) is to program
                             with them imperatively. We <i>want</i> to have operations that <i>mutate</i> their data.
                         </p>
@@ -103,7 +100,7 @@ class Naming extends Component {
 
                             <ul>
                                 <li>The function returns <code>Unit</code> instead of returning an array.</li>
-                                <li>The function takes a function of type <code>a -> a</code> rather than a function of
+                                <li>The function takes an argument of type <code>a -> a</code> rather than a function of
                                     type <code>a -> b</code>.
                                 </li>
                             </ul>
@@ -217,9 +214,9 @@ class Naming extends Component {
                             <CardText>
                                 <b>Discussion:</b> The advantage of this approach is that names are immediately
                                 consistent. The disadvantages are that: (i) it may be difficult to come up with a good
-                                prefix or suffix word, (ii) some users may dislike the prefix or suffix, and (iii) it
-                                may be confusing that the signatures for two similarly named operations differ not only
-                                in the return type, but also in the polymorphism of the arguments.
+                                prefix or suffix word, (ii) some users may dislike the chosen prefix or suffix, and
+                                (iii) it may be confusing that the signatures for two similarly named operations differ
+                                not only in the return type, but also in the polymorphism of the arguments.
                             </CardText>
                         </Card>
 
@@ -231,7 +228,7 @@ class Naming extends Component {
                             </CardText>
                             <CardText>
                                 <b>Discussion:</b> The same advantages and disadvantages of the previous proposal, but
-                                with the difference that a symbol may be more or less appealing to the user.
+                                with the difference that using a symbol may be more or less appealing to programmers.
                             </CardText>
                         </Card>
 
@@ -243,9 +240,9 @@ class Naming extends Component {
                                 have <code>Array.reverse</code> and <code>MutArray.reverse</code>.
                             </CardText>
                             <CardText>
-                                <b>Discussion:</b> While this solution appears simple, it has two downsides: (i) We now
-                                have multiple functions named <code>reverse</code> with different semantics. (ii) We get
-                                a plethora of namespaces for data structures that exist in both
+                                <b>Discussion:</b> While this solution appears simple, it has two downsides: (i) we now
+                                have multiple functions named <code>reverse</code> with different semantics and (ii) we
+                                get a plethora of namespaces for data structures that exist in both
                                 immutable and mutable variants. For example, we might end up
                                 with <code>Set.map</code> (functional map on an immutable
                                 set), <code>MutSet.Mut.map</code> (destructive map on a mutable set),
@@ -256,9 +253,9 @@ class Naming extends Component {
                         <Card body className="mb-3">
                             <CardTitle>Option V: The Python approach: sort vs. sorted</CardTitle>
                             <CardText>
-                                <b>Proposal:</b> In Python <code>sorted</code> functionally returns a new sorted list
-                                whereas <code>sort</code> destructively sorts a list in place. We use the
-                                same scheme
+                                <b>Proposal:</b> In Python the <code>sorted</code> operation functionally returns a new
+                                sorted list whereas the <code>sort</code> operation destructively sorts a list in place.
+                                We use the same scheme
                                 for <code>reverse</code> and <code>reversed</code>, <code>map</code> and <code>mapped</code>,
                                 and so forth.
                             </CardText>
@@ -280,14 +277,19 @@ class Naming extends Component {
                                 write <code>a.toList().reverse().toArray()</code>.
                             </CardText>
                             <CardText>
-                                <b>Discussion:</b> The "stick your head in the sand approach".
+                                <b>Discussion:</b> The "stick your head in the sand approach". The programmer must
+                                explicitly convert back and forth between immutable and mutable data structures.
+                                While such an approach side-steps the naming issue, it is verbose and slow
+                                (because we have to copy collections back and forth). Deliberately leaving functionality
+                                out of the standard library does not mean that programmers will not miss it; instead we
+                                are just passing the problem onto them.
                             </CardText>
                         </Card>
 
                         <h2>The Principles</h2>
 
                         <p>
-                            We debated these principles and slept on them for a few nights before we ultimately ended up
+                            We debated these options and slept on them for a few nights before we ultimately ended up
                             with the following hybrid principles:
                         </p>
 
@@ -304,7 +306,7 @@ class Naming extends Component {
                         </Card>
 
                         <Card body className="mb-3">
-                            <CardTitle>Library: Destructive Operations are Marked with !</CardTitle>
+                            <CardTitle>Library: Destructive Operations are Marked with '!'</CardTitle>
                             <CardText>
                                 In Flix, every destructive operation is suffixed with an exclamation point. For
                                 example, <code>Array.reverse(a)</code> returns a new array with the elements
@@ -314,6 +316,11 @@ class Naming extends Component {
                                 e.g. <code>Console.printLine</code>.
                             </CardText>
                         </Card>
+
+                        <p>
+                            As a side-note: Scheme has used <code>!</code> to indicate destructive operations for a
+                            long-time.
+                        </p>
 
                         <Card body className="mb-3">
                             <CardTitle>Library: Consistent Names of Functional and Destructive Operations</CardTitle>
@@ -340,7 +347,7 @@ class Naming extends Component {
                                 </li>
                                 <li>If there is confusion about when exclamation points should be part of a name.</li>
                                 <li>If there is confusion about when two operations should share the same name.</li>
-                                <li>Rust uses exclamation points for macro applications.</li>
+                                <li>That Rust uses exclamation points for macro applications.</li>
                             </ul>
                         </p>
 

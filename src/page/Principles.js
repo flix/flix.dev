@@ -352,7 +352,7 @@ class Principles extends Component {
                         same type signature.
                     </Principle>
 
-                    <Principle name="Library: Destructive Operations are Marked with !">
+                    <Principle name="Library: Destructive Operations are Marked with '!'">
                         In Flix, every destructive operation is suffixed with an exclamation point. For
                         example, <code>Array.reverse(a)</code> returns a new array with the elements
                         of <code>a</code> in reverse

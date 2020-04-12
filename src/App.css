@@ -8,16 +8,19 @@ body {
 h1 {
     font-size: 2rem;
     margin-bottom: 0.75rem;
+    text-align: left;
 }
 
 h2 {
     font-size: 1.7rem;
     margin-bottom: 0.75rem;
+    text-align: left;
 }
 
 h3 {
     font-size: 1.6rem;
     margin-bottom: 0.75rem;
+    text-align: left;
 }
 
 p:last-child {
