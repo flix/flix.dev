@@ -4,6 +4,7 @@ import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import DesignFlaws from "./blog/DesignFlaws";
+import Naming from "./blog/Naming";
 import Redundancies from "./blog/Redundancies";
 
 class Blog extends Component {
@@ -42,6 +43,11 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
+                                        <Link to="/blog/naming-functional-and-destructive-operations/">
+                                            Naming Functional and Destructive Operations
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/blog/redundancies-as-compile-time-errors/">
                                             Redundancies as Compile-Time Errors
                                         </Link>
@@ -54,6 +60,10 @@ class Blog extends Component {
                                 </ul>
                             </Col>
                         </Row>
+                    </Route>
+
+                    <Route path="/blog/naming-functional-and-destructive-operations/">
+                        <Naming/>
                     </Route>
 
                     <Route path="/blog/redundancies-as-compile-time-errors/">

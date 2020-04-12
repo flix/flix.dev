@@ -1,6 +1,10 @@
 export default function () {
     return [
         {
+            name: "We have significantly extended the standard library!",
+            date: "2020-04-12"
+        },
+        {
             name: "Improved interoperability with Java!",
             date: "2020-02-01"
         },
