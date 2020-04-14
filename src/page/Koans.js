@@ -96,9 +96,9 @@ class Koans extends Component {
     let p = #{
         Sibling(c, s) :- Parent(c, p), Parent(s, p), if c != s.
         HalfBro(c, s) :- Sibling(c, s), Male(s),
-        Parent(s, p), not Parent(c, p).
+                         Parent(s, p), not Parent(c, p).
         HalfSis(c, s) :- Sibling(c, s), Female(s),
-        Parent(s, p), not Parent(c, p).
+                         Parent(s, p), not Parent(c, p).
     };
     let m = solve (p <+> g);
     (project HalfBro m) <+> (project HalfSis m)`}
@@ -141,8 +141,7 @@ class Koans extends Component {
                         </InlineEditor>
 
                         <h5>
-                            Given a list of operating system processes, compute all orphaned
-                            and zombie processes.
+                            Given a list of operating system processes, compute all orphaned and zombie processes.
                         </h5>
 
                         <p>
@@ -162,6 +161,23 @@ class Koans extends Component {
     let m = solve (g <+> p);
     (project Orphan m, project Zombie m)`}
                         </InlineEditor>
+
+                        <h5>
+                            Given a Git commit graph, determine if any commits have been made to the master branch since
+                            a feature branch was created.
+                        </h5>
+
+                        <InlineEditor>
+                            {`def behindMaster(g: #{Commit(Hash, String, Hash)}, branch: String): Bool =
+    let p = #{
+        Branch(hash) :- Commit(hash, branch, parent),
+                        Commit(parent, "master", _).
+        NewCommit() :- Commit(_, "master", hash), Branch(hash).
+    };
+    (solve g <+> p) |= NewCommit().`}
+                        </InlineEditor>
+
+
 
                     </Col>
                 </Row>
