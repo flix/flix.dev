@@ -70,6 +70,24 @@ class Koans extends Component {
     project Unconnected (solve (g <+> p))`}
                         </InlineEditor>
 
+                        <h5>
+                            Given a train and a bus network, compute if there is a path from
+                            one city to another city with preference for the train.
+                        </h5>
+
+                        <InlineEditor>
+                            {`def travel(tg: #{Train(City, City)}, bg: #{Bus(City, City)}, 
+           src: City, dst: City): Option[#{Path(City, City)}] =
+    let p = #{
+        Path(x, y) :- Train(x, y).
+        Path(x, z) :- Path(x, y), Train(y, z).
+        Path(x, y) :- Bus(x, y), not Train(x, y).
+        Path(x, z) :- Path(x, y), Bus(y, z), not Train(x, y).
+    };
+    let m = solve (tg <+> bg <+> p);
+    if (m |= Path(src, dst).) Some(project Path m) else None`}
+                        </InlineEditor>
+
                     </Col>
                 </Row>
             </Container>);
