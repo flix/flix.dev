@@ -140,6 +140,29 @@ class Koans extends Component {
     project Suggestion (solve (g <+> p))`}
                         </InlineEditor>
 
+                        <h5>
+                            Given a list of operating system processes, compute all orphaned
+                            and zombie processes.
+                        </h5>
+
+                        <p>
+                            An <i>orphaned process</i> has no parent or has <i>init</i> (pid 1) as its parent. A <i>zombie
+                            process</i> is dead, but its parent is still alive.
+                        </p>
+
+                        <InlineEditor>
+                            {`def orphansAndZombies(g: #{Process(Pid, String, Pid)}): (#{Orphan(Pid)}, #{Zombie(Pid)}) =
+    let p = #{
+        Zombie(pid) :- Process(pid, "dead", parent),
+        Process(parent, "alive", _).
+        HasParent(pid) :- Process(pid, _, parent), Process(parent, _, _).
+        Orphan(pid) :- Process(pid, _, 1).
+        Orphan(pid) :- Process(pid, _, _), not HasParent(pid).
+    };
+    let m = solve (g <+> p);
+    (project Orphan m, project Zombie m)`}
+                        </InlineEditor>
+
                     </Col>
                 </Row>
             </Container>);
