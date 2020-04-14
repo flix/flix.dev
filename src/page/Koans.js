@@ -54,7 +54,21 @@ class Koans extends Component {
     (solve g <+> p) |= Path(src, dst).`}
                         </InlineEditor>
 
+                        <h5>
+                            Given a road network, compute all pairs of cities that are not connected by roads.
+                        </h5>
 
+                        <InlineEditor>
+                            {`def unconnected(g: #{Road(City, City)}): #{Unconnected(City, City)} =
+    let p = #{
+        City(x) :- Road(x, _).
+        City(y) :- Road(_, y).
+        Path(x, y) :- Road(x, y).
+        Path(x, z) :- Path(x, y), Road(y, z).
+        Unconnected(x, y) :- City(x), City(y), not Path(x, y).
+    };
+    project Unconnected (solve (g <+> p))`}
+                        </InlineEditor>
 
                     </Col>
                 </Row>
