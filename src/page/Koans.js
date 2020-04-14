@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
-import {Card, CardBody, CardText, CardTitle, Col, Container, Row} from "reactstrap";
-import Editor from "../util/Editor";
+import {Col, Container, Row} from "reactstrap";
 import InlineEditor from "../util/InlineEditor";
 
 class Koans extends Component {
@@ -31,15 +30,22 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`
-def drivable(g: F{Road}, src: City, dst: City): Bool =
-let p = F{
-Path(x, y) :- Road(x, y).
-Path(x, z) :- Path(x, y), Road(y, z).
-};
-(solve g FF> p) F= Path(src, dst).
+                            {`def drivable(g: #{Road(City, City)}, src: City, dst: City): Bool =
+    let p = #{
+        Path(x, y) :- Road(x, y).
+        Path(x, z) :- Path(x, y), Road(y, z).
+    };
+    (solve g <+> p) |= Path(src, dst).
 `}
                         </InlineEditor>
+
+                        <h5>
+                            Given a road network with speed limits on each road, determine if it
+                            is possible to drive from one city to another city going at least a certain
+                            speed.
+                        </h5>
+
+
 
                     </Col>
                 </Row>
