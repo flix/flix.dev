@@ -14,14 +14,13 @@ class Koans extends Component {
         return (
             <Container style={{"text-align": "justify"}}>
                 <Row className="mb-3">
-                    <Col sm={12} md={12}>
+                    <Col>
                         <h1>Flix Koans</h1>
 
                         <p>
-                            <i>Koan</i> &mdash;
-                            <br/>
-                            A paradox to be meditated upon that is used to train Zen Buddhist monks to abandon ultimate
-                            dependence on reason and to force them into gaining sudden intuitive enlightenment.
+                            <i>Koan</i> &mdash; A paradox to be meditated upon that is used to train Zen Buddhist monks
+                            to abandon ultimate dependence on reason and to force them into gaining sudden intuitive
+                            enlightenment.
                         </p>
 
                         <h5>
@@ -34,8 +33,7 @@ class Koans extends Component {
         Path(x, y) :- Road(x, y).
         Path(x, z) :- Path(x, y), Road(y, z).
     };
-    (solve g <+> p) |= Path(src, dst).
-`}
+    (solve g <+> p) |= Path(src, dst).`}
                         </InlineEditor>
 
                         <h5>
@@ -74,8 +72,7 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`def travel(tg: #{Train(City, City)}, bg: #{Bus(City, City)}, 
-           src: City, dst: City): Option[#{Path(City, City)}] =
+                            {`def travel(tg: #{Train(City, City)}, bg: #{Bus(City, City)}, src: City, dst: City): Option[#{Path(City, City)}] =
     let p = #{
         Path(x, y) :- Train(x, y).
         Path(x, z) :- Path(x, y), Train(y, z).
@@ -91,8 +88,7 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`def halfSiblings(g: #{Parent(Person, Person), Male(Person), Female(Person)}): 
-    #{HalfBro(Person, Person), HalfSis(Person, Person)} =
+                            {`def halfSiblings(g: #{Parent(Person, Person), Male(Person), Female(Person)}): #{HalfBro(Person, Person), HalfSis(Person, Person)} =
     let p = #{
         Sibling(c, s) :- Parent(c, p), Parent(s, p), if c != s.
         HalfBro(c, s) :- Sibling(c, s), Male(s),
@@ -109,8 +105,7 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`def heirsAndUsurpers(g: #{Parent(Person, Person), Emperor(Person)}): 
-    (#{Heir(Person, Person)}, #{Usurper(Person)}) =
+                            {`def heirsAndUsurpers(g: #{Parent(Person, Person), Emperor(Person)}): (#{Heir(Person, Person)}, #{Usurper(Person)}) =
     let p = #{
         Ancestor(x, y) :- Parent(x, y), not Emperor(y).
         Ancestor(x, z) :- Ancestor(x, y), Parent(y, z), not Emperor(z).
@@ -132,10 +127,10 @@ class Koans extends Component {
                             {`def friendSuggestions(g: #{Friend(Person, Person)}): #{Suggestion(Person, Person)} =
     let p = #{
         Suggestion(me, nf) :-
-        Friend(me, f1), Friend(me, f2), Friend(me, f3),
-        Friend(f1, nf), Friend(f2, nf), Friend(f3, nf),
-        not Friend(me, nf),
-        if f1 != f2 && f2 != f3 && f1 != f3.
+            Friend(me, f1), Friend(me, f2), Friend(me, f3),
+            Friend(f1, nf), Friend(f2, nf), Friend(f3, nf),
+            not Friend(me, nf),
+            if f1 != f2 && f2 != f3 && f1 != f3.
     };
     project Suggestion (solve (g <+> p))`}
                         </InlineEditor>
