@@ -20,9 +20,8 @@ class Koans extends Component {
                         <p>
                             <i>Koan</i> &mdash;
                             <br/>
-                            A paradox to be meditated upon that is used to train Zen
-                            Buddhist monks to abandon ultimate dependence on reason and to force them into
-                            gaining sudden intuitive enlightenment.
+                            A paradox to be meditated upon that is used to train Zen Buddhist monks to abandon ultimate
+                            dependence on reason and to force them into gaining sudden intuitive enlightenment.
                         </p>
 
                         <h5>
@@ -40,9 +39,8 @@ class Koans extends Component {
                         </InlineEditor>
 
                         <h5>
-                            Given a road network with speed limits on each road, determine if it
-                            is possible to drive from one city to another city going at least a certain
-                            speed.
+                            Given a road network with speed limits on each road, determine if it is possible to drive
+                            from one city to another city going at least a certain speed.
                         </h5>
 
                         <InlineEditor>
@@ -71,8 +69,8 @@ class Koans extends Component {
                         </InlineEditor>
 
                         <h5>
-                            Given a train and a bus network, compute if there is a path from
-                            one city to another city with preference for the train.
+                            Given a train and a bus network, compute if there is a path from one city to another city
+                            with preference for the train.
                         </h5>
 
                         <InlineEditor>
@@ -122,6 +120,24 @@ class Koans extends Component {
     };
     let m = solve g <+> p;
     (project Heir m, project Usurper m)`}
+                        </InlineEditor>
+
+                        <h5>
+                            Given a social network graph, compute a collection of friend suggestions. A person is a
+                            possible friend if he or she is not (yet) my friend and is friends with at least three of my
+                            current friends.
+                        </h5>
+
+                        <InlineEditor>
+                            {`def friendSuggestions(g: #{Friend(Person, Person)}): #{Suggestion(Person, Person)} =
+    let p = #{
+        Suggestion(me, nf) :-
+        Friend(me, f1), Friend(me, f2), Friend(me, f3),
+        Friend(f1, nf), Friend(f2, nf), Friend(f3, nf),
+        not Friend(me, nf),
+        if f1 != f2 && f2 != f3 && f1 != f3.
+    };
+    project Suggestion (solve (g <+> p))`}
                         </InlineEditor>
 
                     </Col>
