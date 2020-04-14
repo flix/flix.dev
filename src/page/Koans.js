@@ -14,7 +14,7 @@ class Koans extends Component {
         return (
             <Container style={{"text-align": "justify"}}>
                 <Row className="mb-3">
-                    <Col sm={12} md={8}>
+                    <Col sm={12} md={12}>
                         <h1>Flix Koans</h1>
 
                         <p>
