@@ -88,6 +88,25 @@ class Koans extends Component {
     if (m |= Path(src, dst).) Some(project Path m) else None`}
                         </InlineEditor>
 
+                        <h5>
+                            Given a family tree, compute the half brothers and half sisters of every child.
+                        </h5>
+
+                        <InlineEditor>
+                            {`def halfSiblings(g: #{Parent(Person, Person), Male(Person), Female(Person)}): 
+    #{HalfBro(Person, Person), HalfSis(Person, Person)} =
+    let p = #{
+        Sibling(c, s) :- Parent(c, p), Parent(s, p), if c != s.
+        HalfBro(c, s) :- Sibling(c, s), Male(s),
+        Parent(s, p), not Parent(c, p).
+        HalfSis(c, s) :- Sibling(c, s), Female(s),
+        Parent(s, p), not Parent(c, p).
+    };
+    let m = solve (p <+> g);
+    (project HalfBro m) <+> (project HalfSis m)`}
+                        </InlineEditor>
+
+
                     </Col>
                 </Row>
             </Container>);
