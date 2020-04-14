@@ -27,7 +27,7 @@ class InlineEditor extends Component {
             <div className="inline-editor-frame">
                 <div className="inline-editor-code">
                     <AceEditor
-                        style={{"background": "inherit", "width": "85%"}}
+                        style={{"background": "inherit", "width": "95%"}}
                         mode='text'
                         theme='chrome'
                         ref="aceEditor"
