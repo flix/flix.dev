@@ -177,6 +177,20 @@ class Koans extends Component {
     (solve g <+> p) |= NewCommit().`}
                         </InlineEditor>
 
+                        <h5>
+                            Given a Git commit graph, find the pair of commits where a bug was introduced and where the
+                            bug was merged into the master branch.
+                        </h5>
+
+                        <InlineEditor>
+                            {`def behindMaster(g: #{Commit(Hash, String, Hash)}, branch: String): Bool =
+    let p = #{
+        Branch(hash) :- Commit(hash, branch, parent),
+                        Commit(parent, "master", _).
+        NewCommit() :- Commit(_, "master", hash), Branch(hash).
+    };
+    (solve g <+> p) |= NewCommit().`}
+                        </InlineEditor>
 
 
                     </Col>
