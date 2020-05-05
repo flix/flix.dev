@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
-import {Container} from "reactstrap";
-import InlineEditor from "../util/InlineEditor";
+import {Col, Container, Row} from "reactstrap";
 
 class Innovations extends Component {
 
@@ -12,14 +11,34 @@ class Innovations extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{"text-align": "justify"}}>
+                <Row className="mb-3">
+                    <Col sm={12} md={8}>
 
-                <h1>Innovations</h1>
+                        <h1>Innovations</h1>
 
-                <p>
-                    TODO
-                </p>
+                        <p>
+                            We say that Flix is a next-generation reliable, safe, concise, and functional-first
+                            programming language because it pioneers several new features that are not found in any
+                            other contemporary programming language. This includes the rigorous application of ideas
+                            firmly established in programming language theory and the invention of completely new
+                            features.
+                        </p>
 
+                        <h2>Polymorphic Effects</h2>
+
+                        <p>
+                            TODO
+                        </p>
+
+                        <h2>First-class Datalog Constraints</h2>
+
+                        <p>
+                            TODO
+                        </p>
+
+                    </Col>
+                </Row>
 
             </Container>);
     }
