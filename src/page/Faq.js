@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Card, CardBody, CardTitle, Table} from 'reactstrap';
 import {Container} from 'reactstrap';
 import ReactGA from 'react-ga';
+import {Link} from "react-router-dom";
 
 class Faq extends Component {
 
@@ -450,8 +451,22 @@ class Faq extends Component {
                         existing programming languages is not enough.
                     </Question>
                     <Answer>
-                        Flix aims to offer a combination of language features that are not found in any existing
+                        Flix aims to offer a combination of features that are not found in any existing programming
                         language.
+
+                        You may also want to explore the <Link to="/innovations/">innovations</Link>.
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        This sounds like vaporware. All big promises and no delivery.
+                    </Question>
+                    <Answer>
+                        The <Link to="/research/">research</Link>,
+                        the <Link to="/innovations/">innovations</Link>,
+                        the <a href="https://github.com/flix/flix">code</a>,
+                        and the <a href="https://arewefast.flix.dev/">performance</a>.
                     </Answer>
                 </QA>
 
@@ -469,10 +484,6 @@ class Faq extends Component {
         );
     }
 }
-
-// What is the killer app for Flix?
-// Does it support higher-order logic programming like λProlog or Twelf?
-// tl;dr What's so special about this programming language that couldn't be done already by some or all of the other programming languages in existence?
 
 class Question extends Component {
     render() {
