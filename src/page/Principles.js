@@ -255,6 +255,12 @@ class Principles extends Component {
                         to restart the program.
                     </Principle>
 
+                    <Principle name="No pre-processor">
+                        Flix does not have and will not have a pre-processor. Programs that use a pre-processor
+                        for textual code generation are notoriously difficult to understand and to debug. We avoid to
+                        avoid that for Flix. That said, Flix may some day have a principled macro system.
+                    </Principle>
+
                     <Principle name="No null value">
                         Flix does not have the <code>null</code> value. The null value is now widely considered a
                         mistake and languages such as C#, Dart, Kotlin and Scala are scrambling to adopt mechanisms to
