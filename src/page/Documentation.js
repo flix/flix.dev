@@ -63,13 +63,13 @@ class Documentation extends Component {
                     <Col>
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
-                                <a href="https://flix.dev/papers/flix-koans.pdf" className="text-info">
+                                <Link to="/misc/koans" className="text-black-50">
                                     <FaVihara style={{fontSize: '6em'}}/>
-                                </a>
+                                </Link>
                             </CardSubtitle>
                             <CardTitle className="text-center">Flix Koans</CardTitle>
                             <CardText>
-                                The <a href="https://flix.dev/papers/flix-koans.pdf">Flix Koans</a> presents several
+                                The <Link to="/misc/koans">Flix Koans</Link> presents several
                                 realistic examples of logic programming with first-class Datalog constraints in Flix.
                             </CardText>
                         </Card>
