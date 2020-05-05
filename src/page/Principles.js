@@ -339,6 +339,11 @@ class Principles extends Component {
                         which can be used to emulate the same functionality and works with higher-order functions.
                     </Principle>
 
+                    <Principle name="No binary or octal literals">
+                        Flix does not support binary or octal literals. It is our understanding that these features are
+                        too rarely used to warrant their inclusion in the language itself.
+                    </Principle>
+
                     <Principle name="Exhaustive pattern matches">
                         The Flix compiler enforces that pattern matches handle all cases of an algebraic data type.
                         If a match expression is found to be non-exhaustive, the program is rejected. We believe this
