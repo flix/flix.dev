@@ -62,7 +62,7 @@ class Principles extends Component {
                         offer strong guarantees, ideally ensured statically, but when necessary with dynamic checks.
                     </Principle>
 
-                    <Principle name="One Language">
+                    <Principle name="One language">
                         Flix is <i>one</i> programming language. The Flix compiler <i>does not</i> come with a plethora
                         of compiler optimizations or compiler plugins that change or extend the semantics of the
                         language. Flix aims to avoid a fragmented ecosystem where programs are written in different
