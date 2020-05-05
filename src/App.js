@@ -17,6 +17,7 @@ import ReconnectingWebSocket from 'reconnecting-websocket';
 import About from "./page/About";
 import Blog from "./page/Blog";
 import Koans from "./page/Koans";
+import Innovations from "./page/Innovations";
 
 const SocketAddress = 'wss://evaluator.flix.dev/ws';
 
@@ -104,6 +105,10 @@ class App extends Component {
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/innovations/">Innovations</NavLink>
+                        </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
                             <NavLink tag={Link} to="/research/">Research</NavLink>
                         </NavItem>
 
@@ -126,6 +131,7 @@ class App extends Component {
                 <Route path="/getting-started/" component={GettingStarted}/>
                 <Route path="/documentation/" component={Documentation}/>
                 <Route path="/principles/" component={Principles}/>
+                <Route path="/innovations/" component={Innovations}/>
                 <Route path="/research/" component={Research}/>
                 <Route path="/faq/" component={Faq}/>
                 <Route path="/blog/" component={Blog}/>
