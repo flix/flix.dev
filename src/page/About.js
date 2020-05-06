@@ -47,7 +47,7 @@ class About extends Component {
                 </p>
 
                 <InlineEditor>
-                    {`def main(): Str = "Hello World!"`}
+                    {`def main(): String = "Hello World!"`}
                 </InlineEditor>
 
                 <h2>Basic Functional Programming</h2>
@@ -138,16 +138,16 @@ def main(): Int & Impure =
 
                 <InlineEditor>
                     {`/// Sends the string \`s\` on the channel \`c\` up to \`n\` times.
-def animal(s: Str, c: Channel[Str], n: Int): Unit & Impure = match n {
+def animal(s: String, c: Channel[String], n: Int): Unit & Impure = match n {
     case 0 => ()
     case n => c <- s; animal(s, c, n - 1)
 }
 
 /// Returns "mooo", "meow", or "hiss".
-def main(): Str & Impure =
-    let c1 = chan Str 1;         /// constructs a new empty channel with a buffer of one.
-    let c2 = chan Str 1;         /// constructs a new empty channel with a buffer of one.
-    let c3 = chan Str 1;         /// constructs a new empty channel with a buffer of one.
+def main(): String & Impure =
+    let c1 = chan String 1;      /// constructs a new empty channel with a buffer of one.
+    let c2 = chan String 1;      /// constructs a new empty channel with a buffer of one.
+    let c3 = chan String 1;      /// constructs a new empty channel with a buffer of one.
     spawn animal("mooo", c1, 0); /// spawns a process that sends "mooo" on c1.
     spawn animal("meow", c2, 3); /// spawns a process that sends "meow" on c2.
     spawn animal("hiss", c3, 7); /// spawns a process that sends "hiss" on c3.
@@ -172,11 +172,11 @@ def main(): Str & Impure =
 
                 <InlineEditor>
                     {`// Declarations of predicate symbols.
-rel Road(src: Str, speed: Int, dst: Str)
-rel Connected(src: Str, dst: Str)
+rel Road(src: String, speed: Int, dst: String)
+rel Connected(src: String, dst: String)
 
 /// Determines if it is possible to drive from  \`src\` to  \`dst\` going at least  \`minSpeed\`.
-def drivable(g: #{Road}, src: Str, dst: Str, minSpeed: Int): Bool =
+def drivable(g: #{Road}, src: String, dst: String, minSpeed: Int): Bool =
     // a first-class Datalog program that computes connectivity subject to speed limits.
     let p = #{
         Connected(x, y) :- Road(x, maxSpeed, y), if maxSpeed >= minSpeed.
@@ -210,8 +210,8 @@ def main(): Bool =
 
                 <InlineEditor>
                     {`/// Declare two polymorphic predicate symbols. Here an edge and a path are labelled with some value of type \`l\`.
-rel LabelEdge[l](x: Str, l: l, y: Str)
-rel LabelPath[l](x: Str, l: l, y: Str)
+rel LabelEdge[l](x: String, l: l, y: String)
+rel LabelPath[l](x: String, l: l, y: String)
 
 /// Returns a set of edge facts labelled with numbers.
 def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = #{
@@ -221,7 +221,7 @@ def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = #{
 }
 
 /// Returns a set of edge facts labelled with colors (strings).
-def getEdgesWithColor[r](): #{ LabelEdge[Str] | r } = #{
+def getEdgesWithColor[r](): #{ LabelEdge[String] | r } = #{
     LabelEdge("a", "red", "b").
     LabelEdge("b", "red", "c").
     LabelEdge("c", "blu", "d").
