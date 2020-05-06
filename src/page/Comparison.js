@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import ReactGA from "react-ga";
 import {Col, Container, ListGroup, ListGroupItem, Row, Table} from "reactstrap";
 import {FaCheck} from "react-icons/fa";
+import {FaTimes} from "react-icons/fa";
+
 
 class Compare extends Component {
 
@@ -102,7 +104,7 @@ class Compare extends Component {
                             <tr>
                                 <th scope="row">Polymorphic Effects</th>
                                 <td>
-                                    Y
+                                    <FaTimes style={{fontSize: '1em'}}/>
                                     <p className="text-muted  w-50">
                                         Flix separates pure and impure code.
                                     </p>
