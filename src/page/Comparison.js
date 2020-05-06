@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
 import {Col, Container, ListGroup, ListGroupItem, Row, Table} from "reactstrap";
+import {FaCheck} from "react-icons/fa";
 
 class Compare extends Component {
 
@@ -91,7 +92,8 @@ class Compare extends Component {
                                 <th scope="row">Null</th>
                                 <td>N</td>
                                 <td>
-                                    Y<br/>
+                                    <FaCheck style={{fontSize: '1em'}}/>
+
                                     <p className="text-muted w-50">
                                         In Scala null is a subtype of any which can lead to null pointer exceptions.
                                     </p>
