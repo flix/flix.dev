@@ -28,13 +28,20 @@ class Innovations extends Component {
                         <h2>Polymorphic Effects</h2>
 
                         <p>
-                            TODO
+                            Flix supports polymorphic effects based on boolean unification. The effect system is used to
+                            separate pure code from impure code. The system is fine-grained and expressive. By the
+                            former, we mean that it can accurately assign effects to every sub-expression. By the
+                            latter, we mean that it can precisely capture the effect behavior of polymorphic functions.
+                            For example, it is possibly to precisely express the effect of functions such
+                            as <code>map</code> and <code>&gt;&gt;</code> (forward function composition).
                         </p>
 
                         <h2>First-class Datalog Constraints</h2>
 
                         <p>
-                            TODO
+                            Flix supports Datalog constraints as first-class values that can be passed around, compose
+                            with other constraints, and solved. The minimal model of constraint set is another
+                            constraint set, hence it is possible to construct pipelines of Flix programs.
                         </p>
 
                     </Col>
