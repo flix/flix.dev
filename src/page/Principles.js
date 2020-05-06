@@ -45,6 +45,13 @@ class Principles extends Component {
                         declarations, namespaces, and so forth that are not expressions.
                     </Principle>
 
+                    <Principle name="Precise tracking of purity">
+                        Flix supports functional, logic, and imperative programming. The type and effect system in Flix
+                        cleanly and safely separates pure code from impure code. That is, if a function is pure then the
+                        programmer can trust that the function has no side-effects and returns the same value when given
+                        the same arguments.
+                    </Principle>
+
                     <Principle name="Developer productivity over runtime performance">
                         Flix aims to support developer productivity; the ability to do a lot with little ceremony or
                         boilerplate. A hand-crafted C program might run faster than a Flix program, but it won't be as
@@ -356,6 +363,8 @@ class Principles extends Component {
                         added support for native XML literals. Today, JSON and Markdown are all the rage, but if
                         history is any guide, we should not add any special support for these to Flix.
                     </Principle>
+
+
 
                     <Principle name="Library: Minimal prelude">
                         The Flix prelude contains algebraic data types and functions that are imported into every
