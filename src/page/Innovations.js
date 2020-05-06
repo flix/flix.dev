@@ -56,9 +56,10 @@ class Innovations extends Component {
                         </p>
 
                         <p>
-                            The theory behind the Flix type and effect system is Hindley-Milner extended with boolean
-                            constraints. Type inference is supported by an extension of Algorithm W with boolean
-                            unification. For more details, we refer to our research papers.
+                            The theoretical foundations of the Flix type and effect system are based on the
+                            Hindley-Milner type system extended with boolean constraints. Type inference is supported by
+                            an extension of Algorithm W with boolean unification. For more details, we refer to our
+                            research papers.
                         </p>
 
                         <h2>First-class Datalog Constraints</h2>
