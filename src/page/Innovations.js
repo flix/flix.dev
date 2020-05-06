@@ -18,22 +18,41 @@ class Innovations extends Component {
                         <h1>Innovations</h1>
 
                         <p>
-                            We say that Flix is a next-generation reliable, safe, concise, and functional-first
-                            programming language because it pioneers several new features that are not found in any
-                            other contemporary programming language. This includes the rigorous application of ideas
-                            firmly established in programming language theory and the invention of completely new
-                            features.
+                            We say that Flix is a next-generation programming language because it pioneers several new
+                            features that are not found in any other contemporary programming language. However,
+                            innovation is not a goal in itself; Flix also builds on decades of research in programming
+                            language theory and relies on well-established theoretical foundations.
                         </p>
 
-                        <h2>Polymorphic Effects</h2>
+                        <h2>Polymorphic Effects with Boolean Unification</h2>
 
                         <p>
-                            Flix supports polymorphic effects based on boolean unification. The effect system is used to
-                            separate pure code from impure code. The system is fine-grained and expressive. By the
-                            former, we mean that it can accurately assign effects to every sub-expression. By the
-                            latter, we mean that it can precisely capture the effect behavior of polymorphic functions.
-                            For example, it is possibly to precisely express the effect of functions such
-                            as <code>map</code> and <code>&gt;&gt;</code> (forward function composition).
+                            Flix comes with a polymorphic type and effect system. The effect system separates pure
+                            and impure code, i.e. if an expression is pure then it cannot have a side-effect.
+                        </p>
+
+                        <p>
+                            Flix supports <i>effect polymorphism</i> which means that the effect of a higher-order
+                            function can depend on the effect of it(s) function argument(s). For example, the effect
+                            of <code>List.map</code> depends on the effect of the function passed to it. That is,
+                            if <code>List.map</code> is given a pure function then computation is pure, whereas if
+                            it is given an impure function then computation is impure. As an another example,
+                            the effect of <code>&gt;&gt;</code> (forward function composition) depends on <i>both</i> of
+                            its arguments: composition is only pure if both functions are pure.
+                        </p>
+
+                        <p>
+                            The Flix effect system is both fine-grained and expressive. It is fine-grained because it
+                            precisely computes the purity of every expression (unlike other systems that may be
+                            over-approximate). It is expressive because it allows arbitrary boolean formulas to describe
+                            the effect of an expression. For example, the system can express a higher-order function
+                            that requires <i>atmost</i> one impure function.
+                        </p>
+
+                        <p>
+                            The Flix effect system supports <i>type and effect inference</i>. That is, explicit effect
+                            annotations are not required for every program fragment. (However, as a design choice,
+                            type and effect annotations are required for every top-level definition.)
                         </p>
 
                         <h2>First-class Datalog Constraints</h2>
