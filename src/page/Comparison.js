@@ -33,6 +33,7 @@ class Compare extends Component {
                         <h5 className="text-primary">Scala Weaknesses</h5>
 
                         <ListGroup>
+                            <ListGroupItem>Null</ListGroupItem>
                             <ListGroupItem>Incomplete type inference</ListGroupItem>
                             <ListGroupItem>Unsound type system (?)</ListGroupItem>
                         </ListGroup>
@@ -69,7 +70,7 @@ class Compare extends Component {
                         <h5 className="text-primary">Flix Weaknesses</h5>
 
                         <ListGroup>
-                            <ListGroupItem>Null</ListGroupItem>
+                            <ListGroupItem>Lack of separate compilation</ListGroupItem>
                         </ListGroup>
                     </Col>
                 </Row>
