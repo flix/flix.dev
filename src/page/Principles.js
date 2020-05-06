@@ -364,7 +364,15 @@ class Principles extends Component {
                         history is any guide, we should not add any special support for these to Flix.
                     </Principle>
 
+                    <Principle name="Built-in Documentation">
+                        Flix supports comments as part of the language. We believe such integration avoids fragmentation
+                        of the ecosystem and ultimately leads to better tool support.
+                    </Principle>
 
+                    <Principle name="Built-in Unit Tests">
+                        Flix supports unit tests as part of the language. We believe such integration avoids
+                        fragmentation of the ecosystem and ultimately leads to better tool support.
+                    </Principle>
 
                     <Principle name="Library: Minimal prelude">
                         The Flix prelude contains algebraic data types and functions that are imported into every
