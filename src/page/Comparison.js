@@ -92,15 +92,18 @@ class Compare extends Component {
                                 <td>N</td>
                                 <td>
                                     Y<br/>
-                                    In Scala null is a subtype of any which can lead to null pointer exceptions.
+                                    <p className="text-muted w-50">
+                                        In Scala null is a subtype of any which can lead to null pointer exceptions.
+                                    </p>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Polymorphic Effects</th>
                                 <td>
                                     Y
-                                    <br/>
-                                    Flix separates pure and impure code.
+                                    <p className="text-muted  w-50">
+                                        Flix separates pure and impure code.
+                                    </p>
                                 </td>
                                 <td>N</td>
                             </tr>
