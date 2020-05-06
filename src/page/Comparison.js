@@ -27,15 +27,14 @@ class Compare extends Component {
                         <h5 className="text-primary">Flix Strengths</h5>
 
                         <ListGroup>
-                            <ListGroupItem>Access to Java Ecosystem</ListGroupItem>
-                            <ListGroupItem>Sound Type System</ListGroupItem>
+                            <ListGroupItem>Polymorphic effect system</ListGroupItem>
                         </ListGroup>
 
                         <h5 className="text-primary">Scala Weaknesses</h5>
 
                         <ListGroup>
-                            <ListGroupItem>Access to Java Ecosystem</ListGroupItem>
-                            <ListGroupItem>Sound Type System</ListGroupItem>
+                            <ListGroupItem>Incomplete type inference</ListGroupItem>
+                            <ListGroupItem>Unsound type system (?)</ListGroupItem>
                         </ListGroup>
                     </Col>
 
@@ -47,12 +46,13 @@ class Compare extends Component {
                         <ListGroup>
                             <ListGroupItem>Keyword-based Syntax</ListGroupItem>
                             <ListGroupItem>Local Type Inference</ListGroupItem>
+                            <ListGroupItem>Access to Java Ecosystem</ListGroupItem>
                         </ListGroup>
 
                         <h5>Weaknesses</h5>
                         <ListGroup>
-                            <ListGroupItem>Keyword-based Syntax</ListGroupItem>
-                            <ListGroupItem>Local Type Inference</ListGroupItem>
+                            <ListGroupItem>Relatively slow compilation-times.</ListGroupItem>
+                            <ListGroupItem>Slow application startup due to the JVM.</ListGroupItem>
                         </ListGroup>
 
                     </Col>
@@ -63,7 +63,7 @@ class Compare extends Component {
                         <h5 className="text-primary">Scala Strengths</h5>
 
                         <ListGroup>
-                            <ListGroupItem>Null</ListGroupItem>
+                            <ListGroupItem>Mature ecosystem</ListGroupItem>
                         </ListGroup>
 
                         <h5 className="text-primary">Flix Weaknesses</h5>
