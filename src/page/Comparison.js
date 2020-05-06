@@ -27,11 +27,8 @@ class Compare extends Component {
                         <h4>Flix Strengths</h4>
 
                         <ListGroup>
-                            <ListGroupItem>Cras justo odio</ListGroupItem>
-                            <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                            <ListGroupItem>Morbi leo risus</ListGroupItem>
-                            <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-                            <ListGroupItem>Vestibulum at eros</ListGroupItem>
+                            <ListGroupItem>Access to Java Ecosystem</ListGroupItem>
+                            <ListGroupItem>Sound Type System</ListGroupItem>
                         </ListGroup>
                     </Col>
 
@@ -39,11 +36,7 @@ class Compare extends Component {
                         <h4>Common Strengths</h4>
 
                         <ListGroup>
-                            <ListGroupItem>Cras justo odio</ListGroupItem>
-                            <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                            <ListGroupItem>Morbi leo risus</ListGroupItem>
-                            <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-                            <ListGroupItem>Vestibulum at eros</ListGroupItem>
+                            <ListGroupItem>Keyword-based Syntax</ListGroupItem>
                         </ListGroup>
                     </Col>
 
@@ -51,11 +44,7 @@ class Compare extends Component {
                         <h4>Flix Weaknesses</h4>
 
                         <ListGroup>
-                            <ListGroupItem>Cras justo odio</ListGroupItem>
-                            <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                            <ListGroupItem>Morbi leo risus</ListGroupItem>
-                            <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-                            <ListGroupItem>Vestibulum at eros</ListGroupItem>
+                            <ListGroupItem>Null</ListGroupItem>
                         </ListGroup>
                     </Col>
                 </Row>
