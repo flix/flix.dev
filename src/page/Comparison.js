@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
-import {Col, Container, ListGroup, ListGroupItem, Row} from "reactstrap";
+import {Col, Container, ListGroup, ListGroupItem, Row, Table} from "reactstrap";
 
 class Compare extends Component {
 
@@ -72,6 +72,40 @@ class Compare extends Component {
                         <ListGroup>
                             <ListGroupItem>Lack of separate compilation</ListGroupItem>
                         </ListGroup>
+                    </Col>
+                </Row>
+
+
+                <Row>
+                    <Col>
+                        <Table>
+                            <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Flix</th>
+                                <th>Scala</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Null</th>
+                                <td>N</td>
+                                <td>
+                                    Y<br/>
+                                    In Scala null is a subtype of any which can lead to null pointer exceptions.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Polymorphic Effects</th>
+                                <td>
+                                    Y
+                                    <br/>
+                                    Flix separates pure and impure code.
+                                </td>
+                                <td>N</td>
+                            </tr>
+                            </tbody>
+                        </Table>
                     </Col>
                 </Row>
 
