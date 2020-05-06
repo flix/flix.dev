@@ -41,7 +41,7 @@ class Compare extends Component {
                     </Col>
 
                     <Col sm={4}>
-                        <h4>Flix Weaknesses</h4>
+                        <h4>Scala Weaknesses</h4>
 
                         <ListGroup>
                             <ListGroupItem>Null</ListGroupItem>
