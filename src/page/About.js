@@ -36,10 +36,6 @@ class About extends Component {
                 </p>
 
                 <p>
-                    Flix is developed by researchers and students at Aarhus University and the University of Waterloo.
-                </p>
-
-                <p>
                     The Flix language and compiler is open source and freely available under the permissive Apache 2.0
                     license.
                 </p>
