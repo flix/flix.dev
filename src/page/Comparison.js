@@ -94,12 +94,16 @@ class Compare extends Component {
                                 <th scope="row">Null</th>
                                 <td>N</td>
                                 <td>
-                                    <FaCheck style={{fontSize: '2em'}}/>
+                                    <Row>
+                                        <FaCheck style={{fontSize: '2em'}}/>
+                                    </Row>
+                                    <Row>
+                                        <p className="text-muted">
+                                            In Scala null is a subtype of any which can lead to null pointer
+                                            exceptions.
+                                        </p>
 
-                                    <p className="text-muted w-50">
-
-                                        In Scala null is a subtype of any which can lead to null pointer exceptions.
-                                    </p>
+                                    </Row>
                                 </td>
                             </tr>
                             <tr>
