@@ -1,11 +1,33 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
-import {Col, Container, ListGroup, ListGroupItem, Row, Table} from "reactstrap";
+import {
+    Button,
+    Card,
+    CardBody,
+    CardSubtitle, CardText,
+    CardTitle,
+    Col,
+    Container,
+    ListGroup,
+    ListGroupItem,
+    Row,
+    Table
+} from "reactstrap";
 import {FaCheck} from "react-icons/fa";
 import {FaTimes} from "react-icons/fa";
 
-
 class Compare extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            language: "Scala"
+        }
+    }
+
+    notifyChangeLanguage(language) {
+        this.setState({language: language});
+    }
 
     componentDidMount() {
         document.title = "Flix | Compare";
@@ -18,32 +40,23 @@ class Compare extends Component {
 
                 <Row className="mb-3">
                     <Col>
-                        <h1>Comparing: Flix versus Scala</h1>
+                        <h1>Comparing: Flix versus {this.state.language}</h1>
+                    </Col>
+
+                    <Button onClick={() => this.notifyChangeLanguage("OCaml")}>OCaml</Button>
+                    <Button onClick={() => this.notifyChangeLanguage("Haskell")}>Haskell</Button>
+                    <Button onClick={() => this.notifyChangeLanguage("Scala")}>Scala</Button>
+                </Row>
+
+                <Row className="mb-3">
+                    <Col>
+                        text goes here.
                     </Col>
                 </Row>
 
                 <Row className="mb-3">
-
                     <Col sm={4}>
-                        <h2>Flix Better</h2>
-
-                        <h5 className="text-primary">Flix Strengths</h5>
-
-                        <ListGroup>
-                            <ListGroupItem>Polymorphic effect system</ListGroupItem>
-                        </ListGroup>
-
-                        <h5 className="text-primary">Scala Weaknesses</h5>
-
-                        <ListGroup>
-                            <ListGroupItem>Null</ListGroupItem>
-                            <ListGroupItem>Incomplete type inference</ListGroupItem>
-                            <ListGroupItem>Unsound type system (?)</ListGroupItem>
-                        </ListGroup>
-                    </Col>
-
-                    <Col sm={4}>
-                        <h2>Common</h2>
+                        <h2>Common Strengths and Weaknesses</h2>
 
                         <h5>Strengths</h5>
 
@@ -59,6 +72,30 @@ class Compare extends Component {
                             <ListGroupItem>Slow application startup due to the JVM.</ListGroupItem>
                         </ListGroup>
 
+                    </Col>
+
+
+                    <Col sm={4}>
+                        <h2>Flix is Better</h2>
+
+                        <Card>
+                            <CardBody>
+                                <CardTitle>Flix Strengths</CardTitle>
+                                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                            </CardBody>
+                        </Card>
+
+                        <ListGroup>
+                            <ListGroupItem>Polymorphic effect system</ListGroupItem>
+                        </ListGroup>
+
+                        <h5 className="text-primary">Scala Weaknesses</h5>
+
+                        <ListGroup>
+                            <ListGroupItem>Null</ListGroupItem>
+                            <ListGroupItem>Incomplete type inference</ListGroupItem>
+                            <ListGroupItem>Unsound type system (?)</ListGroupItem>
+                        </ListGroup>
                     </Col>
 
                     <Col sm={4}>
