@@ -158,6 +158,22 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
+                                <th scope="row">Do Notation</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">String Interpolation</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Module System</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">User-Define operators</th>
+                            </tr>
+
+                            <tr>
                                 <th scope="row">Error Model</th>
                             </tr>
 
@@ -209,21 +225,9 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Compilation Warnings?</th>
-                                {this.no("by design")}
-                                {this.yes()}
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Compiler/Language Extensions?</th>
-                                {this.no("by design")}
-                                {this.yes()}
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Compilation Times</th>
-                                <td>20,000 lines/sec (est.)</td>
-                                <td>10,000 lines/sec (est.)</td>
+                                <th scope="row">Compilation Time (est)</th>
+                                <td>20,000 lines/sec</td>
+                                <td>10,000 lines/sec</td>
                             </tr>
                             <tr>
                                 <th scope="row">Incremental Compilation</th>
@@ -240,12 +244,43 @@ class Compare extends Component {
                     </Col>
                 </Row>
 
+                <Row>
+                    <Col>
+                        <h2 className="text-center">Philosophical Differences</h2>
+                        <Table>
+                            <thead>
+                            <tr>
+                                <th/>
+                                <th className="text-center">Flix</th>
+                                <th className="text-center">Scala</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <th scope="row">Compilation Warnings?</th>
+                                {this.no("by design")}
+                                {this.yes()}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Compiler/Language Extensions?</th>
+                                {this.no("by design")}
+                                {this.yes()}
+                            </tr>
+                            </tbody>
+                        </Table>
+                    </Col>
+                </Row>
+
             </Container>);
     }
 
     yes(text) {
         if (text === undefined)
-            return <td className="text-center"><span className="font-weight-bold text-success">Yes</span></td>;
+            return <td className="text-center">
+                <span className="font-weight-bold text-success">Yes</span>
+            </td>;
         else
             return <td className="text-center"><span className="font-weight-bold text-success">Yes</span> <span
                 className="text-muted">({text})</span></td>;
