@@ -130,6 +130,52 @@ class Compare extends Component {
 
 
                             <tr>
+                                <th scope="row">Algebraic Data Types and Pattern Matching</th>
+                            </tr>
+
+
+                            <tr>
+                                <th scope="row">Polymorphism</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Syntax</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Opaque Types</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Type Aliases</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Concurrency</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Tuples</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Records</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Boxed Primitives</th>
+                            </tr>
+
+
+                            <tr>
+                                <th scope="row"> Full Tail Calls</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Standard Library</th>
+                            </tr>
+
+                            <tr>
                                 <th scope="row">Null Values</th>
                             </tr>
 
@@ -152,6 +198,13 @@ class Compare extends Component {
                             </thead>
                             <tbody>
 
+                            <tr>
+                                <th scope="row">Warnings/Errors</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">IDE</th>
+                            </tr>
 
                             <tr>
                                 <th scope="row">Compilation Times</th>
@@ -163,6 +216,9 @@ class Compare extends Component {
                                 <th scope="row">Incremental Compilation</th>
                                 {this.yes()}
                                 {this.no()}
+                            </tr>
+                            <tr>
+                                <th scope="row">Parallel Compilation</th>
                             </tr>
                             </tbody>
                         </Table>
