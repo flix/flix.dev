@@ -200,35 +200,39 @@ class Compare extends Component {
                             </thead>
                             <tbody>
 
-
                             <tr>
-                                <th scope="row">IDE Support</th>
+                                <th scope="row">Integrated Development Environments (IDEs)</th>
                                 {this.no()}
                                 {this.yes("several")}
                             </tr>
 
                             <tr>
-                                <th scope="row">Warnings/Errors</th>
+                                <th scope="row">Compilation Warnings?</th>
+                                {this.no("by design")}
+                                {this.yes()}
                             </tr>
 
                             <tr>
-                                <th scope="row">Treatment of unused code</th>
+                                <th scope="row">Compiler/Language Extensions?</th>
+                                {this.no("by design")}
+                                {this.yes()}
                             </tr>
-
 
                             <tr>
                                 <th scope="row">Compilation Times</th>
                                 <td colSpan={2}>
-
+                                    Moderate. In the range of 5,000 to 20,000 lines per second.
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Incremental Compilation</th>
-                                {this.yes()}
                                 {this.no()}
+                                {this.yes()}
                             </tr>
                             <tr>
                                 <th scope="row">Parallel Compilation</th>
+                                {this.yes()}
+                                {this.no()}
                             </tr>
                             </tbody>
                         </Table>
