@@ -41,6 +41,13 @@ class Compare extends Component {
                 <Row className="mb-3">
                     <Col>
                         <h1>Flix compared to other programming languages</h1>
+
+                        <p>
+                            Here you will find a comparison of Flix to other similar programming languages. The
+                            comparisons aim to be fair, but not unbiased. That is, for each point of comparison we aim
+                            to give an fair assessment, but the choice of comparison points is biased. For example, we
+                            categorically believe that static typing is better than dynamic typing.
+                        </p>
                     </Col>
                 </Row>
 
@@ -80,23 +87,71 @@ class Compare extends Component {
                                 <th scope="row">Typing Discipline</th>
                             </tr>
 
+                            <tr>
+                                <th scope="row">Platform</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Type Safety</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Type Inference</th>
+                            </tr>
+
+
+                            <tr>
+                                <th scope="row">Everything is an expression</th>
+                            </tr>
 
 
                             <tr>
                                 <th scope="row">Polymorphic Effects</th>
-                                <td>
-                                    <FaTimes style={{fontSize: '1em'}}/>
-                                    <p className="text-muted  w-50">
-                                        Flix separates pure and impure code.
-                                    </p>
-                                </td>
-                                <td>N</td>
                             </tr>
+
+
+                            </tbody>
+                        </Table>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col>
+                        <h2>Features</h2>
+                        <Table>
+                            <thead>
+                            <tr>
+                                <th/>
+                                <th className="text-center">Flix</th>
+                                <th className="text-center">Scala</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
 
                             <tr>
                                 <th scope="row">Null Values</th>
                             </tr>
+
+
+                            </tbody>
+                        </Table>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col>
+                        <h2>Compiler</h2>
+                        <Table>
+                            <thead>
+                            <tr>
+                                <th/>
+                                <th className="text-center">Flix</th>
+                                <th className="text-center">Scala</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
 
                             <tr>
                                 <th scope="row">Compilation Times</th>
