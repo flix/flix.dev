@@ -102,7 +102,8 @@ def main(): Tree[Int] = map(x -> x * x, tree())
                 </InlineEditor>
 
                 <p>
-                    Note that type parameters may be omitted from function signatures, as shown in definition of <code>map</code>.
+                    Note that type parameters may be omitted from function signatures, as shown in definition
+                    of <code>map</code>.
                 </p>
 
                 <h2>Concurrency</h2>
@@ -159,12 +160,56 @@ def main(): String & Impure =
 `}
                 </InlineEditor>
 
+                <h2>Polymorphic Effects: Separating Pure and Impure Code</h2>
+
+                <p>
+                    A unique feature of Flix is its polymorphic effect system. The effect system precisely tracks the
+                    purity and impurity of every expression. Flix, unlike most other programming languages, can
+                    guarantee that a function is pure (i.e. does not have side-effects).
+                </p>
+
+                <p>
+                    For example, we can write a pure and impure functions:
+                </p>
+
+                <InlineEditor>
+                    {`/// A pure function
+def sum(x: Int, y: Int): Int = x + y
+
+/// An impure function
+def sayHello(): Unit & Impure = Console.printLine("Hello World")
+`}
+                </InlineEditor>
+
+                <p>
+                    A major challenge for type and effect systems is effect polymorphism. The problem is the following:
+                    for higher-order functions the effect of a function depends on the effects of its arguments. For
+                    example, if map is passed a pure function f then the expression <code>List.map(f, 1 ::
+                    Nil)</code> is pure. On the other hand, if map is
+                    passed an impure function g then the expression <code>List.map(g, 1 :: Nil)</code> is impure. The
+                    effect of map depends on the effect of its first argument: it is effect polymorphic.
+                    We can express such effect polymorphic function types in Flix:
+                </p>
+
+                <InlineEditor>
+                    {`def map(f: a -> b & e, xs: List[a]): List[b] & e = match xs {
+    case Nil     => Nil
+    case x :: rs => f(x) :: map(f, rs)
+}`}
+                </InlineEditor>
+
+                <p>
+                    Here the effect <code>e</code> of <code>map</code> depends on the effect of <code>f</code>.
+                </p>
+
+
+
                 <h2>First-class Datalog Constraints</h2>
 
                 <p>
-                    A unique feature of Flix is its support for logic programming with first-class Datalog constraints.
-                    Datalog is a simple, yet surprisingly powerful, declarative logic programming language particularly
-                    well-suited for recursive queries on graphs. In Flix, Datalog constraints can be
+                    Another unique feature of Flix is its support for logic programming with first-class Datalog
+                    constraints. Datalog is a simple, yet surprisingly powerful, declarative logic programming language
+                    particularly well-suited for recursive queries on graphs. In Flix, Datalog constraints can be
                     embedded <i>inside</i> Flix programs as first-class values that can be stored in local variables,
                     passed and returned from functions, and composed with other Datalog program values. In a way, Flix
                     is a strongly-typed meta-programming language for Datalog.
