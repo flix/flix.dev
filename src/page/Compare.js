@@ -126,9 +126,21 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
+                                <th scope="row">Primitive Types</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Tuples</th>
+                            </tr>
+
+                            <tr>
                                 <th scope="row">Algebraic Data Types</th>
                                 {this.yes()}
                                 {this.yes("case classes")}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Records</th>
                             </tr>
 
                             <tr>
@@ -140,7 +152,6 @@ class Compare extends Component {
                             <tr>
                                 <th scope="row">Polymorphism</th>
                             </tr>
-
 
                             <tr>
                                 <th scope="row">Opaque Types</th>
@@ -155,21 +166,12 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Tuples</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Records</th>
-                            </tr>
-
-                            <tr>
                                 <th scope="row">UFCS</th>
                             </tr>
 
                             <tr>
                                 <th scope="row">Do Notation</th>
                             </tr>
-
 
                             <tr>
                                 <th scope="row">Module System</th>
@@ -188,11 +190,7 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Type Primitives</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Full Tail Calls</th>
+                                <th scope="row">Tail Call Elimination</th>
                             </tr>
 
                             <tr>
