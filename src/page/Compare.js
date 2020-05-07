@@ -73,12 +73,14 @@ class Compare extends Component {
 
                             <tr>
                                 <th scope="row">Paradigm</th>
-                                <td>functional, imperative, logic, channel and process-based concurrency</td>
-                                <td>functional, imperative, object-oriented, actor and thread-based concurrency</td>
+                                <td>functional, imperative, logic</td>
+                                <td>functional, imperative, object-oriented</td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Typing Discipline</th>
+                                <td>strong, static, sound</td>
+                                <td>strong, static, unsound</td>
                             </tr>
 
                             <tr>
@@ -86,23 +88,16 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Type Safety</th>
-                            </tr>
-
-                            <tr>
                                 <th scope="row">Type Inference</th>
                             </tr>
-
 
                             <tr>
                                 <th scope="row">Everything is an expression</th>
                             </tr>
 
-
                             <tr>
                                 <th scope="row">Polymorphic Effects</th>
                             </tr>
-
 
                             </tbody>
                         </Table>
@@ -210,7 +205,6 @@ class Compare extends Component {
                             <tr>
                                 <th scope="row">Treatment of unused code</th>
                             </tr>
-
 
 
                             <tr>
