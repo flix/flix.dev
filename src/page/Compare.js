@@ -108,7 +108,7 @@ class Compare extends Component {
 
                 <Row>
                     <Col>
-                        <h2>Features</h2>
+                        <h2>Language Features</h2>
                         <Table>
                             <thead>
                             <tr>
@@ -119,19 +119,28 @@ class Compare extends Component {
                             </thead>
                             <tbody>
 
-
                             <tr>
-                                <th scope="row">Algebraic Data Types and Pattern Matching</th>
+                                <th scope="row">Syntax</th>
+                                <td>keyword-based with braces</td>
+                                <td>keyword-based with braces</td>
                             </tr>
 
+                            <tr>
+                                <th scope="row">Algebraic Data Types</th>
+                                {this.yes()}
+                                {this.yes("case classes")}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Pattern Matching</th>
+                                {this.yes()}
+                                {this.yes("case classes")}
+                            </tr>
 
                             <tr>
                                 <th scope="row">Polymorphism</th>
                             </tr>
 
-                            <tr>
-                                <th scope="row">Syntax</th>
-                            </tr>
 
                             <tr>
                                 <th scope="row">Opaque Types</th>
@@ -161,9 +170,6 @@ class Compare extends Component {
                                 <th scope="row">Do Notation</th>
                             </tr>
 
-                            <tr>
-                                <th scope="row">String Interpolation</th>
-                            </tr>
 
                             <tr>
                                 <th scope="row">Module System</th>
@@ -194,7 +200,21 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Null Values</th>
+                                <th scope="row">Unsafe Nulls</th>
+                                {this.yellow("Yes")}
+                                {this.yellow("Yes")}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">String Interpolation</th>
+                                {this.yes("limited")}
+                                {this.yes("extensive")}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Raw Strings</th>
+                                {this.no("planned")}
+                                {this.yes()}
                             </tr>
 
                             <tr>
@@ -258,9 +278,9 @@ class Compare extends Component {
                             <tbody>
 
                             <tr>
-                                <th scope="row">Compilation Warnings?</th>
-                                {this.no("by design")}
-                                {this.yes()}
+                                <th scope="row">No Compiler Warnings, Only Errors</th>
+                                {this.green("Yes")}
+                                {this.no()}
                             </tr>
 
                             <tr>
@@ -268,6 +288,8 @@ class Compare extends Component {
                                 {this.no("by design")}
                                 {this.yes()}
                             </tr>
+
+
                             </tbody>
                         </Table>
                     </Col>
@@ -276,7 +298,7 @@ class Compare extends Component {
             </Container>);
     }
 
-    good(text, comment) {
+    green(text, comment) {
         if (comment === undefined)
             return (
                 <td className="text-center">
@@ -286,6 +308,21 @@ class Compare extends Component {
             return (
                 <td className="text-center">
                     <span className="font-weight-bold text-success">{text}</span>
+                    <span className="text-muted">({comment})</span>
+                </td>
+            );
+    }
+
+    yellow(text, comment) {
+        if (comment === undefined)
+            return (
+                <td className="text-center">
+                    <span className="font-weight-bold text-warning">{text}</span>
+                </td>);
+        else
+            return (
+                <td className="text-center">
+                    <span className="font-weight-bold text-warning">{text}</span>
                     <span className="text-muted">({comment})</span>
                 </td>
             );
