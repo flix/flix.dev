@@ -85,6 +85,7 @@ class Compare extends Component {
 
                             <tr>
                                 <th scope="row">Platform</th>
+                                <td colSpan={2} className="text-center">Java Virtual Machine (JVM bytecode)</td>
                             </tr>
 
                             <tr>
