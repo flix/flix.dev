@@ -18,7 +18,7 @@ import About from "./page/About";
 import Blog from "./page/Blog";
 import Koans from "./page/Koans";
 import Innovations from "./page/Innovations";
-import Compare from "./page/Comparison";
+import Compare from "./page/Compare";
 
 const SocketAddress = 'wss://evaluator.flix.dev/ws';
 
