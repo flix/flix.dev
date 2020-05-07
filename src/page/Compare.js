@@ -179,7 +179,9 @@ class Compare extends Component {
                                 <th scope="row">Null Values</th>
                             </tr>
 
-
+                            <tr>
+                                <th scope="row">Other Notable Features</th>
+                            </tr>
                             </tbody>
                         </Table>
                     </Col>
@@ -187,7 +189,7 @@ class Compare extends Component {
 
                 <Row>
                     <Col>
-                        <h2>Compiler</h2>
+                        <h2>Development Experience</h2>
                         <Table>
                             <thead>
                             <tr>
@@ -198,6 +200,13 @@ class Compare extends Component {
                             </thead>
                             <tbody>
 
+
+                            <tr>
+                                <th scope="row">IDE Support</th>
+                                {this.no()}
+                                {this.yes("several")}
+                            </tr>
+
                             <tr>
                                 <th scope="row">Warnings/Errors</th>
                             </tr>
@@ -206,10 +215,6 @@ class Compare extends Component {
                                 <th scope="row">Treatment of unused code</th>
                             </tr>
 
-
-                            <tr>
-                                <th scope="row">IDE</th>
-                            </tr>
 
                             <tr>
                                 <th scope="row">Compilation Times</th>
@@ -233,12 +238,20 @@ class Compare extends Component {
             </Container>);
     }
 
-    yes() {
-        return <td className="text-center font-weight-bold text-success">Yes</td>;
+    yes(text) {
+        if (text === undefined)
+            return <td className="text-center"><span className="font-weight-bold text-success">Yes</span></td>;
+        else
+            return <td className="text-center"><span className="font-weight-bold text-success">Yes</span> <span
+                className="text-muted">({text})</span></td>;
     }
 
-    no() {
-        return <td className="text-center font-weight-bold text-danger">No</td>;
+    no(text) {
+        if (text === undefined)
+            return <td className="text-center"><span className="font-weight-bold text-danger">No</span></td>;
+        else
+            return <td className="text-center"><span className="font-weight-bold text-danger">No</span> <span
+                className="text-muted">({text})</span></td>;
     }
 }
 
