@@ -202,7 +202,11 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")
                     Here the effect <code>e</code> of <code>map</code> depends on the effect of <code>f</code>.
                 </p>
 
-
+                <p>
+                    The effect system of Flix is part of what makes the language functional-first: the programmer
+                    can trust that a pure function behaves as a mathematical function: returning the same value
+                    when given the same arguments without any side-effects.
+                </p>
 
                 <h2>First-class Datalog Constraints</h2>
 
