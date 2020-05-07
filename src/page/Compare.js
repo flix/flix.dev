@@ -72,26 +72,15 @@ class Compare extends Component {
 
                             <tr>
                                 <th scope="row">Paradigm</th>
-                                <td>Multi-paradigm: functional, imperative, logic, channel and process-based concurrency</td>
-                                <td>Multi-paradigm: functional, imperative, object-oriented, actor and thread-based concurrency</td>
+                                <td>functional, imperative, logic, channel and process-based concurrency</td>
+                                <td>functional, imperative, object-oriented, actor and thread-based concurrency</td>
                             </tr>
 
                             <tr>
-                                <th scope="row">Null</th>
-                                <td>N</td>
-                                <td>
-                                    <Row>
-                                        <FaCheck style={{fontSize: '2em'}}/>
-                                    </Row>
-                                    <Row>
-                                        <p className="text-muted">
-                                            In Scala null is a subtype of any which can lead to null pointer
-                                            exceptions.
-                                        </p>
-
-                                    </Row>
-                                </td>
+                                <th scope="row">Typing Discipline</th>
                             </tr>
+
+
 
                             <tr>
                                 <th scope="row">Polymorphic Effects</th>
@@ -103,6 +92,12 @@ class Compare extends Component {
                                 </td>
                                 <td>N</td>
                             </tr>
+
+
+                            <tr>
+                                <th scope="row">Null Values</th>
+                            </tr>
+
                             <tr>
                                 <th scope="row">Compilation Times</th>
                                 <td colSpan={2}>
