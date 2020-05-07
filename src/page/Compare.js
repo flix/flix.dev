@@ -69,12 +69,13 @@ class Compare extends Component {
                             </tr>
                             </thead>
                             <tbody>
+
                             <tr>
-                                <th scope="row">Compilation Times</th>
-                                <td colSpan={2}>
-                                    ...
-                                </td>
+                                <th scope="row">Paradigm</th>
+                                <td>Multi-paradigm: functional, imperative, logic, channel and process-based concurrency</td>
+                                <td>Multi-paradigm: functional, imperative, object-oriented, actor and thread-based concurrency</td>
                             </tr>
+
                             <tr>
                                 <th scope="row">Null</th>
                                 <td>N</td>
@@ -91,6 +92,7 @@ class Compare extends Component {
                                     </Row>
                                 </td>
                             </tr>
+
                             <tr>
                                 <th scope="row">Polymorphic Effects</th>
                                 <td>
@@ -101,12 +103,31 @@ class Compare extends Component {
                                 </td>
                                 <td>N</td>
                             </tr>
+                            <tr>
+                                <th scope="row">Compilation Times</th>
+                                <td colSpan={2}>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Incremental Compilation</th>
+                                {this.yes()}
+                                {this.no()}
+                            </tr>
                             </tbody>
                         </Table>
                     </Col>
                 </Row>
 
             </Container>);
+    }
+
+    yes() {
+        return <td className="text-center font-weight-bold text-success">Yes</td>;
+    }
+
+    no() {
+        return <td className="text-center font-weight-bold text-danger">No</td>;
     }
 }
 
