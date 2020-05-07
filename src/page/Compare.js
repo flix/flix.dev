@@ -61,6 +61,7 @@ class Compare extends Component {
 
                 <Row>
                     <Col>
+                        <h2>Overview</h2>
                         <Table>
                             <thead>
                             <tr>
@@ -221,9 +222,8 @@ class Compare extends Component {
 
                             <tr>
                                 <th scope="row">Compilation Times</th>
-                                <td colSpan={2}>
-                                    Moderate. In the range of 5,000 to 20,000 lines per second.
-                                </td>
+                                <td>20,000 lines/sec (est.)</td>
+                                <td>10,000 lines/sec (est.)</td>
                             </tr>
                             <tr>
                                 <th scope="row">Incremental Compilation</th>
