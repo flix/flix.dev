@@ -7,7 +7,7 @@ import {
     CardSubtitle, CardText,
     CardTitle,
     Col,
-    Container,
+    Container, Label,
     ListGroup,
     ListGroupItem,
     Row,
@@ -25,7 +25,7 @@ class Compare extends Component {
         }
     }
 
-    notifyChangeLanguage(language) {
+    changeLanguage(language) {
         this.setState({language: language});
     }
 
@@ -40,93 +40,41 @@ class Compare extends Component {
 
                 <Row className="mb-3">
                     <Col>
-                        <h1>Comparing: Flix versus {this.state.language}</h1>
-                    </Col>
-
-                    <Button onClick={() => this.notifyChangeLanguage("OCaml")}>OCaml</Button>
-                    <Button onClick={() => this.notifyChangeLanguage("Haskell")}>Haskell</Button>
-                    <Button onClick={() => this.notifyChangeLanguage("Scala")}>Scala</Button>
-                </Row>
-
-                <Row className="mb-3">
-                    <Col>
-                        text goes here.
+                        <h1>Flix compared to other programming languages</h1>
                     </Col>
                 </Row>
 
-                <Row className="mb-3">
-                    <Col sm={4}>
-                        <h2>Common Strengths and Weaknesses</h2>
+                <Row className="justify-content-md-center mb-3">
+                    <Button outline className="btn-sm mr-2" onClick={() => this.changeLanguage("OCaml")}>
+                        OCaml
+                    </Button>
 
-                        <h5>Strengths</h5>
+                    <Button outline className="btn-sm mr-2" onClick={() => this.changeLanguage("Haskell")}>
+                        Haskell
+                    </Button>
 
-                        <ListGroup>
-                            <ListGroupItem>Keyword-based Syntax</ListGroupItem>
-                            <ListGroupItem>Local Type Inference</ListGroupItem>
-                            <ListGroupItem>Access to Java Ecosystem</ListGroupItem>
-                        </ListGroup>
-
-                        <h5>Weaknesses</h5>
-                        <ListGroup>
-                            <ListGroupItem>Relatively slow compilation-times.</ListGroupItem>
-                            <ListGroupItem>Slow application startup due to the JVM.</ListGroupItem>
-                        </ListGroup>
-
-                    </Col>
-
-
-                    <Col sm={4}>
-                        <h2>Flix is Better</h2>
-
-                        <Card>
-                            <CardBody>
-                                <CardTitle>Flix Strengths</CardTitle>
-                                <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                            </CardBody>
-                        </Card>
-
-                        <ListGroup>
-                            <ListGroupItem>Polymorphic effect system</ListGroupItem>
-                        </ListGroup>
-
-                        <h5 className="text-primary">Scala Weaknesses</h5>
-
-                        <ListGroup>
-                            <ListGroupItem>Null</ListGroupItem>
-                            <ListGroupItem>Incomplete type inference</ListGroupItem>
-                            <ListGroupItem>Unsound type system (?)</ListGroupItem>
-                        </ListGroup>
-                    </Col>
-
-                    <Col sm={4}>
-                        <h2>Scala Better</h2>
-
-                        <h5 className="text-primary">Scala Strengths</h5>
-
-                        <ListGroup>
-                            <ListGroupItem>Mature ecosystem</ListGroupItem>
-                        </ListGroup>
-
-                        <h5 className="text-primary">Flix Weaknesses</h5>
-
-                        <ListGroup>
-                            <ListGroupItem>Lack of separate compilation</ListGroupItem>
-                        </ListGroup>
-                    </Col>
+                    <Button outline className="btn-sm mr-2" onClick={() => this.changeLanguage("Scala")}>
+                        Scala
+                    </Button>
                 </Row>
-
 
                 <Row>
                     <Col>
                         <Table>
                             <thead>
                             <tr>
-                                <th>Feature</th>
-                                <th>Flix</th>
-                                <th>Scala</th>
+                                <th/>
+                                <th className="text-center">Flix</th>
+                                <th className="text-center">Scala</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <tr>
+                                <th scope="row">Compilation Times</th>
+                                <td colSpan={2}>
+                                    ...
+                                </td>
+                            </tr>
                             <tr>
                                 <th scope="row">Null</th>
                                 <td>N</td>
