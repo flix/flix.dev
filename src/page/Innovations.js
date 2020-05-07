@@ -65,9 +65,36 @@ class Innovations extends Component {
                         <h2>First-class Datalog Constraints</h2>
 
                         <p>
-                            Flix supports Datalog constraints as first-class values that can be passed around, compose
-                            with other constraints, and solved. The minimal model of constraint set is another
-                            constraint set, hence it is possible to construct pipelines of Flix programs.
+                            Datalog is a simple, yet surprisingly powerful, declarative logic programming language. A
+                            Datalog program is a collection of constraints. Each constraint is either a fact or a rule.
+                            A Datalog rule is logic formula that allows us to derive new facts from existing facts.
+                        </p>
+
+                        <p>
+                            Every Datalog program has a unique solution; its so-called <i>minimal model</i>.
+                            The minimal model always exists and is always computable, i.e. evaluation of a Datalog
+                            program always terminates with the same solution. In Datalog, unlike in Prolog, the order
+                            of constraints and of clauses within a rule is immaterial. That is, a Datalog program
+                            can be freely reordered without changing its meaning.
+                        </p>
+
+                        <p>
+                            Datalog, unlike Prolog, is <i>not</i> Turing-complete. In other words, there are a programs
+                            that cannot be expressed in Datalog. This is useful because otherwise we would not have a
+                            guarantee of termination and uniqueness.
+                        </p>
+
+                        <p>
+                            Flix supports Datalog constraints as <i>first-class values</i> that can be passed around,
+                            compose with other constraints, and solved. The solution (i.e. minimal model) of a
+                            constraint set is another constraint set, hence it is possible to construct pipelines of
+                            Flix programs. This enables Flix to be used as a meta-programming language for Datalog.
+                        </p>
+
+                        <p>
+                            First-class Datalog constraints enable the programmer to express and solve complicated
+                            reachability queries within Flix in a declarative and performant manner. Datalog constraints
+                            enable a form of database programming within Flix.
                         </p>
 
                     </Col>
