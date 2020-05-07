@@ -90,14 +90,14 @@ class Compare extends Component {
 
                             <tr>
                                 <th scope="row">Type Inference</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Everything is an expression</th>
+                                <td>local, complete</td>
+                                <td>local, incomplete</td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Polymorphic Effects</th>
+                                {this.yes()}
+                                {this.no()}
                             </tr>
 
                             </tbody>
