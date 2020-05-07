@@ -207,7 +207,7 @@ class Compare extends Component {
 
                 <Row>
                     <Col>
-                        <h2>Development Experience</h2>
+                        <h2 className="text-center">Development Experience</h2>
                         <Table>
                             <thead>
                             <tr>
@@ -225,7 +225,7 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Compilation Time (est)</th>
+                                <th scope="row">Compiler Throughput</th>
                                 <td>20,000 lines/sec</td>
                                 <td>10,000 lines/sec</td>
                             </tr>
@@ -274,6 +274,21 @@ class Compare extends Component {
                 </Row>
 
             </Container>);
+    }
+
+    good(text, comment) {
+        if (comment === undefined)
+            return (
+                <td className="text-center">
+                    <span className="font-weight-bold text-success">{text}</span>
+                </td>);
+        else
+            return (
+                <td className="text-center">
+                    <span className="font-weight-bold text-success">{text}</span>
+                    <span className="text-muted">({comment})</span>
+                </td>
+            );
     }
 
     yes(text) {
