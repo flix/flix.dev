@@ -2,14 +2,8 @@ import React, {Component} from "react";
 import ReactGA from "react-ga";
 import {
     Button,
-    Card,
-    CardBody,
-    CardSubtitle, CardText,
-    CardTitle,
     Col,
     Container, Label,
-    ListGroup,
-    ListGroupItem,
     Row,
     Table
 } from "reactstrap";
@@ -163,12 +157,23 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Boxed Primitives</th>
+                                <th scope="row">UFCS</th>
                             </tr>
 
+                            <tr>
+                                <th scope="row">Error Model</th>
+                            </tr>
 
                             <tr>
-                                <th scope="row"> Full Tail Calls</th>
+                                <th scope="row">Implicit Coercions</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Type Primitives</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Full Tail Calls</th>
                             </tr>
 
                             <tr>
@@ -201,6 +206,12 @@ class Compare extends Component {
                             <tr>
                                 <th scope="row">Warnings/Errors</th>
                             </tr>
+
+                            <tr>
+                                <th scope="row">Treatment of unused code</th>
+                            </tr>
+
+
 
                             <tr>
                                 <th scope="row">IDE</th>
