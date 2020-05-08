@@ -83,22 +83,31 @@ class Innovations extends Component {
                         </p>
 
                         <p>
-                            Datalog, unlike Prolog, is <i>not</i> Turing-complete. In other words, there are a programs
-                            that cannot be expressed in Datalog. This is useful because otherwise we would not have a
-                            guarantee of termination and uniqueness.
+                            Datalog, unlike Prolog, is <i>not</i> Turing-complete: there are a programs that cannot be
+                            expressed in Datalog. This is necessarily so, otherwise Datalog could not guarantee
+                            termination.
                         </p>
 
                         <p>
                             Flix supports Datalog constraints as <i>first-class values</i> that can be passed around,
                             compose with other constraints, and solved. The solution (i.e. minimal model) of a
                             constraint set is another constraint set, hence it is possible to construct pipelines of
-                            Flix programs. This enables Flix to be used as a meta-programming language for Datalog.
+                            Flix programs.
                         </p>
 
                         <p>
-                            First-class Datalog constraints enable the programmer to express and solve complicated
-                            reachability queries within Flix in a declarative and performant manner. Datalog constraints
-                            enable a form of database programming within Flix.
+                            Flix can be thought of as a meta-programming language for Datalog. The Flix type system
+                            and stratification algorithm guarantees the well-formedness of Datalog programs constructed
+                            at run-time. Flix significantly increases the expressive power of Datalog by allowing guard
+                            expressions and expressions as head terms in Datalog rules.
+                        </p>
+
+                        <p>
+                            Alternatively, Flix can be thought of as a functional programming language with a very
+                            powerful embedded query language. A Flix programmer can use first-class Datalog constraints
+                            to simply, elegantly, and efficiently solve fixpoint computations inside functional code.
+                            It should be noted that Datalog is strictly more expressive than relational algebra (~=
+                            simple SQL).
                         </p>
 
                     </Col>
