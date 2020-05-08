@@ -209,6 +209,46 @@ def main3(): Int =
 `
         },
         {
+            name: "Pure and Impure Functions",
+            code: `/// We can declare a pure function.
+def inc(x: Int): Int & Pure = x + 1
+
+/// The pure annotation is default, so we can just write:
+def inc2(x: Int): Int = x + 1
+
+/// We can also declare an impure function.
+def printAndInc(x: Int): Int & Impure =
+    Console.printLine("Hello");
+    x + 1
+
+/// We can declare a function that expects a pure function:
+def twice(f: Int -> Int, x: Int): Int = f(f(x))
+
+/// We can pass a pure function to twice.
+def main(): Int = twice(inc, 42)
+
+/// But we *cannot* pass an impure function.
+// def main2(): Int = twice(printAndInc, 42)
+`
+        },
+        {
+            name: "Effect Polymorphic Functions",
+            code: `/// Assume we have some pure and impure functions:
+def inc1(x: Int): Int & Pure = x + 1
+def inc2(x: Int): Int & Impure = Console.printLine("Hello"); x + 1
+
+/// We can write functions that expect pure or impure functions:
+def twice1(f: Int -> Int & Pure, x: Int): Int & Pure = f(f(x))
+def twice2(f: Int -> Int & Impure, x: Int): Int & Impure = f(f(x))
+
+/// But we can also write *effect polymorphic* functions:
+def twice3(f: Int -> Int & e, x: Int): Int & e = f(f(x))
+
+/// We can use \`twice3\` with both pure and impure functions:
+def main(): Int & Impure = twice3(inc1, 0) + twice3(inc2, 0)
+`
+        },
+        {
             name: "Opaque Types",
             code: `/// An opaque type declares a new type that is different from any other
 /// existing type. Opaque types can be used to differentiate types
@@ -679,6 +719,40 @@ def main(): Bool =
 
     // Check that there is a path from 1 to 3.
     m2 |= ColorlessPath(1, 3).
+`
+        },
+        {
+            name: "Using Datalog to Solve a Compiler Puzzle",
+            code: `/// We can use first-class Datalog constraints to solve the following
+/// complex reachability problem: Given a collection of compilers and
+/// interpreters, what source languages can be compiled to what targets?
+def main(): #{Interpreter(String), Compiler(String, String, String)} =
+    let p = #{
+    /// We have the following interpreters and compilers:
+    Interpreter("x86").
+    Compiler("Scala", "x86", "MiniScala").
+    Compiler("MiniScala", "C++", "C++").
+    Compiler("C++", "x86", "x86").
+
+    // Bootstrapping Compilation:
+    // We have a compiler from src1 -> dst1 written in lang1.
+    // We have a compiler that can compile lang1 to dst2.
+    // Now we have a compiler from src1 to dst1 written in dst2.
+    Compiler(src1, dst1, dst2) :-
+        Compiler(src1, dst1, lang1),
+        Compiler(lang1, dst2, lang2),
+        Interpreter(lang2).
+
+    // Transitive Compilation:
+    // If we have a compiler from src -> intermediate and
+    // we have a compiler from intermediate -> dst then
+    // we can obtain a compiler from src -> dst.
+    Compiler(src, dst, lang) :-
+        Compiler(src, intermediate, lang),
+        Compiler(intermediate, dst, lang),
+        Interpreter(lang).
+    };
+    solve p
 `
         },
         {
