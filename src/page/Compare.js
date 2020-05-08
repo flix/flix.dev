@@ -57,15 +57,15 @@ class Compare extends Component {
                     </Button>
                 </Row>
 
-                <Row>
+                <Row className="mb-3">
                     <Col>
-                        <h2>Overview</h2>
+                        <h2 className="text-center">Overview</h2>
                         <Table>
                             <thead>
                             <tr>
-                                <th/>
-                                <th className="text-center">Flix</th>
-                                <th className="text-center">Scala</th>
+                                <th className="w-33"/>
+                                <th className="w-33 text-center">Flix</th>
+                                <th className="w-33 text-center">Scala</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -83,8 +83,15 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
+                                <th scope="row">Concurrency</th>
+                                <td>channel and process-based</td>
+                                <td>threads</td>
+                            </tr>
+
+                            <tr>
                                 <th scope="row">Platform</th>
-                                <td colSpan={2} className="text-center">Java Virtual Machine (JVM bytecode)</td>
+                                <td>JVM</td>
+                                <td>JVM</td>
                             </tr>
 
                             <tr>
@@ -98,21 +105,20 @@ class Compare extends Component {
                                 {this.yes()}
                                 {this.no()}
                             </tr>
-
                             </tbody>
                         </Table>
                     </Col>
                 </Row>
 
-                <Row>
+                <Row className="mb-3">
                     <Col>
-                        <h2>Language Features</h2>
+                        <h2 className="text-center">Language Features</h2>
                         <Table>
                             <thead>
                             <tr>
-                                <th/>
-                                <th className="text-center">Flix</th>
-                                <th className="text-center">Scala</th>
+                                <th className="w-33"/>
+                                <th className="w-33 text-center">Flix</th>
+                                <th className="w-33 text-center">Scala</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -130,17 +136,9 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Tuples</th>
-                            </tr>
-
-                            <tr>
                                 <th scope="row">Algebraic Data Types</th>
                                 {this.yes()}
                                 {this.yes("case classes")}
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Records</th>
                             </tr>
 
                             <tr>
@@ -150,31 +148,38 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Polymorphism</th>
+                                <th scope="row">Records</th>
+                                {this.yes("row polymorphic")}
+                                {this.no()}
                             </tr>
 
                             <tr>
                                 <th scope="row">Opaque Types</th>
+                                {this.yes()}
+                                {this.yes()}
                             </tr>
 
                             <tr>
                                 <th scope="row">Type Aliases</th>
+                                {this.yes()}
+                                {this.yes()}
                             </tr>
 
                             <tr>
-                                <th scope="row">Concurrency</th>
+                                <th scope="row">Uniform Function Call Syntax</th>
+                                {this.yes()}
+                                {this.no()}
                             </tr>
 
                             <tr>
-                                <th scope="row">UFCS</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Do Notation</th>
+                                <th scope="row">Monadic Notation</th>
+                                {this.yes("let*")}
+                                {this.yes("for-loop")}
                             </tr>
 
                             <tr>
                                 <th scope="row">Module System</th>
+
                             </tr>
 
                             <tr>
@@ -198,9 +203,9 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Unsafe Nulls</th>
-                                {this.yellow("Yes")}
-                                {this.yellow("Yes")}
+                                <th scope="row">Safe Nulls</th>
+                                {this.no()}
+                                {this.yellow("Yes", "with feature flag")}
                             </tr>
 
                             <tr>
@@ -217,21 +222,25 @@ class Compare extends Component {
 
                             <tr>
                                 <th scope="row">Other Notable Features</th>
+                                <td>first-class Datalog constraints</td>
+                                <td>implicit parameters, implicit conversions, type members, macros, union and
+                                    intersection types
+                                </td>
                             </tr>
                             </tbody>
                         </Table>
                     </Col>
                 </Row>
 
-                <Row>
+                <Row className="mb-3">
                     <Col>
                         <h2 className="text-center">Development Experience</h2>
                         <Table>
                             <thead>
                             <tr>
-                                <th/>
-                                <th className="text-center">Flix</th>
-                                <th className="text-center">Scala</th>
+                                <th className="w-33"/>
+                                <th className="w-33 text-center">Flix</th>
+                                <th className="w-33 text-center">Scala</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -262,15 +271,15 @@ class Compare extends Component {
                     </Col>
                 </Row>
 
-                <Row>
+                <Row className="mb-3">
                     <Col>
                         <h2 className="text-center">Philosophical Differences</h2>
                         <Table>
                             <thead>
                             <tr>
-                                <th/>
-                                <th className="text-center">Flix</th>
-                                <th className="text-center">Scala</th>
+                                <th className="w-33"/>
+                                <th className="w-33 text-center">Flix</th>
+                                <th className="w-33 text-center">Scala</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -286,8 +295,6 @@ class Compare extends Component {
                                 {this.no("by design")}
                                 {this.yes()}
                             </tr>
-
-
                             </tbody>
                         </Table>
                     </Col>
@@ -320,8 +327,24 @@ class Compare extends Component {
         else
             return (
                 <td className="text-center">
-                    <span className="font-weight-bold text-warning">{text}</span>
-                    <span className="text-muted">({comment})</span>
+                    <span className="font-weight-bold text-warning">{text}</span> <span
+                    className="text-muted">({comment})</span>
+                </td>
+            );
+    }
+
+
+    red(text, comment) {
+        if (comment === undefined)
+            return (
+                <td className="text-center">
+                    <span className="font-weight-bold text-danger">{text}</span>
+                </td>);
+        else
+            return (
+                <td className="text-center">
+                    <span className="font-weight-bold text-danger">{text}</span> <span
+                    className="text-muted">({comment})</span>
                 </td>
             );
     }
