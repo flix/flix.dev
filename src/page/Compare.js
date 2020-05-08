@@ -414,7 +414,7 @@ class Compare extends Component {
                             <tr>
                                 <th scope="row">Error Model</th>
                                 <td>Return values (e.g. <code>Result</code>)</td>
-                                <td>Mix of return values and exceptions</td>
+                                <td>Mix of return values and exceptions.</td>
                             </tr>
 
                             <tr>
@@ -495,7 +495,6 @@ class Compare extends Component {
                 </td>
             );
     }
-
 
     red(text, comment) {
         if (comment === undefined)
