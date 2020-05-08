@@ -171,23 +171,65 @@ def main(): String & Impure =
                         <h2>Polymorphic Effects: Separating Pure and Impure Code</h2>
 
                         <p>
-                            A unique feature of Flix is its polymorphic effect system. The effect system precisely
-                            tracks the
-                            purity and impurity of every expression. Flix, unlike most other programming languages, can
-                            guarantee that a function is pure (i.e. does not have side-effects).
+                            A unique feature of Flix is its polymorphic effect system. The Flix type and effect system
+                            cleanly separates pure and impure code. If an expression is pure then it always
+                            evaluates to the same value and it cannot have a side-effect. If a function is pure then it
+                            always evaluates to the same value when given the same arguments.
                         </p>
 
                         <p>
-                            For example, we can write pure and impure functions:
+                            We can write a pure function:
                         </p>
 
                         <InlineEditor>
                             {`/// A pure function
-def sum(x: Int, y: Int): Int = x + y
+def sum(x: Int, y: Int): Int = x + y`}
+                        </InlineEditor>
 
-/// An impure function
+                        <p>
+                            And we can also write an impure function:
+                        </p>
+
+                        <InlineEditor>
+                            {`/// An impure function
 def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
                         </InlineEditor>
+
+                        <p>
+                            We can also write a higher-order function that <i>requires</i> a pure function argument:
+                        </p>
+
+                        <InlineEditor>
+                            {`def exists(f: a -> Bool, xs: List[a]): Bool = match xs {
+    case Nil     => false
+    case x :: rs => if (f(x)) true else exists(f, rs)
+}`}
+                        </InlineEditor>
+
+                        <p>
+                            Here the <code>-&gt;</code> arrow denotes a pure function.
+                        </p>
+
+                        <p>
+                            <i>It is a compile-time error to call <code>map</code> with an impure function!</i>
+                        </p>
+
+                        <p>
+                            We can also write a a higher-order function that <i>requires</i> an impure function
+                            argument:
+                        </p>
+
+                        <InlineEditor>
+                            {`def unfoldWithIter(next: () ~> Option[a]): List[a] & Impure = ...`}
+                        </InlineEditor>
+
+                        <p>
+                            Here the <code>~&gt;</code> arrow denotes an impure function.
+                        </p>
+
+                        <p>
+                            It is a compile-time error to call <code>unfoldWithIter</code> with a pure function!
+                        </p>
 
                         <p>
                             A major challenge for type and effect systems is effect polymorphism. The problem is the
