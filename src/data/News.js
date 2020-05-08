@@ -1,6 +1,10 @@
 export default function () {
     return [
         {
+            name: "Improvements to compiler performance.",
+            date: "2020-05-05"
+        },
+        {
             name: "We have significantly extended the standard library!",
             date: "2020-04-12"
         },

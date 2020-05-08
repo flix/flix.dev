@@ -3,4 +3,5 @@
 - Light-weight polymorphic effects.
 - Linting
 - Naming mutable and immutable operations.
+- Sanity-- (e.g. in the style of PHP - a fractal of bad design).
 

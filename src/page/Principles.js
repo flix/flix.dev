@@ -45,6 +45,13 @@ class Principles extends Component {
                         declarations, namespaces, and so forth that are not expressions.
                     </Principle>
 
+                    <Principle name="Separate pure and impure code">
+                        Flix supports functional, imperative, and logic programming. The type and effect system of Flix
+                        cleanly and safely separates pure code from impure code. That is, if a function is pure then the
+                        programmer can trust that the function behaves like a mathematical function: it returns the same
+                        value when given the same arguments and it has no side-effects.
+                    </Principle>
+
                     <Principle name="Developer productivity over runtime performance">
                         Flix aims to support developer productivity; the ability to do a lot with little ceremony or
                         boilerplate. A hand-crafted C program might run faster than a Flix program, but it won't be as
@@ -60,6 +67,14 @@ class Principles extends Component {
                         dynamically check that array accesses are not out of bounds. The cost is a small performance
                         hit, but in our view the benefit towards correctness is immense. Inspired by Ada, Flix aims to
                         offer strong guarantees, ideally ensured statically, but when necessary with dynamic checks.
+                    </Principle>
+
+                    <Principle name="One language">
+                        Flix is <i>one</i> programming language. The Flix compiler does not have feature flags or
+                        compiler plugins that change or extend the semantics of the language. We want to avoid
+                        fragmentation in the ecosystem where programs end up being written in different "dialects" of
+                        the language. There is one language, now and forever. Of course that does not imply that the
+                        language will not evolve over time.
                     </Principle>
 
                     <Principle name="Principle of least surprise">
@@ -247,6 +262,13 @@ class Principles extends Component {
                         to restart the program.
                     </Principle>
 
+                    <Principle name="No pre-processor">
+                        Flix does not have and will not have a pre-processor. Programs that use pre-processing for
+                        textual code generation are notoriously difficult to understand and debug. We want to avoid
+                        that for Flix. Instead, Flix may some day have a macro system, but so far there has been little
+                        need.
+                    </Principle>
+
                     <Principle name="No null value">
                         Flix does not have the <code>null</code> value. The null value is now widely considered a
                         mistake and languages such as C#, Dart, Kotlin and Scala are scrambling to adopt mechanisms to
@@ -325,6 +347,11 @@ class Principles extends Component {
                         which can be used to emulate the same functionality and works with higher-order functions.
                     </Principle>
 
+                    <Principle name="No binary or octal literals">
+                        Flix does not support binary or octal literals. It is our understanding that these features are
+                        rarely used in practice.
+                    </Principle>
+
                     <Principle name="Exhaustive pattern matches">
                         The Flix compiler enforces that pattern matches handle all cases of an algebraic data type.
                         If a match expression is found to be non-exhaustive, the program is rejected. We believe this
@@ -336,6 +363,16 @@ class Principles extends Component {
                         comments. A bit later, XML was all the rage, hence it was only natural that Scala
                         added support for native XML literals. Today, JSON and Markdown are all the rage, but if
                         history is any guide, we should not add any special support for these to Flix.
+                    </Principle>
+
+                    <Principle name="Built-in Documentation">
+                        Flix supports comments as part of the language. We believe such integration avoids fragmentation
+                        of the ecosystem and ultimately leads to better tool support.
+                    </Principle>
+
+                    <Principle name="Built-in Unit Tests">
+                        Flix supports unit tests as part of the language. We believe such integration avoids
+                        fragmentation of the ecosystem and ultimately leads to better tool support.
                     </Principle>
 
                     <Principle name="Library: Minimal prelude">
