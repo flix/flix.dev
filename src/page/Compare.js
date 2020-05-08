@@ -203,7 +203,12 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Tail Call Elimination</th>
+                                <th scope="row">
+                                    Tail Call Elimination
+                                    <p className="font-weight-normal text-muted small">
+                                        (A call in tail position never consumes stack space.)
+                                    </p>
+                                </th>
                                 {this.green("Yes")}
                                 {this.red("No")}
                             </tr>
@@ -378,6 +383,10 @@ class Compare extends Component {
                 </Row>
 
             </Container>);
+    }
+
+    note(text) {
+        return <p className="font-weight-normal text-muted small">{text}</p>
     }
 
     yes(text) {
