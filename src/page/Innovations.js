@@ -28,7 +28,9 @@ class Innovations extends Component {
 
                         <p>
                             Flix comes with a polymorphic type and effect system. The effect system separates pure
-                            and impure code, i.e. if an expression is pure then it cannot have a side-effect.
+                            and impure code. If an expression is pure then it always evaluates to the same value and it
+                            cannot have a side-effect. If a function is pure then it always evaluates to the same value
+                            when given the same arguments.
                         </p>
 
                         <p>
