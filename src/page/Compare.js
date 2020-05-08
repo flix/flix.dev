@@ -233,19 +233,28 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Currying (by default)</th>
+                                <th scope="row">
+                                    Currying
+                                    {this.note("Every function can be partially applied.")}
+                                </th>
                                 {this.yes()}
                                 {this.no()}
                             </tr>
 
                             <tr>
-                                <th scope="row">Variadic Arguments (Vargs)</th>
+                                <th scope="row">
+                                    Variadic Arguments
+                                    {this.note("A function can take a variable number of arguments.")}
+                                </th>
                                 {this.no("by design")}
                                 {this.yes()}
                             </tr>
 
                             <tr>
-                                <th scope="row">Labelled Arguments</th>
+                                <th scope="row">
+                                    Labelled Arguments
+                                    {this.note("A function can be passed arguments using labels.")}
+                                </th>
                                 {this.no("by design")}
                                 {this.yes()}
                             </tr>
@@ -262,16 +271,16 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Runtime Performance</th>
-                                <td>Aims to be with 1x-5x of Java</td>
-                                <td>On par with Java</td>
+                                <th scope="row">Performance</th>
+                                <td className="text-center">Within 1.0x to 5.0x of Java</td>
+                                <td className="text-center">Comparable to Java</td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Other Notable Features</th>
                                 <td>first-class Datalog constraints</td>
-                                <td>implicit parameters, implicit conversions, type members, macros, union and
-                                    intersection types
+                                <td>implicit parameters, implicit conversions, type members, union and
+                                    intersection types, context functions.
                                 </td>
                             </tr>
                             </tbody>
