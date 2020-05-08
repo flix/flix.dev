@@ -233,16 +233,12 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
 
                         <p>
                             A major challenge for type and effect systems is effect polymorphism. The problem is the
-                            following:
-                            for higher-order functions the effect of a function depends on the effects of its arguments.
-                            For
-                            example, if map is passed a pure function <code>f</code> then the expression <code>List.map(f,
-                            1 ::
-                            Nil)</code> is pure. On the other hand, if map is passed an impure
-                            function <code>g</code> then the
-                            expression <code>List.map(g, 1 :: Nil)</code> is impure. The effect of map depends on the
-                            effect of
-                            its first argument: it is effect polymorphic.
+                            following: for higher-order functions the effect of a function depends on the effects of its
+                            arguments. For example, if map is passed a pure function <code>f</code> then the
+                            expression <code>List.map(f, 1 :: Nil)</code> is pure. On the other hand, if map is passed
+                            an impure function <code>g</code> then the expression <code>List.map(g, 1 :: Nil)</code> is
+                            impure. The effect of map depends on the effect of its first argument: it is effect
+                            polymorphic.
                         </p>
 
                         <p>
@@ -257,14 +253,14 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
                         </InlineEditor>
 
                         <p>
-                            Here the effect <code>e</code> of <code>map</code> depends on the effect of <code>f</code>.
+                            Here the effect <code>map</code> depends on the effect of <code>f</code> (expressed with the
+                            effect parameter <code>e</code>).
                         </p>
 
                         <p>
                             The effect system of Flix is part of what makes the language functional-first: the
-                            programmer
-                            can trust that a pure function behaves as a mathematical function: it returns the same value
-                            when given the same arguments without any side-effects.
+                            programmer can trust that a pure function behaves as a mathematical function. Most other
+                            contemporary programming languages cannot offer such guarantees.
                         </p>
 
                         <h2>First-class Datalog Constraints</h2>
