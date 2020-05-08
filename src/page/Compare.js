@@ -179,27 +179,38 @@ class Compare extends Component {
 
                             <tr>
                                 <th scope="row">Module System</th>
-
+                                {this.red("None", "planned")}
+                                {this.green("Yes", "objects, classes, traits")}
                             </tr>
 
                             <tr>
-                                <th scope="row">User-Define operators</th>
+                                <th scope="row">User-Defined Operators</th>
+                                {this.green("Yes")}
+                                {this.green("Yes")}
                             </tr>
 
                             <tr>
-                                <th scope="row">Error Model</th>
+                                <th scope="row">User-Defined Precedence</th>
+                                {this.no()}
+                                {this.no()}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Default Error Model</th>
+                                <td>return values (e.g. Result)</td>
+                                <td>exceptions</td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Implicit Coercions</th>
+                                {this.green("No")}
+                                {this.red("Yes")}
                             </tr>
 
                             <tr>
                                 <th scope="row">Tail Call Elimination</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Standard Library</th>
+                                {this.green("Yes")}
+                                {this.red("No")}
                             </tr>
 
                             <tr>
@@ -303,6 +314,14 @@ class Compare extends Component {
             </Container>);
     }
 
+    yes(text) {
+        return this.green("Yes", text)
+    }
+
+    no(text) {
+        return this.red("No", text)
+    }
+
     green(text, comment) {
         if (comment === undefined)
             return (
@@ -312,8 +331,8 @@ class Compare extends Component {
         else
             return (
                 <td className="text-center">
-                    <span className="font-weight-bold text-success">{text}</span>
-                    <span className="text-muted">({comment})</span>
+                    <span className="font-weight-bold text-success">{text}</span> <span
+                    className="text-muted">({comment})</span>
                 </td>
             );
     }
@@ -349,23 +368,6 @@ class Compare extends Component {
             );
     }
 
-    yes(text) {
-        if (text === undefined)
-            return <td className="text-center">
-                <span className="font-weight-bold text-success">Yes</span>
-            </td>;
-        else
-            return <td className="text-center"><span className="font-weight-bold text-success">Yes</span> <span
-                className="text-muted">({text})</span></td>;
-    }
-
-    no(text) {
-        if (text === undefined)
-            return <td className="text-center"><span className="font-weight-bold text-danger">No</span></td>;
-        else
-            return <td className="text-center"><span className="font-weight-bold text-danger">No</span> <span
-                className="text-muted">({text})</span></td>;
-    }
 }
 
 export default Compare;
