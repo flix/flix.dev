@@ -35,10 +35,10 @@ class Compare extends Component {
                         <h1>Flix compared to other programming languages</h1>
 
                         <p>
-                            Here you will find a comparison of Flix to other similar programming languages. The
-                            comparisons aim to be fair, but not unbiased. That is, for each point of comparison we aim
-                            to give an fair assessment, but the choice of comparison points is biased. For example, we
-                            categorically believe that static typing is better than dynamic typing.
+                            Here you will find a comparison of Flix to other programming languages. The comparisons aim
+                            to be fair, but not unbiased. That is, for each comparison we aim to give a fair assessment,
+                            but the choice of comparison points is biased. For example, we categorically believe that
+                            static typing is better than dynamic typing.
                         </p>
                     </Col>
                 </Row>
@@ -174,7 +174,7 @@ class Compare extends Component {
                             <tr>
                                 <th scope="row">Monadic Notation</th>
                                 {this.yes("let*")}
-                                {this.yes("for-loop")}
+                                {this.yes("for-comprehensions")}
                             </tr>
 
                             <tr>
