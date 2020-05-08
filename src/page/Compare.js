@@ -77,9 +77,42 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Typing Discipline</th>
+                                <th scope="row">Platform</th>
+                                <td>Java Virtual Machine (JVM)</td>
+                                <td>Java Virtual Machine (JVM)</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Ecosystem</th>
+                                <td>Flix, Java (with limitations)</td>
+                                <td>Scala, Java (tight interop)</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Type System</th>
                                 <td>strong, static, sound</td>
                                 <td>strong, static, unsound</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Effect System</th>
+                                {this.yes("limited to purity")}
+                                {this.no("but desired")}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">
+                                    Type Inference
+                                    {this.note("Type inference is complete if type annotations are never required to guide the type checker.")}
+                                </th>
+                                <td>local, complete</td>
+                                <td>local, incomplete</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Module System</th>
+                                {this.red("None", "planned")}
+                                {this.green("Yes", "objects, classes, traits")}
                             </tr>
 
                             <tr>
@@ -88,23 +121,6 @@ class Compare extends Component {
                                 <td>threads</td>
                             </tr>
 
-                            <tr>
-                                <th scope="row">Platform</th>
-                                <td>JVM</td>
-                                <td>JVM</td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Type Inference</th>
-                                <td>local, complete</td>
-                                <td>local, incomplete</td>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Polymorphic Effects</th>
-                                {this.yes()}
-                                {this.no()}
-                            </tr>
                             </tbody>
                         </Table>
                     </Col>
@@ -126,13 +142,25 @@ class Compare extends Component {
                             <tr>
                                 <th scope="row">Syntax</th>
                                 <td>keyword-based with braces</td>
-                                <td>keyword-based with braces</td>
+                                <td>keyword-based with braces, optional support for indention sensitive</td>
                             </tr>
 
                             <tr>
                                 <th scope="row">Primitive Types</th>
-                                <td>Float32, Float64, Int8, Int16, Int32, Int64</td>
-                                <td>Float32, Float64, Int8, Int16, Int32, Int64</td>
+                                <td>Bool, Float32, Float64, Int8, Int16, Int32, Int64, String</td>
+                                <td>Bool, Float32, Float64, Int8, Int16, Int32, Int64, String</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Compound Types</th>
+                                <td>arrays and tuples</td>
+                                <td>arrays and tuples</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Records</th>
+                                {this.yes("extensible")}
+                                {this.no()}
                             </tr>
 
                             <tr>
@@ -142,19 +170,34 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
+                                <th scope="row">Generalized Algebraic Data Types</th>
+                                {this.no()}
+                                {this.yes()}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">HLists</th>
+                                {this.no()}
+                                {this.yes()}
+                            </tr>
+
+                            <tr>
                                 <th scope="row">Pattern Matching</th>
                                 {this.yes()}
-                                {this.yes("case classes")}
+                                {this.yes()}
                             </tr>
 
                             <tr>
-                                <th scope="row">Records</th>
-                                {this.yes("row polymorphic")}
-                                {this.no()}
+                                <th scope="row">User-Defined Pattern Matching</th>
+                                {this.no("by design")}
+                                {this.yes("unapply")}
                             </tr>
 
                             <tr>
-                                <th scope="row">Opaque Types</th>
+                                <th scope="row">
+                                    Opaque Types
+                                    {this.note("A type different from any other type but with no runtime representation.")}
+                                </th>
                                 {this.yes()}
                                 {this.yes()}
                             </tr>
@@ -166,9 +209,21 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Uniform Function Call Syntax</th>
+                                <th scope="row">
+                                    Uniform Function Call Syntax
+                                    {this.note("The ability to call a function as f(a, b, c) or a.f(b, c).")}
+                                </th>
                                 {this.yes()}
                                 {this.no()}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">
+                                    Infix Function Application
+                                    {this.note("The ability to call a function as f(a, b) or a `f` b.")}
+                                </th>
+                                {this.yes()}
+                                {this.yes("postfix method calls")}
                             </tr>
 
                             <tr>
@@ -177,11 +232,6 @@ class Compare extends Component {
                                 {this.yes("for-comprehensions")}
                             </tr>
 
-                            <tr>
-                                <th scope="row">Module System</th>
-                                {this.red("None", "planned")}
-                                {this.green("Yes", "objects, classes, traits")}
-                            </tr>
 
                             <tr>
                                 <th scope="row">User-Defined Operators</th>
@@ -195,9 +245,11 @@ class Compare extends Component {
                                 {this.no()}
                             </tr>
 
-
                             <tr>
-                                <th scope="row">Implicit Coercions</th>
+                                <th scope="row">
+                                    Implicit Coercions
+                                    {this.note("e.g. integers are silently narrowed or widened.")}
+                                </th>
                                 {this.green("No")}
                                 {this.red("Yes")}
                             </tr>
@@ -302,16 +354,20 @@ class Compare extends Component {
                             <tbody>
 
                             <tr>
-                                <th scope="row">Integrated Development Environments (IDEs)</th>
+                                <th scope="row">IDE Support</th>
                                 {this.no()}
                                 {this.yes("several")}
                             </tr>
 
                             <tr>
-                                <th scope="row">Compiler Throughput</th>
-                                <td>20,000 lines/sec</td>
-                                <td>10,000 lines/sec</td>
+                                <th scope="row">
+                                    Compiler Throughput
+                                    {this.note("Estimated, hard to measure.")}
+                                </th>
+                                <td className="text-center">20,000 lines/sec</td>
+                                <td className="text-center">10,000 lines/sec</td>
                             </tr>
+
                             <tr>
                                 <th scope="row">Incremental Compilation</th>
                                 {this.no()}
