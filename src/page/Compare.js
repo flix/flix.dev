@@ -3,12 +3,10 @@ import ReactGA from "react-ga";
 import {
     Button,
     Col,
-    Container, Label,
+    Container,
     Row,
     Table
 } from "reactstrap";
-import {FaCheck} from "react-icons/fa";
-import {FaTimes} from "react-icons/fa";
 
 class Compare extends Component {
 

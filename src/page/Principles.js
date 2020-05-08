@@ -45,11 +45,11 @@ class Principles extends Component {
                         declarations, namespaces, and so forth that are not expressions.
                     </Principle>
 
-                    <Principle name="Precise tracking of purity">
-                        Flix supports functional, logic, and imperative programming. The type and effect system in Flix
+                    <Principle name="Separate pure and impure code">
+                        Flix supports functional, imperative, and logic programming. The type and effect system of Flix
                         cleanly and safely separates pure code from impure code. That is, if a function is pure then the
-                        programmer can trust that the function has no side-effects and returns the same value when given
-                        the same arguments.
+                        programmer can trust that the function behaves like a mathematical function: it returns the same
+                        value when given the same arguments and it has no side-effects.
                     </Principle>
 
                     <Principle name="Developer productivity over runtime performance">
@@ -70,11 +70,11 @@ class Principles extends Component {
                     </Principle>
 
                     <Principle name="One language">
-                        Flix is <i>one</i> programming language. The Flix compiler <i>does not</i> come with a plethora
-                        of compiler optimizations or compiler plugins that change or extend the semantics of the
-                        language. Flix aims to avoid a fragmented ecosystem where programs are written in different
-                        dialects of the language. There is one language, now and forever. Of course that does not imply
-                        that the language will not evolve over time.
+                        Flix is <i>one</i> programming language. The Flix compiler does not have feature flags or
+                        compiler plugins that change or extend the semantics of the language. We want to avoid
+                        fragmentation in the ecosystem where programs end up being written in different "dialects" of
+                        the language. There is one language, now and forever. Of course that does not imply that the
+                        language will not evolve over time.
                     </Principle>
 
                     <Principle name="Principle of least surprise">
@@ -263,9 +263,10 @@ class Principles extends Component {
                     </Principle>
 
                     <Principle name="No pre-processor">
-                        Flix does not have and will not have a pre-processor. Programs that use a pre-processor
-                        for textual code generation are notoriously difficult to understand and to debug. We avoid to
-                        avoid that for Flix. That said, Flix may some day have a principled macro system.
+                        Flix does not have and will not have a pre-processor. Programs that use pre-processing for
+                        textual code generation are notoriously difficult to understand and debug. We want to avoid
+                        that for Flix. Instead, Flix may some day have a macro system, but so far there has been little
+                        need.
                     </Principle>
 
                     <Principle name="No null value">
@@ -348,7 +349,7 @@ class Principles extends Component {
 
                     <Principle name="No binary or octal literals">
                         Flix does not support binary or octal literals. It is our understanding that these features are
-                        too rarely used to warrant their inclusion in the language itself.
+                        rarely used in practice.
                     </Principle>
 
                     <Principle name="Exhaustive pattern matches">
