@@ -324,8 +324,8 @@ class Compare extends Component {
 
                             <tr>
                                 <th scope="row">Performance</th>
-                                <td className="text-center">Within 1.0x to 5.0x of Java</td>
-                                <td className="text-center">Comparable to Java</td>
+                                <td>Within 1.0x to 5.0x of Java</td>
+                                <td>Comparable to Java</td>
                             </tr>
 
                             <tr>
@@ -364,8 +364,8 @@ class Compare extends Component {
                                     Compiler Throughput
                                     {this.note("Estimated, hard to measure.")}
                                 </th>
-                                <td className="text-center">20,000 lines/sec</td>
-                                <td className="text-center">10,000 lines/sec</td>
+                                <td>20,000 lines/sec</td>
+                                <td>10,000 lines/sec</td>
                             </tr>
 
                             <tr>
@@ -403,7 +403,10 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Nothing is executed before main</th>
+                                <th scope="row">
+                                    Main is Entry
+                                    {this.note("i.e. no code is executed before main.")}
+                                </th>
                                 {this.yes()}
                                 {this.no()}
                             </tr>
@@ -411,7 +414,7 @@ class Compare extends Component {
                             <tr>
                                 <th scope="row">Error Model</th>
                                 <td>Return values (e.g. <code>Result</code>)</td>
-                                <td>Primarily Exceptions</td>
+                                <td>Mix of return values and exceptions</td>
                             </tr>
 
                             <tr>
@@ -466,12 +469,12 @@ class Compare extends Component {
     green(text, comment) {
         if (comment === undefined)
             return (
-                <td className="text-center">
+                <td>
                     <span className="font-weight-bold text-success">{text}</span>
                 </td>);
         else
             return (
-                <td className="text-center">
+                <td>
                     <span className="font-weight-bold text-success">{text}</span> <span
                     className="text-muted">({comment})</span>
                 </td>
@@ -481,12 +484,12 @@ class Compare extends Component {
     yellow(text, comment) {
         if (comment === undefined)
             return (
-                <td className="text-center">
+                <td>
                     <span className="font-weight-bold text-warning">{text}</span>
                 </td>);
         else
             return (
-                <td className="text-center">
+                <td>
                     <span className="font-weight-bold text-warning">{text}</span> <span
                     className="text-muted">({comment})</span>
                 </td>
@@ -497,12 +500,12 @@ class Compare extends Component {
     red(text, comment) {
         if (comment === undefined)
             return (
-                <td className="text-center">
+                <td>
                     <span className="font-weight-bold text-danger">{text}</span>
                 </td>);
         else
             return (
-                <td className="text-center">
+                <td>
                     <span className="font-weight-bold text-danger">{text}</span> <span
                     className="text-muted">({comment})</span>
                 </td>
