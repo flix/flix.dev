@@ -205,16 +205,17 @@ class Compare extends Component {
                             <tr>
                                 <th scope="row">
                                     Tail Call Elimination
-                                    <p className="font-weight-normal text-muted small">
-                                        (A call in tail position never consumes stack space.)
-                                    </p>
+                                    {this.note("A call in tail position never consumes stack space.")}
                                 </th>
                                 {this.green("Yes")}
                                 {this.red("No")}
                             </tr>
 
                             <tr>
-                                <th scope="row">Safe Nulls</th>
+                                <th scope="row">
+                                    Safe Nulls
+                                    {this.note("The type system prevents dereference of null.")}
+                                </th>
                                 {this.no()}
                                 {this.yellow("Yes", "with feature flag")}
                             </tr>
@@ -386,7 +387,7 @@ class Compare extends Component {
     }
 
     note(text) {
-        return <p className="font-weight-normal text-muted small">{text}</p>
+        return <p className="font-weight-normal text-muted small">({text})</p>
     }
 
     yes(text) {
