@@ -227,22 +227,32 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Varargs</th>
+                                <th scope="row">Currying (by default)</th>
+                                {this.yes()}
+                                {this.no()}
                             </tr>
 
                             <tr>
-                                <th scope="row">Labelled args</th>
+                                <th scope="row">Variadic Arguments (Vargs)</th>
+                                {this.no("by design")}
+                                {this.yes()}
                             </tr>
 
                             <tr>
-                                <th scope="row">Currying</th>
+                                <th scope="row">Labelled Arguments</th>
+                                {this.no("by design")}
+                                {this.yes()}
                             </tr>
 
                             <tr>
                                 <th scope="row">Reflection</th>
+                                {this.no("by design")}
+                                {this.yes()}
                             </tr>
                             <tr>
                                 <th scope="row">Macros</th>
+                                {this.no()}
+                                {this.yes("several")}
                             </tr>
 
                             <tr>
@@ -316,9 +326,21 @@ class Compare extends Component {
                             <tbody>
 
                             <tr>
-                                <th scope="row">Default Error Model</th>
+                                <th scope="row">Global State</th>
+                                {this.no()}
+                                {this.yes()}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Nothing is executed before main</th>
+                                {this.yes()}
+                                {this.no()}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Error Model</th>
                                 <td>Return values (e.g. <code>Result</code>)</td>
-                                <td>Exceptions</td>
+                                <td>Primarily Exceptions</td>
                             </tr>
 
                             <tr>
@@ -334,37 +356,22 @@ class Compare extends Component {
                             </tr>
 
                             <tr>
-                                <th scope="row">Compiler/Language Extensions?</th>
+                                <th scope="row">Feature Flags</th>
                                 {this.no("by design")}
-                                {this.yes()}
+                                {this.yes("several")}
                             </tr>
 
                             <tr>
-                                <th scope="row">Private by default</th>
+                                <th scope="row">Default Visibility</th>
+                                <td>Private</td>
+                                <td>Public</td>
                             </tr>
 
                             <tr>
-                                <th scope="row">Closed world</th>
+                                <th scope="row">Unused and Dead Code</th>
+                                <td>Compile-time Error</td>
+                                <td>Sporadic Warnings</td>
                             </tr>
-
-                            <tr>
-                                <th scope="row">Nothinf before main</th>
-                            </tr>
-
-                            <tr>
-                                <th scope="row">Unused and dead code</th>
-                            </tr>
-
-
-
-                            <tr>
-                                <th scope="row">Global state</th>
-                            </tr>
-
-
-
-
-
                             </tbody>
                         </Table>
                     </Col>
