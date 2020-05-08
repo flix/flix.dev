@@ -125,6 +125,8 @@ class Compare extends Component {
 
                             <tr>
                                 <th scope="row">Primitive Types</th>
+                                <td>Float32, Float64, Int8, Int16, Int32, Int64</td>
+                                <td>Float32, Float64, Int8, Int16, Int32, Int64</td>
                             </tr>
 
                             <tr>
