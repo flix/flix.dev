@@ -35,31 +35,33 @@ class Innovations extends Component {
 
                         <p>
                             Flix supports <i>effect polymorphism</i> which means that the effect of a higher-order
-                            function can depend on the effect of it(s) function argument(s). For example, the effect
+                            function can depend on the effect of its function arguments. For example, the effect
                             of <code>List.map</code> depends on the effect of the function passed to it. That is,
                             if <code>List.map</code> is given a pure function then computation is pure, whereas if
                             it is given an impure function then computation is impure. As an another example,
                             the effect of <code>&gt;&gt;</code> (forward function composition) depends on <i>both</i> of
-                            its arguments: composition is only pure if both functions are pure.
+                            its arguments: composition is only pure if both its function arguments are pure.
                         </p>
 
                         <p>
-                            The Flix effect system is both fine-grained and expressive. It is fine-grained because it
-                            precisely computes the purity of every expression (unlike other systems that may be
-                            over-approximate). It is expressive because it allows arbitrary boolean formulas to describe
-                            the effect of an expression. For example, the system can express a higher-order function
-                            that requires <i>atmost</i> one impure function.
+                            The Flix type and effect system is fine-grained and expressive. It is fine-grained because
+                            it precisely captures the purity of every expression and sub-expression. It is expressive
+                            because it allows arbitrary boolean formulas to describe
+                            the effect of an expression. For example, the system can express that a higher-order
+                            function requires <i>at most</i> one impure function.
                         </p>
 
                         <p>
-                            The Flix effect system supports <i>type and effect inference</i>. That is, explicit effect
-                            annotations are not required for every program fragment. (However, as a design choice,
-                            type and effect annotations are required for every top-level definition.)
+                            The Flix type and effect system supports <i>type and effect inference</i>. That is, explicit
+                            type or effect annotations are never required for any program fragment. (However, as a
+                            design choice, type and effect annotations are required for every top-level definition.) The
+                            inference is <i>complete</i> which means that it never infers the wrong type or effect, i.e.
+                            annotations are never required to guide the type checker.
                         </p>
 
                         <p>
-                            The theoretical foundations of the Flix type and effect system are based on the
-                            Hindley-Milner type system extended with boolean constraints. Type inference is supported by
+                            The theoretical foundation of the Flix type and effect system is based on the Hindley-Milner
+                            type system extended with boolean constraints. Type inference is supported by
                             an extension of Algorithm W with boolean unification. For more details, we refer to our
                             research papers.
                         </p>
