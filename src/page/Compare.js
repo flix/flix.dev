@@ -195,11 +195,6 @@ class Compare extends Component {
                                 {this.no()}
                             </tr>
 
-                            <tr>
-                                <th scope="row">Default Error Model</th>
-                                <td>return values (e.g. Result)</td>
-                                <td>exceptions</td>
-                            </tr>
 
                             <tr>
                                 <th scope="row">Implicit Coercions</th>
@@ -229,6 +224,31 @@ class Compare extends Component {
                                 <th scope="row">Raw Strings</th>
                                 {this.no("planned")}
                                 {this.yes()}
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Varargs</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Labelled args</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Currying</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Reflection</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Macros</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Runtime Performance</th>
+                                <td>Aims to be with 1x-5x of Java</td>
+                                <td>On par with Java</td>
                             </tr>
 
                             <tr>
@@ -296,9 +316,21 @@ class Compare extends Component {
                             <tbody>
 
                             <tr>
-                                <th scope="row">No Compiler Warnings, Only Errors</th>
-                                {this.green("Yes")}
-                                {this.no()}
+                                <th scope="row">Default Error Model</th>
+                                <td>Return values (e.g. <code>Result</code>)</td>
+                                <td>Exceptions</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Compiler Warnings</th>
+                                <td>No warnings. Everything is an error.</td>
+                                <td>Warnings and errors. Distinction unclear.</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Separates Pure and Impure Code</th>
+                                {this.yes("effect system")}
+                                {this.no("but desired")}
                             </tr>
 
                             <tr>
@@ -306,6 +338,33 @@ class Compare extends Component {
                                 {this.no("by design")}
                                 {this.yes()}
                             </tr>
+
+                            <tr>
+                                <th scope="row">Private by default</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Closed world</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Nothinf before main</th>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">Unused and dead code</th>
+                            </tr>
+
+
+
+                            <tr>
+                                <th scope="row">Global state</th>
+                            </tr>
+
+
+
+
+
                             </tbody>
                         </Table>
                     </Col>
