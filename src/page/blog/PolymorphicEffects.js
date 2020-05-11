@@ -89,7 +89,13 @@ class PolymorphicEffects extends Component {
                         <h2>Pure and Impure Functions</h2>
 
 
+                        <InlineEditor>
+                            {`def pure`}
+                        </InlineEditor>
 
+                        <InlineEditor>
+                            {`def impure`}
+                        </InlineEditor>
 
                         <h2>Enforcing Purity and Impurity</h2>
 
