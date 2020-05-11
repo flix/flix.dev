@@ -162,6 +162,9 @@ class PolymorphicEffects extends Component {
 
                         <h2>Type Inference and Boolean Unification</h2>
 
+                        <p>
+                            Until next time, happy hacking.
+                        </p>
 
                     </Col>
                 </Row>
