@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
-import {Col, Container, Row} from "reactstrap";
+import {Card, CardBody, CardText, Col, Container, Row} from "reactstrap";
 import InlineEditor from "../../util/InlineEditor";
 
 class PolymorphicEffects extends Component {
@@ -24,11 +24,52 @@ class PolymorphicEffects extends Component {
 
                         <p>
                             Walter quotes from DMars.
+                            <p>
+                                I spent the first three years of my career working on flight critical mechanical designs
+                                for the Boeing 757. Although these were gearboxes, hydraulics, cables and linkages, the
+                                methodology used to make error-free systems is very applicable to software design.
+                            </p>
+
+                            <br/>
+                            For starters is Boeing's attitude towards failure. It is not considered human error,
+                            fixable by hiring better people. It is a failure of process. The best people have bad
+                            days and make mistakes, so the solution is to change the process so the mistakes cannot
+                            happen or cannot propagate.
+
+                            <Card>
+                                <CardBody>
+                                    <CardText>
+                                        One simple example is an assembly that is bolted onto the frame with 4 bolts.
+                                        The
+                                        obvious bolt pattern is a rectangle. Unfortunately, a rectangle pattern can be
+                                        assembled
+                                        in two different ways, one of which is wrong. The solution is to offset one of
+                                        the bolt
+                                        holes — then the assembly can only be bolted on in one orientation. The possible
+                                        mechanic's mistake is designed out of the system.
+
+                                        This idea permeates Boeing designs. Parts can only be assembled one way, the
+                                        correct
+                                        way.
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+
+                            <a href="https://www.digitalmars.com/articles/b60.html">Walter Bright</a>
                         </p>
 
                         <p>
                             separation of pure and impure code.
                         </p>
+
+
+                        <p>
+                            What is an effect system?
+                            Why care? Why enforce?
+                        </p>
+
+
+                        <h2>Enforcing Purity and Impurity</h2>
 
                         <InlineEditor>
                             {`def exists(f: a -> Bool, xs: Set[a]): Bool & Pure `}

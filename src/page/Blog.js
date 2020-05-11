@@ -44,7 +44,7 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
-                                        <Link to="/blog/polymorphic-effects/">
+                                        <Link to="/blog/polymorphic-effects-with-boolean-unification/">
                                             Polymorphic Effects with Boolean Unification
                                         </Link>
                                     </li>
