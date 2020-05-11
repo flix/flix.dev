@@ -23,8 +23,10 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <p>
-                            Begin by an amazing quote by
-                            <a href="https://www.digitalmars.com/articles/b60.html">Walter Bright</a>:
+                            But before we jump into effects, I want to begin with an amazing story from <a
+                            href="https://www.digitalmars.com/articles/b60.html">Walter Bright</a>, the author of the D
+                            programming language. The <a
+                            href="https://www.digitalmars.com/articles/b60.html">story</a> is worth quoting in full:
                         </p>
 
                         <Card>
@@ -32,7 +34,8 @@ class PolymorphicEffects extends Component {
                                 <CardText>
 
                                     <p>
-                                        I spent the first three years of my career working on flight critical mechanical
+                                        I [Walter Bright] spent the first three years of my career working on flight
+                                        critical mechanical
                                         designs
                                         for the Boeing 757. Although these were gearboxes, hydraulics, cables and
                                         linkages, the
@@ -63,23 +66,29 @@ class PolymorphicEffects extends Component {
                                     </p>
 
                                     <p>
-                                        This idea permeates Boeing designs. Parts can only be assembled one way, the
-                                        correct
-                                        way.
+                                        <i>This idea permeates Boeing designs. Parts can only be assembled one way, the
+                                            correct way.</i> (emphasis mine).
                                     </p>
                                 </CardText>
                             </CardBody>
                         </Card>
 
                         <p>
-                            separation of pure and impure code.
+                            While I will not go into the current safety culture a boeing, what struck me is ...
                         </p>
 
+                        <p>
+                            separation of pure and impure code.
+                        </p>
 
                         <p>
                             What is an effect system?
                             Why care? Why enforce?
                         </p>
+
+                        <h2>Pure and Impure Functions</h2>
+
+
 
 
                         <h2>Enforcing Purity and Impurity</h2>
