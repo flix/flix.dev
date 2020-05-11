@@ -16,11 +16,16 @@ class PolymorphicEffects extends Component {
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
 
-                        <h1>Polymorphic Effects</h1>
+                        <h1>Polymorphic Effects with Boolean Unification</h1>
 
                         <p>
                             Posted May 2020 by <i>Magnus Madsen</i>.
                         </p>
+
+                        <p>
+                            Walter quotes from DMars.
+                        </p>
+
 
                         <InlineEditor>
                             {`def exists(f: a -> Bool, xs: Set[a]): Bool & Pure `}
@@ -81,6 +86,8 @@ class PolymorphicEffects extends Component {
 8 useless expression.`}
                         </InlineEditor>
 
+                        <h2>Polymorphic Effects</h2>
+
                         <InlineEditor>
                             {`def map(f: a -> b & e, xs: List[a]): List[b] & e = ...`}
                         </InlineEditor>
@@ -94,6 +101,11 @@ class PolymorphicEffects extends Component {
                             {` def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) \\/ e2}}, l: List[a]):
 2 List[c] & {{e1 /\\ e2}}`}
                         </InlineEditor>
+
+
+                        <h2>Type Inference and Boolean Unification</h2>
+
+
                     </Col>
                 </Row>
             </Container>
