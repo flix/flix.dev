@@ -23,22 +23,35 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <p>
-                            Walter quotes from DMars.
-                            <p>
-                                I spent the first three years of my career working on flight critical mechanical designs
-                                for the Boeing 757. Although these were gearboxes, hydraulics, cables and linkages, the
-                                methodology used to make error-free systems is very applicable to software design.
-                            </p>
+                            Begin by an amazing quote by
+                            <a href="https://www.digitalmars.com/articles/b60.html">Walter Bright</a>:
+                        </p>
 
-                            <br/>
-                            For starters is Boeing's attitude towards failure. It is not considered human error,
-                            fixable by hiring better people. It is a failure of process. The best people have bad
-                            days and make mistakes, so the solution is to change the process so the mistakes cannot
-                            happen or cannot propagate.
+                        <Card>
+                            <CardBody>
+                                <CardText>
 
-                            <Card>
-                                <CardBody>
-                                    <CardText>
+                                    <p>
+                                        I spent the first three years of my career working on flight critical mechanical
+                                        designs
+                                        for the Boeing 757. Although these were gearboxes, hydraulics, cables and
+                                        linkages, the
+                                        methodology used to make error-free systems is very applicable to software
+                                        design.
+                                    </p>
+
+                                    <p>
+                                        For starters is Boeing's attitude towards failure. It is not considered human
+                                        error,
+                                        fixable by hiring better people. It is a failure of process. The best people
+                                        have
+                                        bad
+                                        days and make mistakes, so the solution is to change the process so the mistakes
+                                        cannot
+                                        happen or cannot propagate.
+                                    </p>
+
+                                    <p>
                                         One simple example is an assembly that is bolted onto the frame with 4 bolts.
                                         The
                                         obvious bolt pattern is a rectangle. Unfortunately, a rectangle pattern can be
@@ -47,16 +60,16 @@ class PolymorphicEffects extends Component {
                                         the bolt
                                         holes — then the assembly can only be bolted on in one orientation. The possible
                                         mechanic's mistake is designed out of the system.
+                                    </p>
 
+                                    <p>
                                         This idea permeates Boeing designs. Parts can only be assembled one way, the
                                         correct
                                         way.
-                                    </CardText>
-                                </CardBody>
-                            </Card>
-
-                            <a href="https://www.digitalmars.com/articles/b60.html">Walter Bright</a>
-                        </p>
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
 
                         <p>
                             separation of pure and impure code.
