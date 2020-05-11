@@ -26,6 +26,9 @@ class PolymorphicEffects extends Component {
                             Walter quotes from DMars.
                         </p>
 
+                        <p>
+                            separation of pure and impure code.
+                        </p>
 
                         <InlineEditor>
                             {`def exists(f: a -> Bool, xs: Set[a]): Bool & Pure `}
