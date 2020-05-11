@@ -6,6 +6,7 @@ import {Route, Switch} from "react-router";
 import DesignFlaws from "./blog/DesignFlaws";
 import Naming from "./blog/Naming";
 import Redundancies from "./blog/Redundancies";
+import PolymorphicEffects from "./blog/PolymorphicEffects";
 
 class Blog extends Component {
 
@@ -43,6 +44,11 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
+                                        <Link to="/blog/polymorphic-effects/">
+                                            Polymorphic Effects
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/blog/naming-functional-and-destructive-operations/">
                                             Naming Functional and Destructive Operations
                                         </Link>
@@ -60,6 +66,11 @@ class Blog extends Component {
                                 </ul>
                             </Col>
                         </Row>
+                    </Route>
+
+
+                    <Route path="/blog/polymorphic-effects/">
+                        <PolymorphicEffects/>
                     </Route>
 
                     <Route path="/blog/naming-functional-and-destructive-operations/">
