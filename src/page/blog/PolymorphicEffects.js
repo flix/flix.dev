@@ -81,6 +81,19 @@ class PolymorphicEffects extends Component {
 8 useless expression.`}
                         </InlineEditor>
 
+                        <InlineEditor>
+                            {`def map(f: a -> b & e, xs: List[a]): List[b] & e = ...`}
+                        </InlineEditor>
+
+                        <InlineEditor>
+                            {`  def >>(f: a -> b & e1, g: b -> c & e2): a -> c & {e1 /\\ e2} = x -> g(f(x))`}
+                        </InlineEditor>
+
+
+                        <InlineEditor>
+                            {` def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) \\/ e2}}, l: List[a]):
+2 List[c] & {{e1 /\\ e2}}`}
+                        </InlineEditor>
                     </Col>
                 </Row>
             </Container>
