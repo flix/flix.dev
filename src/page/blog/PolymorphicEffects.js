@@ -64,10 +64,10 @@ class PolymorphicEffects extends Component {
                         <h2>Impure Functional Programming</h2>
 
                         <p>
-                            A major selling point of functional programming is that it enables <a
-                            href="https://wiki.haskell.org/Equational_reasoning_examples">equational reasoning</a> which
-                            informally means that we can substitute a symbol with its definition. For example, if we
-                            have the program fragment:
+                            A major selling point of functional programming is that it supports <a
+                            href="https://wiki.haskell.org/Equational_reasoning_examples">equational reasoning</a>.
+                            Informally, equational reasoning means that we can reason about programs by substituting
+                            variables for their values (expressions). For example, if we have the program fragment:
                         </p>
 
                         <InlineEditor>
@@ -76,7 +76,7 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            This program is equivalent to:
+                            We can substitute for <code>x</code> and understand this program as:
                         </p>
 
                         <InlineEditor>
@@ -84,9 +84,12 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            However, in the presence of side-effects, such reasoning breaks down. The program fragment:
+                            Unfortunately, in the presence of side-effects, such reasoning breaks down.
                         </p>
 
+                        <p>
+                            For example, the program fragment:
+                        </p>
 
                         <InlineEditor>
                             {`let x = Console.printLine("Hello World");
@@ -94,7 +97,7 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            is <i>not</i> equivalent to:
+                            is <i>not</i> equivalent to the program:
                         </p>
 
                         <InlineEditor>
