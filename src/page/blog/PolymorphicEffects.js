@@ -364,13 +364,71 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </p>
 
 
-                        <InlineEditor>
-                            {` def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) \\/ e2}}, l: List[a]):
-2 List[c] & {{e1 /\\ e2}}`}
-                        </InlineEditor>
-
                         <h2>Type Equivalences</h2>
 
+                        <p>
+                            The Flix type and effect system is very expressive. For example, we can express that a
+                            higher-order function takes two function arguments <code>f</code> and <code>g</code> of
+                            which <i>at most one</i> is impure:
+                        </p>
+
+                        <InlineEditor>
+                            {`def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) \\/ e2}}, xs: List[a]): ... = ...`}
+                        </InlineEditor>
+
+                        <p>
+                            We can use such sophisticated types to implement powerful combinator libraries.
+                        </p>
+
+                        <p>
+                            In Haskell mapping two functions <code>f</code> and <code>g</code> over a
+                            list <code>xs</code> is equivalent to mapping their composition over the list. That is:
+                        </p>
+
+                        <InlineEditor>
+                            {`map(f, map(g, xs)) == map(f >> g, xs)`}
+                        </InlineEditor>
+
+                        <p>
+                            We can use such identities to rewrite the program to one that executes more efficiently.
+                            Unfortunately such identities do not hold for programming languages like Standard ML, OCaml,
+                            Reason, and Scala because of side-effects.
+                        </p>
+
+                        <p>
+                            Fortunately, we did the Flix type and effect system we regain the ability to reason about
+                            such identities. Intriguingly, it is not necessary for
+                            both <code>f</code> and <code>g</code> to be pure; it is sufficient if at most one of them
+                            is impure, and this is exactly what the signature of <code>mapCompose</code> captures!
+                        </p>
+
+                        <p>
+                            To understand why, let us look at the signature of <code>mapCompose</code> again:
+                        </p>
+
+                        <InlineEditor>
+                            {`def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) \\/ e2}}, xs: List[a]): ... = ...`}
+                        </InlineEditor>
+
+                        <p>
+                            <ul>
+                                <li>
+                                    If <code>e1 = T</code> (i.e. <code>f</code> is pure) then <code>(not e1) \/ e2 = F
+                                    \/ e2 = e2</code>. In other words, <code>g</code> may be pure or impure. Its purity
+                                    is not constrained by the type signature.
+                                </li>
+                                <li>
+                                    If, on the other hand, <code>e1 = F</code> (i.e. <code>f</code> is impure)
+                                    then <code>(not e1) \/ e2 = T \/ e2 = T </code>. In other words, <code>g</code>
+                                    <i>must</i> be pure. Otherwise there is a type error.
+                                </li>
+                            </ul>
+                        </p>
+
+                        <p>
+                            If you think about it, the above is equivalent to the requirement that at most one of
+                            <code>f</code> and <code>g</code> may be impure.
+                        </p>
 
                         <h2>Interior Mutability (better title)</h2>
 
