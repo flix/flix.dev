@@ -88,6 +88,27 @@ class PolymorphicEffects extends Component {
 
                         <h2>Pure and Impure Functions</h2>
 
+                        <p>
+                            In Flix, functions are pure by default. For example, we can write:
+                        </p>
+
+                        <InlineEditor>
+                            {`def inc(x: Int): Int = x + 1`}
+                        </InlineEditor>
+
+                        <p>
+                            If we wanted to be explicit (but non-idiomatic) we could write:
+                        </p>
+
+                        <InlineEditor>
+                            {`def inc(x: Int): Int & Pure = x + 1`}
+                        </InlineEditor>
+
+                        <p>
+                            where <code>& Pure</code> specifies that <code>inc</code> is pure.
+                        </p>
+
+
 
                         <InlineEditor>
                             {`/// We can declare a pure function.
