@@ -171,8 +171,6 @@ class PolymorphicEffects extends Component {
                             mathematical functions.
                         </p>
 
-                        <h2>What is Pure and Impure?</h2>
-
                         <p>
                             Any expression that does not satisfy referential transparency is impure. Informally, an
                             expression is pure if it allows equational reasoning. Obvious examples of impurity are
