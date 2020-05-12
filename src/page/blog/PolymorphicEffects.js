@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
-import {Card, CardBody, CardText, Col, Container, Row} from "reactstrap";
+import {Col, Container, Row} from "reactstrap";
 import InlineEditor from "../../util/InlineEditor";
 
 class PolymorphicEffects extends Component {
