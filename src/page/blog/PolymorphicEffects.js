@@ -401,10 +401,17 @@ def stripIndentHelper(n: Int32, s: String): String & Impure =
                         <h2>Type Inference and Boolean Unification</h2>
 
                         <p>
+                            The Flix type and effect system supports type inference. That is, explicit type annotations
+                            are never required (although as a design choice we demand such annotations for all top-level
+                            definitions). The benefit is that, within a function, the programmer never has to worry
+                            about pure and impure expressions. The compiler automatically infers whether every
+                            expression is pure, impure, or effect polymorphic.
+                        </p>
+
+                        <p>
                             The details of the type and effect system are the subject of a research paper (currently in
                             submission). The paper will be made available here when accepted for publication.
                         </p>
-
 
                         <h2>Closing Thoughts</h2>
 
