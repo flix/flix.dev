@@ -296,11 +296,30 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
 
                         <h2>Polymorphic Effects</h2>
 
+                        <p>
+                            Flix supports effect polymorphism which means that the effect of a higher-order function can
+                            depend on the effect of its function arguments.
+                        </p>
 
+                        <p>
+                            For example, here is the type signature of <code>List.map</code>:
+                        </p>
 
                         <InlineEditor>
                             {`def map(f: a -> b & e, xs: List[a]): List[b] & e = ...`}
                         </InlineEditor>
+
+                        <p>
+                            The syntax <code>f: a -> b & e</code> denotes a function
+                            from <code>a</code> to <code>b</code> with latent effect <code>e</code>. The signature of
+                            the <code>map</code> function captures that its
+                            effect <code>e</code> depends on the effect of its argument <code>f</code>.
+                            That is, if <code>map</code> is called with a pure function then its evaluation is pure,
+                            whereas if it is called with an impure function then its evaluation is impure. The effect
+                            signature is <i>conservative</i> (i.e. over-approximate). That is, <code>map</code> is
+                            considered impure even in the special case when the list is empty and its execution would
+                            actually be pure.
+                        </p>
 
                         <InlineEditor>
                             {`  def >>(f: a -> b & e1, g: b -> c & e2): a -> c & {e1 /\\ e2} = x -> g(f(x))`}
