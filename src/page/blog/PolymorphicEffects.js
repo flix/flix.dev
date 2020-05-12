@@ -126,7 +126,7 @@ class PolymorphicEffects extends Component {
                         <h2>Pure and Impure Functions</h2>
 
                         <p>
-                            Flix functions are pure by default. For example, we can write:
+                            Flix functions are pure by default. We can write a pure function:
                         </p>
 
                         <InlineEditor>
@@ -134,8 +134,7 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            which defines a pure function. If we wanted to be explicit (but non-idiomatic) we could
-                            write:
+                            If we want to be explicit, but non-idiomatic, we can write:
                         </p>
 
                         <InlineEditor>
@@ -143,9 +142,8 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            where <code>& Pure</code> specifies that <code>inc</code> is pure.
+                            where <code>& Pure</code> specifies that the <code>inc</code> function is pure.
                         </p>
-
 
                         <p>
                             We can also write an impure function:
@@ -156,16 +154,16 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            where <code>& Impure</code> specifies that <code>sayHello</code> is impure.
+                            where <code>& Impure</code> specifies that the <code>sayHello</code> function is impure.
                         </p>
 
                         <p>
                             The Flix type and effect system is <i>sound</i>, hence if we forget the <code>&
-                            Impure</code> annotation on <code>sayHello</code> the compiler would emit a type (or rather
-                            effect) error.
+                            Impure</code> annotation on the <code>sayHello</code> function, the compiler will emit a
+                            type (or rather effect) error.
                         </p>
 
-                        <p>
+                        <p> TODO: FROM HERE
                             The type and effect system separates pure and impure code. If an expression is pure then it
                             always evaluates to the same value and it cannot have a side-effect. If a function is pure
                             then it always evaluates to the same value when given the same arguments. This is what
@@ -173,7 +171,7 @@ class PolymorphicEffects extends Component {
                             mathematical functions.
                         </p>
 
-                        <h2>What is Pure and What is Impure?</h2>
+                        <h2>What is Pure and Impure?</h2>
 
                         <p>
                             Any expression that does not satisfy referential transparency is impure. Informally, an
@@ -458,7 +456,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                             considered idiomatic.
                         </p>
 
-                        <h2>Interior Mutability (better title)</h2>
+                        <h2>Benign Impurity</h2>
 
                         <p>
                             A fairly common occurrence is that a function internally uses impure constructs
