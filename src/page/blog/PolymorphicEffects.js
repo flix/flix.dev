@@ -289,7 +289,14 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
         useless expression.`}
                         </InlineEditor>
 
+                        <p>
+                            Notice that the <code>List.map</code> expression is pure because the function <code>x -> x +
+                            1</code> is itself pure.
+                        </p>
+
                         <h2>Polymorphic Effects</h2>
+
+
 
                         <InlineEditor>
                             {`def map(f: a -> b & e, xs: List[a]): List[b] & e = ...`}
