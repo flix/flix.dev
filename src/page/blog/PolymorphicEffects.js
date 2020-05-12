@@ -54,15 +54,68 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <p>
-                            Walter goes on to discuss that these ideas are equally applicable to software: We should
+                            Bright goes on to discuss that these ideas are equally applicable to software: We should
                             try to build software such that it can only be assembled correctly. Today I will talk about
-                            how that applies to pure and impure code.
+                            how such considerations can be used in the context of type and effect systems.
+                        </p>
+
+                        <h2>Impure Functional Programming</h2>
+
+                        <p>
+                            A major selling point of functional programming is that it enables <a
+                            href="https://wiki.haskell.org/Equational_reasoning_examples">equational reasoning</a> which
+                            informally means that we can substitute a symbol with its definition. For example, if we
+                            have the program fragment:
+                        </p>
+
+                        <InlineEditor>
+                            {`let x = 1 + 2;
+    (x, x)`}
+                        </InlineEditor>
+
+                        <p>
+                            This program is equivalent to:
+                        </p>
+
+                        <InlineEditor>
+                            {`(1 + 2, 1 + 2)`}
+                        </InlineEditor>
+
+                        <p>
+                            However, in the presence of side-effects, such reasoning breaks down. The program fragment:
+                        </p>
+
+
+                        <InlineEditor>
+                            {`let x = Console.printLine("Hello World");
+    (x, x)`}
+                        </InlineEditor>
+
+                        <p>
+                            is <i>not</i> equivalent to:
+                        </p>
+
+                        <InlineEditor>
+                            {`(Console.printLine("Hello World"), Console.printLine("Hello World"))`}
+                        </InlineEditor>
+
+                        <p>
+                            Impure functional programming languages, such as Standard ML, OCaml, Reason, Clojure, Scala,
+                            etc. forego equational reasoning by allow arbitrary side-effects inside functions. Haskell,
+                            on the other hand, is pure and disallows any kind of side-effect. Consequently, Haskell
+                            programmers are blessed by the advantages of equational reasoning.
+                        </p>
+
+                        <p>
+                            Flix, on the other hand, uses the type system to separate pure and impure code. We believe
+                            this gives the best of both words: We gain the benefits of equational reasoning for pure
+                            code while allowing impure code with the small cost of more elaborate type signatures.
                         </p>
 
                         <h2>Pure and Impure Functions</h2>
 
                         <p>
-                            In Flix, functions are pure by default. For example, we can write:
+                            Flix functions are pure by default. For example, we can write:
                         </p>
 
                         <InlineEditor>
@@ -70,7 +123,8 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            If we wanted to be explicit (but non-idiomatic) we could write:
+                            which defines a pure function. If we wanted to be explicit (but non-idiomatic) we could
+                            write:
                         </p>
 
                         <InlineEditor>
