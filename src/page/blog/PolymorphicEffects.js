@@ -109,25 +109,44 @@ class PolymorphicEffects extends Component {
                         </p>
 
 
+                        <p>
+                            We can also write an impure function:
+                        </p>
 
                         <InlineEditor>
-                            {`/// We can declare a pure function.
-def inc(x: Int): Int & Pure = x + 1
-
-/// The pure annotation is default, so we can just write:
-def inc2(x: Int): Int = x + 1
-
-/// We can also declare an impure function.
-def printAndInc(x: Int): Int & Impure =
-    Console.printLine("Hello");
-    x + 1`}
+                            {`def sayHello(): Unit & Impure = Console.printLine("Hello World!")`}
                         </InlineEditor>
 
-                        <InlineEditor>
-                            {`def impure`}
-                        </InlineEditor>
+                        <p>
+                            where <code>& Impure</code> specifies that <code>sayHello</code> is impure.
+                        </p>
 
-                        <h2>Enforcing Purity and Impurity</h2>
+                        <p>
+                            The Flix type and effect system is <i>sound</i>, hence if we forget the <code>&
+                            Impure</code> annotation on <code>sayHello</code> the compiler would emit a type (or rather
+                            effect) error.
+                        </p>
+
+                        <p>
+                            The type and effect system separates pure and impure code. If an expression is pure then it
+                            always evaluates to the same value and it cannot have a side-effect. If a function is pure
+                            then it always evaluates to the same value when given the same arguments. This is what
+                            makes Flix functional-first: We can know and trust that pure functions behave like
+                            mathematical functions.
+                        </p>
+
+                        <h2>What is Pure and What is Impure?</h2>
+
+                        <p>
+                            Any expression that does not satisfy referential transparency is impure. Informally, an
+                            expression is pure if it allows equational reasoning. Obvious examples of impurity are
+                            printing to the screen, reading a file from disk, or communicating over channels. Less
+                            obvious examples are allocating an array, reading from an array, calling JVM methods, and so
+                            on.
+                        </p>
+
+
+                        <h2>Higher-Order Functions</h2>
 
                         <InlineEditor>
                             {`def exists(f: a -> Bool, xs: Set[a]): Bool & Pure `}
@@ -204,6 +223,8 @@ def printAndInc(x: Int): Int & Impure =
 2 List[c] & {{e1 /\\ e2}}`}
                         </InlineEditor>
 
+
+                        <h2>Interior Mutability</h2>
 
                         <h2>Type Inference and Boolean Unification</h2>
 
