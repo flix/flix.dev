@@ -447,7 +447,9 @@ def stripIndentHelper(n: Int32, s: String): String & Impure =
                             effect system cleanly separates pure and impure code, even in polymorphic contexts. The
                             upshot is that functional programmer, like in Haskell, can trust that if a function is pure
                             then it behaves as a mathematical function, i.e. when given the same arguments it returns
-                            the result and it has no (observable) side-effects.
+                            the result and it has no (observable) side-effects. The second upshot is that we can have
+                            proper abstraction, e.g. implementation freedom for functions such
+                            as <code>Set.exists</code>.
                         </p>
 
                         <p>
