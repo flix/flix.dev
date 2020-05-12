@@ -118,7 +118,9 @@ class PolymorphicEffects extends Component {
                         <p>
                             Flix aims to walk on the middle of the road: We want to support equational reasoning with
                             strong guarantees while still allowing side-effects. Our solution is a type and effect
-                            system that cleanly separates pure and impure code.
+                            system that cleanly separates pure and impure code. The idea of using an effect system
+                            to separate pure and impure code is old, but our implementation, which supports type
+                            inference and polymorphism, is new.
                         </p>
 
                         <h2>Pure and Impure Functions</h2>
