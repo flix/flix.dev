@@ -145,16 +145,43 @@ class PolymorphicEffects extends Component {
                             on.
                         </p>
 
-
                         <h2>Higher-Order Functions</h2>
 
+                        <p>
+                            We can use the Flix type and effect system to restrict the purity/impurity of function
+                            arguments passed to higher-order functions. This is useful for two reasons: (i) it can
+                            more accurately capture the contract between caller and callee, and (ii) it can help prevent
+                            subtle bugs in the program. We will now look at several examples of such type signatures.
+                        </p>
+
+                        <p>
+                            We can enforce that the predicate <code>f</code> passed
+                            to <code>Set.exists</code> is <i>pure</i>:
+                        </p>
+
                         <InlineEditor>
-                            {`def exists(f: a -> Bool, xs: Set[a]): Bool & Pure `}
+                            {`def exists(f: a -> Bool, xs: Set[a]): Bool = ...`}
                         </InlineEditor>
 
+                        <p>
+                            The signature <code>f: a -> Bool</code> denotes a pure function
+                            from <code>a</code> to <code>Bool</code>. Passing an impure function to Set.exists is a
+                            compile-time type error. We enforce that <code>f</code> is pure because the contract
+                            for <code>exists</code> makes no guarantees about how <code>f</code> is called. The
+                            implementation of <code>exists</code> may call <code>f</code> on the elements
+                            in <code>xs</code> in any order and any number of times. This requirement
+                            is <i>beneficial</i> because its allows freedom in the implementation of <code>Set</code>,
+                            including in the choice of the underlying data structure and in the implementation of its
+                            operations. For example, we can implement sets using search trees or with hash tables, and
+                            we can perform existential queries in parallel using fork-join. <i>If <code>f</code> was
+                            impure such implementation details would leak and be observable to the client.</i>
+                        </p>
+
+
+
 
                         <InlineEditor>
-                            {`def foreach(f: a ~> Unit, xs: List[a]): Unit & Impure = `}
+                            {`def foreach(f: a ~> Unit, xs: List[a]): Unit & Impure = ...`}
                         </InlineEditor>
 
                         <InlineEditor>
