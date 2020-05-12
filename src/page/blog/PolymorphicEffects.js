@@ -177,12 +177,24 @@ class PolymorphicEffects extends Component {
                             impure such implementation details would leak and be observable to the client.</i>
                         </p>
 
-
-
+                        <p>
+                            We can enforce that the function <code>f</code> passed to the
+                            function <code>List.foreach</code> is <i>impure</i>:
+                        </p>
 
                         <InlineEditor>
                             {`def foreach(f: a ~> Unit, xs: List[a]): Unit & Impure = ...`}
                         </InlineEditor>
+
+                        <p>
+                            The signature <code>f: b ~> Bool</code> denotes an impure function
+                            from <code>b</code> to <code>Unit</code>. Passing a pure function to <code>foreach</code> is
+                            a compile-time type error. Given that <code>f</code> is impure and <code>f</code> is called
+                            within <code>foreach</code>, it must itself also be impure. We enforce
+                            that <code>f</code> is impure because it is pointless to apply a pure function
+                            with <code>Unit</code> return type to every element of a list. While such behavior may be
+                            seen as harmless, we want our type and effect system to help the programmer avoid mistakes.
+                        </p>
 
                         <InlineEditor>
                             {`def onMouseDown(f: MouseEvent ~> Unit): Unit & Impure
