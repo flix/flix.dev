@@ -348,9 +348,20 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                             actually be pure.
                         </p>
 
+                        <p>
+                            We can express that forward function composition <code>&lt;&lt;</code> is pure if both
+                            its arguments are pure:
+                        </p>
+
                         <InlineEditor>
-                            {`  def >>(f: a -> b & e1, g: b -> c & e2): a -> c & {e1 /\\ e2} = x -> g(f(x))`}
+                            {` def >>(f: a -> b & e1, g: b -> c & e2): a -> c & {{e1 /\\ e2}} = x -> g(f(x))`}
                         </InlineEditor>
+
+                        <p>
+                            Here the function <code>f</code> has effect <code>e1</code> and <code>g</code> has
+                            effect <code>e2</code>. Returned function has effect <code>e1 /\ e2</code>, i.e. for it
+                            to be pure both <code>e1</code> and <code>e2</code> must be pure. Otherwise it is impure.
+                        </p>
 
 
                         <InlineEditor>
