@@ -368,7 +368,33 @@ pub def charAt(i: Int, s: String): Char =
                             programmer is responsible for ensuring that the cast is safe.
                         </p>
 
+                        <p>
+                            Effect casts are also useful when a pure function is implemented more efficiently using
+                            mutation. For example, here is the implementation of <code>stripIndent</code>:
+                        </p>
 
+                        <InlineEditor>
+                            {`def stripIndent(n: Int32, s: String): String =
+        if (n <= 0 || length(s) == 0)
+            s
+        else
+            stripIndentHelper(n, s) as & Pure
+        
+def stripIndentHelper(n: Int32, s: String): String & Impure =
+    let sb = StringBuilder.new();
+    let limit = Int32.min(n, length(s));
+    let step = s1 -> {
+        let line = stripIndentDropWhiteSpace(s1, limit, 0);
+        StringBuilder.appendLine!(sb, line)
+    };
+    List.foreach(step, lines(s));
+    StringBuilder.toString(sb)`}
+                        </InlineEditor>
+
+                        <p>
+                            Internally, <code>stripIndentHelper</code> uses a mutable string builder which is impure,
+                            but externally, <code>stripIndent</code> is a pure function.
+                        </p>
 
                         <h2>Type Inference and Boolean Unification</h2>
 
