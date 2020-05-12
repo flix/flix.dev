@@ -331,6 +331,9 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
 2 List[c] & {{e1 /\\ e2}}`}
                         </InlineEditor>
 
+                        <h2>Type Equivalences</h2>
+
+
 
                         <h2>Interior Mutability (better title)</h2>
 
