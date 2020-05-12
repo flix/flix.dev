@@ -36,7 +36,7 @@ class PolymorphicEffects extends Component {
                             </p>
 
                             <p>
-                                "One simple example is an assembly that is bolted onto the frame with 4 bolts. The
+                                "One simple example is an assembly that is bolted onto the frame with four bolts. The
                                 obvious bolt pattern is a rectangle. Unfortunately, a rectangle pattern can be assembled
                                 in two different ways, one of which is wrong. The solution is to offset one of the bolt
                                 holes — then the assembly can only be bolted on in one orientation. The possible
@@ -44,7 +44,7 @@ class PolymorphicEffects extends Component {
                             </p>
 
                             <p>
-                                "This idea permeates Boeing designs. <i>Parts can only be assembled one way, the correct
+                                "[...] <i>Parts can only be assembled one way, the correct
                                 way.</i>"
                             </p>
                         </blockquote>
@@ -54,9 +54,11 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <p>
-                            Bright goes on to discuss that these ideas are equally applicable to software: We should
-                            try to build software such that it can only be assembled correctly. Today I will talk about
-                            how such considerations can be used in the context of type and effect systems.
+                            Bright explains that these ideas are equally applicable to software: We should build
+                            software such that it can only be assembled correctly. In this blog post, I will discuss
+                            how this idea can be applied to the design of a type and effect system. In particular, I
+                            will show how the Flix programming language and, in extension, its standard library ensure
+                            that pure and impure functions are not assembled incorrectly.
                         </p>
 
                         <h2>Impure Functional Programming</h2>
