@@ -430,6 +430,23 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                             <code>f</code> and <code>g</code> may be impure.
                         </p>
 
+                        <p>
+                            Without going into too much detail, and interesting aspect of the type and effect system is
+                            that we could have given <code>mapCompose</code> the equivalent (equi-most general) type
+                            signature:
+                        </p>
+
+                        <InlineEditor>
+                            {`def mapCompose(f: a -> b & {{(not e1) \\/ e2}}, g: b -> c & e1, xs: List[a]): ... = ...`}
+                        </InlineEditor>
+
+                        <p>
+                            where the effects of <code>f</code> and <code>g</code> are swapped. While there are some
+                            interesting details about how this works, fortunately the programmer does not have to worry
+                            about them. The only concern might be the question of which type signature should be
+                            considered idiomatic.
+                        </p>
+
                         <h2>Interior Mutability (better title)</h2>
 
                         <p>
