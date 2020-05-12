@@ -332,7 +332,43 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </InlineEditor>
 
 
-                        <h2>Interior Mutability</h2>
+                        <h2>Interior Mutability (better title)</h2>
+
+                        <p>
+                            A fairly common occurrence is that a function internally uses impure constructs
+                            but externally is observationally pure. That is, from the outside there is no way to
+                            see that the function actually used side-effects. We are allowed to treat such
+                            functions as pure and we achieve it with an effect cast.
+                        </p>
+
+                        <p>
+                            For example, we can call a Java method, which may have arbitrary side-effects, but mark
+                            it as explicitly pure with an effect cast:
+                        </p>
+
+                        <InlineEditor>
+                            {`///
+/// Returns the character at position \`i\` in the string \`s\`.
+///
+pub def charAt(i: Int, s: String): Char =
+    import java.lang.String.charAt(Int32);
+    s.charAt(i) as & Pure`}
+                        </InlineEditor>
+
+                        <p>
+                            Flix treats any Java method as impure, but in this case the programmer knows that calling
+                            <code>charAt</code> on a <code>String</code> has no side-effect. The effect cast <code>as &
+                            Pure</code> casts the impure expression to a pure expression. Consequently, the Flix
+                            function is pure, as expected and desired.
+                        </p>
+
+                        <p>
+                            An effect cast, like an ordinary cast, must be used with care. It is an escape hatch that
+                            allows the programmer to override the type (and effect) system of the language. The
+                            programmer is responsible for ensuring that the cast is safe.
+                        </p>
+
+
 
                         <h2>Type Inference and Boolean Unification</h2>
 
