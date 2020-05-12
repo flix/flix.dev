@@ -104,17 +104,21 @@ class PolymorphicEffects extends Component {
                             {`(Console.printLine("Hello World"), Console.printLine("Hello World"))`}
                         </InlineEditor>
 
+
                         <p>
-                            Impure functional programming languages, such as Standard ML, OCaml, Reason, Clojure, Scala,
-                            etc. forego equational reasoning by allow arbitrary side-effects inside functions. Haskell,
-                            on the other hand, is pure and disallows any kind of side-effect. Consequently, Haskell
-                            programmers are blessed by the advantages of equational reasoning.
+                            Most contemporary functional programming languages, including Clojure, OCaml, and Scala,
+                            forgo equational reasoning by allow arbitrary side-effects inside functions. To be clear,
+                            it is still common to write purely functional programs in these languages and to reason
+                            about them using equational reasoning. The major concern is that there is no language
+                            support to guarantee when such reasoning is valid. Haskell is the only major programming
+                            language that guarantees equational reasoning at the cost of a total and absolute ban on
+                            side-effects.
                         </p>
 
                         <p>
-                            Flix, on the other hand, uses the type system to separate pure and impure code. We believe
-                            this gives the best of both words: We gain the benefits of equational reasoning for pure
-                            code while allowing impure code with the small cost of more elaborate type signatures.
+                            Flix aims to walk on the middle of the road: We want to support equational reasoning with
+                            strong guarantees while still allowing side-effects. Our solution is a type and effect
+                            system that cleanly separates pure and impure code.
                         </p>
 
                         <h2>Pure and Impure Functions</h2>
