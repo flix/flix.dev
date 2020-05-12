@@ -23,67 +23,40 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <p>
-                            But before we jump into effects, I want to begin with an amazing story from <a
-                            href="https://www.digitalmars.com/articles/b60.html">Walter Bright</a>, the author of the D
-                            programming language. The <a
-                            href="https://www.digitalmars.com/articles/b60.html">story</a> is worth quoting in full:
+                            In the blog post <a
+                            href="https://www.digitalmars.com/articles/b60.html">Patterns of Bugs</a>, Walter Bright,
+                            the author of the <a href="https://dlang.org/">D programming Language</a>, writes about his
+                            experience working at Boeing and their attitude towards failure:
                         </p>
 
-                        <Card>
-                            <CardBody>
-                                <CardText>
+                        <blockquote className="blockquote">
+                            <p>
+                                "[...] The best people have bad days and make mistakes, so the solution is to
+                                change the process so the mistakes cannot happen or cannot propagate."
+                            </p>
 
-                                    <p>
-                                        I [Walter Bright] spent the first three years of my career working on flight
-                                        critical mechanical
-                                        designs
-                                        for the Boeing 757. Although these were gearboxes, hydraulics, cables and
-                                        linkages, the
-                                        methodology used to make error-free systems is very applicable to software
-                                        design.
-                                    </p>
+                            <p>
+                                "One simple example is an assembly that is bolted onto the frame with 4 bolts. The
+                                obvious bolt pattern is a rectangle. Unfortunately, a rectangle pattern can be assembled
+                                in two different ways, one of which is wrong. The solution is to offset one of the bolt
+                                holes — then the assembly can only be bolted on in one orientation. The possible
+                                mechanic's mistake is designed out of the system."
+                            </p>
 
-                                    <p>
-                                        For starters is Boeing's attitude towards failure. It is not considered human
-                                        error,
-                                        fixable by hiring better people. It is a failure of process. The best people
-                                        have
-                                        bad
-                                        days and make mistakes, so the solution is to change the process so the mistakes
-                                        cannot
-                                        happen or cannot propagate.
-                                    </p>
-
-                                    <p>
-                                        One simple example is an assembly that is bolted onto the frame with 4 bolts.
-                                        The
-                                        obvious bolt pattern is a rectangle. Unfortunately, a rectangle pattern can be
-                                        assembled
-                                        in two different ways, one of which is wrong. The solution is to offset one of
-                                        the bolt
-                                        holes — then the assembly can only be bolted on in one orientation. The possible
-                                        mechanic's mistake is designed out of the system.
-                                    </p>
-
-                                    <p>
-                                        <i>This idea permeates Boeing designs. Parts can only be assembled one way, the
-                                            correct way.</i> (emphasis mine).
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
+                            <p>
+                                "This idea permeates Boeing designs. <i>Parts can only be assembled one way, the correct
+                                way.</i>"
+                            </p>
+                        </blockquote>
 
                         <p>
-                            While I will not go into the current safety culture a boeing, what struck me is ...
+                            (Emphasis mine).
                         </p>
 
                         <p>
-                            separation of pure and impure code.
-                        </p>
-
-                        <p>
-                            What is an effect system?
-                            Why care? Why enforce?
+                            Walter goes on to discuss that these ideas are equally applicable to software: We should
+                            try to build software such that it can only be assembled correctly. Today I will talk about
+                            how that applies to pure and impure code.
                         </p>
 
                         <h2>Pure and Impure Functions</h2>
