@@ -334,7 +334,6 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         <h2>Type Equivalences</h2>
 
 
-
                         <h2>Interior Mutability (better title)</h2>
 
                         <p>
@@ -353,7 +352,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                             {`///
 /// Returns the character at position \`i\` in the string \`s\`.
 ///
-pub def charAt(i: Int, s: String): Char =
+def charAt(i: Int, s: String): Char =
     import java.lang.String.charAt(Int32);
     s.charAt(i) as & Pure`}
                         </InlineEditor>
@@ -400,6 +399,22 @@ def stripIndentHelper(n: Int32, s: String): String & Impure =
                         </p>
 
                         <h2>Type Inference and Boolean Unification</h2>
+
+                        <p>
+                            The details of the type and effect system are the subject of a research paper (currently in
+                            submission). The paper will be made available here when accepted for publication.
+                        </p>
+
+
+                        <h2>Closing Thoughts</h2>
+
+                        <p>
+                            We can now substantiate the claim that Flix aims to be "functional-first": the Flix type and
+                            effect system cleanly separates pure and impure code, even in polymorphic contexts. The
+                            upshot is that functional programmer, like in Haskell, can trust that if a function is pure
+                            then it behaves as a mathematical function, i.e. when given the same arguments it returns
+                            the result and it has no (observable) side-effects.
+                        </p>
 
                         <p>
                             Until next time, happy hacking.
