@@ -196,54 +196,97 @@ class PolymorphicEffects extends Component {
                             seen as harmless, we want our type and effect system to help the programmer avoid mistakes.
                         </p>
 
+                        <p>
+                            We can enforce that event listeners are impure:
+                        </p>
+
                         <InlineEditor>
-                            {`def onMouseDown(f: MouseEvent ~> Unit): Unit & Impure
-                            def onMouseUp(f: MouseEvent ~> Unit): Unit & Impure = ...`}
+                            {`def onMouseDn(f: MouseEvent ~> Unit): Unit & Impure = ...
+def onMouseUp(f: MouseEvent ~> Unit): Unit & Impure = ...`}
                         </InlineEditor>
+
+                        <p>
+                            Event listeners are always executed for their side-effect: it would be pointless to register
+                            a pure function as an event listener.
+                        </p>
+
+                        <p>
+                            We can enforce that assertion and logging facilities are given pure functions:
+                        </p>
 
                         <InlineEditor>
                             {`def assert(f: Unit -> Bool): Unit & Pure = ...
-                            def log(f: Unit -> String , l: LogLevel): Unit & Pure = ...`}
+def log(f: Unit -> String , l: LogLevel): Unit & Pure = ...`}
                         </InlineEditor>
 
-                        <InlineEditor>
-                            {`1 trait Eq[a] {
-2 def eq(x: a, y: a): Bool & Pure
-3 }`}
-                        </InlineEditor>
+                        <p>
+                            We want to support assertions and log statements that can be enabled and disabled at
+                            run-time. For efficiency, it is critical that when assertions or logging is disabled, we do
+                            not perform any computations that are redundant. We can achieve this by having the assert
+                            and log functions take callbacks that are only invoked when required. A critical property of
+                            these functions is that they must not influence the execution of the program. Otherwise, we
+                            risk situations where enabling or disabling assertions or logging may impact the presence or
+                            absence of a buggy execution. We can prevent such situations by requiring that the functions
+                            passed to assert and log are pure.
+                        </p>
+
+                        <p>
+                            We can enforce that user-defined equality functions are pure. We want purity because the
+                            programmer should not make any assumptions about how such functions are used. Moreover, most
+                            collections (e.g. sets and maps) require that equality does not change over time to maintain
+                            internal data structure invariants. Similarly, and for similar reasons, we can enforce that
+                            user-defined hash and comparator functions are pure.
+                        </p>
+
+                        <p>
+                            We can also enforce that one-shot comparator functions are pure:
+                        </p>
 
                         <InlineEditor>
-                            {` def minBy(f: a -> b, l: List[a]): a = ...
-2 def maxBy(f: a -> b, l: List[a]): a = ...
-3 def sortBy(f: a -> Int32, l: List[a]): List[a] = ...
-4 def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
+                            {`def minBy(f: a -> b, l: List[a]): a = ...
+def maxBy(f: a -> b, l: List[a]): a = ...
+def sortBy(f: a -> Int32, l: List[a]): List[a] = ...
+def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </InlineEditor>
 
-                        <InlineEditor>
-                            {`spawn (2 + 2`}
-                        </InlineEditor>
+                        <p>
+                            We can enforce that the <code>next</code> function passed
+                            to <code>List.unfoldWithIter</code> is impure:
+                        </p>
 
                         <InlineEditor>
                             {`def unfoldWithIter(next: Unit ~> Option[a]): List[a] & Impure`}
                         </InlineEditor>
 
+                        <p>
+                            The unfoldWithIter function is a variant of the <code>unfoldWith</code> function where each
+                            invocation of <code>next</code> changes some mutable state until the unfold completes. For
+                            example, <code>unfoldWithIter</code> is frequently used to convert Java-style iterators into
+                            lists. We enforce that next is impure since otherwise the iterator cannot advance.
+                        </p>
+
+                        <p>
+                            We can reject statement expressions that are pure. For example, the program:
+                        </p>
 
                         <InlineEditor>
-                            {`1 def main(): Int =
-2 List.map(x -> x + 1, 1 :: 2 :: Nil);
-3 123`}
+                            {`def main(): Int =
+    List.map(x -> x + 1, 1 :: 2 :: Nil);
+    123`}
                         </InlineEditor>
 
+                        <p>
+                            is rejected with the compiler error:
+                        </p>
 
                         <InlineEditor>
-                            {`1 -- Redundancy Error ------------------ foo.flix
-2
-3 >> Useless expression: It has no side-effect(s)
-4 and its result is discarded.
-5
-6 2 | List.map(x -> x + 1, 1 :: 2 :: Nil);
-7 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-8 useless expression.`}
+                            {`-- Redundancy Error ------------------ foo.flix
+
+ >> Useless expression: It has no side-effect(s) and its result is discarded.
+
+    2 | List.map(x -> x + 1, 1 :: 2 :: Nil);
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        useless expression.`}
                         </InlineEditor>
 
                         <h2>Polymorphic Effects</h2>
