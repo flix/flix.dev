@@ -467,15 +467,15 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         <h2>Benign Impurity</h2>
 
                         <p>
-                            A fairly common occurrence is that a function internally uses impure constructs
-                            but externally is observationally pure. That is, from the outside there is no way to
-                            see that the function actually used side-effects. We are allowed to treat such
-                            functions as pure and we achieve it with an effect cast.
+                            It is not uncommon for functions to be internally impure but observationally pure.
+                            That is, a function may use mutation and perform side-effects without it being observable
+                            by the external world. We say that such side-effects are <i>benign</i>. Fortunately, we can
+                            still treat such functions as pure with an explicit <i>effect cast</i>.
                         </p>
 
                         <p>
-                            For example, we can call a Java method, which may have arbitrary side-effects, but mark
-                            it as explicitly pure with an effect cast:
+                            For example, we can call a Java method (which may have arbitrary side-effects) but
+                            explicitly mark it as pure with an effect cast:
                         </p>
 
                         <InlineEditor>
@@ -488,30 +488,37 @@ def charAt(i: Int, s: String): Char =
                         </InlineEditor>
 
                         <p>
-                            Flix treats any Java method as impure, but in this case the programmer knows that calling
-                            <code>charAt</code> on a <code>String</code> has no side-effect. The effect cast <code>as &
-                            Pure</code> casts the impure expression to a pure expression. Consequently, the Flix
-                            function is pure, as expected and desired.
+                            We know that <code>java.lang.String.charAt</code> has is pure hence the cast is safe.
                         </p>
 
                         <p>
-                            An effect cast, like an ordinary cast, must be used with care. It is an escape hatch that
-                            allows the programmer to override the type (and effect) system of the language. The
-                            programmer is responsible for ensuring that the cast is safe.
+                            An effect cast, like an ordinary cast, must be used with care. A cast is a mechanism
+                            that allows the programmer to subvert the type (and effect) system. It is the
+                            responsibility of the programmer to ensure that the cast is safe. Unlike type casts, an
+                            effect cast cannot be checked at run-time with the consequence that an unsound effect cast
+                            may silently lead to undefined behavior.
                         </p>
 
                         <p>
-                            Effect casts are also useful when a pure function is implemented more efficiently using
-                            mutation. For example, here is the implementation of <code>stripIndent</code>:
+                            Here is an example of a pure function that is implemented internally using mutation:
                         </p>
 
                         <InlineEditor>
-                            {`def stripIndent(n: Int32, s: String): String =
+                            {`///
+/// Strip every indented line in string \`s\` by \`n\` spaces. \`n\` must be greater than \`0\`.
+/// Note, tabs are counted as a single space.
+///
+/// [...]
+///
+def stripIndent(n: Int32, s: String): String =
         if (n <= 0 || length(s) == 0)
             s
         else
             stripIndentHelper(n, s) as & Pure
         
+///
+/// Helper function for \`stripIndent\`.
+///
 def stripIndentHelper(n: Int32, s: String): String & Impure =
     let sb = StringBuilder.new();
     let limit = Int32.min(n, length(s));
@@ -524,8 +531,7 @@ def stripIndentHelper(n: Int32, s: String): String & Impure =
                         </InlineEditor>
 
                         <p>
-                            Internally, <code>stripIndentHelper</code> uses a mutable string builder which is impure,
-                            but externally, <code>stripIndent</code> is a pure function.
+                            Internally, <code>stripIndentHelper</code> uses a mutable string builder.
                         </p>
 
                         <h2>Type Inference and Boolean Unification</h2>
