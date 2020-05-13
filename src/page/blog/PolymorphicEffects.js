@@ -383,6 +383,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         <h2>Type Equivalences</h2>
 
                         <p>
+                            TODO: Update
                             The Flix type and effect system is very expressive. For example, we can write a
                             higher-order function takes two function arguments <code>f</code> and <code>g</code> of
                             which <i>at most one</i> is impure:
