@@ -203,16 +203,17 @@ class PolymorphicEffects extends Component {
 
                         <p>
                             The signature <code>f: a -> Bool</code> denotes a pure function
-                            from <code>a</code> to <code>Bool</code>. Passing an impure function to Set.exists is a
-                            compile-time type error. We enforce that <code>f</code> is pure because the contract
-                            for <code>exists</code> makes no guarantees about how <code>f</code> is called. The
-                            implementation of <code>exists</code> may call <code>f</code> on the elements
-                            in <code>xs</code> in any order and any number of times. This requirement
-                            is <i>beneficial</i> because its allows freedom in the implementation of <code>Set</code>,
-                            including in the choice of the underlying data structure and in the implementation of its
-                            operations. For example, we can implement sets using search trees or with hash tables, and
-                            we can perform existential queries in parallel using fork-join. <i>If <code>f</code> was
-                            impure such implementation details would leak and be observable to the client.</i>
+                            from <code>a</code> to <code>Bool</code>. Passing an impure function
+                            to <code>exists</code> is a compile-time type error. We want enforce that <code>f</code> is
+                            pure because the contract for <code>exists</code> makes no guarantees about
+                            how <code>f</code> is called. The implementation of <code>exists</code> may
+                            call <code>f</code> on the elements in <code>xs</code> in any order and any number of times.
+                            This requirement is <i>beneficial</i> because its allows freedom in the implementation
+                            of <code>Set</code>, including in the choice of the underlying data structure and in the
+                            implementation of its operations. For example, we can implement sets using search trees or
+                            with hash tables, and we can perform existential queries in parallel using
+                            fork-join. If <code>f</code> was impure such implementation details would leak and be
+                            observable by the client. <i>Functions can only be assembled one way, the correct way.</i>
                         </p>
 
                         <p>
@@ -228,10 +229,10 @@ class PolymorphicEffects extends Component {
                             The signature <code>f: b ~> Bool</code> denotes an impure function
                             from <code>b</code> to <code>Unit</code>. Passing a pure function to <code>foreach</code> is
                             a compile-time type error. Given that <code>f</code> is impure and <code>f</code> is called
-                            within <code>foreach</code>, it must itself also be impure. We enforce
-                            that <code>f</code> is impure because it is pointless to apply a pure function
-                            with <code>Unit</code> return type to every element of a list. While such behavior may be
-                            seen as harmless, we want our type and effect system to help the programmer avoid mistakes.
+                            within <code>foreach</code>, it is itself impure. We enforce that
+                            the <code>f</code> function is impure because it is pointless to apply
+                            a <i>pure</i> function with a <code>Unit</code> return type to every element of a list. <i>Functions
+                            can only be assembled one way, the correct way.</i>
                         </p>
 
                         <p>
