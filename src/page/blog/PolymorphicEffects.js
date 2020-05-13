@@ -553,13 +553,19 @@ def stripIndentHelper(n: Int32, s: String): String & Impure =
                         <h2>Closing Thoughts</h2>
 
                         <p>
-                            We can now substantiate the claim that Flix aims to be "functional-first": the Flix type and
-                            effect system cleanly separates pure and impure code, even in polymorphic contexts. The
-                            upshot is that functional programmer, like in Haskell, can trust that if a function is pure
-                            then it behaves as a mathematical function, i.e. when given the same arguments it returns
-                            the result and it has no (observable) side-effects. The second upshot is that we can have
-                            proper abstraction, e.g. implementation freedom for functions such
-                            as <code>Set.exists</code>.
+                            The Flix type and effect system separates pure and impure code. The upshot is that a
+                            functional programmer can trust that a pure function behaves like a mathematical function:
+                            it returns the same result when given the same arguments. At the same time, we are still
+                            allowed to write parts of the program in an impure, imperative style. Effect polymorphism
+                            ensures that both pure and impure code can be used with higher-order functions.
+                        </p>
+
+                        <p>
+                            We can also use effects to control when higher-order functions require pure (or impure)
+                            functions. We have seen several examples of such use cases, e.g. requiring
+                            that <code>Set.count</code> takes a pure function or
+                            that <code>List.unfoldWithIter</code> takes an impure function. Together, these restrictions
+                            ensure that functions can only be assembled in one way, the correct way.
                         </p>
 
                         <p>
