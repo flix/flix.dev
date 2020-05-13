@@ -163,29 +163,33 @@ class PolymorphicEffects extends Component {
                             type (or rather effect) error.
                         </p>
 
-                        <p> TODO: FROM HERE
-                            The type and effect system separates pure and impure code. If an expression is pure then it
-                            always evaluates to the same value and it cannot have a side-effect. If a function is pure
-                            then it always evaluates to the same value when given the same arguments. This is what
-                            makes Flix functional-first: We can know and trust that pure functions behave like
+                        <p>
+                            The type and effect system cleanly separates pure and impure code. If an expression is pure
+                            then it always evaluates to the same value and it cannot have side-effects. If a function is
+                            pure then it always evaluates to the same value when given the same arguments. This is part
+                            of what makes Flix functional-first: We can trust that pure functions behave like
                             mathematical functions.
                         </p>
 
                         <p>
-                            Any expression that does not satisfy referential transparency is impure. Informally, an
-                            expression is pure if it allows equational reasoning. Obvious examples of impurity are
-                            printing to the screen, reading a file from disk, or communicating over channels. Less
-                            obvious examples are allocating an array, reading from an array, calling JVM methods, and so
-                            on.
+                            We have already seen that printing to the screen is impure. Other sources of impurity are
+                            mutation of memory (e.g. writing to main memory, writing to the disk, writing to the
+                            network, etc.). Reading from memory is also impure because there is no guarantee that we
+                            will get the same value if we read the same location twice.
                         </p>
 
                         <h2>Higher-Order Functions</h2>
 
                         <p>
-                            We can use the Flix type and effect system to restrict the purity/impurity of function
-                            arguments passed to higher-order functions. This is useful for two reasons: (i) it can
-                            more accurately capture the contract between caller and callee, and (ii) it can help prevent
-                            subtle bugs in the program. We will now look at several examples of such type signatures.
+                            We can use the type and effect system to restrict the purity (or impurity) of function
+                            arguments that are passed to higher-order functions. This is useful for at least two
+                            reasons: (i) it prevents leaky abstractions where the caller can observe implementation
+                            details of the callee, and (ii) it can help avoid bugs in the sense of Walter Bright's
+                            "Parts can only be assembled one way, the correct way.".
+                        </p>
+
+                        <p>
+                            We will now look at several examples of how type signatures can control purity or impurity.
                         </p>
 
                         <p>
