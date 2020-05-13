@@ -341,7 +341,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
 
                         <p>
                             Flix supports effect polymorphism which means that the effect of a higher-order function can
-                            depend on the effect of its function arguments.
+                            depend on the effects of its function arguments.
                         </p>
 
                         <p>
@@ -359,14 +359,15 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                             effect <code>e</code> depends on the effect of its argument <code>f</code>.
                             That is, if <code>map</code> is called with a pure function then its evaluation is pure,
                             whereas if it is called with an impure function then its evaluation is impure. The effect
-                            signature is <i>conservative</i> (i.e. over-approximate). That is, <code>map</code> is
-                            considered impure even in the special case when the list is empty and its execution would
-                            actually be pure.
+                            signature is <i>conservative</i> (i.e. over-approximate). That is,
+                            the <code>map</code> function is considered impure even in the special case when the list is
+                            empty and its execution is actually be pure.
                         </p>
 
                         <p>
-                            We can express that forward function composition <code>&lt;&lt;</code> is pure if both
-                            its arguments are pure:
+                            The type and effect system can express combinations of effects using boolean operations.
+                            We can, for example, express that forward function composition <code>&gt;&gt;</code> is pure
+                            if both its arguments are pure:
                         </p>
 
                         <InlineEditor>
@@ -375,10 +376,9 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
 
                         <p>
                             Here the function <code>f</code> has effect <code>e1</code> and <code>g</code> has
-                            effect <code>e2</code>. Returned function has effect <code>e1 /\ e2</code>, i.e. for it
+                            effect <code>e2</code>. The returned function has effect <code>e1 /\ e2</code>, i.e. for it
                             to be pure both <code>e1</code> and <code>e2</code> must be pure. Otherwise it is impure.
                         </p>
-
 
                         <h2>Type Equivalences</h2>
 
