@@ -254,8 +254,8 @@ def onMouseUp(f: MouseEvent ~> Unit): Unit & Impure = ...`}
                         </p>
 
                         <InlineEditor>
-                            {`def assert(f: Unit -> Bool): Unit & Pure = ...
-def log(f: Unit -> String , l: LogLevel): Unit & Pure = ...`}
+                            {`def assert(f: Unit -> Bool): Unit = ...
+def log(f: Unit -> String , l: LogLevel): Unit = ...`}
                         </InlineEditor>
 
                         <p>
@@ -273,17 +273,17 @@ def log(f: Unit -> String , l: LogLevel): Unit & Pure = ...`}
                             We can enforce that user-defined equality functions are pure. We want purity because the
                             programmer should not make any assumptions about how such functions are used. Moreover, most
                             collections (e.g. sets and maps) require that equality does not change over time to maintain
-                            internal data structure invariants. Similarly, and for similar reasons, we can enforce that
-                            user-defined hash and comparator functions are pure.
+                            internal data structure invariants. Similar considerations apply to hash and comparator
+                            functions.
                         </p>
 
                         <p>
-                            We can also enforce that one-shot comparator functions are pure:
+                            In the same spirit, we can enforce that one-shot comparator functions are pure:
                         </p>
 
                         <InlineEditor>
-                            {`def minBy(f: a -> b, l: List[a]): a = ...
-def maxBy(f: a -> b, l: List[a]): a = ...
+                            {`def minBy(f: a -> b, l: List[a]): Option[a] = ...
+def maxBy(f: a -> b, l: List[a]): Option[a] = ...
 def sortBy(f: a -> Int32, l: List[a]): List[a] = ...
 def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </InlineEditor>
@@ -301,11 +301,15 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                             The unfoldWithIter function is a variant of the <code>unfoldWith</code> function where each
                             invocation of <code>next</code> changes some mutable state until the unfold completes. For
                             example, <code>unfoldWithIter</code> is frequently used to convert Java-style iterators into
-                            lists. We enforce that next is impure since otherwise the iterator cannot advance.
+                            lists. We want to enforce that <code>next</code> is impure because otherwise it is pointless
+                            to use <code>unfoldWithIter</code>. If <code>next</code> is pure then it must always either
+                            (i) return <code>None</code> which results in the empty list or (ii)
+                            return <code>Some(v)</code> for a value <code>v</code> which would result in an infinite
+                            execution.
                         </p>
 
                         <p>
-                            We can reject statement expressions that are pure. For example, the program:
+                            We can use purity to reject useless statement expressions. For example, the program:
                         </p>
 
                         <InlineEditor>
@@ -329,8 +333,8 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </InlineEditor>
 
                         <p>
-                            Notice that the <code>List.map</code> expression is pure because the function <code>x -> x +
-                            1</code> is itself pure.
+                            Notice that the <code>List.map(...)</code> expression is pure because the function <code>x
+                            -&gt; x + 1</code> is pure.
                         </p>
 
                         <h2>Polymorphic Effects</h2>
