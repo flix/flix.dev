@@ -383,23 +383,13 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         <h2>Type Equivalences</h2>
 
                         <p>
-                            TODO: Update
-                            The Flix type and effect system is very expressive. For example, we can write a
-                            higher-order function takes two function arguments <code>f</code> and <code>g</code> of
-                            which <i>at most one</i> is impure:
-                        </p>
-
-                        <InlineEditor>
-                            {`def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) \\/ e2}}, xs: List[a]): ... = ...`}
-                        </InlineEditor>
-
-                        <p>
-                            We can use such sophisticated types to implement powerful combinator libraries.
+                            Let us take a short detour.
                         </p>
 
                         <p>
-                            In Haskell mapping two functions <code>f</code> and <code>g</code> over a
-                            list <code>xs</code> is equivalent to mapping their composition over the list. That is:
+                            In a purely functional programming language, such as Haskell, mapping two
+                            functions <code>f</code> and <code>g</code> over a list <code>xs</code> is equivalent to
+                            mapping their composition over the list. That is:
                         </p>
 
                         <InlineEditor>
@@ -407,20 +397,58 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </InlineEditor>
 
                         <p>
-                            We can use such identities to rewrite the program to one that executes more efficiently.
-                            Unfortunately such identities do not hold for programming languages like Standard ML, OCaml,
-                            Reason, and Scala because of side-effects.
+                            We can use such an equation to (automatically) rewrite the program to one that executes more
+                            efficiently because the code on the right only traverses the list once and avoids
+                            allocation of an intermediate list. Haskell already has support for such <a
+                            href="https://wiki.haskell.org/GHC/Using_rules">rewrite rules</a> built into the language.
                         </p>
 
                         <p>
-                            Fortunately, we did the Flix type and effect system we regain the ability to reason about
-                            such identities. Intriguingly, it is not necessary for
-                            both <code>f</code> and <code>g</code> to be pure; it is sufficient if at most one of them
-                            is impure, and this is exactly what the signature of <code>mapCompose</code> captures!
+                            It would be desirable if we could express the same rewrite rules for programming languages
+                            such as Clojure, OCaml, and Scala. Unfortunately, identities - such as the above - do not
+                            hold in the presence of side-effects. For example, the program:
+                        </p>
+
+                        <InlineEditor>
+                            {`let f = x -> {Console.printLine(x); x};
+let g = y -> {Console.printLine(y); y};
+List.map(f, List.map(g, 1 :: 2 :: Nil))`}
+                        </InlineEditor>
+
+                        <p>
+                            prints <code>1, 2, 3, 1, 2, 3</code>. But, if we apply the rewrite rule, the transformed
+                            program now prints <code>1, 1, 2, 2, 3, 3</code>! In the presence of side-effects we cannot
+                            readily apply such rewrite rules.
                         </p>
 
                         <p>
-                            To understand why, let us look at the signature of <code>mapCompose</code> again:
+                            We can use the Flix type and effect to ensure that a rewrite rule like the above is only
+                            applied when both <code>f</code> and <code>g</code> are pure!
+                        </p>
+
+                        <p>
+                            We can, in fact, go even further. If <i>at most
+                            one</i> of <code>f</code> and <code>g</code> is impure then it is still safe to apply
+                            the above rewrite rule. Furthermore, the Flix type and effect system is sufficiently
+                            expressive to capture such a requirement!
+                        </p>
+
+                        <p>
+                            We can distill the essence of this point into the type signature:
+                        </p>
+
+                        <InlineEditor>
+                            {`def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) \\/ e2}}, xs: List[a]): ... = ...`}
+                        </InlineEditor>
+
+                        <p>
+                            It is not important exactly what <code>mapCompose</code> does (or even if it makes sense).
+                            What is important is that it has a function signature that requires two function arguments
+                            <code>f</code> and <code>g</code> of which at most one may be impure.
+                        </p>
+
+                        <p>
+                            To understand why, let us look closely at the signature of <code>mapCompose</code>:
                         </p>
 
                         <InlineEditor>
@@ -443,14 +471,14 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </p>
 
                         <p>
-                            If you think about it, the above is equivalent to the requirement that at most one of
-                            <code>f</code> and <code>g</code> may be impure.
+                            If you think about it, the above is equivalent to the requirement that at most one
+                            of <code>f</code> and <code>g</code> may be impure.
                         </p>
 
                         <p>
-                            Without going into too much detail, and interesting aspect of the type and effect system is
-                            that we could have given <code>mapCompose</code> the equivalent (equi-most general) type
-                            signature:
+                            Without going into detail, an interesting aspect of the type and effect system is
+                            that we might as well have given <code>mapCompose</code> the equivalent (equi-most general)
+                            type signature:
                         </p>
 
                         <InlineEditor>
@@ -458,10 +486,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </InlineEditor>
 
                         <p>
-                            where the effects of <code>f</code> and <code>g</code> are swapped. While there are some
-                            interesting details about how this works, fortunately the programmer does not have to worry
-                            about them. The only concern might be the question of which type signature should be
-                            considered idiomatic.
+                            where the effects of <code>f</code> and <code>g</code> are swapped.
                         </p>
 
                         <h2>Benign Impurity</h2>
