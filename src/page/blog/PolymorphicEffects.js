@@ -165,8 +165,7 @@ class PolymorphicEffects extends Component {
 
                         <p>
                             The type and effect system cleanly separates pure and impure code. If an expression is pure
-                            then it always evaluates to the same value and it cannot have side-effects. If a function is
-                            pure then it always evaluates to the same value when given the same arguments. This is part
+                            then it always evaluates to the same value and it cannot have side-effects. This is part
                             of what makes Flix functional-first: We can trust that pure functions behave like
                             mathematical functions.
                         </p>
@@ -204,9 +203,9 @@ class PolymorphicEffects extends Component {
                         <p>
                             The signature <code>f: a -> Bool</code> denotes a pure function
                             from <code>a</code> to <code>Bool</code>. Passing an impure function
-                            to <code>exists</code> is a compile-time type error. We want enforce that <code>f</code> is
-                            pure because the contract for <code>exists</code> makes no guarantees about
-                            how <code>f</code> is called. The implementation of <code>exists</code> may
+                            to <code>exists</code> is a compile-time type error. We want to enforce
+                            that <code>f</code> is pure because the contract for <code>exists</code> makes no guarantees
+                            about how <code>f</code> is called. The implementation of <code>exists</code> may
                             call <code>f</code> on the elements in <code>xs</code> in any order and any number of times.
                             This requirement is <i>beneficial</i> because its allows freedom in the implementation
                             of <code>Set</code>, including in the choice of the underlying data structure and in the
