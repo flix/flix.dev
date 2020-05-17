@@ -24,7 +24,7 @@ class Innovations extends Component {
                             language theory and relies on well-established theoretical foundations.
                         </p>
 
-                        <h2>Polymorphic Effects with Boolean Unification</h2>
+                        <h2>Polymorphic Effects</h2>
 
                         <p>
                             Flix comes with a polymorphic type and effect system. The effect system separates pure
