@@ -57,7 +57,7 @@ class PolymorphicEffects extends Component {
                             Bright continues to explain that these ideas are equally applicable to software: We should
                             build software such that it can only be assembled correctly. In this blog post, I will
                             discuss how this idea can be applied to the design of a type and effect system. In
-                            particular, I will show how the Flix programming language and, in extension, its standard
+                            particular, I will show how the Flix programming language and, by extension, its standard
                             library ensure that pure and impure functions are not assembled incorrectly.
                         </p>
 
@@ -66,8 +66,13 @@ class PolymorphicEffects extends Component {
                         <p>
                             A major selling point of functional programming is that it supports <a
                             href="https://wiki.haskell.org/Equational_reasoning_examples">equational reasoning</a>.
-                            Informally, equational reasoning means that we can reason about programs by substituting
-                            variables for their values (expressions). For example, if we have the program fragment:
+                            Informally, equational reasoning means that we can reason about programs by replacing an
+                            expression by another one, provided they're both equal. For example, we can substitute
+                            variables with the expressions they are bound to.
+                        </p>
+
+                        <p>
+                            For example, if we have the program fragment:
                         </p>
 
                         <InlineEditor>
@@ -173,9 +178,20 @@ class PolymorphicEffects extends Component {
                         <p>
                             We have already seen that printing to the screen is impure. Other sources of impurity are
                             mutation of memory (e.g. writing to main memory, writing to the disk, writing to the
-                            network, etc.). Reading from memory is also impure because there is no guarantee that we
-                            will get the same value if we read the same location twice.
+                            network, etc.). Reading from mutable memory is also impure because there is no guarantee
+                            that we will get the same value if we read the same location twice.
                         </p>
+
+                        <p>
+                            In Flix, the following operations are impure:
+                        </p>
+
+                        <ul>
+                            <li>Any use of channels (creating, sending, receiving, or selecting).</li>
+                            <li>Any use of references (creating, accessing, or updating).</li>
+                            <li>Any use of arrays (creating, accessing, updating, or slicing).</li>
+                            <li>Any interaction with the Java world.</li>
+                        </ul>
 
                         <h2>Higher-Order Functions</h2>
 
