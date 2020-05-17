@@ -54,11 +54,11 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <p>
-                            Bright explains that these ideas are equally applicable to software: We should build
-                            software such that it can only be assembled correctly. In this blog post, I will discuss
-                            how this idea can be applied to the design of a type and effect system. In particular, I
-                            will show how the Flix programming language and, in extension, its standard library ensure
-                            that pure and impure functions are not assembled incorrectly.
+                            Bright continues to explain that these ideas are equally applicable to software: We should
+                            build software such that it can only be assembled correctly. In this blog post, I will
+                            discuss how this idea can be applied to the design of a type and effect system. In
+                            particular, I will show how the Flix programming language and, in extension, its standard
+                            library ensure that pure and impure functions are not assembled incorrectly.
                         </p>
 
                         <h2>Impure Functional Programming</h2>
@@ -184,7 +184,7 @@ class PolymorphicEffects extends Component {
                             arguments that are passed to higher-order functions. This is useful for at least two
                             reasons: (i) it prevents leaky abstractions where the caller can observe implementation
                             details of the callee, and (ii) it can help avoid bugs in the sense of Walter Bright's
-                            "Parts can only be assembled one way, the correct way.".
+                            "Parts can only be assembled one way, the correct way."
                         </p>
 
                         <p>
@@ -265,7 +265,7 @@ def log(f: Unit -> String , l: LogLevel): Unit = ...`}
                             these functions is that they must not influence the execution of the program. Otherwise, we
                             risk situations where enabling or disabling assertions or logging may impact the presence or
                             absence of a buggy execution. We can prevent such situations by requiring that the functions
-                            passed to assert and log are pure.
+                            passed to <code>assert</code> and <code>log</code> are pure.
                         </p>
 
                         <p>
@@ -360,7 +360,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                             whereas if it is called with an impure function then its evaluation is impure. The effect
                             signature is <i>conservative</i> (i.e. over-approximate). That is,
                             the <code>map</code> function is considered impure even in the special case when the list is
-                            empty and its execution is actually be pure.
+                            empty and its execution is actually pure.
                         </p>
 
                         <p>
@@ -442,8 +442,8 @@ List.map(f, List.map(g, 1 :: 2 :: Nil))`}
 
                         <p>
                             It is not important exactly what <code>mapCompose</code> does (or even if it makes sense).
-                            What is important is that it has a function signature that requires two function arguments
-                            <code>f</code> and <code>g</code> of which at most one may be impure.
+                            What is important is that it has a function signature that requires two function
+                            arguments <code>f</code> and <code>g</code> of which at most one may be impure.
                         </p>
 
                         <p>
@@ -464,7 +464,7 @@ List.map(f, List.map(g, 1 :: 2 :: Nil))`}
                                 <li>
                                     If, on the other hand, <code>e1 = F</code> (i.e. <code>f</code> is impure)
                                     then <code>(not e1) \/ e2 = T \/ e2 = T </code>. In other words, <code>g</code>
-                                    <i>must</i> be pure. Otherwise there is a type error.
+                                    <i>must</i> be pure, otherwise there is a type error.
                                 </li>
                             </ul>
                         </p>
