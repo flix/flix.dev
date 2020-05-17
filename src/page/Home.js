@@ -135,7 +135,8 @@ class Home extends Component {
                             Flix supports the basic building blocks of typed functional programs:
                             algebraic data types, pattern matching, and parametric polymorphism (generics).
                             It uses a Hindley-Milner style type system which supports type inference within
-                            a function. Its syntax is inspired by Scala with an emphasis on the use of keywords.
+                            a function. The type and effect separates pure and impure code with allowing effect
+                            polymorphism. Its syntax is inspired by Scala with an emphasis on the use of keywords.
                         </p>
                     </Col>
                 </Row>
@@ -162,18 +163,6 @@ class Home extends Component {
                 </Row>
 
                 <Row className="mb-3">
-                    <Col xs="6">
-                        <h3>Planned Features</h3>
-
-                        <p>
-                            At the moment, Flix has the feature set of a ML-style language. We are actively working
-                            on adding support for two features essential to real-world programming:
-                            an abstraction mechanism based on <a href="https://en.wikipedia.org/wiki/Type_class">type
-                            classes</a> and an <a href="https://en.wikipedia.org/wiki/Effect_system">effect
-                            system</a> to allow safe interaction with the outside world.
-                        </p>
-                    </Col>
-
                     <Col xs="6">
                         <h3>Research and Flix</h3>
 

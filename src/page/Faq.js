@@ -22,24 +22,6 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        What is on the development road map for Flix?
-                    </Question>
-                    <Answer>
-                        <p>
-                            We don't want to over-promise and under-deliver, hence we try to only discuss what has
-                            already been implemented. That said, two major features we want to support in Flix are a
-                            polymorphic effect system and type classes.
-                        </p>
-
-                        <p>
-                            For smaller features, the GitHub issue tracker gives an idea of the kinds of things we are
-                            currently working on.
-                        </p>
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
                         Are you looking for help with the compiler or language design?
                     </Question>
                     <Answer>
@@ -56,17 +38,8 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            No, not at the moment. We have experimental support for calling into Java, but that API
-                            is likely to change in the future. We want to get interoperability <i>right</i>, but it
-                            is a big challenge, since we do not want to sacrifice any of the Flix principles in doing
-                            so.
-                        </p>
-
-                        <p>
-                            For example, to support proper interoperability with Java we will need to
-                            support <code>null</code>, but at the same time we don't want to pollute the Flix language
-                            with <code>null</code> values. Dealing with such issues is complicated, but something
-                            we plan to address long-term.
+                            Yes, with the <a href="https://flix.dev/programming-flix/#/interoperability/">import
+                            mechanism</a>.
                         </p>
                     </Answer>
                 </QA>
@@ -400,6 +373,15 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        Does Flix have a network library with streaming support?
+                    </Question>
+                    <Answer>
+                        Not yet, but maybe we could call it net-flix?
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         You do not seem to understand parsing / type theory / code generation / computers!
                     </Question>
                     <Answer>
@@ -424,15 +406,6 @@ class Faq extends Component {
                             That said, if you work for a company and would like to help sponsor Flix, please feel free
                             to reach out to us :)
                         </p>
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        Does Flix have a network library with streaming support?
-                    </Question>
-                    <Answer>
-                        Not yet, but maybe we could call it net-flix?
                     </Answer>
                 </QA>
 
