@@ -6,7 +6,7 @@ import InlineEditor from "../../util/InlineEditor";
 class PolymorphicEffects extends Component {
 
     componentDidMount() {
-        document.title = "Flix | Polymorphic Effects";
+        document.title = "Flix | Taming Impurity with Polymorphic Effects";
         ReactGA.pageview(window.location.pathname + window.location.hash);
     }
 
@@ -16,7 +16,7 @@ class PolymorphicEffects extends Component {
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
 
-                        <h1>Polymorphic Effects with Boolean Unification</h1>
+                        <h1>Taming Impurity with Polymorphic Effects</h1>
 
                         <p>
                             Posted May 2020 by <i>Magnus Madsen</i>.

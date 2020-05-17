@@ -44,8 +44,8 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
-                                        <Link to="/blog/polymorphic-effects-with-boolean-unification/">
-                                            Polymorphic Effects with Boolean Unification
+                                        <Link to="/blog/taming-impurity-with-polymorphic-effects/">
+                                            Taming Impurity with Polymorphic Effects
                                         </Link>
                                     </li>
                                     <li>
@@ -69,7 +69,7 @@ class Blog extends Component {
                     </Route>
 
 
-                    <Route path="/blog/polymorphic-effects-with-boolean-unification/">
+                    <Route path="/blog/taming-impurity-with-polymorphic-effects/">
                         <PolymorphicEffects/>
                     </Route>
 
