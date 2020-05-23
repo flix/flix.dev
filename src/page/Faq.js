@@ -445,6 +445,16 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        I was disappointed to learn that Flix has feature <b>X</b> instead of my favorite
+                        feature <b>Y</b>.
+                    </Question>
+                    <Answer>
+                        We are sorry to have let you down.
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         The examples all look horrible. The site looks horrible. This needs a lot of work before it
                         gets close to anything I would even consider using.
                     </Question>
