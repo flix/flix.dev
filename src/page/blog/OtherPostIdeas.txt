@@ -1,7 +1,4 @@
 - Programming with first-class Datalog constraints
-- Implementing Full Tail Call Elimination for the JVM.
-- Light-weight polymorphic effects.
+- No Free Lunch (Simple or well-engineered)
 - Linting
-- Naming mutable and immutable operations.
 - Sanity-- (e.g. in the style of PHP - a fractal of bad design).
-
