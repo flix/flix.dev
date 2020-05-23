@@ -2,3 +2,4 @@
 - No Free Lunch (Simple or well-engineered)
 - Linting
 - Sanity-- (e.g. in the style of PHP - a fractal of bad design).
+- Negativity around PL design
