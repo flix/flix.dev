@@ -229,7 +229,7 @@ class Faq extends Component {
                         <p>
                             A simple experiment shows that the compiler runs about <code>20.0x</code> times faster
                             when warmed up compared to when cold. We estimate that Flix, when warmed up, compiles
-                            around <code>10,000</code> lines of code per second, which we believe to better than the
+                            around <code>20,000</code> lines of code per second, which we believe to better than the
                             Scala compiler, but worse than the Java compiler. We take compiler performance
                             seriously and continuously track the <a href="https://arewefast.flix.dev/">performance of
                             the compiler</a>.
@@ -241,6 +241,63 @@ class Faq extends Component {
                             avoided, by passing the <code>--Xcore</code> flag, but then data types such
                             as <code>List</code> will be unavailable. In the future, it is our plan to compile-by-need.
                         </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        Ok, but really, what is the performance of the Flix compiler?
+                    </Question>
+                    <Answer>
+                        <p>
+                            Compiler throughput on an Intel i5-K8600k with 16GB of RAM.
+                        </p>
+
+                        <p>
+                            Experimental results from the 30th of May 2020.
+                        </p>
+
+                        <Table striped>
+                            <thead>
+                            <tr>
+                                <th className="text-center" style={{"width": "20%"}}>Threads</th>
+                                <th className="text-right">Throughput (lines/sec)</th>
+                                <th className="text-right">Ratio</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td className="text-center">1</td>
+                                <td className="text-right">9,673</td>
+                                <td className="text-right">1.0x</td>
+                            </tr>
+                            <tr>
+                                <td className="text-center">2</td>
+                                <td className="text-right">14,482</td>
+                                <td className="text-right">1.5x</td>
+                            </tr>
+                            <tr>
+                                <td className="text-center">3</td>
+                                <td className="text-right">17,100</td>
+                                <td className="text-right">1.8x</td>
+                            </tr>
+                            <tr>
+                                <td className="text-center">4</td>
+                                <td className="text-right">18,722</td>
+                                <td className="text-right">1.9x</td>
+                            </tr>
+                            <tr>
+                                <td className="text-center">5</td>
+                                <td className="text-right">20,118</td>
+                                <td className="text-right">2.1x</td>
+                            </tr>
+                            <tr>
+                                <td className="text-center">6</td>
+                                <td className="text-right">21,052</td>
+                                <td className="text-right">2.2x</td>
+                            </tr>
+                            </tbody>
+                        </Table>
                     </Answer>
                 </QA>
 
