@@ -1,5 +1,13 @@
+Technology:
 - Programming with first-class Datalog constraints
-- No Free Lunch (Simple or well-engineered)
 - Linting
+- Null
+- Type-level booleans
+- Complexity annotations
+- How we track Flix compiler performance
+- Currying the right way and the wrong way?
+
+Reflections:
+- No Free Lunch (Simple or well-engineered)
 - Sanity-- (e.g. in the style of PHP - a fractal of bad design).
 - Negativity around PL design
