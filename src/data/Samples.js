@@ -11,7 +11,7 @@ enum Shape {
 
 /// Computes the area of the given shape using 
 /// pattern matching and basic arithmetic.
-def area(s: Shape): Int = match s with {
+def area(s: Shape): Int = match s {
     case Circle(r)       => 3 * (r * r)
     case Square(w)       => w * w
     case Rectangle(h, w) => h * w
@@ -33,7 +33,7 @@ def aList(): List[Int] = 1 :: 2 :: 3 :: Nil
 def bList(): List[Int] = aList() ::: aList()
 
 /// We can use pattern matching to take a list apart:
-def length[a](l: List[a]): Int = match l with {
+def length[a](l: List[a]): Int = match l {
   case Nil     => 0
   case x :: xs => 1 + length(xs) 
 }
@@ -77,7 +77,7 @@ enum Tree[a] {
 /// A higher-order function that transforms a tree with
 /// elements of type a to a tree with elements of type b.
 def map[a, b](f: a -> b, t: Tree[a]): Tree[b] = 
-  match t with {
+  match t {
     case Leaf(x)    => Leaf(f(x))
     case Node(l, r) => Node(map(f, l), map(f, r))        
   }
@@ -392,7 +392,7 @@ def main(): Bool = isOdd(12345)
             name: "Sending and Receiving on Channels",
             code: `/// A function that sends every element of a list
 def send(o: Channel[Int], l: List[Int]): Unit & Impure =
-    match l with {
+    match l {
         case Nil     => ()
         case x :: xs => o <- x; send(o, xs)
     }
@@ -400,7 +400,7 @@ def send(o: Channel[Int], l: List[Int]): Unit & Impure =
 /// A function that receives n elements
 /// and collects them into a list.
 def recv(i: Channel[Int], n: Int): List[Int] & Impure =
-    match n with {
+    match n {
         case 0 => Nil
         case _ => (<- i) :: recv(i, n - 1)
     }
@@ -424,21 +424,21 @@ def main(): List[Int] & Impure =
             name: "Using Channels and Select",
             code: `/// Mooo's \`n\` times on channel \`c\`.
 def mooo(c: Channel[Str], n: Int): Unit & Impure =
-    match n with {
+    match n {
         case 0 => ()
         case x => c <- "Mooo!"; mooo(c, x - 1)
     }
 
 /// Meow's \`n\` times on channel \`c\`.
 def meow(c: Channel[Str], n: Int): Unit & Impure =
-    match n with {
+    match n {
         case 0 => ()
         case x => c <- "Meow!"; meow(c, x - 1)
     }
 
 /// Hiss'es \`n\` times on channel \`c\`.
 def hiss(c: Channel[Str], n: Int): Unit & Impure =
-    match n with {
+    match n {
         case 0 => ()
         case x => c <- "Hiss!"; hiss(c, x - 1)
     }
@@ -530,7 +530,7 @@ enum Sign {
 def equ(e1: Sign, e2: Sign): Bool = e1 == e2
 
 /// The partial order relation on the lattice elements.
-def leq(e1: Sign, e2: Sign): Bool = match (e1, e2) with {
+def leq(e1: Sign, e2: Sign): Bool = match (e1, e2) {
     case (Bot, _)   => true
     case (Neg, Neg) => true
     case (Zer, Zer) => true
@@ -540,7 +540,7 @@ def leq(e1: Sign, e2: Sign): Bool = match (e1, e2) with {
 }
 
 /// The least upper bound relation on the lattice elements.
-def lub(e1: Sign, e2: Sign): Sign = match (e1, e2) with {
+def lub(e1: Sign, e2: Sign): Sign = match (e1, e2) {
     case (Bot, x)   => x
     case (x, Bot)   => x
     case (Neg, Neg) => Neg
@@ -550,7 +550,7 @@ def lub(e1: Sign, e2: Sign): Sign = match (e1, e2) with {
 }
 
 /// The greatest lower bound relation on the lattice elements.
-def glb(e1: Sign, e2: Sign): Sign = match (e1, e2) with {
+def glb(e1: Sign, e2: Sign): Sign = match (e1, e2) {
     case (Top, x)   => x
     case (x, Top)   => x
     case (Neg, Neg) => Neg
@@ -809,7 +809,7 @@ enum BExp {
 //
 // We now define a small interpreter for arithmetic expressions.
 //
-def evalAExp(e: AExp): Int = match e with {
+def evalAExp(e: AExp): Int = match e {
     case Cst(i)                 => i
     case Plus(e1, e2)           => evalAExp(e1) + evalAExp(e2)
     case Minus(e1, e2)          => evalAExp(e1) - evalAExp(e2)
@@ -823,7 +823,7 @@ def evalAExp(e: AExp): Int = match e with {
 //
 // and here is the small interpreter for boolean expressions.
 //
-def evalBExp(e: BExp): Bool = match e with {
+def evalBExp(e: BExp): Bool = match e {
     case True           => true
     case False          => false
     case Not(e)         => !evalBExp(e)
@@ -863,10 +863,10 @@ enum Type {
 
 /// We can now write a function that given an expression extended
 /// with a tpe: Type field returns its type!
-def typeOf[r](e: Exp[{tpe: Type | r}]): Type = match e with {
+def typeOf[r](e: Exp[{tpe: Type | r}]): Type = match e {
     case True   => TBool
     case False  => TBool
-    case Cst(i) => TInt
+    case Cst(_) => TInt
     case Add(i) => i.tpe
     case Ite(i) => i.tpe
 }
@@ -874,7 +874,7 @@ def typeOf[r](e: Exp[{tpe: Type | r}]): Type = match e with {
 /// We can write a function that takes an untyped expression
 /// and returns a typed expression decorated with the type.
 /// For simplicity, the actual checks have been omitted.
-def typeCheck(e: Exp[{}]): Exp[{tpe: Type}] = match e with {
+def typeCheck(e: Exp[{}]): Exp[{tpe: Type}] = match e {
     case True   => True
     case False  => False
     case Cst(i) => Cst({value = i.value, tpe = TInt})
@@ -898,18 +898,18 @@ def main(): Type =
 
 /// We can extend the function above to be one that is polymorphic
 /// in whatever other fields an expression may be decorated with:
-def typeCheck2[r](e: Exp[r]): Exp[{tpe: Type | r}] = match e with {
+def typeCheck2[r](e: Exp[r]): Exp[{tpe: Type | r}] = match e {
     case True   => True
     case False  => False
     case Cst(i) => Cst({ +tpe = TInt | { value = i.value | i}})
     case Add(i) =>
-        let e1 = typeCheck(i.exp1);
-        let e2 = typeCheck(i.exp2);
+        let e1 = typeCheck2(i.exp1);
+        let e2 = typeCheck2(i.exp2);
             Add({ +tpe = TInt | {exp1 = e1, exp2 = e2 | i} })
     case Ite(i) =>
-      let e1 = typeCheck(i.exp1);
-      let e2 = typeCheck(i.exp2);
-      let e3 = typeCheck(i.exp2);
+      let e1 = typeCheck2(i.exp1);
+      let e2 = typeCheck2(i.exp2);
+      let e3 = typeCheck2(i.exp3);
         Ite({ +tpe = TInt | {exp1 = e1, exp2 = e2, exp3 = e3 | i} })
 }
 `
