@@ -54,7 +54,7 @@ class Home extends Component {
                                 Documentation
                             </Button>
 
-                            <a href="https://flix.dev/api/">
+                            <a href="https://api.flix.dev/">
                                 <Button outline color="info" className="ml-2">
                                     Standard Library
                                 </Button>

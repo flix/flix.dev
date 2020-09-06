@@ -47,13 +47,13 @@ class Documentation extends Component {
                     <Col>
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
-                                <a href="https://flix.dev/api/" className="text-success">
+                                <a href="https://api.flix.dev/" className="text-success">
                                     <FaStream style={{fontSize: '6em'}}/>
                                 </a>
                             </CardSubtitle>
                             <CardTitle className="text-center">Standard Library</CardTitle>
                             <CardText>
-                                The <a href="https://flix.dev/api/">Standard Library</a> documentation provides a
+                                The <a href="https://api.flix.dev/">Standard Library</a> documentation provides a
                                 Javadoc-style description of the Flix standard library with API documentation for
                                 important data types such as <code>Option</code>, <code>Result</code>,
                                 and <code>List</code>.
