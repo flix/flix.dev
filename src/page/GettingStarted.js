@@ -112,7 +112,7 @@ class GettingStarted extends Component {
                         <h2>Onwards: The Programming Flix Book</h2>
 
                         <p>
-                            The <a href="https://flix.dev/programming-flix">Programming
+                            The <a href="https://doc.flix.dev/">Programming
                             Flix</a> book provides an in-depth introduction to programming in Flix.
                         </p>
                     </Col>

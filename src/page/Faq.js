@@ -38,7 +38,7 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            Yes, with the <a href="https://flix.dev/programming-flix/#/interoperability/">import
+                            Yes, with the <a href="https://doc.flix.dev/interoperability/">import
                             mechanism</a>.
                         </p>
                     </Answer>
@@ -163,7 +163,7 @@ class Faq extends Component {
                         <p>
                             We recommend that you start with a small offering to the Great Dreamer, the Sleeper of
                             R'lyeh, Cthulhu. And coffee. Lots of coffee. All kidding aside, the best place to start is
-                            to look at the examples and to read the <a href="https://flix.dev/programming-flix/">Programming
+                            to look at the examples and to read the <a href="https://doc.flix.dev/">Programming
                             Flix</a> book.
                         </p>
 

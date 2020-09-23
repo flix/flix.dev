@@ -32,13 +32,13 @@ class Documentation extends Component {
                     <Col>
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
-                                <a href="https://flix.dev/programming-flix/" className="text-primary">
+                                <a href="https://doc.flix.dev/" className="text-primary">
                                     <FaBookReader style={{fontSize: '6em'}}/>
                                 </a>
                             </CardSubtitle>
                             <CardTitle className="text-center">Programming Flix</CardTitle>
                             <CardText>
-                                The <a href="https://flix.dev/programming-flix/">Programming Flix</a> book provides an
+                                The <a href="https://doc.flix.dev/">Programming Flix</a> book provides an
                                 introduction to Flix for functional programmers. The book demonstrates the core concepts
                                 of Flix through several examples.
                             </CardText>
