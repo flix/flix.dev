@@ -7,7 +7,7 @@ class PolymorphicEffects extends Component {
 
     componentDidMount() {
         document.title = "Flix | Taming Impurity with Polymorphic Effects";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

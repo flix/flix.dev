@@ -14,7 +14,7 @@ class Blog extends Component {
         if (!document.title) {
             document.title = "Flix | Blog";
         }
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

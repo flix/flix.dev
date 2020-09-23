@@ -9,7 +9,7 @@ class Home extends Component {
 
     componentDidMount() {
         document.title = "The Flix Programming Language";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

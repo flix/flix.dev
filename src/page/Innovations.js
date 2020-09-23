@@ -6,7 +6,7 @@ class Innovations extends Component {
 
     componentDidMount() {
         document.title = "Flix | Innovations";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

@@ -16,7 +16,7 @@ class Documentation extends Component {
 
     componentDidMount() {
         document.title = "Flix | Documentation";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

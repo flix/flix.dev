@@ -7,7 +7,7 @@ class Koans extends Component {
 
     componentDidMount() {
         document.title = "Flix | Koans";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

@@ -7,7 +7,7 @@ class Naming extends Component {
 
     componentDidMount() {
         document.title = "Flix | Naming Functional and Destructive Operations";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

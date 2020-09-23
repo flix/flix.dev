@@ -8,7 +8,7 @@ class Faq extends Component {
 
     componentDidMount() {
         document.title = "Flix | FAQ";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

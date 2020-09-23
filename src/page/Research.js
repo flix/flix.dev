@@ -6,7 +6,7 @@ class Research extends Component {
 
     componentDidMount() {
         document.title = "Flix | Research";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

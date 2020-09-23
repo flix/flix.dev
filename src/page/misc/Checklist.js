@@ -6,7 +6,7 @@ class Checklist extends Component {
 
     componentDidMount() {
         document.title = "Flix | Principles";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

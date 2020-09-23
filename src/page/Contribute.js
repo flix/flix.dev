@@ -6,7 +6,7 @@ class Contribute extends Component {
 
     componentDidMount() {
         document.title = "Flix | Contribute";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

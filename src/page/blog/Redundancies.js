@@ -7,7 +7,7 @@ class Redundancies extends Component {
 
     componentDidMount() {
         document.title = "Flix | Redundancies as Compile-Time Errors";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

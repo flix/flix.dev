@@ -23,7 +23,7 @@ class Compare extends Component {
 
     componentDidMount() {
         document.title = "Flix | Compare";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

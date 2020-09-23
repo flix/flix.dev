@@ -7,7 +7,7 @@ class About extends Component {
 
     componentDidMount() {
         document.title = "Flix | About";
-        ReactGA.pageview(window.location.pathname + window.location.hash);
+        ReactGA.pageview(window.location.pathname);
     }
 
     render() {
