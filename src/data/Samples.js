@@ -145,12 +145,12 @@ def main(): Int =
             name: "Polymorphic Record Extension and Restriction",
             code: `/// Polymorphically extends the record \`r\` with an \`age\` label.
 /// Preserves (retains) all other labels polymorphically.
-def withAge[a](r: a, v: Int): {age: Int | a} =
+def withAge[a](r: {| a}, v: Int): {age: Int | a} =
     { +age = v | r }
 
 /// Polymorphically restricts (removes) the \`age\` label from \`r\`.
 /// Preserves (retains) all other labels polymorphically.
-def withoutAge[a](r: {age: Int | a}): a = {-age | r}
+def withoutAge[a](r: {age: Int | a}): {| a} = {-age | r}
 
 /// Construct several records and extend them with an age.
 def main(): Int =
@@ -296,24 +296,26 @@ def h(): N[Bool] = Map#{ true -> Ok(456) }
         {
             name: "Reading and Writing a Text File",
             code: `/// An example of how to read and write a text file.
+use Core/Io/IOError.IOError;
+use Core/Io/File.{File, new => newFile, readLines, writeLines};
 
 /// Returns a list of prominent public figures.
 def getData(): List[String] =
     "Luke, Lucky" :: "Duck, Donald" :: Nil
 
 /// Writes the list of prominent figures to a file.
-def writeData(path: Path): Result[Unit, Path.IOError] & Impure =
-    Path.writeLines(path, getData())
+def writeData(file: File): Result[Unit, IOError] & Impure =
+    writeLines(file, getData())
 
 /// Reads the list of prominent figures back, returning surnames.
-def readData(path: Path): Result[List[Str], Path.IOError] & Impure =
+def readData(file: File): Result[List[Str], IOError] & Impure =
     let splitAndGetFirst = (s: String -> String.split(s, ",")[0]);
     let getSurname = (xs: List[Str]) -> List.map(splitAndGetFirst, xs);
-    Result.map(getSurname, Path.readLines(path))
+    Result.map(getSurname, readLines(file))
 
 /// Writes the text file and then reads it back in again.
-def main(): Result[List[String], Path.IOError] & Impure =
-    let path = Path.new("members.txt");
+def main(): Result[List[String], IOError] & Impure =
+    let path = newFile("members.txt");
     Result.flatMap(_ -> readData(path), writeData(path))
 `
         },
@@ -341,13 +343,13 @@ def main(): Unit =
 def connection(): {pass: Option[Str]} = {pass = None}
 
 /// The host function extends the options record with a hostname.
-def host[r](o: r, h: Str): {host: Str | r} = {+host = h | o}
+def host[r](o: {| r}, h: Str): {host: Str | r} = {+host = h | o}
 
 /// The port function extends the options record with a port number.
-def port[r](o: r, p: Int): {port: Int | r} = {+port = p | o}
+def port[r](o: {| r}, p: Int): {port: Int | r} = {+port = p | o}
 
 /// The user function extends the options record with a username.
-def user[r](o: r, u: Str): {user: Str | r} = {+user = u | o}
+def user[r](o: {| r}, u: Str): {user: Str | r} = {+user = u | o}
 
 /// The pass function *updates* the options record with a new value
 /// of its pass field. Notice that the options record must already
@@ -851,8 +853,8 @@ enum Exp[r] {
     case True,
     case False,
     case Cst({value: Int | r}),
-    case Add({exp1: Exp[r], exp2: Exp[r] | r}),
-    case Ite({exp1: Exp[r], exp2: Exp[r], exp3: Exp[r] | r})
+    case Add({exp1: Exp[{| r}], exp2: Exp[{| r}] | r}),
+    case Ite({exp1: Exp[{| r}], exp2: Exp[{| r}], exp3: Exp[{| r}] | r})
 }
 
 /// Next, we define a grammar of types:
@@ -898,7 +900,7 @@ def main(): Type =
 
 /// We can extend the function above to be one that is polymorphic
 /// in whatever other fields an expression may be decorated with:
-def typeCheck2[r](e: Exp[r]): Exp[{tpe: Type | r}] = match e {
+def typeCheck2[r](e: Exp[{| r}]): Exp[{tpe: Type | r}] = match e {
     case True   => True
     case False  => False
     case Cst(i) => Cst({ +tpe = TInt | { value = i.value | i}})
