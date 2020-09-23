@@ -1,6 +1,10 @@
 export default function () {
     return [
         {
+            name: "We are making progress on VS Code support!",
+            date: "2020-09-23"
+        },
+        {
             name: "Improvements to compiler performance.",
             date: "2020-05-05"
         },
@@ -19,10 +23,6 @@ export default function () {
         {
             name: "The Flix online playground is now available!",
             date: "2019-08-31"
-        },
-        {
-            name: "Flix version 0.7.0 released!",
-            date: "2019-08-08"
         }
     ];
 }
