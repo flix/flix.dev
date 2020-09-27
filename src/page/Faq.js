@@ -490,6 +490,25 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        Can we just stop building new programming languages?
+                    </Question>
+                    <Answer>
+                        <p>
+                            We build new programming languages and we do research on programming languages because we
+                            want to offer developers better tools to write programs. We want tools that make it simpler,
+                            safer, and faster to write correct programs. We want tools that increase productivity and
+                            that aid in program maintenance.
+                        </p>
+
+                        <p>
+                            The situation is not unlike why we would want better airplanes, better houses, or better
+                            surgical instruments.
+                        </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         This sounds like vaporware. All big promises and no delivery.
                     </Question>
                     <Answer>
