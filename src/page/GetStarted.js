@@ -4,7 +4,7 @@ import InstallGif from '../gif/install.gif'
 import NextStepsGif from '../gif/next-steps.gif'
 import ReactGA from 'react-ga';
 
-class GettingStarted extends Component {
+class GetStarted extends Component {
 
     componentDidMount() {
         document.title = "Flix | Getting Started";
@@ -14,7 +14,7 @@ class GettingStarted extends Component {
     render() {
         return (
             <Container>
-                <h1>Getting Started</h1>
+                <h1>Get Started</h1>
 
                 <p>
                     Flix runs on any platform that supports the <a href="https://adoptopenjdk.net/">Java Virtual
@@ -123,4 +123,4 @@ class GettingStarted extends Component {
     }
 }
 
-export default GettingStarted;
+export default GetStarted;

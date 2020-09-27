@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 
 import Home from "./page/Home";
-import GettingStarted from "./page/GettingStarted";
+import GetStarted from "./page/GetStarted";
 import Documentation from "./page/Documentation";
 import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
@@ -93,7 +93,7 @@ class App extends Component {
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
-                            <NavLink tag={Link} to="/getting-started/">Getting Started</NavLink>
+                            <NavLink tag={Link} to="/get-started/">Get Started</NavLink>
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
@@ -129,7 +129,7 @@ class App extends Component {
 
                 <Route path="/" exact render={() => this.getHome()}/>
                 <Route path="/about/" component={About}/>
-                <Route path="/getting-started/" component={GettingStarted}/>
+                <Route path="/get-started/" component={GetStarted}/>
                 <Route path="/documentation/" component={Documentation}/>
                 <Route path="/principles/" component={Principles}/>
                 <Route path="/compare/" component={Compare}/>
