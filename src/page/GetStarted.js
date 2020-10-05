@@ -19,7 +19,7 @@ class GetStarted extends Component {
                     <Col>
                         <h5>Online Playground</h5>
                         <p>
-                            You can try Flix online at <a href="https://play.flix.dev/">play.flix.dev</a>.
+                            You can try Flix online in the playground at <a href="https://play.flix.dev/">play.flix.dev</a>.
                         </p>
                     </Col>
                 </Row>
@@ -29,7 +29,7 @@ class GetStarted extends Component {
                         <h5>Visual Studio Code</h5>
 
                         <p>
-                            Using Flix in <a href="https://code.visualstudio.com/">Visual Studio Code</a> is easy:
+                            Or you can easily install Flix in <a href="https://code.visualstudio.com/">Visual Studio Code</a>:
                         </p>
 
                         <Card className="ml-2 mr-2">
