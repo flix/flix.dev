@@ -277,14 +277,14 @@ def main(): USD = sum(USD(1), USD(5))
             name: "Type Aliases",
             code: `/// A type alias introduces a short-hand for an existing type.
 
-/// A type alias for the type Map[Int, Str].
-type alias M = Map[Int, Str]
+/// A type alias for the type Map[Int, String].
+type alias M = Map[Int, String]
 
 /// A function that returns a map of type M.
 def f(): M = Map#{ 1 -> "Hello", 2 -> "World"}
 
-// A polymorphic type alias for the type Map[a, Result[Int, Str]].
-type alias N[a] = Map[a, Result[Int, Str]]
+// A polymorphic type alias for the type Map[a, Result[Int, String]].
+type alias N[a] = Map[a, Result[Int, String]]
 
 /// A function that returns a map of type N.
 def g(): N[Int] = Map#{ 1 -> Ok(123), 2 -> Err("Hello") }
@@ -308,9 +308,9 @@ def writeData(file: File): Result[Unit, IOError] & Impure =
     writeLines(file, getData())
 
 /// Reads the list of prominent figures back, returning surnames.
-def readData(file: File): Result[List[Str], IOError] & Impure =
+def readData(file: File): Result[List[String], IOError] & Impure =
     let splitAndGetFirst = (s: String -> String.split(s, ",")[0]);
-    let getSurname = (xs: List[Str]) -> List.map(splitAndGetFirst, xs);
+    let getSurname = (xs: List[String]) -> List.map(splitAndGetFirst, xs);
     Result.map(getSurname, readLines(file))
 
 /// Writes the text file and then reads it back in again.
@@ -340,29 +340,29 @@ def main(): Unit =
 
 /// The connection "builder" function returns a record with *all*
 /// *optional* fields initialized to None.
-def connection(): {pass: Option[Str]} = {pass = None}
+def connection(): {pass: Option[String]} = {pass = None}
 
 /// The host function extends the options record with a hostname.
-def host[r](o: {| r}, h: Str): {host: Str | r} = {+host = h | o}
+def host[r](o: {| r}, h: String): {host: String | r} = {+host = h | o}
 
 /// The port function extends the options record with a port number.
 def port[r](o: {| r}, p: Int): {port: Int | r} = {+port = p | o}
 
 /// The user function extends the options record with a username.
-def user[r](o: {| r}, u: Str): {user: Str | r} = {+user = u | o}
+def user[r](o: {| r}, u: String): {user: String | r} = {+user = u | o}
 
 /// The pass function *updates* the options record with a new value
 /// of its pass field. Notice that the options record must already
 /// have a pass field for this to type check, hence the connection
 /// "builder" function ensures that such a field exists.
-def pass[r](o: {pass: Option[Str] | r}, p: Str):
-           {pass: Option[Str] | r} = {pass = Some(p) | o}
+def pass[r](o: {pass: Option[String] | r}, p: String):
+           {pass: Option[String] | r} = {pass = Some(p) | o}
 
 /// Finally, the connect function has a very natural signature that
 /// requires an options record with mandatory host, port, user,
 /// and pass fields. The pass field, however, is of type Option,
 /// and so may have the value None, if never set.
-def connect(o: {host: Str, port: Int, user: Str, pass: Option[Str]}):
+def connect(o: {host: String, port: Int, user: String, pass: Option[String]}):
     Unit = ()
 
 /// NB: Code reformatted in non-idiomatic style to fit.
@@ -425,21 +425,21 @@ def main(): List[Int] & Impure =
         {
             name: "Using Channels and Select",
             code: `/// Mooo's \`n\` times on channel \`c\`.
-def mooo(c: Channel[Str], n: Int): Unit & Impure =
+def mooo(c: Channel[String], n: Int): Unit & Impure =
     match n {
         case 0 => ()
         case x => c <- "Mooo!"; mooo(c, x - 1)
     }
 
 /// Meow's \`n\` times on channel \`c\`.
-def meow(c: Channel[Str], n: Int): Unit & Impure =
+def meow(c: Channel[String], n: Int): Unit & Impure =
     match n {
         case 0 => ()
         case x => c <- "Meow!"; meow(c, x - 1)
     }
 
 /// Hiss'es \`n\` times on channel \`c\`.
-def hiss(c: Channel[Str], n: Int): Unit & Impure =
+def hiss(c: Channel[String], n: Int): Unit & Impure =
     match n {
         case 0 => ()
         case x => c <- "Hiss!"; hiss(c, x - 1)
@@ -447,9 +447,9 @@ def hiss(c: Channel[Str], n: Int): Unit & Impure =
 
 /// Start the animal farm...
 def main(): String & Impure =
-    let c1 = chan Str 1;
-    let c2 = chan Str 1;
-    let c3 = chan Str 1;
+    let c1 = chan String 1;
+    let c2 = chan String 1;
+    let c3 = chan String 1;
     spawn mooo(c1, 0);
     spawn meow(c2, 3);
     spawn hiss(c3, 7);
@@ -566,9 +566,9 @@ def glb(e1: Sign, e2: Sign): Sign = match (e1, e2) {
 let Sign<> = (Bot, Top, equ, leq, lub, glb)
 
 /// We can now declare three map lattices:
-lat A(x: Str, s: Sign)
-lat B(x: Str, s: Sign)
-lat R(x: Str, s: Sign)
+lat A(x: String, s: Sign)
+lat B(x: String, s: Sign)
+lat R(x: String, s: Sign)
 
 /// We can write facts with lattice semantics:
 A("a"; Pos).
@@ -588,10 +588,10 @@ R("d"; s) :- A(x; s), B(x; s).
 /// of negation is safe and compute its stratification.
 
 /// We declare several relations related to movies:
-rel Movie(title: Str)
-rel Actor(title: Str, name: Str)
-rel Director(title: Str, name: Str)
-rel PureMovie(title: Str)
+rel Movie(title: String)
+rel Actor(title: String, name: String)
+rel Director(title: String, name: String)
+rel PureMovie(title: String)
 
 /// We declare some facts about movies:
 Movie("Interstellar").
@@ -619,8 +619,8 @@ PureMovie(movie) :-
         {
             name: "First-Class Constraints and Fixpoints",
             code: `/// Declare two predicate symbols.
-rel ParentOf(x: Str, y: Str)
-rel AncestorOf(x: Str, y: Str)
+rel ParentOf(x: String, y: String)
+rel AncestorOf(x: String, y: String)
 
 /// Returns a collection of facts.
 def getFacts(): #{ ParentOf, AncestorOf } = #{
@@ -645,8 +645,8 @@ def main(): #{ ParentOf, AncestorOf } =
             name: "Polymorphic First-Class Constraints",
             code: `/// Declare two polymorphic predicate symbols.
 /// Here an edge and a path are labelled with some type \`l\`.
-rel LabelEdge[l](x: Str, l: l, y: Str)
-rel LabelPath[l](x: Str, l: l, y: Str)
+rel LabelEdge[l](x: String, l: l, y: String)
+rel LabelPath[l](x: String, l: l, y: String)
 
 /// Returns a set of edge facts labelled with numbers.
 /// Note that the return type is \`closed\` which means that the
@@ -662,7 +662,7 @@ def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = #{
 /// Note that the return type is \`open\` (polymorphic) which
 /// means that the facts can be used within any constraint
 /// as long as the edges are labelled with strings.
-def getEdgesWithColor[r](): #{ LabelEdge[Str] | r } = #{
+def getEdgesWithColor[r](): #{ LabelEdge[String] | r } = #{
     LabelEdge("a", "red", "b").
     LabelEdge("b", "red", "c").
     LabelEdge("c", "blu", "d").
@@ -694,8 +694,8 @@ def main2(): Unit =
         {
             name: "Pipelines of Fixpoint Computations",
             code: `// Declare three predicate symbols.
-rel ColorEdge(x: Int, c: Str, y: Int)
-rel ColorPath(x: Int, c: Str, y: Int)
+rel ColorEdge(x: Int, c: String, y: Int)
+rel ColorPath(x: Int, c: String, y: Int)
 rel ColorlessPath(x: Int, y: Int)
 
 def main(): Bool =
