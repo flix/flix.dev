@@ -40,7 +40,7 @@ class Home extends Component {
                         </p>
 
                         <p>
-                            <Button color="success" tag={Link} to="/getting-started/">
+                            <Button color="success" tag={Link} to="/get-started/">
                                 Getting Started
                             </Button>
 
