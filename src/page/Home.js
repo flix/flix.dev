@@ -40,8 +40,8 @@ class Home extends Component {
                         </p>
 
                         <p>
-                            <Button color="success" tag={Link} to="/getting-started/">
-                                Getting Started
+                            <Button color="success" tag={Link} to="/get-started/">
+                                Get Started
                             </Button>
 
                             <a href="https://play.flix.dev/">
