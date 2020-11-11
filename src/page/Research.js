@@ -38,28 +38,40 @@ class Research extends Component {
 
                 <ul>
                     <Paper
+                        title="Fixpoints for the Masses: Programming with First-Class Datalog Constraints"
+                        authors="Magnus Madsen, Ondřej Lhoták"
+                        venue="OOPSLA '20"
+                        url="/paper/oopsla2020a.pdf"/>
+
+                    <Paper
+                        title="Polymorphic Types and Effects with Boolean Unification"
+                        authors="Magnus Madsen, Jaco van de Pol"
+                        venue="OOPSLA '20"
+                        url="/paper/oopsla2020b.pdf"/>
+
+                    <Paper
                         title="Implicit Parameters for Logic Programming"
                         authors="Magnus Madsen, Ondřej Lhoták"
                         venue="PPDP '18"
-                        url="https://dl.acm.org/citation.cfm?id=3236953"/>
+                        url="/paper/ppdp2018.pdf"/>
 
                     <Paper
                         title="Safe and Sound Program Analysis with Flix"
                         authors="Magnus Madsen, Ondřej Lhoták"
                         venue="ISSTA '18"
-                        url="https://dl.acm.org/citation.cfm?id=3213847"/>
+                        url="/paper/issta2018.pdf"/>
 
                     <Paper
                         title="Tail Call Elimination and Data Representation for Functional Languages on the Java Virtual Machine"
                         authors="Magnus Madsen, Ramin Zarifi, Ondřej Lhoták"
                         venue="CC '18"
-                        url="https://dl.acm.org/citation.cfm?id=3179499"/>
+                        url="/paper/cc2018.pdf"/>
 
                     <Paper
                         title="From Datalog to Flix: A Declarative Language for Fixed Points on Lattices"
                         authors="Magnus Madsen, Ming-Ho Yee, Ondřej Lhoták"
                         venue="PLDI '16"
-                        url="https://dl.acm.org/citation.cfm?id=2908096"/>
+                        url="/paper/pldi2016.pdf"/>
                 </ul>
 
                 <h3>Workshops</h3>
@@ -80,17 +92,6 @@ class Research extends Component {
                         authors="Ming-Ho Yee"
                         venue="University of Waterloo"
                         url="https://uwspace.uwaterloo.ca/bitstream/handle/10012/10856/Yee_Ming-Ho.pdf?sequence=1"
-                    />
-                </ul>
-
-                <h3>Other</h3>
-
-                <ul>
-                    <Paper
-                        title="Flix Koans"
-                        authors="Magnus Madsen"
-                        venue="Aarhus University"
-                        url="https://flix.dev/papers/flix-koans.pdf"
                     />
                 </ul>
 
