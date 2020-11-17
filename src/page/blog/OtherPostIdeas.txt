@@ -6,8 +6,10 @@ Technology:
 - Complexity annotations
 - How we track Flix compiler performance
 - Currying the right way and the wrong way?
+- The State of Flix 2020
 
 Reflections:
 - No Free Lunch (Simple or well-engineered)
 - Sanity-- (e.g. in the style of PHP - a fractal of bad design).
 - Negativity around PL design
+
