@@ -1,14 +1,8 @@
 import React, {Component} from "react";
 import SamplesData from "../data/Samples";
-import ReactGA from "react-ga";
 import Editor from "./Editor";
 import {
-    Button,
-    Col,
-    Container,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle, InputGroup, InputGroupAddon, InputGroupButtonDropdown, Row
+    Button, Col, Container, InputGroup, Row
 } from "reactstrap";
 import FontAwesome from 'react-fontawesome';
 import PulseLoader from 'react-spinners/PulseLoader';
@@ -33,16 +27,11 @@ class Codebox extends Component {
     }
 
     onDropdownChoice(event) {
-        let newChoice = Number(event.target.getAttribute("choice"));
+        let newChoice = Number(event.target.value);
         this.setState({
             choice: newChoice,
             input: this.state.samples[newChoice].code,
             output: undefined
-        });
-        ReactGA.event({
-            category: 'Codebox',
-            action: 'Selected an example',
-            label: this.state.samples[newChoice].name
         });
     }
 
@@ -66,27 +55,11 @@ class Codebox extends Component {
     }
 
     getDropDown() {
-        return <InputGroupButtonDropdown addonType="append"
-                                         isOpen={this.state.dropdown}
-                                         toggle={this.toggleDropDown.bind(this)}
-                                         size="sm">
-            <DropdownToggle caret color="success" outline className="dropdown-samples text-body">
-                {this.getNameOfSelection()}
-            </DropdownToggle>
-            <DropdownMenu>
-                <DropdownItem header>Example Programs</DropdownItem>
-                <DropdownItem divider/>
-                {this.state.samples.map((sample, index) =>
-                    <DropdownItem key={index}
-                                  choice={index}
-                                  onClick={this.onDropdownChoice.bind(this)}
-                                  active={index === this.state.choice}
-                                  className="small">
-                        {sample.name}
-                    </DropdownItem>)
-                }
-            </DropdownMenu>
-        </InputGroupButtonDropdown>
+        return <select value={this.state.choice} onChange={this.onDropdownChoice.bind(this)} className="ml-2">
+            {this.state.samples.map((sample, index) =>
+                <option key={index} value={index}>{sample.name}</option>)
+            }
+        </select>
     }
 
     getNameOfSelection() {
@@ -135,9 +108,7 @@ class Codebox extends Component {
         return (
             <Container>
                 <InputGroup className="mt-2 mb-3">
-                    <InputGroupAddon addonType="prepend">
-                        {this.getRunButton()}
-                    </InputGroupAddon>
+                    {this.getRunButton()}
                     {this.getDropDown()}
                 </InputGroup>
                 {this.getEditor()}
