@@ -531,6 +531,29 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        How the fuck can anyone understand such weird syntax? I hate all these symbols.
+                    </Question>
+                    <Answer>
+                        <p>
+                            The Flix syntax is <Link to="/principles/"> based on keywords</Link> except when there is a
+                            <i>clearly established historical precedent</i> for using a symbol. For example:
+                        </p>
+
+                        <ul>
+                            <li>The cons of an element <code>x</code> and a list <code>xs</code> is written as <code>x
+                                :: xs</code>.
+                            </li>
+                            <li>The underscore <code>_</code> denotes a wildcard (or an unused variable).</li>
+                            <li>The expression <code>&lt;- c</code> reads a value from a channel whereas <code>c &lt;-
+                                v</code> writes a value to a channel.
+                            </li>
+                            <li>The symbol <code>:-</code> denotes logical implication in Datalog rules.</li>
+                        </ul>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         The examples all look horrible. The site looks horrible. This needs a lot of work before it
                         gets close to anything I would even consider using.
                     </Question>
