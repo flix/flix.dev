@@ -7,6 +7,7 @@ import DesignFlaws from "./blog/DesignFlaws";
 import Naming from "./blog/Naming";
 import Redundancies from "./blog/Redundancies";
 import PolymorphicEffects from "./blog/PolymorphicEffects";
+import DeathOfUfcs from "./blog/DeathOfUfcs";
 
 class Blog extends Component {
 
@@ -44,6 +45,11 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
+                                        <Link to="/blog/the-death-of-ufcs/">
+                                            The Death of Uniform Function Call Syntax
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/blog/taming-impurity-with-polymorphic-effects/">
                                             Taming Impurity with Polymorphic Effects
                                         </Link>
@@ -68,6 +74,9 @@ class Blog extends Component {
                         </Row>
                     </Route>
 
+                    <Route path="/blog/the-death-of-ufcs/">
+                        <DeathOfUfcs/>
+                    </Route>
 
                     <Route path="/blog/taming-impurity-with-polymorphic-effects/">
                         <PolymorphicEffects/>
