@@ -1,6 +1,10 @@
 export default function () {
     return [
         {
+            name: "We are on Twitter! Find us at @flixlang.",
+            date: "2020-11-20"
+        },
+        {
             name: "We are making progress on VS Code support!",
             date: "2020-09-23"
         },
