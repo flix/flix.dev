@@ -7,6 +7,7 @@ Technology:
 - How we track Flix compiler performance
 - Currying the right way and the wrong way?
 - The State of Flix 2020
+- Transformations that preserve sanity. E.g. introducing a local variable cannot change anything globally.
 
 Reflections:
 - No Free Lunch (Simple or well-engineered)
