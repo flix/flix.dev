@@ -61,6 +61,12 @@ class DeathOfUfcs extends Component {
 
                         <h2>The Problems with it</h2>
 
+                        <h3>Problem 0: </h3>
+
+                        <p>
+                            We now have two ways of doing the same thing. Confusing to beginners.
+                        </p>
+
                         <h3>Problem I: Piping</h3>
 
 
@@ -90,6 +96,10 @@ r.f(123)`}
                             </ul>
                         </p>
 
+                        <h5>Potential Fixes</h5>
+
+                        <p>We could try </p>
+
                         <h2>Fixes</h2>
 
                         - Removal
@@ -100,6 +110,10 @@ r.f(123)`}
                             Need some principle that says additions must not break code locally.
                             And local changes must not break globally.
                         </p>
+
+                        <p>In the end, we decided the trouble was not worth it, and we have removed UFCS from Flix.
+                        That is not say that UFCS may not come back one day, if the above issues can be overcome
+                        or with a different syntax.</p>
 
                         <p>
                             Until next time, happy hacking.
