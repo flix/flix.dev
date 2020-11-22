@@ -82,7 +82,8 @@ r.f(123)`}
 
                         <p>
                             Now the critical question is: What is the meaning of <code>r.f(123)</code>? Does it
-                            call <code>f</code> or does it call <code>r.f</code>?
+                            call <code>f</code> or does it call <code>r.f</code>? Do we parse it as:
+
                         </p>
 
                         <h2>Fixes</h2>
@@ -90,6 +91,10 @@ r.f(123)`}
                         - Removal
                         - Overloading
                         - Other syntax
+
+                        <p>
+                            How do other languages deal with this?
+                        </p>
 
                         <p>
                             Until next time, happy hacking.
