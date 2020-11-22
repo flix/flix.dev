@@ -92,9 +92,6 @@ r.f(123)`}
                         - Overloading
                         - Other syntax
 
-                        <p>
-                            How do other languages deal with this?
-                        </p>
 
                         <p>
                             Until next time, happy hacking.
