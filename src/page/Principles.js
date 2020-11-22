@@ -115,16 +115,6 @@ class Principles extends Component {
                         pitfalls.
                     </Principle>
 
-                    <Principle name="Uniform function call syntax">
-                        Flix supports <a href="https://en.wikipedia.org/wiki/Uniform_Function_Call_Syntax">uniform
-                        function call syntax (UFCS)</a>. In Flix, the syntax for function application is: <code>f(a, b,
-                        c)</code>. UFCS enables an "object-oriented" style where we can write the same function
-                        call as <code>a.f(b, c)</code>.
-                        As another example, the function call <code>length(xs)</code> can also be written
-                        as <code>xs.length()</code>. UFCS is a purely syntactic mechanism and does not influence the
-                        semantics of a call.
-                    </Principle>
-
                     <Principle name="Keyword-based syntax">
                         The Flix syntax is inspired by Scala. We believe that short key words make it
                         easy to visually identify the overall structure of a piece of code. Flix tries to use
