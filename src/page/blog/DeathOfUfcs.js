@@ -32,11 +32,23 @@ class DeathOfUfcs extends Component {
                             {`def map(f: a -> b & e, l: List[a]): List[b] & e`}
                         </InlineEditor>
 
+                        <h2>Advantages</h2>
+
+                        - It is familiar to OO programmers.
+                        - Auto complete
+                        - Its looks great for some functions, e.g. l.length() vs. length(l).
+
                         <h2>The Problems with it</h2>
 
-                        <h2>Looking Forward</h2>
+                        - doesnt work with piping
+                        - doesnt work with records
+                        -
 
+                        <h2>Fixes</h2>
 
+                        - Removal
+                        - Overloading
+                        - Other syntax
 
                         <p>
                             Until next time, happy hacking.
