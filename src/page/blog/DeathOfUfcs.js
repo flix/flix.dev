@@ -100,8 +100,6 @@ r.f(123)`}
 
                         <p>We could try </p>
 
-                        <h2>Fixes</h2>
-
                         - Removal
                         - Overloading
                         - Other syntax
