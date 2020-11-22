@@ -23,14 +23,35 @@ class DeathOfUfcs extends Component {
                         </p>
 
                         <p>
-                            ...
+                            We recently decided to remove <a
+                            href="https://en.wikipedia.org/wiki/Uniform_Function_Call_Syntax">uniform
+                            function call syntax</a> from the Flix programming language. In this blog post, I will
+                            explain what uniform
+                            function call syntax is, why is it useful, and why we ultimately decided to abandon it.
                         </p>
 
-                        <h2>What is UFCS?</h2>
+                        <h2>Uniform Function Call Syntax</h2>
+
+                        <p>
+                            In a nutshell, uniform function call syntax (UFCS) allows a function call:
+                        </p>
 
                         <InlineEditor>
-                            {`def map(f: a -> b & e, l: List[a]): List[b] & e`}
+                            {`f(a, b, c)`}
                         </InlineEditor>
+
+                        <p>
+                            to be written as:
+                        </p>
+
+                        <InlineEditor>
+                            {`a.f(b, c)`}
+                        </InlineEditor>
+
+                        <p>
+                            For example, the call <code>l.length()</code> is the same as <code>length(l)</code>, and the
+                            call <code>l.drop(5)</code> is the same as <code>drop(l, 5)</code>.
+                        </p>
 
                         <h2>Advantages</h2>
 
