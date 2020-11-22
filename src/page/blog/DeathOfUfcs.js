@@ -61,9 +61,29 @@ class DeathOfUfcs extends Component {
 
                         <h2>The Problems with it</h2>
 
-                        - doesnt work with piping
-                        - doesnt work with records
-                        -
+                        <h3>Problem I: Piping</h3>
+
+
+                        <h3>Problem II: Records</h3>
+
+                        <p>Consider the following program fragment:</p>
+
+                        <InlineEditor>
+                            {`let f = x -> x + 1;
+let r = { f = x -> x + 2};
+r.f(123)`}
+                        </InlineEditor>
+
+                        <p>
+                            The local variable <code>f</code> is a function that increments its argument by one. The
+                            local variable <code>r</code> is a record with a field named <code>f</code> that is a
+                            function which increments its argument by two.
+                        </p>
+
+                        <p>
+                            Now the critical question is: What is the meaning of <code>r.f(123)</code>? Does it
+                            call <code>f</code> or does it call <code>r.f</code>?
+                        </p>
 
                         <h2>Fixes</h2>
 
