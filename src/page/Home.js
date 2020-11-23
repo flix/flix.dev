@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Row, Col, Button} from 'reactstrap';
+import {Button, Col, Container, Row} from 'reactstrap';
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import NewsData from '../data/News.js'
@@ -109,6 +109,7 @@ class Home extends Component {
                             <li>parallel compiler architecture</li>
                             <li>human friendly errors</li>
                             <li>interactive mode</li>
+                            <li>Visual Studio Code support</li>
                         </ul>
                     </Col>
                 </Row>
@@ -163,6 +164,17 @@ class Home extends Component {
                 </Row>
 
                 <Row className="mb-3">
+                    <Col xs="6">
+                        <h3>Visual Studio Code Support</h3>
+
+                        <p>
+                            The Flix compiler supports integration with Visual Studio Code through the Language Server
+                            Protocol. This includes features such as: (i) inline compiler errors, (ii) hover to show the
+                            type and effect of an expression, (iii) jump to definition, (iv) find all usages of local
+                            variables, functions, algebraic data types, and (v) rename support.
+                        </p>
+                    </Col>
+
                     <Col xs="6">
                         <h3>Research and Flix</h3>
 

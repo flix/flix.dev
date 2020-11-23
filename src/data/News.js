@@ -23,10 +23,6 @@ export default function () {
         {
             name: "Magnus Madsen has received 2.5 million DKK from the Independent Research Fund of Denmark for research on first-class Datalog constraints in Flix!",
             date: "2019-12-08"
-        },
-        {
-            name: "The Flix online playground is now available!",
-            date: "2019-08-31"
         }
     ];
 }
