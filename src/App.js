@@ -97,12 +97,12 @@ class App extends Component {
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
-                            <NavLink tag={Link} to="/documentation/">Documentation</NavLink>
+                            <NavLink tag={Link}
+                                     to="/principles/">Principles</NavLink>
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
-                            <NavLink tag={Link}
-                                     to="/principles/">Principles</NavLink>
+                            <NavLink tag={Link} to="/documentation/">Documentation</NavLink>
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
@@ -130,8 +130,8 @@ class App extends Component {
                 <Route path="/" exact render={() => this.getHome()}/>
                 <Route path="/about/" component={About}/>
                 <Route path="/get-started/" component={GetStarted}/>
-                <Route path="/documentation/" component={Documentation}/>
                 <Route path="/principles/" component={Principles}/>
+                <Route path="/documentation/" component={Documentation}/>
                 <Route path="/compare/" component={Compare}/>
                 <Route path="/innovations/" component={Innovations}/>
                 <Route path="/research/" component={Research}/>
