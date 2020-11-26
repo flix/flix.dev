@@ -130,7 +130,7 @@ class Koans extends Component {
             Friend(me, f1), Friend(me, f2), Friend(me, f3),
             Friend(f1, nf), Friend(f2, nf), Friend(f3, nf),
             not Friend(me, nf),
-            if f1 != f2 && f2 != f3 && f1 != f3.
+            if f1 != f2 and f2 != f3 and f1 != f3.
     };
     project Suggestion (solve (g <+> p))`}
                         </InlineEditor>
@@ -200,7 +200,7 @@ class Koans extends Component {
     (solve g <+> p) |= Cyclic().
     
 def pairwiseAcyclic(l: List[#{Edge(Int, Int)}]): List[List[#{Edge(Int, Int)}]] =
-    l |> List.groupBy((g1, g2) -> !isCyclic(g1 <+> g2))`}
+    l |> List.groupBy((g1, g2) -> not isCyclic(g1 <+> g2))`}
                         </InlineEditor>
 
                     </Col>
