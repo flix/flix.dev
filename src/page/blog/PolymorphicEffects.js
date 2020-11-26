@@ -551,7 +551,7 @@ def charAt(i: Int, s: String): Char =
 /// [...]
 ///
 def stripIndent(n: Int32, s: String): String =
-        if (n <= 0 || length(s) == 0)
+        if (n <= 0 or length(s) == 0)
             s
         else
             stripIndentHelper(n, s) as & Pure
