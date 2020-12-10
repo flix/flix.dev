@@ -968,7 +968,10 @@ def main(): Unit =
         },
         {
             name: "Using Laziness to Compute Fibonacci",
-            code: `/// An infinite sequence of Fibonacci numbers
+            code: `use LazyList.LazyList;
+use LazyList.LazyList.{Empty, LazyCons};
+
+/// An infinite sequence of Fibonacci numbers
 def fibs(): LazyList[Int32] =
     LazyCons(0, 
         lazy LazyCons(1, 
