@@ -963,7 +963,7 @@ def log(_: Lazy[String]): Unit = ()
 /// Writes a message to the log.
 /// The slow function will not be evaluated.
 def main(): Unit =
-    log(lazy "The computation returned ${slowFunction()}")
+    log(lazy "The computation returned \${slowFunction()}")
 `
         },
         {
