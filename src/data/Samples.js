@@ -1,4 +1,4 @@
-export default function () {
+function samples() {
     return [
         {
             name: "Algebraic Data Types and Pattern Matching",
@@ -984,3 +984,5 @@ def main(): LazyList[Int32] = LazyList.take(10, fibs())
         }
     ];
 }
+
+export default samples
