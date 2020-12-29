@@ -1,7 +1,7 @@
 export default function () {
     return [
         {
-            name: "We are making great progress on type classes.",
+            name: "We are making progress on type classes.",
             date: "2020-12-29"
         },
         {
@@ -15,10 +15,6 @@ export default function () {
         {
             name: "Improvements to compiler performance.",
             date: "2020-05-05"
-        },
-        {
-            name: "Improved interoperability with Java!",
-            date: "2020-02-01"
         },
         {
             name: "We have received 2.5 million DKK from the Independent Research Fund of Denmark for research on functional and logic programming!",

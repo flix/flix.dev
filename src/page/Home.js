@@ -71,7 +71,7 @@ class Home extends Component {
 
                 <Row className="mb-3">
                     <Col md="12">
-                        <h2>Features at a Glance</h2>
+                        <h2>Features</h2>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
                         <ul>
@@ -122,14 +122,18 @@ class Home extends Component {
                             <CardBody>
                                 <CardTitle>Recent News</CardTitle>
                                 <CardText>
-                                    <ul>
+                                    <table className="table-sm">
+                                        <tbody>
                                         {NewsData().map(item =>
-                                            <li key={item.name}>
-                                                {item.date} - {item.name}
-                                                <br/>
-                                            </li>
+                                            <tr key={item.name}>
+                                                <td className="small" style={{"minWidth": "7em"}}>
+                                                    {item.date.replaceAll("-", "–")}
+                                                </td>
+                                                <td>{item.name}</td>
+                                            </tr>
                                         )}
-                                    </ul>
+                                        </tbody>
+                                    </table>
                                 </CardText>
                             </CardBody>
                         </Card>
@@ -139,7 +143,7 @@ class Home extends Component {
                         <Card className="h-100">
                             <CardBody>
                                 <CardTitle>Bread- and Butter Functional Programming</CardTitle>
-                                <CardText>
+                                <CardText className="text-justify">
                                     Flix supports the basic building blocks of typed functional programs: algebraic data
                                     types, pattern matching, and parametric polymorphism (generics). It uses a
                                     Hindley-Milner style type system which supports type inference within a function.
@@ -157,11 +161,11 @@ class Home extends Component {
                         <Card className="h-100">
                             <CardBody>
                                 <CardTitle>Principled Design</CardTitle>
-                                <CardText>
+                                <CardText className="text-justify">
                                     It is our goal to build Flix on a solid foundation of ideas from programming
-                                    language research. In our design, we try to identify and guide ourselves by a
-                                    collection of principles each with a well-documented rationale. We want Flix to
-                                    adopt great ideas from languages such as F#, Go, OCaml, Haskell, Rust, and Scala.
+                                    language research. We aim to identify and document a collection of design
+                                    principles. We try to adopt great and proven ideas from other programming languages
+                                    such as F#, Go, OCaml, Haskell, Rust, and Scala.
                                 </CardText>
                             </CardBody>
                         </Card>
@@ -171,12 +175,11 @@ class Home extends Component {
                         <Card className="h-100">
                             <CardBody>
                                 <CardTitle>Visual Studio Code Support</CardTitle>
-                                <CardText>
-                                    The Flix compiler supports integration with Visual Studio Code through the Language
-                                    Server Protocol. This includes features such as: (i) inline compiler errors, (ii)
-                                    hover to show the type and effect of an expression, (iii) jump to definition, (iv)
-                                    find all usages of local variables, functions, algebraic data types, and (v) rename
-                                    support.
+                                <CardText className="text-justify">
+                                    Flix supports integration with Visual Studio Code through LSP. This includes support
+                                    for features such as: (i) inline compiler errors, (ii) hover to show the type and
+                                    effect of an expression, (iii) jump to definition, (iv) find all usages of local
+                                    variables, functions, algebraic data types, and (v) rename support.
                                 </CardText>
                             </CardBody>
                         </Card>
