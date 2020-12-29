@@ -70,8 +70,35 @@ class Home extends Component {
                 <hr className="mb-3"/>
 
                 <Row className="mb-3">
+                    <Col md={12}>
+
+                        <h2>Why Flix? </h2>
+
+                        <blockquote className="blockquote p-2 ml-4 mr-4 bg-light text-justify"
+                                    style={{"fontFamily": "Source Serif Pro"}}>
+                            <p className="mb-0">
+                                Flix aims to offer a <span className="font-weight-bold text-success">unique combination of
+                                features</span> that no other programming language offers, including: <span
+                                className="font-weight-bold">algebraic
+                                data types and pattern matching</span> (Haskell, OCaml), <span
+                                className="font-weight-bold">extensible records</span> (Elm), <span
+                                className="font-weight-bold">type classes</span> (Haskell, Rust), <span
+                                className="font-weight-bold">local type inference</span> (Haskell, OCaml), <span
+                                className="font-weight-bold">channel and process-based concurrency</span> (Go), <span
+                                className="font-weight-bold">full tail call elimination</span> (Haskell, OCaml), <span
+                                className="font-weight-bold">a polymorphic effect system</span> (Koka), and <span
+                                className="font-weight-bold">compilation to JVM bytecode</span> (Scala).
+                            </p>
+                        </blockquote>
+
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
                     <Col md="12">
-                        <h2>Features</h2>
+                        <h2>Full Feature List</h2>
                     </Col>
                     <Col md="4" style={{"fontSize": '1.2em'}}>
                         <ul>
