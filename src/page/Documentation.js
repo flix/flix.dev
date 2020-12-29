@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import {FaBookReader} from 'react-icons/fa';
 import {FaStream} from 'react-icons/fa';
 import {FaVihara} from 'react-icons/fa';
+import {FaMicroblog} from 'react-icons/fa';
 import {FaGitter} from 'react-icons/fa';
 import {FaGithub} from 'react-icons/fa';
 import {FaRegLaughSquint} from 'react-icons/fa';
@@ -29,7 +30,7 @@ class Documentation extends Component {
                 </Row>
 
                 <Row className="mb-4">
-                    <Col>
+                    <Col md="4">
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
                                 <a href="https://doc.flix.dev/" className="text-primary">
@@ -44,7 +45,7 @@ class Documentation extends Component {
                             </CardText>
                         </Card>
                     </Col>
-                    <Col>
+                    <Col md="4">
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
                                 <a href="https://api.flix.dev/" className="text-success">
@@ -60,7 +61,7 @@ class Documentation extends Component {
                             </CardText>
                         </Card>
                     </Col>
-                    <Col>
+                    <Col md="4">
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
                                 <Link to="/misc/koans" className="text-black-50">
@@ -85,7 +86,7 @@ class Documentation extends Component {
                 </Row>
 
                 <Row className="mb-3">
-                    <Col>
+                    <Col lg="2">
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
                                 <Link to="/research" className="text-black-50">
@@ -93,13 +94,21 @@ class Documentation extends Component {
                                 </Link>
                             </CardSubtitle>
                             <CardTitle className="text-center">Research Papers</CardTitle>
-                            <CardText>
-                                Read published scientific papers on the foundations of Flix.
-                            </CardText>
                         </Card>
                     </Col>
 
-                    <Col>
+                    <Col lg="2">
+                        <Card body className="h-100">
+                            <CardSubtitle className="text-center m-4">
+                                <Link to="/blog/" className="text-black-50">
+                                    <FaMicroblog style={{fontSize: '3em'}}/>
+                                </Link>
+                            </CardSubtitle>
+                            <CardTitle className="text-center">Blog</CardTitle>
+                        </Card>
+                    </Col>
+
+                    <Col lg="2">
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
                                 <a href="https://gitter.im/flix/Lobby" className="text-black-50">
@@ -107,27 +116,21 @@ class Documentation extends Component {
                                 </a>
                             </CardSubtitle>
                             <CardTitle className="text-center">Gitter</CardTitle>
-                            <CardText>
-                                Chat with us on Gitter. Ask questions and get help.
-                            </CardText>
                         </Card>
                     </Col>
 
-                    <Col>
+                    <Col lg="2">
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
-                                <a href="https://github.com/flix/flix/issues" className="text-black-50">
+                                <a href="https://github.com/flix/flix" className="text-black-50">
                                     <FaGithub style={{fontSize: '3em'}}/>
                                 </a>
                             </CardSubtitle>
                             <CardTitle className="text-center">GitHub</CardTitle>
-                            <CardText>
-                                Report bugs or participate in discussions.
-                            </CardText>
                         </Card>
                     </Col>
 
-                    <Col>
+                    <Col lg="2">
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
                                 <a href="https://arewefast.flix.dev/" className="text-black-50">
@@ -135,13 +138,10 @@ class Documentation extends Component {
                                 </a>
                             </CardSubtitle>
                             <CardTitle className="text-center">Compiler Perf</CardTitle>
-                            <CardText>
-                                Track compiler performance over time.
-                            </CardText>
                         </Card>
                     </Col>
 
-                    <Col>
+                    <Col lg="2">
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
                                 <Link to="/misc/checklist" className="text-black-50">
@@ -149,9 +149,6 @@ class Documentation extends Component {
                                 </Link>
                             </CardSubtitle>
                             <CardTitle className="text-center">Language Checklist</CardTitle>
-                            <CardText>
-                                Enjoy a quick laugh.
-                            </CardText>
                         </Card>
                     </Col>
                 </Row>
