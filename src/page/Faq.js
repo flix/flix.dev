@@ -472,6 +472,24 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        It appears that an example on the website does not work?
+                    </Question>
+                    <Answer>
+                        <p>
+                            The examples on the website and the compiler running on a virtual machine are not always
+                            completely in sync. If an example fails to compile feel free to open a bug report and we
+                            will get it fixed.
+                        </p>
+
+                        <p>
+                            Occasionally a mischievous visitor will crash the virtual machine. We usually discover and
+                            fix this within a few days.
+                        </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         Haskell and OCaml compile to native code thus – by definition – they must be faster than Flix.
                     </Question>
                     <Answer>
