@@ -59,7 +59,7 @@ class Codebox extends Component {
             value={this.state.choice}
             onChange={this.onDropdownChoice.bind(this)}
             style={{"textOverflow": "ellipsis"}}
-            className="ml-2">
+            className="ml-2 w-75">
             {this.state.samples.map((sample, index) =>
                 <option key={index} value={index}>{sample.name}</option>)
             }
@@ -110,14 +110,14 @@ class Codebox extends Component {
 
     render() {
         return (
-            <Container>
+            <div>
                 <InputGroup className="mt-2 mb-3">
                     {this.getRunButton()}
                     {this.getDropDown()}
                 </InputGroup>
                 {this.getEditor()}
                 {this.getOutput()}
-            </Container>
+            </div>
         );
     }
 }
