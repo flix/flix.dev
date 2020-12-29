@@ -211,6 +211,19 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        Haskell and OCaml compile to native code thus – by definition – they must be faster than Flix.
+                    </Question>
+                    <Answer>
+                        This is not necessarily true. For example, Java sometimes beats both <a
+                        href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/ocaml-java.html">OCaml</a> and <a
+                        href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/haskell.html">Haskell</a> in <a
+                        href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">The Computer
+                        Language Benchmarks Game</a>.
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         What is the performance of the Flix compiler?
                     </Question>
                     <Answer>
@@ -485,19 +498,6 @@ class Faq extends Component {
                             Occasionally a mischievous visitor will crash the virtual machine. We usually discover and
                             fix this within a few days.
                         </p>
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        Haskell and OCaml compile to native code thus – by definition – they must be faster than Flix.
-                    </Question>
-                    <Answer>
-                        This is not necessarily true. For example, Java sometimes beats both <a
-                        href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/ocaml-java.html">OCaml</a> and <a
-                        href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/haskell.html">Haskell</a> in <a
-                        href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">The Computer
-                        Language Benchmarks Game</a>.
                     </Answer>
                 </QA>
 
