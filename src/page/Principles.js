@@ -422,14 +422,12 @@ class Principles extends Component {
 class Principle extends Component {
     render() {
         return (
-            <div>
-                <Card>
-                    <CardBody>
-                        <CardTitle>{this.props.name}</CardTitle>
-                        {this.props.children}
-                    </CardBody>
-                </Card>
-            </div>
+            <Card>
+                <CardBody>
+                    <CardTitle>{this.props.name}</CardTitle>
+                    {this.props.children}
+                </CardBody>
+            </Card>
         );
     }
 }
