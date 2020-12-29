@@ -75,16 +75,16 @@ class Home extends Component {
                         <h2>Why Flix? </h2>
 
                         <p className="p-2 text-justify">
-                                Flix aims to offer a <span className="font-weight-bold text-success">unique combination of
+                            Flix aims to offer a <span className="font-weight-bold text-success">unique combination of
                                 features</span> that no other programming language offers, including: <span
-                                className="font-weight-bold">algebraic
+                            className="font-weight-bold">algebraic
                                 data types and pattern matching</span> (Haskell, OCaml), <span
-                                className="font-weight-bold">extensible records</span> (Elm), <span
-                                className="font-weight-bold">type classes</span> (Haskell, Rust), <span
-                                className="font-weight-bold">local type inference</span> (Haskell, OCaml), <span
-                                className="font-weight-bold">channel and process-based concurrency</span> (Go), <span
-                                className="font-weight-bold">a polymorphic effect system</span>, and <span
-                                className="font-weight-bold">compilation to JVM bytecode</span> (Scala).
+                            className="font-weight-bold">extensible records</span> (Elm), <span
+                            className="font-weight-bold">type classes</span> (Haskell, Rust), <span
+                            className="font-weight-bold">local type inference</span> (Haskell, OCaml), <span
+                            className="font-weight-bold">channel and process-based concurrency</span> (Go), <span
+                            className="font-weight-bold">a polymorphic effect system</span>, and <span
+                            className="font-weight-bold">compilation to JVM bytecode</span> (Scala).
                         </p>
 
                     </Col>
@@ -96,7 +96,7 @@ class Home extends Component {
                     <Col md="12">
                         <h2>Full Feature List</h2>
                     </Col>
-                    <Col md="4" style={{"fontSize": '1.2em'}}>
+                    <Col md="4">
                         <ul>
                             <li>algebraic data types</li>
                             <li>pattern matching</li>
@@ -109,7 +109,8 @@ class Home extends Component {
                             <li>light-weight polymorphic effects</li>
                         </ul>
                     </Col>
-                    <Col md="4" style={{"fontSize": '1.2em'}}>
+
+                    <Col md="4">
                         <ul>
                             <li>CSP-style concurrency</li>
                             <li>buffered &amp; unbuffered channels</li>
@@ -122,7 +123,8 @@ class Home extends Component {
                             <li>redundancy checks</li>
                         </ul>
                     </Col>
-                    <Col md="4" style={{"fontSize": '1.2em'}}>
+
+                    <Col md="4">
                         <ul>
                             <li>monadic let* expressions</li>
                             <li>expressions holes</li>
