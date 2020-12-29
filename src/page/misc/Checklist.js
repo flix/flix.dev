@@ -5,7 +5,7 @@ import {Container} from "reactstrap";
 class Checklist extends Component {
 
     componentDidMount() {
-        document.title = "Flix | Principles";
+        document.title = "Flix | Programming Language Checklist";
         ReactGA.pageview(window.location.pathname);
     }
 
