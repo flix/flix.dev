@@ -450,6 +450,16 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        Why does the website require JavaScript?
+                    </Question>
+                    <Answer>
+                        We built the website using the popular React framework. We use JavaScript for the online code
+                        editor. Ultimately, we want to spend our time writing compilers, not writing websites.
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         The language is probably great from a technical point of view, but unless Apple, Google,
                         Mozilla, or Microsoft is on-board it is pointless.
                     </Question>
