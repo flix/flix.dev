@@ -55,7 +55,11 @@ class Codebox extends Component {
     }
 
     getDropDown() {
-        return <select value={this.state.choice} onChange={this.onDropdownChoice.bind(this)} className="ml-2">
+        return <select
+            value={this.state.choice}
+            onChange={this.onDropdownChoice.bind(this)}
+            style={{"textOverflow": "ellipsis"}}
+            className="ml-2">
             {this.state.samples.map((sample, index) =>
                 <option key={index} value={index}>{sample.name}</option>)
             }

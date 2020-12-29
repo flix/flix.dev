@@ -62,7 +62,7 @@ class Home extends Component {
                         </p>
 
                     </Col>
-                    <Col xs="6">
+                    <Col md="6">
                         <Codebox flix={this.props.flix}/>
                     </Col>
                 </Row>

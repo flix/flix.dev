@@ -42,11 +42,6 @@ p:last-child {
     color: #17a2b8;
 }
 
-.dropdown-samples {
-    width: 420px;
-    text-align: left;
-}
-
 .editor-output h5 {
     font-size: 1.1rem;
     color: gray;
