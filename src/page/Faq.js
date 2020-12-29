@@ -460,6 +460,18 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        The page does not load without javascript enabled. If I cannot even view the mostly text
+                        website without that bloat, I wonder what the language is like?
+                    </Question>
+                    <Answer>
+                        Indeed, if your computer is too old to run a browser that supports JavaScript then probably your
+                        computer is too old to run a modern JVM that supports Flix. Also, why would we spent time
+                        hacking on JavaScript when we could hack on Flix instead?
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         Haskell and OCaml compile to native code thus – by definition – they must be faster than Flix.
                     </Question>
                     <Answer>
