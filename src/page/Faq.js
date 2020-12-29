@@ -543,19 +543,26 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        Can we just stop building new programming languages?
+                        Do we really need any more programming languages?
                     </Question>
                     <Answer>
                         <p>
-                            We build new programming languages and we do research on programming languages because we
-                            want to offer developers better tools to write programs. We want tools that make it simpler,
-                            safer, and faster to write correct programs. We want tools that increase productivity and
-                            that aid in program maintenance.
+                            <i>Do we really need safer airplanes?</i> <i>Do we really need electric cars?</i> <i>Do we
+                            really need more ergonomic chairs?</i>
                         </p>
 
                         <p>
-                            The situation is not unlike why we would want better airplanes, better houses, or better
-                            surgical instruments.
+                            I mean, after all, we already have airplanes, cars, and chairs!
+                        </p>
+
+                        <p>
+                            We build new programming languages and we conduct research on programming language design
+                            because we want to offer developers <i>better tools to write programs</i>. We want to make
+                            it <i>simpler</i>, <i>safer</i>, and <i>faster</i> to write correct programs.
+                        </p>
+
+                        <p>
+                            And we want to increase developer happiness. It should be a pleasure to use Flix!
                         </p>
                     </Answer>
                 </QA>
