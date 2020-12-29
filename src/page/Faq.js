@@ -564,6 +564,17 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        This is – by far – the worst syntax I have ever seen in a functional language. Semicolons,
+                        braces, symbolic soup, et al. It is like if Scala, Java and Haskell had a one night stand in the
+                        center of Chernobyl.
+                    </Question>
+                    <Answer>
+                        Quite an achievement, wouldn't you say?
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         The examples all look horrible. The site looks horrible. This needs a lot of work before it
                         gets close to anything I would even consider using.
                     </Question>
