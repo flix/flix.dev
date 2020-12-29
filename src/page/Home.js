@@ -74,9 +74,7 @@ class Home extends Component {
 
                         <h2>Why Flix? </h2>
 
-                        <blockquote className="blockquote p-2 ml-4 mr-4 bg-light text-justify"
-                                    style={{"fontFamily": "Source Serif Pro"}}>
-                            <p className="mb-0">
+                        <p className="p-2 text-justify">
                                 Flix aims to offer a <span className="font-weight-bold text-success">unique combination of
                                 features</span> that no other programming language offers, including: <span
                                 className="font-weight-bold">algebraic
@@ -85,11 +83,9 @@ class Home extends Component {
                                 className="font-weight-bold">type classes</span> (Haskell, Rust), <span
                                 className="font-weight-bold">local type inference</span> (Haskell, OCaml), <span
                                 className="font-weight-bold">channel and process-based concurrency</span> (Go), <span
-                                className="font-weight-bold">full tail call elimination</span> (Haskell, OCaml), <span
-                                className="font-weight-bold">a polymorphic effect system</span> (Koka), and <span
+                                className="font-weight-bold">a polymorphic effect system</span>, and <span
                                 className="font-weight-bold">compilation to JVM bytecode</span> (Scala).
-                            </p>
-                        </blockquote>
+                        </p>
 
                     </Col>
                 </Row>
