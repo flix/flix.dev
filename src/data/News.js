@@ -1,6 +1,10 @@
 export default function () {
     return [
         {
+            name: "We are making great progress on type classes.",
+            date: "2020-12-29"
+        },
+        {
             name: "We are on Twitter! Find us at @flixlang.",
             date: "2020-11-20"
         },
@@ -13,15 +17,11 @@ export default function () {
             date: "2020-05-05"
         },
         {
-            name: "We have significantly extended the standard library!",
-            date: "2020-04-12"
-        },
-        {
             name: "Improved interoperability with Java!",
             date: "2020-02-01"
         },
         {
-            name: "Magnus Madsen has received 2.5 million DKK from the Independent Research Fund of Denmark for research on first-class Datalog constraints in Flix!",
+            name: "We have received 2.5 million DKK from the Independent Research Fund of Denmark for research on functional and logic programming!",
             date: "2019-12-08"
         }
     ];

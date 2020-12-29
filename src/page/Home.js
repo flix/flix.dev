@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Col, Container, Row} from 'reactstrap';
+import {Button, Card, CardBody, CardText, CardTitle, Col, Container, Row} from 'reactstrap';
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import NewsData from '../data/News.js'
@@ -116,75 +116,70 @@ class Home extends Component {
 
                 <hr className="mb-3"/>
 
-                <Row className="mb-3">
-                    <Col xs="6">
-                        <h3>Recent News</h3>
-                        <ul>
-                            {NewsData().map(item =>
-                                <li key={item.name}>
-                                    {item.date} - {item.name}
-                                    <br/>
-                                </li>
-                            )}
-                        </ul>
+                <Row className="mb-4">
+                    <Col md={6}>
+                        <Card className="h-100">
+                            <CardBody>
+                                <CardTitle>Recent News</CardTitle>
+                                <CardText>
+                                    <ul>
+                                        {NewsData().map(item =>
+                                            <li key={item.name}>
+                                                {item.date} - {item.name}
+                                                <br/>
+                                            </li>
+                                        )}
+                                    </ul>
+                                </CardText>
+                            </CardBody>
+                        </Card>
                     </Col>
 
-                    <Col xs="6">
-                        <h3>Bread- and Butter Functional Programming</h3>
-
-                        <p>
-                            Flix supports the basic building blocks of typed functional programs:
-                            algebraic data types, pattern matching, and parametric polymorphism (generics).
-                            It uses a Hindley-Milner style type system which supports type inference within
-                            a function. The type and effect separates pure and impure code with allowing effect
-                            polymorphism. Its syntax is inspired by Scala with an emphasis on the use of keywords.
-                        </p>
-                    </Col>
-                </Row>
-
-                <Row className="mb-3">
-                    <Col xs="6">
-                        <h3>Process and Channel-based Concurrency</h3>
-                        <p>
-                            Flix embraces a Go-style concurrency model based on processes and channels. Processes
-                            communicate by sharing immutable messages which help prevent race conditions. The current
-                            implementation is based on threads, but when the JVM gains support for light-weight
-                            threads or continuations, we plan to switch to one of those.
-                        </p>
-                    </Col>
-
-                    <Col xs="6">
-                        <h3>Principled Design</h3>
-
-                        It is our goal to build Flix on a solid foundation of ideas from programming language research.
-                        In our design, we try to identify and guide ourselves by a collection of principles each
-                        with a well-documented rationale. We want Flix to adopt great ideas from
-                        languages such as F#, Go, OCaml, Haskell, Rust, and Scala.
+                    <Col md={6}>
+                        <Card className="h-100">
+                            <CardBody>
+                                <CardTitle>Bread- and Butter Functional Programming</CardTitle>
+                                <CardText>
+                                    Flix supports the basic building blocks of typed functional programs: algebraic data
+                                    types, pattern matching, and parametric polymorphism (generics). It uses a
+                                    Hindley-Milner style type system which supports type inference within a function.
+                                    The type and effect separates pure and impure code with allowing effect
+                                    polymorphism. Its syntax is inspired by Scala with an emphasis on the use of
+                                    keywords.
+                                </CardText>
+                            </CardBody>
+                        </Card>
                     </Col>
                 </Row>
 
-                <Row className="mb-3">
-                    <Col xs="6">
-                        <h3>Visual Studio Code Support</h3>
-
-                        <p>
-                            The Flix compiler supports integration with Visual Studio Code through the Language Server
-                            Protocol. This includes features such as: (i) inline compiler errors, (ii) hover to show the
-                            type and effect of an expression, (iii) jump to definition, (iv) find all usages of local
-                            variables, functions, algebraic data types, and (v) rename support.
-                        </p>
+                <Row className="mb-4">
+                    <Col md={6}>
+                        <Card className="h-100">
+                            <CardBody>
+                                <CardTitle>Principled Design</CardTitle>
+                                <CardText>
+                                    It is our goal to build Flix on a solid foundation of ideas from programming
+                                    language research. In our design, we try to identify and guide ourselves by a
+                                    collection of principles each with a well-documented rationale. We want Flix to
+                                    adopt great ideas from languages such as F#, Go, OCaml, Haskell, Rust, and Scala.
+                                </CardText>
+                            </CardBody>
+                        </Card>
                     </Col>
 
-                    <Col xs="6">
-                        <h3>Research and Flix</h3>
-
-                        <p>
-                            Flix is also a research project which explores various aspects of programming language
-                            design.
-                            A large part of the research is on connections between functional and logic programming,
-                            specifically Datalog. Flix, as probably the only language in the world, supports first-class
-                            Datalog constraints enriched with lattice semantics.
-                        </p>
+                    <Col md={6}>
+                        <Card className="h-100">
+                            <CardBody>
+                                <CardTitle>Visual Studio Code Support</CardTitle>
+                                <CardText>
+                                    The Flix compiler supports integration with Visual Studio Code through the Language
+                                    Server Protocol. This includes features such as: (i) inline compiler errors, (ii)
+                                    hover to show the type and effect of an expression, (iii) jump to definition, (iv)
+                                    find all usages of local variables, functions, algebraic data types, and (v) rename
+                                    support.
+                                </CardText>
+                            </CardBody>
+                        </Card>
                     </Col>
                 </Row>
 
