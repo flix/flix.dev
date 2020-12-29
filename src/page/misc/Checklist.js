@@ -22,7 +22,7 @@ class Checklist extends Component {
                 <code>
                             <pre>{`You appear to be advocating a new:
 [x] functional [x] imperative [ ] object-oriented [ ] procedural [ ] stack-based
-[x] "multi-paradigm" [ ] lazy [x] eager [x] statically-typed [ ] dynamically-typed
+[x] "multi-paradigm" [x] lazy [x] eager [x] statically-typed [ ] dynamically-typed
 [x] pure [x] impure [ ] non-hygienic [ ] visual [ ] beginner-friendly
 [ ] non-programmer-friendly [ ] completely incomprehensible
 programming language. Your language will not work. Here is why it will not work.
@@ -31,10 +31,10 @@ You appear to believe that:
 [x] Syntax is what makes programming difficult
 [x] Garbage collection is free [x] Computers have infinite memory
 [ ] Nobody really needs:
-[ ] concurrency [ ] a REPL [ ] debugger support [x] IDE support [ ] I/O
+[ ] concurrency [ ] a REPL [ ] debugger support [ ] IDE support [ ] I/O
 [x] to interact with code not written in your language
 [ ] The entire world speaks 7-bit ASCII
-[ ] Scaling up to large software projects will be easy
+[x] Scaling up to large software projects will be easy
 [x] Convincing programmers to adopt a new language will be easy
 [ ] Convincing programmers to adopt a language-specific IDE will be easy
 [ ] Programmers love writing lots of boilerplate
@@ -45,11 +45,11 @@ Unfortunately, your language (has/lacks):
 [h] comprehensible syntax [h] semicolons [ ] significant whitespace [ ] macros
 [ ] implicit type conversion [ ] explicit casting [h] type inference
 [ ] goto [ ] exceptions [h] closures [h] tail recursion [ ] coroutines
-[ ] reflection [ ] subtyping [ ] multiple inheritance [ ] operator overloading
+[ ] reflection [ ] subtyping [ ] multiple inheritance [h] operator overloading
 [h] algebraic datatypes [h] recursive types [h] polymorphic types
-[ ] covariant array typing [ ] monads [ ] dependent types
+[ ] covariant array typing [h] monads [ ] dependent types
 [h] infix operators [ ] nested comments [ ] multi-line strings [ ] regexes
-[h] call-by-value [ ] call-by-name [ ] call-by-reference [ ] call-cc
+[h] call-by-value [h] call-by-name [ ] call-by-reference [ ] call-cc
 
 The following philosophical objections apply:
 [ ] Programmers should not need to understand category theory to write "Hello, World!"
@@ -89,8 +89,8 @@ Your implementation has the following flaws:
 [ ] You don't seem to understand functions
 
 Additionally, your marketing has the following problems:
-[ ] Unsupported claims of increased productivity
-[ ] Unsupported claims of greater "ease of use"
+[h] Unsupported claims of increased productivity
+[h] Unsupported claims of greater "ease of use"
 [ ] Obviously rigged benchmarks
 [ ] Graphics, simulation, or crypto benchmarks where your code just calls
 handwritten assembly through your FFI
