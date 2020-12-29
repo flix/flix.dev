@@ -37,11 +37,12 @@ class Documentation extends Component {
                                     <FaBookReader style={{fontSize: '6em'}}/>
                                 </a>
                             </CardSubtitle>
-                            <CardTitle className="text-center">Programming Flix</CardTitle>
+                            <CardTitle className="text-center">
+                                <a href="https://doc.flix.dev/">Programming Flix</a>
+                            </CardTitle>
                             <CardText>
-                                The <a href="https://doc.flix.dev/">Programming Flix</a> book provides an
-                                introduction to Flix for functional programmers. The book demonstrates the core concepts
-                                of Flix through several examples.
+                                The book provides an introduction to Flix for functional programmers. The book
+                                demonstrates the core concepts of Flix through several examples.
                             </CardText>
                         </Card>
                     </Col>
@@ -52,12 +53,13 @@ class Documentation extends Component {
                                     <FaStream style={{fontSize: '6em'}}/>
                                 </a>
                             </CardSubtitle>
-                            <CardTitle className="text-center">Standard Library</CardTitle>
+                            <CardTitle className="text-center">
+                                <a href="https://api.flix.dev/">
+                                    Standard Library
+                                </a>
+                            </CardTitle>
                             <CardText>
-                                The <a href="https://api.flix.dev/">Standard Library</a> documentation provides a
-                                Javadoc-style description of the Flix standard library with API documentation for
-                                important data types such as <code>Option</code>, <code>Result</code>,
-                                and <code>List</code>.
+                                The documentation provides a Javadoc-style description of the Flix library.
                             </CardText>
                         </Card>
                     </Col>
@@ -68,10 +70,14 @@ class Documentation extends Component {
                                     <FaVihara style={{fontSize: '6em'}}/>
                                 </Link>
                             </CardSubtitle>
-                            <CardTitle className="text-center">Flix Koans</CardTitle>
+                            <CardTitle className="text-center">
+                                <Link to="/misc/koans">
+                                    Flix Koans
+                                </Link>
+                            </CardTitle>
                             <CardText>
-                                The <Link to="/misc/koans">Flix Koans</Link> presents several
-                                realistic examples of logic programming with first-class Datalog constraints in Flix.
+                                The koans presents several realistic examples of logic programming with first-class
+                                Datalog constraints in Flix.
                             </CardText>
                         </Card>
                     </Col>
@@ -93,7 +99,9 @@ class Documentation extends Component {
                                     <MdSchool style={{fontSize: '3em'}}/>
                                 </Link>
                             </CardSubtitle>
-                            <CardTitle className="text-center">Research Papers</CardTitle>
+                            <CardTitle className="text-center">
+                                <Link to="/research"> Research Papers </Link>
+                            </CardTitle>
                         </Card>
                     </Col>
 
@@ -104,7 +112,9 @@ class Documentation extends Component {
                                     <FaMicroblog style={{fontSize: '3em'}}/>
                                 </Link>
                             </CardSubtitle>
-                            <CardTitle className="text-center">Blog</CardTitle>
+                            <CardTitle className="text-center">
+                                <Link to="/blog/"> Blog </Link>
+                            </CardTitle>
                         </Card>
                     </Col>
 
@@ -115,7 +125,9 @@ class Documentation extends Component {
                                     <FaGitter style={{fontSize: '3em'}}/>
                                 </a>
                             </CardSubtitle>
-                            <CardTitle className="text-center">Gitter</CardTitle>
+                            <CardTitle className="text-center">
+                                <a href="https://gitter.im/flix/Lobby"> Gitter </a>
+                            </CardTitle>
                         </Card>
                     </Col>
 
@@ -126,7 +138,9 @@ class Documentation extends Component {
                                     <FaGithub style={{fontSize: '3em'}}/>
                                 </a>
                             </CardSubtitle>
-                            <CardTitle className="text-center">GitHub</CardTitle>
+                            <CardTitle className="text-center">
+                                <a href="https://github.com/flix/flix"> GitHub </a>
+                            </CardTitle>
                         </Card>
                     </Col>
 
@@ -137,7 +151,9 @@ class Documentation extends Component {
                                     <GoGraph style={{fontSize: '3em'}}/>
                                 </a>
                             </CardSubtitle>
-                            <CardTitle className="text-center">Compiler Perf</CardTitle>
+                            <CardTitle className="text-center">
+                                <a href="https://arewefast.flix.dev/"> Compiler Perf </a>
+                            </CardTitle>
                         </Card>
                     </Col>
 
@@ -148,7 +164,9 @@ class Documentation extends Component {
                                     <FaRegLaughSquint style={{fontSize: '3em'}}/>
                                 </Link>
                             </CardSubtitle>
-                            <CardTitle className="text-center">Language Checklist</CardTitle>
+                            <CardTitle className="text-center">
+                                <Link to="/misc/checklist"> Language Checklist </Link>
+                            </CardTitle>
                         </Card>
                     </Col>
                 </Row>
