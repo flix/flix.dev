@@ -17,20 +17,18 @@ class Editor extends Component {
 
     render() {
         return (
-            <div>
-                <AceEditor
-                    mode='text'
-                    theme='chrome'
-                    ref="aceEditor"
-                    showGutter={false}
-                    showPrintMargin={false}
-                    highlightActiveLine={false}
-                    onChange={this.onChange.bind(this)}
-                    value={this.props.code}
-                    autoScrollEditorIntoView={true}
-                    maxLines={25}
-                    editorProps={{$blockScrolling: true}}/>
-            </div>
+            <AceEditor width="100%"
+                mode='text'
+                theme='chrome'
+                ref="aceEditor"
+                showGutter={false}
+                showPrintMargin={false}
+                highlightActiveLine={false}
+                onChange={this.onChange.bind(this)}
+                value={this.props.code}
+                autoScrollEditorIntoView={true}
+                maxLines={25}
+                editorProps={{$blockScrolling: true}}/>
         )
     }
 }
