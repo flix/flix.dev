@@ -18,7 +18,7 @@ class Contribute extends Component {
                         <h1>Contribute</h1>
 
                         <p>
-                            Flix is an open-source and available under the <a
+                            Flix is open-source and freely available under the <a
                             href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.
                         </p>
 
@@ -32,9 +32,10 @@ class Contribute extends Component {
                         </p>
 
                         <p>
-                            Development mostly takes place at <a
+                            Flix is developed at <a
                             href="http://cs.au.dk/research/programming-languages/">Aarhus
-                            University</a> and the <a href="http://plg.uwaterloo.ca"> University of Waterloo</a>.
+                            University</a> and the <a href="http://plg.uwaterloo.ca"> University of Waterloo</a> and by
+                            a community of open source contributors.
                         </p>
 
                         <p>
@@ -51,6 +52,10 @@ class Contribute extends Component {
                             We encourage students at Aarhus University and the University of Waterloo that are
                             interested in compilers and programming languages to reach out to us to learn about
                             potential projects.
+                        </p>
+
+                        <p>
+                            We also very welcoming of open source contributors and have had good success with mentoring.
                         </p>
 
                         <CardColumns>
@@ -85,9 +90,8 @@ class Contribute extends Component {
                                         href="https://github.com/flix/flix/labels/bachelor-project">bachelor</a>-
                                         and <a
                                         href="https://github.com/flix/flix/labels/master-project">master</a> level
-                                        projects. But, we don't necessarily list all our project ideas, as some
-                                        might involve research that we intend to publish. In any case, you should
-                                        reach out to us to hear what is currently going on.
+                                        projects. The project list is not always completely up to date, so feel free to
+                                        reach out to us.
                                     </p>
                                 </CardBody>
                             </Card>
@@ -97,14 +101,14 @@ class Contribute extends Component {
                                     <CardTitle>Research Collaboration</CardTitle>
                                     <p>
                                         If you are a researcher interested in the space of programming language design
-                                        and implementation, program analysis, logic programming, Datalog, or
-                                        any other related topic, you should feel free to reach out to us to talk
-                                        about potential collaboration.
+                                        and implementation feel free to reach out to us to discuss potential
+                                        collaboration.
                                     </p>
 
                                     <p>
-                                        If you want to use Flix in your research, e.g. for program analysis, you
-                                        are welcome to reach out to us for information about how to get started.
+                                        If you want to use Flix in your research, we are happy to help you get started.
+                                        Flix is actively maintained and developed, and we want people to use it,
+                                        including researchers.
                                     </p>
                                 </CardBody>
                             </Card>
