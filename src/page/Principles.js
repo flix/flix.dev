@@ -358,21 +358,26 @@ class Principles extends Component {
                         encourages more robust code and enables safer refactoring of algebraic data types.
                     </Principle>
 
-                    <Principle name="No fashion-driven development">
+                    <Principle name="Timeless design">
                         A few years ago HTML was all the rage. Hence it was only natural that Java adopted HTML-style
                         comments. A bit later, XML was all the rage, hence it was only natural that Scala
                         added support for native XML literals. Today, JSON and Markdown are all the rage, but if
                         history is any guide, we should not add any special support for these to Flix.
                     </Principle>
 
-                    <Principle name="Built-in Documentation">
+                    <Principle name="Built-in documentation">
                         Flix supports comments as part of the language. We believe such integration avoids fragmentation
                         of the ecosystem and ultimately leads to better tool support.
                     </Principle>
 
-                    <Principle name="Built-in Unit Tests">
+                    <Principle name="Built-in unit tests">
                         Flix supports unit tests as part of the language. We believe such integration avoids
                         fragmentation of the ecosystem and ultimately leads to better tool support.
+                    </Principle>
+
+                    <Principle name="Library: No blessed library">
+                        The Flix standard library is implemented in Flix. It has no special support from the compiler.
+                        If you don't like it or if you don't need it, you can replace it.
                     </Principle>
 
                     <Principle name="Library: Minimal prelude">
@@ -381,7 +386,7 @@ class Principles extends Component {
                         common functionality.
                     </Principle>
 
-                    <Principle name="Library: Mutable Data is Functional Data">
+                    <Principle name="Library: Mutable data is functional data">
                         In Flix, every mutable data structure supports functional operations.
                         For example, mutable collections, such as <code>Array</code> and <code>MutSet</code> support
                         the <code>map</code> operation. Flix, being functional-first, reserves functional names for
@@ -389,7 +394,7 @@ class Principles extends Component {
                         same type signature.
                     </Principle>
 
-                    <Principle name="Library: Destructive Operations are Marked with '!'">
+                    <Principle name="Library: Destructive operations are marked with '!'">
                         In Flix, every destructive operation is suffixed with an exclamation point. For
                         example, <code>Array.reverse(a)</code> returns a new array with the elements
                         of <code>a</code> in reverse
@@ -398,7 +403,7 @@ class Principles extends Component {
                         structures, not to impure functions in general, e.g. <code>Console.printLine</code>.
                     </Principle>
 
-                    <Principle name="Library: Consistent Names of Functional and Destructive Operations">
+                    <Principle name="Library: Consistent names of functional and destructive operations">
                         In Flix, functional and destructive operations that share (i) similar behavior and (ii) similar
                         type signatures share similar names. For
                         example, <code>Array.reverse</code> and <code>Array.reverse!</code> share the
@@ -406,11 +411,6 @@ class Principles extends Component {
                         called <code>transform!</code> and not <code>map!</code> because its type signature is
                         dissimilar to map (i.e. map works on functions of type <code>a -> b</code>, but transform
                         requires functions of type <code>a -> a</code>.)
-                    </Principle>
-
-                    <Principle name="Library: No blessed library">
-                        The Flix standard library is implemented in Flix. It has no special support from the compiler.
-                        If you don't like it or if you don't need it, you can replace it.
                     </Principle>
 
                 </CardColumns>
