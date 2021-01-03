@@ -396,8 +396,33 @@ class Faq extends Component {
                     </Question>
 
                     <Answer>
-                        We are planning to define <a href="https://www.hillelwayne.com/post/divide-by-zero/">division by
-                        zero</a> as yielding zero.
+
+                        <p>
+                            The following design choices may be considered controversial by some:
+                        </p>
+
+                        <ul>
+                            <li>
+                                Unused variables are compile-time errors.
+                            </li>
+                            <li>
+                                Shadowed variables are compile-time errors.
+                            </li>
+                            <li>
+                                Unused definitions, type declarations, etc. are compile-time errors.
+                            </li>
+                            <li>
+                                No variadic or labelled function arguments.
+                            </li>
+                            <li>
+                                No warnings, only compile-time errors.
+                            </li>
+                            <li>
+                                <a href="https://www.hillelwayne.com/post/divide-by-zero/">Dividing by zero yields
+                                    zero</a>.
+                            </li>
+                        </ul>
+
                     </Answer>
                 </QA>
 
@@ -424,7 +449,7 @@ class Faq extends Component {
                         Where does the "Flix" name come from?
                     </Question>
                     <Answer>
-                        We do not entirely remember, but we believe it arose out of <span className="text-monospace">FIXpoint Language</span>.
+                        We do not entirely remember, but we believe it came from <span className="text-monospace">FIXpoint Language</span>.
                     </Answer>
                 </QA>
 
@@ -454,19 +479,19 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         We built the website using the popular React framework. We use JavaScript for the online code
-                        editor. Ultimately, we want to spend our time writing compilers, not writing websites.
+                        editor. Using React was easy. Ultimately, we want to spend our time writing compilers, not
+                        writing websites.
                     </Answer>
                 </QA>
 
                 <QA>
                     <Question>
-                        The page does not load without javascript enabled. If I cannot even view the mostly text
-                        website without that bloat, I wonder what the language is like?
+                        The page does not load without JavaScript enabled. If I cannot even view the website without
+                        that bloat, I wonder what the language is like?
                     </Question>
                     <Answer>
-                        Indeed, if your computer is too old to run a browser that supports JavaScript then probably your
-                        computer is too old to run a modern JVM that supports Flix. Also, why would we spent time
-                        hacking on JavaScript when we could hack on Flix instead?
+                        Indeed, if your computer is too old to run a modern browser that supports JavaScript then
+                        probably your computer is too old to run a modern JVM that supports Flix. Sorry.
                     </Answer>
                 </QA>
 
@@ -476,14 +501,13 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            The examples on the website and the compiler running on a virtual machine are not always
-                            completely in sync. If an example fails to compile feel free to open a bug report and we
-                            will get it fixed.
+                            The latest compiler version and the website is not always in sync, hence occasionally some
+                            examples may stop to work. Feel free to open a bug report if this happens.
                         </p>
 
                         <p>
-                            Occasionally a mischievous visitor will crash the virtual machine. We usually discover and
-                            fix this within a few days.
+                            Occasionally a mischievous visitor will crash the online editor (or rather the virtual
+                            machine on which the compiler runs). We usually discover and fix this within a few days.
                         </p>
                     </Answer>
                 </QA>
