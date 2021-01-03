@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardColumns, CardTitle, Col, Container, Row} from "reactstrap";
+import {Card, CardBody, CardTitle, Col, Container, Row} from "reactstrap";
 import ReactGA from 'react-ga';
 
 class Contribute extends Component {
@@ -13,9 +13,16 @@ class Contribute extends Component {
         return (
             <Container>
                 <Row className="mb-3">
-                    <Col md="12">
+                    <Col>
 
                         <h1>Contribute</h1>
+
+                        <p>
+                            Flix is developed at <a
+                            href="http://cs.au.dk/research/programming-languages/">Aarhus
+                            University</a>, at the <a href="http://plg.uwaterloo.ca"> University of Waterloo</a>, and by
+                            a community of open source contributors.
+                        </p>
 
                         <p>
                             Flix is open-source and freely available under the <a
@@ -32,79 +39,73 @@ class Contribute extends Component {
                         </p>
 
                         <p>
-                            Flix is developed at <a
-                            href="http://cs.au.dk/research/programming-languages/">Aarhus
-                            University</a> and the <a href="http://plg.uwaterloo.ca"> University of Waterloo</a> and by
-                            a community of open source contributors.
-                        </p>
-
-                        <p>
-                            If you are interested working on Flix, please feel free to reach out. We have had several
-                            excellent mentor experiences in the Flix project.
+                            If you are interested working on Flix, please feel free to reach out to us. We have already
+                            had several positive experiences with mentorship and open source contributors.
                         </p>
                     </Col>
                 </Row>
 
+                <h2>Projects</h2>
+
                 <Row className="mb-3">
-                    <Col md="12">
-                        <h2>Projects</h2>
+                    <Col md="4">
+                        <Card className="h-100">
+                            <CardBody>
+                                <CardTitle>Open Source Mentoring</CardTitle>
+                                <p>
+                                    We are more than happy to mentor someone who is interested in working on compilers
+                                    and/or programming language design and wants to contribute to Flix. We have already
+                                    had several positive experiences working with open source
+                                    contributors.
+                                </p>
 
-                        <CardColumns>
-                            <Card>
-                                <CardBody>
-                                    <CardTitle>Open Source Mentorship</CardTitle>
-                                    <p>
-                                        We are more than happy to mentor someone who is interested in working on
-                                        compilers and/or programming language design and wants to contribute to Flix. We
-                                        have already had several positive experiences working with open source
-                                        contributors.
-                                    </p>
+                                <p>
+                                    If you want to become involved, send us a ping on <a
+                                    href="https://gitter.im/flix/Lobby">Gitter</a>, and we can have a chat about your
+                                    interests.
+                                </p>
+                            </CardBody>
+                        </Card>
+                    </Col>
 
-                                    <p>
-                                        If you want to become involved, send us a ping on <a
-                                        href="https://gitter.im/flix/Lobby">Gitter</a>, and we can have a chat
-                                        about your interests.
-                                    </p>
-                                </CardBody>
-                            </Card>
+                    <Col md="4">
+                        <Card className="h-100">
+                            <CardBody>
+                                <CardTitle>Talent Track Projects</CardTitle>
+                                <p>
+                                    Aarhus University offers a talent track program for capable students that are in
+                                    their second or third year of studies and are interested in working on a research
+                                    project for up to one year as an extracurricular activity.
+                                </p>
 
-                            <Card>
-                                <CardBody>
-                                    <CardTitle>Talent Track Projects</CardTitle>
-                                    <p>
-                                        Aarhus University offers a talent track program for capable students
-                                        that are in their second or third year of studies and are interested
-                                        in working on a research project for up to one year as an extracurricular
-                                        activity.
-                                    </p>
+                                <p>
+                                    We maintain a collection of <a
+                                    href="https://github.com/flix/flix/labels/talent-track">talent
+                                    track project ideas</a> on GitHub.
+                                </p>
+                            </CardBody>
+                        </Card>
+                    </Col>
 
-                                    <p>
-                                        We maintain a collection of <a
-                                        href="https://github.com/flix/flix/labels/talent-track">talent
-                                        track project ideas</a> on GitHub.
-                                    </p>
-                                </CardBody>
-                            </Card>
+                    <Col md="4">
+                        <Card className="h-100">
+                            <CardBody>
+                                <CardTitle>Bachelor and Master Projects</CardTitle>
+                                <p>
+                                    If you are a bachelor or master student at Aarhus University you can
+                                    write your thesis on a topic related to Flix.
+                                </p>
 
-                            <Card>
-                                <CardBody>
-                                    <CardTitle>Bachelor and Master Projects</CardTitle>
-                                    <p>
-                                        If you are a bachelor or master student at Aarhus University you can
-                                        write your thesis on a topic related to Flix.
-                                    </p>
-
-                                    <p>
-                                        We maintain a collection of ideas for <a
-                                        href="https://github.com/flix/flix/labels/bachelor-project">bachelor</a>-
-                                        and <a
-                                        href="https://github.com/flix/flix/labels/master-project">master</a> level
-                                        projects. The project list is not always completely up to date, so feel free to
-                                        reach out to us.
-                                    </p>
-                                </CardBody>
-                            </Card>
-                        </CardColumns>
+                                <p>
+                                    We maintain a collection of ideas for <a
+                                    href="https://github.com/flix/flix/labels/bachelor-project">bachelor</a>-
+                                    and <a
+                                    href="https://github.com/flix/flix/labels/master-project">master</a> level
+                                    projects. The project list is not always completely up to date, so feel free
+                                    to reach out to us.
+                                </p>
+                            </CardBody>
+                        </Card>
                     </Col>
                 </Row>
             </Container>
