@@ -26,8 +26,8 @@ class Contribute extends Component {
                             All source code is available on <a
                             href="https://github.com/flix/flix">GitHub</a>.
 
-                            We organize development using GitHub <a
-                            href="https://github.com/flix/flix/issues">issues</a> and <a
+                            We organize development using <a
+                            href="https://github.com/flix/flix/issues">GitHub issues</a> and <a
                             href="https://gitter.im/flix/Lobby">Gitter</a>.
                         </p>
 
@@ -39,7 +39,8 @@ class Contribute extends Component {
                         </p>
 
                         <p>
-                            If you are interested in learning more about Flix, please feel free to reach out.
+                            If you are interested working on Flix, please feel free to reach out. We have had several
+                            excellent mentor experiences in the Flix project.
                         </p>
                     </Col>
                 </Row>
@@ -48,17 +49,25 @@ class Contribute extends Component {
                     <Col md="12">
                         <h2>Projects</h2>
 
-                        <p>
-                            We encourage students at Aarhus University and the University of Waterloo that are
-                            interested in compilers and programming languages to reach out to us to learn about
-                            potential projects.
-                        </p>
-
-                        <p>
-                            We also very welcoming of open source contributors and have had good success with mentoring.
-                        </p>
-
                         <CardColumns>
+                            <Card>
+                                <CardBody>
+                                    <CardTitle>Open Source Mentorship</CardTitle>
+                                    <p>
+                                        We are more than happy to mentor someone who is interested in working on
+                                        compilers and/or programming language design and wants to contribute to Flix. We
+                                        have already had several positive experiences working with open source
+                                        contributors.
+                                    </p>
+
+                                    <p>
+                                        If you want to become involved, send us a ping on <a
+                                        href="https://gitter.im/flix/Lobby">Gitter</a>, and we can have a chat
+                                        about your interests.
+                                    </p>
+                                </CardBody>
+                            </Card>
+
                             <Card>
                                 <CardBody>
                                     <CardTitle>Talent Track Projects</CardTitle>
@@ -92,23 +101,6 @@ class Contribute extends Component {
                                         href="https://github.com/flix/flix/labels/master-project">master</a> level
                                         projects. The project list is not always completely up to date, so feel free to
                                         reach out to us.
-                                    </p>
-                                </CardBody>
-                            </Card>
-
-                            <Card>
-                                <CardBody>
-                                    <CardTitle>Research Collaboration</CardTitle>
-                                    <p>
-                                        If you are a researcher interested in the space of programming language design
-                                        and implementation feel free to reach out to us to discuss potential
-                                        collaboration.
-                                    </p>
-
-                                    <p>
-                                        If you want to use Flix in your research, we are happy to help you get started.
-                                        Flix is actively maintained and developed, and we want people to use it,
-                                        including researchers.
                                     </p>
                                 </CardBody>
                             </Card>
