@@ -303,9 +303,9 @@ class Principles extends Component {
                         outright be rejected.
                     </Principle>
 
-                    <Principle name="No dead or unreachable code">
+                    <Principle name="No unused declarations">
                         Inspired by <a href="https://doc.rust-lang.org/rust-by-example/attribute/unused.html">Rust</a>,
-                        the Flix compiler will reject programs that contain dead or unreachable code. We believe
+                        the Flix compiler will reject programs that contain unused declarations. We believe
                         that rejecting such programs will help programmers avoid mistakes where some algebraic data
                         type or function is unintentionally left unused.
                     </Principle>
