@@ -20,21 +20,11 @@ class Research extends Component {
                     href="http://plg.uwaterloo.ca">University of Waterloo</a>.
                 </p>
 
-                <div>
-                    A significant part of our research is dedicated to the Datalog aspect of Flix, including:
-                    <ul>
-                        <li>design of a language with first-class Datalog constraints.</li>
-                        <li>extensions of Datalog semantics to lattice semantics.</li>
-                        <li>implementation of efficient fixpoint engines.</li>
-                        <li>use of Flix for program analysis.</li>
-                    </ul>
-                </div>
-
                 <p>
                     Below is a selection of research papers published on Flix:
                 </p>
 
-                <h3>Peer-Reviewed Conferences and Journals</h3>
+                <h3>Peer-Reviewed</h3>
 
                 <ul>
                     <Paper
@@ -103,10 +93,8 @@ class Research extends Component {
 class Paper extends Component {
     render() {
         return (
-            <li className="mb-3">
+            <li className="mb-1">
                 <a href={this.props.url}>{this.props.title}</a> <b>[{this.props.venue}]</b>
-                <br/>
-                {this.props.authors}
             </li>
         );
     }
