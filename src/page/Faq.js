@@ -596,7 +596,7 @@ class Faq extends Component {
                         feature <b>Y</b>.
                     </Question>
                     <Answer>
-                        We are sorry to have let you down.
+                        We are deeply sorry to have let you down.
                     </Answer>
                 </QA>
 
@@ -640,7 +640,7 @@ class Faq extends Component {
                         gets close to anything I would even consider using.
                     </Question>
                     <Answer>
-                        I am sorry, what was the question?
+                        Sorry, what was the question?
                     </Answer>
                 </QA>
 
