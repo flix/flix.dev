@@ -73,21 +73,18 @@ class Faq extends Component {
                     </Question>
 
                     <Answer>
-                        Flix has a shell that allows expressions to be entered and evaluated on-the-fly. The source
-                        code of a program can also be loaded into the shell. However, the shell does not permit the
-                        definition of new declarations. The shell can be started with
+                        No, but the compiler does have an interactive mode that can be started by passing
                         the <code>--interactive</code> argument.
                     </Answer>
                 </QA>
 
                 <QA>
                     <Question>
-                        Does Flix have IDE support? Editor support? Language Server Protocol (LSP) support?
+                        Does Flix have IDE support? Language Server Protocol (LSP) support?
                     </Question>
                     <Answer>
-                        No. At the moment we only have keyword based syntax highlighting. We would be happy if someone
-                        would pick up a project to add language server protocol (LSP) support. We believe that this is
-                        something that will come eventually as the language matures.
+                        Yes. There is a <a href="https://marketplace.visualstudio.com/items?itemName=flix.flix">Visual
+                        Studio Code plugin available for Flix</a>.
                     </Answer>
                 </QA>
 
@@ -96,8 +93,7 @@ class Faq extends Component {
                         Does Flix compile to LLVM?
                     </Question>
                     <Answer>
-                        No. Flix does not currently have an LLVM backend. It is something we are open to, but it
-                        depends on the availability of a garbage collector.
+                        No and we don't have any plans to target LLVM.
                     </Answer>
                 </QA>
 
@@ -106,9 +102,8 @@ class Faq extends Component {
                         Does Flix compile to WebAssembly (WASM)?
                     </Question>
                     <Answer>
-                        No. Flix does not currently have a WebAssembly backend. As for LLVM, it is something we are
-                        open to, but it depends on the availability of a garbage collector and support for tail
-                        call elimination.
+                        No, not at the moment. It is something we are open to, but we are waiting for WebAssembly to
+                        gain a garbage collector and tail calls.
                     </Answer>
                 </QA>
 
@@ -122,8 +117,7 @@ class Faq extends Component {
                         the ideal target for functional programming languages, due to its absence of tail call
                         instructions, it is still a strong choice. Moreover, if <a
                         href="https://openjdk.java.net/projects/loom/">Project Loom</a> (or similar efforts) turn out
-                        successful then the JVM will offer an unbeatable feature set. That said, we are keeping a keen
-                        eye on developments in the WebAssembly space.
+                        successful then the JVM will offer an unbeatable feature set.
                     </Answer>
                 </QA>
 
@@ -144,7 +138,7 @@ class Faq extends Component {
                         <p>
                             At the moment, Flix has not yet reached version 1.0. That means you will be an early
                             adopter, so you should expect for the language to evolve and be prepared for the rare
-                            compiler bug. (The Flix compiler has 6,500 manually written tests and we
+                            compiler bug. (The Flix compiler has 9,500 manually written tests and we
                             take correctness seriously.)
                         </p>
 
@@ -242,17 +236,10 @@ class Faq extends Component {
                         <p>
                             A simple experiment shows that the compiler runs about <code>20.0x</code> times faster
                             when warmed up compared to when cold. We estimate that Flix, when warmed up, compiles
-                            around <code>20,000</code> lines of code per second, which we believe to better than the
-                            Scala compiler, but worse than the Java compiler. We take compiler performance
+                            around <code>20,000</code> lines of code per second, which we believe to be faster than the
+                            Scala compiler, but slower than the Java compiler. We take compiler performance
                             seriously and continuously track the <a href="https://arewefast.flix.dev/">performance of
                             the compiler</a>.
-                        </p>
-
-                        <p>
-                            At the moment, the compilation of a Flix program pulls in the entire standard library (a few
-                            thousand lines of code) and compiles it along with the program. This behaviour can be
-                            avoided, by passing the <code>--Xcore</code> flag, but then data types such
-                            as <code>List</code> will be unavailable. In the future, it is our plan to compile-by-need.
                         </p>
                     </Answer>
                 </QA>
