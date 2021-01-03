@@ -13,10 +13,6 @@ export default function () {
             date: "2020-09-23"
         },
         {
-            name: "Improvements to compiler performance.",
-            date: "2020-05-05"
-        },
-        {
             name: "We have received 2.5 million DKK from the Independent Research Fund of Denmark for research on functional and logic programming!",
             date: "2019-12-08"
         }

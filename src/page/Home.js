@@ -25,8 +25,8 @@ class Home extends Component {
                         <p>
                             Flix is a principled and flexible functional-, logic-, and imperative- programming language
                             that takes inspiration from F#, Go, OCaml, Haskell, Rust, and Scala. Flix looks like Scala,
-                            but its type system is closer to that of OCaml and Haskell. Its concurrency model is
-                            inspired by Go-style processes and channels.
+                            but its type system is closer to that of OCaml and Haskell. Flix uses an effect system to
+                            enforce a separation between pure and impure code.
                         </p>
 
                         <p>
@@ -35,8 +35,7 @@ class Home extends Component {
                         </p>
 
                         <p>
-                            Research on Flix explores connections between functional and logic programming in the
-                            area of declarative fixpoint computations.
+                            A Visual Studio Code extension for Flix is available.
                         </p>
 
                         <p>
@@ -78,13 +77,15 @@ class Home extends Component {
                             Flix aims to offer a <span className="font-weight-bold text-success">unique combination of
                                 features</span> that no other programming language offers, including: <span
                             className="font-weight-bold">algebraic
-                                data types and pattern matching</span> (Haskell, OCaml), <span
-                            className="font-weight-bold">extensible records</span> (Elm), <span
-                            className="font-weight-bold">type classes</span> (Haskell, Rust), <span
-                            className="font-weight-bold">local type inference</span> (Haskell, OCaml), <span
-                            className="font-weight-bold">channel and process-based concurrency</span> (Go), <span
-                            className="font-weight-bold">a polymorphic effect system</span>, and <span
-                            className="font-weight-bold">compilation to JVM bytecode</span> (Scala).
+                                data types and pattern matching</span> (like Haskell, OCaml), <span
+                            className="font-weight-bold">extensible records</span> (like Elm), <span
+                            className="font-weight-bold">type classes</span> (like Haskell, Rust), <span
+                            className="font-weight-bold">local type inference</span> (like Haskell, OCaml), <span
+                            className="font-weight-bold">channel and process-based concurrency</span> (like Go), <span
+                            className="font-weight-bold">a polymorphic effect system</span> (unique feature), and <span
+                            className="font-weight-bold">first-class Datalog constraints</span> (unique feature),
+                            and <span
+                            className="font-weight-bold">compilation to JVM bytecode</span> (like Scala).
                         </p>
 
                     </Col>
@@ -172,9 +173,8 @@ class Home extends Component {
                                     Flix supports the basic building blocks of typed functional programs: algebraic data
                                     types, pattern matching, and parametric polymorphism (generics). It uses a
                                     Hindley-Milner style type system which supports type inference within a function.
-                                    The type and effect separates pure and impure code with allowing effect
-                                    polymorphism. Its syntax is inspired by Scala with an emphasis on the use of
-                                    keywords.
+                                    The type and effect separates pure and impure code while allowing effect
+                                    polymorphism.
                                 </CardText>
                             </CardBody>
                         </Card>
