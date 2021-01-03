@@ -90,16 +90,16 @@ class Innovations extends Component {
 
                         <p>
                             Flix supports Datalog constraints as <i>first-class values</i> that can be passed around,
-                            compose with other constraints, and solved. The solution (i.e. minimal model) of a
+                            composed with other constraints, and solved. The solution (i.e. minimal model) of a
                             constraint set is another constraint set, hence it is possible to construct pipelines of
-                            Flix programs.
+                            Datalog computations within a Flix program.
                         </p>
 
                         <p>
                             Flix can be thought of as a meta-programming language for Datalog. The Flix type system
                             and stratification algorithm guarantees the well-formedness of Datalog programs constructed
-                            at run-time. Flix significantly increases the expressive power of Datalog by allowing guard
-                            expressions and expressions as head terms in Datalog rules.
+                            at run-time. Moreover, Flix significantly increases the expressive power of Datalog by
+                            allowing guard expressions and expressions as head terms in Datalog rules.
                         </p>
 
                         <p>
