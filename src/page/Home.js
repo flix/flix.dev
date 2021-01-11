@@ -22,20 +22,27 @@ class Home extends Component {
                         <h2 className="motto">Next-generation reliable, safe, concise, and functional-first programming
                             language.</h2>
 
-                        <p>
-                            Flix is a principled and flexible functional-, logic-, and imperative- programming language
-                            that takes inspiration from F#, Go, OCaml, Haskell, Rust, and Scala. Flix looks like Scala,
-                            but its type system is closer to that of OCaml and Haskell. Flix uses an effect system to
-                            enforce a separation between pure and impure code.
+                        <p className="text-justify">
+                            Flix is a principled functional, logic, and imperative programming language
+                            developed at <a href="https://cs.au.dk/">Aarhus University</a>, at the <a
+                            href="https://uwaterloo.ca/">University of Waterloo</a>, and by a community of <a
+                            href="https://github.com/flix/flix">open source contributors</a>.
+                        </p>
+
+                        <p className="text-justify">
+                            Flix is inspired by OCaml and Haskell with ideas from Rust and Scala. Flix looks like
+                            Scala, but its type system is based on Hindley-Milner. Two unique features
+                            of Flix are its polymorphic effect system and its support for first-class Datalog
+                            constraints.
+                        </p>
+
+                        <p className="text-justify">
+                            Flix compiles to efficient JVM bytecode, runs on the Java Virtual Machine, and supports full
+                            tail call elimination.
                         </p>
 
                         <p>
-                            Flix compiles to JVM bytecode, runs on the Java Virtual Machine, and supports full tail call
-                            elimination.
-                        </p>
-
-                        <p>
-                            A Visual Studio Code extension for Flix is available.
+                            A Visual Studio Code plugin for Flix is available.
                         </p>
 
                         <p>
