@@ -1,4 +1,4 @@
-export default function () {
+export default function News() {
     return [
         {
             name: "We are making progress on type classes.",
