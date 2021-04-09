@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Card, CardBody, CardText, CardTitle, Col, Container, Row} from 'reactstrap';
+import {Button, Card, CardBody, CardImg, CardText, CardTitle, Col, Container, Row} from 'reactstrap';
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import NewsData from '../data/News.js'
@@ -214,6 +214,29 @@ class Home extends Component {
                                     variables, functions, algebraic data types, and (v) rename support.
                                 </CardText>
                             </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
+                    <Col md="12">
+                        <h2>Sponsors and Funding</h2>
+                    </Col>
+                    <Col md="2">
+                        <Card className="border-0 p-3 img-fluid">
+                            <CardImg src="/logo/dff.png" alt="Independent Research Fund Denmark"/>
+                        </Card>
+                    </Col>
+                    <Col md="3">
+                        <Card className="border-0 p-3 img-fluid">
+                            <CardImg src="/logo/aarhusu.png" alt="Aarhus University"/>
+                        </Card>
+                    </Col>
+                    <Col md="4">
+                        <Card className="border-0 p-3 img-fluid">
+                            <CardImg src="/logo/uwaterloo.png" alt="University of Waterloo"/>
                         </Card>
                     </Col>
                 </Row>
