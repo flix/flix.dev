@@ -23,7 +23,7 @@ class Home extends Component {
                             language.</h2>
 
                         <p className="text-justify">
-                            Flix is a principled functional, logic, and imperative programming language
+                            Flix is a principled functional, imperative, and logic programming language
                             developed at <a href="https://cs.au.dk/">Aarhus University</a>, at the <a
                             href="https://uwaterloo.ca/">University of Waterloo</a>, and by a community of <a
                             href="https://github.com/flix/flix">open source contributors</a>.
@@ -87,6 +87,7 @@ class Home extends Component {
                                 data types and pattern matching</span> (like Haskell, OCaml), <span
                             className="font-weight-bold">extensible records</span> (like Elm), <span
                             className="font-weight-bold">type classes</span> (like Haskell, Rust), <span
+                            className="font-weight-bold">higher-kinded types</span> (like Haskell), <span
                             className="font-weight-bold">local type inference</span> (like Haskell, OCaml), <span
                             className="font-weight-bold">channel and process-based concurrency</span> (like Go), <span
                             className="font-weight-bold">a polymorphic effect system</span> (unique feature), and <span
@@ -111,10 +112,11 @@ class Home extends Component {
                             <li>first-class functions</li>
                             <li>extensible records</li>
                             <li>parametric polymorphism</li>
-                            <li>Hindley-Milner type inference</li>
-                            <li>opaque types and type aliases</li>
-                            <li>keyword-based syntax</li>
+                            <li>type classes</li>
+                            <li>higher-kinded types</li>
                             <li>light-weight polymorphic effects</li>
+                            <li>opaque types and type aliases</li>
+                            <li>Hindley-Milner type inference</li>
                         </ul>
                     </Col>
 
@@ -128,6 +130,7 @@ class Home extends Component {
                             <li>stratified negation</li>
                             <li>interoperability with Java</li>
                             <li>unboxed primitives</li>
+                            <li>keyword-based syntax</li>
                             <li>redundancy checks</li>
                         </ul>
                     </Col>
