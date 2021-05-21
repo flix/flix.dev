@@ -4,6 +4,7 @@ import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import NewsData from '../data/News.js'
 import Codebox from "../util/Codebox";
+import InlineEditor from "../util/InlineEditor";
 
 class Home extends Component {
 
@@ -102,8 +103,170 @@ class Home extends Component {
                 <hr className="mb-3"/>
 
                 <Row className="mb-3">
+                    <Col md="6">
+                        <Card className="mt-3 border-0">
+                            <CardBody>
+                                <CardTitle><h4>Algebraic Data Types and Pattern Matching</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Algebraic data types and pattern matching are the bread-and-butter of functional
+                                        programming and are supported by Flix with minimal elegant syntax.
+                                    </p>
+
+                                    <p>
+                                        The Flix compiler ensures that pattern matches on algebraic data types
+                                        are exhaustive.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+
+                    <Col md="6">
+                        <InlineEditor>
+                            {`enum Shape {
+    case Circle(Int32),
+    case Square(Int32),
+    case Rectangle(Int32, Int32)
+}
+
+def area(s: Shape): Int32 = match s {
+    case Circle(r)       => 3 * (r * r)
+    case Square(w)       => w * w
+    case Rectangle(h, w) => h * w
+}`}
+                        </InlineEditor>
+                    </Col>
+                </Row>
+
+                <Row className="mb-3">
+                    <Col md="6">
+                        <InlineEditor>
+                            {`def oneByOne():  {w: Int32, h: Int32} =
+    {w = 1, h = 1}
+
+def twoByFour(): {w: Int32, h: Int32} =
+    {w = 2, h = 4}
+
+def area(rect: {w: Int32, h: Int32 | r}): Int32 =
+    rect.w * rect.h
+
+def f(): Int32 = area({h = 1, color = "Blue", w = 2})
+`}
+                        </InlineEditor>
+                    </Col>
+
+                    <Col md="6">
+                        <Card className="mt-3">
+                            <CardBody>
+                                <CardTitle><h4>Extensible Records</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports records with minimal fuss.
+                                    </p>
+
+                                    <p>
+                                        Records are structural, easy to use, and extensible.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+
+                <Row className="mb-3">
+                    <Col md="6">
+                        <Card className="mt-3">
+                            <CardBody>
+                                <CardTitle><h4>Type Classes and Higher-Kinded Types</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports type classes and higher-kinded types.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+
+                    <Col md="6">
+                        <InlineEditor>
+                            {`class Eq[a] {
+    def eq(x: a, y: a): Bool
+    def neq(x: a, y: a): Bool = not Eq.eq(x, y)
+}
+
+instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
+    def eq(t1: (a1, a2), t2: (a1, a2)): Bool =
+        let (x1, x2) = t1;
+        let (y1, y2) = t2;
+        x1 == y1 and x2 == y2
+}`}
+                        </InlineEditor>
+                    </Col>
+                </Row>
+
+                <Row className="mb-3">
+                    <Col md="6">
+                        <InlineEditor>
+                            {`def inc1(x: Int32): Int32 & Pure = x + 1
+
+def inc2(x: Int32): Int32 & Impure =
+    println("x = \${x}");
+    x + 1
+
+def f(): Int32 & Impure = // f is impure
+    let r1 = inc1(123);   // pure
+    let r2 = inc2(456);   // impure
+    r1 + r2               // pure`}
+                        </InlineEditor>
+                    </Col>
+
+                    <Col md="6">
+                        <Card className="mt-3">
+                            <CardBody>
+                                <CardTitle><h4>Polymorphic Effects</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        The Flix type and effect system tracks the purity (or impurity) of
+                                        every expression &mdash; even in the presence of polymorphism.
+                                    </p>
+
+                                    <p>
+                                        The Flix compiler provides an ironclad guarantee that when an expression is pure
+                                        it cannot have (observable) side-effects and it supports equational reasoning.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+
+                <Row className="mb-3">
+                    <Col md="6">
+                        <Card className="mt-3">
+                            <CardBody>
+                                <CardTitle><h4>First-class Datalog Constraints</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        ...
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+
+                    <Col md="6">
+                        <InlineEditor>
+                            {`...`}
+                        </InlineEditor>
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
                     <Col md="12">
-                        <h2>Full Feature List</h2>
+                        <h2>Complete Feature List</h2>
                     </Col>
                     <Col md="4">
                         <ul>
