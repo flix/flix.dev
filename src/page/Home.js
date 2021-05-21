@@ -102,20 +102,15 @@ class Home extends Component {
 
                 <hr className="mb-3"/>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md="6">
-                        <Card className="mt-3 border-0">
+                        <Card className="border-0">
                             <CardBody>
                                 <CardTitle><h4>Algebraic Data Types and Pattern Matching</h4></CardTitle>
                                 <CardText>
                                     <p>
                                         Algebraic data types and pattern matching are the bread-and-butter of functional
                                         programming and are supported by Flix with minimal elegant syntax.
-                                    </p>
-
-                                    <p>
-                                        The Flix compiler ensures that pattern matches on algebraic data types
-                                        are exhaustive.
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -139,7 +134,7 @@ def area(s: Shape): Int32 = match s {
                     </Col>
                 </Row>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md="6">
                         <InlineEditor>
                             {`def oneByOne():  {w: Int32, h: Int32} =
@@ -157,7 +152,7 @@ def f(): Int32 = area({h = 1, color = "Blue", w = 2})
                     </Col>
 
                     <Col md="6">
-                        <Card className="mt-3">
+                        <Card className="border-0">
                             <CardBody>
                                 <CardTitle><h4>Extensible Records</h4></CardTitle>
                                 <CardText>
@@ -174,9 +169,9 @@ def f(): Int32 = area({h = 1, color = "Blue", w = 2})
                     </Col>
                 </Row>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md="6">
-                        <Card className="mt-3">
+                        <Card className="border-0">
                             <CardBody>
                                 <CardTitle><h4>Type Classes and Higher-Kinded Types</h4></CardTitle>
                                 <CardText>
@@ -205,7 +200,7 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                     </Col>
                 </Row>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md="6">
                         <InlineEditor>
                             {`def inc1(x: Int32): Int32 & Pure = x + 1
@@ -222,7 +217,7 @@ def f(): Int32 & Impure = // f is impure
                     </Col>
 
                     <Col md="6">
-                        <Card className="mt-3">
+                        <Card className="border-0">
                             <CardBody>
                                 <CardTitle><h4>Polymorphic Effects</h4></CardTitle>
                                 <CardText>
@@ -241,9 +236,9 @@ def f(): Int32 & Impure = // f is impure
                     </Col>
                 </Row>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md="6">
-                        <Card className="mt-3">
+                        <Card className="border-0">
                             <CardBody>
                                 <CardTitle><h4>First-class Datalog Constraints</h4></CardTitle>
                                 <CardText>
