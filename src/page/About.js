@@ -51,7 +51,9 @@ class About extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def main(): String = "Hello World!"`}
+                            {`def main(_args: Array[String]): Int32 & Impure = 
+    println("Hello World!");
+    0`}
                         </InlineEditor>
 
                         <h2>Basic Functional Programming</h2>
@@ -63,9 +65,9 @@ class About extends Component {
                         <InlineEditor>
                             {`/// An algebraic data type for shapes.
 enum Shape {
-    case Circle(Int),        // circle radius
-    case Square(Int),        // side length
-    case Rectangle(Int, Int) // height and width
+    case Circle(Int32),          // circle radius
+    case Square(Int32),          // side length
+    case Rectangle(Int32, Int32) // height and width
 }
 
 /// Computes the area of the given shape.
@@ -76,8 +78,9 @@ def area(s: Shape): Int = match s {
 }
 
 // Computes the area of a 2 by 4.
-def main(): Int = area(Rectangle(2, 4))
-`}
+def main(_args: Array[String]): Int32 & Impure =
+    area(Rectangle(2, 4)) |> println;
+    0`}
                         </InlineEditor>
 
                         <p>
@@ -91,19 +94,28 @@ enum Tree[a] {
     case Node(Tree[a], Tree[a])
 }
 
-/// A higher-order function that transforms a tree with 
+/// A ToString instance for Tree.
+instance ToString[Tree[a]] with ToString[a] {
+    pub def toString(t: Tree[a]): String = match t {
+        case Leaf(a)    => "Leaf(\${a})"
+        case Node(l, r) => "Node(\${l}, \${r})"
+    }
+}
+
+/// A higher-order function that transforms a tree with
 /// elements of type a to a tree with elements of type b.
 def map(f: a -> b, t: Tree[a]): Tree[b] = match t {
     case Leaf(x)    => Leaf(f(x))
-    case Node(l, r) => Node(map(f, l), map(f, r))        
+    case Node(l, r) => Node(map(f, l), map(f, r))
   }
 
 /// Returns a simple tree with two leafs.
 def tree(): Tree[Int] = Node(Leaf(1), Leaf(2))
 
 /// Squares all elements in the simple tree.
-def main(): Tree[Int] = map(x -> x * x, tree())
-`}
+def main(_: Array[String]): Int32 & Impure =
+    map(x -> x * x, tree()) |> println;
+    0`}
                         </InlineEditor>
 
                         <p>
@@ -126,15 +138,14 @@ def main(): Tree[Int] = map(x -> x * x, tree())
 
                         <InlineEditor>
                             {`/// Computes the sum of \`x\` and \`y\` and sends the result on the channel \`c\`.
-def sum(x: Int, y: Int, c: Channel[Int]): Unit & Impure = 
+def sum(x: Int, y: Int, c: Channel[Int]): Unit & Impure =
     c <- (x + y); ()
 
 /// Computes the sum of 21 and 42 using a fresh process.
-def main(): Int & Impure = 
+def main(_args: Array[String]): Int32 & Impure =
     let c = chan Int 1;     // construct a new empty channel for the result.
     spawn sum(21, 42, c);   // spawn sum to run in a separate process.
-    <- c                    // wait for the result to arrive on the channel.
-`}
+    <- c                    // wait for the result to arrive on the channel.`}
                         </InlineEditor>
 
                         <p>
@@ -147,13 +158,13 @@ def main(): Int & Impure =
 
                         <InlineEditor>
                             {`/// Sends the string \`s\` on the channel \`c\` up to \`n\` times.
-def animal(s: String, c: Channel[String], n: Int): Unit & Impure = match n {
+def animal(s: String, c: Channel[String], n: Int32): Unit & Impure = match n {
     case 0 => ()
-    case n => c <- s; animal(s, c, n - 1)
+    case i => c <- s; animal(s, c, i - 1)
 }
 
 /// Returns "mooo", "meow", or "hiss".
-def main(): String & Impure =
+def main(_args: Array[String]): Int32 & Impure =
     let c1 = chan String 1;      /// constructs a new empty channel with a buffer of one.
     let c2 = chan String 1;      /// constructs a new empty channel with a buffer of one.
     let c3 = chan String 1;      /// constructs a new empty channel with a buffer of one.
@@ -164,8 +175,8 @@ def main(): String & Impure =
         case mooo <- c1 => mooo  /// c1 became ready first.
         case meow <- c2 => meow  /// c2 became ready first.
         case hiss <- c3 => hiss  /// c3 became ready first.
-    }
-`}
+    } |> println;
+    0`}
                         </InlineEditor>
 
                         <h2>Polymorphic Effects: Separating Pure and Impure Code</h2>
@@ -183,7 +194,7 @@ def main(): String & Impure =
 
                         <InlineEditor>
                             {`/// A pure function
-def sum(x: Int, y: Int): Int = x + y`}
+def sum(x: Int32, y: Int32): Int32 = x + y`}
                         </InlineEditor>
 
                         <p>
@@ -284,17 +295,17 @@ rel Road(src: String, speed: Int, dst: String)
 rel Connected(src: String, dst: String)
 
 /// Determines if it is possible to drive from  \`src\` to  \`dst\` going at least  \`minSpeed\`.
-def drivable(g: #{Road}, src: String, dst: String, minSpeed: Int): Bool =
+def drivable(g: #{Road, Connected}, src: String, dst: String, minSpeed: Int): Bool =
     // a first-class Datalog program that computes connectivity subject to speed limits.
     let p = #{
         Connected(x, y) :- Road(x, maxSpeed, y), if maxSpeed >= minSpeed.
         Connected(x, z) :- Connected(x, y), Road(y, maxSpeed, z), if maxSpeed >= minSpeed.
     };
     // solve the Datalog program and determine if  \`src\` is connected to  \`dst\`.
-    (solve g <+> p) |= Connected(src, dst).
+    not (query g, p select () from Connected(src, dst) |> Array.isEmpty)
 
 /// Determines if it possible to drive from Aarhus to Berling going at least 110 km/h.
-def main(): Bool = 
+def main(_args: Array[String]): Int32 & Impure =
     // the road network modelled as a set of Datalog facts.
     let g = #{
         Road("Aarhus", 110, "Vejle").
@@ -302,8 +313,8 @@ def main(): Bool =
         Road("Fredericia", 130, "Hamburg").
         Road("Hamburg", 130, "Berlin").
     };
-    drivable(g, "Aarhus", "Berlin", 110)
-`}
+    drivable(g, "Aarhus", "Berlin", 110) |> println;
+    0`}
                         </InlineEditor>
 
                         <p>
@@ -319,38 +330,30 @@ def main(): Bool =
                         </p>
 
                         <InlineEditor>
-                            {`/// Declare two polymorphic predicate symbols. 
-/// Here an edge and a path are labelled with some value of type \`l\`.
-rel LabelEdge[l](x: String, l: l, y: String)
-rel LabelPath[l](x: String, l: l, y: String)
-
-/// Returns a set of edge facts labelled with numbers.
-def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = #{
-    LabelEdge("a", 1, "b").
-    LabelEdge("b", 1, "c").
-    LabelEdge("c", 2, "d").
+                            {`def edgesWithNumbers(): #{ LabelledEdge(String, Int, String) | r } = #{
+    LabelledEdge("a", 1, "b").
+    LabelledEdge("b", 1, "c").
+    LabelledEdge("c", 2, "d").
 }
 
-/// Returns a set of edge facts labelled with colors (strings).
-def getEdgesWithColor[r](): #{ LabelEdge[String] | r } = #{
-    LabelEdge("a", "red", "b").
-    LabelEdge("b", "red", "c").
-    LabelEdge("c", "blu", "d").
+def edgesWithColor(): #{ LabelledEdge(String, String, String) | r } = #{
+    LabelledEdge("a", "red", "b").
+    LabelledEdge("b", "red", "c").
+    LabelledEdge("c", "blu", "d").
 }
 
-/// Returns a set of polymorphic constraints to compute 
-/// the transitive closure of edges with the *same* label.
-def getRules[l](): #{ LabelEdge[l], LabelPath[l] } = #{
-    LabelPath(x, l, y) :- LabelEdge(x, l, y).
-    LabelPath(x, l, z) :- LabelPath(x, l, y), LabelPath(y, l, z).
+def closure(): #{ LabelledEdge(String, l, String), 
+                  LabelledPath(String, l, String) } with Boxable[l] = #{
+    LabelledPath(x, l, y) :- LabelledEdge(x, l, y).
+    LabelledPath(x, l, z) :- LabelledPath(x, l, y), LabelledPath(y, l, z).
 }
 
-/// Computes paths for two graphs with different labels. Note the use of polymorphism.
-def main(): Unit =
-    let r1 = solve getEdgesWithColor() <+> getRules();
-    let r2 = solve getEdgesWithNumbers() <+> getRules();
-    ()
-`}
+def main(_: Array[String]): Int32 & Impure =
+    query edgesWithNumbers(), closure() 
+        select (x, l, z) from LabelledPath(x, l, z) |> println;
+    query edgesWithColor(), closure() 
+        select (x, l, z) from LabelledPath(x, l, z) |> println;
+    0`}
                         </InlineEditor>
 
                     </Col>
