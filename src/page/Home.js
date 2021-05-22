@@ -281,23 +281,42 @@ def f(): Int32 & Impure = // f is impure
                 </Row>
 
                 <Row className="mb-4">
-                    <Col md="6">
+                    <Col md="12">
                         <Card className="border-0">
                             <CardBody>
                                 <CardTitle><h4>First-class Datalog Constraints</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        ...
+                                        A unique feature of Flix is its built-in support for Datalog. This enables a
+                                        database-oriented style of programming where functions may be implemented as
+                                        Datalog constraints.
+                                    </p>
+
+                                    <InlineEditor>
+                                        {`def reachable(g: List[(String, Int32, String)], minSpeed: Int): List[(String, String)] =
+    let facts = project g into Road; 
+    let rules = #{
+        Path(x, y) :- Road(x, maxSpeed, y), if maxSpeed >= minSpeed.
+        Path(x, z) :- Path(x, y), Road(y, maxSpeed, z), if maxSpeed >= minSpeed.
+    };
+    query facts, rules select (src, dst) from Path(src, dst) |> Foldable.toList`}
+                                    </InlineEditor>
+
+                                    <p>
+                                        Datalog constraints are <i>first-class</i>, i.e. they may be passed to
+                                        and returned from functions, stored in data structures, composed with other
+                                        Datalog constraints, and solved. This makes it possible to express families of
+                                        Datalog programs.
+                                    </p>
+
+                                    <p>
+                                        Datalog constraints integrate with the lexical scope and refer to (pure)
+                                        functions in Flix. The constraints are structurally typed and may be polymorphic
+                                        in the types of their terms.
                                     </p>
                                 </CardText>
                             </CardBody>
                         </Card>
-                    </Col>
-
-                    <Col md="6">
-                        <InlineEditor>
-                            {`...`}
-                        </InlineEditor>
                     </Col>
                 </Row>
 
