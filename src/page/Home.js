@@ -208,19 +208,43 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                 <Row className="mb-4">
                     <Col md="6">
                         <InlineEditor>
-                            {`def inc1(x: Int32): Int32 & Pure = x + 1
+                            {`class Foldable[t : Type -> Type] {
 
-def inc2(x: Int32): Int32 & Impure =
-    println("x = \${x}");
-    x + 1
+    ///
+    /// Left-associative fold of a structure.
+    ///
+    def foldLeft(f: (b, a) -> b & e, s: b, t: t[a]): b & e
 
-def f(): Int32 & Impure = // f is impure
-    let r1 = inc1(123);   // pure
-    let r2 = inc2(456);   // impure
-    r1 + r2               // pure`}
+    ///
+    /// Right-associative fold of a structure.
+    ///
+    def foldRight(f: (a, b) -> b & e, s: b, t: t[a]): b & e
+
+}`}
                         </InlineEditor>
                     </Col>
 
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Higher-Kinded Types</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports higher-kinded types making it possible to abstract over type
+                                        constructors.
+                                    </p>
+
+                                    <p>
+                                        The Flix standard library comes with common type classes, such
+                                        as <code>Monoid</code>, <code>Functor</code>, and <code>Foldable</code>.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
@@ -239,6 +263,20 @@ def f(): Int32 & Impure = // f is impure
                                 </CardText>
                             </CardBody>
                         </Card>
+                    </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`def inc1(x: Int32): Int32 & Pure = x + 1
+
+def inc2(x: Int32): Int32 & Impure =
+    println("x = \${x}");
+    x + 1
+
+def f(): Int32 & Impure = // f is impure
+    let r1 = inc1(123);   // pure
+    let r2 = inc2(456);   // impure
+    r1 + r2               // pure`}
+                        </InlineEditor>
                     </Col>
                 </Row>
 
