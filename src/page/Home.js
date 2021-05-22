@@ -110,7 +110,7 @@ class Home extends Component {
                                 <CardText>
                                     <p>
                                         Algebraic data types and pattern matching are the bread-and-butter of functional
-                                        programming and are supported by Flix with minimal elegant syntax.
+                                        programming and are supported by Flix with minimal fuss.
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -137,31 +137,31 @@ def area(s: Shape): Int32 = match s {
                 <Row className="mb-4">
                     <Col md="6">
                         <InlineEditor>
-                            {`def oneByOne():  {w: Int32, h: Int32} =
-    {w = 1, h = 1}
+                            {`def origin(): (Int32, Int32) = (0, 0)
 
-def twoByFour(): {w: Int32, h: Int32} =
-    {w = 2, h = 4}
+def oneByOne():  {w: Int32, h: Int32} = {w = 1, h = 1}
+
+def twoByFour(): {w: Int32, h: Int32} = {w = 2, h = 4}
 
 def area(rect: {w: Int32, h: Int32 | r}): Int32 =
     rect.w * rect.h
 
-def f(): Int32 = area({h = 1, color = "Blue", w = 2})
-`}
+def f(): Int32 = area({h = 1, color = "Blue", w = 2})`}
                         </InlineEditor>
                     </Col>
 
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
-                                <CardTitle><h4>Extensible Records</h4></CardTitle>
+                                <CardTitle><h4>Tuples and Records</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        Flix supports records with minimal fuss.
+                                        Flix has built-in support for tuples and records.
                                     </p>
 
                                     <p>
-                                        Records are structural, easy to use, and extensible.
+                                        Records use structural typing and are extensible, i.e. fields can be added,
+                                        updated, or removed.
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -173,10 +173,15 @@ def f(): Int32 = area({h = 1, color = "Blue", w = 2})
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
-                                <CardTitle><h4>Type Classes and Higher-Kinded Types</h4></CardTitle>
+                                <CardTitle><h4>Type Classes</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        Flix supports type classes and higher-kinded types.
+                                        Flix supports type classes to abstract over types that support the same set of
+                                        common operations.
+                                    </p>
+                                    <p>
+                                        For example, equality is captured by the <code>Eq</code> type class which is
+                                        used throughout the standard library.
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -222,13 +227,14 @@ def f(): Int32 & Impure = // f is impure
                                 <CardTitle><h4>Polymorphic Effects</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        The Flix type and effect system tracks the purity (or impurity) of
-                                        every expression &mdash; even in the presence of polymorphism.
+                                        Flix precisely tracks the purity (or impurity) of every expression &mdash; even
+                                        in the presence of polymorphism.
                                     </p>
 
                                     <p>
-                                        The Flix compiler provides an ironclad guarantee that when an expression is pure
-                                        it cannot have (observable) side-effects and it supports equational reasoning.
+                                        The Flix compiler provides an ironclad guarantee that if an expression is pure
+                                        then it cannot have (observable) side-effects and it supports equational
+                                        reasoning.
                                     </p>
                                 </CardText>
                             </CardBody>
