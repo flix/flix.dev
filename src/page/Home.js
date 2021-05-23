@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {Button, Card, CardBody, CardImg, CardText, CardTitle, Col, Container, Row} from 'reactstrap';
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
-import NewsData from '../data/News.js'
 import Codebox from "../util/Codebox";
 import InlineEditor from "../util/InlineEditor";
+import {Timeline} from 'react-twitter-widgets'
 
 class Home extends Component {
 
@@ -375,46 +375,7 @@ def f(): Int32 & Impure = // f is impure
 
                 <Row className="mb-4">
                     <Col md={6}>
-                        <Card className="h-100">
-                            <CardBody>
-                                <CardTitle>Recent News</CardTitle>
-                                <CardText>
-                                    <table className="table-sm">
-                                        <tbody>
-                                        {NewsData().map(item =>
-                                            <tr key={item.name}>
-                                                <td className="small" style={{"minWidth": "7em"}}>
-                                                    {item.date.replaceAll("-", "–")}
-                                                </td>
-                                                <td>{item.name}</td>
-                                            </tr>
-                                        )}
-                                        </tbody>
-                                    </table>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-
-                    <Col md={6}>
-                        <Card className="h-100">
-                            <CardBody>
-                                <CardTitle>Bread- and Butter Functional Programming</CardTitle>
-                                <CardText className="text-justify">
-                                    Flix supports the basic building blocks of typed functional programs: algebraic data
-                                    types, pattern matching, and parametric polymorphism (generics). It uses a
-                                    Hindley-Milner style type system which supports type inference within a function.
-                                    The type and effect separates pure and impure code while allowing effect
-                                    polymorphism.
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-
-                <Row className="mb-4">
-                    <Col md={6}>
-                        <Card className="h-100">
+                        <Card className="mb-4">
                             <CardBody>
                                 <CardTitle>Principled Design</CardTitle>
                                 <CardText className="text-justify">
@@ -425,20 +386,32 @@ def f(): Int32 & Impure = // f is impure
                                 </CardText>
                             </CardBody>
                         </Card>
-                    </Col>
 
-                    <Col md={6}>
-                        <Card className="h-100">
+                        <Card>
                             <CardBody>
                                 <CardTitle>Visual Studio Code Support</CardTitle>
                                 <CardText className="text-justify">
                                     Flix supports integration with Visual Studio Code through LSP. This includes support
-                                    for features such as: (i) inline compiler errors, (ii) hover to show the type and
-                                    effect of an expression, (iii) jump to definition, (iv) find all usages of local
-                                    variables, functions, algebraic data types, and (v) rename support.
+                                    for features such as: inline compiler errors, hover to show the type and effect of
+                                    an expression, jump to definition, find all usages of local variables, functions,
+                                    algebraic data types, and rename support.
                                 </CardText>
                             </CardBody>
                         </Card>
+                    </Col>
+
+                    <Col md={6}>
+                        <Timeline
+                            dataSource={{
+                                sourceType: 'profile',
+                                screenName: 'flixlang'
+                            }}
+                            options={{
+                                chrome: "nofooter",
+                                height: '430',
+                                dnt: true
+                            }}
+                        />
                     </Col>
                 </Row>
 
