@@ -1,5 +1,16 @@
 import React, {Component} from 'react';
-import {Button, Card, CardBody, CardImg, CardText, CardTitle, Col, Container, Row} from 'reactstrap';
+import {
+    Button,
+    Card,
+    CardBody,
+    CardImg,
+    CardText,
+    CardTitle,
+    Col,
+    Container,
+    Row,
+    UncontrolledCarousel
+} from 'reactstrap';
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import Codebox from "../util/Codebox";
@@ -12,6 +23,29 @@ class Home extends Component {
         document.title = "The Flix Programming Language";
         ReactGA.pageview(window.location.pathname);
     }
+
+    carousel = [
+        {
+            src: '/images/vscode1.png',
+            caption: 'Slide 1',
+            header: 'Visual Studio Code Support',
+        },
+        {
+            src: '/images/vscode2.png',
+            caption: 'Slide 2',
+            header: 'VSCode: Hover to view contextual information',
+        },
+        {
+            src: '/images/vscode3.png',
+            caption: 'Slide 3',
+            header: 'VSCode: Show all references of a name',
+        },
+        {
+            src: '/images/vscode4.png',
+            caption: 'Slide 4',
+            header: 'VSCode: Inline error messages',
+        }
+    ];
 
     render() {
         return (
@@ -317,6 +351,16 @@ def f(): Int32 & Impure = // f is impure
                                 </CardText>
                             </CardBody>
                         </Card>
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
+                    <Col md={12}>
+                        <h2>Visual Studio Code Support</h2>
+
+                        <UncontrolledCarousel autoPlay={false} items={this.carousel} className="ml-2 mr-2"/>
                     </Col>
                 </Row>
 
