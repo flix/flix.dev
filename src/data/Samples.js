@@ -294,60 +294,55 @@ def main(): Bool = isOdd(12345)
         {
             name: "Sending and Receiving on Channels",
             code: `/// A function that sends every element of a list
-def send(o: Channel[Int], l: List[Int]): Unit & Impure =
+def send(c: Channel[Int32], l: List[Int32]): Unit & Impure =
     match l {
         case Nil     => ()
-        case x :: xs => o <- x; send(o, xs)
+        case x :: xs => c <- x; send(c, xs)
     }
 
 /// A function that receives n elements
 /// and collects them into a list.
-def recv(i: Channel[Int], n: Int): List[Int] & Impure =
+def recv(c: Channel[Int32], n: Int32): List[Int32] & Impure =
     match n {
         case 0 => Nil
-        case _ => (<- i) :: recv(i, n - 1)
+        case _ => (<- c) :: recv(c, n - 1)
     }
 
-/// A function that calls receive and sends the result on d.
-def wait(i: Channel[Int], n: Int, d: Channel[List[Int]]): Unit & Impure =
-    d <- recv(i, n);
-    ()
-
 /// Spawn a process for send and wait, and print the result.
-def main(): List[Int] & Impure =
+def main(_args: Array[String]): Int32 & Impure = {
     let l = 1 :: 2 :: 3 :: Nil;
     let c = chan Int 100;
-    let d = chan List[Int] 100;
     spawn send(c, l);
-    spawn wait(c, List.length(l), d);
-    <- d
+    spawn recv(c, List.length(l));
+    0 // exit code
+}
 `
         },
         {
             name: "Using Channels and Select",
-            code: `/// Mooo's \`n\` times on channel \`c\`.
-def mooo(c: Channel[String], n: Int): Unit & Impure =
+            code: ` /// Mooo's \`n\` times on channel \`c\`.
+def mooo(c: Channel[String], n: Int32): Unit & Impure =
     match n {
         case 0 => ()
         case x => c <- "Mooo!"; mooo(c, x - 1)
     }
 
 /// Meow's \`n\` times on channel \`c\`.
-def meow(c: Channel[String], n: Int): Unit & Impure =
+def meow(c: Channel[String], n: Int32): Unit & Impure =
     match n {
         case 0 => ()
         case x => c <- "Meow!"; meow(c, x - 1)
     }
 
 /// Hiss'es \`n\` times on channel \`c\`.
-def hiss(c: Channel[String], n: Int): Unit & Impure =
+def hiss(c: Channel[String], n: Int32): Unit & Impure =
     match n {
         case 0 => ()
         case x => c <- "Hiss!"; hiss(c, x - 1)
     }
 
 /// Start the animal farm...
-def main(): String & Impure =
+def main(_args: Array[String]): Int & Impure = {
     let c1 = chan String 1;
     let c2 = chan String 1;
     let c3 = chan String 1;
@@ -355,10 +350,12 @@ def main(): String & Impure =
     spawn meow(c2, 3);
     spawn hiss(c3, 7);
     select {
-        case mooo <- c1 => mooo
-        case meow <- c2 => meow
-        case hiss <- c3 => hiss
-    }
+        case m <- c1 => m |> println
+        case m <- c2 => m |> println
+        case m <- c3 => m |> println
+    };
+    0 // exit code
+}
 `
         },
         {
