@@ -270,32 +270,6 @@ def h(): N[Bool] = Map#{ true -> Ok(456) }
 `
         },
         {
-            name: "Reading and Writing a Text File",
-            code: `/// An example of how to read and write a text file.
-use Core/Io/IOError.IOError;
-use Core/Io/File.{File, new => newFile, readLines, writeLines};
-
-/// Returns a list of prominent public figures.
-def getData(): List[String] =
-    "Luke, Lucky" :: "Duck, Donald" :: Nil
-
-/// Writes the list of prominent figures to a file.
-def writeData(file: File): Result[Unit, IOError] & Impure =
-    writeLines(file, getData())
-
-/// Reads the list of prominent figures back, returning surnames.
-def readData(file: File): Result[List[String], IOError] & Impure =
-    let splitAndGetFirst = (s: String -> String.split(s, ",")[0]);
-    let getSurname = (xs: List[String]) -> List.map(splitAndGetFirst, xs);
-    Result.map(getSurname, readLines(file))
-
-/// Writes the text file and then reads it back in again.
-def main(): Result[List[String], IOError] & Impure =
-    let path = newFile("members.txt");
-    Result.flatMap(_ -> readData(path), writeData(path))
-`
-        },
-        {
             name: "Mutual Recursion with Full Tail-Call Elimination",
             code: `/// Flix, despite being a JVM-language, 
 /// supports full tail call elimination.
@@ -439,73 +413,6 @@ DirectedEdge(3, 5).
 // Declare some constraints.
 Connected(x, y) :- DirectedEdge(x, y).
 Connected(x, z) :- Connected(x, y), DirectedEdge(y, z).
-`
-        },
-        {
-            name: "Fixpoint Computations on Lattices",
-            code: `/// We define the elements of the lattice as an enum. The somewhat
-/// unorthodox formatting shows the structure of the lattice:
-enum Sign {
-              case Top,
-
-    case Neg, case Zer, case Pos,
-
-              case Bot
-}
-
-/// Next, we define all the components that constitute the lattice:
-
-/// The equality relation on the lattice elements.
-def equ(e1: Sign, e2: Sign): Bool = e1 == e2
-
-/// The partial order relation on the lattice elements.
-def leq(e1: Sign, e2: Sign): Bool = match (e1, e2) {
-    case (Bot, _)   => true
-    case (Neg, Neg) => true
-    case (Zer, Zer) => true
-    case (Pos, Pos) => true
-    case (_, Top)   => true
-    case _          => false
-}
-
-/// The least upper bound relation on the lattice elements.
-def lub(e1: Sign, e2: Sign): Sign = match (e1, e2) {
-    case (Bot, x)   => x
-    case (x, Bot)   => x
-    case (Neg, Neg) => Neg
-    case (Zer, Zer) => Zer
-    case (Pos, Pos) => Pos
-    case _          => Top
-}
-
-/// The greatest lower bound relation on the lattice elements.
-def glb(e1: Sign, e2: Sign): Sign = match (e1, e2) {
-    case (Top, x)   => x
-    case (x, Top)   => x
-    case (Neg, Neg) => Neg
-    case (Zer, Zer) => Zer
-    case (Pos, Pos) => Pos
-    case _          => Bot
-}
-
-/// Flix does not yet support type classes, so we use this ugly syntax
-/// to tell Flix that these functions define a lattice on Sign.
-let Sign<> = (Bot, Top, equ, leq, lub, glb)
-
-/// We can now declare three map lattices:
-lat A(x: String, s: Sign)
-lat B(x: String, s: Sign)
-lat R(x: String, s: Sign)
-
-/// We can write facts with lattice semantics:
-A("a"; Pos).
-B("a"; Top).
-A("b"; Neg).
-
-/// And rules with lattice semantics:
-R("c"; s) :- A("a"; s).
-R("c"; s) :- A("b"; s).
-R("d"; s) :- A(x; s), B(x; s).
 `
         },
         {
@@ -685,166 +592,8 @@ def main(): #{Interpreter(String), Compiler(String, String, String)} =
 `
         },
         {
-            name: "An Interpreter for a Trivial Expression Language",
-            code: `//
-// We define an adt to capture the syntax of arithmetic expressions.
-//
-enum AExp {
-    // a literal integer constant.
-    case Cst(Int),
-
-    // a binary addition expression: e1 + e2.
-    case Plus(AExp, AExp),
-
-    // a binary subtraction expression: e1 - e2.
-    case Minus(AExp, AExp),
-
-    // a binary multiplication expression: e1 * e2.
-    case Times(AExp, AExp),
-
-    // a binary division expression: e1 / e2.
-    case Divide(AExp, AExp),
-
-    //n a if-then-else expression: if (e1) e2 else e3.
-    case IfThenElse(BExp, AExp, AExp)
-}
-
-//
-// We then define an adt to capture the syntax of boolean expressions.
-//
-enum BExp {
-    // the true boolean literal.
-    case True,
-
-    // the false boolean literal.
-    case False,
-
-    // a logical negation expression: not e.
-    case Not(BExp),
-
-    // a logical conjunction expression: e1 and e2.
-    case Conj(BExp, BExp),
-
-    // a logical disjunction expression: e1 or e2.
-    case Disj(BExp, BExp),
-
-    // an equality of expression: e1 == e2.
-    case Eq(AExp, AExp),
-
-    // an inequality of expression: e1 != e2.
-    case Neq(AExp, AExp)
-}
-
-//
-// We now define a small interpreter for arithmetic expressions.
-//
-def evalAExp(e: AExp): Int = match e {
-    case Cst(i)                 => i
-    case Plus(e1, e2)           => evalAExp(e1) + evalAExp(e2)
-    case Minus(e1, e2)          => evalAExp(e1) - evalAExp(e2)
-    case Times(e1, e2)          => evalAExp(e1) * evalAExp(e2)
-    case Divide(e1, e2)         => evalAExp(e1) / evalAExp(e2)
-    case IfThenElse(e1, e2, e3) =>
-        let cond = evalBExp(e1);
-            if (cond) evalAExp(e2) else evalAExp(e3)
-}
-
-//
-// and here is the small interpreter for boolean expressions.
-//
-def evalBExp(e: BExp): Bool = match e {
-    case True           => true
-    case False          => false
-    case Not(e)         => not evalBExp(e)
-    case Conj(e1, e2)   => evalBExp(e1) and evalBExp(e2)
-    case Disj(e1, e2)   => evalBExp(e1) or evalBExp(e2)
-    case Eq(e1, e2)     => evalAExp(e1) == evalAExp(e2)
-    case Neq(e1,e2)     => evalAExp(e1) != evalAExp(e2)
-}
-
-
-// We can now run it!
-def main(): Int = evalAExp(
-    IfThenElse(Neq(Cst(1), Cst(2)), Cst(42), Cst(21))
-)
-`
-        },
-        {
-            name: "The AST Typing Problem with Polymorphic Records",
-            code: `/// A solution to the AST typing problem with extensible records.
-
-/// We begin with a grammar for expressions.
-/// The definition of Exp is polymorphic in a record type that
-/// allows the AST to be decorated with additional fields.
-enum Exp[r] {
-    case True,
-    case False,
-    case Cst({value: Int | r}),
-    case Add({exp1: Exp[{| r}], exp2: Exp[{| r}] | r}),
-    case Ite({exp1: Exp[{| r}], exp2: Exp[{| r}], exp3: Exp[{| r}] | r})
-}
-
-/// Next, we define a grammar of types:
-enum Type {
-    case TBool,
-    case TInt
-}
-
-/// We can now write a function that given an expression extended
-/// with a tpe: Type field returns its type!
-def typeOf[r](e: Exp[{tpe: Type | r}]): Type = match e {
-    case True   => TBool
-    case False  => TBool
-    case Cst(_) => TInt
-    case Add(i) => i.tpe
-    case Ite(i) => i.tpe
-}
-
-/// We can write a function that takes an untyped expression
-/// and returns a typed expression decorated with the type.
-/// For simplicity, the actual checks have been omitted.
-def typeCheck(e: Exp[{}]): Exp[{tpe: Type}] = match e {
-    case True   => True
-    case False  => False
-    case Cst(i) => Cst({value = i.value, tpe = TInt})
-    case Add(i) =>
-        let e1 = typeCheck(i.exp1);
-        let e2 = typeCheck(i.exp2);
-            Add({exp1 = e1, exp2 = e2, tpe = TInt})
-    case Ite(i) =>
-      let e1 = typeCheck(i.exp1);
-      let e2 = typeCheck(i.exp2);
-      let e3 = typeCheck(i.exp2);
-        Ite({exp1 = e1, exp2 = e2, exp3 = e3, tpe = typeOf(e2)})
-}
-
-/// We can now type check a simple expression:
-def main(): Type =
-    let e = Ite({exp1 = True,
-                 exp2 = Cst({value = 123}),
-                 exp3 = Cst({value = 456})});
-    typeOf(typeCheck(e))
-
-/// We can extend the function above to be one that is polymorphic
-/// in whatever other fields an expression may be decorated with:
-def typeCheck2[r](e: Exp[{| r}]): Exp[{tpe: Type | r}] = match e {
-    case True   => True
-    case False  => False
-    case Cst(i) => Cst({ +tpe = TInt | { value = i.value | i}})
-    case Add(i) =>
-        let e1 = typeCheck2(i.exp1);
-        let e2 = typeCheck2(i.exp2);
-            Add({ +tpe = TInt | {exp1 = e1, exp2 = e2 | i} })
-    case Ite(i) =>
-      let e1 = typeCheck2(i.exp1);
-      let e2 = typeCheck2(i.exp2);
-      let e3 = typeCheck2(i.exp3);
-        Ite({ +tpe = TInt | {exp1 = e1, exp2 = e2, exp3 = e3 | i} })
-}`
-        },
-        {
-        name: "Using Laziness for Infinite Streams",
-        code: `use LazyList.LazyList;
+            name: "Using Laziness for Infinite Streams",
+            code: `use LazyList.LazyList;
 use LazyList.LazyList.{Empty, LazyCons};
 
 /// A predicate for prime numbers
@@ -907,6 +656,93 @@ def fibs(): LazyList[Int32] =
 
 /// Returns the first 10 Fibonacci numbers
 def main(): LazyList[Int32] = LazyList.take(10, fibs())
+`
+        },
+        {
+            name: "An Interpreter for a Trivial Expression Language",
+            code: `///
+/// We define the syntax of arithmetic expression.
+///
+enum AExp {
+    /// a literal integer constant.
+    case Cst(Int),
+
+    /// a binary addition expression: e1 + e2.
+    case Plus(AExp, AExp),
+
+    /// a binary subtraction expression: e1 - e2.
+    case Minus(AExp, AExp),
+
+    /// a binary multiplication expression: e1 * e2.
+    case Times(AExp, AExp),
+
+    /// a binary division expression: e1 / e2.
+    case Divide(AExp, AExp),
+
+    //n a if-then-else expression: if (e1) e2 else e3.
+    case IfThenElse(BExp, AExp, AExp)
+}
+
+///
+/// We then define the syntax of Boolean expressions.
+///
+enum BExp {
+    /// the true boolean literal.
+    case True,
+
+    /// the false boolean literal.
+    case False,
+
+    /// a logical negation expression: !e.
+    case Not(BExp),
+
+    /// a logical conjunction expression: e1 and e2.
+    case Conj(BExp, BExp),
+
+    /// a logical disjunction expression: e1 or e2.
+    case Disj(BExp, BExp),
+
+    /// an equality of expression: e1 == e2.
+    case Eq(AExp, AExp),
+
+    /// an inequality of expression: e1 != e2.
+    case Neq(AExp, AExp)
+}
+
+///
+/// We now define a small interpreter for arithmetic expressions.
+///
+def evalAExp(e: AExp): Int = match e {
+    case Cst(i)                 => i
+    case Plus(e1, e2)           => evalAExp(e1) + evalAExp(e2)
+    case Minus(e1, e2)          => evalAExp(e1) - evalAExp(e2)
+    case Times(e1, e2)          => evalAExp(e1) * evalAExp(e2)
+    case Divide(e1, e2)         => evalAExp(e1) / evalAExp(e2)
+    case IfThenElse(e1, e2, e3) =>
+        let cond = evalBExp(e1);
+            if (cond) evalAExp(e2) else evalAExp(e3)
+}
+
+///
+/// and here is the small interpreter for Boolean expressions.
+///
+def evalBExp(e: BExp): Bool = match e {
+    case True           => true
+    case False          => false
+    case Not(e1)        => not evalBExp(e1)
+    case Conj(e1, e2)   => evalBExp(e1) and evalBExp(e2)
+    case Disj(e1, e2)   => evalBExp(e1) or evalBExp(e2)
+    case Eq(e1, e2)     => evalAExp(e1) == evalAExp(e2)
+    case Neq(e1,e2)     => evalAExp(e1) != evalAExp(e2)
+}
+
+/// We can now run it!
+def main(_args: Array[String]): Int32 & Impure =
+    let r = evalAExp(
+        IfThenElse(Neq(Cst(1), Cst(2)), Cst(42), Cst(21))
+    );
+    r |> println;
+    0 // exit code
 `
         }
     ];
