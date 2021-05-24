@@ -348,21 +348,6 @@ def f(): Int32 & Impure = // f is impure
                 <hr className="mb-3"/>
 
                 <Row className="mb-3">
-                    <Col md={12}>
-                        <h2>Visual Studio Code Support</h2>
-
-                        <p>
-                            The Flix compiler integrates with Visual Studio Code providing a richer development
-                            experience:
-                        </p>
-
-                        <UncontrolledCarousel autoPlay={false} items={this.carousel} className="ml-2 mr-2"/>
-                    </Col>
-                </Row>
-
-                <hr className="mb-3"/>
-
-                <Row className="mb-3">
                     <Col md="12">
                         <h2>Complete Feature List</h2>
                     </Col>
@@ -408,6 +393,21 @@ def f(): Int32 & Impure = // f is impure
                             <li>interactive mode</li>
                             <li>Visual Studio Code support</li>
                         </ul>
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
+                    <Col md={12}>
+                        <h2>Visual Studio Code Support</h2>
+
+                        <p>
+                            The Flix compiler integrates with Visual Studio Code providing a richer development
+                            experience:
+                        </p>
+
+                        <UncontrolledCarousel autoPlay={false} items={this.carousel} className="ml-2 mr-2"/>
                     </Col>
                 </Row>
 
