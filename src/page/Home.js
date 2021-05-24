@@ -28,22 +28,22 @@ class Home extends Component {
         {
             src: '/images/vscode1.png',
             caption: 'Slide 1',
-            header: 'Visual Studio Code Support',
+            header: 'VSCode: Syntax Highlighting',
         },
         {
             src: '/images/vscode2.png',
             caption: 'Slide 2',
-            header: 'VSCode: Hover to view contextual information',
+            header: 'VSCode: Contextual Information',
         },
         {
             src: '/images/vscode3.png',
             caption: 'Slide 3',
-            header: 'VSCode: Show all references of a name',
+            header: 'VSCode: Highlight References',
         },
         {
             src: '/images/vscode4.png',
             caption: 'Slide 4',
-            header: 'VSCode: Inline error messages',
+            header: 'VSCode: Inline Errors',
         }
     ];
 
@@ -72,22 +72,18 @@ class Home extends Component {
                         </p>
 
                         <p className="text-justify">
-                            Flix compiles to efficient JVM bytecode, runs on the Java Virtual Machine, and supports full
-                            tail call elimination.
-                        </p>
-
-                        <p>
-                            A Visual Studio Code plugin for Flix is available.
+                            Flix compiles JVM bytecode, runs on the Java Virtual Machine, and supports full tail call
+                            elimination. A VSCode plugin for Flix is available.
                         </p>
 
                         <p>
                             <Button color="success" tag={Link} to="/get-started/">
-                                Install
+                                Get Started
                             </Button>
 
                             <a href="https://play.flix.dev/">
                                 <Button color="info" className="ml-2">
-                                    Play
+                                    Playground
                                 </Button>
                             </a>
 
@@ -125,7 +121,7 @@ class Home extends Component {
                             className="font-weight-bold">higher-kinded types</span> (like Haskell), <span
                             className="font-weight-bold">local type inference</span> (like Haskell, OCaml), <span
                             className="font-weight-bold">channel and process-based concurrency</span> (like Go), <span
-                            className="font-weight-bold">a polymorphic effect system</span> (unique feature), and <span
+                            className="font-weight-bold">a polymorphic effect system</span> (unique feature), <span
                             className="font-weight-bold">first-class Datalog constraints</span> (unique feature),
                             and <span
                             className="font-weight-bold">compilation to JVM bytecode</span> (like Scala).
@@ -194,8 +190,7 @@ def f(): Int32 = area({h = 1, color = "Blue", w = 2})`}
                                     </p>
 
                                     <p>
-                                        Records use structural typing and are extensible, i.e. fields can be added,
-                                        updated, or removed.
+                                        Records use structural typing and are extensible.
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -210,12 +205,12 @@ def f(): Int32 = area({h = 1, color = "Blue", w = 2})`}
                                 <CardTitle><h4>Type Classes</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        Flix supports type classes to abstract over types that support the same set of
-                                        common operations.
+                                        Flix uses type classes to abstract over types that support a common set of
+                                        operations.
                                     </p>
                                     <p>
-                                        For example, equality is captured by the <code>Eq</code> type class which is
-                                        used throughout the standard library.
+                                        For example, the <code>Eq</code> type class captures the notion of equality
+                                        and is used throughout the standard library.
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -265,11 +260,12 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                                 <CardText>
                                     <p>
                                         Flix supports higher-kinded types making it possible to abstract over type
-                                        constructors.
+                                        constructors. For example,
+                                        both <code>Option</code> and <code>List</code> implement <code>Foldable</code>.
                                     </p>
 
                                     <p>
-                                        The Flix standard library comes with common type classes, such
+                                        The Flix standard library ships with many common type classes, such
                                         as <code>Monoid</code>, <code>Functor</code>, and <code>Foldable</code>.
                                     </p>
                                 </CardText>
@@ -321,9 +317,10 @@ def f(): Int32 & Impure = // f is impure
                                 <CardTitle><h4>First-class Datalog Constraints</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        A unique feature of Flix is its built-in support for Datalog. This enables a
-                                        database-oriented style of programming where functions may be implemented as
-                                        Datalog constraints.
+                                        Another unique feature of Flix is its embedded Datalog support. Datalog, a
+                                        powerful logic programming language in its own right, makes it simple and
+                                        elegant to express many fixpoint problems (including various graph reachability
+                                        problems):
                                     </p>
 
                                     <InlineEditor>
@@ -337,16 +334,10 @@ def f(): Int32 & Impure = // f is impure
                                     </InlineEditor>
 
                                     <p>
-                                        Datalog constraints are <i>first-class</i>, i.e. they may be passed to
-                                        and returned from functions, stored in data structures, composed with other
+                                        Datalog constraints are <i>first-class</i> which means that they may be passed
+                                        to and returned from functions, stored in data structures, composed with other
                                         Datalog constraints, and solved. This makes it possible to express families of
                                         Datalog programs.
-                                    </p>
-
-                                    <p>
-                                        Datalog constraints integrate with the lexical scope and refer to (pure)
-                                        functions in Flix. The constraints are structurally typed and may be polymorphic
-                                        in the types of their terms.
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -359,6 +350,11 @@ def f(): Int32 & Impure = // f is impure
                 <Row className="mb-3">
                     <Col md={12}>
                         <h2>Visual Studio Code Support</h2>
+
+                        <p>
+                            The Flix compiler integrates with Visual Studio Code providing a richer development
+                            experience:
+                        </p>
 
                         <UncontrolledCarousel autoPlay={false} items={this.carousel} className="ml-2 mr-2"/>
                     </Col>
