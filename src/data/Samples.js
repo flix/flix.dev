@@ -19,34 +19,32 @@ def area(s: Shape): Int32 = match s {
 
 // Computes the area of a 2 by 4.
 def main(_args: Array[String]): Int32 & Impure =
-    area(Rectangle(2, 4)) |> println;
+    println(area(Rectangle(2, 4)));
     0 // exit code
 `
         },
         {
             name: "Lists and List Processing",
-            code: `/// In Flix, as in many functional programming languages, 
-/// lists are the bread and butter.
-
-/// We can easily construct a list:
-def aList(): List[Int] = 1 :: 2 :: 3 :: Nil
-
-/// We can easily append two lists:
-def bList(): List[Int] = aList() ::: aList()
+            code: `/// We can easily construct and append lists:
+def l(): List[Int32] =
+    let l1 = 1 :: 2 :: 3 :: Nil;
+    let l2 = 4 :: 5 :: 6 :: Nil;
+    l1 ::: l2
 
 /// We can use pattern matching to take a list apart:
-def length[a](l: List[a]): Int = match l {
+def length(l: List[a]): Int32 = match l {
   case Nil     => 0
-  case x :: xs => 1 + length(xs) 
+  case _ :: xs => 1 + length(xs)
 }
 
 /// The Flix library has extensive support for lists:
-def main(): Bool = 
-    let l1 = List.range(0, 10);
+def main(_args: Array[String]): Int32 & Impure =
+    let l1 = l();
     let l2 = List.intersperse(42, l1);
     let l3 = List.map(x -> x :: x :: Nil, l2);
     let l4 = List.flatten(l3);
-    List.exists(x -> x == 0, l4)
+    println(length(l4));
+    0 // exit code
 `
         },
         {
