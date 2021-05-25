@@ -279,25 +279,26 @@ def h(): N[Bool] = Map#{ true -> Ok(456) }
         },
         {
             name: "Mutual Recursion with Full Tail-Call Elimination",
-            code: `/// Flix, despite being a JVM-language, 
+            code: `/// Flix, despite being a JVM-language,
 /// supports full tail call elimination.
 
 /// We can demonstrate this with a naive implementation
 /// of a program that computes if a number is odd.
 
 /// Returns true if n is odd.
-def isOdd(n: Int): Bool = 
+def isOdd(n: Int32): Bool =
     if (n == 0) false else isEvn(n - 1)
 
 /// Returns true if n is even.
-def isEvn(n: Int): Bool = 
+def isEvn(n: Int32): Bool =
     if (n == 0) true else isOdd(n - 1)
 
 /// We can now compute if 12345 is odd.
 /// In a language without TCE this would
 /// quickly consume all stack space.
-def main(): Bool = isOdd(12345)
-`
+def main(_args: Array[String]): Int32 & Impure =
+    isOdd(12345) |> println;
+    0 // exit code`
         },
         {
             name: "Sending and Receiving on Channels",
@@ -405,60 +406,6 @@ def main(_args: Array[String]): Int32 & Impure = {
 `
         },
         {
-            name: "Fixpoint Computations on Relations",
-            code: `/// We can use Flix as an ordinary Datalog solver.
-
-/// Declare two predicate symbols.
-rel DirectedEdge(x: Int, y: Int)
-rel Connected(x: Int, y: Int)
-
-/// Declare some edge facts.
-DirectedEdge(1, 2).
-DirectedEdge(2, 3).
-DirectedEdge(2, 4).
-DirectedEdge(3, 5).
-
-// Declare some constraints.
-Connected(x, y) :- DirectedEdge(x, y).
-Connected(x, z) :- Connected(x, y), DirectedEdge(y, z).
-`
-        },
-        {
-            name: "Fixpoint Computations with Stratified Negation",
-            code: `/// Flix supports stratified negation for constraints.
-/// The Flix compiler will statically ensure that use
-/// of negation is safe and compute its stratification.
-
-/// We declare several relations related to movies:
-rel Movie(title: String)
-rel Actor(title: String, name: String)
-rel Director(title: String, name: String)
-rel PureMovie(title: String)
-
-/// We declare some facts about movies:
-Movie("Interstellar").
-Movie("The Hateful Eight").
-
-/// We declare some facts about actors:
-Actor("Interstellar", "Matthew McConaughey").
-Actor("Interstellar", "Anne Hathaway").
-Actor("The Hateful Eight", "Samuel L. Jackson").
-Actor("The Hateful Eight", "Kurt Russel").
-Actor("The Hateful Eight", "Quentin Tarantino").
-
-/// We declare some facts about directors:
-Director("Interstellar", "Christopher Nolan").
-Director("The Hateful Eight", "Quentin Tarantino").
-
-/// We can now compute all the movies in which the
-/// director of the movie does not appear as an actor.
-PureMovie(movie) :-
-    Movie(movie),
-    Director(movie, person),
-    not Actor(movie, person).
-`
-        },
-        {
             name: "First-Class Constraints and Fixpoints",
             code: `/// Declare two predicate symbols.
 rel ParentOf(x: String, y: String)
@@ -479,9 +426,10 @@ def getRules(): #{ ParentOf, AncestorOf } = #{
 }
 
 /// Composes the facts and rules, and computes the lfp.
-def main(): #{ ParentOf, AncestorOf } =
-    solve getFacts() <+> getRules()
-`
+def main(_args: Array[String]): Int32 & Impure =
+    query getFacts(), getRules() 
+        select (x, y) from AncestorOf(x, y) |> println;
+    0 // exit code`
         },
         {
             name: "Polymorphic First-Class Constraints",
