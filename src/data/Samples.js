@@ -92,34 +92,35 @@ def main(_args: Array[String]): Int32 & Impure =
     let t1 = Node(Leaf("Hello"), Leaf("World"));
     let t2 = map(String.length, t1);
     println(sum(t2));
-    0 // exit code
-`
+    0 // exit code`
         },
         {
             name: "Record Construction and Use",
             code: `/// Returns the area of the rectangle \`r\`.
 /// The record \`r\` must have \`x\` and \`y\` labels, and no other labels.
-def area(r: {x: Int, y: Int}): Int = r.x * r.y
+def area(r: {x: Int32, y: Int32}): Int = r.x * r.y
 
 /// Computes the area of various rectangle records.
 /// Note that the order of labels is immaterial.
-def areas(): List[Int] =
+def areas(): List[Int32] =
     area({x = 1, y = 2}) ::
     area({y = 2, x = 3}) :: Nil
 
 /// Returns the area of the polymorphic record \`r\`.
 /// Note that the use of the type variable \`a\` permits the record \`r\`
 /// to have labels other than \`x\` and \`y\`.
-def polyArea[a](r: {x: Int, y: Int | a}): Int = r.x * r.y
+def polyArea(r: {x: Int32, y: Int32 | a}): Int32 = r.x * r.y
 
 /// Computes the area of various rectangle records.
 /// Note that some records have additional fields.
-def polyAreas(): List[Int] =
+def polyAreas(): List[Int32] =
     polyArea({x = 1, y = 2}) ::
     polyArea({x = 2, y = 3, z = 4}) :: Nil
 
-def main(): List[Int] = polyAreas()
-`
+def main(_args: Array[String]): Int32 & Impure =
+    areas() |> println;
+    polyAreas() |> println;
+    0 // exit code`
         },
         {
             name: "Polymorphic Record Update",
@@ -135,104 +136,106 @@ def main2(): Int =
 
 /// Returns the record \`r\` with a new value of its \`y\` label.
 /// Preserves (retains) all other labels polymorphically.
-def setY[a](r: {y: Int | a}, v: Int): {y: Int | a} =
+def setY(r: {y: Int | a}, v: Int): {y: Int | a} =
     { y = v | r }
 
 /// Returns the value 0 + 1 + 3 = 4.
-def main(): Int =
+def main(_args: Array[String]): Int32 & Impure =
     let r1 = {x = 1, y = 2};
     let r2 = {x = 1, y = 2, z = 3};
     let r3 = setY(r1, 0);
     let r4 = setY(r2, 1);
-    r3.y + r4.y + r4.z
-`
+    (r3.y + r4.y + r4.z) |> println;
+    0 // exit code`
         },
         {
             name: "Polymorphic Record Extension and Restriction",
             code: `/// Polymorphically extends the record \`r\` with an \`age\` label.
 /// Preserves (retains) all other labels polymorphically.
-def withAge[a](r: {| a}, v: Int): {age: Int | a} =
+def withAge(r: {| a}, v: Int): {age: Int | a} =
     { +age = v | r }
 
 /// Polymorphically restricts (removes) the \`age\` label from \`r\`.
 /// Preserves (retains) all other labels polymorphically.
-def withoutAge[a](r: {age: Int | a}): {| a} = {-age | r}
+def withoutAge(r: {age: Int | a}): {| a} = {-age | r}
 
 /// Construct several records and extend them with an age.
-def main(): Int =
+def main(_: Array[String]): Int32 & Impure =
     let r1 = withAge({fstName = "Julius", lstName = "Caesar"}, 55);
     let r2 = withAge({monument = "Flavian Amphitheatre"}, 2019 - 80);
     let r3 = withAge({country = "United States"}, 2019 - 1776);
-    r1.age + r2.age + r3.age
+    (r1.age + r2.age + r3.age) |> println;
+    0 // exit code
 
 /// Constructs a record, extends it with an age, and restricts it.
-def main2(): Unit =
+def main2(_args: Array[String]): Int32 & Impure =
     let r1 = {fstName = "Julius", lstName = "Caesar"};
     let r2 = withAge(r1, 55);
     let r3 = withoutAge(r2);
-    ()
-`
+    "Mr. \${r3.fstName} \${r3.lstName}" |> println;
+    0 // exit code`
         },
         {
             name: "Function Composition, Pipelines, and Currying",
             code: `/// Flix supports function composition with
 /// the |> operator (among others) and currying.
 /// This makes it easy to construct pipelines:
-                
+
 /// Constructs a list with ten elements and performs
 /// various operations on it in a pipeline.
-def main(): Bool = 
+def main(_args: Array[String]): Int32 & Impure =
     List.range(0, 10) |>
     List.map(x -> x * x) |>
-    List.take(5) |> 
-    List.exists(x -> x == 1)
-`
+    List.take(5) |>
+    List.exists(x -> x == 1) |>
+    println;
+    0 // exit code`
         },
         {
             name: "Pure and Impure Functions",
             code: `/// We can declare a pure function.
-def inc(x: Int): Int & Pure = x + 1
+def inc(x: Int32): Int32 & Pure = x + 1
 
 /// The pure annotation is default, so we can just write:
-def inc2(x: Int): Int = x + 1
+def inc2(x: Int32): Int32 = x + 1
 
 /// We can also declare an impure function.
-def printAndInc(x: Int): Int & Impure =
+def printAndInc(x: Int32): Int32 & Impure =
     Console.printLine("Hello");
     x + 1
 
 /// We can declare a function that expects a pure function:
-def twice(f: Int -> Int, x: Int): Int = f(f(x))
+def twice(f: Int32 -> Int32, x: Int32): Int32 = f(f(x))
 
 /// We can pass a pure function to twice.
-def main(): Int = twice(inc, 42)
+pub def f(): Int32 = twice(inc, 42)
 
 /// But we *cannot* pass an impure function.
-// def main2(): Int = twice(printAndInc, 42)
-`
+// pub def g(): Int32 = twice(printAndInc, 42)`
         },
         {
             name: "Effect Polymorphic Functions",
             code: `/// Assume we have some pure and impure functions:
-def inc1(x: Int): Int & Pure = x + 1
-def inc2(x: Int): Int & Impure = Console.printLine("Hello"); x + 1
+def inc1(x: Int32): Int32 & Pure = x + 1
+def inc2(x: Int32): Int32 & Impure = println("Hello"); x + 1
 
 /// We can write functions that expect pure or impure functions:
-def twice1(f: Int -> Int & Pure, x: Int): Int & Pure = f(f(x))
-def twice2(f: Int -> Int & Impure, x: Int): Int & Impure = f(f(x))
+def twice1(f: Int32 -> Int32 & Pure, x: Int32): Int32 & Pure = f(f(x))
+def twice2(f: Int32 -> Int32 & Impure, x: Int32): Int32 & Impure = f(f(x))
 
 /// But we can also write *effect polymorphic* functions:
-def twice3(f: Int -> Int & e, x: Int): Int & e = f(f(x))
+def twice3(f: Int32 -> Int32 & ef, x: Int32): Int32 & ef = f(f(x))
 
 /// We can use \`twice3\` with both pure and impure functions:
-def main(): Int & Impure = twice3(inc1, 0) + twice3(inc2, 0)
-`
+def main(_args: Array[String]): Int32 & Impure =
+    (twice3(inc1, 0) + twice3(inc2, 0)) |> println;
+    0 // exit code`
         },
         {
             name: "Opaque Types",
             code: `/// An opaque type declares a new type that is different from any other
-/// existing type. Opaque types can be used to differentiate types
-/// that would otherwise be the same. For example:
+/// existing type. Opaque types can be used to differentiate types that 
+/// would otherwise be the same. For example:
 
 /// An opaque type for US dollars.
 opaque type USD = Int
@@ -242,16 +245,17 @@ opaque type CAD = Int
 
 ///
 /// A function that adds two US dollar amounts.
-/// Cannot be used to add USD and Canadian dollars.
 ///
 def sum(x: USD, y: USD): USD =
   let USD(u) = x;
   let USD(v) = y;
   USD(u + v)
 
-/// Adds two dollar amounts.
-def main(): USD = sum(USD(1), USD(5))
-`
+/// Adds two USD amounts.
+def main(_args: Array[String]): Int32 & Impure =
+    let USD(result) = sum(USD(1), USD(5));
+    println(result);
+    0 // exit code`
         },
         {
             name: "Type Aliases",
@@ -575,94 +579,27 @@ def main(_args: Array[String]): Int32 & Impure =
         Compiler("C++", "x86", "x86").
     };
     let rules = #{
-    // Bootstrapping Compilation:
-    // We have a compiler from src1 -> dst1 written in lang1.
-    // We have a compiler that can compile lang1 to dst2.
-    // Now we have a compiler from src1 to dst1 written in dst2.
-    Compiler(src1, dst1, dst2) :-
-        Compiler(src1, dst1, lang1),
-        Compiler(lang1, dst2, lang2),
-        Interpreter(lang2).
-
-    // Transitive Compilation:
-    // If we have a compiler from src -> intermediate and
-    // we have a compiler from intermediate -> dst then
-    // we can obtain a compiler from src -> dst.
-    Compiler(src, dst, lang) :-
-        Compiler(src, intermediate, lang),
-        Compiler(intermediate, dst, lang),
-        Interpreter(lang).
+        // Bootstrapping Compilation:
+        // We have a compiler from src1 -> dst1 written in lang1.
+        // We have a compiler that can compile lang1 to dst2.
+        // Now we have a compiler from src1 to dst1 written in dst2.
+        Compiler(src1, dst1, dst2) :-
+            Compiler(src1, dst1, lang1),
+            Compiler(lang1, dst2, lang2),
+            Interpreter(lang2).
+    
+        // Transitive Compilation:
+        // If we have a compiler from src -> intermediate and
+        // we have a compiler from intermediate -> dst then
+        // we can obtain a compiler from src -> dst.
+        Compiler(src, dst, lang) :-
+            Compiler(src, intermediate, lang),
+            Compiler(intermediate, dst, lang),
+            Interpreter(lang).
     };
     query facts, rules
         select (src, dst) from Compiler(src, _, dst) |> println;
     0 // exit code
-`
-        },
-        {
-            name: "Using Laziness for Infinite Streams",
-            code: `use LazyList.LazyList;
-use LazyList.LazyList.{Empty, LazyCons};
-
-/// A predicate for prime numbers
-def isPrime(p: Int32): Bool =
-    LazyList.from(2) |>
-    LazyList.take(p - 2) |>
-    LazyList.forall(x -> p % x != 0)
-
-/// An infinite sequence of prime numbers
-def primes(): LazyList[Int32] =
-    LazyList.from(2) |>
-    LazyList.filter(isPrime)
-
-/// Alternative definition using sieve
-def primes2(): LazyList[Int32] = sieve(LazyList.from(2))
-
-def sieve(ps: LazyList[Int32]): LazyList[Int32] = match ps {
-    case LazyCons(p, t) =>
-        LazyCons(p, 
-            lazy sieve(LazyList.filter(x -> x % p != 0, force t)))
-    case _ => Empty
-}
-
-/// Returns the first 10 prime numbers
-def main(): LazyList[Int32] = LazyList.take(10, primes())
-`
-        },
-        {
-            name: "Using Laziness for Logging",
-            code: `/// Emulates some slow computation.
-def slowFunction(): String = {
-    import java.lang.Thread:sleep(Int64);
-    let _ = sleep(5000i64) as & Pure;
-    Int32.toString(42)
-}
-
-/// A lazy log function.
-/// The idea is that we add the message to some buffer.
-/// Later, we can force the evaluation and store it permanently.
-/// For this example we just return the unit value.
-def log(_: Lazy[String]): Unit = ()
-
-/// Writes a message to the log.
-/// The slow function will not be evaluated.
-def main(): Unit =
-    log(lazy "The computation returned \${slowFunction()}")
-`
-        },
-        {
-            name: "Using Laziness to Compute Fibonacci",
-            code: `use LazyList.LazyList;
-use LazyList.LazyList.{Empty, LazyCons};
-
-/// An infinite sequence of Fibonacci numbers
-def fibs(): LazyList[Int32] =
-    LazyCons(0, 
-        lazy LazyCons(1, 
-            lazy LazyList.zipWith(
-                (x, y) -> x + y, fibs(), LazyList.tail(fibs()))))
-
-/// Returns the first 10 Fibonacci numbers
-def main(): LazyList[Int32] = LazyList.take(10, fibs())
 `
         },
         {
