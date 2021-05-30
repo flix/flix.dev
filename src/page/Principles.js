@@ -379,22 +379,128 @@ class Principles extends Component {
 
                 </CardColumns>
 
+                <h2 className="mt-3">Type Class Principles</h2>
+
+                <CardColumns>
+                    <Principle name="Type Classes are Conceptually Functions">
+                        <p>
+                            A type class is <i>conceptually</i> a function from a type to a set of lawful
+                            operations on values of that type.
+                        </p>
+
+                        <p>
+                            For example, the <code>Eq</code> type class takes a type and returns
+                            the <code>eq</code> and <code>neq</code> functions where <code>eq</code> must be reflexive,
+                            symmetric, and transitive, and <code>neq</code> must be
+                            the negation of <code>eq</code>.
+                        </p>
+                    </Principle>
+
+                    <Principle name="Lawful and Lawless Type Classes">
+                        <p>
+                            Every type class must specify a collection of laws that instances of the type
+                            class must satisfy. If a type class does not specify any laws it is lawless.
+                        </p>
+
+                        <p>
+                            Here are some examples of lawful and lawless type classes:
+
+                            <ul>
+                                <li>Lawful: <code>Eq</code>, <code>Order</code>, <code>Functor</code>, <code>Foldable</code>.
+                                </li>
+                                <li>Lawless: <code>FromString</code>, <code>ToString</code>, <code>Add</code>.</li>
+                            </ul>
+                        </p>
+
+                        <p>
+                            Note: Laws are not checked by the compiler &ndash; that is an undecidable
+                            problem &ndash; but they may be used in a future SmallCheck / QuickCheck library.
+                        </p>
+
+                    </Principle>
+
+                    <Principle name="Type Classes are Hierarchical">
+                        <p>
+                            A sub-class (i.e. a type class <code>A</code> that refines a type class <code>B</code>) must
+                            specify additional laws that its instances must satisfy.
+                        </p>
+
+                        <p>
+                            For example, the <code>Applicative</code> type class extends the <code>Functor</code> type
+                            class with additional operations and laws.
+                        </p>
+                    </Principle>
+
+                    <Principle name="No Overlapping Instances">
+                        <p>
+                            The Flix compiler ensures that the selection of type class instances is always unambiguous.
+                        </p>
+
+                        <p>
+                            In the future, we may allow a limited form of overlapping instances.
+                        </p>
+                    </Principle>
+
+                    <Principle name="Type Classes, Namespaces, and Companion Namespaces">
+                        <p>
+                            Every type class belongs to a namespace. Hence it is possible to define multiple operations
+                            with the same name, as long as they belong to type classes in different namespaces.
+                        </p>
+
+                        <p>
+                            Every type class also defines a <i>companion namespace</i> which typically holds functions
+                            that are not part of the type class, but nevertheless are related to the functionality of
+                            the type class.
+                        </p>
+                    </Principle>
+
+                    <Principle name="Default Implementations">
+                        <p>
+                            Type classes may provide default implementations of functions.
+                        </p>
+
+                        <p>
+                            For example, the <code>Foldable</code> type class provides may default function
+                            implementations, e.g. <code>count</code> and <code>length</code>, based on
+                            the <code>foldLeft</code> and <code>foldRight</code> signatures defined in that class.
+                        </p>
+
+                        <p>
+                            A default implementation can always be overriden by a specific type class instance.
+                            For example, to provide a more efficient version.
+                        </p>
+                    </Principle>
+
+                    <Principle name="Explicit Override">
+                        A type class instance that wants to override a default implementation must explicitly do
+                        so using the <code>override</code> keyword. This ensures that there are no dangling overrides,
+                        i.e. functions definitions that do not match any signature of the type class.
+                    </Principle>
+
+                    <Principle name="Sealed Type Classes">
+                        A type class may be declared <code>sealed</code> in which case no further instances, other than
+                        those in the same compilation unit, can be defined. A sealed type class can be used when
+                        a programmer wants to maintain tight control over what instances should be permitted.
+                    </Principle>
+
+                </CardColumns>
+
                 <h2 className="mt-3">Library Principles</h2>
 
                 <CardColumns>
 
-                    <Principle name="Library: No blessed library">
+                    <Principle name="No blessed library">
                         The Flix standard library is implemented in Flix. It has no special support from the compiler.
                         If you don't like it or if you don't need it, you can replace it.
                     </Principle>
 
-                    <Principle name="Library: Minimal prelude">
+                    <Principle name="Minimal prelude">
                         The Flix prelude contains algebraic data types and functions that are imported into every
                         compilation unit. Therefore we aim to keep the prelude very small and only include extremely
                         common functionality.
                     </Principle>
 
-                    <Principle name="Library: Mutable data is functional data">
+                    <Principle name="Mutable data is functional data">
                         In Flix, every mutable data structure supports functional operations.
                         For example, mutable collections, such as <code>Array</code> and <code>MutSet</code> support
                         the <code>map</code> operation. Flix, being functional-first, reserves functional names for
@@ -402,7 +508,7 @@ class Principles extends Component {
                         same type signature.
                     </Principle>
 
-                    <Principle name="Library: Destructive operations are marked with '!'">
+                    <Principle name="Destructive operations are marked with '!'">
                         In Flix, every destructive operation is suffixed with an exclamation point. For
                         example, <code>Array.reverse(a)</code> returns a new array with the elements
                         of <code>a</code> in reverse
@@ -411,7 +517,7 @@ class Principles extends Component {
                         structures, not to impure functions in general, e.g. <code>Console.printLine</code>.
                     </Principle>
 
-                    <Principle name="Library: Consistent names of functional and destructive operations">
+                    <Principle name="Consistent names of functional and destructive operations">
                         In Flix, functional and destructive operations that share (i) similar behavior and (ii) similar
                         type signatures share similar names. For
                         example, <code>Array.reverse</code> and <code>Array.reverse!</code> share the
