@@ -26,6 +26,8 @@ class Principles extends Component {
                     F#, Go, Haskell, OCaml, Rust, and Scala.
                 </p>
 
+                <h2 className="mt-3">Language Principles</h2>
+
                 <CardColumns>
 
                     <Principle name="Simple is not easy">
@@ -375,6 +377,12 @@ class Principles extends Component {
                         fragmentation of the ecosystem and ultimately leads to better tool support.
                     </Principle>
 
+                </CardColumns>
+
+                <h2 className="mt-3">Library Principles</h2>
+
+                <CardColumns>
+
                     <Principle name="Library: No blessed library">
                         The Flix standard library is implemented in Flix. It has no special support from the compiler.
                         If you don't like it or if you don't need it, you can replace it.
@@ -414,6 +422,7 @@ class Principles extends Component {
                     </Principle>
 
                 </CardColumns>
+
             </Container>
         );
     }
