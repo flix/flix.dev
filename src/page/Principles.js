@@ -385,7 +385,7 @@ class Principles extends Component {
                     <Principle name="Type Classes are Conceptually Functions">
                         <p>
                             A type class is <i>conceptually</i> a function from a type to a set of lawful
-                            operations on values of that type.
+                            operations (called signatures) on values of that type.
                         </p>
 
                         <p>
@@ -413,6 +413,10 @@ class Principles extends Component {
                         </p>
 
                         <p>
+                            A type class is lawful if every signature of the class is used in at least one law.
+                        </p>
+
+                        <p>
                             Note: Laws are not checked by the compiler &ndash; that is an undecidable
                             problem &ndash; but they may be used in a future SmallCheck / QuickCheck library.
                         </p>
@@ -429,6 +433,21 @@ class Principles extends Component {
                             For example, the <code>Applicative</code> type class extends the <code>Functor</code> type
                             class with additional operations and laws.
                         </p>
+                    </Principle>
+
+                    <Principle name="No Orphan Instances">
+                        An instance must be declared in the same namespace as either:
+
+                        <ol>
+                            <li>the type class declaration, or</li>
+                            <li>the type declaration of the instance</li>
+                        </ol>
+                    </Principle>
+
+                    <Principle name="Sealed Type Classes">
+                        A type class may be declared <code>sealed</code> in which case no further instances, other than
+                        those in the same namespace, can be defined. A sealed type class can be used when the programmer
+                        wants to maintain tight control over what instances should be permitted.
                     </Principle>
 
                     <Principle name="No Overlapping Instances">
@@ -475,12 +494,6 @@ class Principles extends Component {
                         A type class instance that wants to override a default implementation must explicitly do
                         so using the <code>override</code> keyword. This ensures that there are no dangling overrides,
                         i.e. functions definitions that do not match any signature of the type class.
-                    </Principle>
-
-                    <Principle name="Sealed Type Classes">
-                        A type class may be declared <code>sealed</code> in which case no further instances, other than
-                        those in the same compilation unit, can be defined. A sealed type class can be used when
-                        a programmer wants to maintain tight control over what instances should be permitted.
                     </Principle>
 
                 </CardColumns>
