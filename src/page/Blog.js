@@ -3,6 +3,7 @@ import {Col, Container, Row} from "reactstrap";
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
+import NewProgrammingLanguages from "./blog/NewProgrammingLanguages";
 import DesignFlaws from "./blog/DesignFlaws";
 import Naming from "./blog/Naming";
 import Redundancies from "./blog/Redundancies";
@@ -68,6 +69,10 @@ class Blog extends Component {
                         </Row>
                     </Route>
 
+
+                    <Route path="/blog/new-programming-languages/">
+                        <NewProgrammingLanguages/>
+                    </Route>
 
                     <Route path="/blog/taming-impurity-with-polymorphic-effects/">
                         <PolymorphicEffects/>
