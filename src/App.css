@@ -90,3 +90,7 @@ p:last-child {
 .ace_hidden-cursors {
     opacity: 0
 }
+
+.w-33 {
+    width: 33%;
+}
