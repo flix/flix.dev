@@ -27,9 +27,12 @@ class NewProgrammingLanguages extends Component {
                         </p>
 
                         <p>
-                            A few choice quites
+                            A few choice quotes
                         </p>
 
+                        <blockquote>
+                            Do we really need?
+                        </blockquote>
 
                         <p>
                             Where Flix fits in. We should be held to a high standard, but
