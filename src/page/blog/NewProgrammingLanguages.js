@@ -39,6 +39,14 @@ class NewProgrammingLanguages extends Component {
                             people should also engange honestly by understanding the details.
                         </p>
 
+                        <p>
+                            Ideas for better communication:
+
+                            - Clearly state what kind of project this (hobby, etc).
+                            - What is new
+                            -
+                        </p>
+
                     </Col>
                 </Row>
             </Container>
