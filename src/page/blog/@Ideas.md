@@ -11,4 +11,4 @@
 - Sanity: Avoiding common PL pitfals
 - Design of Type Classes
 - In Defense of PL Design
-
+- Looking for contributors
