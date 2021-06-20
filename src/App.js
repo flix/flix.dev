@@ -18,7 +18,6 @@ import About from "./page/About";
 import Blog from "./page/Blog";
 import Koans from "./page/Koans";
 import Innovations from "./page/Innovations";
-import Compare from "./page/Compare";
 
 const SocketAddress = 'wss://evaluator.flix.dev/ws';
 
@@ -132,7 +131,6 @@ class App extends Component {
                 <Route path="/get-started/" component={GetStarted}/>
                 <Route path="/principles/" component={Principles}/>
                 <Route path="/documentation/" component={Documentation}/>
-                <Route path="/compare/" component={Compare}/>
                 <Route path="/innovations/" component={Innovations}/>
                 <Route path="/research/" component={Research}/>
                 <Route path="/faq/" component={Faq}/>
