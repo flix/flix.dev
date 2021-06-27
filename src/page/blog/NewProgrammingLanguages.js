@@ -80,10 +80,18 @@ class NewProgrammingLanguages extends Component {
                             </footer>
                         </blockquote>
 
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"The language is probably great from a technical point of view, but
+                                unless Apple, Google, Mozilla, or Microsoft is on-board it is pointless."</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Enraged Koala</cite> via
+                                Reddit
+                            </footer>
+                        </blockquote>
+
                         <h2>Programming Language Fatigue?</h2>
 
                         <p>
-
+                            Where is all this
                         </p>
 
                         <p>
