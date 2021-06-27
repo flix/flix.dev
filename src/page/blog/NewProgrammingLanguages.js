@@ -81,57 +81,32 @@ class NewProgrammingLanguages extends Component {
                             </footer>
                         </blockquote>
 
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"XYZ"</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
-                                Turtle</cite> via Reddit
-                            </footer>
-                        </blockquote>
+                        <h2>A Point-by-Point Rebuttal</h2>
 
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"XYZ"</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
-                                Turtle</cite> via Reddit
-                            </footer>
-                        </blockquote>
+                        <h5>Do we really need new programming languages?</h5>
 
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"XYZ"</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
-                                Turtle</cite> via Reddit
-                            </footer>
-                        </blockquote>
+                        <p>
+                            <b>Why</b>
+                        </p>
 
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"XYZ"</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
-                                Turtle</cite> via Reddit
-                            </footer>
-                        </blockquote>
+                        <h2>Ideas for Better Communication</h2>
+
+                        <p>
+                            <b>Scope</b> - - Clearly state what kind of project this (hobby, etc).
+                        </p>
+
+                        <p>
+                            <b>Novelty</b> - What is new.
+                        </p>
+
+                        <p>
+                            <b>Feedback</b> What feedback are you looking for?
+                        </p>
 
                         <p>
                             Where Flix fits in. We should be held to a high standard, but
                             people should also engange honestly by understanding the details.
                         </p>
-
-                        <p>
-                            Ideas for better communication:
-
-                            - Clearly state what kind of project this (hobby, etc).
-                            - What is new
-                            -
-                        </p>
-
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"Looks pretty much exactly like a mini Python with some small syntactic
-                                changes? Are there any distinguishing features I missed?
-
-                                I assume it's just a hobby project for some fun and learning? Not that there is anything
-                                wrong with that, I'm just wondering since you are asking for contributions."</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
-                                Turtle</cite> via Reddit
-                            </footer>
-                        </blockquote>
 
                         <p>
                             Until next time, happy hacking.
