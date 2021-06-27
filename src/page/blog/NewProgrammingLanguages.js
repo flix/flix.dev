@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
 import {Col, Container, Row} from "reactstrap";
-import InlineEditor from "../../util/InlineEditor";
 
 class NewProgrammingLanguages extends Component {
 
@@ -23,21 +22,24 @@ class NewProgrammingLanguages extends Component {
                         </p>
 
                         <p>
-                            This is a blog post written in defense of programming language researchers, hackers,
-                            enthausiests, and hobbiest. My aim is to explain the confusion souroudning this topic - as a
-                            see it - and try to heal the divide.
+                            This blog post is written in defense of programming language enthusiasts; whether they are
+                            hobbyists, compiler hackers, industry professionals, or programming language academics.
                         </p>
 
                         <p>
-                            Before we begin, I want to set the state with a few choice quotes.
+                            I want to examine the discourse around programming languages; with a focus on how new
+                            programming languages are often received. My ultimate goal is to build bridge and to improve
+                            communication. I understand that not everyone will always agree, but at least we should
+                            strive to be friendly and intellectually curious!
                         </p>
 
-                        <p>Frequenty, whenever a new programming language is posted to Reddit.com/r/programming,
-                            reddit.com/r/programminglanguages, lobsters or even HackerNews it is not unccomon to see
-                            reactions such as the following:</p>
+                        <p>
+                            To begin, let me set the stage by presenting a few quotes from "social media" (e.g.
+                            Reddit, Twitter, but also to a lesser extend HackerNews and Lobste.rs).
+                        </p>
 
                         <p>
-                            To protect the quilty, all of the below quotes are paraphrased and anonymized.
+                            To protect the culpable, I have paraphrased and anonymized the quotes:
                         </p>
 
                         <blockquote className="blockquote text-center">
@@ -67,7 +69,7 @@ class NewProgrammingLanguages extends Component {
                         <blockquote className="blockquote text-center">
                             <p className="mb-0">"How the fuck can anyone understand such weird syntax? I hate all these
                                 symbols."</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                            <footer className="blockquote-footer"><cite title="Source Title">Bitter
                                 Turtle</cite> via Reddit
                             </footer>
                         </blockquote>
@@ -83,15 +85,22 @@ class NewProgrammingLanguages extends Component {
                         <blockquote className="blockquote text-center">
                             <p className="mb-0">"The language is probably great from a technical point of view, but
                                 unless Apple, Google, Mozilla, or Microsoft is on-board it is pointless."</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Enraged Koala</cite> via
+                            <footer className="blockquote-footer"><cite title="Source Title">Irate Rabbit</cite> via
                                 Reddit
                             </footer>
                         </blockquote>
 
+                        <p>
+                            While all of the above quotes are in response to news about Flix (the programming language
+                            whose website you are currently on), similar comments are very frequently posted in response
+                            to news about other programming languages.
+                        </p>
+
                         <h2>Programming Language Fatigue?</h2>
 
                         <p>
-                            Where is all this
+                            Where is all this. It is about what we say. It is about how we speak. It is about what we
+                            think is beatiful or interesting.
                         </p>
 
                         <p>
