@@ -41,6 +41,30 @@ class NewProgrammingLanguages extends Component {
                         </p>
 
                         <blockquote className="blockquote text-center">
+                            <p className="mb-0">"Do we really need any more programming languages?"</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Angry
+                                Beaver</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"Great! Yet-another-programming-language™. This is exactly what we need;
+                                the gazillion of existing programming languages is not enough."</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Furious Panda</cite> via
+                                Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"This is – by far – the worst syntax I have ever seen in a functional
+                                language. Semicolons, braces, symbolic soup, et al. It is like if Scala, Java and
+                                Haskell had a one night stand in the center of Chern"</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Irate Penguin</cite> via
+                                Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
                             <p className="mb-0">"How the fuck can anyone understand such weird syntax? I hate all these
                                 symbols."</p>
                             <footer className="blockquote-footer"><cite title="Source Title">Snapping
@@ -49,45 +73,40 @@ class NewProgrammingLanguages extends Component {
                         </blockquote>
 
                         <blockquote className="blockquote text-center">
-                            <p className="mb-0">"Do we really need any more programming languages?"</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
-                                Turtle</cite> via Reddit
-                            </footer>
-                        </blockquote>
-
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"Great! Yet-another-programming-language™. This is exactly what we need;
-                                the gazillion of existing programming languages is not enough."</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
-                                Turtle</cite> via Reddit
-                            </footer>
-                        </blockquote>
-
-
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"This is – by far – the worst syntax I have ever seen in a functional
-                                language. Semicolons, braces, symbolic soup, et al. It is like if Scala, Java and
-                                Haskell had a one night stand in the center of Chern"</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
-                                Turtle</cite> via Reddit
-                            </footer>
-                        </blockquote>
-
-                        <blockquote className="blockquote text-center">
                             <p className="mb-0">"The examples all look horrible. The site looks horrible. This needs a
                                 lot of work before it gets close to anything I would even consider using."</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
-                                Turtle</cite> via Reddit
+                            <footer className="blockquote-footer"><cite title="Source Title">Enraged Koala</cite> via
+                                Reddit
                             </footer>
                         </blockquote>
 
+                        <h2>Programming Language Fatigue?</h2>
+
+                        <p>
+
+                        </p>
+
+                        <p>
+                            We should not discourage someones hobby project.
+                        </p>
+
                         <h2>A Point-by-Point Rebuttal</h2>
+
+                        <p>
+                            I want to give a serious point-by-point rebuttal of why we are not done with PL research.
+                        </p>
 
                         <h5>Do we really need new programming languages?</h5>
 
                         <p>
-                            <b>Why</b>
+                            XYZ
                         </p>
+
+                        <h5>Isnt this just?</h5>
+
+                        <h5>Go / Haskell Python is better</h5>
+
+                        <h5>No success without...</h5>
 
                         <h2>Ideas for Better Communication</h2>
 
