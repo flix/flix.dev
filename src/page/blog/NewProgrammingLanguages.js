@@ -6,7 +6,7 @@ import InlineEditor from "../../util/InlineEditor";
 class NewProgrammingLanguages extends Component {
 
     componentDidMount() {
-        document.title = "Flix | Do we really need new programming languages?";
+        document.title = "Flix | In Defense of Programming Languages";
         ReactGA.pageview(window.location.pathname);
     }
 
@@ -16,22 +16,97 @@ class NewProgrammingLanguages extends Component {
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
 
-                        <h1>Do we really need new programming languages?</h1>
+                        <h1>In Defense of Programming Languages</h1>
 
                         <p>
                             Posted July 2021 by <i>Magnus Madsen</i>.
                         </p>
 
                         <p>
-                            Heal the divide and explain the confusion,
+                            This is a blog post written in defense of programming language researchers, hackers,
+                            enthausiests, and hobbiest. My aim is to explain the confusion souroudning this topic - as a
+                            see it - and try to heal the divide.
                         </p>
 
                         <p>
-                            A few choice quotes
+                            Before we begin, I want to set the state with a few choice quotes.
                         </p>
 
-                        <blockquote>
-                            Do we really need?
+                        <p>Frequenty, whenever a new programming language is posted to Reddit.com/r/programming,
+                            reddit.com/r/programminglanguages, lobsters or even HackerNews it is not unccomon to see
+                            reactions such as the following:</p>
+
+                        <p>
+                            To protect the quilty, all of the below quotes are paraphrased and anonymized.
+                        </p>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"How the fuck can anyone understand such weird syntax? I hate all these
+                                symbols."</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                                Turtle</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"Do we really need any more programming languages?"</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                                Turtle</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"Great! Yet-another-programming-language™. This is exactly what we need;
+                                the gazillion of existing programming languages is not enough."</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                                Turtle</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"This is – by far – the worst syntax I have ever seen in a functional
+                                language. Semicolons, braces, symbolic soup, et al. It is like if Scala, Java and
+                                Haskell had a one night stand in the center of Chern"</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                                Turtle</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"The examples all look horrible. The site looks horrible. This needs a
+                                lot of work before it gets close to anything I would even consider using."</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                                Turtle</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"XYZ"</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                                Turtle</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"XYZ"</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                                Turtle</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"XYZ"</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                                Turtle</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"XYZ"</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                                Turtle</cite> via Reddit
+                            </footer>
                         </blockquote>
 
                         <p>
@@ -45,6 +120,21 @@ class NewProgrammingLanguages extends Component {
                             - Clearly state what kind of project this (hobby, etc).
                             - What is new
                             -
+                        </p>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"Looks pretty much exactly like a mini Python with some small syntactic
+                                changes? Are there any distinguishing features I missed?
+
+                                I assume it's just a hobby project for some fun and learning? Not that there is anything
+                                wrong with that, I'm just wondering since you are asking for contributions."</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Snapping
+                                Turtle</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+                        <p>
+                            Until next time, happy hacking.
                         </p>
 
                     </Col>
