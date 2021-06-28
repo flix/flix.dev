@@ -108,39 +108,29 @@ class NewProgrammingLanguages extends Component {
                                 </li>
 
                                 <li>
-                                    <b>Speech.</b>
+                                    <b>Speech:</b> Programming languages are the material with which we craft programs:
+                                    It is our way of "speaking" algorithmically. They are about what we say, how we say
+                                    it, and even what can be said. Like prose, what is beautiful and elegant is
+                                    subjective. It is not surprising then that when a new programming language comes a
+                                    long and suggests a different form of expression that people may feel challenged.
                                 </li>
                             </ul>
                         </p>
 
+                        <p>
+                            Of course there are also internet trolls; but lets ignore them.
+                        </p>
+
+                        <h2>A Point-by-Point Rebuttal</h2>
+
+                        <p>
+                            I will now give a point-by-point rebuttal of the most common refrains heard when a new
+                            programming language is proposed.
+                        </p>
+
+                        <h5>Do we really need new programming languages?</h5>
+
                         <div className="text-danger">
-
-                            <p>
-                                <p>How to speak</p>  &ndash; programming languages are the material with which we craft
-                                programs: It is our way of "speaking" algorithmically. It is about what we say. It is
-                                about
-                                how we say it. And it is about what can even be said. It is about what is beautiful
-                                and/or
-                                what is interesting. It is not suprising that people have strong opinios about how they
-                                should express themselves! (This is very much unlike a new algoritmic for a specific
-                                problem
-                                -- those are rarely met by vitriol if even discussed.)
-                            </p>
-
-                            <p>
-                                Of course there are also internet trolls; but I will ignore those.
-                            </p>
-
-                            <h2>A Point-by-Point Rebuttal</h2>
-
-                            <p>
-                                I want to give a serious point-by-point rebuttal of why we are not done with PL
-                                research.
-                                Where Flix fits in. We should be held to a high standard, but
-                                people should also engange honestly by understanding the details.
-                            </p>
-
-                            <h5>Do we need new programming languages?</h5>
 
                             <p>
                                 The Flix FAQ joking responds with rhetorical question: <i>Do we really need safer
@@ -152,6 +142,8 @@ class NewProgrammingLanguages extends Component {
                                 While the remark may appear mocking; I think it is valid argument. We <i>want</i> better
                                 programming languages we should offer developers better tools to write programs.
                                 And we want to increase developer happiness. It should be a pleasure to use Flix!
+
+                                Also if this is a hobby project, what do you care. Noone is forcing you to use it!
 
                                 This segways neatly into my next point.
                             </p>
