@@ -171,13 +171,29 @@ class NewProgrammingLanguages extends Component {
                         </p>
 
                         <p>
-                            <b>Scope</b> - - Clearly state what kind of project this (hobby, etc).
+                            <ul>
+                                <li>
+                                    <b>Scope</b>: Clearly state the intended scope of the project. Is it hobby project
+                                    made for fun? Is it an open source project hoping to gain traction? Is it a
+                                    (research) prototype? Is it intended for real-world use?
+                                </li>
+
+                                <li>
+                                    <b>Novelty</b> - What is new about the language?
+                                    Of course
+                                </li>
+                            </ul>
                         </p>
 
                         <p>
-                            <b>Novelty</b> - What is new.
+                            In the case of Flix, we make serious claims: That it is real, that is intended for use, that
+                            we have an appropriate blend of features, and that we have unique features. Thus, we should
+                            be held to a high standard.
+                        </p>
 
-                            We should not discourage someones hobby project.
+                        <p>
+                            Finally, regardless of where ones project fall on the scale, I don't think we should
+                            discourage anyone. Especially not someones fun hobby project.
                         </p>
 
                         <p>
