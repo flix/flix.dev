@@ -23,210 +23,245 @@ class NewProgrammingLanguages extends Component {
 
                         <p>
                             This blog post is written in defense of programming language enthusiasts; whether they are
-                            hobbyists, compiler hackers, industry professionals, or programming language academics.
+                            compiler hackers, programming language hobbyists, industry professionals, or academics.
                         </p>
 
-                        <p>
-                            I want to examine the discourse around programming languages; with a focus on how new
-                            programming languages are often received. My ultimate goal is to build bridge and to improve
-                            communication. I understand that not everyone will always agree, but at least we should
-                            strive to be friendly and intellectually curious!
-                        </p>
 
-                        <p>
-                            To begin, let me set the stage by presenting a few quotes from "social media" (e.g.
-                            Reddit, Twitter, but also to a lesser extend HackerNews and Lobste.rs).
-                        </p>
 
-                        <p>
-                            To protect the culpable, I have paraphrased and anonymized the quotes:
-                        </p>
+                        <div className="text-danger">
 
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"Do we really need any more programming languages?"</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Angry
-                                Beaver</cite> via Reddit
-                            </footer>
-                        </blockquote>
+                            <p>
+                                I want to examine the discourse around programming languages; with a focus on how new
+                                programming languages are often received. My ultimate goal is to build bridge and to
+                                improve
+                                communication. I understand that not everyone will always agree, but at least we should
+                                strive to be friendly and intellectually curious!
+                            </p>
 
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"Great! Yet-another-programming-language™. This is exactly what we need;
-                                the gazillion of existing programming languages is not enough."</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Furious Panda</cite> via
-                                Reddit
-                            </footer>
-                        </blockquote>
+                            <p>
+                                To begin, let me set the stage by presenting a few quotes from "social media" (e.g.
+                                Reddit, Twitter, but also to a lesser extend HackerNews and Lobste.rs).
+                            </p>
 
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"This is – by far – the worst syntax I have ever seen in a functional
-                                language. Semicolons, braces, symbolic soup, et al. It is like if Scala, Java and
-                                Haskell had a one night stand in the center of Chern"</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Irate Penguin</cite> via
-                                Reddit
-                            </footer>
-                        </blockquote>
+                            <h2>A Few Quotes from the Internet</h2>
 
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"How the fuck can anyone understand such weird syntax? I hate all these
-                                symbols."</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Bitter
-                                Turtle</cite> via Reddit
-                            </footer>
-                        </blockquote>
+                            <p>
+                                To protect the culpable, I have paraphrased and anonymized the quotes:
+                            </p>
 
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"The examples all look horrible. The site looks horrible. This needs a
-                                lot of work before it gets close to anything I would even consider using."</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Enraged Koala</cite> via
-                                Reddit
-                            </footer>
-                        </blockquote>
+                            <blockquote className="blockquote text-center">
+                                <p className="mb-0">"Do we really need any more programming languages?"</p>
+                                <footer className="blockquote-footer"><cite title="Source Title">Angry
+                                    Beaver</cite> via Reddit
+                                </footer>
+                            </blockquote>
 
-                        <blockquote className="blockquote text-center">
-                            <p className="mb-0">"The language is probably great from a technical point of view, but
-                                unless Apple, Google, Mozilla, or Microsoft is on-board it is pointless."</p>
-                            <footer className="blockquote-footer"><cite title="Source Title">Irate Rabbit</cite> via
-                                Reddit
-                            </footer>
-                        </blockquote>
+                            <blockquote className="blockquote text-center">
+                                <p className="mb-0">"Great! Yet-another-programming-language™. This is exactly what we
+                                    need;
+                                    the gazillion of existing programming languages is not enough."</p>
+                                <footer className="blockquote-footer"><cite title="Source Title">Furious
+                                    Panda</cite> via
+                                    Reddit
+                                </footer>
+                            </blockquote>
 
-                        <p>
-                            While all of the above quotes are in response to news about Flix (the programming language
-                            whose website you are currently on), similar comments are frequently posted in response to
-                            news about other programming languages. Why do people post such comments?
-                        </p>
+                            <blockquote className="blockquote text-center">
+                                <p className="mb-0">"This is – by far – the worst syntax I have ever seen in a
+                                    functional
+                                    language. Semicolons, braces, symbolic soup, et al. It is like if Scala, Java and
+                                    Haskell had a one night stand in the center of Chern"</p>
+                                <footer className="blockquote-footer"><cite title="Source Title">Irate
+                                    Penguin</cite> via
+                                    Reddit
+                                </footer>
+                            </blockquote>
 
-                        <h2>Programming Language Fatigue?</h2>
+                            <blockquote className="blockquote text-center">
+                                <p className="mb-0">"How the fuck can anyone understand such weird syntax? I hate all
+                                    these
+                                    symbols."</p>
+                                <footer className="blockquote-footer"><cite title="Source Title">Bitter
+                                    Turtle</cite> via Reddit
+                                </footer>
+                            </blockquote>
 
-                        <p>
-                            I think there are at least two legitimate reasons for these types of comments:
-                        </p>
+                            <blockquote className="blockquote text-center">
+                                <p className="mb-0">"The examples all look horrible. The site looks horrible. This needs
+                                    a
+                                    lot of work before it gets close to anything I would even consider using."</p>
+                                <footer className="blockquote-footer"><cite title="Source Title">Enraged
+                                    Koala</cite> via
+                                    Reddit
+                                </footer>
+                            </blockquote>
 
-                        <p>
-                            <i>Programming language fatigue</i> &ndash; a sense that too many new programming languages
-                            are coming out all the time and that it is hard to keep. A dread of new technology being
-                            forced on oneself. And finally a sense that all new programming languages are really the
-                            same, so why bother?
-                        </p>
+                            <blockquote className="blockquote text-center">
+                                <p className="mb-0">"The language is probably great from a technical point of view, but
+                                    unless Apple, Google, Mozilla, or Microsoft is on-board it is pointless."</p>
+                                <footer className="blockquote-footer"><cite title="Source Title">Irate Rabbit</cite> via
+                                    Reddit
+                                </footer>
+                            </blockquote>
 
-                        <p>
-                            <p>How to speak</p>  &ndash; programming languages are the material with which we craft
-                            programs: It is our way of "speaking" algorithmically. It is about what we say. It is about
-                            how we say it. And it is about what can even be said. It is about what is beautiful and/or
-                            what is interesting. It is not suprising that people have strong opinios about how they
-                            should express themselves! (This is very much unlike a new algoritmic for a specific problem
-                            -- those are rarely met by vitriol if even discussed.)
-                        </p>
+                            <p>
+                                While all of the above quotes are in response to news about Flix (the programming
+                                language
+                                whose website you are currently on), similar comments are frequently posted in response
+                                to
+                                news about other programming languages. Why do people post such comments?
+                            </p>
 
-                        <h2>A Point-by-Point Rebuttal</h2>
+                            <h2>Programming Language Fatigue?</h2>
 
-                        <p>
-                            I want to give a serious point-by-point rebuttal of why we are not done with PL research.
-                            Where Flix fits in. We should be held to a high standard, but
-                            people should also engange honestly by understanding the details.
-                        </p>
+                            <p>
+                                I think there are at least two legitimate reasons for these types of comments:
+                            </p>
 
-                        <h5>Do we need new programming languages?</h5>
+                            <p>
+                                <i>Programming language fatigue</i> &ndash; a sense that too many new programming
+                                languages
+                                are coming out all the time and that it is hard to keep. A dread of new technology being
+                                forced on oneself. And finally a sense that all new programming languages are really the
+                                same, so why bother?
+                            </p>
 
-                        <p>
-                            The Flix FAQ joking responds with rhetorical question: <i>Do we really need safer airplanes?
-                            Do we really need electric cars? Do we really need more ergonomic chairs?</i>
-                        </p>
+                            <p>
+                                <p>How to speak</p>  &ndash; programming languages are the material with which we craft
+                                programs: It is our way of "speaking" algorithmically. It is about what we say. It is
+                                about
+                                how we say it. And it is about what can even be said. It is about what is beautiful
+                                and/or
+                                what is interesting. It is not suprising that people have strong opinios about how they
+                                should express themselves! (This is very much unlike a new algoritmic for a specific
+                                problem
+                                -- those are rarely met by vitriol if even discussed.)
+                            </p>
 
-                        <p>
-                            While the remark may appear mocking; I think it is valid argument. We <i>want</i> better
-                            programming languages we should offer developers better tools to write programs.
-                            And we want to increase developer happiness. It should be a pleasure to use Flix!
+                            <h2>A Point-by-Point Rebuttal</h2>
 
-                            This segways neatly into my next point.
-                        </p>
+                            <p>
+                                I want to give a serious point-by-point rebuttal of why we are not done with PL
+                                research.
+                                Where Flix fits in. We should be held to a high standard, but
+                                people should also engange honestly by understanding the details.
+                            </p>
 
-                        <h5>All programming language are the same</h5>
+                            <h5>Do we need new programming languages?</h5>
 
-                        <p>
-                            I actually think the opposite. We are expericing a period of programming language
-                            fragmentation. No longer is industry dominated by C, C++, C# and Java. Instead, today, the
-                            ecosystem is much more diverse (and stronger for it). We have Rust. We have Go. We have
-                            Crystal. We have Kotlin. We have Scala. We have Python. We have JavaScript.
+                            <p>
+                                The Flix FAQ joking responds with rhetorical question: <i>Do we really need safer
+                                airplanes?
+                                Do we really need electric cars? Do we really need more ergonomic chairs?</i>
+                            </p>
 
-                            I think after a decade of OOP ossificiation we are finally in a new and exciting period!
+                            <p>
+                                While the remark may appear mocking; I think it is valid argument. We <i>want</i> better
+                                programming languages we should offer developers better tools to write programs.
+                                And we want to increase developer happiness. It should be a pleasure to use Flix!
 
-                            Now, it is true that many hobbiest projects are purely functional and/or purely
-                            object-oriented programming languges. But that makes sense- of course hobbiest compiler
-                            hackers are interested in building the tools that they use at their payjob.
-                        </p>
+                                This segways neatly into my next point.
+                            </p>
 
-                        <h5>Go / Haskell / Python is better</h5>
+                            <h5>All programming language are the same</h5>
 
-                        <p>
-                            Yes, hopefully there is some progress. In the sense that the programming languages of today
-                            should be better than the programming languages of yesterday! For example, hopefully no-one
-                            is recommending the use of COBOL/PL-1/EcmaScript-4 today over any other other existing
-                            mainstream
-                            programming languages.
-                        </p>
+                            <p>
+                                I actually think the opposite. We are expericing a period of programming language
+                                fragmentation. No longer is industry dominated by C, C++, C# and Java. Instead, today,
+                                the
+                                ecosystem is much more diverse (and stronger for it). We have Rust. We have Go. We have
+                                Crystal. We have Kotlin. We have Scala. We have Python. We have JavaScript.
 
-                        <h5>A programming language cannot be successful unless a major tech company is behind it</h5>
+                                I think after a decade of OOP ossificiation we are finally in a new and exciting period!
 
-                        <p>
-                            I think this is easily debunked by the existence of Rust, PHP, Python, Ruby, Scala. In fact,
-                            I think most successful programming languages did not come out of big tech.
-                        </p>
+                                Now, it is true that many hobbiest projects are purely functional and/or purely
+                                object-oriented programming languges. But that makes sense- of course hobbiest compiler
+                                hackers are interested in building the tools that they use at their payjob.
+                            </p>
 
-                        <h5>Go doesn't have generics. Haha.</h5>
+                            <h5>Go / Haskell / Python is better</h5>
 
-                        <p>
-                            While I am firmly on side of this question, I think these comments mises the point. Generics
-                            (or parametric polymorphism) is a well-understood, battle-tested, implemented technique.
-                            Whether you are for or against, we should not waste so much effort discussing a well-known
-                            feature. Instead, imagine if the same amount of effort was expended on say discussing
-                            exciting "new ideas" such as <i>algebraic effects</i>, <i>deliminated
-                            continuations</i> or <i>owner ship types</i>. Of course this requires the broad community to
-                            write insight blog posts about these topics.
-                        </p>
+                            <p>
+                                Yes, hopefully there is some progress. In the sense that the programming languages of
+                                today
+                                should be better than the programming languages of yesterday! For example, hopefully
+                                no-one
+                                is recommending the use of COBOL/PL-1/EcmaScript-4 today over any other other existing
+                                mainstream
+                                programming languages.
+                            </p>
 
-                        <h2>Ideas for Better Communication</h2>
+                            <h5>A programming language cannot be successful unless a major tech company is behind
+                                it</h5>
 
-                        <p>
-                            With these point in mind, I want suggest some ways to improve communication between aspiring
-                            programming language developers and software developers in general:
-                        </p>
+                            <p>
+                                I think this is easily debunked by the existence of Rust, PHP, Python, Ruby, Scala. In
+                                fact,
+                                I think most successful programming languages did not come out of big tech.
+                            </p>
 
-                        <p>
-                            <ul>
-                                <li>
-                                    <b>Scope</b>: Clearly state the intended scope of the project. Is it hobby project
-                                    made for fun? Is it an open source project hoping to gain traction? Is it a
-                                    (research) prototype? Is it intended for real-world use?
-                                </li>
+                            <h5>Go doesn't have generics. Haha.</h5>
 
-                                <li>
-                                    <b>Novelty</b> - What is new about the language?
-                                    Of course
-                                </li>
+                            <p>
+                                While I am firmly on side of this question, I think these comments mises the point.
+                                Generics
+                                (or parametric polymorphism) is a well-understood, battle-tested, implemented technique.
+                                Whether you are for or against, we should not waste so much effort discussing a
+                                well-known
+                                feature. Instead, imagine if the same amount of effort was expended on say discussing
+                                exciting "new ideas" such as <i>algebraic effects</i>, <i>deliminated
+                                continuations</i> or <i>owner ship types</i>. Of course this requires the broad
+                                community to
+                                write insight blog posts about these topics.
+                            </p>
 
-                                <li>
-                                    <b>Feedback</b> What feedback are you looking for?
-                                </li>
-                            </ul>
-                        </p>
+                            <h2>Ideas for Better Communication</h2>
 
-                        <p>
-                            In the case of Flix, we make serious claims: That it is real, that is intended for use, that
-                            we have an appropriate blend of features, and that we have unique features. Thus, we should
-                            be held to a high standard.
-                            Finally, regardless of where ones project fall on the scale, I don't think we should
-                            discourage anyone. Especially not someones fun hobby project.
+                            <p>
+                                With these point in mind, I want suggest some ways to improve communication between
+                                aspiring
+                                programming language developers and software developers in general:
+                            </p>
 
-                            The only discouragement I would offer is for people not to overclaim: To claim that their
-                            programming language already achieve very lofty goals with actually delivering on those
-                            goals.
-                        </p>
+                            <p>
+                                <ul>
+                                    <li>
+                                        <b>Scope</b>: Clearly state the intended scope of the project. Is it hobby
+                                        project
+                                        made for fun? Is it an open source project hoping to gain traction? Is it a
+                                        (research) prototype? Is it intended for real-world use?
+                                    </li>
 
-                        <p>
-                            Until next time, happy hacking.
-                        </p>
+                                    <li>
+                                        <b>Novelty</b> - What is new about the language?
+                                        Of course
+                                    </li>
 
+                                    <li>
+                                        <b>Feedback</b> What feedback are you looking for?
+                                    </li>
+                                </ul>
+                            </p>
+
+                            <p>
+                                In the case of Flix, we make serious claims: That it is real, that is intended for use,
+                                that
+                                we have an appropriate blend of features, and that we have unique features. Thus, we
+                                should
+                                be held to a high standard.
+                                Finally, regardless of where ones project fall on the scale, I don't think we should
+                                discourage anyone. Especially not someones fun hobby project.
+
+                                The only discouragement I would offer is for people not to overclaim: To claim that
+                                their
+                                programming language already achieve very lofty goals with actually delivering on those
+                                goals.
+                            </p>
+
+                            <p>
+                                Until next time, happy hacking.
+                            </p>
+                        </div>
                     </Col>
                 </Row>
             </Container>
