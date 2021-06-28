@@ -99,37 +99,76 @@ class NewProgrammingLanguages extends Component {
                         <h2>Programming Language Fatigue?</h2>
 
                         <p>
-                            I think there are at least two reasons
+                            I think there are at least two legitimate reasons for these types of comments:
                         </p>
 
                         <p>
-                            Where is all this. It is about what we say. It is about how we speak. It is about what we
-                            think is beatiful or interesting.
+                            <i>Programming language fatigue</i> &ndash; a sense that too many new programming languages
+                            are coming out all the time and that it is hard to keep. A dread of new technology being
+                            forced on oneself. And finally a sense that all new programming languages are really the
+                            same, so why bother?
                         </p>
 
                         <p>
-                            We should not discourage someones hobby project.
+                            <p>How to speak</p>  &ndash; programming languages are the material with which we craft
+                            programs: It is our way of "speaking" algorithmically. It is about what we say. It is about
+                            how we say it. And it is about what can even be said. It is about what is beautiful and/or
+                            what is interesting. It is not suprising that people have strong opinios about how they
+                            should express themselves! (This is very much unlike a new algoritmic for a specific problem
+                            -- those are rarely met by vitriol if even discussed.)
                         </p>
 
                         <h2>A Point-by-Point Rebuttal</h2>
 
                         <p>
                             I want to give a serious point-by-point rebuttal of why we are not done with PL research.
+                            Where Flix fits in. We should be held to a high standard, but
+                            people should also engange honestly by understanding the details.
                         </p>
 
-                        <h5>Do we really need new programming languages?</h5>
+                        <h5>Do we need new programming languages?</h5>
 
                         <p>
-                            XYZ
+                            The Flix FAQ joking responds with rhetorical question: <i>Do we really need safer airplanes?
+                            Do we really need electric cars? Do we really need more ergonomic chairs?</i>
                         </p>
 
-                        <h5>Isnt this just?</h5>
+                        <p>
+                            While the remark may appear mocking; I think it is valid argument. We <i>want</i> better
+                            programming languages we should offer developers better tools to write programs.
+                            And we want to increase developer happiness. It should be a pleasure to use Flix!
+
+                            This segways neatly into my next point.
+                        </p>
+
+                        <h5>All programming language are the same</h5>
+
+                        <p>
+
+                        </p>
 
                         <h5>Go / Haskell Python is better</h5>
 
                         <h5>No success without...</h5>
 
+                        <h5>Go doesn't have generics. Haha.</h5>
+
+                        <p>
+                            While I am firmly on side of this question, I think these comments mises the point. Generics
+                            (or parametric polymorphism) is a well-understood, battle-tested, implemented technique.
+                            Whether you are for or against, we should not waste so much effort discussing a well-known
+                            feature. Instead, imagine if the same amount of effort was expended on say discussing
+                            exciting "new ideas" such as <i>algebraic effects</i>, <i>deliminated
+                            continuations</i> or <i>owner ship types</i>. Of course this requires the broad community to
+                            write insight blog posts about these topics.
+                        </p>
+
                         <h2>Ideas for Better Communication</h2>
+
+                        <p>
+                            With these point in mind, I want suggest some ways to improve communication between aspiring
+                            programming language developers and software developers in general:
+                        </p>
 
                         <p>
                             <b>Scope</b> - - Clearly state what kind of project this (hobby, etc).
@@ -137,16 +176,14 @@ class NewProgrammingLanguages extends Component {
 
                         <p>
                             <b>Novelty</b> - What is new.
+
+                            We should not discourage someones hobby project.
                         </p>
 
                         <p>
                             <b>Feedback</b> What feedback are you looking for?
                         </p>
 
-                        <p>
-                            Where Flix fits in. We should be held to a high standard, but
-                            people should also engange honestly by understanding the details.
-                        </p>
 
                         <p>
                             Until next time, happy hacking.
