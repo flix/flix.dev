@@ -92,11 +92,15 @@ class NewProgrammingLanguages extends Component {
 
                         <p>
                             While all of the above quotes are in response to news about Flix (the programming language
-                            whose website you are currently on), similar comments are very frequently posted in response
-                            to news about other programming languages.
+                            whose website you are currently on), similar comments are frequently posted in response to
+                            news about other programming languages. Why do people post such comments?
                         </p>
 
                         <h2>Programming Language Fatigue?</h2>
+
+                        <p>
+                            I think there are at least two reasons
+                        </p>
 
                         <p>
                             Where is all this. It is about what we say. It is about how we speak. It is about what we
