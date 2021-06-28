@@ -88,24 +88,32 @@ class NewProgrammingLanguages extends Component {
                         </p>
 
                         <p>
-                            Why do people post such comments?
+                            Why do people post such comments? And what can be done about it?
+                        </p>
+
+                        <h2>Where do such comments come from?</h2>
+
+                        <p>
+                            I think there are two main reasons, both grounded in legitimate concerns:
+                        </p>
+
+                        <p>
+                            <ul>
+                                <li>
+                                    <b>Fatigue:</b> I think there is a sense that there are too many new programming
+                                    languages coming out all the time and that it is hard to keep up. Paradoxically,
+                                    I think there is both a dread of having to keep up with ever-changing programming
+                                    languages (or technologies in general) and simultaneously a sense that these
+                                    programming languages are all the same, and do not offer anything new.
+                                </li>
+
+                                <li>
+                                    <b>Speech.</b>
+                                </li>
+                            </ul>
                         </p>
 
                         <div className="text-danger">
-
-                            <h2>Programming Language Fatigue?</h2>
-
-                            <p>
-                                I think there are at least two legitimate reasons for these types of comments:
-                            </p>
-
-                            <p>
-                                <i>Programming language fatigue</i> &ndash; a sense that too many new programming
-                                languages
-                                are coming out all the time and that it is hard to keep. A dread of new technology being
-                                forced on oneself. And finally a sense that all new programming languages are really the
-                                same, so why bother?
-                            </p>
 
                             <p>
                                 <p>How to speak</p>  &ndash; programming languages are the material with which we craft
@@ -117,6 +125,10 @@ class NewProgrammingLanguages extends Component {
                                 should express themselves! (This is very much unlike a new algoritmic for a specific
                                 problem
                                 -- those are rarely met by vitriol if even discussed.)
+                            </p>
+
+                            <p>
+                                Of course there are also internet trolls; but I will ignore those.
                             </p>
 
                             <h2>A Point-by-Point Rebuttal</h2>
