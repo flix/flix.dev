@@ -144,12 +144,34 @@ class NewProgrammingLanguages extends Component {
                         <h5>All programming language are the same</h5>
 
                         <p>
+                            I actually think the opposite. We are expericing a period of programming language
+                            fragmentation. No longer is industry dominated by C, C++, C# and Java. Instead, today, the
+                            ecosystem is much more diverse (and stronger for it). We have Rust. We have Go. We have
+                            Crystal. We have Kotlin. We have Scala. We have Python. We have JavaScript.
 
+                            I think after a decade of OOP ossificiation we are finally in a new and exciting period!
+
+                            Now, it is true that many hobbiest projects are purely functional and/or purely
+                            object-oriented programming languges. But that makes sense- of course hobbiest compiler
+                            hackers are interested in building the tools that they use at their payjob.
                         </p>
 
-                        <h5>Go / Haskell Python is better</h5>
+                        <h5>Go / Haskell / Python is better</h5>
 
-                        <h5>No success without...</h5>
+                        <p>
+                            Yes, hopefully there is some progress. In the sense that the programming languages of today
+                            should be better than the programming languages of yesterday! For example, hopefully no-one
+                            is recommending the use of COBOL/PL-1/EcmaScript-4 today over any other other existing
+                            mainstream
+                            programming languages.
+                        </p>
+
+                        <h5>A programming language cannot be successful unless a major tech company is behind it</h5>
+
+                        <p>
+                            I think this is easily debunked by the existence of Rust, PHP, Python, Ruby, Scala. In fact,
+                            I think most successful programming languages did not come out of big tech.
+                        </p>
 
                         <h5>Go doesn't have generics. Haha.</h5>
 
@@ -182,6 +204,10 @@ class NewProgrammingLanguages extends Component {
                                     <b>Novelty</b> - What is new about the language?
                                     Of course
                                 </li>
+
+                                <li>
+                                    <b>Feedback</b> What feedback are you looking for?
+                                </li>
                             </ul>
                         </p>
 
@@ -196,11 +222,6 @@ class NewProgrammingLanguages extends Component {
                             programming language already achieve very lofty goals with actually delivering on those
                             goals.
                         </p>
-
-                        <p>
-                            <b>Feedback</b> What feedback are you looking for?
-                        </p>
-
 
                         <p>
                             Until next time, happy hacking.
