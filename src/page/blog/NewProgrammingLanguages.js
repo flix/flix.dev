@@ -189,11 +189,12 @@ class NewProgrammingLanguages extends Component {
                             In the case of Flix, we make serious claims: That it is real, that is intended for use, that
                             we have an appropriate blend of features, and that we have unique features. Thus, we should
                             be held to a high standard.
-                        </p>
-
-                        <p>
                             Finally, regardless of where ones project fall on the scale, I don't think we should
                             discourage anyone. Especially not someones fun hobby project.
+
+                            The only discouragement I would offer is for people not to overclaim: To claim that their
+                            programming language already achieve very lofty goals with actually delivering on those
+                            goals.
                         </p>
 
                         <p>
