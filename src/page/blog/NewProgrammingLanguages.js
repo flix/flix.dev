@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import ReactGA from "react-ga";
 import {Col, Container, Row} from "reactstrap";
+import {Link} from "react-router-dom";
 
 class NewProgrammingLanguages extends Component {
 
@@ -130,13 +131,24 @@ class NewProgrammingLanguages extends Component {
 
                         <h5>Do we really need new programming languages?</h5>
 
+                        <p>
+                            The Flix <Link to="/faq/"> FAQ </Link> joking responds this question with a rhetorical
+                            question: <i>Do we really need safer airplanes? Do we really need electric cars? Do we
+                            really need more ergonomic chairs?</i>
+                        </p>
+
+                        <p>
+                            While that remark may appear mocking, I think it is a valid argument. We want better
+                            programming languages because we want to offer software developers better tools to write
+                            their programs. There are many
+                        </p>
+
+                        <p>
+
+                        </p>
+
                         <div className="text-danger">
 
-                            <p>
-                                The Flix FAQ joking responds with rhetorical question: <i>Do we really need safer
-                                airplanes?
-                                Do we really need electric cars? Do we really need more ergonomic chairs?</i>
-                            </p>
 
                             <p>
                                 While the remark may appear mocking; I think it is valid argument. We <i>want</i> better
