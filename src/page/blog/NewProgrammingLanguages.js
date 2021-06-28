@@ -26,91 +26,72 @@ class NewProgrammingLanguages extends Component {
                             compiler hackers, programming language hobbyists, industry professionals, or academics.
                         </p>
 
+                        <p>
+                            In this blog post, I want to examine the discourse around programming languages and
+                            especially how new programming languages are received. My hope is to improve communication
+                            between programming languages enthusiasts and software developers. I understand that we
+                            cannot always agree, but it would be fantastic if everyone could at
+                            least try to be friendly and intellectually curious!
+                        </p>
 
+                        <h2>A Few Quotes from the Internet</h2>
+
+                        <p>
+                            Let me set the stage with a few quotes from social media tech sites (e.g. Reddit,
+                            HackerNews, Twitter, etc.). I have lightly edited and anonymized the following quotes:
+                        </p>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"Great! Yet-another-programming-language™. This is exactly what we
+                                need; the gazillion of existing programming languages is not enough!"</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Furious Panda</cite> via
+                                Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"This is – by far – the worst syntax I have ever seen in a functional
+                                language!"</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Irate Penguin</cite> via
+                                Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"The language is probably great from a technical point of view, but
+                                unless Apple, Google, Mozilla, or Microsoft is on-board it is pointless."</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Angry Beaver</cite> via
+                                HackerNews
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"How the fuck can anyone understand such weird syntax? I hate all these
+                                symbols."</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Bitter
+                                Turtle</cite> via Reddit
+                            </footer>
+                        </blockquote>
+
+                        <blockquote className="blockquote text-center">
+                            <p className="mb-0">"The examples all look horrible. The site looks horrible. This needs a
+                                lot of work before it gets close to anything I would even consider using."</p>
+                            <footer className="blockquote-footer"><cite title="Source Title">Enraged
+                                Koala</cite> via Twitter
+                            </footer>
+                        </blockquote>
+
+                        <p>
+                            While all of the above quotes are in response to news about the Flix programming language
+                            (on whose website you are currently reading), depressingly similar comments are frequently
+                            posted in response to news about other new programming languages.
+                        </p>
+
+                        <p>
+                            Why do people post such comments?
+                        </p>
 
                         <div className="text-danger">
-
-                            <p>
-                                I want to examine the discourse around programming languages; with a focus on how new
-                                programming languages are often received. My ultimate goal is to build bridge and to
-                                improve
-                                communication. I understand that not everyone will always agree, but at least we should
-                                strive to be friendly and intellectually curious!
-                            </p>
-
-                            <p>
-                                To begin, let me set the stage by presenting a few quotes from "social media" (e.g.
-                                Reddit, Twitter, but also to a lesser extend HackerNews and Lobste.rs).
-                            </p>
-
-                            <h2>A Few Quotes from the Internet</h2>
-
-                            <p>
-                                To protect the culpable, I have paraphrased and anonymized the quotes:
-                            </p>
-
-                            <blockquote className="blockquote text-center">
-                                <p className="mb-0">"Do we really need any more programming languages?"</p>
-                                <footer className="blockquote-footer"><cite title="Source Title">Angry
-                                    Beaver</cite> via Reddit
-                                </footer>
-                            </blockquote>
-
-                            <blockquote className="blockquote text-center">
-                                <p className="mb-0">"Great! Yet-another-programming-language™. This is exactly what we
-                                    need;
-                                    the gazillion of existing programming languages is not enough."</p>
-                                <footer className="blockquote-footer"><cite title="Source Title">Furious
-                                    Panda</cite> via
-                                    Reddit
-                                </footer>
-                            </blockquote>
-
-                            <blockquote className="blockquote text-center">
-                                <p className="mb-0">"This is – by far – the worst syntax I have ever seen in a
-                                    functional
-                                    language. Semicolons, braces, symbolic soup, et al. It is like if Scala, Java and
-                                    Haskell had a one night stand in the center of Chern"</p>
-                                <footer className="blockquote-footer"><cite title="Source Title">Irate
-                                    Penguin</cite> via
-                                    Reddit
-                                </footer>
-                            </blockquote>
-
-                            <blockquote className="blockquote text-center">
-                                <p className="mb-0">"How the fuck can anyone understand such weird syntax? I hate all
-                                    these
-                                    symbols."</p>
-                                <footer className="blockquote-footer"><cite title="Source Title">Bitter
-                                    Turtle</cite> via Reddit
-                                </footer>
-                            </blockquote>
-
-                            <blockquote className="blockquote text-center">
-                                <p className="mb-0">"The examples all look horrible. The site looks horrible. This needs
-                                    a
-                                    lot of work before it gets close to anything I would even consider using."</p>
-                                <footer className="blockquote-footer"><cite title="Source Title">Enraged
-                                    Koala</cite> via
-                                    Reddit
-                                </footer>
-                            </blockquote>
-
-                            <blockquote className="blockquote text-center">
-                                <p className="mb-0">"The language is probably great from a technical point of view, but
-                                    unless Apple, Google, Mozilla, or Microsoft is on-board it is pointless."</p>
-                                <footer className="blockquote-footer"><cite title="Source Title">Irate Rabbit</cite> via
-                                    Reddit
-                                </footer>
-                            </blockquote>
-
-                            <p>
-                                While all of the above quotes are in response to news about Flix (the programming
-                                language
-                                whose website you are currently on), similar comments are frequently posted in response
-                                to
-                                news about other programming languages. Why do people post such comments?
-                            </p>
 
                             <h2>Programming Language Fatigue?</h2>
 
