@@ -159,25 +159,42 @@ class NewProgrammingLanguages extends Component {
 
                         <h5>All programming language are the same</h5>
 
+                        <p>
+                            It strongly disagree. I think we are experiencing a period of programming language
+                            fragmentation after a long period of consolidation. For the last 15-years or so, the
+                            industry was dominated by C, C++, C# and Java. The market share of these programming
+                            languages were always increasing. I view this as a consolidation phase where there was a
+                            sense that object-oriented programming languages such as C# and Java were the way to go.
+                        </p>
+
+                        <p>
+                            Today that is no longer the case. Instead, the ecosystem is much more diverse and stronger
+                            for it. We have Rust. We have Scala. We have Go, Python, and JavaScript. We have Crystal and
+                            Nim. We have TypeScript. We are in a period of fragmentation. After a decade (or more) of
+                            OO-ossification we are finally in a new and exciting period!
+                        </p>
+
+                        <p>
+                            If history repeats itself then at some point we will enter a new period of consolidation. I
+                            am not sure who will "win", but whoever the winners are, I am sure that they will be
+                            "better" languages than those of the last cycle.
+                        </p>
+
+                        <p>
+                            (Addendum: Of course it is true that when it comes to hobbyists...)
+                        </p>
 
                         <div className="text-danger">
 
 
                             <p>
-                                I actually think the opposite. We are expericing a period of programming language
-                                fragmentation. No longer is industry dominated by C, C++, C# and Java. Instead, today,
-                                the
-                                ecosystem is much more diverse (and stronger for it). We have Rust. We have Go. We have
-                                Crystal. We have Kotlin. We have Scala. We have Python. We have JavaScript.
-
-                                I think after a decade of OOP ossificiation we are finally in a new and exciting period!
 
                                 Now, it is true that many hobbiest projects are purely functional and/or purely
                                 object-oriented programming languges. But that makes sense- of course hobbiest compiler
                                 hackers are interested in building the tools that they use at their payjob.
                             </p>
 
-                            <h5>Go / Haskell / Python is better</h5>
+                            <h5>Go / Python / Haskell is better</h5>
 
                             <p>
                                 Yes, hopefully there is some progress. In the sense that the programming languages of
