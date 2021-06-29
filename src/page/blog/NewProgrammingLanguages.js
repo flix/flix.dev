@@ -188,65 +188,66 @@ class NewProgrammingLanguages extends Component {
                             is a question of better communication, which I will get to.)
                         </p>
 
+                        <h5>Go / Python / Haskell is better</h5>
+
+                        <p>
+                            Yes, hopefully there is some progress. In the sense that the programming languages of
+                            today should be better than the programming languages of yesterday! But that does not mean
+                            that these programming languages will remain better. That is a very narrow view.
+                        </p>
+
+                        <h5>A programming language cannot be successful unless a major tech company is behind it</h5>
+
+                        <p>
+                            I think this is easily debunked by the success of PHP, Python, Ruby, Rust, and Scala.
+                        </p>
+
+                        <h5>Go doesn't have generics. Haha.</h5>
+
+                        <p>
+                            I think this comment entirely misses the point. Generics (aka parametric polymorphism) is
+                            well-understood, battle-tested, and has been huge successfully in many programming
+                            languages. There is nothing left to discuss, really.
+                        </p>
+
+                        <p>
+                            Imagine instead if the same amount of energy was poured into discussing new exciting
+                            features: algebraic effects, lifetimes, etc. Of course such a change in discourse requires
+                            the community to write insight blog posts these topics.
+                        </p>
+
+                        <h2>Ideas for Better Communication</h2>
+
+                        <p>
+                            With these point in mind, I want suggest some ways to improve communication between
+                            aspiring programming language designers and software developers:
+                        </p>
+
+                        <p>
+                            When presenting a new programming language or when writing a blog post related to a new
+                            programming language:
+
+                            <ul>
+                                <li>
+                                    <b>Scope:</b> Clearly state the intended scope of the project. Is it a hobby project
+                                    made for fun? Is it an open source project hoping to gain traction? Is it a research
+                                    prototype? Do you see it being used? Or learned from? Or are you proud something you
+                                    have built yourself?
+
+                                    (Addendum: Regardless of where a project falls on this scale, I don't think we
+                                    should ever discourage anyone for being curious. Especially not someones hobby
+                                    project.)
+                                </li>
+
+                                <li>
+                                    <b>Novelty:</b>
+                                </li>
+                            </ul>
+                        </p>
+
                         <div className="text-danger">
-
-                            <h5>Go / Python / Haskell is better</h5>
-
-                            <p>
-                                Yes, hopefully there is some progress. In the sense that the programming languages of
-                                today
-                                should be better than the programming languages of yesterday! For example, hopefully
-                                no-one
-                                is recommending the use of COBOL/PL-1/EcmaScript-4 today over any other other existing
-                                mainstream
-                                programming languages.
-                            </p>
-
-                            <h5>A programming language cannot be successful unless a major tech company is behind
-                                it</h5>
-
-                            <p>
-                                I think this is easily debunked by the existence of Rust, PHP, Python, Ruby, Scala. In
-                                fact,
-                                I think most successful programming languages did not come out of big tech.
-                            </p>
-
-                            <h5>Go doesn't have generics. Haha.</h5>
-
-                            <p>
-                                While I am firmly on side of this question, I think these comments mises the point.
-                                Generics
-                                (or parametric polymorphism) is a well-understood, battle-tested, implemented technique.
-                                Whether you are for or against, we should not waste so much effort discussing a
-                                well-known
-                                feature. Instead, imagine if the same amount of effort was expended on say discussing
-                                exciting "new ideas" such as <i>algebraic effects</i>, <i>deliminated
-                                continuations</i> or <i>owner ship types</i>. Of course this requires the broad
-                                community to
-                                write insight blog posts about these topics.
-                            </p>
-
-                            <h2>Ideas for Better Communication</h2>
-
-                            <p>
-                                With these point in mind, I want suggest some ways to improve communication between
-                                aspiring
-                                programming language developers and software developers in general:
-                            </p>
-
                             <p>
                                 <ul>
-                                    <li>
-                                        <b>Scope</b>: Clearly state the intended scope of the project. Is it hobby
-                                        project
-                                        made for fun? Is it an open source project hoping to gain traction? Is it a
-                                        (research) prototype? Is it intended for real-world use?
-
-                                        Finally, regardless of where ones project fall on the scale, I don't think we
-                                        should
-                                        discourage anyone. Especially not someones fun hobby project.
-                                    </li>
-
                                     <li>
                                         <b>Novelty</b> - What is new about the language?
                                         Of course
