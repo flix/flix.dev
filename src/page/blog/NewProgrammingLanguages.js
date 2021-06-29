@@ -240,40 +240,29 @@ class NewProgrammingLanguages extends Component {
                                 </li>
 
                                 <li>
-                                    <b>Novelty:</b>
+                                    <b>Novelty:</b> What is new about the programming language? Are there some new takes
+                                    on old ideas? Is there a completely novel feature? Did you fix something you found
+                                    burdensome in an existing language?
+                                </li>
+
+                                <li>
+                                    <b>Resources:</b> What resources are behind the programming language? Is this a
+                                    hobby project? An open source project? An academic project? Do you have other
+                                    developers? Are you open to collaboration? Do you have industry backing?
+                                </li>
+
+                                <li>
+                                    <b>Feedback:</b> What kind of feedback are you looking for? What level of
+                                    constructive criticism are you expecting?
+                                </li>
+
+                                <li>
+                                    <b>Reality Check:</b> Avoid grandiose and unsubstantiated claims: Does your compiler
+                                    really generate faster code than a C++ compiler? (If so, where did you "cheat"?) Are
+                                    you ideas really novel?
                                 </li>
                             </ul>
                         </p>
-
-                        <div className="text-danger">
-                            <p>
-                                <ul>
-                                    <li>
-                                        <b>Novelty</b> - What is new about the language?
-                                        Of course
-                                    </li>
-
-                                    <li>
-                                        <b>Resources</b> - What resources are behind it.
-                                    </li>
-
-                                    <li>
-                                        <b>Feedback</b> What feedback are you looking for?
-                                    </li>
-
-                                    <li>
-                                        <b>Reality check</b>
-                                        The only discouragement I would offer is for people not to overclaim: To claim
-                                        that
-                                        their
-                                        programming language already achieve very lofty goals with actually delivering
-                                        on those
-                                        goals.
-                                    </li>
-                                </ul>
-                            </p>
-
-                        </div>
 
                         <p>
                             I think that the Flix website and our previous blog posts mostly live up to this advice,
