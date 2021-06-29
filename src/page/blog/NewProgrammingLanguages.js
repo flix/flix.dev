@@ -181,18 +181,14 @@ class NewProgrammingLanguages extends Component {
                         </p>
 
                         <p>
-                            (Addendum: Of course it is true that when it comes to hobbyists...)
+                            (Addendum: Of course it is true that when it comes to hobby programming languages many are
+                            either purely functional or purely object-oriented programming languages. But that makes
+                            sense, of course hobbyist compiler hackers are interested in tinkering with the tools they
+                            use at their day job. This does not mean all programming languages are the same. Rather it
+                            is a question of better communication, which I will get to.)
                         </p>
 
                         <div className="text-danger">
-
-
-                            <p>
-
-                                Now, it is true that many hobbiest projects are purely functional and/or purely
-                                object-oriented programming languges. But that makes sense- of course hobbiest compiler
-                                hackers are interested in building the tools that they use at their payjob.
-                            </p>
 
                             <h5>Go / Python / Haskell is better</h5>
 
