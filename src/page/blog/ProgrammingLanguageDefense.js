@@ -3,7 +3,7 @@ import ReactGA from "react-ga";
 import {Col, Container, Row} from "reactstrap";
 import {Link} from "react-router-dom";
 
-class NewProgrammingLanguages extends Component {
+class ProgrammingLanguageDefense extends Component {
 
     componentDidMount() {
         document.title = "Flix | In Defense of Programming Languages";
@@ -282,4 +282,4 @@ class NewProgrammingLanguages extends Component {
 
 }
 
-export default NewProgrammingLanguages
+export default ProgrammingLanguageDefense
