@@ -140,27 +140,28 @@ class NewProgrammingLanguages extends Component {
                         <p>
                             While that remark may appear mocking, I think it is a valid argument. We want better
                             programming languages because we want to offer software developers better tools to write
-                            their programs. There are many
+                            their programs. There are many areas of improvement:
+
+                            <ul>
+                                <li>
+                                    Improved safety: Through types, through lifetimes, through static analysis, etc.
+                                </li>
+                                <li>
+                                    Improved performance: Allowing higher abstractions while compiling to fast code.
+                                </li>
+                                <li>Improved ergonomics: Better IDEs, better APIs, etc.</li>
+                            </ul>
+
+                            I don't think we are anywhere near the point where programming languages are as good as they
+                            are every going to get. I think we are still in the infancy of the arc of programming
+                            languages.
                         </p>
 
-                        <p>
+                        <h5>All programming language are the same</h5>
 
-                        </p>
 
                         <div className="text-danger">
 
-
-                            <p>
-                                While the remark may appear mocking; I think it is valid argument. We <i>want</i> better
-                                programming languages we should offer developers better tools to write programs.
-                                And we want to increase developer happiness. It should be a pleasure to use Flix!
-
-                                Also if this is a hobby project, what do you care. Noone is forcing you to use it!
-
-                                This segways neatly into my next point.
-                            </p>
-
-                            <h5>All programming language are the same</h5>
 
                             <p>
                                 I actually think the opposite. We are expericing a period of programming language
@@ -227,6 +228,10 @@ class NewProgrammingLanguages extends Component {
                                         project
                                         made for fun? Is it an open source project hoping to gain traction? Is it a
                                         (research) prototype? Is it intended for real-world use?
+
+                                        Finally, regardless of where ones project fall on the scale, I don't think we
+                                        should
+                                        discourage anyone. Especially not someones fun hobby project.
                                     </li>
 
                                     <li>
@@ -235,30 +240,37 @@ class NewProgrammingLanguages extends Component {
                                     </li>
 
                                     <li>
+                                        <b>Resources</b> - What resources are behind it.
+                                    </li>
+
+                                    <li>
                                         <b>Feedback</b> What feedback are you looking for?
+                                    </li>
+
+                                    <li>
+                                        <b>Reality check</b>
+                                        The only discouragement I would offer is for people not to overclaim: To claim
+                                        that
+                                        their
+                                        programming language already achieve very lofty goals with actually delivering
+                                        on those
+                                        goals.
                                     </li>
                                 </ul>
                             </p>
 
-                            <p>
-                                In the case of Flix, we make serious claims: That it is real, that is intended for use,
-                                that
-                                we have an appropriate blend of features, and that we have unique features. Thus, we
-                                should
-                                be held to a high standard.
-                                Finally, regardless of where ones project fall on the scale, I don't think we should
-                                discourage anyone. Especially not someones fun hobby project.
-
-                                The only discouragement I would offer is for people not to overclaim: To claim that
-                                their
-                                programming language already achieve very lofty goals with actually delivering on those
-                                goals.
-                            </p>
-
-                            <p>
-                                Until next time, happy hacking.
-                            </p>
                         </div>
+
+                        <p>
+                            I think that the Flix website and our previous blog posts mostly live up to this advice,
+                            except that we should put a greater emphasis on the discussion and what can of feedback
+                            we would appreciate.
+                        </p>
+
+                        <p>
+                            Until next time, happy hacking.
+                        </p>
+
                     </Col>
                 </Row>
             </Container>
