@@ -30,9 +30,9 @@ class ProgrammingLanguageDefense extends Component {
                         <p>
                             In this blog post, I want to examine the discourse around programming languages and
                             especially how new programming languages are received. My hope is to improve communication
-                            between programming languages enthusiasts and software developers. I understand that we
-                            cannot always agree, but it would be fantastic if everyone could at
-                            least try to be friendly and intellectually curious!
+                            between programming languages designers and software developers at large. I understand that
+                            we cannot always agree, but it would be fantastic if everyone could at least try to be
+                            friendly, to be intellectually curious, and to give constructive feedback!
                         </p>
 
                         <h2>A Few Quotes from the Internet</h2>
@@ -67,7 +67,7 @@ class ProgrammingLanguageDefense extends Component {
                         </blockquote>
 
                         <blockquote className="blockquote text-center">
-                            <p className="mb-0">"How the can anyone understand such weird syntax? I hate all these
+                            <p className="mb-0">"How can anyone understand such weird syntax? I hate all these
                                 symbols."</p>
                             <footer className="blockquote-footer"><cite title="Source Title">Bitter
                                 Turtle</cite> via Reddit
@@ -84,8 +84,8 @@ class ProgrammingLanguageDefense extends Component {
 
                         <p>
                             While all of the above quotes are in response to news about the Flix programming language
-                            (on whose website you are currently reading), depressingly similar comments are frequently
-                            posted in response to news about other new programming languages.
+                            (on whose website you are currently reading this blog post), depressingly similar comments
+                            are frequently posted in response to news about other new programming languages.
                         </p>
 
                         <p>
@@ -231,7 +231,8 @@ class ProgrammingLanguageDefense extends Component {
                                 <li>
                                     <b>Scope:</b> Clearly state the intended scope of the project. Is it a hobby project
                                     made for fun? Is it an open source project hoping to gain traction? Is it a research
-                                    prototype? Do you see it being used? Or learned from? Or are you proud of something you
+                                    prototype? Do you see it being used? Or learned from? Or are you proud of something
+                                    you
                                     have built yourself?
 
                                     (Addendum: Regardless of where a project falls on this scale, I don't think we
