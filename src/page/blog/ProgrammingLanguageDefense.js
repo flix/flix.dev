@@ -111,8 +111,9 @@ class ProgrammingLanguageDefense extends Component {
                                     <b>Speech:</b> Programming languages are the material with which we craft programs:
                                     It is our way of "speaking" algorithmically. They are about what we say, how we say
                                     it, and even what can be said. Like prose, what is beautiful and elegant is
-                                    subjective. It is not surprising then that when a new programming language comes
-                                    along and suggests a different form of expression that people may feel challenged.
+                                    in the eye of the beholder. It is not surprising then that when a new programming
+                                    language comes along and suggests a different form of expression that some people
+                                    may feel challenged.
                                 </li>
                             </ul>
                         </p>
