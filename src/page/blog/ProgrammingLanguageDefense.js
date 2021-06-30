@@ -95,17 +95,16 @@ class ProgrammingLanguageDefense extends Component {
                         <h2>Where do such comments come from?</h2>
 
                         <p>
-                            I think there are two main reasons, both grounded in legitimate concerns:
+                            I think there are two primary reasons both of which are grounded in legitimate concerns:
                         </p>
 
                         <p>
                             <ul>
                                 <li>
-                                    <b>Fatigue:</b> I think there is a sense that there are too many new programming
-                                    languages coming out all the time and that it is hard to keep up. Paradoxically,
-                                    I think there is both a dread of having to keep up with ever-changing programming
-                                    languages (or technologies in general) and simultaneously a sense that these
-                                    programming languages are all the same, and do not offer anything new.
+                                    <b>Fatigue:</b> I think there is a sense that there are new programming
+                                    languages coming out all the time. Paradoxically, I think there is both a dread of
+                                    having to keep up with ever-changing programming languages (and other technologies)
+                                    and simultaneously a sense that these new programming languages are all the same.
                                 </li>
 
                                 <li>
