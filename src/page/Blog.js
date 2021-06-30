@@ -45,6 +45,11 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
+                                        <Link to="/blog/in-defense-of-programming-languages/">
+                                            In Defense of Programming Languages
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/blog/taming-impurity-with-polymorphic-effects/">
                                             Taming Impurity with Polymorphic Effects
                                         </Link>

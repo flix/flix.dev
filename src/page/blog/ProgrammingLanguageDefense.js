@@ -67,7 +67,7 @@ class ProgrammingLanguageDefense extends Component {
                         </blockquote>
 
                         <blockquote className="blockquote text-center">
-                            <p className="mb-0">"How the fuck can anyone understand such weird syntax? I hate all these
+                            <p className="mb-0">"How the can anyone understand such weird syntax? I hate all these
                                 symbols."</p>
                             <footer className="blockquote-footer"><cite title="Source Title">Bitter
                                 Turtle</cite> via Reddit
@@ -112,14 +112,14 @@ class ProgrammingLanguageDefense extends Component {
                                     <b>Speech:</b> Programming languages are the material with which we craft programs:
                                     It is our way of "speaking" algorithmically. They are about what we say, how we say
                                     it, and even what can be said. Like prose, what is beautiful and elegant is
-                                    subjective. It is not surprising then that when a new programming language comes a
-                                    long and suggests a different form of expression that people may feel challenged.
+                                    subjective. It is not surprising then that when a new programming language comes
+                                    along and suggests a different form of expression that people may feel challenged.
                                 </li>
                             </ul>
                         </p>
 
                         <p>
-                            Of course there are also internet trolls; but lets ignore them.
+                            Of course there are also internet trolls; but let us ignore them.
                         </p>
 
                         <h2>A Point-by-Point Rebuttal</h2>
@@ -153,17 +153,17 @@ class ProgrammingLanguageDefense extends Component {
                             </ul>
 
                             I don't think we are anywhere near the point where programming languages are as good as they
-                            are every going to get. I think we are still in the infancy of the arc of programming
+                            are ever going to get. I think we are still in the infancy of the arc of programming
                             languages.
                         </p>
 
-                        <h5>All programming language are the same</h5>
+                        <h5>All programming languages are the same</h5>
 
                         <p>
-                            It strongly disagree. I think we are experiencing a period of programming language
+                            I strongly disagree. I think we are experiencing a period of programming language
                             fragmentation after a long period of consolidation. For the last 15-years or so, the
                             industry was dominated by C, C++, C# and Java. The market share of these programming
-                            languages were always increasing. I view this as a consolidation phase where there was a
+                            languages was always increasing. I view this as a consolidation phase where there was a
                             sense that object-oriented programming languages such as C# and Java were the way to go.
                         </p>
 
@@ -213,7 +213,7 @@ class ProgrammingLanguageDefense extends Component {
                         <p>
                             Imagine instead if the same amount of energy was poured into discussing new exciting
                             features: algebraic effects, lifetimes, etc. Of course such a change in discourse requires
-                            the community to write insight blog posts these topics.
+                            the community to write insightful material on these topics.
                         </p>
 
                         <h2>Ideas for Better Communication</h2>
@@ -231,11 +231,11 @@ class ProgrammingLanguageDefense extends Component {
                                 <li>
                                     <b>Scope:</b> Clearly state the intended scope of the project. Is it a hobby project
                                     made for fun? Is it an open source project hoping to gain traction? Is it a research
-                                    prototype? Do you see it being used? Or learned from? Or are you proud something you
+                                    prototype? Do you see it being used? Or learned from? Or are you proud of something you
                                     have built yourself?
 
                                     (Addendum: Regardless of where a project falls on this scale, I don't think we
-                                    should ever discourage anyone for being curious. Especially not someones hobby
+                                    should ever discourage anyone for being curious. Especially not someone's hobby
                                     project.)
                                 </li>
 
@@ -266,7 +266,7 @@ class ProgrammingLanguageDefense extends Component {
 
                         <p>
                             I think that the Flix website and our previous blog posts mostly live up to this advice,
-                            except that we should put a greater emphasis on the discussion and what can of feedback
+                            except that we should put a greater emphasis on the discussion and what kind of feedback
                             we would appreciate.
                         </p>
 
