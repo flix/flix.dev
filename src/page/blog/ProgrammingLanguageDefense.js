@@ -224,20 +224,14 @@ class ProgrammingLanguageDefense extends Component {
                         </p>
 
                         <p>
-                            When presenting a new programming language or when writing a blog post related to a new
-                            programming language:
+                            When presenting a new programming language:
 
-                            <ul>
+                            <ul className="mt-2">
                                 <li>
-                                    <b>Scope:</b> Clearly state the intended scope of the project. Is it a hobby project
+                                    <b>Scope:</b> State the intended scope of the project. Is it a hobby project
                                     made for fun? Is it an open source project hoping to gain traction? Is it a research
-                                    prototype? Do you see it being used? Or learned from? Or are you proud of something
-                                    you
-                                    have built yourself?
-
-                                    (Addendum: Regardless of where a project falls on this scale, I don't think we
-                                    should ever discourage anyone for being curious. Especially not someone's hobby
-                                    project.)
+                                    prototype? Is it a commercially backed project? What is the intended use case? Is
+                                    there a "killer-app"?
                                 </li>
 
                                 <li>
