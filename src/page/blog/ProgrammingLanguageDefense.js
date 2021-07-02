@@ -194,17 +194,31 @@ class ProgrammingLanguageDefense extends Component {
                             implementing a minimal functional or object-oriented programming language.)
                         </p>
 
-                        <h5>It's too complicated! What even is Foldable?</h5>
+                        <h5>New programming languages are too complicated!</h5>
 
                         <p>
-                            TBD
+                            That's the way of the world.
+                        </p>
+
+                        <p>
+                            What do you think an airline pilot from the 1950's would say if he or she entered the flight
+                            deck of an Airbus A350? Sure, the principles of flying are the same, and indeed iteration
+                            and recursion are not going anywhere. But we cannot expect everything to stay the same. All
+                            those instruments are there for a reason and they make flying safer and more efficient.
+                        </p>
+
+                        <p>
+                            As another example, once universities starts teaching Rust (and we will!) then programming
+                            with ownership and lifetimes will become commonplace. As yet another example, today every
+                            programmer can reasonably be expected to know about <code>filter</code> and <code>map</code>,
+                            but that was certainly not the case 15 years ago!
                         </p>
 
                         <h5>A programming language cannot be successful unless a major tech company is behind it</h5>
 
                         <p>
                             Historically that has not been true. Neither PHP, Python, Ruby, Rust, or Scala had
-                            major tech companies behind them. If support came, it came later.
+                            major tech companies behind them. If industry support came, it came at a later time.
                         </p>
 
                         <h2>Ideas for Better Communication</h2>
