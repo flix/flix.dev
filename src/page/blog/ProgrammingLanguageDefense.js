@@ -140,28 +140,27 @@ class ProgrammingLanguageDefense extends Component {
                         <p>
                             While that remark pokes fun at the question, I think it is a valid argument. We want better
                             programming languages because we want to offer software developers better tools to write
-                            their programs. There are several areas where programming languages can be improved:
+                            their programs. I think that there are many areas for improvement:
                         </p>
 
                         <p>
                             <ul>
                                 <li>
-                                    Safety: Through types, through lifetimes, through static analysis, etc.
+                                    <b>Safety:</b> Through types, through lifetimes, through static analysis, etc.
                                 </li>
                                 <li>
-                                    Performance: Allowing higher abstractions while compiling to fast code.
+                                    <b>Performance:</b> Allowing higher abstractions while compiling to fast code.
                                 </li>
                                 <li>
-                                    Ergonomics: Better IDEs, better APIs, etc.
+                                    <b>Ergonomics:</b> New programming constructs, better IDEs, better APIs, etc.
                                 </li>
                             </ul>
                         </p>
 
                         <p>
-
                             I don't think we are anywhere near the point where programming languages are as good as they
-                            are ever going to get. I think we are still in the infancy of the arc of programming
-                            languages.
+                            are ever going to get. On the contrary, I think we are still in the infancy programming
+                            language design.
                         </p>
 
                         <h5>All programming languages are the same</h5>
