@@ -152,7 +152,8 @@ class ProgrammingLanguageDefense extends Component {
                                 </li>
                                 <li>
                                     <b>Expressiveness:</b> union and intersection types, polymorphic effect systems,
-                                    algebraic effects, miniKanren, Datalog, increasingly powerful type inference.
+                                    algebraic effects, miniKanren, Datalog, type-driven development, increasingly
+                                    powerful type inference.
                                 </li>
                                 <li>
                                     <b>Performance:</b> program synthesis, polygot VMs, Truffle/Graal.
@@ -295,10 +296,8 @@ class ProgrammingLanguageDefense extends Component {
                                 </li>
 
                                 <li>
-                                    <b>Implementation:</b> The Flix compiler project (including tests) is, as of
-                                    writing, approximately 137,000 lines of code. The standard library contains
-                                    approximately 1,500 functions. Most of that functionality is centered on basic data
-                                    types and collections.
+                                    <b>Implementation:</b> The Flix compiler project is ~137,000 lines of code. Flix
+                                    comes with an extensive standard library with collections and type classes.
                                 </li>
 
                                 <li>
@@ -311,16 +310,15 @@ class ProgrammingLanguageDefense extends Component {
                                 </li>
 
                                 <li>
-                                    <b>Feedback:</b> We want to know what people think about our innovations, about
-                                    our language design, and what it would take for them to consider using Flix.
+                                    <b>Feedback:</b> We want to know what people think about Flix, how we can make Flix
+                                    better, and what it would take for someone to consider using it.
                                 </li>
 
                                 <li>
                                     <b>Reality Check:</b> We aim to under-promise and over-deliver. We do not promote
                                     features before they exist. Our typical pipeline is: (Research) Idea →
                                     Implementation → Documentation → Presentation to the World. Development is not
-                                    secret, in the spirit of open source, everything is on GitHub. We just don't promote
-                                    anything before it is ready.
+                                    secret; everything is on GitHub. We just don't promote anything before it is ready.
                                 </li>
                             </ul>
                         </p>
