@@ -225,8 +225,10 @@ class ProgrammingLanguageDefense extends Component {
 
                         <p>
                             When presenting a new programming language:
+                        </p>
 
-                            <ul className="mt-2">
+                        <p>
+                            <ul>
                                 <li>
                                     <b>Scope:</b> State the intended scope of the project. Is it a hobby project
                                     made for fun? Is it an open source project hoping to gain traction? Is it a research
@@ -267,10 +269,44 @@ class ProgrammingLanguageDefense extends Component {
                             </ul>
                         </p>
 
+                        <h2>What about Flix?</h2>
+
                         <p>
-                            I think that the Flix website and our previous blog posts mostly live up to this advice,
-                            except that we should put a greater emphasis on the discussion and what kind of feedback
-                            we would appreciate.
+                            The time has come to nail our colors to the flag:
+                        </p>
+
+                        <p>
+                            <ul>
+                                <li>
+                                    <b>Scope:</b> We are building a real programming language intended for real-world
+                                    use.
+                                </li>
+
+                                <li>
+                                    <b>Implementation:</b> The Flix compiler project (including tests) is, as of
+                                    writing, approximately 137,000 lines of code. The standard library contains
+                                    approximately 1,500 functions. Most of that functionality is centered on basic data
+                                    types and collections.
+                                </li>
+
+                                <li>
+                                    <b>Novelty:</b> TODO
+                                </li>
+
+                                <li>
+                                    <b>Resources:</b> We are a small community of open source developers and academic
+                                    researchers from Aarhus University and the University of Waterloo.
+                                </li>
+
+                                <li>
+                                    <b>Feedback:</b> We want to know what people think about our innovations, about
+                                    our language design, and what it would take for them to consider using Flix.
+                                </li>
+
+                                <li>
+                                    <b>Reality Check:</b> TODO
+                                </li>
+                            </ul>
                         </p>
 
                         <p>
