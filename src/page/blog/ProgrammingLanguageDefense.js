@@ -235,26 +235,34 @@ class ProgrammingLanguageDefense extends Component {
                                 </li>
 
                                 <li>
-                                    <b>Novelty:</b> What is new about the programming language? Are there some new takes
-                                    on old ideas? Is there a completely novel feature? Did you fix something you found
-                                    burdensome in an existing language?
+                                    <b>Implementation:</b> What has been implemented? A compiler? An interpreter? Do you
+                                    have a standard library? How big is it? How many lines is the project?
                                 </li>
 
                                 <li>
-                                    <b>Resources:</b> What resources are behind the programming language? Is this a
-                                    hobby project? An open source project? An academic project? Do you have other
-                                    developers? Are you open to collaboration? Do you have industry backing?
+                                    <b>Novelty:</b> What is new in the programming language? Are there some new takes
+                                    on old ideas? Is there something novel? How is the language an improvement compared
+                                    to existing languages? Does the language make you think in a new way about
+                                    programming?
                                 </li>
 
                                 <li>
-                                    <b>Feedback:</b> What kind of feedback are you looking for? What level of
-                                    constructive criticism are you expecting?
+                                    <b>Resources:</b> What resources are behind the programming language? Is it a hobby
+                                    project? An open source project? An academic project? Are you open to collaboration?
+                                    Do you have backing (from industry or otherwise)?
                                 </li>
 
                                 <li>
-                                    <b>Reality Check:</b> Avoid grandiose and unsubstantiated claims: Does your compiler
-                                    really generate faster code than a C++ compiler? (If so, where did you "cheat"?) Are
-                                    you ideas really novel?
+                                    <b>Feedback:</b> What kind of feedback are you looking for? What other people think?
+                                    Suggestions for improvements and related work? Constructive criticism about the
+                                    design? What it would take for them to consider using it?
+                                </li>
+
+                                <li>
+                                    <b>Reality Check:</b> Try to avoid grandiose or unsubstantiated claims: Do your
+                                    compiler really outperform modern state-of-the-art C compilers? Is your type system
+                                    really more expressive than Haskell or Idris? Is your language really safer than
+                                    Ada?
                                 </li>
                             </ul>
                         </p>
