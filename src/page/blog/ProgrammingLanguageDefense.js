@@ -138,19 +138,26 @@ class ProgrammingLanguageDefense extends Component {
                         </p>
 
                         <p>
-                            While that remark may appear mocking, I think it is a valid argument. We want better
+                            While that remark pokes fun at the question, I think it is a valid argument. We want better
                             programming languages because we want to offer software developers better tools to write
-                            their programs. There are many areas of improvement:
+                            their programs. There are several areas where programming languages can be improved:
+                        </p>
 
+                        <p>
                             <ul>
                                 <li>
-                                    Improved safety: Through types, through lifetimes, through static analysis, etc.
+                                    Safety: Through types, through lifetimes, through static analysis, etc.
                                 </li>
                                 <li>
-                                    Improved performance: Allowing higher abstractions while compiling to fast code.
+                                    Performance: Allowing higher abstractions while compiling to fast code.
                                 </li>
-                                <li>Improved ergonomics: Better IDEs, better APIs, etc.</li>
+                                <li>
+                                    Ergonomics: Better IDEs, better APIs, etc.
+                                </li>
                             </ul>
+                        </p>
+
+                        <p>
 
                             I don't think we are anywhere near the point where programming languages are as good as they
                             are ever going to get. I think we are still in the infancy of the arc of programming
