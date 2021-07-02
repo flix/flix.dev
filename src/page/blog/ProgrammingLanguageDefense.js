@@ -296,8 +296,8 @@ class ProgrammingLanguageDefense extends Component {
                                 </li>
 
                                 <li>
-                                    <b>Implementation:</b> The Flix compiler project is ~137,000 lines of code. Flix
-                                    comes with an extensive standard library with collections and type classes.
+                                    <b>Implementation:</b> The Flix compiler project is ~137,000 lines of code,
+                                    including a fairly extensive standard library.
                                 </li>
 
                                 <li>
@@ -305,8 +305,9 @@ class ProgrammingLanguageDefense extends Component {
                                 </li>
 
                                 <li>
-                                    <b>Resources:</b> We are a small community of open source developers and academic
-                                    researchers from Aarhus University and the University of Waterloo.
+                                    <b>Resources:</b> We are a group of programming language researchers from Aarhus
+                                    University and the University of Waterloo together with a small community of open
+                                    source contributors. Through our research, we have funding for working on Flix.
                                 </li>
 
                                 <li>
