@@ -167,23 +167,25 @@ class ProgrammingLanguageDefense extends Component {
 
                         <p>
                             I strongly disagree. I think we are experiencing a period of programming language
-                            fragmentation after a long period of consolidation. For the last 15-years or so, the
-                            industry was dominated by C, C++, C# and Java. The market share of these programming
-                            languages was always increasing. I view this as a consolidation phase where there was a
-                            sense that object-oriented programming languages such as C# and Java were the way to go.
+                            fragmentation after a long period of consolidation and stagnation. For the last 15-years or
+                            so, the industry has been dominated by C, C++, C# and Java. The market share of these
+                            programming languages was always increasing and they were the default safe choice for new
+                            software projects.
                         </p>
 
                         <p>
-                            Today that is no longer the case. Instead, the ecosystem is much more diverse and stronger
-                            for it. We have Rust. We have Scala. We have Go, Python, and JavaScript. We have Crystal and
-                            Nim. We have TypeScript. We are in a period of fragmentation. After a decade (or more) of
-                            OO-ossification we are finally in a new and exciting period!
+                            Today that is no longer the case. The ecosystem of programming languages is much more
+                            diverse (and stronger for it). We have Rust. We have Scala. We also have Go, Python, and
+                            JavaScript. There is also Crystal, Elixir, Elm, and Nim. (Oh, and Flix of course!) We are in
+                            a period of fragmentation. After a decade of object-oriented ossification we are entering a
+                            new and exciting period!
                         </p>
 
                         <p>
-                            If history repeats itself then at some point we will enter a new period of consolidation. I
-                            am not sure who will "win", but whoever the winners are, I am sure that they will be
-                            "better" languages than those of the last cycle.
+                            If history repeats itself then at some point we will enter a new period of consolidation.
+                            Its too early to speculate on which programming languages will be the winners, but I feel
+                            confident that they will be much better than C, C++, C#, and Java! (Ok, maybe C++30 will be
+                            one of them &ndash; that language changes as much as Haskell!)
                         </p>
 
                         <p>
@@ -192,7 +194,7 @@ class ProgrammingLanguageDefense extends Component {
                             implementing a minimal functional or object-oriented programming language.)
                         </p>
 
-                        <h5>It's too complicated!</h5>
+                        <h5>It's too complicated! What even is Foldable?</h5>
 
                         <p>
                             TBD
