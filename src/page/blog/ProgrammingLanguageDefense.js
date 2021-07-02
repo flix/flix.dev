@@ -187,11 +187,9 @@ class ProgrammingLanguageDefense extends Component {
                         </p>
 
                         <p>
-                            (Addendum: Of course it is true that when it comes to hobby programming languages many are
-                            either purely functional or purely object-oriented programming languages. But that makes
-                            sense, of course hobbyist compiler hackers are interested in tinkering with the tools they
-                            use at their day job. This does not mean all programming languages are the same. Rather it
-                            is a question of better communication, which I will get to.)
+                            (Addendum: That said, it is true that many hobby programming languages look the same. But
+                            there is a reason for that: if you want to learn about compilers it makes sense to start by
+                            implementing a minimal functional or object-oriented programming language.)
                         </p>
 
                         <h5>It's too complicated!</h5>
