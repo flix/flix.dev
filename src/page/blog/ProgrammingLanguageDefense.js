@@ -140,19 +140,26 @@ class ProgrammingLanguageDefense extends Component {
                         <p>
                             While that remark pokes fun at the question, I think it is a valid argument. We want better
                             programming languages because we want to offer software developers better tools to write
-                            their programs. I think that there are many areas for improvement:
+                            their programs. Here, for example, are some exciting developments; both brand new ideas and
+                            old research ideas making their way into real programming languages:
                         </p>
 
                         <p>
                             <ul>
                                 <li>
-                                    <b>Safety:</b> Through types, through lifetimes, through static analysis, etc.
+                                    <b>Safety:</b> region-based memory management, lifetimes, ownership types,
+                                    capabilities.
                                 </li>
                                 <li>
-                                    <b>Performance:</b> Allowing higher abstractions while compiling to fast code.
+                                    <b>Expressiveness:</b> union and intersection types, polymorphic effect systems,
+                                    algebraic effects, miniKanren, Datalog, increasingly powerful type inference.
                                 </li>
                                 <li>
-                                    <b>Ergonomics:</b> New programming constructs, better IDEs, better APIs, etc.
+                                    <b>Performance:</b> program synthesis, polygot VMs, Truffle/Graal.
+                                </li>
+                                <li>
+                                    <b>Development Experience:</b> Visual Studio Code ecosystem, language server
+                                    protocol, GitHub code-spaces, GitHub Co-Pilot.
                                 </li>
                             </ul>
                         </p>
