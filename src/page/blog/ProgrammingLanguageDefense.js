@@ -301,13 +301,15 @@ class ProgrammingLanguageDefense extends Component {
                                 </li>
 
                                 <li>
-                                    <b>Novelty:</b> TODO
+                                    <b>Novelty:</b> We have a whole page (<Link to="/innovations/">Innovations</Link>)
+                                    that covers this, but briefly: a unique combination of features, combined with
+                                    first-class Datalog constraints and a polymorphic effect system.
                                 </li>
 
                                 <li>
                                     <b>Resources:</b> We are a group of programming language researchers from Aarhus
                                     University and the University of Waterloo together with a small community of open
-                                    source contributors. Through our research, we have funding for working on Flix.
+                                    source contributors. Through our research we have funding for working on Flix.
                                 </li>
 
                                 <li>
