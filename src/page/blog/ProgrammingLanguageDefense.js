@@ -196,24 +196,17 @@ class ProgrammingLanguageDefense extends Component {
                             that these programming languages will remain better. That is a very narrow view.
                         </p>
 
+                        <h5>It's too complicated!</h5>
+
+                        <p>
+                            TBD
+                        </p>
+
                         <h5>A programming language cannot be successful unless a major tech company is behind it</h5>
 
                         <p>
-                            I think this is easily debunked by the success of PHP, Python, Ruby, Rust, and Scala.
-                        </p>
-
-                        <h5>Go doesn't have generics. Haha.</h5>
-
-                        <p>
-                            I think this comment entirely misses the point. Generics (aka parametric polymorphism) is
-                            well-understood, battle-tested, and has been huge successfully in many programming
-                            languages. There is nothing left to discuss, really.
-                        </p>
-
-                        <p>
-                            Imagine instead if the same amount of energy was poured into discussing new exciting
-                            features: algebraic effects, lifetimes, etc. Of course such a change in discourse requires
-                            the community to write insightful material on these topics.
+                            Historically that has not been true. Neither PHP, Python, Ruby, Rust, or Scala had
+                            major tech companies behind them. If support came, it came later.
                         </p>
 
                         <h2>Ideas for Better Communication</h2>
@@ -305,10 +298,10 @@ class ProgrammingLanguageDefense extends Component {
 
                                 <li>
                                     <b>Reality Check:</b> We aim to under-promise and over-deliver. We do not promote
-                                    features before they exist. Our typical pipeline is: (Research) Idea ->
-                                    Implementation -> Documentation -> Presenting. Development is not secret, in the
-                                    spirit of open source, everything is on GitHub. We just don't promote anything
-                                    before it is ready.
+                                    features before they exist. Our typical pipeline is: (Research) Idea →
+                                    Implementation → Documentation → Presentation to the World. Development is not
+                                    secret, in the spirit of open source, everything is on GitHub. We just don't promote
+                                    anything before it is ready.
                                 </li>
                             </ul>
                         </p>
