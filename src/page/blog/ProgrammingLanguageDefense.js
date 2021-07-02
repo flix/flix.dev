@@ -304,7 +304,11 @@ class ProgrammingLanguageDefense extends Component {
                                 </li>
 
                                 <li>
-                                    <b>Reality Check:</b> TODO
+                                    <b>Reality Check:</b> We aim to under-promise and over-deliver. We do not promote
+                                    features before they exist. Our typical pipeline is: (Research) Idea ->
+                                    Implementation -> Documentation -> Presenting. Development is not secret, in the
+                                    spirit of open source, everything is on GitHub. We just don't promote anything
+                                    before it is ready.
                                 </li>
                             </ul>
                         </p>
