@@ -125,7 +125,7 @@ class ProgrammingLanguageDefense extends Component {
                         <h2>A Point-by-Point Rebuttal</h2>
 
                         <p>
-                            I will now give a point-by-point rebuttal of the most common refrains heard when a new
+                            I will now give a point-by-point rebuttal of the most common refrains heard whenever a new
                             programming language is proposed.
                         </p>
 
@@ -186,14 +186,6 @@ class ProgrammingLanguageDefense extends Component {
                             sense, of course hobbyist compiler hackers are interested in tinkering with the tools they
                             use at their day job. This does not mean all programming languages are the same. Rather it
                             is a question of better communication, which I will get to.)
-                        </p>
-
-                        <h5>Go / Python / Haskell is better</h5>
-
-                        <p>
-                            Yes, hopefully there is some progress. In the sense that the programming languages of
-                            today should be better than the programming languages of yesterday! But that does not mean
-                            that these programming languages will remain better. That is a very narrow view.
                         </p>
 
                         <h5>It's too complicated!</h5>
