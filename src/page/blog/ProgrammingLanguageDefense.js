@@ -30,8 +30,8 @@ class ProgrammingLanguageDefense extends Component {
                         <p>
                             In this blog post, I want to examine the discourse around programming languages and
                             especially how new programming languages are received. My hope is to improve communication
-                            between programming languages designers and software developers at large. I understand that
-                            we cannot always agree, but it would be fantastic if everyone could at least try to be
+                            between programming languages designers and software developers. I understand that
+                            we cannot all agree, but it would be fantastic if everyone could at least try to be
                             friendly, to be intellectually curious, and to give constructive feedback!
                         </p>
 
@@ -95,7 +95,7 @@ class ProgrammingLanguageDefense extends Component {
                         <h2>Where do such comments come from?</h2>
 
                         <p>
-                            I think there are two primary reasons both of which are grounded in legitimate concerns:
+                            I think there are two reasons which are grounded in legitimate concerns:
                         </p>
 
                         <p>
@@ -112,8 +112,8 @@ class ProgrammingLanguageDefense extends Component {
                                     It is our way of "speaking" algorithmically. They are about what we say, how we say
                                     it, and even what can be said. Like prose, what is beautiful and elegant is
                                     in the eye of the beholder. It is not surprising then that when a new programming
-                                    language comes along and suggests a different form of expression that some people
-                                    may feel challenged.
+                                    language comes along and suggests a different form of expression that some may have
+                                    strong opinions.
                                 </li>
                             </ul>
                         </p>
@@ -125,7 +125,7 @@ class ProgrammingLanguageDefense extends Component {
                         <h2>A Point-by-Point Rebuttal</h2>
 
                         <p>
-                            I will now give a point-by-point rebuttal of the most common refrains heard whenever a new
+                            I will now give a point-by-point rebuttal to the most common refrains heard whenever a new
                             programming language is proposed.
                         </p>
 
@@ -138,16 +138,16 @@ class ProgrammingLanguageDefense extends Component {
                         </p>
 
                         <p>
-                            While that remark pokes fun at the question, I think it is a valid argument. We want better
-                            programming languages because we want to offer software developers better tools to write
-                            their programs. Here, for example, are some exciting developments; both brand new ideas and
-                            old research ideas making their way into real programming languages:
+                            I think it is a valid argument. We want better programming languages because we want to
+                            offer software developers better tools to write their programs. I think that there are
+                            exciting developments; both brand new ideas and old research ideas that are making their
+                            way into new programming languages:
                         </p>
 
                         <p>
                             <ul>
                                 <li>
-                                    <b>Safety:</b> region-based memory management, lifetimes, ownership types,
+                                    <b>Safety:</b> region-based memory management, lifetimes, ownership types, and
                                     capabilities.
                                 </li>
                                 <li>
@@ -166,8 +166,8 @@ class ProgrammingLanguageDefense extends Component {
                         </p>
 
                         <p>
-                            I don't think we are anywhere near the point where programming languages are as good as they
-                            are ever going to get. On the contrary, I think we are still in the infancy programming
+                            I don't think we are anywhere near to the point where programming languages are as good as
+                            they are ever going to get. On the contrary, I think we are still in the infancy programming
                             language design.
                         </p>
 
