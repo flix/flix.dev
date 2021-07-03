@@ -19,7 +19,8 @@ class ProgrammingLanguageDefense extends Component {
                         <h1>In Defense of Programming Languages</h1>
 
                         <p>
-                            Posted July 2021 by <i>Magnus Madsen</i>.
+                            Posted July 2021 by <i>Magnus Madsen</i>. Thanks to Matthew Lutze for discussion and
+                            comments on an early draft.
                         </p>
 
                         <p>
@@ -113,7 +114,7 @@ class ProgrammingLanguageDefense extends Component {
                                     it, and even what can be said. Like prose, what is beautiful and elegant is
                                     in the eye of the beholder. It is not surprising then that when a new programming
                                     language comes along and suggests a different form of expression that some may have
-                                    strong opinions.
+                                    strong reactions.
                                 </li>
                             </ul>
                         </p>
@@ -125,7 +126,7 @@ class ProgrammingLanguageDefense extends Component {
                         <h2>A Point-by-Point Rebuttal</h2>
 
                         <p>
-                            I will now give a point-by-point rebuttal to the most common refrains heard whenever a new
+                            I want to give a point-by-point rebuttal to the most common refrains heard whenever a new
                             programming language is proposed.
                         </p>
 
@@ -139,7 +140,8 @@ class ProgrammingLanguageDefense extends Component {
 
                         <p>
                             I think it is a valid argument. We want better programming languages because we want to
-                            offer software developers better tools to write their programs. I think that there are
+                            offer software developers better tools to write their programs. You might say that existing
+                            programming languages already have all the feature we need, but I think that there are
                             exciting developments; both brand new ideas and old research ideas that are making their
                             way into new programming languages:
                         </p>
@@ -147,20 +149,16 @@ class ProgrammingLanguageDefense extends Component {
                         <p>
                             <ul>
                                 <li>
-                                    <b>Safety:</b> region-based memory management, lifetimes, ownership types, and
-                                    capabilities.
+                                    <b>Safety:</b> region-based memory management, lifetimes, ownership types, linear
+                                    types, 2nd class values, and capabilities.
                                 </li>
                                 <li>
                                     <b>Expressiveness:</b> union and intersection types, polymorphic effect systems,
-                                    algebraic effects, miniKanren, Datalog, type-driven development, increasingly
-                                    powerful type inference.
+                                    algebraic effects, type-driven development, increasingly powerful type inference.
                                 </li>
                                 <li>
-                                    <b>Performance:</b> program synthesis, polygot VMs, Truffle/Graal.
-                                </li>
-                                <li>
-                                    <b>Development Experience:</b> Visual Studio Code ecosystem, language server
-                                    protocol, GitHub code-spaces, GitHub Co-Pilot.
+                                    <b>Development Experience:</b> the Visual Studio Code ecosystem, the language server
+                                    protocol, GitHub code-spaces.
                                 </li>
                             </ul>
                         </p>
@@ -184,7 +182,7 @@ class ProgrammingLanguageDefense extends Component {
                         <p>
                             Today that is no longer the case. The ecosystem of programming languages is much more
                             diverse (and stronger for it). We have Rust. We have Scala. We also have Go, Python, and
-                            JavaScript. There is also Crystal, Elixir, Elm, and Nim. (Oh, and Flix of course!) We are in
+                            JavaScript. There is also Crystal, Elixir, Elm, and Nim (Oh, and Flix of course!) We are in
                             a period of fragmentation. After a decade of object-oriented ossification we are entering a
                             new and exciting period!
                         </p>
@@ -237,7 +235,7 @@ class ProgrammingLanguageDefense extends Component {
                         </p>
 
                         <p>
-                            When presenting a new programming language:
+                            When presenting a new programming language (or ideas related to a new language):
                         </p>
 
                         <p>
@@ -270,7 +268,7 @@ class ProgrammingLanguageDefense extends Component {
                                 <li>
                                     <b>Feedback:</b> What kind of feedback are you looking for? What other people think?
                                     Suggestions for improvements and related work? Constructive criticism about the
-                                    design? What it would take for them to consider using it?
+                                    design? What it would take for someone to consider using it?
                                 </li>
 
                                 <li>
@@ -292,12 +290,14 @@ class ProgrammingLanguageDefense extends Component {
                             <ul>
                                 <li>
                                     <b>Scope:</b> We are building a real programming language intended for real-world
-                                    use.
+                                    use. It is an open-source project lead by academic programming language researchers.
                                 </li>
 
                                 <li>
-                                    <b>Implementation:</b> The Flix compiler project is ~137,000 lines of code,
-                                    including a fairly extensive standard library.
+                                    <b>Implementation:</b> The Flix compiler project is ~137,000 lines of code. We have
+                                    a realistic compiler, a standard library (extensive, but still under development), a
+                                    Visual Studio Code extension (with auto-complete!), an online playground, online
+                                    documentation, and several published papers on the novel aspects of the language.
                                 </li>
 
                                 <li>
@@ -322,6 +322,8 @@ class ProgrammingLanguageDefense extends Component {
                                     features before they exist. Our typical pipeline is: (Research) Idea →
                                     Implementation → Documentation → Presentation to the World. Development is not
                                     secret; everything is on GitHub. We just don't promote anything before it is ready.
+                                    We have exciting things in the pipeline, but you will have to wait a bit before
+                                    learning about them (or spoil yourself by diving into the GitHub issues!)
                                 </li>
                             </ul>
                         </p>
