@@ -114,7 +114,7 @@ class ProgrammingLanguageDefense extends Component {
                                     it, and even what can be said. Like prose, what is beautiful and elegant is
                                     in the eye of the beholder. It is not surprising then that when a new programming
                                     language comes along and suggests a different form of expression that some may have
-                                    strong reactions.
+                                    strong reactions to.
                                 </li>
                             </ul>
                         </p>
@@ -133,7 +133,7 @@ class ProgrammingLanguageDefense extends Component {
                         <h5>Do we really need new programming languages?</h5>
 
                         <p>
-                            The Flix <Link to="/faq/"> FAQ </Link> joking responds this question with a rhetorical
+                            The Flix <Link to="/faq/"> FAQ </Link> joking responds to this question with a rhetorical
                             question: <i>Do we really need safer airplanes? Do we really need electric cars? Do we
                             really need more ergonomic chairs?</i>
                         </p>
@@ -165,8 +165,8 @@ class ProgrammingLanguageDefense extends Component {
 
                         <p>
                             I don't think we are anywhere near to the point where programming languages are as good as
-                            they are ever going to get. On the contrary, I think we are still in the infancy programming
-                            language design.
+                            they are ever going to get. On the contrary, I think we are still in the infancy of
+                            programming language design.
                         </p>
 
                         <h5>All programming languages are the same</h5>
@@ -189,7 +189,7 @@ class ProgrammingLanguageDefense extends Component {
 
                         <p>
                             If history repeats itself then at some point we will enter a new period of consolidation.
-                            Its too early to speculate on which programming languages will be the winners, but I feel
+                            It is too early to speculate on which programming languages will be the winners, but I feel
                             confident that they will be much better than C, C++, C#, and Java! (Ok, maybe C++30 will be
                             one of them &ndash; that language changes as much as Haskell!)
                         </p>
@@ -214,7 +214,7 @@ class ProgrammingLanguageDefense extends Component {
                         </p>
 
                         <p>
-                            As another example, once universities starts teaching Rust (and we will!) then programming
+                            As another example, once universities start teaching Rust (and we will!) then programming
                             with ownership and lifetimes will become commonplace. As yet another example, today every
                             programmer can reasonably be expected to know about <code>filter</code> and <code>map</code>,
                             but that was certainly not the case 15 years ago!
@@ -230,7 +230,7 @@ class ProgrammingLanguageDefense extends Component {
                         <h2>Ideas for Better Communication</h2>
 
                         <p>
-                            With these point in mind, I want suggest some ways to improve communication between
+                            With these points in mind, I want to suggest some ways to improve communication between
                             aspiring programming language designers and software developers:
                         </p>
 
