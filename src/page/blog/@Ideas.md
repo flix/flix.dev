@@ -8,8 +8,8 @@
 - Why we use the Java Virtual Machine
 - "The State of Flix"
 - There is no free lunch (simplicity vs. power)
-- Sanity: Avoiding common PL pitfals
+- Sanity: Avoiding common PL pitfalls
 - Design of Type Classes
 - In Defense of PL Design
-- Looking for contributors
+- Looking for contributors / Why you should join us now
 - Why work on someone else's PL?

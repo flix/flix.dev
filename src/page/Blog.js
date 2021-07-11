@@ -3,6 +3,7 @@ import {Col, Container, Row} from "reactstrap";
 import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
+import ProgrammingLanguageDefense from "./blog/ProgrammingLanguageDefense";
 import DesignFlaws from "./blog/DesignFlaws";
 import Naming from "./blog/Naming";
 import Redundancies from "./blog/Redundancies";
@@ -44,6 +45,11 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
+                                        <Link to="/blog/in-defense-of-programming-languages/">
+                                            In Defense of Programming Languages
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to="/blog/taming-impurity-with-polymorphic-effects/">
                                             Taming Impurity with Polymorphic Effects
                                         </Link>
@@ -68,6 +74,10 @@ class Blog extends Component {
                         </Row>
                     </Route>
 
+
+                    <Route path="/blog/in-defense-of-programming-languages/">
+                        <ProgrammingLanguageDefense/>
+                    </Route>
 
                     <Route path="/blog/taming-impurity-with-polymorphic-effects/">
                         <PolymorphicEffects/>
