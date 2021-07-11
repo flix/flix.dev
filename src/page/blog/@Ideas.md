@@ -12,4 +12,4 @@
 - Design of Type Classes
 - In Defense of PL Design
 - Looking for contributors / Why you should join us now
-
+- Why work on someone else's PL?
