@@ -72,7 +72,7 @@ class Home extends Component {
                         </p>
 
                         <p className="text-justify">
-                            Flix compiles JVM bytecode, runs on the Java Virtual Machine, and supports full tail call
+                            Flix compiles to JVM bytecode, runs on the Java Virtual Machine, and supports full tail call
                             elimination. A VSCode plugin for Flix is available.
                         </p>
 
