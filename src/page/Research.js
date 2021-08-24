@@ -85,6 +85,24 @@ class Research extends Component {
                     />
                 </ul>
 
+                <h3>Media</h3>
+
+                <ul>
+                    <li>
+                        <b>Version2:</b> <a
+                        href="https://www.version2.dk/artikel/flix-nyt-sprog-aarhus-vil-goere-programmoerens-liv-lettere-med-logik-tanken-1093103">
+                        Flix: Nyt sprog fra Aarhus vil gøre programmørens liv lettere med logik i
+                        tanken</a> &ndash; <i>Tania Andersen</i>.
+                    </li>
+                    <li>
+                        <b>ComputerWorld:</b> <a
+                        href="https://www.computerworld.dk/art/257120/datalogi-adjunkt-magnus-madsen-har-opfundet-et-nyt-programmeringssprog-vi-staar-over-for-et-skifte-inden-for-programmeringssprog-her-er-ideen-med-det-nye-flix">
+                        Datalogi-adjunkt Magnus Madsen har opfundet et nyt programmeringssprog: Vi står over for et
+                        skifte inden for programmeringssprog - her er ideen med det nye Flix
+                    </a> &ndash; <i>Jakob Schjoldager</i>.
+                    </li>
+                </ul>
+
             </Container>
         );
     }
