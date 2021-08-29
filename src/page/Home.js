@@ -345,6 +345,76 @@ def f(): Int32 & Impure = // f is impure
                     </Col>
                 </Row>
 
+                <Row className="mb-4">
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Datalog Enriched with Lattice Semantics</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports Datalog constraints enriched with lattice semantics.
+                                    </p>
+
+                                    <p>
+                                        The program on the right computes the delivery date for a collection of
+                                        parts. Each part is assembled from a collection of sub-components with various
+                                        delivery dates. For example, a car depends on a chassis and an engine. To build
+                                        a car, we need to wait for the chassis and engine to assembled and then we can
+                                        assemble the car itself.
+                                    </p>
+
+                                    <p>
+                                        Note that parts may depend on sub-components that themselves may depend on other
+                                        sub-components. In other words, the problem is recursive.
+                                    </p>
+
+                                    <hr/>
+
+                                    <p>
+                                        Datalog constraints enriched with lattice semantics is one of the more
+                                        advanced features of Flix and requires some background knowledge of lattice
+                                        theory and fixpoints.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`let p = #{
+    /// Parts and the components they depend on.
+    PartDepends("Car",       "Chassis").
+    PartDepends("Car",       "Engine").
+    PartDepends("Engine",    "Piston").
+    PartDepends("Engine",    "Ignition").
+
+    /// Time required to assemble a part from its components.
+    AssemblyTime("Car",     7).
+    AssemblyTime("Engine",  2).
+
+    /// Expected delivery date for certain components.
+    DeliveryDate("Chassis";  2).
+    DeliveryDate("Piston";   1).
+    DeliveryDate("Ignition"; 7).
+
+    /// A part is ready when it is delivered.
+    ReadyDate(part; date) :-
+        DeliveryDate(part; date).
+
+    /// Or when it can be assembled from its components.
+    ReadyDate(part; assemblyTime + componentDate) :-
+        PartDepends(part, component),
+        AssemblyTime(part, assemblyTime),
+        ReadyDate(component; componentDate).
+};
+
+// Computes the delivery date for each component.
+let r = query p select (c; d) from ReadyDate(c; d)
+`}
+                        </InlineEditor>
+                    </Col>
+                </Row>
+
                 <hr className="mb-3"/>
 
                 <Row className="mb-3">
