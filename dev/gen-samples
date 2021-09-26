@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+
+def escape(string: str) -> str:
+    return string.replace("`", "\`")
+
+def include(filename: str) -> str:
+    with open(filename) as f:
+        return escape(f.read())
+
+contents = f"""function samples() {{
+    return [
+        {{
+            name: "Algebraic Data Types and Pattern Matching",
+            code: `{include("examples/algebraic-data-types-and-pattern-matching.flix")}`
+        }},
+        {{
+            name: "Lists and List Processing",
+            code: `{include("examples/lists-and-list-processing.flix")}`
+        }},
+        {{
+            name: "Higher-Order Functions",
+            code: `{include("examples/higher-order-functions.flix")}`
+        }},
+        {{
+            name: "Enums and Parametric Polymorphism",
+            code: `{include("examples/enums-and-parametric-polymorphism.flix")}`
+        }},
+        {{
+            name: "Record Construction and Use",
+            code: `{include("examples/record-construction-and-use.flix")}`
+        {{
+            name: "Polymorphic Record Update",
+            code: `{include("examples/polymorphic-record-update.flix")}`
+        }},
+        {{
+            name: "Polymorphic Record Extension and Restriction",
+            code: `{include("examples/polymorphic-record-extension-and-restriction.flix")}`
+        }},
+        {{
+            name: "Function Composition, Pipelines, and Currying",
+            code: `{include("examples/function-composition-pipelines-and-currying.flix")}`
+        }},
+        {{
+            name: "Pure and Impure Functions",
+            code: `{include("examples/pure-and-impure-functions.flix")}`
+        }},
+        {{
+            name: "Effect Polymorphic Functions",
+            code: `{include("examples/effect-polymorphic-functions.flix")}`
+        }},
+        {{
+            name: "Opaque Types",
+            code: `{include("examples/opaque-types.flix")}`
+        }},
+        {{
+            name: "Type Aliases",
+            code: `{include("examples/type-aliases.flix")}`
+        }},
+        {{
+            name: "Mutual Recursion with Full Tail-Call Elimination",
+            code: `{include("examples/mutual-recursion-with-full-tail-call-elimination.flix")}`
+        }},
+        {{
+            name: "Sending and Receiving on Channels",
+            code: `{include("examples/sending-and-receiving-on-channels.flix")}`
+        }},
+        {{
+            name: "Using Channels and Select",
+            code: `{include("examples/using-channels-and-select.flix")}`
+        }},
+        {{
+            name: "Select with Defaults and Timers",
+            code: `{include("examples/select-with-defaults-and-timers.flix")}`
+        }},
+        {{
+            name: "First-Class Constraints and Fixpoints",
+            code: `{include("examples/first-class-constraints-and-fixpoints.flix")}`
+        }},
+        {{
+            name: "Polymorphic First-Class Constraints",
+            code: `{include("examples/polymorphic-first-class-constraints.flix")}`
+        }},
+        {{
+            name: "Pipelines of Fixpoint Computations",
+            code: `{include("examples/pipelines-of-fixpoint-computations.flix")}`
+        }},
+        {{
+            name: "Using Datalog to Solve a Compiler Puzzle",
+            code: `{include("examples/compiler-puzzle.flix")}`
+        }},
+        {{
+            name: "An Interpreter for a Trivial Expression Language",
+            code: `{include("examples/an-interpreter-for-a-trivial-expression-language.flix")}`
+        }}
+    ];
+}}
+
+export default samples
+"""
+
+print(contents)

@@ -92,7 +92,8 @@ def main(_args: Array[String]): Int32 & Impure =
     let t1 = Node(Leaf("Hello"), Leaf("World"));
     let t2 = map(String.length, t1);
     println(sum(t2));
-    0 // exit code`
+    0 // exit code
+`
         },
         {
             name: "Record Construction and Use",
@@ -120,8 +121,8 @@ def polyAreas(): List[Int32] =
 def main(_args: Array[String]): Int32 & Impure =
     areas() |> println;
     polyAreas() |> println;
-    0 // exit code`
-        },
+    0 // exit code
+`
         {
             name: "Polymorphic Record Update",
             code: `/// Returns the record \`r\` with a new value of its \`x\` label.
@@ -146,7 +147,8 @@ def main(_args: Array[String]): Int32 & Impure =
     let r3 = setY(r1, 0);
     let r4 = setY(r2, 1);
     (r3.y + r4.y + r4.z) |> println;
-    0 // exit code`
+    0 // exit code
+`
         },
         {
             name: "Polymorphic Record Extension and Restriction",
@@ -172,8 +174,9 @@ def main2(_args: Array[String]): Int32 & Impure =
     let r1 = {fstName = "Julius", lstName = "Caesar"};
     let r2 = withAge(r1, 55);
     let r3 = withoutAge(r2);
-    "Mr. \${r3.fstName} \${r3.lstName}" |> println;
-    0 // exit code`
+    "Mr. ${r3.fstName} ${r3.lstName}" |> println;
+    0 // exit code
+`
         },
         {
             name: "Function Composition, Pipelines, and Currying",
@@ -189,7 +192,8 @@ def main(_args: Array[String]): Int32 & Impure =
     List.take(5) |>
     List.exists(x -> x == 1) |>
     println;
-    0 // exit code`
+    0 // exit code
+`
         },
         {
             name: "Pure and Impure Functions",
@@ -211,7 +215,8 @@ def twice(f: Int32 -> Int32, x: Int32): Int32 = f(f(x))
 pub def f(): Int32 = twice(inc, 42)
 
 /// But we *cannot* pass an impure function.
-// pub def g(): Int32 = twice(printAndInc, 42)`
+// pub def g(): Int32 = twice(printAndInc, 42)
+`
         },
         {
             name: "Effect Polymorphic Functions",
@@ -229,12 +234,13 @@ def twice3(f: Int32 -> Int32 & ef, x: Int32): Int32 & ef = f(f(x))
 /// We can use \`twice3\` with both pure and impure functions:
 def main(_args: Array[String]): Int32 & Impure =
     (twice3(inc1, 0) + twice3(inc2, 0)) |> println;
-    0 // exit code`
+    0 // exit code
+`
         },
         {
             name: "Opaque Types",
             code: `/// An opaque type declares a new type that is different from any other
-/// existing type. Opaque types can be used to differentiate types that 
+/// existing type. Opaque types can be used to differentiate types that
 /// would otherwise be the same. For example:
 
 /// An opaque type for US dollars.
@@ -255,7 +261,8 @@ def sum(x: USD, y: USD): USD =
 def main(_args: Array[String]): Int32 & Impure =
     let USD(result) = sum(USD(1), USD(5));
     println(result);
-    0 // exit code`
+    0 // exit code
+`
         },
         {
             name: "Type Aliases",
@@ -298,7 +305,8 @@ def isEvn(n: Int32): Bool =
 /// quickly consume all stack space.
 def main(_args: Array[String]): Int32 & Impure =
     isOdd(12345) |> println;
-    0 // exit code`
+    0 // exit code
+`
         },
         {
             name: "Sending and Receiving on Channels",
@@ -427,9 +435,10 @@ def getRules(): #{ ParentOf, AncestorOf } = #{
 
 /// Composes the facts and rules, and computes the lfp.
 def main(_args: Array[String]): Int32 & Impure =
-    query getFacts(), getRules() 
+    query getFacts(), getRules()
         select (x, y) from AncestorOf(x, y) |> println;
-    0 // exit code`
+    0 // exit code
+`
         },
         {
             name: "Polymorphic First-Class Constraints",
@@ -452,7 +461,7 @@ def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = #{
 /// Note that the return type is \`open\` (polymorphic) which
 /// means that the facts can be used within any constraint
 /// as long as the edges are labelled with strings.
-def getEdgesWithColor[r](): #{ LabelEdge[String] | r } = #{
+def getEdgesWithColor(): #{ LabelEdge[String] | r } = #{
     LabelEdge("a", "red", "b").
     LabelEdge("b", "red", "c").
     LabelEdge("c", "blu", "d").
@@ -460,35 +469,29 @@ def getEdgesWithColor[r](): #{ LabelEdge[String] | r } = #{
 
 /// Returns a set of polymorphic rules to compute the transitive
 /// closure of edges with the *same* label.
-def getRules[l](): #{ LabelEdge[l], LabelPath[l] } = #{
+def getRules(): #{ LabelEdge[l], LabelPath[l] } with Boxable[l] = #{
     LabelPath(x, l, y) :- LabelEdge(x, l, y).
     LabelPath(x, l, z) :- LabelPath(x, l, y), LabelPath(y, l, z).
 }
 
 /// Computes the fixpoint of the two sets of facts with the rules.
-/// Note that polymorphism allow us to use \`getRules\`
-/// with both types of facts.
-def main(): Unit =
-    let r1 = solve getEdgesWithColor() <+> getRules();
-    let r2 = solve getEdgesWithNumbers() <+> getRules();
+/// Note that polymorphism allow us to use \`getRules\` with both types of facts.
+def _f(): Unit =
+    let _r1 = solve getEdgesWithColor() <+> getRules();
+    let _r2 = solve getEdgesWithNumbers() <+> getRules();
     ()
 
 /// However, the type system ensures that we do not mix facts of
 /// different type:
-def main2(): Unit =
+def _g(): Unit =
     /// Uncomment to see that the composition does not type check:
-    /// let r1 = solve getEdgesWithColor() <+> getEdgesWithNumbers();
+    /// let _r1 = solve getEdgesWithColor() <+> getEdgesWithNumbers();
     ()
 `
         },
         {
             name: "Pipelines of Fixpoint Computations",
-            code: `// Declare three predicate symbols.
-rel ColorEdge(x: Int, c: String, y: Int)
-rel ColorPath(x: Int, c: String, y: Int)
-rel ColorlessPath(x: Int, y: Int)
-
-def main(): Bool =
+            code: `def main(_args: Array[String]): Int32 & Impure =
     // Introduce some facts for colored paths.
     let f1 = #{
         ColorEdge(1, "blue", 2).
@@ -510,7 +513,12 @@ def main(): Bool =
     let m2 = solve (m1 <+> r2);
 
     // Check that there is a path from 1 to 3.
-    m2 |= ColorlessPath(1, 3).
+    let exists = (query m2 select true from ColorlessPath(1, 3) |> Array.length) != 0;
+
+    // Print a result.
+    println(if (exists) "Path exists!" else "Path does not exist!");
+
+    0 // exit code
 `
         },
         {
@@ -535,7 +543,7 @@ def main(_args: Array[String]): Int32 & Impure =
             Compiler(src1, dst1, lang1),
             Compiler(lang1, dst2, lang2),
             Interpreter(lang2).
-    
+
         // Transitive Compilation:
         // If we have a compiler from src -> intermediate and
         // we have a compiler from intermediate -> dst then
@@ -641,3 +649,4 @@ def main(_args: Array[String]): Int32 & Impure =
 }
 
 export default samples
+
