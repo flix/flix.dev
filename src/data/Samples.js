@@ -98,7 +98,7 @@ def main(_args: Array[String]): Int32 & Impure =
             name: "Record Construction and Use",
             code: `/// Returns the area of the rectangle \`r\`.
 /// The record \`r\` must have \`x\` and \`y\` labels, and no other labels.
-def area(r: {x: Int32, y: Int32}): Int = r.x * r.y
+def area(r: {x :: Int32, y :: Int32}): Int = r.x * r.y
 
 /// Computes the area of various rectangle records.
 /// Note that the order of labels is immaterial.
@@ -109,7 +109,7 @@ def areas(): List[Int32] =
 /// Returns the area of the polymorphic record \`r\`.
 /// Note that the use of the type variable \`a\` permits the record \`r\`
 /// to have labels other than \`x\` and \`y\`.
-def polyArea(r: {x: Int32, y: Int32 | a}): Int32 = r.x * r.y
+def polyArea(r: {x :: Int32, y :: Int32 | a}): Int32 = r.x * r.y
 
 /// Computes the area of various rectangle records.
 /// Note that some records have additional fields.
@@ -125,7 +125,7 @@ def main(_args: Array[String]): Int32 & Impure =
         {
             name: "Polymorphic Record Update",
             code: `/// Returns the record \`r\` with a new value of its \`x\` label.
-def setX(r: {x: Int, y: Int}, v: Int): {x: Int, y: Int} =
+def setX(r: {x :: Int, y :: Int}, v: Int): {x :: Int, y :: Int} =
     { x = v | r }
 
 /// Returns the value 1 + 3 = 4.
@@ -136,7 +136,7 @@ def main2(): Int =
 
 /// Returns the record \`r\` with a new value of its \`y\` label.
 /// Preserves (retains) all other labels polymorphically.
-def setY(r: {y: Int | a}, v: Int): {y: Int | a} =
+def setY(r: {y :: Int | a}, v: Int): {y :: Int | a} =
     { y = v | r }
 
 /// Returns the value 0 + 1 + 3 = 4.
@@ -157,7 +157,7 @@ def withAge(r: {| a}, v: Int): {age: Int | a} =
 
 /// Polymorphically restricts (removes) the \`age\` label from \`r\`.
 /// Preserves (retains) all other labels polymorphically.
-def withoutAge(r: {age: Int | a}): {| a} = {-age | r}
+def withoutAge(r: {age :: Int | a}): {| a} = {-age | r}
 
 /// Construct several records and extend them with an age.
 def main(_: Array[String]): Int32 & Impure =
