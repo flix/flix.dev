@@ -28,6 +28,12 @@ class Research extends Component {
 
                 <ul>
                     <Paper
+                        title="Relational Nullable Types with Boolean Unification"
+                        authors="Magnus Madsen, Jaco van de Pol"
+                        venue="OOPSLA '21"
+                        url="/paper/oopsla2021.pdf"/>
+
+                    <Paper
                         title="Fixpoints for the Masses: Programming with First-Class Datalog Constraints"
                         authors="Magnus Madsen, Ondřej Lhoták"
                         venue="OOPSLA '20"
