@@ -531,18 +531,24 @@ let r = query p select (c; d) from ReadyDate(c; d)
                     <Col md="12">
                         <h2>Sponsors and Funding</h2>
                     </Col>
-                    <Col md="2">
-                        <Card className="border-0 p-3 img-fluid">
+
+                    <Col>
+                        <Card className="border-0 p-3">
                             <CardImg src="/logo/dff.png" alt="Independent Research Fund Denmark"/>
                         </Card>
                     </Col>
-                    <Col md="3">
-                        <Card className="border-0 p-3 img-fluid">
+                    <Col>
+                        <Card className="border-0 p-3">
+                            <CardImg src="/logo/amazon-science.png" alt="Amazon Research Award"/>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card className="border-0 p-3">
                             <CardImg src="/logo/aarhusu.png" alt="Aarhus University"/>
                         </Card>
                     </Col>
-                    <Col md="4">
-                        <Card className="border-0 p-3 img-fluid">
+                    <Col>
+                        <Card className="border-0 p-3">
                             <CardImg src="/logo/uwaterloo.png" alt="University of Waterloo"/>
                         </Card>
                     </Col>
