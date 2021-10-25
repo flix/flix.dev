@@ -152,7 +152,7 @@ def main(_args: Array[String]): Int32 & Impure =
             name: "Polymorphic Record Extension and Restriction",
             code: `/// Polymorphically extends the record \`r\` with an \`age\` label.
 /// Preserves (retains) all other labels polymorphically.
-def withAge(r: {| a}, v: Int): {age: Int | a} =
+def withAge(r: {| a}, v: Int): {age :: Int | a} =
     { +age = v | r }
 
 /// Polymorphically restricts (removes) the \`age\` label from \`r\`.
@@ -452,7 +452,7 @@ def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = #{
 /// Note that the return type is \`open\` (polymorphic) which
 /// means that the facts can be used within any constraint
 /// as long as the edges are labelled with strings.
-def getEdgesWithColor[r](): #{ LabelEdge[String] | r } = #{
+def getEdgesWithColor(): #{ LabelEdge[String] | r } = #{
     LabelEdge("a", "red", "b").
     LabelEdge("b", "red", "c").
     LabelEdge("c", "blu", "d").
@@ -460,35 +460,29 @@ def getEdgesWithColor[r](): #{ LabelEdge[String] | r } = #{
 
 /// Returns a set of polymorphic rules to compute the transitive
 /// closure of edges with the *same* label.
-def getRules[l](): #{ LabelEdge[l], LabelPath[l] } = #{
+def getRules(): #{ LabelEdge[l], LabelPath[l] } with Boxable[l] = #{
     LabelPath(x, l, y) :- LabelEdge(x, l, y).
     LabelPath(x, l, z) :- LabelPath(x, l, y), LabelPath(y, l, z).
 }
 
 /// Computes the fixpoint of the two sets of facts with the rules.
-/// Note that polymorphism allow us to use \`getRules\`
-/// with both types of facts.
-def main(): Unit =
-    let r1 = solve getEdgesWithColor() <+> getRules();
-    let r2 = solve getEdgesWithNumbers() <+> getRules();
+/// Note that polymorphism allow us to use \`getRules\` with both types of facts.
+def _f(): Unit =
+    let _r1 = solve getEdgesWithColor() <+> getRules();
+    let _r2 = solve getEdgesWithNumbers() <+> getRules();
     ()
 
 /// However, the type system ensures that we do not mix facts of
 /// different type:
-def main2(): Unit =
+def _g(): Unit =
     /// Uncomment to see that the composition does not type check:
-    /// let r1 = solve getEdgesWithColor() <+> getEdgesWithNumbers();
+    /// let _r1 = solve getEdgesWithColor() <+> getEdgesWithNumbers();
     ()
 `
         },
         {
             name: "Pipelines of Fixpoint Computations",
-            code: `// Declare three predicate symbols.
-rel ColorEdge(x: Int, c: String, y: Int)
-rel ColorPath(x: Int, c: String, y: Int)
-rel ColorlessPath(x: Int, y: Int)
-
-def main(): Bool =
+            code: `def main(_args: Array[String]): Int32 & Impure =
     // Introduce some facts for colored paths.
     let f1 = #{
         ColorEdge(1, "blue", 2).
@@ -510,7 +504,12 @@ def main(): Bool =
     let m2 = solve (m1 <+> r2);
 
     // Check that there is a path from 1 to 3.
-    m2 |= ColorlessPath(1, 3).
+    let exists = (query m2 select true from ColorlessPath(1, 3) |> Array.length) != 0;
+
+    // Print a result.
+    println(if (exists) "Path exists!" else "Path does not exist!");
+
+    0 // exit code
 `
         },
         {
