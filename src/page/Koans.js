@@ -28,12 +28,13 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`def drivable(g: #{Road(City, City)}, src: City, dst: City): Bool =
-    let p = #{
+                            {`pub def drivable(roads: Array[(city, city)], source: city, destination: city): Bool with Boxable[city] =
+    let r = project roads into Road;
+    let lp = #{
         Path(x, y) :- Road(x, y).
         Path(x, z) :- Path(x, y), Road(y, z).
     };
-    (solve g <+> p) |= Path(src, dst).`}
+    not Array.isEmpty(query r, lp select () from Path(source, destination))`}
                         </InlineEditor>
 
                         <h5>
@@ -42,12 +43,13 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`def drivable(g: #{Road(City, Int, City)}, src: City, dst: City, minSpeed: Int): Bool =
-    let p = #{
-        Path(x, y) :- Road(x, maxSpeed, y), if maxSpeed > minSpeed.
-        Path(x, z) :- Path(x, y), Road(y, maxSpeed, z), if maxSpeed > minSpeed.
+                            {`pub def drivable(roads: Array[(city, Int, city)], source: city, destination: city, minimumSpeed: Int): Bool with Boxable[city] =
+    let r = project roads into Road;
+    let lp = #{
+        Path(x, y) :- Road(x, maximumSpeed, y), if maximumSpeed > minimumSpeed.
+        Path(x, z) :- Path(x, y), Road(y, maximumSpeed, z), if maximumSpeed > minimumSpeed.
     };
-    (solve g <+> p) |= Path(src, dst).`}
+    not Array.isEmpty(query r, lp select () from Path(source, destination))`}
                         </InlineEditor>
 
                         <h5>
@@ -55,49 +57,49 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`def unconnected(g: #{Road(City, City)}): #{Unconnected(City, City)} =
-    let p = #{
+                            {`pub def unconnected(roads: Array[(city, city)]): Array[(city, city)] with Boxable[city] =
+    let r = project roads into Road;
+    let lp = #{
         City(x) :- Road(x, _).
         City(y) :- Road(_, y).
         Path(x, y) :- Road(x, y).
         Path(x, z) :- Path(x, y), Road(y, z).
         Unconnected(x, y) :- City(x), City(y), not Path(x, y).
     };
-    project Unconnected (solve (g <+> p))`}
+    query r, lp select (x, y) from Unconnected(x, y)`}
                         </InlineEditor>
 
                         <h5>
                             Given a train and a bus network, compute if there is a path from one city to another city
-                            with preference for the train.
+                            with at most the given maximum number of bus connections.
                         </h5>
 
                         <InlineEditor>
-                            {`def travel(tg: #{Train(City, City)}, bg: #{Bus(City, City)}, src: City, dst: City): Option[#{Path(City, City)}] =
-    let p = #{
-        Path(x, y) :- Train(x, y).
-        Path(x, z) :- Path(x, y), Train(y, z).
-        Path(x, y) :- Bus(x, y), not Train(x, y).
-        Path(x, z) :- Path(x, y), Bus(y, z), not Train(y, z).
+                            {`pub def travelWithLimitedBusses(trainConnections: Array[(city, city)], busConnections: Array[(city, city)], source: city, destination: city, maxBusTrips: Int): Bool with Boxable[city] =
+    let tc = project trainConnections into Train;
+    let bc = project busConnections into Bus;
+    let lp = #{
+        Path(x, 0, y) :- Train(x, y).
+        Path(x, busses, z) :- Path(x, busses, y), Train(y, z).
+        Path(x, 1, y) :- Bus(x, y).
+        Path(x, busses + 1, z) :- Path(x, busses, y), Bus(y, z).
     };
-    let m = solve (tg <+> bg <+> p);
-    if (m |= Path(src, dst).) Some(project Path m) else None`}
+    let possibleBusTrips = query tc, bc, lp select busses from Path(source, busses, destination) where busses <= maxBusTrips;
+    possibleBusTrips.length > 0`}
                         </InlineEditor>
 
                         <h5>
-                            Given a family tree, compute the half brothers and half sisters of every child.
+                            Given a family tree, compute the pairs of half siblings.
                         </h5>
 
                         <InlineEditor>
-                            {`def halfSiblings(g: #{Parent(Person, Person), Male(Person), Female(Person)}): #{HalfBro(Person, Person), HalfSis(Person, Person)} =
-    let p = #{
-        Sibling(c, s) :- Parent(c, p), Parent(s, p), if c != s.
-        HalfBro(c, s) :- Sibling(c, s), Male(s),
-                         Parent(s, p), not Parent(c, p).
-        HalfSis(c, s) :- Sibling(c, s), Female(s),
-                         Parent(s, p), not Parent(c, p).
+                            {`pub def halfSiblings(siblings: Array[(person, person)]): Array[(person, person)] with Boxable[person] =
+    let s = project siblings into Sibling;
+    let lp = #{
+        Sibling(x, y) :- Parent(x, p), Parent(y, p), if x != y.
+        HalfSibling(x, y) :- Sibling(x, y), Parent(y, p), not Parent(x, p).
     };
-    let m = solve (p <+> g);
-    (project HalfBro m) <+> (project HalfSis m)`}
+    query s, lp select (x, y) from HalfSibling(x, y)`}
                         </InlineEditor>
 
                         <h5>
@@ -105,16 +107,21 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`def heirsAndUsurpers(g: #{Parent(Person, Person), Emperor(Person)}): (#{Heir(Person, Person)}, #{Usurper(Person)}) =
-    let p = #{
+                            {`pub def heirsAndUsurpers(parents: Array[(person, person)], emperors: Array[person]): {heirs :: Array[person], usurpers :: Array[person]} with Boxable[person] =
+    let p = project parents into Parent;
+    let e = project emperors into Emperor;
+    let lp = #{
         Ancestor(x, y) :- Parent(x, y), not Emperor(y).
         Ancestor(x, z) :- Ancestor(x, y), Parent(y, z), not Emperor(z).
-        Heir(x, y) :- Emperor(x), Parent(x, y), Emperor(y).
-        Heir(x, z) :- Emperor(x), Ancestor(x, y), Parent(y, z), Emperor(z).
-        Usurper(x) :- Emperor(x), not Heir(x, _).
+        HeirOf(x, y) :- Emperor(x), Parent(x, y), Emperor(y).
+        HeirOf(x, z) :- Emperor(x), Ancestor(x, y), Parent(y, z), Emperor(z).
+        Heir(x) :- HeirOf(x, _).
+        Usurper(x) :- Emperor(x), not Heir(x).
     };
-    let m = solve g <+> p;
-    (project Heir m, project Usurper m)`}
+    let solution = solve p, e, lp;
+    let heirs = query solution select x from Heir(x);
+    let usurpers = query solution select x from Usurper(x);
+    {heirs = heirs, usurpers = usurpers}`}
                         </InlineEditor>
 
                         <h5>
@@ -124,15 +131,16 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`def friendSuggestions(g: #{Friend(Person, Person)}): #{Suggestion(Person, Person)} =
-    let p = #{
+                            {`pub def friendSuggestions(friends: Array[(person, person)]): Array[(person, person)] with Boxable[person] =
+    let f = project friends into Friend;
+    let lp = #{
         Suggestion(me, nf) :-
             Friend(me, f1), Friend(me, f2), Friend(me, f3),
             Friend(f1, nf), Friend(f2, nf), Friend(f3, nf),
             not Friend(me, nf),
             if f1 != f2 and f2 != f3 and f1 != f3.
     };
-    project Suggestion (solve (g <+> p))`}
+    query f, lp select (x, y) from Suggestion(x, y)`}
                         </InlineEditor>
 
                         <h5>
@@ -145,45 +153,18 @@ class Koans extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def orphansAndZombies(g: #{Process(Pid, String, Pid)}): (#{Orphan(Pid)}, #{Zombie(Pid)}) =
-    let p = #{
+                            {`pub def orphansAndZombies(processes: Array[(processId, String, processId)], rootId: processId): {orphans :: Array[processId], zombies :: Array[processId]} with Boxable[processId] =
+    let p = project processes into Process;
+    let lp = #{
         Zombie(pid) :- Process(pid, "dead", parent), Process(parent, "alive", _).
         HasParent(pid) :- Process(pid, _, parent), Process(parent, _, _).
-        Orphan(pid) :- Process(pid, _, 1).
+        Orphan(pid) :- Process(pid, _, rootId).
         Orphan(pid) :- Process(pid, _, _), not HasParent(pid).
     };
-    let m = solve (g <+> p);
-    (project Orphan m, project Zombie m)`}
-                        </InlineEditor>
-
-                        <h5>
-                            Given a Git commit graph, determine if any commits have been made to the master branch since
-                            a feature branch was created.
-                        </h5>
-
-                        <InlineEditor>
-                            {`def behindMaster(g: #{Commit(Hash, String, Hash)}, branch: String): Bool =
-    let p = #{
-        Branch(hash) :- Commit(hash, branch, parent),
-                        Commit(parent, "master", _).
-        NewCommit() :- Commit(_, "master", hash), Branch(hash).
-    };
-    (solve g <+> p) |= NewCommit().`}
-                        </InlineEditor>
-
-                        <h5>
-                            Given a Git commit graph, find the pair of commits where a bug was introduced and where the
-                            bug was merged into the master branch.
-                        </h5>
-
-                        <InlineEditor>
-                            {`def behindMaster(g: #{Commit(Hash, String, Hash)}, branch: String): Bool =
-    let p = #{
-        Branch(hash) :- Commit(hash, branch, parent),
-                        Commit(parent, "master", _).
-        NewCommit() :- Commit(_, "master", hash), Branch(hash).
-    };
-    (solve g <+> p) |= NewCommit().`}
+    let solution = solve p, lp;
+    let zombies = query solution select pid from Zombie(pid);
+    let orphans = query solution select pid from Orphan(pid);
+    {zombies = zombies, orphans = orphans}`}
                         </InlineEditor>
 
                         <h5>
@@ -191,16 +172,20 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`def isCyclic(g: #{Edge(Int, Int)}): Bool =
-    let p = #{
+                            {`def isCyclic(edges: Array[(Int, Int)]): Bool =
+    let e = project edges into Edge;
+    let lp = #{
         Path(x, y) :- Edge(x, y).
         Path(x, z) :- Path(x, y), Edge(y, z).
-        Cyclic() :- Path(x, x).
+        // Cycle as a predicate for further logic programming
+        // Cycle() :- Path(x, x).
     };
-    (solve g <+> p) |= Cyclic().
-    
-def pairwiseAcyclic(l: List[#{Edge(Int, Int)}]): List[List[#{Edge(Int, Int)}]] =
-    l |> List.groupBy((g1, g2) -> not isCyclic(g1 <+> g2))`}
+    let cycleNodes = query e, lp select x from Path(x, x);
+    cycleNodes.length > 0
+
+pub def pairwiseAcyclic(graphs: List[Array[(Int, Int)]]): List[List[Array[(Int, Int)]]] =
+    let combineGraphs = (g1, g2) -> query (project g1 into Edge) <+> (project g2 into Edge) select (x, y) from Edge(x, y);
+    graphs |> List.groupBy((g1, g2) -> not isCyclic(combineGraphs(g1, g2)))`}
                         </InlineEditor>
 
                     </Col>
