@@ -206,82 +206,6 @@ def f(): Int32 = area({h = 1, color = "Blue", w = 2})`}
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
-                                <CardTitle><h4>Type Classes</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix uses type classes to abstract over types that support a common set of
-                                        operations.
-                                    </p>
-                                    <p>
-                                        For example, the <code>Eq</code> type class captures the notion of equality
-                                        and is used throughout the standard library.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-
-                    <Col md="6">
-                        <InlineEditor>
-                            {`class Eq[a] {
-    def eq(x: a, y: a): Bool
-    def neq(x: a, y: a): Bool = not Eq.eq(x, y)
-}
-
-instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
-    def eq(t1: (a1, a2), t2: (a1, a2)): Bool =
-        let (x1, x2) = t1;
-        let (y1, y2) = t2;
-        x1 == y1 and x2 == y2
-}`}
-                        </InlineEditor>
-                    </Col>
-                </Row>
-
-                <Row className="mb-4">
-                    <Col md="6">
-                        <InlineEditor>
-                            {`class Foldable[t : Type -> Type] {
-
-    ///
-    /// Left-associative fold of a structure.
-    ///
-    def foldLeft(f: (b, a) -> b & e, s: b, t: t[a]): b & e
-
-    ///
-    /// Right-associative fold of a structure.
-    ///
-    def foldRight(f: (a, b) -> b & e, s: b, t: t[a]): b & e
-
-}`}
-                        </InlineEditor>
-                    </Col>
-
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Higher-Kinded Types</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix supports higher-kinded types making it possible to abstract over type
-                                        constructors. For example,
-                                        both <code>Option</code> and <code>List</code> implement <code>Foldable</code>.
-                                    </p>
-
-                                    <p>
-                                        The Flix standard library ships with many common type classes, such
-                                        as <code>Monoid</code>, <code>Functor</code>, and <code>Foldable</code>.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-
-                <Row className="mb-4">
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
                                 <CardTitle><h4>Purity and Impurity</h4></CardTitle>
                                 <CardText>
                                     <p>
@@ -342,6 +266,130 @@ def map(f: a -> b & ef, l: List[a]): List[b] & ef =
                                 </CardText>
                             </CardBody>
                         </Card>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Purity Polymorphism</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports a meta-programming construct that enables higher-order functions
+                                        to inspect the purity of a function argument and use it to vary their behavior.
+                                    </p>
+
+                                    <p>
+                                        For example, the <code>LazyList.map</code> function varies its behavior between
+                                        eager and lazy evaluation depending on the purity of its function argument.
+                                    </p>
+
+                                    <p>
+                                        We can exploit purity polymorphism to selectively use lazy or parallel
+                                        evaluation inside a library without changing the semantics from the
+                                        point-of-view of the clients.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`/// 
+/// We can inspect the purity of a function argument.
+/// 
+def inspect(f: a -> b & ef): Unit & Impure = 
+    reifyEff(f) {
+        case Pure(g) => println("f is pure")
+        case _       => println("f is not pure")
+    }
+                            
+///
+/// We can use purity information to safely switch between
+/// lazy (or parallel) evaluation. In this case, if f is 
+/// pure then perform the map operation lazily.
+///
+def map(f: a -> b & ef, l: LazyList[a]): LazyList[b] & ef =
+    reifyEff(f) {
+        case Pure(g) => mapL(g, l)
+        case _       => mapE(f, l)
+    }`}
+                        </InlineEditor>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <InlineEditor>
+                            {`class Eq[a] {
+    def eq(x: a, y: a): Bool
+    def neq(x: a, y: a): Bool = not Eq.eq(x, y)
+}
+
+instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
+    def eq(t1: (a1, a2), t2: (a1, a2)): Bool =
+        let (x1, x2) = t1;
+        let (y1, y2) = t2;
+        x1 == y1 and x2 == y2
+}`}
+                        </InlineEditor>
+                    </Col>
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Type Classes</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix uses type classes to abstract over types that support a common set of
+                                        operations.
+                                    </p>
+                                    <p>
+                                        For example, the <code>Eq</code> type class captures the notion of equality
+                                        and is used throughout the standard library.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Higher-Kinded Types</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports higher-kinded types making it possible to abstract over type
+                                        constructors. For example,
+                                        both <code>Option</code> and <code>List</code> implement <code>Foldable</code>.
+                                    </p>
+
+                                    <p>
+                                        The Flix standard library ships with many common type classes, such
+                                        as <code>Monoid</code>, <code>Functor</code>, and <code>Foldable</code>.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`class Foldable[t : Type -> Type] {
+
+    ///
+    /// Left-associative fold of a structure.
+    ///
+    def foldLeft(f: (b, a) -> b & e, s: b, t: t[a]): b & e
+
+    ///
+    /// Right-associative fold of a structure.
+    ///
+    def foldRight(f: (a, b) -> b & e, s: b, t: t[a]): b & e
+
+}`}
+                        </InlineEditor>
                     </Col>
                 </Row>
 
