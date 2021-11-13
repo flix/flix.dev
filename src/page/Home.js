@@ -121,11 +121,11 @@ class Home extends Component {
                             className="font-weight-bold">higher-kinded types</span> (like Haskell), <span
                             className="font-weight-bold">type inference</span> (like Haskell, OCaml), <span
                             className="font-weight-bold">channel and process-based concurrency</span> (like Go), <span
-                            className="font-weight-bold text-info">a polymorphic effect system</span> (unique
+                            className="font-weight-bold text-info">a polymorphic effect system</span> (a unique
                             feature), <span
-                            className="font-weight-bold text-info">purity polymorphic functions</span> (unique
+                            className="font-weight-bold text-info">purity polymorphic functions</span> (a unique
                             feature), <span
-                            className="font-weight-bold text-info">first-class Datalog constraints</span> (unique
+                            className="font-weight-bold text-info">first-class Datalog constraints</span> (a unique
                             feature),
                             and <span
                             className="font-weight-bold">compilation to JVM bytecode</span> (like Scala).
