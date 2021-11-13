@@ -119,10 +119,14 @@ class Home extends Component {
                             className="font-weight-bold">extensible records</span> (like Elm), <span
                             className="font-weight-bold">type classes</span> (like Haskell, Rust), <span
                             className="font-weight-bold">higher-kinded types</span> (like Haskell), <span
-                            className="font-weight-bold">local type inference</span> (like Haskell, OCaml), <span
+                            className="font-weight-bold">type inference</span> (like Haskell, OCaml), <span
                             className="font-weight-bold">channel and process-based concurrency</span> (like Go), <span
-                            className="font-weight-bold">a polymorphic effect system</span> (unique feature), <span
-                            className="font-weight-bold">first-class Datalog constraints</span> (unique feature),
+                            className="font-weight-bold text-info">a polymorphic effect system</span> (unique
+                            feature), <span
+                            className="font-weight-bold text-info">purity polymorphic functions</span> (unique
+                            feature), <span
+                            className="font-weight-bold text-info">first-class Datalog constraints</span> (unique
+                            feature),
                             and <span
                             className="font-weight-bold">compilation to JVM bytecode</span> (like Scala).
                         </p>
@@ -278,17 +282,15 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
-                                <CardTitle><h4>Polymorphic Effects</h4></CardTitle>
+                                <CardTitle><h4>Purity and Impurity</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        Flix precisely tracks the purity (or impurity) of every expression &mdash; even
-                                        in the presence of polymorphism.
+                                        Flix precisely tracks the purity of every expression in a program.
                                     </p>
 
                                     <p>
                                         The Flix compiler provides an ironclad guarantee that if an expression is pure
-                                        then it cannot have (observable) side-effects and it supports equational
-                                        reasoning.
+                                        then it cannot have side-effects and it is referentially transparent.
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -307,6 +309,39 @@ def f(): Int32 & Impure = // f is impure
     let r2 = inc2(456);   // impure
     r1 + r2               // pure`}
                         </InlineEditor>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <InlineEditor>
+                            {`/// 
+/// The purity of \`map\` depends on the purity of \`f\`.
+///
+def map(f: a -> b & ef, l: List[a]): List[b] & ef =
+    match l {
+        case Nil     => Nil
+        case x :: xs => f(x) :: map(f, xs)
+    }
+`}
+                        </InlineEditor>
+                    </Col>
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Polymorphic Effects</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix is able to track purity through higher-order effect polymorphic functions.
+                                    </p>
+
+                                    <p>
+                                        For example, Flix knows that the purity of <code>List.map</code> depends on the
+                                        purity of its function argument <code>f</code>.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
                     </Col>
                 </Row>
 
