@@ -379,6 +379,69 @@ class Principles extends Component {
 
                 </CardColumns>
 
+                <h2 className="mt-3">Compiler Message Principles</h2>
+
+                <p>
+                    Compiler messages are the main interface between Flix and programmers. We should invest into it.
+                </p>
+
+                <CardColumns>
+                    <Principle name="The 80 / 20 Rule">
+                        <p>
+                            The rule states that 80% of the time a developer will need minimal information to understand
+                            a compiler message. Most likely the developer will already have seen the specific
+                            error message hundreds of times before. But 20% of the time, the developer will
+                            never have seen the message before and will need more information.
+                        </p>
+
+                        <p>
+                            Flix compiler messages should accommodate both scenarios.
+                        </p>
+                    </Principle>
+
+                    <Principle name="Message Structure">
+                        <p>
+                            A compiler message consists of three components:
+
+                            <ul>
+                                <li><b>Summary:</b> A one sentence summary. The message shown on hover in Visual Studio
+                                    Code.
+                                </li>
+                                <li><b>Message:</b> A multi-line text that contains all relevant details, including
+                                    the program symbol(s) and fragment(s) relevant for the message.
+                                </li>
+                                <li><b>Explanation:</b> A description of why the problem occurs and what can be done
+                                    to fix it.
+                                </li>
+                            </ul>
+                        </p>
+                    </Principle>
+
+                    <Principle name="Style and Tone">
+                        <p>
+                            A message should be <b>crisp</b>, <b>concise</b>, and <b>clear</b>.
+                            The language should be friendly or neutral. An error message should not blame
+                            the programmer. For example, we should prefer <code>Unexpected foo</code> over <code>Illegal
+                            foo</code>, since the latter implies that the programmer did something wrong.
+                        </p>
+                    </Principle>
+
+                    <Principle name="Straight to the Point">
+                        <p>
+                            The error message: <code>Duplicate definition: 'foo'</code> is better than the error
+                            message: <code>The definition 'foo' is defined twice</code> because in the former the
+                            programmer only has to scan the first word to understand what is wrong.
+                        </p>
+                    </Principle>
+
+                    <Principle name="Compare to Other Languages">
+                        <p>
+                            When relevant, a Flix compiler error should explain how Flix differs from other languages
+                            and explain how the specific problem can be solved in Flix.
+                        </p>
+                    </Principle>
+                </CardColumns>
+
                 <h2 className="mt-3">Type Class Principles</h2>
 
                 <CardColumns>
