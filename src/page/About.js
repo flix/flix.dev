@@ -304,7 +304,7 @@ def drivable(g: #{Road, Connected}, src: String, dst: String, minSpeed: Int): Bo
     // solve the Datalog program and determine if  \`src\` is connected to  \`dst\`.
     not (query g, p select () from Connected(src, dst) |> Array.isEmpty)
 
-/// Determines if it possible to drive from Aarhus to Berling going at least 110 km/h.
+/// Determines if it possible to drive from Aarhus to Berlin going at least 110 km/h.
 def main(_args: Array[String]): Int32 & Impure =
     // the road network modelled as a set of Datalog facts.
     let g = #{

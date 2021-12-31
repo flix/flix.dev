@@ -542,7 +542,7 @@ class Principles extends Component {
                         </p>
 
                         <p>
-                            For example, the <code>Foldable</code> type class provides may default function
+                            For example, the <code>Foldable</code> type class may provide default function
                             implementations, e.g. <code>count</code> and <code>length</code>, based on
                             the <code>foldLeft</code> and <code>foldRight</code> signatures defined in that class.
                         </p>
