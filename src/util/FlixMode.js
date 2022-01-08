@@ -5,7 +5,7 @@ export class CustomHighlightRules extends window.ace.acequire("ace/mode/text_hig
         super();
 
         var keywords = (
-            "namespace|def|case|enum|opaque|type|alias|rel|lat|use|null|ref|deref|if|else|let|let*|new|as|get|set|import|match|match?|select|spawn|???|solve|project|fold|query|instance|class|with|from|into"
+            "namespace|def|case|enum|opaque|type|alias|rel|lat|use|null|ref|deref|if|else|let|let*|new|as|get|set|import|match|match?|select|spawn|???|solve|project|fold|query|instance|class|with|from|into|static"
         );
 
         var builtinConstants = (
