@@ -107,6 +107,12 @@ class Research extends Component {
                         skifte inden for programmeringssprog - her er ideen med det nye Flix
                     </a> &ndash; <i>Jakob Schjoldager</i>.
                     </li>
+                    <li>
+                        <b>Happy Path Programming:</b> <a
+                        href="https://anchor.fm/happypathprogramming/episodes/54-Flix-Designing-a-principled-programming-language-with-Magnus-Madsen-e1dueb2">
+                        Episode 54: Flix: Designing a principled programming language with Magnus Madsen
+                    </a>
+                    </li>
                 </ul>
 
             </Container>
