@@ -20,8 +20,7 @@ def area(s: Shape): Int32 = match s {
 // Computes the area of a 2 by 4.
 def main(_args: Array[String]): Int32 & Impure =
     println(area(Rectangle(2, 4)));
-    0 // exit code
-`
+    0 // exit code`
         },
         {
             name: "Lists and List Processing",
@@ -44,13 +43,12 @@ def main(_args: Array[String]): Int32 & Impure =
     let l3 = List.map(x -> x :: x :: Nil, l2);
     let l4 = List.flatten(l3);
     println(length(l4));
-    0 // exit code
-`
+    0 // exit code`
         },
         {
             name: "Higher-Order Functions",
             code: `/// Returns the sum of \`x\` and \`y\`.
-def add(x: Int32, y: Int32): Int = x + y
+def add(x: Int32, y: Int32): Int32 = x + y
 
 /// Returns \`x\` plus one.
 def inc(x: Int32): Int32 = add(x, 1)
@@ -64,8 +62,7 @@ def two(x: Int32): Int32 = twice(inc)(x)
 /// Returns 123 plus 4 = 127.
 def main(_args: Array[String]): Int32 & Impure =
     println(twice(two)(123));
-    0 // exit code
-`
+    0 // exit code`
         },
         {
             name: "Enums and Parametric Polymorphism",
@@ -98,7 +95,7 @@ def main(_args: Array[String]): Int32 & Impure =
             name: "Record Construction and Use",
             code: `/// Returns the area of the rectangle \`r\`.
 /// The record \`r\` must have \`x\` and \`y\` labels, and no other labels.
-def area(r: {x :: Int32, y :: Int32}): Int = r.x * r.y
+def area(r: {x :: Int32, y :: Int32}): Int32 = r.x * r.y
 
 /// Computes the area of various rectangle records.
 /// Note that the order of labels is immaterial.
@@ -109,7 +106,7 @@ def areas(): List[Int32] =
 /// Returns the area of the polymorphic record \`r\`.
 /// Note that the use of the type variable \`a\` permits the record \`r\`
 /// to have labels other than \`x\` and \`y\`.
-def polyArea(r: {x :: Int32, y :: Int32 | a}): Int32 = r.x * r.y
+def polyArea(r : {x :: Int32, y :: Int32 | a}): Int32 = r.x * r.y
 
 /// Computes the area of various rectangle records.
 /// Note that some records have additional fields.
@@ -129,14 +126,14 @@ def setX(r: {x :: Int, y :: Int}, v: Int): {x :: Int, y :: Int} =
     { x = v | r }
 
 /// Returns the value 1 + 3 = 4.
-def main2(): Int =
+def main2(): Int32 =
     let r1 = {x = 1, y = 2};
     let r2 = setX(r1, 3);
     r1.x + r2.x
 
 /// Returns the record \`r\` with a new value of its \`y\` label.
 /// Preserves (retains) all other labels polymorphically.
-def setY(r: {y :: Int | a}, v: Int): {y :: Int | a} =
+def setY(r: {y :: Int32 | a}, v: Int): {y :: Int32 | a} =
     { y = v | r }
 
 /// Returns the value 0 + 1 + 3 = 4.
@@ -152,12 +149,12 @@ def main(_args: Array[String]): Int32 & Impure =
             name: "Polymorphic Record Extension and Restriction",
             code: `/// Polymorphically extends the record \`r\` with an \`age\` label.
 /// Preserves (retains) all other labels polymorphically.
-def withAge(r: {| a}, v: Int): {age :: Int | a} =
+def withAge(r: {| a}, v: Int): {age :: Int32 | a} =
     { +age = v | r }
 
 /// Polymorphically restricts (removes) the \`age\` label from \`r\`.
 /// Preserves (retains) all other labels polymorphically.
-def withoutAge(r: {age :: Int | a}): {| a} = {-age | r}
+def withoutAge(r: {age :: Int32 | a}): {| a} = {-age | r}
 
 /// Construct several records and extend them with an age.
 def main(_: Array[String]): Int32 & Impure =
@@ -201,7 +198,7 @@ def inc2(x: Int32): Int32 = x + 1
 
 /// We can also declare an impure function.
 def printAndInc(x: Int32): Int32 & Impure =
-    Console.printLine("Hello");
+    println("Hello");
     x + 1
 
 /// We can declare a function that expects a pure function:
@@ -234,7 +231,7 @@ def main(_args: Array[String]): Int32 & Impure =
         {
             name: "Opaque Types",
             code: `/// An opaque type declares a new type that is different from any other
-/// existing type. Opaque types can be used to differentiate types that 
+/// existing type. Opaque types can be used to differentiate types that
 /// would otherwise be the same. For example:
 
 /// An opaque type for US dollars.
@@ -274,8 +271,7 @@ type alias N[a] = Map[a, Result[Int, String]]
 def g(): N[Int] = Map#{ 1 => Ok(123), 2 => Err("Hello") }
 
 /// Another function that returns a map of type N.
-def h(): N[Bool] = Map#{ true => Ok(456) }
-`
+def h(): N[Bool] = Map#{ true => Ok(456) }`
         },
         {
             name: "Mutual Recursion with Full Tail-Call Elimination",
@@ -320,12 +316,11 @@ def recv(c: Channel[Int32], n: Int32): List[Int32] & Impure =
 /// Spawn a process for send and wait, and print the result.
 def main(_args: Array[String]): Int32 & Impure = {
     let l = 1 :: 2 :: 3 :: Nil;
-    let c = chan Int 100;
+    let c = chan Int32 100;
     spawn send(c, l);
     spawn recv(c, List.length(l));
     0 // exit code
-}
-`
+}`
         },
         {
             name: "Using Channels and Select",
@@ -351,7 +346,7 @@ def hiss(c: Channel[String], n: Int32): Unit & Impure =
     }
 
 /// Start the animal farm...
-def main(_args: Array[String]): Int & Impure = {
+def main(_args: Array[String]): Int32 & Impure = {
     let c1 = chan String 1;
     let c2 = chan String 1;
     let c3 = chan String 1;
@@ -364,8 +359,7 @@ def main(_args: Array[String]): Int & Impure = {
         case m <- c3 => m |> println
     };
     0 // exit code
-}
-`
+}`
         },
         {
             name: "Select with Defaults and Timers",
@@ -402,8 +396,7 @@ def main(_args: Array[String]): Int32 & Impure = {
   spawn slow(456, c2);
   (recvWithDefault(c1) + recvWithTimeout(c2)) |> println;
   0 // exit code
-}
-`
+}`
         },
         {
             name: "First-Class Constraints and Fixpoints",
@@ -427,7 +420,7 @@ def getRules(): #{ ParentOf, AncestorOf } = #{
 
 /// Composes the facts and rules, and computes the lfp.
 def main(_args: Array[String]): Int32 & Impure =
-    query getFacts(), getRules() 
+    query getFacts(), getRules()
         select (x, y) from AncestorOf(x, y) |> println;
     0 // exit code`
         },
@@ -477,8 +470,7 @@ def _f(): Unit =
 def _g(): Unit =
     /// Uncomment to see that the composition does not type check:
     /// let _r1 = solve getEdgesWithColor() <+> getEdgesWithNumbers();
-    ()
-`
+    ()`
         },
         {
             name: "Pipelines of Fixpoint Computations",
@@ -509,8 +501,7 @@ def _g(): Unit =
     // Print a result.
     println(if (exists) "Path exists!" else "Path does not exist!");
 
-    0 // exit code
-`
+    0 // exit code`
         },
         {
             name: "Using Datalog to Solve a Compiler Puzzle",
@@ -534,7 +525,7 @@ def main(_args: Array[String]): Int32 & Impure =
             Compiler(src1, dst1, lang1),
             Compiler(lang1, dst2, lang2),
             Interpreter(lang2).
-    
+
         // Transitive Compilation:
         // If we have a compiler from src -> intermediate and
         // we have a compiler from intermediate -> dst then
@@ -546,8 +537,7 @@ def main(_args: Array[String]): Int32 & Impure =
     };
     query facts, rules
         select (src, dst) from Compiler(src, _, dst) |> println;
-    0 // exit code
-`
+    0 // exit code`
         },
         {
             name: "An Interpreter for a Trivial Expression Language",
@@ -603,7 +593,7 @@ enum BExp {
 ///
 /// We now define a small interpreter for arithmetic expressions.
 ///
-def evalAExp(e: AExp): Int = match e {
+def evalAExp(e: AExp): Int32 = match e {
     case Cst(i)                 => i
     case Plus(e1, e2)           => evalAExp(e1) + evalAExp(e2)
     case Minus(e1, e2)          => evalAExp(e1) - evalAExp(e2)
@@ -633,8 +623,117 @@ def main(_args: Array[String]): Int32 & Impure =
         IfThenElse(Neq(Cst(1), Cst(2)), Cst(42), Cst(21))
     );
     r |> println;
-    0 // exit code
-`
+    0 // exit code`
+        },
+        {
+            name: "A Simple Card Game Simlulation",
+            code: `// A Suit type deriving an Eq and ToString instance
+enum Suit with Eq, ToString {
+    case Clubs
+    case Hearts
+    case Spades
+    case Diamonds
+}
+
+// A Rank type deriving an Eq and Order instance
+enum Rank with Eq, Order {
+    case Number(Int)
+    case Jack
+    case Queen
+    case King
+    case Ace
+}
+
+// A Card type deriving an Eq instance
+opaque type Card with Eq = (Rank, Suit) 
+
+// An instance of ToString for Ranks
+instance ToString[Rank] {
+    pub def toString(x: Rank): String = match x {
+        case Number(n) => "\${n}"
+        case Jack      => "Jack"
+        case Queen     => "Queen"
+        case King      => "King"
+        case Ace       => "Ace"
+    }
+}
+
+// An instance of ToString for Cards
+instance ToString[Card] {
+    pub def toString(x: Card): String = match x {
+        case Card(r, s) => "\${r} of \${s}"
+    }
+}
+
+// Simulates a game of War, printing each player's turn.
+def playWar(p1: List[Card], p2: List[Card], spoils: List[Card]): Unit & Impure = match (p1, p2) {
+    case (Nil, Nil) => println("No one has any cards. It's a draw.")
+    case (Nil, _) => println("Player 1 is out of cards. Player 2 wins!")
+    case (_, Nil) => println("Player 2 is out of cards. Player 1 wins!")
+    case (c1 :: d1, c2 :: d2) =>
+        let Card(r1, _) = c1;
+        let Card(r2, _) = c2;
+        println("Player 1 plays \${c1}. Player 2 plays \${c2}.");
+        if (r1 > r2) {
+            println("Player 1 wins the battle.");
+            // Add the spoils and losing card to the winner's deck.
+            playWar(d1 ::: c1 :: c2 :: spoils, d2, Nil)
+        } else if (r2 > r1) {
+            println("Player 2 wins the battle.");
+            // Add the spoils and losing card to the winner's deck.
+            playWar(d1, d2 ::: c1 :: c2 :: spoils, Nil)
+        } else {
+            println("The battle is a draw. Time for war!");
+            // Each player contributes their top 3 cards to the spoils
+            let s1 = List.take(3, d1);
+            let s2 = List.take(3, d2);
+            // Their decks are what remains
+            let rest1 = List.drop(3, d1);
+            let rest2 = List.drop(3, d2);
+            // Add the cards to the spoils deck
+            playWar(rest1, rest2, s1 ::: s2 ::: c1 :: c2 :: spoils)
+        }
+}`
+        },
+        {
+            name: "Deriving Type Classes",
+            code: `/// We derive the type classes Eq, Order, and ToString for the enum Month
+enum Month with Eq, Order, ToString {
+    case January
+    case February
+    case March
+    case April
+    case May
+    case June
+    case July
+    case August
+    case September
+    case October
+    case November
+    case December
+}
+
+type alias Year = Int
+type alias Day = Int
+
+/// The Date type derives the type classes Eq and Order
+opaque type Date with Eq, Order = (Year, Month, Day)
+
+/// We implement our own instance of ToString for Date
+/// since we don't want the default "Date(1948, December, 10)"
+instance ToString[Date] {
+    pub def toString(x: Date): String =
+        let Date(y, m, d) = x;
+        "\${d} \${m}, \${y}"
+}
+
+/// Thanks to the Eq and Order type classes, we can easily compare dates.
+def earlierDate(d1: Date, d2: Date): Date = Order.min(d1, d2)
+
+/// Thanks to the ToString type class, we can easily convert dates to strings.
+def printDate(d: Date): Unit & Impure =
+    let message = "The date is \${d}!";
+    println(message)`
         }
     ];
 }
