@@ -277,7 +277,8 @@ def map(f: a -> b & ef, l: List[a]): List[b] & ef =
                                 <CardText>
                                     <p>
                                         Flix supports a meta-programming construct that enables higher-order functions
-                                        to inspect the purity of a function argument and use that information to vary their behavior.
+                                        to inspect the purity of a function argument and use that information to vary
+                                        their behavior.
                                     </p>
 
                                     <p>
@@ -612,7 +613,7 @@ let r = query p select (c; d) from ReadyDate(c; d)
 
                 <Row className="mb-3">
                     <Col md="12">
-                        <h2>Sponsors and Funding</h2>
+                        <h2>Sponsors, Funding, and Collaborations</h2>
                     </Col>
 
                     <Col>
@@ -622,9 +623,17 @@ let r = query p select (c; d) from ReadyDate(c; d)
                     </Col>
                     <Col>
                         <Card className="border-0 p-3">
+                            <CardImg src="/logo/direc.png" alt="Digital Research Centre Denmark"/>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card className="border-0 p-3">
                             <CardImg src="/logo/amazon-science.png" alt="Amazon Research Award"/>
                         </Card>
                     </Col>
+                </Row>
+
+                <Row>
                     <Col>
                         <Card className="border-0 p-3">
                             <CardImg src="/logo/aarhusu.png" alt="Aarhus University"/>
