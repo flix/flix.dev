@@ -95,6 +95,18 @@ class Research extends Component {
 
                 <ul>
                     <li>
+                        <b>InfoQ:</b> <a
+                        href="https://www.infoq.com/news/2022/02/flix-programming-language/">
+                        Interview with Magnus Madsen about the Flix Programming Language
+                    </a>
+                    </li>
+                    <li>
+                        <b>Happy Path Programming:</b> <a
+                        href="https://anchor.fm/happypathprogramming/episodes/54-Flix-Designing-a-principled-programming-language-with-Magnus-Madsen-e1dueb2">
+                        Episode 54: Flix: Designing a principled programming language with Magnus Madsen
+                    </a>
+                    </li>
+                    <li>
                         <b>Version2:</b> <a
                         href="https://www.version2.dk/artikel/flix-nyt-sprog-aarhus-vil-goere-programmoerens-liv-lettere-med-logik-tanken-1093103">
                         Flix: Nyt sprog fra Aarhus vil gøre programmørens liv lettere med logik i
@@ -106,12 +118,6 @@ class Research extends Component {
                         Datalogi-adjunkt Magnus Madsen har opfundet et nyt programmeringssprog: Vi står over for et
                         skifte inden for programmeringssprog - her er ideen med det nye Flix
                     </a> &ndash; <i>Jakob Schjoldager</i>.
-                    </li>
-                    <li>
-                        <b>Happy Path Programming:</b> <a
-                        href="https://anchor.fm/happypathprogramming/episodes/54-Flix-Designing-a-principled-programming-language-with-Magnus-Madsen-e1dueb2">
-                        Episode 54: Flix: Designing a principled programming language with Magnus Madsen
-                    </a>
                     </li>
                 </ul>
 
