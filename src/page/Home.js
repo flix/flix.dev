@@ -112,7 +112,7 @@ class Home extends Component {
                         <h2>Why Flix? </h2>
 
                         <p className="p-2 text-justify">
-                            Flix aims to offer a <span className="font-weight-bold text-success">unique combination of
+                            Flix aims to offer a <span className="font-weight-bold text-info">unique combination of
                                 features</span> that no other programming language offers, including: <span
                             className="font-weight-bold">algebraic
                                 data types and pattern matching</span> (like Haskell, OCaml), <span
@@ -121,11 +121,11 @@ class Home extends Component {
                             className="font-weight-bold">higher-kinded types</span> (like Haskell), <span
                             className="font-weight-bold">type inference</span> (like Haskell, OCaml), <span
                             className="font-weight-bold">channel and process-based concurrency</span> (like Go), <span
-                            className="font-weight-bold text-info">a polymorphic effect system</span> (a unique
+                            className="font-weight-bold text-success">a polymorphic effect system</span> (a unique
                             feature), <span
-                            className="font-weight-bold text-info">purity polymorphic functions</span> (a unique
+                            className="font-weight-bold text-success">purity reflection</span> (a unique
                             feature), <span
-                            className="font-weight-bold text-info">first-class Datalog constraints</span> (a unique
+                            className="font-weight-bold text-success">first-class Datalog constraints</span> (a unique
                             feature),
                             and <span
                             className="font-weight-bold">compilation to JVM bytecode</span> (like Scala).
@@ -273,20 +273,20 @@ def map(f: a -> b & ef, l: List[a]): List[b] & ef =
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
-                                <CardTitle><h4>Purity Polymorphism</h4></CardTitle>
+                                <CardTitle><h4>Purity Reflection</h4></CardTitle>
                                 <CardText>
                                     <p>
                                         Flix supports a meta-programming construct that enables higher-order functions
-                                        to inspect the purity of a function argument and use it to vary their behavior.
+                                        to inspect the purity of a function argument and use that information to vary their behavior.
                                     </p>
 
                                     <p>
-                                        For example, the <code>LazyList.map</code> function varies its behavior between
+                                        For example, the <code>DelayList.map</code> function varies its behavior between
                                         eager and lazy evaluation depending on the purity of its function argument.
                                     </p>
 
                                     <p>
-                                        We can exploit purity polymorphism to selectively use lazy or parallel
+                                        We can exploit purity reflection to selectively use lazy or parallel
                                         evaluation inside a library without changing the semantics from the
                                         point-of-view of the clients.
                                     </p>
