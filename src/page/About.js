@@ -226,19 +226,6 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
                         </p>
 
                         <p>
-                            We can also write a a higher-order function that <i>requires</i> an impure function
-                            argument:
-                        </p>
-
-                        <InlineEditor>
-                            {`def unfoldWithIter(next: () ~> Option[a]): List[a] & Impure = ...`}
-                        </InlineEditor>
-
-                        <p>
-                            Here the <code>~&gt;</code> arrow denotes an impure function.
-                        </p>
-
-                        <p>
                             It is a compile-time error to call <code>unfoldWithIter</code> with a pure function!
                         </p>
 
