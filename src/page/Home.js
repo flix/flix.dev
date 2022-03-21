@@ -493,7 +493,7 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
 };
 
 // Computes the delivery date for each component.
-let r = query p select (c; d) from ReadyDate(c; d)
+let r = query p select (c, d) from ReadyDate(c; d)
 `}
                         </InlineEditor>
                     </Col>
