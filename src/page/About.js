@@ -278,11 +278,11 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
 
                         <InlineEditor>
                             {`// Declarations of predicate symbols.
-rel Road(src: String, speed: Int, dst: String)
+rel Road(src: String, speed: Int32, dst: String)
 rel Connected(src: String, dst: String)
 
 /// Determines if it is possible to drive from  \`src\` to  \`dst\` going at least  \`minSpeed\`.
-def drivable(g: #{Road, Connected}, src: String, dst: String, minSpeed: Int): Bool =
+def drivable(g: #{Road, Connected}, src: String, dst: String, minSpeed: Int32): Bool =
     // a first-class Datalog program that computes connectivity subject to speed limits.
     let p = #{
         Connected(x, y) :- Road(x, maxSpeed, y), if maxSpeed >= minSpeed.
@@ -317,7 +317,7 @@ def main(_args: Array[String]): Int32 & Impure =
                         </p>
 
                         <InlineEditor>
-                            {`def edgesWithNumbers(): #{ LabelledEdge(String, Int, String) | r } = #{
+                            {`def edgesWithNumbers(): #{ LabelledEdge(String, Int32, String) | r } = #{
     LabelledEdge("a", 1, "b").
     LabelledEdge("b", 1, "c").
     LabelledEdge("c", 2, "d").
