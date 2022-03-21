@@ -169,7 +169,7 @@ def main2(_args: Array[String]): Int32 & Impure =
     let r1 = {fstName = "Julius", lstName = "Caesar"};
     let r2 = withAge(r1, 55);
     let r3 = withoutAge(r2);
-    "Mr. ${r3.fstName} ${r3.lstName}" |> println;
+    "Mr. \${r3.fstName} \${r3.lstName}" |> println;
     0 // exit code`
         },
         {
