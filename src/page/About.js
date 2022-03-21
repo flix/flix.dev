@@ -71,7 +71,7 @@ enum Shape {
 }
 
 /// Computes the area of the given shape.
-def area(s: Shape): Int = match s {
+def area(s: Shape): Int32 = match s {
     case Circle(r)       => 3 * (r * r)
     case Square(w)       => w * w
     case Rectangle(h, w) => h * w
@@ -110,7 +110,7 @@ def map(f: a -> b, t: Tree[a]): Tree[b] = match t {
   }
 
 /// Returns a simple tree with two leafs.
-def tree(): Tree[Int] = Node(Leaf(1), Leaf(2))
+def tree(): Tree[Int32] = Node(Leaf(1), Leaf(2))
 
 /// Squares all elements in the simple tree.
 def main(_: Array[String]): Int32 & Impure =
@@ -138,14 +138,14 @@ def main(_: Array[String]): Int32 & Impure =
 
                         <InlineEditor>
                             {`/// Computes the sum of \`x\` and \`y\` and sends the result on the channel \`c\`.
-def sum(x: Int, y: Int, c: Channel[Int]): Unit & Impure =
+def sum(x: Int32, y: Int32, c: Channel[Int32]): Unit & Impure =
     c <- (x + y); ()
 
 /// Computes the sum of 21 and 42 using a fresh process.
 def main(_args: Array[String]): Int32 & Impure =
-    let c = chan Int 1;     // construct a new empty channel for the result.
-    spawn sum(21, 42, c);   // spawn sum to run in a separate process.
-    <- c                    // wait for the result to arrive on the channel.`}
+    let c = chan Int32 1;     // construct a new empty channel for the result.
+    spawn sum(21, 42, c);     // spawn sum to run in a separate process.
+    <- c                      // wait for the result to arrive on the channel.`}
                         </InlineEditor>
 
                         <p>
