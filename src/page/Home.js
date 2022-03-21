@@ -324,12 +324,12 @@ def map(f: a -> b & ef, l: LazyList[a]): LazyList[b] & ef =
                     <Col md="6">
                         <InlineEditor>
                             {`class Eq[a] {
-    pub def eq(x: a, y: a): Bool
-    pub def neq(x: a, y: a): Bool = not Eq.eq(x, y)
+    def eq(x: a, y: a): Bool
+    def neq(x: a, y: a): Bool = not Eq.eq(x, y)
 }
 
 instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
-    pub def eq(t1: (a1, a2), t2: (a1, a2)): Bool =
+    def eq(t1: (a1, a2), t2: (a1, a2)): Bool =
         let (x1, x2) = t1;
         let (y1, y2) = t2;
         x1 == y1 and x2 == y2
@@ -408,7 +408,7 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                                     </p>
 
                                     <InlineEditor>
-                                        {`def reachable(g: List[(String, Int32, String)], minSpeed: Int): List[(String, String)] =
+                                        {`def reachable(g: List[(String, Int32, String)], minSpeed: Int32): List[(String, String)] =
     let facts = project g into Road; 
     let rules = #{
         Path(x, y) :- Road(x, maxSpeed, y), if maxSpeed >= minSpeed.
