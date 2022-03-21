@@ -546,7 +546,7 @@ def main(_args: Array[String]): Int32 & Impure =
 ///
 enum AExp {
     /// a literal integer constant.
-    case Cst(Int),
+    case Cst(Int32),
 
     /// a binary addition expression: e1 + e2.
     case Plus(AExp, AExp),
@@ -626,7 +626,7 @@ def main(_args: Array[String]): Int32 & Impure =
     0 // exit code`
         },
         {
-            name: "A Simple Card Game Simlulation",
+            name: "A Simple Card Game Simulation",
             code: `// A Suit type deriving an Eq and ToString instance
 enum Suit with Eq, ToString {
     case Clubs
@@ -637,7 +637,7 @@ enum Suit with Eq, ToString {
 
 // A Rank type deriving an Eq and Order instance
 enum Rank with Eq, Order {
-    case Number(Int)
+    case Number(Int32)
     case Jack
     case Queen
     case King
@@ -713,8 +713,8 @@ enum Month with Eq, Order, ToString {
     case December
 }
 
-type alias Year = Int
-type alias Day = Int
+type alias Year = Int32
+type alias Day = Int32
 
 /// The Date type derives the type classes Eq and Order
 opaque type Date with Eq, Order = (Year, Month, Day)
