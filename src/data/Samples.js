@@ -122,7 +122,7 @@ def main(_args: Array[String]): Int32 & Impure =
         {
             name: "Polymorphic Record Update",
             code: `/// Returns the record \`r\` with a new value of its \`x\` label.
-def setX(r: {x :: Int, y :: Int}, v: Int): {x :: Int, y :: Int} =
+def setX(r: {x :: Int32, y :: Int32}, v: Int32): {x :: Int32, y :: Int32} =
     { x = v | r }
 
 /// Returns the value 1 + 3 = 4.
@@ -133,7 +133,7 @@ def main2(): Int32 =
 
 /// Returns the record \`r\` with a new value of its \`y\` label.
 /// Preserves (retains) all other labels polymorphically.
-def setY(r: {y :: Int32 | a}, v: Int): {y :: Int32 | a} =
+def setY(r: {y :: Int32 | a}, v: Int32): {y :: Int32 | a} =
     { y = v | r }
 
 /// Returns the value 0 + 1 + 3 = 4.
@@ -149,7 +149,7 @@ def main(_args: Array[String]): Int32 & Impure =
             name: "Polymorphic Record Extension and Restriction",
             code: `/// Polymorphically extends the record \`r\` with an \`age\` label.
 /// Preserves (retains) all other labels polymorphically.
-def withAge(r: {| a}, v: Int): {age :: Int32 | a} =
+def withAge(r: {| a}, v: Int32): {age :: Int32 | a} =
     { +age = v | r }
 
 /// Polymorphically restricts (removes) the \`age\` label from \`r\`.
@@ -169,7 +169,7 @@ def main2(_args: Array[String]): Int32 & Impure =
     let r1 = {fstName = "Julius", lstName = "Caesar"};
     let r2 = withAge(r1, 55);
     let r3 = withoutAge(r2);
-    "Mr. \${r3.fstName} \${r3.lstName}" |> println;
+    "Mr. ${r3.fstName} ${r3.lstName}" |> println;
     0 // exit code`
         },
         {
@@ -235,10 +235,10 @@ def main(_args: Array[String]): Int32 & Impure =
 /// would otherwise be the same. For example:
 
 /// An opaque type for US dollars.
-opaque type USD = Int
+opaque type USD = Int32
 
 /// An opaque type for Canadian dollars.
-opaque type CAD = Int
+opaque type CAD = Int32
 
 ///
 /// A function that adds two US dollar amounts.
@@ -259,16 +259,16 @@ def main(_args: Array[String]): Int32 & Impure =
             code: `/// A type alias introduces a short-hand for an existing type.
 
 /// A type alias for the type Map[Int, String].
-type alias M = Map[Int, String]
+type alias M = Map[Int32, String]
 
 /// A function that returns a map of type M.
 def f(): M = Map#{ 1 => "Hello", 2 => "World"}
 
 // A polymorphic type alias for the type Map[a, Result[Int, String]].
-type alias N[a] = Map[a, Result[Int, String]]
+type alias N[a] = Map[a, Result[Int32, String]]
 
 /// A function that returns a map of type N.
-def g(): N[Int] = Map#{ 1 => Ok(123), 2 => Err("Hello") }
+def g(): N[Int32] = Map#{ 1 => Ok(123), 2 => Err("Hello") }
 
 /// Another function that returns a map of type N.
 def h(): N[Bool] = Map#{ true => Ok(456) }`
@@ -365,8 +365,8 @@ def main(_args: Array[String]): Int32 & Impure = {
             name: "Select with Defaults and Timers",
             code: `/// Sends the value \`x\` on the channel \`c\` after a delay.
 def slow(x: Int32, c: Channel[Int32]): Unit & Impure =
-    import static java.lang.Thread.sleep(Int64);
-    sleep(Duration.oneMinute() / 1_000_000i64);
+    import static java.lang.Thread.sleep(Int64): Unit & Impure;
+    sleep(Time/Duration.oneMinute() / 1_000_000i64);
     c <- x;
     ()
 
@@ -383,7 +383,7 @@ def recvWithDefault(c: Channel[Int32]): Int32 & Impure =
 def recvWithTimeout(c: Channel[Int32]): Int32 & Impure =
     select {
         case x <- c                   => x
-        case _ <- Timer.seconds(1i64) => 2
+        case _ <- Concurrent/Channel/Timer.seconds(1i64) => 2
     }
 
 /// Creates two channels \`c1\` and \`c2\`.
@@ -435,7 +435,7 @@ rel LabelPath[l](x: String, l: l, y: String)
 /// Note that the return type is \`closed\` which means that the
 /// facts can *only* be used within a constraint system that
 /// has labelled edges and paths of ints.
-def getEdgesWithNumbers(): #{ LabelEdge[Int], LabelPath[Int] } = #{
+def getEdgesWithNumbers(): #{ LabelEdge[Int32], LabelPath[Int32] } = #{
     LabelEdge("a", 1, "b").
     LabelEdge("b", 1, "c").
     LabelEdge("c", 2, "d").
