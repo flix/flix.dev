@@ -324,12 +324,12 @@ def map(f: a -> b & ef, l: LazyList[a]): LazyList[b] & ef =
                     <Col md="6">
                         <InlineEditor>
                             {`class Eq[a] {
-    def eq(x: a, y: a): Bool
-    def neq(x: a, y: a): Bool = not Eq.eq(x, y)
+    pub def eq(x: a, y: a): Bool
+    pub def neq(x: a, y: a): Bool = not Eq.eq(x, y)
 }
 
 instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
-    def eq(t1: (a1, a2), t2: (a1, a2)): Bool =
+    pub def eq(t1: (a1, a2), t2: (a1, a2)): Bool =
         let (x1, x2) = t1;
         let (y1, y2) = t2;
         x1 == y1 and x2 == y2
