@@ -226,10 +226,6 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
                         </p>
 
                         <p>
-                            It is a compile-time error to call <code>unfoldWithIter</code> with a pure function!
-                        </p>
-
-                        <p>
                             A major challenge for type and effect systems is effect polymorphism. The problem is the
                             following: for higher-order functions the effect of a function depends on the effects of its
                             arguments. For example, if map is passed a pure function <code>f</code> then the
@@ -244,7 +240,7 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
                         </p>
 
                         <InlineEditor>
-                            {`def map(f: a -> b & e, xs: List[a]): List[b] & e = match xs {
+                            {`def map(f: a -> b & ef, xs: List[a]): List[b] & ef = match xs {
     case Nil     => Nil
     case x :: rs => f(x) :: map(f, rs)
 }`}
@@ -252,7 +248,7 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
 
                         <p>
                             Here the effect <code>map</code> depends on the effect of <code>f</code> (expressed with the
-                            effect parameter <code>e</code>).
+                            effect parameter <code>ef</code>).
                         </p>
 
                         <p>
