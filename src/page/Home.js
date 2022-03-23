@@ -382,12 +382,12 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
     ///
     /// Left-associative fold of a structure.
     ///
-    def foldLeft(f: (b, a) -> b & e, s: b, t: t[a]): b & e
+    def foldLeft(f: (b, a) -> b & ef, s: b, t: t[a]): b & ef
 
     ///
     /// Right-associative fold of a structure.
     ///
-    def foldRight(f: (a, b) -> b & e, s: b, t: t[a]): b & e
+    def foldRight(f: (a, b) -> b & ef, s: b, t: t[a]): b & ef
 
 }`}
                         </InlineEditor>

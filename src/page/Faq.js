@@ -54,7 +54,7 @@ class Faq extends Component {
                             We think Scala made many good design choices with respect to syntax, including:
                             (a) the use of short keywords,
                             (b) the <code>x : T</code> syntax for type annotations,
-                            (c) the <code>List[Int]</code> syntax for type parameters, and
+                            (c) the <code>List[Int32]</code> syntax for type parameters, and
                             (d) <code>if</code>, <code>match</code>, etc. as expressions.
                         </p>
 
