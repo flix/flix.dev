@@ -803,25 +803,59 @@ def main(_args: Array[String]): Int32 & Impure =
             name: "Print a Colorful Message",
             code: `/// Construct colorful messages.
 def main(_args: Array[String]): Int32 & Impure =
-  let s1 = "You can print message with " + Console.red("colored text");
-  let s2 = " or " + Console.bgBlue("background") + ".";
-  println(s1+s2);
+    let s1 = "You can print message with " + Console.red("colored text");
+    let s2 = " or " + Console.bgBlue("background") + ".";
+    println(s1+s2);
 
-  let s3 = Console.bgYellow(Console.magenta("This message has both magenta text and yellow background."));
-  println(s3);
+    let s3 = Console.bgYellow(Console.magenta("This message has both magenta text and yellow background."));
+    println(s3);
 
-  let s4 = Console.black("This is a ") :: Console.red("c") :: Console.green("o") ::
-            Console.yellow("l") :: Console.blue("o") :: Console.magenta("r") ::
-            Console.cyan("f") :: Console.greenBright("u") :: Console.blueBright("l") ::
-            Console.black(" message.") :: Nil;
-  let s5 = List.map(s -> Console.bgWhite(s), s4);
-  List.foreach(s -> print(s), s5);
-  println("");
+    let s4 = Console.black("This is a ") :: Console.red("c") :: Console.green("o") ::
+        Console.yellow("l") :: Console.blue("o") :: Console.magenta("r") ::
+        Console.cyan("f") :: Console.greenBright("u") :: Console.blueBright("l") ::
+        Console.black(" message.") :: Nil;
+    let s5 = List.map(s -> Console.bgWhite(s), s4);
+    List.foreach(s -> print(s), s5);
+    println("");
 
-  let s6 = Console.bold("This message is bold.");
-  let s7 = Console.hex("#b891eb", " And this is a custom hex color.");
-  println(s6 + s7);
-  0 // exit code`
+    let s6 = Console.bold("This message is bold.");
+    let s7 = Console.hex("#b891eb", " And this is a custom hex color.");
+    println(s6 + s7);
+    0 // exit code`
+        },
+        {
+            name: "Using Laziness for Infinite Streams",
+            code: `/// A predicate for prime numbers
+def isPrime(p: Int32): Bool =
+    DelayList.from(2) |>
+    DelayList.take(p - 2) |>
+    DelayList.forall(x -> p rem x != 0)
+/// An infinite sequence of prime numbers
+
+def primes(): DelayList[Int32] =
+    DelayList.from(2) |>
+    (DelayList.filter(isPrime))
+
+/// Alternative definition using sieve
+def primes2(): DelayList[Int32] = sieve(DelayList.from(2))
+def sieve(ps: DelayList[Int32]): DelayList[Int32] = match DelayList.head(ps) {
+    case Some(p) =>
+        LCons(p,
+            lazy sieve(
+                DelayList.filter(x -> x rem p != 0, DelayList.tail(ps))
+                )
+            )
+    case None => DelayList.empty()
+}
+
+/// Returns the first 10 prime numbers
+def main(_args: Array[String]): Int32 & Impure =
+    println("Using 'primes'");
+    DelayList.take(10, primes()) |> DelayList.toList |> println;
+    println("Using 'primes2'");
+    DelayList.take(10, primes2()) |> DelayList.toList |> println;
+    0 // exit code
+`
         }
     ];
 }
