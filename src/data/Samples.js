@@ -858,8 +858,7 @@ def main(_args: Array[String]): Int32 & Impure =
         },
         {
             name: "Using Laziness for Logging",
-            code: `/// A predicate for prime numbers
-/// Emulates some slow computation.
+            code: `/// Emulates some slow computation.
 def slowFunction(): String = {
     import static java.lang.Thread.sleep(Int64): Unit & Pure;
     let _ = sleep(5000i64);
@@ -877,6 +876,21 @@ def log(_: Lazy[String]): Unit & Impure = () as & Impure
 def main(_args: Array[String]): Int32 & Impure =
     log(lazy "The computation returned \${slowFunction()}");
     0 // exit code`
+        },
+        {
+            name: "Using Laziness to Compute Fibonacci",
+            code: `/// An infinite sequence of Fibonacci numbers
+def fibs(): DelayList[Int32] =
+    LCons(0,
+        lazy LCons(1,
+            lazy DelayList.zipWith(
+                (x, y) -> x + y, fibs(), DelayList.tail(fibs()))))
+
+/// Prints the first 10 Fibonacci numbers
+def main(_args: Array[String]): Int32 & Impure =
+    DelayList.take(10, fibs()) |> DelayList.toList |> println;
+    0 // exit code
+`
         }
     ];
 }
