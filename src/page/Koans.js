@@ -43,7 +43,7 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`pub def drivable(roads: Array[(city, Int, city)], source: city, destination: city, minimumSpeed: Int): Bool with Boxable[city] =
+                            {`pub def drivable(roads: Array[(city, Int32, city)], source: city, destination: city, minimumSpeed: Int32): Bool with Boxable[city] =
     let r = project roads into Road;
     let lp = #{
         Path(x, y) :- Road(x, maximumSpeed, y), if maximumSpeed > minimumSpeed.
@@ -75,7 +75,7 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`pub def travelWithLimitedBusses(trainConnections: Array[(city, city)], busConnections: Array[(city, city)], source: city, destination: city, maxBusTrips: Int): Bool with Boxable[city] =
+                            {`pub def travelWithLimitedBusses(trainConnections: Array[(city, city)], busConnections: Array[(city, city)], source: city, destination: city, maxBusTrips: Int32): Bool with Boxable[city] =
     let tc = project trainConnections into Train;
     let bc = project busConnections into Bus;
     let lp = #{
@@ -172,7 +172,7 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`def isCyclic(edges: Array[(Int, Int)]): Bool =
+                            {`def isCyclic(edges: Array[(Int32, Int32)]): Bool =
     let e = project edges into Edge;
     let lp = #{
         Path(x, y) :- Edge(x, y).
@@ -183,7 +183,7 @@ class Koans extends Component {
     let cycleNodes = query e, lp select x from Path(x, x);
     cycleNodes.length > 0
 
-pub def pairwiseAcyclic(graphs: List[Array[(Int, Int)]]): List[List[Array[(Int, Int)]]] =
+pub def pairwiseAcyclic(graphs: List[Array[(Int32, Int32)]]): List[List[Array[(Int32, Int32)]]] =
     let combineGraphs = (g1, g2) -> query (project g1 into Edge) <+> (project g2 into Edge) select (x, y) from Edge(x, y);
     graphs |> List.groupBy((g1, g2) -> not isCyclic(combineGraphs(g1, g2)))`}
                         </InlineEditor>
