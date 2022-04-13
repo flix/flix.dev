@@ -215,7 +215,7 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
                         </InlineEditor>
 
                         <p>
-                            Here the <code>-&gt;</code> arrow denotes a pure function.
+                            Here <code>f</code> is a pure function, because every function definition is <i>implicitly</i> marked as <code>Pure</code> in Flix.
                         </p>
 
                         <p>
