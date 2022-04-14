@@ -51,9 +51,8 @@ class About extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def main(_args: Array[String]): Int32 & Impure = 
-    println("Hello World!");
-    0`}
+                            {`def main(): Unit & Impure =
+    println("Hello World!")`}
                         </InlineEditor>
 
                         <h2>Basic Functional Programming</h2>
@@ -78,9 +77,8 @@ def area(s: Shape): Int32 = match s {
 }
 
 // Computes the area of a 2 by 4.
-def main(_args: Array[String]): Int32 & Impure =
-    area(Rectangle(2, 4)) |> println;
-    0`}
+def main(): Unit & Impure =
+    area(Rectangle(2, 4)) |> println`}
                         </InlineEditor>
 
                         <p>
@@ -113,9 +111,8 @@ def map(f: a -> b, t: Tree[a]): Tree[b] = match t {
 def tree(): Tree[Int32] = Node(Leaf(1), Leaf(2))
 
 /// Squares all elements in the simple tree.
-def main(_: Array[String]): Int32 & Impure =
-    map(x -> x * x, tree()) |> println;
-    0`}
+def main(): Unit & Impure =
+    map(x -> x * x, tree()) |> println`}
                         </InlineEditor>
 
                         <p>
@@ -142,10 +139,11 @@ def sum(x: Int32, y: Int32, c: Channel[Int32]): Unit & Impure =
     c <- (x + y); ()
 
 /// Computes the sum of 21 and 42 using a fresh process.
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let c = chan Int32 1;     // construct a new empty channel for the result.
     spawn sum(21, 42, c);     // spawn sum to run in a separate process.
-    <- c                      // wait for the result to arrive on the channel.`}
+    <- c;                     // wait for the result to arrive on the channel.
+    ()`}
                         </InlineEditor>
 
                         <p>
@@ -164,7 +162,7 @@ def animal(s: String, c: Channel[String], n: Int32): Unit & Impure = match n {
 }
 
 /// Returns "mooo", "meow", or "hiss".
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let c1 = chan String 1;      /// constructs a new empty channel with a buffer of one.
     let c2 = chan String 1;      /// constructs a new empty channel with a buffer of one.
     let c3 = chan String 1;      /// constructs a new empty channel with a buffer of one.
@@ -175,8 +173,7 @@ def main(_args: Array[String]): Int32 & Impure =
         case mooo <- c1 => mooo  /// c1 became ready first.
         case meow <- c2 => meow  /// c2 became ready first.
         case hiss <- c3 => hiss  /// c3 became ready first.
-    } |> println;
-    0`}
+    } |> println`}
                         </InlineEditor>
 
                         <h2>Polymorphic Effects: Separating Pure and Impure Code</h2>
@@ -218,7 +215,7 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
                         </InlineEditor>
 
                         <p>
-                            Here the <code>-&gt;</code> arrow denotes a pure function.
+                            Here <code>f</code> is a pure function, because every function definition is <i>implicitly</i> marked as <code>Pure</code> in Flix.
                         </p>
 
                         <p>
@@ -288,7 +285,7 @@ def drivable(g: #{Road, Connected}, src: String, dst: String, minSpeed: Int32): 
     not (query g, p select () from Connected(src, dst) |> Array.isEmpty)
 
 /// Determines if it possible to drive from Aarhus to Berlin going at least 110 km/h.
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     // the road network modelled as a set of Datalog facts.
     let g = #{
         Road("Aarhus", 110, "Vejle").
@@ -296,8 +293,7 @@ def main(_args: Array[String]): Int32 & Impure =
         Road("Fredericia", 130, "Hamburg").
         Road("Hamburg", 130, "Berlin").
     };
-    drivable(g, "Aarhus", "Berlin", 110) |> println;
-    0`}
+    drivable(g, "Aarhus", "Berlin", 110) |> println`}
                         </InlineEditor>
 
                         <p>
@@ -325,18 +321,17 @@ def edgesWithColor(): #{ LabelledEdge(String, String, String) | r } = #{
     LabelledEdge("c", "blu", "d").
 }
 
-def closure(): #{ LabelledEdge(String, l, String), 
+def closure(): #{ LabelledEdge(String, l, String),
                   LabelledPath(String, l, String) } with Boxable[l] = #{
     LabelledPath(x, l, y) :- LabelledEdge(x, l, y).
     LabelledPath(x, l, z) :- LabelledPath(x, l, y), LabelledPath(y, l, z).
 }
 
-def main(_: Array[String]): Int32 & Impure =
-    query edgesWithNumbers(), closure() 
+def main(): Unit & Impure =
+    query edgesWithNumbers(), closure()
         select (x, l, z) from LabelledPath(x, l, z) |> println;
-    query edgesWithColor(), closure() 
-        select (x, l, z) from LabelledPath(x, l, z) |> println;
-    0`}
+    query edgesWithColor(), closure()
+        select (x, l, z) from LabelledPath(x, l, z) |> println`}
                         </InlineEditor>
 
                     </Col>

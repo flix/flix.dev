@@ -18,9 +18,8 @@ def area(s: Shape): Int32 = match s {
 }
 
 // Computes the area of a 2 by 4.
-def main(_args: Array[String]): Int32 & Impure =
-    println(area(Rectangle(2, 4)));
-    0 // exit code`
+def main(): Unit & Impure =
+    println(area(Rectangle(2, 4)))`
         },
         {
             name: "Lists and List Processing",
@@ -37,13 +36,12 @@ def length(l: List[a]): Int32 = match l {
 }
 
 /// The Flix library has extensive support for lists:
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let l1 = l();
     let l2 = List.intersperse(42, l1);
     let l3 = List.map(x -> x :: x :: Nil, l2);
     let l4 = List.flatten(l3);
-    println(length(l4));
-    0 // exit code`
+    println(length(l4))`
         },
         {
             name: "Higher-Order Functions",
@@ -60,9 +58,8 @@ def twice(f: Int32 -> Int32): Int32 -> Int32 = x -> f(f(x))
 def two(x: Int32): Int32 = twice(inc)(x)
 
 /// Returns 123 plus 4 = 127.
-def main(_args: Array[String]): Int32 & Impure =
-    println(twice(two)(123));
-    0 // exit code`
+def main(): Unit & Impure =
+    println(twice(two)(123))`
         },
         {
             name: "Enums and Parametric Polymorphism",
@@ -85,11 +82,10 @@ def sum(t: Tree[Int32]): Int32 = match t {
     case Node(l, r) => sum(l) + sum(r)
 }
 
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let t1 = Node(Leaf("Hello"), Leaf("World"));
     let t2 = map(String.length, t1);
-    println(sum(t2));
-    0 // exit code`
+    println(sum(t2))`
         },
         {
             name: "Record Construction and Use",
@@ -114,10 +110,9 @@ def polyAreas(): List[Int32] =
     polyArea({x = 1, y = 2}) ::
     polyArea({x = 2, y = 3, z = 4}) :: Nil
 
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     areas() |> println;
-    polyAreas() |> println;
-    0 // exit code`
+    polyAreas() |> println`
         },
         {
             name: "Polymorphic Record Update",
@@ -137,13 +132,12 @@ def setY(r: {y :: Int32 | a}, v: Int32): {y :: Int32 | a} =
     { y = v | r }
 
 /// Returns the value 0 + 1 + 3 = 4.
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let r1 = {x = 1, y = 2};
     let r2 = {x = 1, y = 2, z = 3};
     let r3 = setY(r1, 0);
     let r4 = setY(r2, 1);
-    (r3.y + r4.y + r4.z) |> println;
-    0 // exit code`
+    (r3.y + r4.y + r4.z) |> println`
         },
         {
             name: "Polymorphic Record Extension and Restriction",
@@ -157,20 +151,18 @@ def withAge(r: {| a}, v: Int32): {age :: Int32 | a} =
 def withoutAge(r: {age :: Int32 | a}): {| a} = {-age | r}
 
 /// Construct several records and extend them with an age.
-def main(_: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let r1 = withAge({fstName = "Julius", lstName = "Caesar"}, 55);
     let r2 = withAge({monument = "Flavian Amphitheatre"}, 2019 - 80);
     let r3 = withAge({country = "United States"}, 2019 - 1776);
-    (r1.age + r2.age + r3.age) |> println;
-    0 // exit code
+    (r1.age + r2.age + r3.age) |> println
 
 /// Constructs a record, extends it with an age, and restricts it.
-def main2(_args: Array[String]): Int32 & Impure =
+def main2(): Unit & Impure =
     let r1 = {fstName = "Julius", lstName = "Caesar"};
     let r2 = withAge(r1, 55);
     let r3 = withoutAge(r2);
-    "Mr. \${r3.fstName} \${r3.lstName}" |> println;
-    0 // exit code`
+    "Mr. \${r3.fstName} \${r3.lstName}" |> println`
         },
         {
             name: "Function Composition, Pipelines, and Currying",
@@ -180,13 +172,12 @@ def main2(_args: Array[String]): Int32 & Impure =
 
 /// Constructs a list with ten elements and performs
 /// various operations on it in a pipeline.
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     List.range(0, 10) |>
     List.map(x -> x * x) |>
     List.take(5) |>
     List.exists(x -> x == 1) |>
-    println;
-    0 // exit code`
+    println`
         },
         {
             name: "Pure and Impure Functions",
@@ -224,9 +215,8 @@ def twice2(f: Int32 -> Int32 & Impure, x: Int32): Int32 & Impure = f(f(x))
 def twice3(f: Int32 -> Int32 & ef, x: Int32): Int32 & ef = f(f(x))
 
 /// We can use \`twice3\` with both pure and impure functions:
-def main(_args: Array[String]): Int32 & Impure =
-    (twice3(inc1, 0) + twice3(inc2, 0)) |> println;
-    0 // exit code`
+def main(): Unit & Impure =
+    (twice3(inc1, 0) + twice3(inc2, 0)) |> println`
         },
         {
             name: "Opaque Types",
@@ -249,10 +239,9 @@ def sum(x: USD, y: USD): USD =
   USD(u + v)
 
 /// Adds two USD amounts.
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let USD(result) = sum(USD(1), USD(5));
-    println(result);
-    0 // exit code`
+    println(result)`
         },
         {
             name: "Type Aliases",
@@ -292,9 +281,8 @@ def isEvn(n: Int32): Bool =
 /// We can now compute if 12345 is odd.
 /// In a language without TCE this would
 /// quickly consume all stack space.
-def main(_args: Array[String]): Int32 & Impure =
-    isOdd(12345) |> println;
-    0 // exit code`
+def main(): Unit & Impure =
+    isOdd(12345) |> println`
         },
         {
             name: "Sending and Receiving on Channels",
@@ -314,12 +302,11 @@ def recv(c: Channel[Int32], n: Int32): List[Int32] & Impure =
     }
 
 /// Spawn a process for send and wait, and print the result.
-def main(_args: Array[String]): Int32 & Impure = {
+def main(): Unit & Impure = {
     let l = 1 :: 2 :: 3 :: Nil;
     let c = chan Int32 100;
     spawn send(c, l);
-    spawn recv(c, List.length(l));
-    0 // exit code
+    spawn recv(c, List.length(l))
 }`
         },
         {
@@ -346,7 +333,7 @@ def hiss(c: Channel[String], n: Int32): Unit & Impure =
     }
 
 /// Start the animal farm...
-def main(_args: Array[String]): Int32 & Impure = {
+def main(): Unit & Impure = {
     let c1 = chan String 1;
     let c2 = chan String 1;
     let c3 = chan String 1;
@@ -357,8 +344,7 @@ def main(_args: Array[String]): Int32 & Impure = {
         case m <- c1 => m |> println
         case m <- c2 => m |> println
         case m <- c3 => m |> println
-    };
-    0 // exit code
+    }
 }`
         },
         {
@@ -389,13 +375,12 @@ def recvWithTimeout(c: Channel[Int32]): Int32 & Impure =
 /// Creates two channels \`c1\` and \`c2\`.
 /// Sends values on both after one minute.
 /// Receives from both using defaults and timeouts.
-def main(_args: Array[String]): Int32 & Impure = {
+def main(): Unit & Impure = {
   let c1 = chan Int32 1;
   let c2 = chan Int32 1;
   spawn slow(123, c1);
   spawn slow(456, c2);
-  (recvWithDefault(c1) + recvWithTimeout(c2)) |> println;
-  0 // exit code
+  (recvWithDefault(c1) + recvWithTimeout(c2)) |> println
 }`
         },
         {
@@ -419,10 +404,9 @@ def getRules(): #{ ParentOf, AncestorOf } = #{
 }
 
 /// Composes the facts and rules, and computes the lfp.
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     query getFacts(), getRules()
-        select (x, y) from AncestorOf(x, y) |> println;
-    0 // exit code`
+        select (x, y) from AncestorOf(x, y) |> println`
         },
         {
             name: "Polymorphic First-Class Constraints",
@@ -474,7 +458,7 @@ def _g(): Unit =
         },
         {
             name: "Pipelines of Fixpoint Computations",
-            code: `def main(_args: Array[String]): Int32 & Impure =
+            code: `def main(): Unit & Impure =
     // Introduce some facts for colored paths.
     let f1 = #{
         ColorEdge(1, "blue", 2).
@@ -499,16 +483,14 @@ def _g(): Unit =
     let exists = (query m2 select true from ColorlessPath(1, 3) |> Array.length) != 0;
 
     // Print a result.
-    println(if (exists) "Path exists!" else "Path does not exist!");
-
-    0 // exit code`
+    println(if (exists) "Path exists!" else "Path does not exist!")`
         },
         {
             name: "Using Datalog to Solve a Compiler Puzzle",
             code: `/// We can use Datalog constraints to solve the following problem:
 /// Given a collection of compilers and interpreters, what source
 /// languages can be compiled to what target languages?
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let facts = #{
         /// We have the following interpreters and compilers:
         Interpreter("x86").
@@ -536,8 +518,7 @@ def main(_args: Array[String]): Int32 & Impure =
             Interpreter(lang).
     };
     query facts, rules
-        select (src, dst) from Compiler(src, _, dst) |> println;
-    0 // exit code`
+        select (src, dst) from Compiler(src, _, dst) |> println`
         },
         {
             name: "An Interpreter for a Trivial Expression Language",
@@ -618,12 +599,11 @@ def evalBExp(e: BExp): Bool = match e {
 }
 
 /// We can now run it!
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let r = evalAExp(
         IfThenElse(Neq(Cst(1), Cst(2)), Cst(42), Cst(21))
     );
-    r |> println;
-    0 // exit code`
+    r |> println`
         },
         {
             name: "A Simple Card Game Simulation",
