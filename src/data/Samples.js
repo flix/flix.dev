@@ -768,15 +768,14 @@ def deduplicate(l: List[a]): List[a] with Order[a] =
 /// call \`deduplicate\` that returns a new list
 /// with only unique elements.
 ///
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let l = 1 :: 1 :: 2 :: 2 :: 3 :: 3 :: Nil;
-    println(deduplicate(l));
-    0`
+    println(deduplicate(l))`
         },
         {
             name: "File Information",
             code: `// Getting information on files with Flix.
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let f = "README.md";
 
     // Check if the file \`README.md\` exists.
@@ -795,14 +794,12 @@ def main(_args: Array[String]): Int32 & Impure =
             println("The creation time of \${f} is: \${stats.creationTime}.")
         }
         case Err(msg)   => println("An error occurred with message: \${msg}")
-    };
-
-    0 // exit code`
+    }`
         },
         {
             name: "Working with Files and Directories",
             code: `// Working with files and directories in Flix.
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let f = "README.md";
     let dir = "src";
 
@@ -819,14 +816,12 @@ def main(_args: Array[String]): Int32 & Impure =
             println("All files or directories in \${dir} is: '\${subpaths}'.")
         }
         case Err(msg)     => println("An error occurred with message: \${msg}")
-        };
-
-    0 // exit code`
+        }`
         },
         {
             name: "Print a Colorful Message",
             code: `/// Construct colorful messages.
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     let s1 = "You can print message with " + Console.red("colored text");
     let s2 = " or " + Console.bgBlue("background") + ".";
     println(s1+s2);
@@ -844,8 +839,7 @@ def main(_args: Array[String]): Int32 & Impure =
 
     let s6 = Console.bold("This message is bold.");
     let s7 = Console.hex("#b891eb", " And this is a custom hex color.");
-    println(s6 + s7);
-    0 // exit code`
+    println(s6 + s7)`
         },
         {
             name: "Using Laziness for Infinite Streams",
@@ -873,12 +867,11 @@ def sieve(ps: DelayList[Int32]): DelayList[Int32] = match DelayList.head(ps) {
 }
 
 /// Returns the first 10 prime numbers
-def main(_args: Array[String]): Int32 & Impure =
+def main(): Unit & Impure =
     println("Using 'primes'");
     DelayList.take(10, primes()) |> DelayList.toList |> println;
     println("Using 'primes2'");
-    DelayList.take(10, primes2()) |> DelayList.toList |> println;
-    0 // exit code`
+    DelayList.take(10, primes2()) |> DelayList.toList |> println`
         },
         {
             name: "Using Laziness for Logging",
@@ -897,9 +890,8 @@ def log(_: Lazy[String]): Unit & Impure = () as & Impure
 
 /// Writes a message to the log.
 /// The slow function will not be evaluated.
-def main(_args: Array[String]): Int32 & Impure =
-    log(lazy "The computation returned \${slowFunction()}");
-    0 // exit code`
+def main(): Unit & Impure =
+    log(lazy "The computation returned \${slowFunction()}")`
         },
         {
             name: "Using Laziness to Compute Fibonacci",
@@ -911,9 +903,8 @@ def fibs(): DelayList[Int32] =
                 (x, y) -> x + y, fibs(), DelayList.tail(fibs()))))
 
 /// Prints the first 10 Fibonacci numbers
-def main(_args: Array[String]): Int32 & Impure =
-    DelayList.take(10, fibs()) |> DelayList.toList |> println;
-    0 // exit code`
+def main(): Unit & Impure =
+    DelayList.take(10, fibs()) |> DelayList.toList |> println`
         }
     ];
 }
