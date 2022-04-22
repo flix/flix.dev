@@ -714,6 +714,177 @@ def earlierDate(d1: Date, d2: Date): Date = Order.min(d1, d2)
 def printDate(d: Date): Unit & Impure =
     let message = "The date is \${d}!";
     println(message)`
+        },
+        {
+            name: "Internal Mutability with Regions",
+            code: `///
+/// We can define pure functions that use
+/// internal mutability (impurity) with regions.
+/// Regions encapsulate mutability to its declared scope.
+///
+def deduplicate(l: List[a]): List[a] with Order[a] =
+    /// Declare a new region \`r\`.
+    region r {
+
+        /// Create a new \`MutSet\` at region \`r\`.
+        /// This will be used to keep track of
+        /// unique elements in \`l\`.
+        let s = new MutSet(r);
+
+        /// The lambda used in the call to \`filter\`
+        /// would be impure without a region.
+        List.filter(x -> {
+            if (MutSet.memberOf(x, s))
+                false // \`x\` has already been seen.
+            else {
+                MutSet.add!(x, s);
+                true
+            }
+        }, l)
+    }
+
+///
+/// Create a list \`l\` with duplicates and
+/// call \`deduplicate\` that returns a new list
+/// with only unique elements.
+///
+def main(): Unit & Impure =
+    let l = 1 :: 1 :: 2 :: 2 :: 3 :: 3 :: Nil;
+    println(deduplicate(l))`
+        },
+        {
+            name: "File Information",
+            code: `// Getting information on files with Flix.
+def main(): Unit & Impure =
+    let f = "README.md";
+
+    // Check if the file \`README.md\` exists.
+    match File.exists(f) {
+        case Ok(exist) => {
+            println("The file \${f} exists: \${exist}.")
+        }
+        case Err(msg)  => println("An error occurred with message: \${msg}")
+    };
+
+    // Get statistics of the file \`README.md\`.
+    match File.stat(f) {
+        case Ok(stats) => {
+            println("\${f} is of type: \${stats.fileType}");
+            println("The size of \${f} is: \${stats.size}.");
+            println("The creation time of \${f} is: \${stats.creationTime}.")
+        }
+        case Err(msg)   => println("An error occurred with message: \${msg}")
+    }`
+        },
+        {
+            name: "Working with Files and Directories",
+            code: `// Working with files and directories in Flix.
+def main(): Unit & Impure =
+    let f = "README.md";
+    let dir = "src";
+
+    // Read the file \`README.md\`.
+    match File.readLines(f) {
+        case Ok(x :: _) => println("The first line of \${f} is: '\${x}'.")
+        case Ok(Nil)    => println("the file \${f} is empty.")
+        case Err(msg)   => println("An error occurred with message: \${msg}")
+    };
+
+    // List the files in \`src\`.
+    match File.list(dir) {
+        case Ok(subpaths) => {
+            println("All files or directories in \${dir} is: '\${subpaths}'.")
+        }
+        case Err(msg)     => println("An error occurred with message: \${msg}")
+        }`
+        },
+        {
+            name: "Print a Colorful Message",
+            code: `/// Construct colorful messages.
+def main(): Unit & Impure =
+    let s1 = "You can print message with " + Console.red("colored text");
+    let s2 = " or " + Console.bgBlue("background") + ".";
+    println(s1+s2);
+
+    let s3 = Console.bgYellow(Console.magenta("This message has both magenta text and yellow background."));
+    println(s3);
+
+    let s4 = Console.black("This is a ") :: Console.red("c") :: Console.green("o") ::
+        Console.yellow("l") :: Console.blue("o") :: Console.magenta("r") ::
+        Console.cyan("f") :: Console.greenBright("u") :: Console.blueBright("l") ::
+        Console.black(" message.") :: Nil;
+    let s5 = List.map(s -> Console.bgWhite(s), s4);
+    List.foreach(s -> print(s), s5);
+    println("");
+
+    let s6 = Console.bold("This message is bold.");
+    let s7 = Console.hex("#b891eb", " And this is a custom hex color.");
+    println(s6 + s7)`
+        },
+        {
+            name: "Using Laziness for Infinite Streams",
+            code: `/// A predicate for prime numbers
+def isPrime(p: Int32): Bool =
+    DelayList.from(2) |>
+    DelayList.take(p - 2) |>
+    DelayList.forall(x -> p rem x != 0)
+/// An infinite sequence of prime numbers
+
+def primes(): DelayList[Int32] =
+    DelayList.from(2) |>
+    (DelayList.filter(isPrime))
+
+/// Alternative definition using sieve
+def primes2(): DelayList[Int32] = sieve(DelayList.from(2))
+def sieve(ps: DelayList[Int32]): DelayList[Int32] = match DelayList.head(ps) {
+    case Some(p) =>
+        LCons(p,
+            lazy sieve(
+                DelayList.filter(x -> x rem p != 0, DelayList.tail(ps))
+                )
+            )
+    case None => DelayList.empty()
+}
+
+/// Returns the first 10 prime numbers
+def main(): Unit & Impure =
+    println("Using 'primes'");
+    DelayList.take(10, primes()) |> DelayList.toList |> println;
+    println("Using 'primes2'");
+    DelayList.take(10, primes2()) |> DelayList.toList |> println`
+        },
+        {
+            name: "Using Laziness for Logging",
+            code: `/// Emulates some slow computation.
+def slowFunction(): String = {
+    import static java.lang.Thread.sleep(Int64): Unit & Pure;
+    let _ = sleep(5000i64);
+    Int32.toString(42)
+}
+
+/// A lazy log function.
+/// The idea is that we add the message to some buffer.
+/// Later, we can force the evaluation and store it permanently.
+/// For this example we just return the unit value.
+def log(_: Lazy[String]): Unit & Impure = () as & Impure
+
+/// Writes a message to the log.
+/// The slow function will not be evaluated.
+def main(): Unit & Impure =
+    log(lazy "The computation returned \${slowFunction()}")`
+        },
+        {
+            name: "Using Laziness to Compute Fibonacci",
+            code: `/// An infinite sequence of Fibonacci numbers
+def fibs(): DelayList[Int32] =
+    LCons(0,
+        lazy LCons(1,
+            lazy DelayList.zipWith(
+                (x, y) -> x + y, fibs(), DelayList.tail(fibs()))))
+
+/// Prints the first 10 Fibonacci numbers
+def main(): Unit & Impure =
+    DelayList.take(10, fibs()) |> DelayList.toList |> println`
         }
     ];
 }
