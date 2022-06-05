@@ -219,31 +219,6 @@ def main(): Unit & Impure =
     (twice3(inc1, 0) + twice3(inc2, 0)) |> println`
         },
         {
-            name: "Opaque Types",
-            code: `/// An opaque type declares a new type that is different from any other
-/// existing type. Opaque types can be used to differentiate types that
-/// would otherwise be the same. For example:
-
-/// An opaque type for US dollars.
-opaque type USD = Int32
-
-/// An opaque type for Canadian dollars.
-opaque type CAD = Int32
-
-///
-/// A function that adds two US dollar amounts.
-///
-def sum(x: USD, y: USD): USD =
-  let USD(u) = x;
-  let USD(v) = y;
-  USD(u + v)
-
-/// Adds two USD amounts.
-def main(): Unit & Impure =
-    let USD(result) = sum(USD(1), USD(5));
-    println(result)`
-        },
-        {
             name: "Type Aliases",
             code: `/// A type alias introduces a short-hand for an existing type.
 
@@ -625,7 +600,7 @@ enum Rank with Eq, Order {
 }
 
 // A Card type deriving an Eq instance
-opaque type Card with Eq = (Rank, Suit) 
+enum Card(Rank, Suit) with Eq
 
 // An instance of ToString for Ranks
 instance ToString[Rank] {
@@ -697,7 +672,7 @@ type alias Year = Int32
 type alias Day = Int32
 
 /// The Date type derives the type classes Eq and Order
-opaque type Date with Eq, Order = (Year, Month, Day)
+enum Date(Year, Month, Day) with Eq, Order
 
 /// We implement our own instance of ToString for Date
 /// since we don't want the default "Date(1948, December, 10)"
