@@ -24,6 +24,16 @@ class Research extends Component {
                     Below is a selection of research papers published on Flix:
                 </p>
 
+                <h3>Talks</h3>
+
+                <ul>
+                    <li>
+                        <a href="/talks/dahl-nygaard.pdf">
+                            An Introduction to the Flix Programming Language
+                        </a> <b>[Dahl-Nygaard Prize, ECOOP '22]</b>
+                    </li>
+                </ul>
+
                 <h3>Peer-Reviewed</h3>
 
                 <ul>
