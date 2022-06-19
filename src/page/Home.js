@@ -515,7 +515,7 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             <li>type classes</li>
                             <li>higher-kinded types</li>
                             <li>light-weight polymorphic effects</li>
-                            <li>opaque types and type aliases</li>
+                            <li>type aliases</li>
                             <li>Hindley-Milner type inference</li>
                         </ul>
                     </Col>
