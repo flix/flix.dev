@@ -123,6 +123,8 @@ class Home extends Component {
                             className="font-weight-bold">channel and process-based concurrency</span> (like Go), <span
                             className="font-weight-bold text-success">a polymorphic effect system</span> (a unique
                             feature), <span
+                            className="font-weight-bold text-success">region-based local mutation</span> (a unique
+                            feature), <span
                             className="font-weight-bold text-success">purity reflection</span> (a unique
                             feature), <span
                             className="font-weight-bold text-success">first-class Datalog constraints</span> (a unique
@@ -273,28 +275,60 @@ def map(f: a -> b & ef, l: List[a]): List[b] & ef =
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
-                                <CardTitle><h4>Purity Reflection</h4></CardTitle>
+                                <CardTitle><h4>Region-based Local Mutation</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        Flix supports a meta-programming construct that enables higher-order functions
-                                        to inspect the purity of a function argument and use that information to vary
-                                        their behavior.
+                                        Flix supports region-based local mutation, which makes it possible to
+                                        implement <i>pure</i> functions that internally uses mutable state and
+                                        destructive operations, as long as these operations are confined to the region.
                                     </p>
 
                                     <p>
-                                        For example, the <code>DelayList.map</code> function varies its behavior between
-                                        eager and lazy evaluation depending on the purity of its function argument.
+                                        We can use local mutation when it is more natural to write a function using
+                                        mutable data and in a familiar imperative-style while still remaining pure
+                                        to the outside world.
                                     </p>
 
                                     <p>
-                                        We can exploit purity reflection to selectively use lazy or parallel
-                                        evaluation inside a library without changing the semantics from the
-                                        point-of-view of the clients.
+                                        We can also use local mutation when it is more efficient to use mutable
+                                        data structures, e.g. when implementing a sorting algorithm.
                                     </p>
                                 </CardText>
                             </CardBody>
                         </Card>
                     </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`///
+/// We can implement a *pure* \`sort\` function which 
+/// internally converts an immutable list to an array,
+/// sorts the array in-place, and then converts it 
+/// back to an immutable list.
+/// 
+def sort(l: List[a]): List[a] with Order[a] = 
+    region r {
+        toArray(l, r) !> Array.sort! |> Array.toList
+    }
+
+///
+/// We can also write a *pure* \`toString\` function which 
+/// internally uses a mutable StringBuilder. 
+///
+def toString(l: List[a]): String with ToString[a] = 
+    region r {
+        let sb = new StringBuilder(r);
+        for (x <- List.iterator(r, l)) {
+            StringBuilder.appendString!("\${x} :: ", sb), l)
+        };
+        StringBuilder.appendString!("Nil", sb);
+        StringBuilder.toString(sb)
+    }
+`}
+                        </InlineEditor>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
                     <Col md="6">
                         <InlineEditor>
                             {`/// 
@@ -318,24 +352,34 @@ def map(f: a -> b & ef, l: LazyList[a]): LazyList[b] & ef =
     }`}
                         </InlineEditor>
                     </Col>
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Purity Reflection</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports a meta-programming construct that enables higher-order functions
+                                        to inspect the purity of a function argument and use that information to vary
+                                        their behavior.
+                                    </p>
+
+                                    <p>
+                                        For example, the <code>DelayList.map</code> function varies its behavior between
+                                        eager and lazy evaluation depending on the purity of its function argument.
+                                    </p>
+
+                                    <p>
+                                        We can exploit purity reflection to selectively use lazy or parallel
+                                        evaluation inside a library without changing the semantics from the
+                                        point-of-view of the clients.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
                 </Row>
 
                 <Row className="mb-4">
-                    <Col md="6">
-                        <InlineEditor>
-                            {`class Eq[a] {
-    def eq(x: a, y: a): Bool
-    def neq(x: a, y: a): Bool = not Eq.eq(x, y)
-}
-
-instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
-    def eq(t1: (a1, a2), t2: (a1, a2)): Bool =
-        let (x1, x2) = t1;
-        let (y1, y2) = t2;
-        x1 == y1 and x2 == y2
-}`}
-                        </InlineEditor>
-                    </Col>
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
@@ -353,9 +397,41 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                             </CardBody>
                         </Card>
                     </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`class Eq[a] {
+    def eq(x: a, y: a): Bool
+    def neq(x: a, y: a): Bool = not Eq.eq(x, y)
+}
+
+instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
+    def eq(t1: (a1, a2), t2: (a1, a2)): Bool =
+        let (x1, x2) = t1;
+        let (y1, y2) = t2;
+        x1 == y1 and x2 == y2
+}`}
+                        </InlineEditor>
+                    </Col>
                 </Row>
 
                 <Row className="mb-4">
+                    <Col md="6">
+                        <InlineEditor>
+                            {`class Foldable[t : Type -> Type] {
+
+    ///
+    /// Left-associative fold of a structure.
+    ///
+    def foldLeft(f: (b, a) -> b & ef, s: b, t: t[a]): b & ef
+
+    ///
+    /// Right-associative fold of a structure.
+    ///
+    def foldRight(f: (a, b) -> b & ef, s: b, t: t[a]): b & ef
+
+}`}
+                        </InlineEditor>
+                    </Col>
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
@@ -374,23 +450,6 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                                 </CardText>
                             </CardBody>
                         </Card>
-                    </Col>
-                    <Col md="6">
-                        <InlineEditor>
-                            {`class Foldable[t : Type -> Type] {
-
-    ///
-    /// Left-associative fold of a structure.
-    ///
-    def foldLeft(f: (b, a) -> b & ef, s: b, t: t[a]): b & ef
-
-    ///
-    /// Right-associative fold of a structure.
-    ///
-    def foldRight(f: (a, b) -> b & ef, s: b, t: t[a]): b & ef
-
-}`}
-                        </InlineEditor>
                     </Col>
                 </Row>
 
@@ -629,6 +688,11 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     <Col>
                         <Card className="border-0 p-3">
                             <CardImg src="/logo/amazon-science.png" alt="Amazon Research Award"/>
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card className="border-0 p-3">
+                            <CardImg src="/logo/stibo.png" alt="StiboFonden"/>
                         </Card>
                     </Col>
                 </Row>
