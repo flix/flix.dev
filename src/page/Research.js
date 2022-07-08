@@ -131,6 +131,25 @@ class Research extends Component {
                     </li>
                 </ul>
 
+                <h3>Blog Posts &amp; Discussions</h3>
+
+                <ul>
+                    <li>
+                        <b>Lutz Hühnken:</b> <a
+                        href="https://www.reactivesystems.eu/2022/06/24/flix-for-java-programmers.html">Flix For Java
+                        Programmers</a>
+                    </li>
+                    <li>
+                        <b>Susan Potter:</b> <a
+                        href="https://www.susanpotter.net/software/getting-started-with-flix-part-0/">Getting Started
+                        with Flix, Part 0
+                    </a>
+                    </li>
+                    <li>
+                        <b>HackerNews:</b> <a href="https://news.ycombinator.com/item?id=25513397">[1]</a>, <a href="https://news.ycombinator.com/item?id=31448889">[2]</a>.
+                    </li>
+                </ul>
+
             </Container>
         );
     }
