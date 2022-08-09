@@ -73,7 +73,7 @@ class Naming extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def map(f: a -> b & e, a: Array[a]): Array[b] & Impure`}
+                            {`def map(f: a -> b & e, a: Array[a]): Array[b] \ IO`}
                         </InlineEditor>
 
                         <p>
@@ -91,7 +91,7 @@ class Naming extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def mapInPlace(f: a -> a, a: Array[a]): Unit & Impure`}
+                            {`def mapInPlace(f: a -> a, a: Array[a]): Unit \ IO`}
                         </InlineEditor>
 
                         <p>
