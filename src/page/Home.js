@@ -224,11 +224,11 @@ def f(): Int32 = area({h = 1, color = "Blue", w = 2})`}
                         <InlineEditor>
                             {`def inc1(x: Int32): Int32 & Pure = x + 1
 
-def inc2(x: Int32): Int32 & Impure =
+def inc2(x: Int32): Int32 \ IO =
     println("x = \${x}");
     x + 1
 
-def f(): Int32 & Impure = // f is impure
+def f(): Int32 \ IO = // f is impure
     let r1 = inc1(123);   // pure
     let r2 = inc2(456);   // impure
     r1 + r2               // pure`}
@@ -300,7 +300,7 @@ def map(f: a -> b & ef, l: List[a]): List[b] & ef =
                             {`/// 
 /// We can inspect the purity of a function argument.
 /// 
-def inspect(f: a -> b & ef): Unit & Impure = 
+def inspect(f: a -> b & ef): Unit \ IO =
     reifyEff(f) {
         case Pure(g) => println("f is pure")
         case _       => println("f is not pure")

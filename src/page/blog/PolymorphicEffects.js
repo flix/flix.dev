@@ -155,11 +155,11 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def sayHello(): Unit & Impure = Console.printLine("Hello World!")`}
+                            {`def sayHello(): Unit \ IO = Console.printLine("Hello World!")`}
                         </InlineEditor>
 
                         <p>
-                            where <code>& Impure</code> specifies that the <code>sayHello</code> function is impure.
+                            where <code>\ IO</code> specifies that the <code>sayHello</code> function is impure.
                         </p>
 
                         <p>
@@ -237,7 +237,7 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def foreach(f: a ~> Unit, xs: List[a]): Unit & Impure = ...`}
+                            {`def foreach(f: a ~> Unit, xs: List[a]): Unit \ IO = ...`}
                         </InlineEditor>
 
                         <p>
@@ -255,8 +255,8 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def onMouseDn(f: MouseEvent ~> Unit): Unit & Impure = ...
-def onMouseUp(f: MouseEvent ~> Unit): Unit & Impure = ...`}
+                            {`def onMouseDn(f: MouseEvent ~> Unit): Unit \ IO = ...
+def onMouseUp(f: MouseEvent ~> Unit): Unit \ IO = ...`}
                         </InlineEditor>
 
                         <p>
@@ -309,7 +309,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </p>
 
                         <InlineEditor>
-                            {`def unfoldWithIter(next: Unit ~> Option[a]): List[a] & Impure`}
+                            {`def unfoldWithIter(next: Unit ~> Option[a]): List[a] \ IO`}
                         </InlineEditor>
 
                         <p>
@@ -559,7 +559,7 @@ def stripIndent(n: Int32, s: String): String =
 ///
 /// Helper function for \`stripIndent\`.
 ///
-def stripIndentHelper(n: Int32, s: String): String & Impure =
+def stripIndentHelper(n: Int32, s: String): String \ IO =
     let sb = StringBuilder.new();
     let limit = Int32.min(n, length(s));
     let step = s1 -> {
