@@ -176,11 +176,11 @@ def main(): Unit \ IO =
     } |> println`}
                         </InlineEditor>
 
-                        <h2>Polymorphic Effects: Separating Pure and Impure Code</h2>
+                        <h2>Polymorphic Effects: Separating Pure and Effectful Code</h2>
 
                         <p>
                             A unique feature of Flix is its polymorphic effect system. The Flix type and effect system
-                            cleanly separates pure and impure code. If an expression is pure then it always
+                            cleanly separates pure and effectful code. If an expression is pure then it always
                             evaluates to the same value and it cannot have a side-effect. If a function is pure then it
                             always evaluates to the same value when given the same arguments.
                         </p>
@@ -195,11 +195,11 @@ def sum(x: Int32, y: Int32): Int32 = x + y`}
                         </InlineEditor>
 
                         <p>
-                            And we can also write an impure function:
+                            And we can also write a function with IO effect:
                         </p>
 
                         <InlineEditor>
-                            {`/// An impure function
+                            {`/// A function with IO effect
 def sayHello(): Unit \ IO = Console.printLine("Hello World")`}
                         </InlineEditor>
 
@@ -219,7 +219,7 @@ def sayHello(): Unit \ IO = Console.printLine("Hello World")`}
                         </p>
 
                         <p>
-                            <i>It is a compile-time error to call <code>map</code> with an impure function!</i>
+                            <i>It is a compile-time error to call <code>map</code> with an effectful function!</i>
                         </p>
 
                         <p>
@@ -227,8 +227,8 @@ def sayHello(): Unit \ IO = Console.printLine("Hello World")`}
                             following: for higher-order functions the effect of a function depends on the effects of its
                             arguments. For example, if map is passed a pure function <code>f</code> then the
                             expression <code>List.map(f, 1 :: Nil)</code> is pure. On the other hand, if map is passed
-                            an impure function <code>g</code> then the expression <code>List.map(g, 1 :: Nil)</code> is
-                            impure. The effect of map depends on the effect of its first argument: it is effect
+                            a function with IO effect <code>g</code> then the expression <code>List.map(g, 1 :: Nil)</code> has
+                            IO effect. The effect of map depends on the effect of its first argument: it is effect
                             polymorphic.
                         </p>
 
