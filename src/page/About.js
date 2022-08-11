@@ -227,8 +227,8 @@ def sayHello(): Unit \\ IO = Console.printLine("Hello World")`}
                             following: for higher-order functions the effect of a function depends on the effects of its
                             arguments. For example, if map is passed a pure function <code>f</code> then the
                             expression <code>List.map(f, 1 :: Nil)</code> is pure. On the other hand, if map is passed
-                            a function with IO effect <code>g</code> then the expression <code>List.map(g, 1 :: Nil)</code> has
-                            IO effect. The effect of map depends on the effect of its first argument: it is effect
+                            an impure function <code>g</code> then the expression <code>List.map(g, 1 :: Nil)</code> is 
+                            impure. The effect of map depends on the effect of its first argument: it is effect
                             polymorphic.
                         </p>
 
