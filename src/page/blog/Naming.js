@@ -47,7 +47,7 @@ class Naming extends Component {
                         </p>
 
                         <p>
-                            We can <code>map</code> a function <code>f: a -> b</code> over a list <code>l</code> to
+                            We can <code>map</code> a function <code>f: a -{">"} b</code> over a list <code>l</code> to
                             obtain a new list of type <code>List[b]</code>:
                         </p>
 
@@ -100,8 +100,8 @@ class Naming extends Component {
 
                             <ul>
                                 <li>The function returns <code>Unit</code> instead of returning an array.</li>
-                                <li>The function takes an argument of type <code>a -> a</code> rather than a function of
-                                    type <code>a -> b</code>.
+                                <li>The function takes an argument of type <code>a -{">"} a</code> rather than a function of
+                                    type <code>a -{">"} b</code>.
                                 </li>
                             </ul>
                         </p>
@@ -109,7 +109,7 @@ class Naming extends Component {
                         <p>
                             The latter is required because the type of an array is fixed. An array of bytes cannot
                             be replaced by an array of strings. Consequently, <code>mapInPlace</code> must take a
-                            less generic function of type <code>a -> a</code>.
+                            less generic function of type <code>a -{">"} a</code>.
                         </p>
 
                         <p>
@@ -330,8 +330,8 @@ class Naming extends Component {
                                 example, <code>Array.reverse</code> and <code>Array.reverse!</code> share the
                                 same name. On the other hand, <code>Array.transform!</code> is
                                 called <code>transform!</code> and not <code>map!</code> because its type signature is
-                                dissimilar to map (i.e. map works on functions of type <code>a -> b</code>, but
-                                transform requires functions of type <code>a -> a</code>.)
+                                dissimilar to map (i.e. map works on functions of type <code>a -{">"} b</code>, but
+                                transform requires functions of type <code>a -{">"} a</code>.)
                             </CardText>
                         </Card>
 

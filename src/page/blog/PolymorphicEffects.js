@@ -217,7 +217,7 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            The signature <code>f: a -> Bool</code> denotes a pure function
+                            The signature <code>f: a -{">"} Bool</code> denotes a pure function
                             from <code>a</code> to <code>Bool</code>. Passing an impure function
                             to <code>exists</code> is a compile-time type error. We want to enforce
                             that <code>f</code> is pure because the contract for <code>exists</code> makes no guarantees
@@ -241,7 +241,7 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            The signature <code>f: b ~> Bool</code> denotes an impure function
+                            The signature <code>f: b ~{">"} Bool</code> denotes an impure function
                             from <code>b</code> to <code>Unit</code>. Passing a pure function to <code>foreach</code> is
                             a compile-time type error. Given that <code>f</code> is impure and <code>f</code> is called
                             within <code>foreach</code>, it is itself impure. We enforce that
@@ -368,7 +368,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </InlineEditor>
 
                         <p>
-                            The syntax <code>f: a -> b \\ ef</code> denotes a function
+                            The syntax <code>f: a -{">"} b \\ ef</code> denotes a function
                             from <code>a</code> to <code>b</code> with latent effect <code>ef</code>. The signature of
                             the <code>map</code> function captures that its
                             effect <code>e</code> depends on the effect of its argument <code>f</code>.
