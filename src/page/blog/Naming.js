@@ -91,7 +91,7 @@ class Naming extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def mapInPlace(f: a -> a \\ IO, a: Array[a]): Unit \\ IO`}
+                            {`def mapInPlace(f: a -> a \\ ef, a: Array[a]): Unit \\ IO`}
                         </InlineEditor>
 
                         <p>
