@@ -230,7 +230,7 @@ def inc2(x: Int32): Int32 \\ IO =
     println("x = \${x}");
     x + 1
 
-def f(): Int32 \\ IO =     // f is impure
+def f(): Int32 \\ IO =    // f is impure
     let r1 = inc1(123);   // pure
     let r2 = inc2(456);   // impure
     r1 + r2               // pure`}
