@@ -195,11 +195,11 @@ def sum(x: Int32, y: Int32): Int32 = x + y`}
                         </InlineEditor>
 
                         <p>
-                            And we can also write a function with IO effect:
+                            And we can also write an impure function:
                         </p>
 
                         <InlineEditor>
-                            {`/// A function with IO effect
+                            {`/// An impure function
 def sayHello(): Unit \\ IO = Console.printLine("Hello World")`}
                         </InlineEditor>
 

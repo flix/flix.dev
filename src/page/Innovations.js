@@ -38,7 +38,7 @@ class Innovations extends Component {
                             function can depend on the effect of its function arguments. For example, the effect
                             of <code>List.map</code> depends on the effect of the function passed to it. That is,
                             if <code>List.map</code> is given a pure function then computation is pure, whereas if
-                            it is given an function with IO effect then computation is impure. As an another example,
+                            it is given an impure function then computation is impure. As an another example,
                             the effect of <code>&gt;&gt;</code> (forward function composition) depends on <i>both</i> of
                             its arguments: composition is only pure if both its function arguments are pure.
                         </p>
@@ -48,7 +48,7 @@ class Innovations extends Component {
                             it precisely captures the purity of every expression and sub-expression. It is expressive
                             because it allows arbitrary boolean formulas to describe
                             the effect of an expression. For example, the system can express that a higher-order
-                            function requires <i>at most</i> one function with IO effect.
+                            function requires <i>at most</i> one impure function.
                         </p>
 
                         <p>

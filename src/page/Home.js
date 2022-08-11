@@ -222,8 +222,10 @@ def f(): Int32 = area({h = 1, color = "Blue", w = 2})`}
                     </Col>
                     <Col md="6">
                         <InlineEditor>
-                            {`def inc1(x: Int32): Int32 \\ {} = x + 1
+                            {`/// A pure function is annotated with \`\\ {}\`.
+def inc1(x: Int32): Int32 \\ {} = x + 1
 
+/// An impure function is annotated with \`\\ IO\`.
 def inc2(x: Int32): Int32 \\ IO =
     println("x = \${x}");
     x + 1
