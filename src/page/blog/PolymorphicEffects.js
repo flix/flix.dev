@@ -159,7 +159,7 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            where <code>\ IO</code> specifies that the <code>sayHello</code> function is impure.
+                            where <code>\\ IO</code> specifies that the <code>sayHello</code> function is impure.
                         </p>
 
                         <p>
