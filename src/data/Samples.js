@@ -18,7 +18,7 @@ def area(s: Shape): Int32 = match s {
 }
 
 // Computes the area of a 2 by 4.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     println(area(Rectangle(2, 4)))`
         },
         {
@@ -36,7 +36,7 @@ def length(l: List[a]): Int32 = match l {
 }
 
 /// The Flix library has extensive support for lists:
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let l1 = l();
     let l2 = List.intersperse(42, l1);
     let l3 = List.map(x -> x :: x :: Nil, l2);
@@ -58,7 +58,7 @@ def twice(f: Int32 -> Int32): Int32 -> Int32 = x -> f(f(x))
 def two(x: Int32): Int32 = twice(inc)(x)
 
 /// Returns 123 plus 4 = 127.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     println(twice(two)(123))`
         },
         {
@@ -82,7 +82,7 @@ def sum(t: Tree[Int32]): Int32 = match t {
     case Node(l, r) => sum(l) + sum(r)
 }
 
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let t1 = Node(Leaf("Hello"), Leaf("World"));
     let t2 = map(String.length, t1);
     println(sum(t2))`
@@ -110,7 +110,7 @@ def polyAreas(): List[Int32] =
     polyArea({x = 1, y = 2}) ::
     polyArea({x = 2, y = 3, z = 4}) :: Nil
 
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     areas() |> println;
     polyAreas() |> println`
         },
@@ -132,7 +132,7 @@ def setY(r: {y :: Int32 | a}, v: Int32): {y :: Int32 | a} =
     { y = v | r }
 
 /// Returns the value 0 + 1 + 3 = 4.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let r1 = {x = 1, y = 2};
     let r2 = {x = 1, y = 2, z = 3};
     let r3 = setY(r1, 0);
@@ -151,14 +151,14 @@ def withAge(r: {| a}, v: Int32): {age :: Int32 | a} =
 def withoutAge(r: {age :: Int32 | a}): {| a} = {-age | r}
 
 /// Construct several records and extend them with an age.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let r1 = withAge({fstName = "Julius", lstName = "Caesar"}, 55);
     let r2 = withAge({monument = "Flavian Amphitheatre"}, 2019 - 80);
     let r3 = withAge({country = "United States"}, 2019 - 1776);
     (r1.age + r2.age + r3.age) |> println
 
 /// Constructs a record, extends it with an age, and restricts it.
-def main2(): Unit \ IO =
+def main2(): Unit \\ IO =
     let r1 = {fstName = "Julius", lstName = "Caesar"};
     let r2 = withAge(r1, 55);
     let r3 = withoutAge(r2);
@@ -172,7 +172,7 @@ def main2(): Unit \ IO =
 
 /// Constructs a list with ten elements and performs
 /// various operations on it in a pipeline.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     List.range(0, 10) |>
     List.map(x -> x * x) |>
     List.take(5) |>
@@ -182,13 +182,13 @@ def main(): Unit \ IO =
         {
             name: "Pure and Impure Functions",
             code: `/// We can declare a pure function.
-def inc(x: Int32): Int32 & Pure = x + 1
+def inc(x: Int32): Int32 \\ {} = x + 1
 
 /// The pure annotation is default, so we can just write:
 def inc2(x: Int32): Int32 = x + 1
 
 /// We can also declare an impure function.
-def printAndInc(x: Int32): Int32 \ IO =
+def printAndInc(x: Int32): Int32 \\ IO =
     println("Hello");
     x + 1
 
@@ -204,18 +204,18 @@ pub def f(): Int32 = twice(inc, 42)
         {
             name: "Effect Polymorphic Functions",
             code: `/// Assume we have some pure and impure functions:
-def inc1(x: Int32): Int32 & Pure = x + 1
-def inc2(x: Int32): Int32 \ IO = println("Hello"); x + 1
+def inc1(x: Int32): Int32 \\ {} = x + 1
+def inc2(x: Int32): Int32 \\ IO = println("Hello"); x + 1
 
 /// We can write functions that expect pure or impure functions:
-def twice1(f: Int32 -> Int32 & Pure, x: Int32): Int32 & Pure = f(f(x))
-def twice2(f: Int32 -> Int32 \ IO, x: Int32): Int32 \ IO = f(f(x))
+def twice1(f: Int32 -> Int32 \\ {}, x: Int32): Int32 \\ {} = f(f(x))
+def twice2(f: Int32 -> Int32 \\ IO, x: Int32): Int32 \\ IO = f(f(x))
 
 /// But we can also write *effect polymorphic* functions:
-def twice3(f: Int32 -> Int32 & ef, x: Int32): Int32 & ef = f(f(x))
+def twice3(f: Int32 -> Int32 \\ ef, x: Int32): Int32 \\ ef = f(f(x))
 
 /// We can use \`twice3\` with both pure and impure functions:
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     (twice3(inc1, 0) + twice3(inc2, 0)) |> println`
         },
         {
@@ -256,13 +256,13 @@ def isEvn(n: Int32): Bool =
 /// We can now compute if 12345 is odd.
 /// In a language without TCE this would
 /// quickly consume all stack space.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     isOdd(12345) |> println`
         },
         {
             name: "Sending and Receiving on Channels",
             code: `/// A function that sends every element of a list
-def send(c: Channel[Int32], l: List[Int32]): Unit \ IO =
+def send(c: Channel[Int32], l: List[Int32]): Unit \\ IO =
     match l {
         case Nil     => ()
         case x :: xs => c <- x; send(c, xs)
@@ -270,14 +270,14 @@ def send(c: Channel[Int32], l: List[Int32]): Unit \ IO =
 
 /// A function that receives n elements
 /// and collects them into a list.
-def recv(c: Channel[Int32], n: Int32): List[Int32] \ IO =
+def recv(c: Channel[Int32], n: Int32): List[Int32] \\ IO =
     match n {
         case 0 => Nil
         case _ => (<- c) :: recv(c, n - 1)
     }
 
 /// Spawn a process for send and wait, and print the result.
-def main(): Unit \ IO = {
+def main(): Unit \\ IO = {
     let l = 1 :: 2 :: 3 :: Nil;
     let c = chan Int32 100;
     spawn send(c, l);
@@ -287,28 +287,28 @@ def main(): Unit \ IO = {
         {
             name: "Using Channels and Select",
             code: ` /// Mooo's \`n\` times on channel \`c\`.
-def mooo(c: Channel[String], n: Int32): Unit \ IO =
+def mooo(c: Channel[String], n: Int32): Unit \\ IO =
     match n {
         case 0 => ()
         case x => c <- "Mooo!"; mooo(c, x - 1)
     }
 
 /// Meow's \`n\` times on channel \`c\`.
-def meow(c: Channel[String], n: Int32): Unit \ IO =
+def meow(c: Channel[String], n: Int32): Unit \\ IO =
     match n {
         case 0 => ()
         case x => c <- "Meow!"; meow(c, x - 1)
     }
 
 /// Hiss'es \`n\` times on channel \`c\`.
-def hiss(c: Channel[String], n: Int32): Unit \ IO =
+def hiss(c: Channel[String], n: Int32): Unit \\ IO =
     match n {
         case 0 => ()
         case x => c <- "Hiss!"; hiss(c, x - 1)
     }
 
 /// Start the animal farm...
-def main(): Unit \ IO = {
+def main(): Unit \\ IO = {
     let c1 = chan String 1;
     let c2 = chan String 1;
     let c3 = chan String 1;
@@ -325,15 +325,15 @@ def main(): Unit \ IO = {
         {
             name: "Select with Defaults and Timers",
             code: `/// Sends the value \`x\` on the channel \`c\` after a delay.
-def slow(x: Int32, c: Channel[Int32]): Unit \ IO =
-    import static java.lang.Thread.sleep(Int64): Unit \ IO;
+def slow(x: Int32, c: Channel[Int32]): Unit \\ IO =
+    import static java.lang.Thread.sleep(Int64): Unit \\ IO;
     sleep(Time/Duration.oneMinute() / 1_000_000i64);
     c <- x;
     ()
 
 /// Reads a value from the channel \`c\`.
 /// Returns the default value \`1\` if \`c\` is not ready.
-def recvWithDefault(c: Channel[Int32]): Int32 \ IO =
+def recvWithDefault(c: Channel[Int32]): Int32 \\ IO =
     select {
         case x <- c => x
         case _      => 1
@@ -341,7 +341,7 @@ def recvWithDefault(c: Channel[Int32]): Int32 \ IO =
 
 /// Reads a value from the channel \`c\`.
 /// Returns the default value \`2\` if after a timeout.
-def recvWithTimeout(c: Channel[Int32]): Int32 \ IO =
+def recvWithTimeout(c: Channel[Int32]): Int32 \\ IO =
     select {
         case x <- c                   => x
         case _ <- Concurrent/Channel/Timer.seconds(1i64) => 2
@@ -350,7 +350,7 @@ def recvWithTimeout(c: Channel[Int32]): Int32 \ IO =
 /// Creates two channels \`c1\` and \`c2\`.
 /// Sends values on both after one minute.
 /// Receives from both using defaults and timeouts.
-def main(): Unit \ IO = {
+def main(): Unit \\ IO = {
   let c1 = chan Int32 1;
   let c2 = chan Int32 1;
   spawn slow(123, c1);
@@ -379,7 +379,7 @@ def getRules(): #{ ParentOf, AncestorOf } = #{
 }
 
 /// Composes the facts and rules, and computes the lfp.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     query getFacts(), getRules()
         select (x, y) from AncestorOf(x, y) |> println`
         },
@@ -433,7 +433,7 @@ def _g(): Unit =
         },
         {
             name: "Pipelines of Fixpoint Computations",
-            code: `def main(): Unit \ IO =
+            code: `def main(): Unit \\ IO =
     // Introduce some facts for colored paths.
     let f1 = #{
         ColorEdge(1, "blue", 2).
@@ -465,7 +465,7 @@ def _g(): Unit =
             code: `/// We can use Datalog constraints to solve the following problem:
 /// Given a collection of compilers and interpreters, what source
 /// languages can be compiled to what target languages?
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let facts = #{
         /// We have the following interpreters and compilers:
         Interpreter("x86").
@@ -574,7 +574,7 @@ def evalBExp(e: BExp): Bool = match e {
 }
 
 /// We can now run it!
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let r = evalAExp(
         IfThenElse(Neq(Cst(1), Cst(2)), Cst(42), Cst(21))
     );
@@ -621,7 +621,7 @@ instance ToString[Card] {
 }
 
 // Simulates a game of War, printing each player's turn.
-def playWar(p1: List[Card], p2: List[Card], spoils: List[Card]): Unit \ IO = match (p1, p2) {
+def playWar(p1: List[Card], p2: List[Card], spoils: List[Card]): Unit \\ IO = match (p1, p2) {
     case (Nil, Nil) => println("No one has any cards. It's a draw.")
     case (Nil, _) => println("Player 1 is out of cards. Player 2 wins!")
     case (_, Nil) => println("Player 2 is out of cards. Player 1 wins!")
@@ -686,7 +686,7 @@ instance ToString[Date] {
 def earlierDate(d1: Date, d2: Date): Date = Order.min(d1, d2)
 
 /// Thanks to the ToString type class, we can easily convert dates to strings.
-def printDate(d: Date): Unit \ IO =
+def printDate(d: Date): Unit \\ IO =
     let message = "The date is \${d}!";
     println(message)`
         },
@@ -723,14 +723,14 @@ def deduplicate(l: List[a]): List[a] with Order[a] =
 /// call \`deduplicate\` that returns a new list
 /// with only unique elements.
 ///
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let l = 1 :: 1 :: 2 :: 2 :: 3 :: 3 :: Nil;
     println(deduplicate(l))`
         },
         {
             name: "File Information",
             code: `// Getting information on files with Flix.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let f = "README.md";
 
     // Check if the file \`README.md\` exists.
@@ -754,7 +754,7 @@ def main(): Unit \ IO =
         {
             name: "Working with Files and Directories",
             code: `// Working with files and directories in Flix.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let f = "README.md";
     let dir = "src";
 
@@ -776,7 +776,7 @@ def main(): Unit \ IO =
         {
             name: "Print a Colorful Message",
             code: `/// Construct colorful messages.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let s1 = "You can print message with " + Console.red("colored text");
     let s2 = " or " + Console.bgBlue("background") + ".";
     println(s1+s2);
@@ -822,7 +822,7 @@ def sieve(ps: DelayList[Int32]): DelayList[Int32] = match DelayList.head(ps) {
 }
 
 /// Returns the first 10 prime numbers
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     println("Using 'primes'");
     DelayList.take(10, primes()) |> DelayList.toList |> println;
     println("Using 'primes2'");
@@ -832,7 +832,7 @@ def main(): Unit \ IO =
             name: "Using Laziness for Logging",
             code: `/// Emulates some slow computation.
 def slowFunction(): String = {
-    import static java.lang.Thread.sleep(Int64): Unit & Pure;
+    import static java.lang.Thread.sleep(Int64): Unit \\ {};
     let _ = sleep(5000i64);
     Int32.toString(42)
 }
@@ -841,11 +841,11 @@ def slowFunction(): String = {
 /// The idea is that we add the message to some buffer.
 /// Later, we can force the evaluation and store it permanently.
 /// For this example we just return the unit value.
-def log(_: Lazy[String]): Unit \ IO = () as \ IO
+def log(_: Lazy[String]): Unit \\ IO = () as \\ IO
 
 /// Writes a message to the log.
 /// The slow function will not be evaluated.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     log(lazy "The computation returned \${slowFunction()}")`
         },
         {
@@ -858,7 +858,7 @@ def fibs(): DelayList[Int32] =
                 (x, y) -> x + y, fibs(), DelayList.tail(fibs()))))
 
 /// Prints the first 10 Fibonacci numbers
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     DelayList.take(10, fibs()) |> DelayList.toList |> println`
         }
     ];

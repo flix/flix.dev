@@ -28,7 +28,7 @@ class Innovations extends Component {
 
                         <p>
                             Flix comes with a polymorphic type and effect system. The effect system separates pure
-                            and effectful code. If an expression is pure then it always evaluates to the same value and
+                            and impure code. If an expression is pure then it always evaluates to the same value and
                             it cannot have a side-effect. If a function is pure then it always evaluates to the same value
                             when given the same arguments.
                         </p>
@@ -38,7 +38,7 @@ class Innovations extends Component {
                             function can depend on the effect of its function arguments. For example, the effect
                             of <code>List.map</code> depends on the effect of the function passed to it. That is,
                             if <code>List.map</code> is given a pure function then computation is pure, whereas if
-                            it is given an function with IO effect then computation is effectful. As an another example,
+                            it is given an function with IO effect then computation is impure. As an another example,
                             the effect of <code>&gt;&gt;</code> (forward function composition) depends on <i>both</i> of
                             its arguments: composition is only pure if both its function arguments are pure.
                         </p>

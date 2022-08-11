@@ -52,7 +52,7 @@ class Naming extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def map(f: a -> b & e, l: List[a]): List[b] & e`}
+                            {`def map(f: a -> b \\ ef, l: List[a]): List[b] \\ ef`}
                         </InlineEditor>
 
                         <p>
@@ -65,7 +65,7 @@ class Naming extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def map(f: a -> b & e, o: Option[a]): Option[b] & e`}
+                            {`def map(f: a -> b \\ ef, o: Option[a]): Option[b] \\ ef`}
                         </InlineEditor>
 
                         <p>
@@ -73,7 +73,7 @@ class Naming extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def map(f: a -> b & e, a: Array[a]): Array[b] \ IO`}
+                            {`def map(f: a -> b \\ ef, a: Array[a]): Array[b] \\ IO`}
                         </InlineEditor>
 
                         <p>
@@ -91,7 +91,7 @@ class Naming extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def mapInPlace(f: a -> a, a: Array[a]): Unit \ IO`}
+                            {`def mapInPlace(f: a -> a, a: Array[a]): Unit \\ IO`}
                         </InlineEditor>
 
                         <p>

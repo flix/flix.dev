@@ -51,7 +51,7 @@ class About extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def main(): Unit \ IO =
+                            {`def main(): Unit \\ IO =
     println("Hello World!")`}
                         </InlineEditor>
 
@@ -77,7 +77,7 @@ def area(s: Shape): Int32 = match s {
 }
 
 // Computes the area of a 2 by 4.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     area(Rectangle(2, 4)) |> println`}
                         </InlineEditor>
 
@@ -111,7 +111,7 @@ def map(f: a -> b, t: Tree[a]): Tree[b] = match t {
 def tree(): Tree[Int32] = Node(Leaf(1), Leaf(2))
 
 /// Squares all elements in the simple tree.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     map(x -> x * x, tree()) |> println`}
                         </InlineEditor>
 
@@ -135,11 +135,11 @@ def main(): Unit \ IO =
 
                         <InlineEditor>
                             {`/// Computes the sum of \`x\` and \`y\` and sends the result on the channel \`c\`.
-def sum(x: Int32, y: Int32, c: Channel[Int32]): Unit \ IO =
+def sum(x: Int32, y: Int32, c: Channel[Int32]): Unit \\ IO =
     c <- (x + y); ()
 
 /// Computes the sum of 21 and 42 using a fresh process.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let c = chan Int32 1;     // construct a new empty channel for the result.
     spawn sum(21, 42, c);     // spawn sum to run in a separate process.
     <- c;                     // wait for the result to arrive on the channel.
@@ -156,13 +156,13 @@ def main(): Unit \ IO =
 
                         <InlineEditor>
                             {`/// Sends the string \`s\` on the channel \`c\` up to \`n\` times.
-def animal(s: String, c: Channel[String], n: Int32): Unit \ IO = match n {
+def animal(s: String, c: Channel[String], n: Int32): Unit \\ IO = match n {
     case 0 => ()
     case i => c <- s; animal(s, c, i - 1)
 }
 
 /// Returns "mooo", "meow", or "hiss".
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     let c1 = chan String 1;      /// constructs a new empty channel with a buffer of one.
     let c2 = chan String 1;      /// constructs a new empty channel with a buffer of one.
     let c3 = chan String 1;      /// constructs a new empty channel with a buffer of one.
@@ -176,11 +176,11 @@ def main(): Unit \ IO =
     } |> println`}
                         </InlineEditor>
 
-                        <h2>Polymorphic Effects: Separating Pure and Effectful Code</h2>
+                        <h2>Polymorphic Effects: Separating Pure and Impure Code</h2>
 
                         <p>
                             A unique feature of Flix is its polymorphic effect system. The Flix type and effect system
-                            cleanly separates pure and effectful code. If an expression is pure then it always
+                            cleanly separates pure and impure code. If an expression is pure then it always
                             evaluates to the same value and it cannot have a side-effect. If a function is pure then it
                             always evaluates to the same value when given the same arguments.
                         </p>
@@ -200,7 +200,7 @@ def sum(x: Int32, y: Int32): Int32 = x + y`}
 
                         <InlineEditor>
                             {`/// A function with IO effect
-def sayHello(): Unit \ IO = Console.printLine("Hello World")`}
+def sayHello(): Unit \\ IO = Console.printLine("Hello World")`}
                         </InlineEditor>
 
                         <p>
@@ -219,7 +219,7 @@ def sayHello(): Unit \ IO = Console.printLine("Hello World")`}
                         </p>
 
                         <p>
-                            <i>It is a compile-time error to call <code>map</code> with an effectful function!</i>
+                            <i>It is a compile-time error to call <code>map</code> with an impure function!</i>
                         </p>
 
                         <p>
@@ -237,7 +237,7 @@ def sayHello(): Unit \ IO = Console.printLine("Hello World")`}
                         </p>
 
                         <InlineEditor>
-                            {`def map(f: a -> b & ef, xs: List[a]): List[b] & ef = match xs {
+                            {`def map(f: a -> b \\ ef, xs: List[a]): List[b] \\ ef = match xs {
     case Nil     => Nil
     case x :: rs => f(x) :: map(f, rs)
 }`}
@@ -285,7 +285,7 @@ def drivable(g: #{Road, Connected}, src: String, dst: String, minSpeed: Int32): 
     not (query g, p select () from Connected(src, dst) |> Array.isEmpty)
 
 /// Determines if it possible to drive from Aarhus to Berlin going at least 110 km/h.
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     // the road network modelled as a set of Datalog facts.
     let g = #{
         Road("Aarhus", 110, "Vejle").
@@ -327,7 +327,7 @@ def closure(): #{ LabelledEdge(String, l, String),
     LabelledPath(x, l, z) :- LabelledPath(x, l, y), LabelledPath(y, l, z).
 }
 
-def main(): Unit \ IO =
+def main(): Unit \\ IO =
     query edgesWithNumbers(), closure()
         select (x, l, z) from LabelledPath(x, l, z) |> println;
     query edgesWithColor(), closure()

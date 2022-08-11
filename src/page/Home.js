@@ -222,16 +222,16 @@ def f(): Int32 = area({h = 1, color = "Blue", w = 2})`}
                     </Col>
                     <Col md="6">
                         <InlineEditor>
-                            {`def inc1(x: Int32): Int32 & Pure = x + 1
+                            {`def inc1(x: Int32): Int32 \\ {} = x + 1
 
-def inc2(x: Int32): Int32 \ IO =
+def inc2(x: Int32): Int32 \\ IO =
     println("x = \${x}");
     x + 1
 
-def f(): Int32 \ IO =     // f is a function with IO effect
-    let r1 = inc1(123);   // is pure
-    let r2 = inc2(456);   // has IO effect
-    r1 + r2               // is pure`}
+def f(): Int32 \\ IO =     // f is impure
+    let r1 = inc1(123);   // pure
+    let r2 = inc2(456);   // impure
+    r1 + r2               // pure`}
                         </InlineEditor>
                     </Col>
                 </Row>
@@ -242,7 +242,7 @@ def f(): Int32 \ IO =     // f is a function with IO effect
                             {`/// 
 /// The purity of \`map\` depends on the purity of \`f\`.
 ///
-def map(f: a -> b & ef, l: List[a]): List[b] & ef =
+def map(f: a -> b \\ ef, l: List[a]): List[b] \\ ef =
     match l {
         case Nil     => Nil
         case x :: xs => f(x) :: map(f, xs)
@@ -300,7 +300,7 @@ def map(f: a -> b & ef, l: List[a]): List[b] & ef =
                             {`/// 
 /// We can inspect the purity of a function argument.
 /// 
-def inspect(f: a -> b & ef): Unit \ IO =
+def inspect(f: a -> b \\ ef): Unit \\ IO =
     reifyEff(f) {
         case Pure(g) => println("f is pure")
         case _       => println("f is not pure")
@@ -311,7 +311,7 @@ def inspect(f: a -> b & ef): Unit \ IO =
 /// lazy (or parallel) evaluation. In this case, if f is 
 /// pure then perform the map operation lazily.
 ///
-def map(f: a -> b & ef, l: LazyList[a]): LazyList[b] & ef =
+def map(f: a -> b \\ ef, l: LazyList[a]): LazyList[b] \\ ef =
     reifyEff(f) {
         case Pure(g) => mapL(g, l)
         case _       => mapE(f, l)
@@ -382,12 +382,12 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
     ///
     /// Left-associative fold of a structure.
     ///
-    def foldLeft(f: (b, a) -> b & ef, s: b, t: t[a]): b & ef
+    def foldLeft(f: (b, a) -> b \\ ef, s: b, t: t[a]): b \\ ef
 
     ///
     /// Right-associative fold of a structure.
     ///
-    def foldRight(f: (a, b) -> b & ef, s: b, t: t[a]): b & ef
+    def foldRight(f: (a, b) -> b \\ ef, s: b, t: t[a]): b \\ ef
 
 }`}
                         </InlineEditor>
