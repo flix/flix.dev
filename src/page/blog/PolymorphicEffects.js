@@ -147,7 +147,7 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            where <code>\ {}</code> specifies that the <code>inc</code> function is pure.
+                            where <code>\\ {}</code> specifies that the <code>inc</code> function is pure.
                         </p>
 
                         <p>
