@@ -241,8 +241,8 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            The signature <code>f: b ~> Bool</code> denotes an impure function
-                            from <code>b</code> to <code>Unit</code>. Passing a pure function to <code>foreach</code> is
+                            The signature <code>f: a ~> Unit</code> denotes an impure function
+                            from <code>a</code> to <code>Unit</code>. Passing a pure function to <code>foreach</code> is
                             a compile-time type error. Given that <code>f</code> is impure and <code>f</code> is called
                             within <code>foreach</code>, it is itself impure. We enforce that
                             the <code>f</code> function is impure because it is pointless to apply
