@@ -56,7 +56,7 @@ class Naming extends Component {
                         </InlineEditor>
 
                         <p>
-                            (Here the <code>e</code> denotes that the function is <i>effect polymorphic</i>, but that
+                            (Here the <code>ef</code> denotes that the function is <i>effect polymorphic</i>, but that
                             is for another day.)
                         </p>
 
@@ -91,7 +91,7 @@ class Naming extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def mapInPlace(f: a -> a, a: Array[a]): Unit \\ IO`}
+                            {`def mapInPlace(f: a -> a \\ IO, a: Array[a]): Unit \\ IO`}
                         </InlineEditor>
 
                         <p>

@@ -147,7 +147,7 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            where <code>\\ {}</code> specifies that the <code>inc</code> function is pure.
+                            where <code>\ &#123;&#125;</code> specifies that the <code>inc</code> function is pure.
                         </p>
 
                         <p>
@@ -159,13 +159,12 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            where <code>\\ IO</code> specifies that the <code>sayHello</code> function is impure.
+                            where <code>\ IO</code> specifies that the <code>sayHello</code> function is impure.
                         </p>
 
                         <p>
-                            The Flix type and effect system is <i>sound</i>, hence if we forget the <code>\\ IO</code>
-                            annotation on the <code>sayHello</code> function, the compiler will emit a
-                            type (or rather effect) error.
+                            The Flix type and effect system is <i>sound</i>, hence if we forget the <code>\ IO</code> annotation
+                            on the <code>sayHello</code> function, the compiler will emit a type (or rather effect) error.
                         </p>
 
                         <p>
@@ -237,11 +236,11 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def foreach(f: a ~> Unit, xs: List[a]): Unit \\ IO = ...`}
+                            {`def foreach(f: a -> Unit \\ IO, xs: List[a]): Unit \\ IO = ...`}
                         </InlineEditor>
 
                         <p>
-                            The signature <code>f: b ~{">"} Bool</code> denotes an impure function
+                            The signature <code>f: a -{">"} Unit \ IO</code> denotes an impure function
                             from <code>b</code> to <code>Unit</code>. Passing a pure function to <code>foreach</code> is
                             a compile-time type error. Given that <code>f</code> is impure and <code>f</code> is called
                             within <code>foreach</code>, it is itself impure. We enforce that
@@ -255,8 +254,8 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def onMouseDn(f: MouseEvent ~> Unit): Unit \\ IO = ...
-def onMouseUp(f: MouseEvent ~> Unit): Unit \\ IO = ...`}
+                            {`def onMouseDn(f: MouseEvent -> Unit \\ IO): Unit \\ IO = ...
+def onMouseUp(f: MouseEvent -> Unit \\ IO): Unit \\ IO = ...`}
                         </InlineEditor>
 
                         <p>
@@ -309,7 +308,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </p>
 
                         <InlineEditor>
-                            {`def unfoldWithIter(next: Unit ~> Option[a]): List[a] \\ IO`}
+                            {`def unfoldWithIter(next: Unit -> Option[a] \\ IO): List[a] \\ IO`}
                         </InlineEditor>
 
                         <p>
@@ -368,10 +367,10 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </InlineEditor>
 
                         <p>
-                            The syntax <code>f: a -{">"} b \\ ef</code> denotes a function
+                            The syntax <code>f: a -{">"} b \ ef</code> denotes a function
                             from <code>a</code> to <code>b</code> with latent effect <code>ef</code>. The signature of
                             the <code>map</code> function captures that its
-                            effect <code>e</code> depends on the effect of its argument <code>f</code>.
+                            effect <code>ef</code> depends on the effect of its argument <code>f</code>.
                             That is, if <code>map</code> is called with a pure function then its evaluation is pure,
                             whereas if it is called with an impure function then its evaluation is impure. The effect
                             signature is <i>conservative</i> (i.e. over-approximate). That is,
@@ -386,13 +385,13 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </p>
 
                         <InlineEditor>
-                            {` def >>(f: a -> b \\ e1, g: b -> c \\ e2): a -> c \\ {{e1 /\\ e2}} = x -> g(f(x))`}
+                            {` def >>(f: a -> b \\ ef1, g: b -> c \\ ef2): a -> c \\ { ef1, ef2 } = x -> g(f(x))`}
                         </InlineEditor>
 
                         <p>
-                            Here the function <code>f</code> has effect <code>e1</code> and <code>g</code> has
-                            effect <code>e2</code>. The returned function has effect <code>e1 /\ e2</code>, i.e. for it
-                            to be pure both <code>e1</code> and <code>e2</code> must be pure. Otherwise it is impure.
+                            Here the function <code>f</code> has effect <code>ef1</code> and <code>g</code> has
+                            effect <code>ef2</code>. The returned function has effect <code>ef1 and ef2</code>, i.e. for it
+                            to be pure both <code>ef1</code> and <code>ef2</code> must be pure. Otherwise it is impure.
                         </p>
 
                         <h2>Type Equivalences</h2>
@@ -479,8 +478,8 @@ List.map(f, List.map(g, 1 :: 2 :: Nil))`}
                                 </li>
                                 <li>
                                     If, on the other hand, <code>e1 = F</code> (i.e. <code>f</code> is impure)
-                                    then <code>(not e1) or e2 = T or e2 = T </code>. In other words, <code>g</code>
-                                    <i>must</i> be pure, otherwise there is a type error.
+                                    then <code>(not e1) or e2 = T or e2 = T </code>.
+                                    In other words, <code>g</code> <i>must</i> be pure, otherwise there is a type error.
                                 </li>
                             </ul>
                         </p>
