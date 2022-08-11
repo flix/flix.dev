@@ -163,8 +163,8 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <p>
-                            The Flix type and effect system is <i>sound</i>, hence if we forget the <code>&
-                            Impure</code> annotation on the <code>sayHello</code> function, the compiler will emit a
+                            The Flix type and effect system is <i>sound</i>, hence if we forget the <code>\\ IO</code>
+                            annotation on the <code>sayHello</code> function, the compiler will emit a
                             type (or rather effect) error.
                         </p>
 
@@ -364,12 +364,12 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </p>
 
                         <InlineEditor>
-                            {`def map(f: a -> b & e, xs: List[a]): List[b] & e = ...`}
+                            {`def map(f: a -> b \\ ef, xs: List[a]): List[b] \\ ef = ...`}
                         </InlineEditor>
 
                         <p>
-                            The syntax <code>f: a -> b & e</code> denotes a function
-                            from <code>a</code> to <code>b</code> with latent effect <code>e</code>. The signature of
+                            The syntax <code>f: a -> b \\ ef</code> denotes a function
+                            from <code>a</code> to <code>b</code> with latent effect <code>ef</code>. The signature of
                             the <code>map</code> function captures that its
                             effect <code>e</code> depends on the effect of its argument <code>f</code>.
                             That is, if <code>map</code> is called with a pure function then its evaluation is pure,
@@ -386,7 +386,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </p>
 
                         <InlineEditor>
-                            {` def >>(f: a -> b & e1, g: b -> c & e2): a -> c & {{e1 /\\ e2}} = x -> g(f(x))`}
+                            {` def >>(f: a -> b \\ e1, g: b -> c \\ e2): a -> c \\ {{e1 /\\ e2}} = x -> g(f(x))`}
                         </InlineEditor>
 
                         <p>
@@ -453,7 +453,7 @@ List.map(f, List.map(g, 1 :: 2 :: Nil))`}
                         </p>
 
                         <InlineEditor>
-                            {`def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) or e2}}, xs: List[a]): ... = ...`}
+                            {`def mapCompose(f: a -> b \\ e1, g: b -> c \\ {{(not e1) or e2}}, xs: List[a]): ... = ...`}
                         </InlineEditor>
 
                         <p>
@@ -467,7 +467,7 @@ List.map(f, List.map(g, 1 :: 2 :: Nil))`}
                         </p>
 
                         <InlineEditor>
-                            {`def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) or e2}}, xs: List[a]): ... = ...`}
+                            {`def mapCompose(f: a -> b \\ e1, g: b -> c \\ {{(not e1) or e2}}, xs: List[a]): ... = ...`}
                         </InlineEditor>
 
                         <p>
