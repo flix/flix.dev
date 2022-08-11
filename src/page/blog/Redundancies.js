@@ -422,7 +422,7 @@ Compilation failed with 1 error(s).`}
 
 
                         <p>
-                            The problem with the code is that the evaluation of <code>List.map(x -> x + 1, 1 :: 2 ::
+                            The problem with the code is that the evaluation of <code>List.map(x -{">"} x + 1, 1 :: 2 ::
                             Nil)</code> has no side-effect(s) and its result is discarded.
                         </p>
 
@@ -444,7 +444,7 @@ Compilation failed with 1 error(s).`}
                         <p>
                             The key challenge is to (automatically) determine whether an expression is pure
                             (side-effect free) in the presence of polymorphism. Specifically, the call
-                            to <code>List.map</code> is pure because the <i>function argument</i> <code>x -> x +
+                            to <code>List.map</code> is pure because the <i>function argument</i> <code>x -{">"} x +
                             1</code> is pure. In other words, the purity of <code>List.map</code> depends on the purity
                             of its argument: it is <i>effect polymorphic</i>. The combination of type inference,
                             fine-grained effect inference, and effect polymorphism is a strong cocktail that I plan to

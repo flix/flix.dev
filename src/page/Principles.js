@@ -104,8 +104,8 @@ class Principles extends Component {
                     <Principle name="Type parameter elision">
                         While we require type signatures, we also believe that such signatures should be as minimal
                         as possible. Thus, while the full type signature of <code>List.map</code> is <code>def map[a,
-                        b](f: a -> b, xs: List[a]): List[b]</code>, we can use <i>type parameter elision</i> to write it
-                        simply as: <code>def map(f: a -> b, xs: List[a]): List[b]</code> omitting the type arguments.
+                        b](f: a -{'>'} b, xs: List[a]): List[b]</code>, we can use <i>type parameter elision</i> to write it
+                        simply as: <code>def map(f: a -{'>'} b, xs: List[a]): List[b]</code> omitting the type arguments.
                     </Principle>
 
                     <Principle name="Syntax vs. Semantics">
@@ -589,8 +589,8 @@ class Principles extends Component {
                         example, <code>Array.reverse</code> and <code>Array.reverse!</code> share the
                         same name. On the other hand, <code>Array.transform!</code> is
                         called <code>transform!</code> and not <code>map!</code> because its type signature is
-                        dissimilar to map (i.e. map works on functions of type <code>a -> b</code>, but transform
-                        requires functions of type <code>a -> a</code>.)
+                        dissimilar to map (i.e. map works on functions of type <code>a -{'>'} b</code>, but transform
+                        requires functions of type <code>a -{'>'} a</code>.)
                     </Principle>
 
                 </CardColumns>

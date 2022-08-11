@@ -153,7 +153,7 @@ class DesignFlaws extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def f: Int = 21`}
+                            {`def f: Int32 = 21`}
                         </InlineEditor>
 
                         <p>
@@ -161,7 +161,7 @@ class DesignFlaws extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def g: Int = f + 42 // returns 63`}
+                            {`def g: Int32 = f + 42 // returns 63`}
                         </InlineEditor>
 
                         <p>
@@ -176,8 +176,8 @@ class DesignFlaws extends Component {
 
 
                         <InlineEditor>
-                            {`def f(): Int = 21
-def g: Int = f() + 42 // returns 63`}
+                            {`def f(): Int32 = 21
+def g: Int32 = f() + 42 // returns 63`}
                         </InlineEditor>
 
                         <p>
@@ -204,11 +204,11 @@ def g: Int = f() + 42 // returns 63`}
                             Type constructors, such as <code>Option</code> and <code>Result</code> can be thought of
                             a special type of functions. Hence, it makes sense that their syntax should mirror function
                             applications. For example, we can write the type
-                            applications <code>Option[Int]</code> and <code>Result[Int,
-                            Int]</code> mirroring the prefix style of regular function applications. Similarly, for a
+                            applications <code>Option[Int32]</code> and <code>Result[Int32,
+                            Int32]</code> mirroring the prefix style of regular function applications. Similarly, for a
                             while, Flix supported infix and postfix <i>type applications</i>. That is, the former could
-                            also be expressed as: <code>Int.Option[]</code> and <code>Int.Result[Int]</code>, or even
-                            as <code>Int `Result` Int</code>. Thankfully, those days are gone. Striving for such
+                            also be expressed as: <code>Int32.Option[]</code> and <code>Int32.Result[Int32]</code>, or even
+                            as <code>Int32 `Result` Int32</code>. Thankfully, those days are gone. Striving for such
                             uniformity in every place does not seem worth it.
                         </p>
 

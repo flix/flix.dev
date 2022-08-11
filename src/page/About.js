@@ -51,7 +51,7 @@ class About extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def main(): Unit & Impure =
+                            {`def main(): Unit \\ IO =
     println("Hello World!")`}
                         </InlineEditor>
 
@@ -77,7 +77,7 @@ def area(s: Shape): Int32 = match s {
 }
 
 // Computes the area of a 2 by 4.
-def main(): Unit & Impure =
+def main(): Unit \\ IO =
     area(Rectangle(2, 4)) |> println`}
                         </InlineEditor>
 
@@ -111,7 +111,7 @@ def map(f: a -> b, t: Tree[a]): Tree[b] = match t {
 def tree(): Tree[Int32] = Node(Leaf(1), Leaf(2))
 
 /// Squares all elements in the simple tree.
-def main(): Unit & Impure =
+def main(): Unit \\ IO =
     map(x -> x * x, tree()) |> println`}
                         </InlineEditor>
 
@@ -135,11 +135,11 @@ def main(): Unit & Impure =
 
                         <InlineEditor>
                             {`/// Computes the sum of \`x\` and \`y\` and sends the result on the channel \`c\`.
-def sum(x: Int32, y: Int32, c: Channel[Int32]): Unit & Impure =
+def sum(x: Int32, y: Int32, c: Channel[Int32]): Unit \\ IO =
     c <- (x + y); ()
 
 /// Computes the sum of 21 and 42 using a fresh process.
-def main(): Unit & Impure =
+def main(): Unit \\ IO =
     let c = chan Int32 1;     // construct a new empty channel for the result.
     spawn sum(21, 42, c);     // spawn sum to run in a separate process.
     <- c;                     // wait for the result to arrive on the channel.
@@ -156,13 +156,13 @@ def main(): Unit & Impure =
 
                         <InlineEditor>
                             {`/// Sends the string \`s\` on the channel \`c\` up to \`n\` times.
-def animal(s: String, c: Channel[String], n: Int32): Unit & Impure = match n {
+def animal(s: String, c: Channel[String], n: Int32): Unit \\ IO = match n {
     case 0 => ()
     case i => c <- s; animal(s, c, i - 1)
 }
 
 /// Returns "mooo", "meow", or "hiss".
-def main(): Unit & Impure =
+def main(): Unit \\ IO =
     let c1 = chan String 1;      /// constructs a new empty channel with a buffer of one.
     let c2 = chan String 1;      /// constructs a new empty channel with a buffer of one.
     let c3 = chan String 1;      /// constructs a new empty channel with a buffer of one.
@@ -200,7 +200,7 @@ def sum(x: Int32, y: Int32): Int32 = x + y`}
 
                         <InlineEditor>
                             {`/// An impure function
-def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
+def sayHello(): Unit \\ IO = Console.printLine("Hello World")`}
                         </InlineEditor>
 
                         <p>
@@ -227,7 +227,7 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
                             following: for higher-order functions the effect of a function depends on the effects of its
                             arguments. For example, if map is passed a pure function <code>f</code> then the
                             expression <code>List.map(f, 1 :: Nil)</code> is pure. On the other hand, if map is passed
-                            an impure function <code>g</code> then the expression <code>List.map(g, 1 :: Nil)</code> is
+                            an impure function <code>g</code> then the expression <code>List.map(g, 1 :: Nil)</code> is 
                             impure. The effect of map depends on the effect of its first argument: it is effect
                             polymorphic.
                         </p>
@@ -237,7 +237,7 @@ def sayHello(): Unit & Impure = Console.printLine("Hello World")`}
                         </p>
 
                         <InlineEditor>
-                            {`def map(f: a -> b & ef, xs: List[a]): List[b] & ef = match xs {
+                            {`def map(f: a -> b \\ ef, xs: List[a]): List[b] \\ ef = match xs {
     case Nil     => Nil
     case x :: rs => f(x) :: map(f, rs)
 }`}
@@ -285,7 +285,7 @@ def drivable(g: #{Road, Connected}, src: String, dst: String, minSpeed: Int32): 
     not (query g, p select () from Connected(src, dst) |> Array.isEmpty)
 
 /// Determines if it possible to drive from Aarhus to Berlin going at least 110 km/h.
-def main(): Unit & Impure =
+def main(): Unit \\ IO =
     // the road network modelled as a set of Datalog facts.
     let g = #{
         Road("Aarhus", 110, "Vejle").
@@ -327,7 +327,7 @@ def closure(): #{ LabelledEdge(String, l, String),
     LabelledPath(x, l, z) :- LabelledPath(x, l, y), LabelledPath(y, l, z).
 }
 
-def main(): Unit & Impure =
+def main(): Unit \\ IO =
     query edgesWithNumbers(), closure()
         select (x, l, z) from LabelledPath(x, l, z) |> println;
     query edgesWithColor(), closure()

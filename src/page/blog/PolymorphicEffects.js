@@ -143,11 +143,11 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def inc(x: Int): Int & Pure = x + 1`}
+                            {`def inc(x: Int): Int \\ {} = x + 1`}
                         </InlineEditor>
 
                         <p>
-                            where <code>& Pure</code> specifies that the <code>inc</code> function is pure.
+                            where <code>\ &#123;&#125;</code> specifies that the <code>inc</code> function is pure.
                         </p>
 
                         <p>
@@ -155,17 +155,16 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def sayHello(): Unit & Impure = Console.printLine("Hello World!")`}
+                            {`def sayHello(): Unit \\ IO = Console.printLine("Hello World!")`}
                         </InlineEditor>
 
                         <p>
-                            where <code>& Impure</code> specifies that the <code>sayHello</code> function is impure.
+                            where <code>\ IO</code> specifies that the <code>sayHello</code> function is impure.
                         </p>
 
                         <p>
-                            The Flix type and effect system is <i>sound</i>, hence if we forget the <code>&
-                            Impure</code> annotation on the <code>sayHello</code> function, the compiler will emit a
-                            type (or rather effect) error.
+                            The Flix type and effect system is <i>sound</i>, hence if we forget the <code>\ IO</code> annotation
+                            on the <code>sayHello</code> function, the compiler will emit a type (or rather effect) error.
                         </p>
 
                         <p>
@@ -217,7 +216,7 @@ class PolymorphicEffects extends Component {
                         </InlineEditor>
 
                         <p>
-                            The signature <code>f: a -> Bool</code> denotes a pure function
+                            The signature <code>f: a -{">"} Bool</code> denotes a pure function
                             from <code>a</code> to <code>Bool</code>. Passing an impure function
                             to <code>exists</code> is a compile-time type error. We want to enforce
                             that <code>f</code> is pure because the contract for <code>exists</code> makes no guarantees
@@ -237,12 +236,12 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def foreach(f: a ~> Unit, xs: List[a]): Unit & Impure = ...`}
+                            {`def foreach(f: a -> Unit \\ IO, xs: List[a]): Unit \\ IO = ...`}
                         </InlineEditor>
 
                         <p>
-                            The signature <code>f: a ~> Unit</code> denotes an impure function
-                            from <code>a</code> to <code>Unit</code>. Passing a pure function to <code>foreach</code> is
+                            The signature <code>f: a -{">"} Unit \ IO</code> denotes an impure function
+                            from <code>b</code> to <code>Unit</code>. Passing a pure function to <code>foreach</code> is
                             a compile-time type error. Given that <code>f</code> is impure and <code>f</code> is called
                             within <code>foreach</code>, it is itself impure. We enforce that
                             the <code>f</code> function is impure because it is pointless to apply
@@ -255,8 +254,8 @@ class PolymorphicEffects extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`def onMouseDn(f: MouseEvent ~> Unit): Unit & Impure = ...
-def onMouseUp(f: MouseEvent ~> Unit): Unit & Impure = ...`}
+                            {`def onMouseDn(f: MouseEvent -> Unit \\ IO): Unit \\ IO = ...
+def onMouseUp(f: MouseEvent -> Unit \\ IO): Unit \\ IO = ...`}
                         </InlineEditor>
 
                         <p>
@@ -309,7 +308,7 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </p>
 
                         <InlineEditor>
-                            {`def unfoldWithIter(next: Unit ~> Option[a]): List[a] & Impure`}
+                            {`def unfoldWithIter(next: Unit -> Option[a] \\ IO): List[a] \\ IO`}
                         </InlineEditor>
 
                         <p>
@@ -364,14 +363,14 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </p>
 
                         <InlineEditor>
-                            {`def map(f: a -> b & e, xs: List[a]): List[b] & e = ...`}
+                            {`def map(f: a -> b \\ ef, xs: List[a]): List[b] \\ ef = ...`}
                         </InlineEditor>
 
                         <p>
-                            The syntax <code>f: a -> b & e</code> denotes a function
-                            from <code>a</code> to <code>b</code> with latent effect <code>e</code>. The signature of
+                            The syntax <code>f: a -{">"} b \ ef</code> denotes a function
+                            from <code>a</code> to <code>b</code> with latent effect <code>ef</code>. The signature of
                             the <code>map</code> function captures that its
-                            effect <code>e</code> depends on the effect of its argument <code>f</code>.
+                            effect <code>ef</code> depends on the effect of its argument <code>f</code>.
                             That is, if <code>map</code> is called with a pure function then its evaluation is pure,
                             whereas if it is called with an impure function then its evaluation is impure. The effect
                             signature is <i>conservative</i> (i.e. over-approximate). That is,
@@ -386,13 +385,13 @@ def groupBy(f: a -> k, l: List[a]): Map[k, List[a]] = ...`}
                         </p>
 
                         <InlineEditor>
-                            {` def >>(f: a -> b & e1, g: b -> c & e2): a -> c & {{e1 /\\ e2}} = x -> g(f(x))`}
+                            {` def >>(f: a -> b \\ ef1, g: b -> c \\ ef2): a -> c \\ { ef1, ef2 } = x -> g(f(x))`}
                         </InlineEditor>
 
                         <p>
-                            Here the function <code>f</code> has effect <code>e1</code> and <code>g</code> has
-                            effect <code>e2</code>. The returned function has effect <code>e1 /\ e2</code>, i.e. for it
-                            to be pure both <code>e1</code> and <code>e2</code> must be pure. Otherwise it is impure.
+                            Here the function <code>f</code> has effect <code>ef1</code> and <code>g</code> has
+                            effect <code>ef2</code>. The returned function has effect <code>ef1 and ef2</code>, i.e. for it
+                            to be pure both <code>ef1</code> and <code>ef2</code> must be pure. Otherwise it is impure.
                         </p>
 
                         <h2>Type Equivalences</h2>
@@ -453,7 +452,7 @@ List.map(f, List.map(g, 1 :: 2 :: Nil))`}
                         </p>
 
                         <InlineEditor>
-                            {`def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) \\/ e2}}, xs: List[a]): ... = ...`}
+                            {`def mapCompose(f: a -> b \\ e1, g: b -> c \\ {{(not e1) or e2}}, xs: List[a]): ... = ...`}
                         </InlineEditor>
 
                         <p>
@@ -467,20 +466,20 @@ List.map(f, List.map(g, 1 :: 2 :: Nil))`}
                         </p>
 
                         <InlineEditor>
-                            {`def mapCompose(f: a -> b & e1, g: b -> c & {{(not e1) \\/ e2}}, xs: List[a]): ... = ...`}
+                            {`def mapCompose(f: a -> b \\ e1, g: b -> c \\ {{(not e1) or e2}}, xs: List[a]): ... = ...`}
                         </InlineEditor>
 
                         <p>
                             <ul>
                                 <li>
-                                    If <code>e1 = T</code> (i.e. <code>f</code> is pure) then <code>(not e1) \/ e2 = F
-                                    \/ e2 = e2</code>. In other words, <code>g</code> may be pure or impure. Its purity
+                                    If <code>e1 = T</code> (i.e. <code>f</code> is pure) then <code>(not e1) or e2 = F
+                                    or e2 = e2</code>. In other words, <code>g</code> may be pure or impure. Its purity
                                     is not constrained by the type signature.
                                 </li>
                                 <li>
                                     If, on the other hand, <code>e1 = F</code> (i.e. <code>f</code> is impure)
-                                    then <code>(not e1) \/ e2 = T \/ e2 = T </code>. In other words, <code>g</code>
-                                    <i>must</i> be pure, otherwise there is a type error.
+                                    then <code>(not e1) or e2 = T or e2 = T </code>.
+                                    In other words, <code>g</code> <i>must</i> be pure, otherwise there is a type error.
                                 </li>
                             </ul>
                         </p>
@@ -497,7 +496,7 @@ List.map(f, List.map(g, 1 :: 2 :: Nil))`}
                         </p>
 
                         <InlineEditor>
-                            {`def mapCompose(f: a -> b & {{(not e1) \\/ e2}}, g: b -> c & e1, xs: List[a]): ... = ...`}
+                            {`def mapCompose(f: a -> b \\ {{(not e1) or e2}}, g: b -> c \\ e1, xs: List[a]): ... = ...`}
                         </InlineEditor>
 
                         <p>
@@ -524,7 +523,7 @@ List.map(f, List.map(g, 1 :: 2 :: Nil))`}
 ///
 def charAt(i: Int, s: String): Char =
     import java.lang.String.charAt(Int32);
-    s.charAt(i) as & Pure`}
+    s.charAt(i) as \\ {}`}
                         </InlineEditor>
 
                         <p>
@@ -554,12 +553,12 @@ def stripIndent(n: Int32, s: String): String =
         if (n <= 0 or length(s) == 0)
             s
         else
-            stripIndentHelper(n, s) as & Pure
+            stripIndentHelper(n, s) as \\ {}
         
 ///
 /// Helper function for \`stripIndent\`.
 ///
-def stripIndentHelper(n: Int32, s: String): String & Impure =
+def stripIndentHelper(n: Int32, s: String): String \\ IO =
     let sb = StringBuilder.new();
     let limit = Int32.min(n, length(s));
     let step = s1 -> {
