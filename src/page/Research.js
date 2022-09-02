@@ -38,6 +38,12 @@ class Research extends Component {
 
                 <ul>
                     <Paper
+                        title="Flix: A Meta Programming Language for Datalog"
+                        authors="Magnus Madsen, Jonathan Lindegaard Starup, Ondřej Lhoták"
+                        venue="Datalog '22"
+                        url="/paper/datalog2022.pdf"/>
+
+                    <Paper
                         title="Relational Nullable Types with Boolean Unification"
                         authors="Magnus Madsen, Jaco van de Pol"
                         venue="OOPSLA '21"
