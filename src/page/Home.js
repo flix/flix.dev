@@ -175,11 +175,11 @@ def area(s: Shape): Int32 = match s {
                         <InlineEditor>
                             {`def origin(): (Int32, Int32) = (0, 0)
 
-def oneByOne():  {w :: Int32, h :: Int32} = {w = 1, h = 1}
+def oneByOne():  {w = Int32, h = Int32} = {w = 1, h = 1}
 
-def twoByFour(): {w :: Int32, h :: Int32} = {w = 2, h = 4}
+def twoByFour(): {w = Int32, h = Int32} = {w = 2, h = 4}
 
-def area(rect: {w :: Int32, h :: Int32 | r}): Int32 =
+def area(rect: {w = Int32, h = Int32 | r}): Int32 =
     rect.w * rect.h
 
 def f(): Int32 = area({h = 1, color = "Blue", w = 2})`}
