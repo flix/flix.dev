@@ -107,7 +107,7 @@ class Koans extends Component {
                         </h5>
 
                         <InlineEditor>
-                            {`pub def heirsAndUsurpers(parents: Array[(person, person)], emperors: Array[person]): {heirs :: Array[person], usurpers :: Array[person]} with Boxable[person] =
+                            {`pub def heirsAndUsurpers(parents: Array[(person, person)], emperors: Array[person]): {heirs = Array[person], usurpers = Array[person]} with Boxable[person] =
     let p = project parents into Parent;
     let e = project emperors into Emperor;
     let lp = #{
@@ -153,7 +153,7 @@ class Koans extends Component {
                         </p>
 
                         <InlineEditor>
-                            {`pub def orphansAndZombies(processes: Array[(processId, String, processId)], rootId: processId): {orphans :: Array[processId], zombies :: Array[processId]} with Boxable[processId] =
+                            {`pub def orphansAndZombies(processes: Array[(processId, String, processId)], rootId: processId): {orphans = Array[processId], zombies = Array[processId]} with Boxable[processId] =
     let p = project processes into Process;
     let lp = #{
         Zombie(pid) :- Process(pid, "dead", parent), Process(parent, "alive", _).
