@@ -134,16 +134,16 @@ def main(): Unit \\ IO =
                         </p>
 
                         <InlineEditor>
-                            {`/// Computes the sum of \`x\` and \`y\` and sends the result on the channel \`c\`.
-def sum(x: Int32, y: Int32, c: Channel[Int32]): Unit \\ IO =
-    c <- (x + y); ()
+                            {`/// Computes the sum of \`x\` and \`y\` and sends the result on the channel \`tx\`.
+def sum(x: Int32, y: Int32, tx: Sender[Int32, r]): Unit \\ { Write(r) } =
+    Channel.send((x + y), tx)
 
 /// Computes the sum of 21 and 42 using a fresh process.
-def main(): Unit \\ IO =
-    let c = chan Int32 1;     // construct a new empty channel for the result.
-    spawn sum(21, 42, c);     // spawn sum to run in a separate process.
-    <- c;                     // wait for the result to arrive on the channel.
-    ()`}
+def main(): Int32 \\ IO = region r {
+    let (tx, rx) = Channel.buffered(r, 1); // construct a new empty channel for the result.
+    spawn sum(21, 42, tx) @ r;             // spawn sum to run in a separate process.
+    Channel.recv(rx)                       // wait for the result to arrive on the channel.
+}`}
                         </InlineEditor>
 
                         <p>
@@ -155,25 +155,27 @@ def main(): Unit \\ IO =
                         </p>
 
                         <InlineEditor>
-                            {`/// Sends the string \`s\` on the channel \`c\` up to \`n\` times.
-def animal(s: String, c: Channel[String], n: Int32): Unit \\ IO = match n {
-    case 0 => ()
-    case i => c <- s; animal(s, c, i - 1)
-}
+                            {`/// Sends the string \`s\` on the channel \`tx\` up to \`n\` times.
+def animal(s: String, n: Int32, tx: Sender[String, r]): Unit \\ { Write(r), IO } = 
+    match n {
+        case 0 => ()
+        case i => Channel.send(s, tx); animal(s, i - 1, tx)
+    }
 
 /// Returns "mooo", "meow", or "hiss".
-def main(): Unit \\ IO =
-    let c1 = chan String 1;      /// constructs a new empty channel with a buffer of one.
-    let c2 = chan String 1;      /// constructs a new empty channel with a buffer of one.
-    let c3 = chan String 1;      /// constructs a new empty channel with a buffer of one.
-    spawn animal("mooo", c1, 0); /// spawns a process that sends "mooo" on c1.
-    spawn animal("meow", c2, 3); /// spawns a process that sends "meow" on c2.
-    spawn animal("hiss", c3, 7); /// spawns a process that sends "hiss" on c3.
-    select {                     /// selects an element from c1, c2 or c3.
-        case mooo <- c1 => mooo  /// c1 became ready first.
-        case meow <- c2 => meow  /// c2 became ready first.
-        case hiss <- c3 => hiss  /// c3 became ready first.
-    } |> println`}
+def main(): Unit \\ IO = region r {
+    let (tx1, rx1) = Channel.buffered(r, 1);   /// new empty channel with buffer of 1
+    let (tx2, rx2) = Channel.buffered(r, 1);   /// new empty channel with buffer of 1
+    let (tx3, rx3) = Channel.buffered(r, 1);   /// new empty channel with buffer of 1
+    spawn animal("mooo", 0, tx1) @ r;          /// spawn process that sends "mooo"
+    spawn animal("meow", 3, tx2) @ r;          /// spawn process that sends "meow"
+    spawn animal("hiss", 7, tx3) @ r;          /// spawn process that sends "hiss"
+    select {                                   /// selects element from rx1, rx2 or rx3
+        case mooo <- Channel.recv(rx1) => mooo /// rx1 became ready first
+        case meow <- Channel.recv(rx2) => meow /// rx2 became ready first
+        case hiss <- Channel.recv(rx3) => hiss /// rx3 became ready first
+    } |> println
+}`}
                         </InlineEditor>
 
                         <h2>Polymorphic Effects: Separating Pure and Impure Code</h2>
