@@ -262,100 +262,100 @@ def main(): Unit \\ IO =
         {
             name: "Sending and Receiving on Channels",
             code: `/// A function that sends every element of a list
-def send(c: Channel[Int32], l: List[Int32]): Unit \\ IO =
+def send(tx: Sender[Int32, r], l: List[Int32]): Unit \\ { Write (r) } =
     match l {
         case Nil     => ()
-        case x :: xs => c <- x; send(c, xs)
+        case x :: xs => Channel.send(x, tx); send(tx, xs)
     }
 
 /// A function that receives n elements
 /// and collects them into a list.
-def recv(c: Channel[Int32], n: Int32): List[Int32] \\ IO =
+def recv(rx: Receiver[Int32, r], n: Int32): List[Int32] \\ { Write(r), Read(r) } =
     match n {
         case 0 => Nil
-        case _ => (<- c) :: recv(c, n - 1)
+        case _ => Channel.recv(rx) :: recv(rx, n - 1)
     }
 
 /// Spawn a process for send and wait, and print the result.
-def main(): Unit \\ IO = {
+def main(): Unit \\ IO = region r {
     let l = 1 :: 2 :: 3 :: Nil;
-    let c = chan Int32 100;
-    spawn send(c, l);
-    spawn recv(c, List.length(l))
+    let (tx, rx) = Channel.buffered(r, 100);
+    spawn send(tx, l) @ r;
+    spawn recv(rx, List.length(l)) @ r
 }`
         },
         {
             name: "Using Channels and Select",
-            code: ` /// Mooo's \`n\` times on channel \`c\`.
-def mooo(c: Channel[String], n: Int32): Unit \\ IO =
+            code: `/// Mooo's \`n\` times on channel \`tx\`.
+def mooo(tx: Sender[String, r], n: Int32): Unit \\ { Write(r) } =
     match n {
         case 0 => ()
-        case x => c <- "Mooo!"; mooo(c, x - 1)
+        case x => Channel.send("Mooo!", tx); mooo(tx, x - 1)
     }
 
-/// Meow's \`n\` times on channel \`c\`.
-def meow(c: Channel[String], n: Int32): Unit \\ IO =
+/// Meow's \`n\` times on channel \`tx\`.
+def meow(tx: Sender[String, r], n: Int32): Unit \\ { Write(r) } =
     match n {
         case 0 => ()
-        case x => c <- "Meow!"; meow(c, x - 1)
+        case x => Channel.send("Meow!", tx); meow(tx, x - 1)
     }
 
-/// Hiss'es \`n\` times on channel \`c\`.
-def hiss(c: Channel[String], n: Int32): Unit \\ IO =
+/// Hiss'es \`n\` times on channel \`tx\`.
+def hiss(tx: Sender[String, r], n: Int32): Unit \\ { Write(r) } =
     match n {
         case 0 => ()
-        case x => c <- "Hiss!"; hiss(c, x - 1)
+        case x => Channel.send("Hiss!", tx); hiss(tx, x - 1)
     }
 
 /// Start the animal farm...
-def main(): Unit \\ IO = {
-    let c1 = chan String 1;
-    let c2 = chan String 1;
-    let c3 = chan String 1;
-    spawn mooo(c1, 0);
-    spawn meow(c2, 3);
-    spawn hiss(c3, 7);
+def main(): Unit \\ IO = region r {
+    let (tx1, rx1) = Channel.buffered(r, 1);
+    let (tx2, rx2) = Channel.buffered(r, 1);
+    let (tx3, rx3) = Channel.buffered(r, 1);
+    spawn mooo(tx1, 0) @ r;
+    spawn meow(tx2, 3) @ r;
+    spawn hiss(tx3, 7) @ r;
     select {
-        case m <- c1 => m |> println
-        case m <- c2 => m |> println
-        case m <- c3 => m |> println
+        case m <- Channel.recv(rx1) => m |> println
+        case m <- Channel.recv(rx2) => m |> println
+        case m <- Channel.recv(rx3) => m |> println
     }
 }`
         },
         {
             name: "Select with Defaults and Timers",
-            code: `/// Sends the value \`x\` on the channel \`c\` after a delay.
-def slow(x: Int32, c: Channel[Int32]): Unit \\ IO =
+            code: `/// Sends the value \`x\` on the channel \`tx\` after a delay.
+def slow(x: Int32, tx: Sender[Int32, r]): Unit \\ { Write(r), IO } =
     import static java.lang.Thread.sleep(Int64): Unit \\ IO;
-    sleep(Time/Duration.oneMinute() / 1_000_000i64);
-    c <- x;
-    ()
+    sleep(60i64 * 1_000_000i64);
+    Channel.send(x, tx)
 
-/// Reads a value from the channel \`c\`.
-/// Returns the default value \`1\` if \`c\` is not ready.
-def recvWithDefault(c: Channel[Int32]): Int32 \\ IO =
+/// Reads a value from the channel \`rx\`.
+/// Returns the default value \`1\` if \`rx\` is not ready.
+def recvWithDefault(rx: Receiver[Int32, r]): Int32 \\ { Read(r), Write(r) } =
     select {
-        case x <- c => x
-        case _      => 1
+        case x <- Channel.recv(rx) => x
+        case _                     => 1
     }
 
-/// Reads a value from the channel \`c\`.
+/// Reads a value from the channel \`rx\`.
 /// Returns the default value \`2\` if after a timeout.
-def recvWithTimeout(c: Channel[Int32]): Int32 \\ IO =
+def recvWithTimeout(r: Region[r], rx: Receiver[Int32, r]): Int32 \\ { Read(r), Write(r), IO } =
+    let timeout = Channel.timeout(r, Time/Duration.fromSeconds(1));
     select {
-        case x <- c                   => x
-        case _ <- Concurrent/Channel/Timer.seconds(1i64) => 2
+        case x <- Channel.recv(rx)      => x
+        case _ <- Channel.recv(timeout) => 2
     }
 
-/// Creates two channels \`c1\` and \`c2\`.
+/// Creates two channels.
 /// Sends values on both after one minute.
 /// Receives from both using defaults and timeouts.
-def main(): Unit \\ IO = {
-  let c1 = chan Int32 1;
-  let c2 = chan Int32 1;
-  spawn slow(123, c1);
-  spawn slow(456, c2);
-  (recvWithDefault(c1) + recvWithTimeout(c2)) |> println
+def main(): Unit \\ IO = region r {
+    let (tx1, rx1) = Channel.buffered(r, 1);
+    let (tx2, rx2) = Channel.buffered(r, 1);
+    spawn slow(123, tx1) @ r;
+    spawn slow(456, tx2) @ r;
+    (recvWithDefault(rx1) + recvWithTimeout(r, rx2)) |> println
 }`
         },
         {
