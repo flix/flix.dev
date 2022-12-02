@@ -18,6 +18,7 @@ import About from "./page/About";
 import Blog from "./page/Blog";
 import Koans from "./page/Koans";
 import Innovations from "./page/Innovations";
+import Internships from "./page/Internships";
 
 const SocketAddress = 'wss://evaluator.flix.dev/ws';
 
@@ -123,6 +124,10 @@ class App extends Component {
                         <NavItem className="pl-1 pr-1">
                             <NavLink tag={Link} to="/contribute/">Contribute</NavLink>
                         </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/internships/">Internships</NavLink>
+                        </NavItem>
                     </Nav>
                 </Navbar>
 
@@ -136,6 +141,7 @@ class App extends Component {
                 <Route path="/faq/" component={Faq}/>
                 <Route path="/blog/" component={Blog}/>
                 <Route path="/contribute/" component={Contribute}/>
+                <Route path="/internships/" component={Internships}/>
 
                 <Route path="/misc/checklist/" component={Checklist}/>
                 <Route path="/misc/koans/" component={Koans}/>
