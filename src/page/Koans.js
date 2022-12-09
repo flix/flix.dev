@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import ReactGA from "react-ga";
 import {Col, Container, Row} from "reactstrap";
 import InlineEditor from "../util/InlineEditor";
 
@@ -7,7 +6,6 @@ class Koans extends Component {
 
     componentDidMount() {
         document.title = "Flix | Koans";
-        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

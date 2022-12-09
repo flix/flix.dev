@@ -11,7 +11,6 @@ import {
     Row,
     UncontrolledCarousel
 } from 'reactstrap';
-import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import Codebox from "../util/Codebox";
 import InlineEditor from "../util/InlineEditor";
@@ -21,7 +20,6 @@ class Home extends Component {
 
     componentDidMount() {
         document.title = "The Flix Programming Language";
-        ReactGA.pageview(window.location.pathname);
     }
 
     carousel = [

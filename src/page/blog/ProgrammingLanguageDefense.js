@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import ReactGA from "react-ga";
 import {Col, Container, Row} from "reactstrap";
 import {Link} from "react-router-dom";
 
@@ -7,7 +6,6 @@ class ProgrammingLanguageDefense extends Component {
 
     componentDidMount() {
         document.title = "Flix | In Defense of Programming Languages";
-        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

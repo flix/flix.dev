@@ -1,12 +1,10 @@
 import React, {Component} from "react";
-import ReactGA from "react-ga";
 import {Col, Container, Row} from "reactstrap";
 
 class Innovations extends Component {
 
     componentDidMount() {
         document.title = "Flix | Innovations";
-        ReactGA.pageview(window.location.pathname);
     }
 
     render() {
