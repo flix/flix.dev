@@ -24,6 +24,12 @@ class Principles extends Component {
                     F#, Go, Haskell, OCaml, Rust, and Scala.
                 </p>
 
+                <p>
+                    <b>Update:</b> The Flix Principles has been published in a paper at Onward! '22. Read it here: <a
+                    href="https://dl.acm.org/doi/10.1145/3563835.3567661">The Principles of the Flix Programming
+                    Language</a>.
+                </p>
+
                 <h2 className="mt-3">Language Principles</h2>
 
                 <CardColumns>
@@ -102,8 +108,10 @@ class Principles extends Component {
                     <Principle name="Type parameter elision">
                         While we require type signatures, we also believe that such signatures should be as minimal
                         as possible. Thus, while the full type signature of <code>List.map</code> is <code>def map[a,
-                        b](f: a -{'>'} b, xs: List[a]): List[b]</code>, we can use <i>type parameter elision</i> to write it
-                        simply as: <code>def map(f: a -{'>'} b, xs: List[a]): List[b]</code> omitting the type arguments.
+                        b](f: a -{'>'} b, xs: List[a]): List[b]</code>, we can use <i>type parameter elision</i> to
+                        write it
+                        simply as: <code>def map(f: a -{'>'} b, xs: List[a]): List[b]</code> omitting the type
+                        arguments.
                     </Principle>
 
                     <Principle name="Syntax vs. Semantics">
