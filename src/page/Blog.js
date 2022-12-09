@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from "reactstrap";
-import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import ProgrammingLanguageDefense from "./blog/ProgrammingLanguageDefense";
@@ -15,7 +14,6 @@ class Blog extends Component {
         if (!document.title) {
             document.title = "Flix | Blog";
         }
-        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

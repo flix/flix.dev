@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from "reactstrap";
-import ReactGA from 'react-ga';
 
 class Internships extends Component {
 
     componentDidMount() {
         document.title = "Flix | Internships";
-        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

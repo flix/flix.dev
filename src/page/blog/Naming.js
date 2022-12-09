@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import ReactGA from "react-ga";
 import {Card, CardText, CardTitle, Col, Container, Row} from "reactstrap";
 import InlineEditor from "../../util/InlineEditor";
 
@@ -7,7 +6,6 @@ class Naming extends Component {
 
     componentDidMount() {
         document.title = "Flix | Naming Functional and Destructive Operations";
-        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

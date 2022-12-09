@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Card, CardSubtitle, CardText, CardTitle, Col, Container, Row} from "reactstrap";
-import ReactGA from 'react-ga';
 import {Link} from "react-router-dom";
 
 import {FaBookReader} from 'react-icons/fa';
@@ -17,7 +16,6 @@ class Documentation extends Component {
 
     componentDidMount() {
         document.title = "Flix | Documentation";
-        ReactGA.pageview(window.location.pathname);
     }
 
     render() {

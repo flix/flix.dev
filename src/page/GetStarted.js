@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import {Card, CardImg, Col, Container, Row} from "reactstrap";
 import VSCode from '../gif/vscode.png'
-import ReactGA from 'react-ga';
 
 class GetStarted extends Component {
 
     componentDidMount() {
         document.title = "Flix | Getting Started";
-        ReactGA.pageview(window.location.pathname);
     }
 
     render() {
