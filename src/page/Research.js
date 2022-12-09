@@ -38,6 +38,12 @@ class Research extends Component {
 
                 <ul>
                     <Paper
+                        title="The Principles of the Flix Programming Language"
+                        authors="Magnus Madsen"
+                        venue="Onward! '22"
+                        url="/paper/onward2022.pdf"/>
+
+                    <Paper
                         title="Flix: A Meta Programming Language for Datalog"
                         authors="Magnus Madsen, Jonathan Lindegaard Starup, Ondřej Lhoták"
                         venue="Datalog '22"
