@@ -85,12 +85,12 @@ class Home extends Component {
                                 </Button>
                             </a>
 
-                            <Button outline color="info" tag={Link} to="/documentation/" className="ml-2">
-                                Docs
+                            <Button color="info" tag={Link} to="/documentation/" className="ml-2">
+                                Documentation
                             </Button>
 
                             <a href="https://api.flix.dev/">
-                                <Button outline color="info" className="ml-2">
+                                <Button color="info" className="ml-2">
                                     Library
                                 </Button>
                             </a>
