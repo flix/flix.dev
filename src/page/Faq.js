@@ -36,8 +36,7 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            Yes, with the <a href="https://doc.flix.dev/interoperability/">import
-                            mechanism</a>.
+                            Yes, with the <code>import</code> mechanism.
                         </p>
                     </Answer>
                 </QA>
@@ -545,8 +544,6 @@ class Faq extends Component {
                     <Answer>
                         Flix aims to offer a combination of features that are not found in any existing programming
                         language.
-
-                        You may also want to explore the <Link to="/innovations/">innovations</Link>.
                     </Answer>
                 </QA>
 
@@ -582,7 +579,6 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         The <Link to="/research/">research</Link>,
-                        the <Link to="/innovations/">innovations</Link>,
                         the <a href="https://github.com/flix/flix">code</a>,
                         and the <a href="https://arewefast.flix.dev/">performance</a>.
                     </Answer>

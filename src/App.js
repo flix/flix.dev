@@ -87,9 +87,11 @@ class App extends Component {
                             <NavLink tag={Link} to="/">Home</NavLink>
                         </NavItem>
 
+                        {/*
                         <NavItem className="pl-1 pr-1">
                             <NavLink tag={Link} to="/about/">About</NavLink>
                         </NavItem>
+                        */}
 
                         <NavItem className="pl-1 pr-1">
                             <NavLink tag={Link} to="/get-started/">Get Started</NavLink>

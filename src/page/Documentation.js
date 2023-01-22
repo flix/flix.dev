@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 
 import {FaBookReader} from 'react-icons/fa';
 import {FaStream} from 'react-icons/fa';
-import {FaVihara} from 'react-icons/fa';
 import {FaMicroblog} from 'react-icons/fa';
 import {FaGitter} from 'react-icons/fa';
 import {FaGithub} from 'react-icons/fa';
@@ -28,7 +27,7 @@ class Documentation extends Component {
                 </Row>
 
                 <Row className="mb-4">
-                    <Col md="4">
+                    <Col md="6">
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
                                 <a href="https://doc.flix.dev/" className="text-primary">
@@ -44,7 +43,7 @@ class Documentation extends Component {
                             </CardText>
                         </Card>
                     </Col>
-                    <Col md="4">
+                    <Col md="6">
                         <Card body className="h-100">
                             <CardSubtitle className="text-center m-4">
                                 <a href="https://api.flix.dev/" className="text-success">
@@ -58,24 +57,6 @@ class Documentation extends Component {
                             </CardTitle>
                             <CardText>
                                 The documentation provides a Javadoc-style description of the Flix library.
-                            </CardText>
-                        </Card>
-                    </Col>
-                    <Col md="4">
-                        <Card body className="h-100">
-                            <CardSubtitle className="text-center m-4">
-                                <Link to="/misc/koans" className="text-black-50">
-                                    <FaVihara style={{fontSize: '6em'}}/>
-                                </Link>
-                            </CardSubtitle>
-                            <CardTitle className="text-center">
-                                <Link to="/misc/koans">
-                                    Flix Koans
-                                </Link>
-                            </CardTitle>
-                            <CardText>
-                                The koans presents several realistic examples of logic programming with first-class
-                                Datalog constraints in Flix.
                             </CardText>
                         </Card>
                     </Col>

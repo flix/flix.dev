@@ -56,12 +56,6 @@ class Contribute extends Component {
                                     had several positive experiences working with open source
                                     contributors.
                                 </p>
-
-                                <p>
-                                    If you want to become involved, send us a ping on <a
-                                    href="https://gitter.im/flix/Lobby">Gitter</a>, and we can have a chat about your
-                                    interests.
-                                </p>
                             </CardBody>
                         </Card>
                     </Col>
@@ -75,12 +69,6 @@ class Contribute extends Component {
                                     their second or third year of studies and are interested in working on a research
                                     project for up to one year as an extracurricular activity.
                                 </p>
-
-                                <p>
-                                    We maintain a collection of <a
-                                    href="https://github.com/flix/flix/labels/talent-track">talent
-                                    track project ideas</a> on GitHub.
-                                </p>
                             </CardBody>
                         </Card>
                     </Col>
@@ -93,19 +81,16 @@ class Contribute extends Component {
                                     If you are a bachelor or master student at Aarhus University you can
                                     write your thesis on a topic related to Flix.
                                 </p>
-
-                                <p>
-                                    We maintain a collection of ideas for <a
-                                    href="https://github.com/flix/flix/labels/bachelor-project">bachelor</a>-
-                                    and <a
-                                    href="https://github.com/flix/flix/labels/master-project">master</a> level
-                                    projects. The project list is not always completely up to date, so feel free
-                                    to reach out to us.
-                                </p>
                             </CardBody>
                         </Card>
                     </Col>
                 </Row>
+
+                <p>
+                    If you want to become involved, send us a ping on <a
+                    href="https://gitter.im/flix/Lobby">Gitter</a>, and we can have a chat about your
+                    interests.
+                </p>
             </Container>
         );
     }
