@@ -19,7 +19,8 @@ class Contribute extends Component {
                             Flix is developed at <a
                             href="http://cs.au.dk/research/programming-languages/">Aarhus
                             University</a>, at the <a href="http://plg.uwaterloo.ca"> University of Waterloo</a>, and by
-                            a community of open source contributors.
+                            a community of <a href="https://github.com/flix/flix/graphs/contributors">open source
+                            contributors</a>.
                         </p>
 
                         <p>
