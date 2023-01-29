@@ -59,7 +59,7 @@ class Home extends Component {
                             Flix is a principled functional, imperative, and logic programming language
                             developed at <a href="https://cs.au.dk/">Aarhus University</a>, at the <a
                             href="https://uwaterloo.ca/">University of Waterloo</a>, and by a community of <a
-                            href="https://github.com/flix/flix">open source contributors</a>.
+                            href="https://github.com/flix/flix/graphs/contributors">open source contributors</a>.
                         </p>
 
                         <p className="text-justify">
