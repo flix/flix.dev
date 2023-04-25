@@ -117,8 +117,10 @@ class Home extends Component {
                             className="font-weight-bold">extensible records</span> (like Elm), <span
                             className="font-weight-bold">type classes</span> (like Haskell, Rust), <span
                             className="font-weight-bold">higher-kinded types</span> (like Haskell), <span
+                            className="font-weight-bold">typematch</span> (like Scala), <span
                             className="font-weight-bold">type inference</span> (like Haskell, OCaml), <span
-                            className="font-weight-bold">channel and process-based concurrency</span> (like Go), <span
+                            className="font-weight-bold">structured channel and process-based concurrency</span> (like
+                            Go), <span
                             className="font-weight-bold text-success">a polymorphic effect system</span> (a unique
                             feature), <span
                             className="font-weight-bold text-success">region-based local mutation</span> (a unique
@@ -454,6 +456,72 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                 </Row>
 
                 <Row className="mb-4">
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Monadic For-Yield</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports a monadic <code>forM</code>-yield construct similar to Scala's
+                                        <code>for</code>-comprehensions and Haskell's <code>do</code> notation.
+                                        The <code>forM</code> construct is syntactic sugar for uses
+                                        of <code>point</code> and <code>flatMap</code> (which are provided by the Monad
+                                        type class).
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`def divide(x: Int32, y: Int32): Option[Int32] = 
+    if (y == 0) None else Some(x / y)
+
+def f(): Option[Int32] = 
+    forM (
+        x <- divide(5, 2);
+        y <- divide(x, 8);
+        z <- divide(9, y)
+    ) yield x + y + z
+`}
+                        </InlineEditor>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <InlineEditor>
+                            {`def validateUser(s: String): Validation[Err, String] = ...
+
+def validatePass(s: String): Validation[Err, String] = ...
+
+def conn(u: String, p: String): Validation[Err, Connection] = 
+    forA (
+        user <- validateUser(u);
+        pass <- validatePass(p)
+    ) yield Connection(user, pass)
+`}
+                        </InlineEditor>
+                    </Col>
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Applicative For-Yield</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        In addition to the monadic <code>forM</code> expression, Flix supports an
+                                        applicative <code>forA</code> expression that builds on
+                                        the <code>Applicative</code> type class. The <code>forA</code> construct makes
+                                        it simple to write error-handling code which uses the <code>Validation[e,
+                                        t]</code> data type.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
                     <Col md="12">
                         <Card className="border-0">
                             <CardBody>
@@ -596,7 +664,8 @@ let r = query p select (c, d) from ReadyDate(c; d)
 
                     <Col md="4">
                         <ul>
-                            <li>monadic let* expressions</li>
+                            <li>monadic forM expressions</li>
+                            <li>applicative forA expressions</li>
                             <li>expressions holes</li>
                             <li>compilation to JVM bytecode</li>
                             <li>full tail call elimination</li>
