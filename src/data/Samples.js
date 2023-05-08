@@ -12,14 +12,14 @@ enum Shape {
 /// Computes the area of the given shape using
 /// pattern matching and basic arithmetic.
 def area(s: Shape): Int32 = match s {
-    case Circle(r)       => 3 * (r * r)
-    case Square(w)       => w * w
-    case Rectangle(h, w) => h * w
+    case Shape.Circle(r)       => 3 * (r * r)
+    case Shape.Square(w)       => w * w
+    case Shape.Rectangle(h, w) => h * w
 }
 
 // Computes the area of a 2 by 4.
 def main(): Unit \\ IO =
-    println(area(Rectangle(2, 4)))`
+    println(area(Shape.Rectangle(2, 4)))`
         },
         {
             name: "Lists and List Processing",
@@ -72,18 +72,18 @@ enum Tree[a] {
 /// A higher-order function that transforms a tree with
 /// elements of type \`a\` to a tree with elements of type \`b\`.
 def map(f: a -> b, t: Tree[a]): Tree[b] = match t {
-    case Leaf(x)    => Leaf(f(x))
-    case Node(l, r) => Node(map(f, l), map(f, r))
+    case Tree.Leaf(x)    => Tree.Leaf(f(x))
+    case Tree.Node(l, r) => Tree.Node(map(f, l), map(f, r))
 }
 
 /// A function that computes the sum of all leaves in a tree.
 def sum(t: Tree[Int32]): Int32 = match t {
-    case Leaf(x)    => x
-    case Node(l, r) => sum(l) + sum(r)
+    case Tree.Leaf(x)    => x
+    case Tree.Node(l, r) => sum(l) + sum(r)
 }
 
 def main(): Unit \\ IO =
-    let t1 = Node(Leaf("Hello"), Leaf("World"));
+    let t1 = Tree.Node(Tree.Leaf("Hello"), Tree.Leaf("World"));
     let t2 = map(String.length, t1);
     println(sum(t2))`
         },
@@ -222,14 +222,14 @@ def main(): Unit \\ IO =
             name: "Type Aliases",
             code: `/// A type alias introduces a short-hand for an existing type.
 
-/// A type alias for the type Map[Int, String].
+/// A type alias for the type Map[Int32, String].
 type alias M = Map[Int32, String]
 
 /// A function that returns a map of type M.
 def f(): M = Map#{ 1 => "Hello", 2 => "World"}
 
-// A polymorphic type alias for the type Map[a, Result[Int, String]].
-type alias N[a] = Map[a, Result[Int32, String]]
+// A polymorphic type alias for the type Map[a, Result[String, Int32]].
+type alias N[a] = Map[a, Result[String, Int32]]
 
 /// A function that returns a map of type N.
 def g(): N[Int32] = Map#{ 1 => Ok(123), 2 => Err("Hello") }
@@ -262,46 +262,46 @@ def main(): Unit \\ IO =
         {
             name: "Sending and Receiving on Channels",
             code: `/// A function that sends every element of a list
-def send(tx: Sender[Int32, r], l: List[Int32]): Unit \\ { Write (r) } =
+def sendAll(l: List[Int32], s: Sender[Int32, r]): Unit \\ IO =
     match l {
         case Nil     => ()
-        case x :: xs => Channel.send(x, tx); send(tx, xs)
+        case x :: xs => Channel.send(x, s); sendAll(xs, s)
     }
 
 /// A function that receives n elements
 /// and collects them into a list.
-def recv(rx: Receiver[Int32, r], n: Int32): List[Int32] \\ { Write(r), Read(r) } =
+def recvN(n: Int32, r: Receiver[Int32, r]): List[Int32] \\ IO =
     match n {
         case 0 => Nil
-        case _ => Channel.recv(rx) :: recv(rx, n - 1)
+        case _ => Channel.recv(r) :: recvN(n - 1, r)
     }
 
 /// Spawn a process for send and wait, and print the result.
 def main(): Unit \\ IO = region r {
     let l = 1 :: 2 :: 3 :: Nil;
     let (tx, rx) = Channel.buffered(r, 100);
-    spawn send(tx, l) @ r;
-    spawn recv(rx, List.length(l)) @ r
+    spawn sendAll(l, tx) @ r;
+    spawn recvN(List.length(l), rx) @ r
 }`
         },
         {
             name: "Using Channels and Select",
-            code: `/// Mooo's \`n\` times on channel \`tx\`.
-def mooo(tx: Sender[String, r], n: Int32): Unit \\ { Write(r) } =
+            code: `/// Mooo's \`n\` times on channel \`c\`.
+def mooo(tx: Sender[String, r], n: Int32): Unit \\ IO =
     match n {
         case 0 => ()
         case x => Channel.send("Mooo!", tx); mooo(tx, x - 1)
     }
 
-/// Meow's \`n\` times on channel \`tx\`.
-def meow(tx: Sender[String, r], n: Int32): Unit \\ { Write(r) } =
+/// Meow's \`n\` times on channel \`c\`.
+def meow(tx: Sender[String, r], n: Int32): Unit \\ IO =
     match n {
         case 0 => ()
         case x => Channel.send("Meow!", tx); meow(tx, x - 1)
     }
 
-/// Hiss'es \`n\` times on channel \`tx\`.
-def hiss(tx: Sender[String, r], n: Int32): Unit \\ { Write(r) } =
+/// Hiss'es \`n\` times on channel \`c\`.
+def hiss(tx: Sender[String, r], n: Int32): Unit \\ IO =
     match n {
         case 0 => ()
         case x => Channel.send("Hiss!", tx); hiss(tx, x - 1)
@@ -309,42 +309,44 @@ def hiss(tx: Sender[String, r], n: Int32): Unit \\ { Write(r) } =
 
 /// Start the animal farm...
 def main(): Unit \\ IO = region r {
-    let (tx1, rx1) = Channel.buffered(r, 1);
-    let (tx2, rx2) = Channel.buffered(r, 1);
-    let (tx3, rx3) = Channel.buffered(r, 1);
+    let (tx1, rx1) = Channel.buffered(r, 10);
+    let (tx2, rx2) = Channel.buffered(r, 10);
+    let (tx3, rx3) = Channel.buffered(r, 10);
     spawn mooo(tx1, 0) @ r;
     spawn meow(tx2, 3) @ r;
     spawn hiss(tx3, 7) @ r;
     select {
-        case m <- Channel.recv(rx1) => m |> println
-        case m <- Channel.recv(rx2) => m |> println
-        case m <- Channel.recv(rx3) => m |> println
+        case m <- recv(rx1) => m |> println
+        case m <- recv(rx2) => m |> println
+        case m <- recv(rx3) => m |> println
     }
 }`
         },
         {
             name: "Select with Defaults and Timers",
-            code: `/// Sends the value \`x\` on the channel \`tx\` after a delay.
+            code: `/// Sends the value \`x\` on the channel \`c\` after a delay.
 def slow(x: Int32, tx: Sender[Int32, r]): Unit \\ { Write(r), IO } =
-    import static java.lang.Thread.sleep(Int64): Unit \\ IO;
-    sleep(60i64 * 1_000_000i64);
-    Channel.send(x, tx)
+    use Time.Duration.fromSeconds;
+    Thread.sleep(fromSeconds(10));
+    Channel.send(x, tx);
+    ()
 
-/// Reads a value from the channel \`rx\`.
-/// Returns the default value \`1\` if \`rx\` is not ready.
+/// Reads a value from the channel \`c\`.
+/// Returns the default value \`1\` if \`c\` is not ready.
 def recvWithDefault(rx: Receiver[Int32, r]): Int32 \\ { Read(r), Write(r) } =
     select {
-        case x <- Channel.recv(rx) => x
-        case _                     => 1
+        case x <- recv(rx) => x
+        case _             => 1
     }
 
-/// Reads a value from the channel \`rx\`.
+/// Reads a value from the channel \`c\`.
 /// Returns the default value \`2\` if after a timeout.
-def recvWithTimeout(r: Region[r], rx: Receiver[Int32, r]): Int32 \\ { Read(r), Write(r), IO } =
-    let timeout = Channel.timeout(r, Time/Duration.fromSeconds(1));
+def recvWithTimeout(r: Region[r], c: Receiver[Int32, r]): Int32 \\ { Read(r), Write(r), IO } =
+    use Time.Duration.fromSeconds;
+    let t = Channel.timeout(r, fromSeconds(1));
     select {
-        case x <- Channel.recv(rx)      => x
-        case _ <- Channel.recv(timeout) => 2
+        case x <- recv(c) => x
+        case _ <- recv(t) => 2
     }
 
 /// Creates two channels.
@@ -412,7 +414,7 @@ def getEdgesWithColor(): #{ LabelEdge[String] | r } = #{
 
 /// Returns a set of polymorphic rules to compute the transitive
 /// closure of edges with the *same* label.
-def getRules(): #{ LabelEdge[l], LabelPath[l] } with Boxable[l] = #{
+def getRules(): #{ LabelEdge[l], LabelPath[l] } with Order[l] = #{
     LabelPath(x, l, y) :- LabelEdge(x, l, y).
     LabelPath(x, l, z) :- LabelPath(x, l, y), LabelPath(y, l, z).
 }
@@ -550,12 +552,12 @@ enum BExp {
 /// We now define a small interpreter for arithmetic expressions.
 ///
 def evalAExp(e: AExp): Int32 = match e {
-    case Cst(i)                 => i
-    case Plus(e1, e2)           => evalAExp(e1) + evalAExp(e2)
-    case Minus(e1, e2)          => evalAExp(e1) - evalAExp(e2)
-    case Times(e1, e2)          => evalAExp(e1) * evalAExp(e2)
-    case Divide(e1, e2)         => evalAExp(e1) / evalAExp(e2)
-    case IfThenElse(e1, e2, e3) =>
+    case AExp.Cst(i)                 => i
+    case AExp.Plus(e1, e2)           => evalAExp(e1) + evalAExp(e2)
+    case AExp.Minus(e1, e2)          => evalAExp(e1) - evalAExp(e2)
+    case AExp.Times(e1, e2)          => evalAExp(e1) * evalAExp(e2)
+    case AExp.Divide(e1, e2)         => evalAExp(e1) / evalAExp(e2)
+    case AExp.IfThenElse(e1, e2, e3) =>
         let cond = evalBExp(e1);
             if (cond) evalAExp(e2) else evalAExp(e3)
 }
@@ -564,19 +566,19 @@ def evalAExp(e: AExp): Int32 = match e {
 /// and here is the small interpreter for Boolean expressions.
 ///
 def evalBExp(e: BExp): Bool = match e {
-    case True           => true
-    case False          => false
-    case Not(e1)        => not evalBExp(e1)
-    case Conj(e1, e2)   => evalBExp(e1) and evalBExp(e2)
-    case Disj(e1, e2)   => evalBExp(e1) or evalBExp(e2)
-    case Eq(e1, e2)     => evalAExp(e1) == evalAExp(e2)
-    case Neq(e1,e2)     => evalAExp(e1) != evalAExp(e2)
+    case BExp.True           => true
+    case BExp.False          => false
+    case BExp.Not(e1)        => not evalBExp(e1)
+    case BExp.Conj(e1, e2)   => evalBExp(e1) and evalBExp(e2)
+    case BExp.Disj(e1, e2)   => evalBExp(e1) or evalBExp(e2)
+    case BExp.Eq(e1, e2)     => evalAExp(e1) == evalAExp(e2)
+    case BExp.Neq(e1,e2)     => evalAExp(e1) != evalAExp(e2)
 }
 
 /// We can now run it!
 def main(): Unit \\ IO =
     let r = evalAExp(
-        IfThenElse(Neq(Cst(1), Cst(2)), Cst(42), Cst(21))
+        AExp.IfThenElse(BExp.Neq(AExp.Cst(1), AExp.Cst(2)), AExp.Cst(42), AExp.Cst(21))
     );
     r |> println`
         },
@@ -605,18 +607,18 @@ enum Card(Rank, Suit) with Eq
 // An instance of ToString for Ranks
 instance ToString[Rank] {
     pub def toString(x: Rank): String = match x {
-        case Number(n) => "\${n}"
-        case Jack      => "Jack"
-        case Queen     => "Queen"
-        case King      => "King"
-        case Ace       => "Ace"
+        case Rank.Number(n) => "\${n}"
+        case Rank.Jack      => "Jack"
+        case Rank.Queen     => "Queen"
+        case Rank.King      => "King"
+        case Rank.Ace       => "Ace"
     }
 }
 
 // An instance of ToString for Cards
 instance ToString[Card] {
     pub def toString(x: Card): String = match x {
-        case Card(r, s) => "\${r} of \${s}"
+        case Card.Card(r, s) => "\${r} of \${s}"
     }
 }
 
@@ -626,8 +628,8 @@ def playWar(p1: List[Card], p2: List[Card], spoils: List[Card]): Unit \\ IO = ma
     case (Nil, _) => println("Player 1 is out of cards. Player 2 wins!")
     case (_, Nil) => println("Player 2 is out of cards. Player 1 wins!")
     case (c1 :: d1, c2 :: d2) =>
-        let Card(r1, _) = c1;
-        let Card(r2, _) = c2;
+        let Card.Card(r1, _) = c1;
+        let Card.Card(r2, _) = c2;
         println("Player 1 plays \${c1}. Player 2 plays \${c2}.");
         if (r1 > r2) {
             println("Player 1 wins the battle.");
@@ -678,7 +680,7 @@ enum Date(Year, Month, Day) with Eq, Order
 /// since we don't want the default "Date(1948, December, 10)"
 instance ToString[Date] {
     pub def toString(x: Date): String =
-        let Date(y, m, d) = x;
+        let Date.Date(y, m, d) = x;
         "\${d} \${m}, \${y}"
 }
 
@@ -704,7 +706,7 @@ def deduplicate(l: List[a]): List[a] with Order[a] =
         /// Create a new \`MutSet\` at region \`r\`.
         /// This will be used to keep track of
         /// unique elements in \`l\`.
-        let s = new MutSet(r);
+        let s = MutSet.new(r);
 
         /// The lambda used in the call to \`filter\`
         /// would be impure without a region.
@@ -731,70 +733,70 @@ def main(): Unit \\ IO =
             name: "File Information",
             code: `// Getting information on files with Flix.
 def main(): Unit \\ IO =
-    let f = "README.md";
+  let f = "README.md";
 
-    // Check if the file \`README.md\` exists.
-    match File.exists(f) {
-        case Ok(exist) => {
-            println("The file \${f} exists: \${exist}.")
-        }
-        case Err(msg)  => println("An error occurred with message: \${msg}")
-    };
+  // Check if the file 'README.md' exists.
+  match File.exists(f) {
+    case Ok(exist) => {
+      println("The file \${f} exists: \${exist}.")
+    }
+    case Err(msg)  => println("An error occurred with message: \${msg}")
+  };
 
-    // Get statistics of the file \`README.md\`.
-    match File.stat(f) {
-        case Ok(stats) => {
-            println("\${f} is of type: \${stats.fileType}");
-            println("The size of \${f} is: \${stats.size}.");
-            println("The creation time of \${f} is: \${stats.creationTime}.")
-        }
-        case Err(msg)   => println("An error occurred with message: \${msg}")
-    }`
+  // Get statistics of the file 'README.md'.
+  match File.stat(f) {
+    case Ok(stats) => {
+      println("\${f} is of type: \${stats.fileType}");
+      println("The size of \${f} is: \${stats.size}.");
+      println("The creation time of \${f} is: \${stats.creationTime}.")
+    }
+    case Err(msg)    => println("An error occurred with message: \${msg}")
+  }`
         },
         {
             name: "Working with Files and Directories",
             code: `// Working with files and directories in Flix.
 def main(): Unit \\ IO =
-    let f = "README.md";
-    let dir = "src";
+  let f = "README.md";
+  let dir = "src";
 
-    // Read the file \`README.md\`.
-    match File.readLines(f) {
-        case Ok(x :: _) => println("The first line of \${f} is: '\${x}'.")
-        case Ok(Nil)    => println("the file \${f} is empty.")
-        case Err(msg)   => println("An error occurred with message: \${msg}")
-    };
+  // Read the file \`README.md\`.
+  match File.readLines(f) {
+    case Ok(x :: _) => println("The first line of \${f} is: '\${x}'.")
+    case Ok(Nil)    => println("the file \${f} is empty.")
+    case Err(msg)   => println("An error occurred with message: \${msg}")
+  };
 
-    // List the files in \`src\`.
-    match File.list(dir) {
-        case Ok(subpaths) => {
-            println("All files or directories in \${dir} is: '\${subpaths}'.")
-        }
-        case Err(msg)     => println("An error occurred with message: \${msg}")
-        }`
+  // List the files in \`src\`.
+  match File.list(dir) {
+    case Ok(subpaths) => {
+      println("All files or directories in \${dir} is: '\${subpaths}'.")
+    }
+    case Err(msg)     => println("An error occurred with message: \${msg}")
+  }`
         },
         {
             name: "Print a Colorful Message",
             code: `/// Construct colorful messages.
 def main(): Unit \\ IO =
-    let s1 = "You can print message with " + Console.red("colored text");
-    let s2 = " or " + Console.bgBlue("background") + ".";
-    println(s1+s2);
+  let s1 = "You can print message with " + Console.red("colored text");
+  let s2 = " or " + Console.bgBlue("background") + ".";
+  println(s1+s2);
 
-    let s3 = Console.bgYellow(Console.magenta("This message has both magenta text and yellow background."));
-    println(s3);
+  let s3 = Console.bgYellow(Console.magenta("This message has both magenta text and yellow background."));
+  println(s3);
 
-    let s4 = Console.black("This is a ") :: Console.red("c") :: Console.green("o") ::
-        Console.yellow("l") :: Console.blue("o") :: Console.magenta("r") ::
-        Console.cyan("f") :: Console.greenBright("u") :: Console.blueBright("l") ::
-        Console.black(" message.") :: Nil;
-    let s5 = List.map(s -> Console.bgWhite(s), s4);
-    List.foreach(s -> print(s), s5);
-    println("");
+  let s4 = Console.black("This is a ") :: Console.red("c") :: Console.green("o") ::
+            Console.yellow("l") :: Console.blue("o") :: Console.magenta("r") ::
+            Console.cyan("f") :: Console.greenBright("u") :: Console.blueBright("l") ::
+            Console.black(" message.") :: Nil;
+  let s5 = List.map(s -> Console.bgWhite(s), s4);
+  List.forEach(s -> Console.print(s), s5);
+  println("");
 
-    let s6 = Console.bold("This message is bold.");
-    let s7 = Console.hex("#b891eb", " And this is a custom hex color.");
-    println(s6 + s7)`
+  let s6 = Console.bold("This message is bold.");
+  let s7 = Console.hex("#b891eb", " And this is a custom hex color.");
+  println(s6 + s7)`
         },
         {
             name: "Using Laziness for Infinite Streams",
@@ -802,7 +804,7 @@ def main(): Unit \\ IO =
 def isPrime(p: Int32): Bool =
     DelayList.from(2) |>
     DelayList.take(p - 2) |>
-    DelayList.forall(x -> p rem x != 0)
+    DelayList.forAll(x -> p \`Int32.rem\` x != 0)
 /// An infinite sequence of prime numbers
 
 def primes(): DelayList[Int32] =
@@ -813,9 +815,9 @@ def primes(): DelayList[Int32] =
 def primes2(): DelayList[Int32] = sieve(DelayList.from(2))
 def sieve(ps: DelayList[Int32]): DelayList[Int32] = match DelayList.head(ps) {
     case Some(p) =>
-        LCons(p,
+        DelayList.LCons(p,
             lazy sieve(
-                DelayList.filter(x -> x rem p != 0, DelayList.tail(ps))
+                DelayList.filter(x -> x \`Int32.rem\` p != 0, DelayList.tail(ps))
                 )
             )
     case None => DelayList.empty()
@@ -841,7 +843,7 @@ def slowFunction(): String = {
 /// The idea is that we add the message to some buffer.
 /// Later, we can force the evaluation and store it permanently.
 /// For this example we just return the unit value.
-def log(_: Lazy[String]): Unit \\ IO = () as \\ IO
+def log(_: Lazy[String]): Unit \\ IO = checked_ecast(())
 
 /// Writes a message to the log.
 /// The slow function will not be evaluated.
@@ -852,8 +854,8 @@ def main(): Unit \\ IO =
             name: "Using Laziness to Compute Fibonacci",
             code: `/// An infinite sequence of Fibonacci numbers
 def fibs(): DelayList[Int32] =
-    LCons(0,
-        lazy LCons(1,
+    DelayList.LCons(0,
+        lazy DelayList.LCons(1,
             lazy DelayList.zipWith(
                 (x, y) -> x + y, fibs(), DelayList.tail(fibs()))))
 
