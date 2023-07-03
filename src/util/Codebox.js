@@ -11,15 +11,23 @@ class Codebox extends Component {
 
     constructor(props) {
         super(props);
-        let samples = SamplesData();
-        let randomChoice = getRandomInt(samples.length);
         this.state = {
-            choice: randomChoice,
-            samples: samples,
+            choice: undefined,
+            samples: [],
             dropdown: false,
-            input: samples[randomChoice].code,
+            input: "",
             output: undefined
         };
+
+        SamplesData().then(samples => {
+            const randomChoice = getRandomInt(samples.length);
+
+            this.setState({
+                choice: randomChoice,
+                samples: samples, 
+                input: samples[randomChoice].code,
+            });
+        });
     }
 
     toggleDropDown() {
