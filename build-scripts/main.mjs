@@ -25,4 +25,5 @@ export default ${objString};
 `;
 
 // The file is placed in the src directory to include it in the bundle
+fs.mkdirSync("./src/data", { recursive: true });
 fs.writeFileSync("./src/data/Samples.js", fileString);
