@@ -1,20 +1,6 @@
-export default async function fetchSamples() {
-    return await Promise.all(
-        sampleFiles.map(async sample => {
-            const response = await fetch(baseUrl + sample.file);
-            const code = await response.text();
-
-            return {
-                name: sample.name,
-                code,
-            };
-        })
-    );
-}
-
 const version = "0.38.0";
-const baseUrl = `https://raw.githubusercontent.com/flix/flix/v${version}/examples/`;
-const sampleFiles = [
+export const baseUrl = `https://raw.githubusercontent.com/flix/flix/v${version}/examples/`;
+export const sampleFiles = [
     {
         name: "Algebraic Data Types and Pattern Matching",
         file: "algebraic-data-types-and-pattern-matching.flix",
