@@ -11,13 +11,12 @@ class Codebox extends Component {
 
     constructor(props) {
         super(props);
-        let samples = SamplesData();
-        let randomChoice = getRandomInt(samples.length);
+        let randomChoice = getRandomInt(SamplesData.length);
         this.state = {
             choice: randomChoice,
-            samples: samples,
+            samples: SamplesData,
             dropdown: false,
-            input: samples[randomChoice].code,
+            input: SamplesData[randomChoice].code,
             output: undefined
         };
     }
