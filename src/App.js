@@ -5,6 +5,7 @@ import Home from "./page/Home";
 import GetStarted from "./page/GetStarted";
 import Documentation from "./page/Documentation";
 import Principles from "./page/Principles";
+import VSCode from "./page/VSCode";
 import Contribute from "./page/Contribute";
 import Research from "./page/Research";
 import Faq from "./page/Faq";
@@ -99,7 +100,12 @@ class App extends Component {
 
                         <NavItem className="pl-1 pr-1">
                             <NavLink tag={Link}
-                                     to="/principles/">Principles</NavLink>
+                                    to="/principles/">Principles</NavLink>
+                        </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link}
+                                    to="/vscode/">VS Code</NavLink>
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
@@ -132,6 +138,7 @@ class App extends Component {
                 <Route path="/about/" component={About}/>
                 <Route path="/get-started/" component={GetStarted}/>
                 <Route path="/principles/" component={Principles}/>
+                <Route path="/vscode/" component={VSCode}/>
                 <Route path="/documentation/" component={Documentation}/>
                 <Route path="/research/" component={Research}/>
                 <Route path="/faq/" component={Faq}/>
