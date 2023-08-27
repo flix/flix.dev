@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { Card, CardBody, CardText, CardTitle, Col, Container, Row } from 'reactstrap';
-import Rename from '../gif/vscode-rename.mp4';
-import Derive from '../gif/vscode-derive.mp4';
-import Context from '../gif/vscode-context.mp4';
+import Rename from '../gif/vscode-rename.webp';
+import Derive from '../gif/vscode-derive.webp';
+import Context from '../gif/vscode-context.webp';
 
 class VSCode extends Component {
 
@@ -34,17 +34,13 @@ class VSCode extends Component {
                     </Col>
 
                     <Col md="6">
-                        <video width="100%" muted autoPlay loop>
-                            <source src={Context} type="video/mp4"/>
-                        </video>
+                            <img src={Context} width={500} alt="Demonstration of context info"/>
                     </Col>
                 </Row>
 
                 <Row className="mb-4">
                     <Col md="6">
-                        <video width="100%" muted autoPlay loop>
-                            <source src={Rename} type="video/mp4"/>
-                        </video>
+                        <img src={Rename} width={500} alt="Demonstration of renaming"/>
                     </Col>
 
                     <Col md="6">
@@ -72,9 +68,7 @@ class VSCode extends Component {
                     </Col>
 
                     <Col md="6">
-                        <video width="100%" muted autoPlay loop>
-                            <source src={Derive} type="video/mp4"/>
-                        </video>
+                        <img src={Derive} width={500} alt="Demonstration of renaming"/>
                     </Col>
                 </Row>
             </Container>
