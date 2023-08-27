@@ -12,8 +12,11 @@ class VSCode extends Component {
 
     render() {
         return (
-            <Container>
-                <h1>The Visual Studio Code Extension</h1>
+            <Container className="mb-4">
+                <Row>
+                    <img src="/logo/vscode.svg" width="40" alt="Visual Studio Code" className="mx-3"/>
+                    <h1 className="my-auto">The Visual Studio Code Extension</h1>
+                </Row>
 
                 <p>
                     Flix comes with an extension for Visual Studio Code providing a rich set of features.
