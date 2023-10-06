@@ -52,7 +52,7 @@ class Documentation extends Component {
                                 <CardTitle className="text-center">
                                     Standard Library
                                 </CardTitle>
-                                <CardText style="color: blue">
+                                <CardText>
                                     The documentation provides a Javadoc-style description of the Flix library.
                                 </CardText>
                             </Card>
