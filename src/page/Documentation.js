@@ -36,7 +36,7 @@ class Documentation extends Component {
                                 <CardTitle className="text-center">
                                     Programming Flix
                                 </CardTitle>
-                                <CardText>
+                                <CardText style={{ color: 'rgb(33, 37, 41)' }}>
                                     The book provides an introduction to Flix for functional programmers. The book
                                     demonstrates the core concepts of Flix through several examples.
                                 </CardText>
@@ -52,7 +52,7 @@ class Documentation extends Component {
                                 <CardTitle className="text-center">
                                     Standard Library
                                 </CardTitle>
-                                <CardText>
+                                <CardText style={{ color: 'rgb(33, 37, 41)' }}>
                                     The documentation provides a Javadoc-style description of the Flix library.
                                 </CardText>
                             </Card>
@@ -75,7 +75,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <MdSchool style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center">
+                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
                                     Research Papers
                                 </CardTitle>
                             </Card>
@@ -88,7 +88,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <FaMicroblog style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center">
+                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
                                     Blog
                                 </CardTitle>
                             </Card>
@@ -101,7 +101,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <FaGitter style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center">
+                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
                                     Gitter
                                 </CardTitle>
                             </Card>
@@ -114,7 +114,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <FaGithub style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center">
+                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
                                     GitHub
                                 </CardTitle>
                             </Card>
@@ -127,7 +127,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <GoGraph style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center">
+                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
                                     Compiler Perf
                                 </CardTitle>
                             </Card>
@@ -140,7 +140,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <FaRegLaughSquint style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center">
+                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
                                     Language Checklist
                                 </CardTitle>
                             </Card>
