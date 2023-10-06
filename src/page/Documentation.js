@@ -28,15 +28,15 @@ class Documentation extends Component {
 
                 <Row className="mb-4">
                     <Col md="6">
-                        <a href="https://doc.flix.dev/" className="text-primary">
+                        <a href="https://doc.flix.dev/" className="text-reset">
                             <Card body className="h-100">
-                                <CardSubtitle className="text-center m-4">
+                                <CardSubtitle className="text-center m-4 text-primary">
                                     <FaBookReader style={{ fontSize: '6em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center">
+                                <CardTitle className="text-center text-primary">
                                     Programming Flix
                                 </CardTitle>
-                                <CardText className="text-reset">
+                                <CardText>
                                     The book provides an introduction to Flix for functional programmers. The book
                                     demonstrates the core concepts of Flix through several examples.
                                 </CardText>
@@ -44,15 +44,15 @@ class Documentation extends Component {
                         </a>
                     </Col>
                     <Col md="6">
-                        <a href="https://api.flix.dev/" className="text-success">
+                        <a href="https://api.flix.dev/" className="text-reset">
                             <Card body className="h-100">
-                                <CardSubtitle className="text-center m-4">
+                                <CardSubtitle className="text-center m-4 text-success">
                                     <FaStream style={{ fontSize: '6em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center">
+                                <CardTitle className="text-center text-success">
                                     Standard Library
                                 </CardTitle>
-                                <CardText className="text-reset">
+                                <CardText>
                                     The documentation provides a Javadoc-style description of the Flix library.
                                 </CardText>
                             </Card>
