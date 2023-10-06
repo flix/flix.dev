@@ -140,7 +140,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <FaRegLaughSquint style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
+                                <CardTitle className="text-center text-link">
                                     Language Checklist
                                 </CardTitle>
                             </Card>
