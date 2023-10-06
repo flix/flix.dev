@@ -52,7 +52,7 @@ class Documentation extends Component {
                                 <CardTitle className="text-center">
                                     Standard Library
                                 </CardTitle>
-                                <CardText style={{ color: 'rgb(33, 37, 41)' }}>
+                                <CardText className="text-reset">
                                     The documentation provides a Javadoc-style description of the Flix library.
                                 </CardText>
                             </Card>
@@ -140,7 +140,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <FaRegLaughSquint style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center text-link">
+                                <CardTitle className="text-center text-decoration-none text-link">
                                     Language Checklist
                                 </CardTitle>
                             </Card>
