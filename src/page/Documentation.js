@@ -36,7 +36,7 @@ class Documentation extends Component {
                                 <CardTitle className="text-center">
                                     Programming Flix
                                 </CardTitle>
-                                <CardText style={{ color: 'rgb(33, 37, 41)' }}>
+                                <CardText className="text-reset">
                                     The book provides an introduction to Flix for functional programmers. The book
                                     demonstrates the core concepts of Flix through several examples.
                                 </CardText>
@@ -75,7 +75,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <MdSchool style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
+                                <CardTitle className="text-center text-primary">
                                     Research Papers
                                 </CardTitle>
                             </Card>
@@ -88,7 +88,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <FaMicroblog style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
+                                <CardTitle className="text-center text-primary">
                                     Blog
                                 </CardTitle>
                             </Card>
@@ -101,7 +101,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <FaGitter style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
+                                <CardTitle className="text-center text-primary">
                                     Gitter
                                 </CardTitle>
                             </Card>
@@ -114,7 +114,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <FaGithub style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
+                                <CardTitle className="text-center text-primary">
                                     GitHub
                                 </CardTitle>
                             </Card>
@@ -127,7 +127,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <GoGraph style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center" style={{ color: 'rgb(0, 123, 255)' }}>
+                                <CardTitle className="text-center text-primary">
                                     Compiler Perf
                                 </CardTitle>
                             </Card>
@@ -140,7 +140,7 @@ class Documentation extends Component {
                                 <CardSubtitle className="text-center m-4">
                                     <FaRegLaughSquint style={{ fontSize: '3em' }} />
                                 </CardSubtitle>
-                                <CardTitle className="text-center text-decoration-none">
+                                <CardTitle className="text-center text-primary">
                                     Language Checklist
                                 </CardTitle>
                             </Card>
