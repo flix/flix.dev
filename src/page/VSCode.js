@@ -24,56 +24,58 @@ class VSCode extends Component {
 
                 <hr/>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Context Information</h4></CardTitle>
-                                <CardText>
-                                        View the type of an expression or the documentation of a function by hovering over it.
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
+                <div style={{display: "flex", flexDirection:"column", gap: "4rem", margin: "3rem 0"}}>
+                    <Row className="mb-4">
+                        <Col md="6">
+                            <Card className="border-0">
+                                <CardBody>
+                                    <CardTitle><h4>Context Information</h4></CardTitle>
+                                    <CardText>
+                                            View the type of an expression or the documentation of a function by hovering over it.
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+                        </Col>
 
-                    <Col md="6">
-                            <img src={Context} width={500} alt="Demonstration of context info"/>
-                    </Col>
-                </Row>
+                        <Col md="6">
+                                <img src={Context} width={500} alt="Demonstration of context info"/>
+                        </Col>
+                    </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <img src={Rename} width={500} alt="Demonstration of renaming"/>
-                    </Col>
+                    <Row className="mb-4">
+                        <Col md="6">
+                            <img src={Rename} width={500} alt="Demonstration of renaming"/>
+                        </Col>
 
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Renaming</h4></CardTitle>
-                                <CardText>
-                                        Replace all occurrences of a symbol with a new name.
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
+                        <Col md="6">
+                            <Card className="border-0">
+                                <CardBody>
+                                    <CardTitle><h4>Renaming</h4></CardTitle>
+                                    <CardText>
+                                            Replace all occurrences of a symbol with a new name.
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Automatically Derive Missing Type Classes</h4></CardTitle>
-                                <CardText>
-                                    Sometimes you forget to derive a type class. Let Flix do it for you.
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
+                    <Row className="mb-4">
+                        <Col md="6">
+                            <Card className="border-0">
+                                <CardBody>
+                                    <CardTitle><h4>Automatically Derive Missing Type Classes</h4></CardTitle>
+                                    <CardText>
+                                        Sometimes you forget to derive a type class. Let Flix do it for you.
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+                        </Col>
 
-                    <Col md="6">
-                        <img src={Derive} width={500} alt="Demonstration of renaming"/>
-                    </Col>
-                </Row>
+                        <Col md="6">
+                            <img src={Derive} width={500} alt="Demonstration of renaming"/>
+                        </Col>
+                    </Row>
+                </div>
             </Container>
         );
     }
