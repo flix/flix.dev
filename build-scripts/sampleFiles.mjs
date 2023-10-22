@@ -102,10 +102,6 @@ export const sampleFiles = [
         file: "working-with-files-and-directories.flix",
     },
     {
-        name: "Print a Colorful Message",
-        file: "print-a-colorful-message.flix",
-    },
-    {
         name: "Using Laziness for Infinite Streams",
         file: "using-laziness-for-infinite-streams.flix",
     },
