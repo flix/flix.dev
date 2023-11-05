@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import AceEditor from 'react-ace'
-import 'brace/mode/scala'
 
-import FlixMode from './FlixMode'
-import 'brace/theme/chrome';
+import 'ace-builds/src-noconflict/mode-flix'
+import 'ace-builds/src-noconflict/theme-chrome'
 
 class InlineEditor extends Component {
     constructor(props) {
@@ -17,18 +16,13 @@ class InlineEditor extends Component {
         }
     }
 
-    componentDidMount() {
-        const customMode = new FlixMode();
-        this.refs.aceEditor.editor.getSession().setMode(customMode);
-    }
-
     render() {
         return (
             <div className="inline-editor-frame">
                 <div className="inline-editor-code">
                     <AceEditor
                         style={{"background": "inherit", "width": "95%"}}
-                        mode='text'
+                        mode='flix'
                         theme='chrome'
                         ref="aceEditor"
                         readOnly={true}
