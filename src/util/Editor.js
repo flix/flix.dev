@@ -1,16 +1,10 @@
 import React, {Component} from 'react';
 import AceEditor from 'react-ace'
-import 'brace/mode/scala'
 
-import FlixMode from './FlixMode'
-import 'brace/theme/chrome';
+import 'ace-builds/src-noconflict/mode-flix'
+import 'ace-builds/src-noconflict/theme-chrome'
 
 class Editor extends Component {
-    componentDidMount() {
-        let customMode = new FlixMode();
-        this.refs.aceEditor.editor.getSession().setMode(customMode);
-    }
-
     onChange(input) {
         this.props.notifyTextChanged(input)
     };
@@ -18,7 +12,7 @@ class Editor extends Component {
     render() {
         return (
             <AceEditor width="100%"
-                mode='text'
+                mode='flix'
                 theme='chrome'
                 ref="aceEditor"
                 showGutter={false}
