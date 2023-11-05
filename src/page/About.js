@@ -1,66 +1,58 @@
-import React, {Component} from "react";
-import {Col, Container, Row} from "reactstrap";
-import InlineEditor from "../util/InlineEditor";
+import React, { Component } from 'react'
+import { Col, Container, Row } from 'reactstrap'
+import InlineEditor from '../util/InlineEditor'
 
 class About extends Component {
+  componentDidMount() {
+    document.title = 'Flix | About'
+  }
 
-    componentDidMount() {
-        document.title = "Flix | About";
-    }
+  render() {
+    return (
+      <Container style={{ 'text-align': 'justify' }}>
+        <Row className="mb-3">
+          <Col sm={12} md={8}>
+            <h1>About</h1>
 
-    render() {
-        return (
-            <Container style={{"text-align": "justify"}}>
+            <p>
+              Flix is a functional-, logic-, and imperative- programming language focusing on making it simple to write
+              safe, robust, and elegant programs. It tries to achieve this through a combination of a strong static type
+              system with type inference, an extensive collection of compile-time checks, and by avoiding many of the
+              mistakes of programming languages past. Flix aims to have a principled design that does <i>not</i>{' '}
+              sacrifice safety nor elegance at the altar of expediency.{' '}
+              <i>Flix is a language for programmers that care about programs.</i>
+            </p>
 
-                <Row className="mb-3">
-                    <Col sm={12} md={8}>
+            <p>
+              Flix draws inspiration from many other excellent languages, including Elm, F#, OCaml, Haskell, Rust, and
+              Scala. Flix visually resembles Scala with an emphasis on conciseness and the use of keywords. We believe
+              that short keywords are a useful visual aid when scanning through source code and trying to quickly
+              understand its structure. The static type system of Flix supports (local) type inference and is based on
+              Hindley-Milner like those of OCaml and Haskell. The concurrency model of Flix is based on channels and
+              processes as known from Go. Flix aspires to have understandable and detailed error-messages like those
+              found in Elm.
+            </p>
 
-                        <h1>About</h1>
+            <p>
+              The Flix language and compiler is open source and freely available under the permissive Apache 2.0
+              license.
+            </p>
 
-                        <p>
-                            Flix is a functional-, logic-, and imperative- programming language focusing on making it
-                            simple to write safe, robust, and elegant programs. It tries to achieve this through a
-                            combination of a strong static type system with type inference, an extensive collection of
-                            compile-time checks, and by
-                            avoiding many of the mistakes of programming languages past. Flix aims to have a principled
-                            design that does <i>not</i> sacrifice safety nor elegance at the altar of expediency. <i>Flix
-                            is a language for programmers that care about programs.</i>
-                        </p>
+            <h2>Hello World</h2>
 
-                        <p>
-                            Flix draws inspiration from many other excellent languages, including Elm, F#, OCaml,
-                            Haskell, Rust, and Scala. Flix visually resembles Scala with an emphasis on conciseness and
-                            the use of keywords. We believe that short keywords are a useful visual aid when scanning
-                            through source code and trying to quickly understand its structure. The static type system
-                            of Flix supports (local) type inference and is based on Hindley-Milner like those of OCaml
-                            and Haskell. The concurrency model of Flix is based on channels and processes as known from
-                            Go. Flix aspires to have understandable and detailed error-messages like those found in Elm.
-                        </p>
+            <p>The much celebrated hello world program in Flix:</p>
 
-                        <p>
-                            The Flix language and compiler is open source and freely available under the permissive
-                            Apache 2.0 license.
-                        </p>
-
-                        <h2>Hello World</h2>
-
-                        <p>
-                            The much celebrated hello world program in Flix:
-                        </p>
-
-                        <InlineEditor>
-                            {`def main(): Unit \\ IO =
+            <InlineEditor>
+              {`def main(): Unit \\ IO =
     println("Hello World!")`}
-                        </InlineEditor>
+            </InlineEditor>
 
-                        <h2>Basic Functional Programming</h2>
+            <h2>Basic Functional Programming</h2>
 
-                        <p>
-                            Flix allows us to define our own data types and use pattern matching to take them apart:
-                        </p>
+            <p>Flix allows us to define our own data types and use pattern matching to take them apart:</p>
 
-                        <InlineEditor>
-                            {`/// An algebraic data type for shapes.
+            <InlineEditor>
+              {`/// An algebraic data type for shapes.
 enum Shape {
     case Circle(Int32),          // circle radius
     case Square(Int32),          // side length
@@ -77,14 +69,12 @@ def area(s: Shape): Int32 = match s {
 // Computes the area of a 2 by 4.
 def main(): Unit \\ IO =
     area(Rectangle(2, 4)) |> println`}
-                        </InlineEditor>
+            </InlineEditor>
 
-                        <p>
-                            Flix supports parametric polymorphism (generics) as the following example shows:
-                        </p>
+            <p>Flix supports parametric polymorphism (generics) as the following example shows:</p>
 
-                        <InlineEditor>
-                            {`/// An algebraic data type for binary trees where each leaf carries a value of type a.
+            <InlineEditor>
+              {`/// An algebraic data type for binary trees where each leaf carries a value of type a.
 enum Tree[a] {
     case Leaf(a),
     case Node(Tree[a], Tree[a])
@@ -111,28 +101,27 @@ def tree(): Tree[Int32] = Node(Leaf(1), Leaf(2))
 /// Squares all elements in the simple tree.
 def main(): Unit \\ IO =
     map(x -> x * x, tree()) |> println`}
-                        </InlineEditor>
+            </InlineEditor>
 
-                        <p>
-                            Note that type parameters may be omitted from function signatures, as shown in definition
-                            of <code>map</code>.
-                        </p>
+            <p>
+              Note that type parameters may be omitted from function signatures, as shown in definition of{' '}
+              <code>map</code>.
+            </p>
 
-                        <h2>Concurrency</h2>
+            <h2>Concurrency</h2>
 
-                        <p>
-                            The concurrency model of Flix is inspired by Go. In Flix, processes communicate
-                            via immutable message-passing over channels.
-                        </p>
+            <p>
+              The concurrency model of Flix is inspired by Go. In Flix, processes communicate via immutable
+              message-passing over channels.
+            </p>
 
-                        <p>
-                            The following program spawns a new process to perform a (trivial) computation and then sends
-                            the
-                            result to the main process using a channel.
-                        </p>
+            <p>
+              The following program spawns a new process to perform a (trivial) computation and then sends the result to
+              the main process using a channel.
+            </p>
 
-                        <InlineEditor>
-                            {`/// Computes the sum of \`x\` and \`y\` and sends the result on the channel \`tx\`.
+            <InlineEditor>
+              {`/// Computes the sum of \`x\` and \`y\` and sends the result on the channel \`tx\`.
 def sum(x: Int32, y: Int32, tx: Sender[Int32, r]): Unit \\ { Write(r) } =
     Channel.send((x + y), tx)
 
@@ -142,18 +131,16 @@ def main(): Int32 \\ IO = region r {
     spawn sum(21, 42, tx) @ r;             // spawn sum to run in a separate process.
     Channel.recv(rx)                       // wait for the result to arrive on the channel.
 }`}
-                        </InlineEditor>
+            </InlineEditor>
 
-                        <p>
-                            The powerful <code>select</code> expression can be used to choose the first element that
-                            becomes
-                            available from a collection of channels. The select expression can be used to implement many
-                            useful
-                            features, such as load balancing, producer-consumer patterns, and timeouts.
-                        </p>
+            <p>
+              The powerful <code>select</code> expression can be used to choose the first element that becomes available
+              from a collection of channels. The select expression can be used to implement many useful features, such
+              as load balancing, producer-consumer patterns, and timeouts.
+            </p>
 
-                        <InlineEditor>
-                            {`/// Sends the string \`s\` on the channel \`tx\` up to \`n\` times.
+            <InlineEditor>
+              {`/// Sends the string \`s\` on the channel \`tx\` up to \`n\` times.
 def animal(s: String, n: Int32, tx: Sender[String, r]): Unit \\ { Write(r), IO } = 
     match n {
         case 0 => ()
@@ -174,104 +161,97 @@ def main(): Unit \\ IO = region r {
         case hiss <- Channel.recv(rx3) => hiss /// rx3 became ready first
     } |> println
 }`}
-                        </InlineEditor>
+            </InlineEditor>
 
-                        <h2>Polymorphic Effects: Separating Pure and Impure Code</h2>
+            <h2>Polymorphic Effects: Separating Pure and Impure Code</h2>
 
-                        <p>
-                            A unique feature of Flix is its polymorphic effect system. The Flix type and effect system
-                            cleanly separates pure and impure code. If an expression is pure then it always
-                            evaluates to the same value and it cannot have a side-effect. If a function is pure then it
-                            always evaluates to the same value when given the same arguments.
-                        </p>
+            <p>
+              A unique feature of Flix is its polymorphic effect system. The Flix type and effect system cleanly
+              separates pure and impure code. If an expression is pure then it always evaluates to the same value and it
+              cannot have a side-effect. If a function is pure then it always evaluates to the same value when given the
+              same arguments.
+            </p>
 
-                        <p>
-                            We can write a pure function:
-                        </p>
+            <p>We can write a pure function:</p>
 
-                        <InlineEditor>
-                            {`/// A pure function
+            <InlineEditor>
+              {`/// A pure function
 def sum(x: Int32, y: Int32): Int32 = x + y`}
-                        </InlineEditor>
+            </InlineEditor>
 
-                        <p>
-                            And we can also write an impure function:
-                        </p>
+            <p>And we can also write an impure function:</p>
 
-                        <InlineEditor>
-                            {`/// An impure function
+            <InlineEditor>
+              {`/// An impure function
 def sayHello(): Unit \\ IO = Console.printLine("Hello World")`}
-                        </InlineEditor>
+            </InlineEditor>
 
-                        <p>
-                            We can also write a higher-order function that <i>requires</i> a pure function argument:
-                        </p>
+            <p>
+              We can also write a higher-order function that <i>requires</i> a pure function argument:
+            </p>
 
-                        <InlineEditor>
-                            {`def exists(f: a -> Bool, xs: List[a]): Bool = match xs {
+            <InlineEditor>
+              {`def exists(f: a -> Bool, xs: List[a]): Bool = match xs {
     case Nil     => false
     case x :: rs => if (f(x)) true else exists(f, rs)
 }`}
-                        </InlineEditor>
+            </InlineEditor>
 
-                        <p>
-                            Here <code>f</code> is a pure function, because every function definition
-                            is <i>implicitly</i> marked as <code>Pure</code> in Flix.
-                        </p>
+            <p>
+              Here <code>f</code> is a pure function, because every function definition is <i>implicitly</i> marked as{' '}
+              <code>Pure</code> in Flix.
+            </p>
 
-                        <p>
-                            <i>It is a compile-time error to call <code>map</code> with an impure function!</i>
-                        </p>
+            <p>
+              <i>
+                It is a compile-time error to call <code>map</code> with an impure function!
+              </i>
+            </p>
 
-                        <p>
-                            A major challenge for type and effect systems is effect polymorphism. The problem is the
-                            following: for higher-order functions the effect of a function depends on the effects of its
-                            arguments. For example, if map is passed a pure function <code>f</code> then the
-                            expression <code>List.map(f, 1 :: Nil)</code> is pure. On the other hand, if map is passed
-                            an impure function <code>g</code> then the expression <code>List.map(g, 1 :: Nil)</code> is
-                            impure. The effect of map depends on the effect of its first argument: it is effect
-                            polymorphic.
-                        </p>
+            <p>
+              A major challenge for type and effect systems is effect polymorphism. The problem is the following: for
+              higher-order functions the effect of a function depends on the effects of its arguments. For example, if
+              map is passed a pure function <code>f</code> then the expression <code>List.map(f, 1 :: Nil)</code> is
+              pure. On the other hand, if map is passed an impure function <code>g</code> then the expression{' '}
+              <code>List.map(g, 1 :: Nil)</code> is impure. The effect of map depends on the effect of its first
+              argument: it is effect polymorphic.
+            </p>
 
-                        <p>
-                            We can express such <i>effect polymorphic</i> function types in Flix. For example:
-                        </p>
+            <p>
+              We can express such <i>effect polymorphic</i> function types in Flix. For example:
+            </p>
 
-                        <InlineEditor>
-                            {`def map(f: a -> b \\ ef, xs: List[a]): List[b] \\ ef = match xs {
+            <InlineEditor>
+              {`def map(f: a -> b \\ ef, xs: List[a]): List[b] \\ ef = match xs {
     case Nil     => Nil
     case x :: rs => f(x) :: map(f, rs)
 }`}
-                        </InlineEditor>
+            </InlineEditor>
 
-                        <p>
-                            Here the effect <code>map</code> depends on the effect of <code>f</code> (expressed with the
-                            effect parameter <code>ef</code>).
-                        </p>
+            <p>
+              Here the effect <code>map</code> depends on the effect of <code>f</code> (expressed with the effect
+              parameter <code>ef</code>).
+            </p>
 
-                        <p>
-                            The effect system of Flix is part of what makes the language functional-first: the
-                            programmer can trust that a pure function behaves as a mathematical function. Most other
-                            contemporary programming languages cannot offer such guarantees.
-                        </p>
+            <p>
+              The effect system of Flix is part of what makes the language functional-first: the programmer can trust
+              that a pure function behaves as a mathematical function. Most other contemporary programming languages
+              cannot offer such guarantees.
+            </p>
 
-                        <h2>First-class Datalog Constraints</h2>
+            <h2>First-class Datalog Constraints</h2>
 
-                        <p>
-                            Another unique feature of Flix is its support for logic programming with first-class Datalog
-                            constraints. Datalog is a simple, yet surprisingly powerful, declarative logic programming
-                            language
-                            particularly well-suited for recursive queries on graphs. In Flix, Datalog constraints can
-                            be
-                            embedded <i>inside</i> Flix programs as first-class values that can be stored in local
-                            variables,
-                            passed and returned from functions, and composed with other Datalog program values. In a
-                            way, Flix
-                            is a strongly-typed meta-programming language for Datalog.
-                        </p>
+            <p>
+              Another unique feature of Flix is its support for logic programming with first-class Datalog constraints.
+              Datalog is a simple, yet surprisingly powerful, declarative logic programming language particularly
+              well-suited for recursive queries on graphs. In Flix, Datalog constraints can be embedded <i>inside</i>{' '}
+              Flix programs as first-class values that can be stored in local variables, passed and returned from
+              functions, and composed with other Datalog program values. In a way, Flix is a strongly-typed
+              meta-programming language for Datalog.
+            </p>
 
-                        <InlineEditor>
-                            {`// Declarations of predicate symbols.
+            <InlineEditor>
+              {`// Declarations of predicate symbols.
 rel Road(src: String, speed: Int32, dst: String)
 rel Connected(src: String, dst: String)
 
@@ -295,22 +275,18 @@ def main(): Unit \\ IO =
         Road("Hamburg", 130, "Berlin").
     };
     drivable(g, "Aarhus", "Berlin", 110) |> println`}
-                        </InlineEditor>
+            </InlineEditor>
 
-                        <p>
-                            The solution to a Datalog program, its minimal model, is itself a Datalog program (i.e. a
-                            set of
-                            facts). Consequently, with first-class constraints, it becomes possible to construct
-                            pipelines of
-                            Datalog programs.
-                        </p>
+            <p>
+              The solution to a Datalog program, its minimal model, is itself a Datalog program (i.e. a set of facts).
+              Consequently, with first-class constraints, it becomes possible to construct pipelines of Datalog
+              programs.
+            </p>
 
-                        <p>
-                            First-class Datalog constraints can also be polymorphic, as this example demonstrates:
-                        </p>
+            <p>First-class Datalog constraints can also be polymorphic, as this example demonstrates:</p>
 
-                        <InlineEditor>
-                            {`def edgesWithNumbers(): #{ LabelledEdge(String, Int32, String) | r } = #{
+            <InlineEditor>
+              {`def edgesWithNumbers(): #{ LabelledEdge(String, Int32, String) | r } = #{
     LabelledEdge("a", 1, "b").
     LabelledEdge("b", 1, "c").
     LabelledEdge("c", 2, "d").
@@ -333,113 +309,103 @@ def main(): Unit \\ IO =
         select (x, l, z) from LabelledPath(x, l, z) |> println;
     query edgesWithColor(), closure()
         select (x, l, z) from LabelledPath(x, l, z) |> println`}
-                        </InlineEditor>
+            </InlineEditor>
+          </Col>
+        </Row>
 
-                    </Col>
-                </Row>
+        <Row className="mb-3">
+          <Col sm={12} md={8}>
+            <h1>Innovations</h1>
 
-                <Row className="mb-3">
-                    <Col sm={12} md={8}>
+            <p>
+              We say that Flix is a next-generation programming language because it pioneers several new features that
+              are not found in any other contemporary programming language. However, innovation is not a goal in itself;
+              Flix also builds on decades of research in programming language theory and relies on well-established
+              theoretical foundations.
+            </p>
 
-                        <h1>Innovations</h1>
+            <h2>Polymorphic Effects</h2>
 
-                        <p>
-                            We say that Flix is a next-generation programming language because it pioneers several new
-                            features that are not found in any other contemporary programming language. However,
-                            innovation is not a goal in itself; Flix also builds on decades of research in programming
-                            language theory and relies on well-established theoretical foundations.
-                        </p>
+            <p>
+              Flix comes with a polymorphic type and effect system. The effect system separates pure and impure code. If
+              an expression is pure then it always evaluates to the same value and it cannot have a side-effect. If a
+              function is pure then it always evaluates to the same value when given the same arguments.
+            </p>
 
-                        <h2>Polymorphic Effects</h2>
+            <p>
+              Flix supports <i>effect polymorphism</i> which means that the effect of a higher-order function can depend
+              on the effect of its function arguments. For example, the effect of <code>List.map</code> depends on the
+              effect of the function passed to it. That is, if <code>List.map</code> is given a pure function then
+              computation is pure, whereas if it is given an impure function then computation is impure. As an another
+              example, the effect of <code>&gt;&gt;</code> (forward function composition) depends on <i>both</i> of its
+              arguments: composition is only pure if both its function arguments are pure.
+            </p>
 
-                        <p>
-                            Flix comes with a polymorphic type and effect system. The effect system separates pure
-                            and impure code. If an expression is pure then it always evaluates to the same value and it
-                            cannot have a side-effect. If a function is pure then it always evaluates to the same value
-                            when given the same arguments.
-                        </p>
+            <p>
+              The Flix type and effect system is fine-grained and expressive. It is fine-grained because it precisely
+              captures the purity of every expression and sub-expression. It is expressive because it allows arbitrary
+              boolean formulas to describe the effect of an expression. For example, the system can express that a
+              higher-order function requires <i>at most</i> one impure function.
+            </p>
 
-                        <p>
-                            Flix supports <i>effect polymorphism</i> which means that the effect of a higher-order
-                            function can depend on the effect of its function arguments. For example, the effect
-                            of <code>List.map</code> depends on the effect of the function passed to it. That is,
-                            if <code>List.map</code> is given a pure function then computation is pure, whereas if
-                            it is given an impure function then computation is impure. As an another example,
-                            the effect of <code>&gt;&gt;</code> (forward function composition) depends on <i>both</i> of
-                            its arguments: composition is only pure if both its function arguments are pure.
-                        </p>
+            <p>
+              The Flix type and effect system supports <i>type and effect inference</i>. That is, explicit type or
+              effect annotations are never required for any program fragment. (However, as a design choice, type and
+              effect annotations are required for every top-level definition.) The inference is <i>complete</i> which
+              means that it never infers the wrong type or effect, i.e. annotations are never required to guide the type
+              checker.
+            </p>
 
-                        <p>
-                            The Flix type and effect system is fine-grained and expressive. It is fine-grained because
-                            it precisely captures the purity of every expression and sub-expression. It is expressive
-                            because it allows arbitrary boolean formulas to describe
-                            the effect of an expression. For example, the system can express that a higher-order
-                            function requires <i>at most</i> one impure function.
-                        </p>
+            <p>
+              The theoretical foundation of the Flix type and effect system is based on the Hindley-Milner type system
+              extended with boolean constraints. Type inference is supported by an extension of Algorithm W with boolean
+              unification. For more details, we refer to our research papers.
+            </p>
 
-                        <p>
-                            The Flix type and effect system supports <i>type and effect inference</i>. That is, explicit
-                            type or effect annotations are never required for any program fragment. (However, as a
-                            design choice, type and effect annotations are required for every top-level definition.) The
-                            inference is <i>complete</i> which means that it never infers the wrong type or effect, i.e.
-                            annotations are never required to guide the type checker.
-                        </p>
+            <h2>First-class Datalog Constraints</h2>
 
-                        <p>
-                            The theoretical foundation of the Flix type and effect system is based on the Hindley-Milner
-                            type system extended with boolean constraints. Type inference is supported by
-                            an extension of Algorithm W with boolean unification. For more details, we refer to our
-                            research papers.
-                        </p>
+            <p>
+              Datalog is a simple, yet surprisingly powerful, declarative logic programming language. A Datalog program
+              is a collection of constraints. Each constraint is either a fact or a rule. A Datalog rule is logic
+              formula that allows us to derive new facts from existing facts.
+            </p>
 
-                        <h2>First-class Datalog Constraints</h2>
+            <p>
+              Every Datalog program has a unique solution; its so-called <i>minimal model</i>. The minimal model always
+              exists and is always computable, i.e. evaluation of a Datalog program always terminates with the same
+              solution. In Datalog, unlike in Prolog, the order of constraints and of clauses within a rule is
+              immaterial. That is, a Datalog program can be freely reordered without changing its meaning.
+            </p>
 
-                        <p>
-                            Datalog is a simple, yet surprisingly powerful, declarative logic programming language. A
-                            Datalog program is a collection of constraints. Each constraint is either a fact or a rule.
-                            A Datalog rule is logic formula that allows us to derive new facts from existing facts.
-                        </p>
+            <p>
+              Datalog, unlike Prolog, is <i>not</i> Turing-complete: there are a programs that cannot be expressed in
+              Datalog. This is necessarily so, otherwise Datalog could not guarantee termination.
+            </p>
 
-                        <p>
-                            Every Datalog program has a unique solution; its so-called <i>minimal model</i>.
-                            The minimal model always exists and is always computable, i.e. evaluation of a Datalog
-                            program always terminates with the same solution. In Datalog, unlike in Prolog, the order
-                            of constraints and of clauses within a rule is immaterial. That is, a Datalog program
-                            can be freely reordered without changing its meaning.
-                        </p>
+            <p>
+              Flix supports Datalog constraints as <i>first-class values</i> that can be passed around, composed with
+              other constraints, and solved. The solution (i.e. minimal model) of a constraint set is another constraint
+              set, hence it is possible to construct pipelines of Datalog computations within a Flix program.
+            </p>
 
-                        <p>
-                            Datalog, unlike Prolog, is <i>not</i> Turing-complete: there are a programs that cannot be
-                            expressed in Datalog. This is necessarily so, otherwise Datalog could not guarantee
-                            termination.
-                        </p>
+            <p>
+              Flix can be thought of as a meta-programming language for Datalog. The Flix type system and stratification
+              algorithm guarantees the well-formedness of Datalog programs constructed at run-time. Moreover, Flix
+              significantly increases the expressive power of Datalog by allowing guard expressions and expressions as
+              head terms in Datalog rules.
+            </p>
 
-                        <p>
-                            Flix supports Datalog constraints as <i>first-class values</i> that can be passed around,
-                            composed with other constraints, and solved. The solution (i.e. minimal model) of a
-                            constraint set is another constraint set, hence it is possible to construct pipelines of
-                            Datalog computations within a Flix program.
-                        </p>
-
-                        <p>
-                            Flix can be thought of as a meta-programming language for Datalog. The Flix type system
-                            and stratification algorithm guarantees the well-formedness of Datalog programs constructed
-                            at run-time. Moreover, Flix significantly increases the expressive power of Datalog by
-                            allowing guard expressions and expressions as head terms in Datalog rules.
-                        </p>
-
-                        <p>
-                            Alternatively, Flix can be thought of as a functional programming language with a very
-                            powerful embedded query language. A Flix programmer can use first-class Datalog constraints
-                            to simply, elegantly, and efficiently solve fixpoint computations inside functional code.
-                            It should be noted that Datalog is strictly more expressive than relational algebra (~=
-                            simple SQL).
-                        </p>
-
-                    </Col>
-                </Row>
-            </Container>);
-    }
+            <p>
+              Alternatively, Flix can be thought of as a functional programming language with a very powerful embedded
+              query language. A Flix programmer can use first-class Datalog constraints to simply, elegantly, and
+              efficiently solve fixpoint computations inside functional code. It should be noted that Datalog is
+              strictly more expressive than relational algebra (~= simple SQL).
+            </p>
+          </Col>
+        </Row>
+      </Container>
+    )
+  }
 }
 
-export default About;
+export default About

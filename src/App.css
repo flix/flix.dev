@@ -1,96 +1,97 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    overflow-y: scroll;
+  font-family: 'Open Sans', sans-serif;
+  overflow-y: scroll;
 
-    background-color: #efefef;
+  background-color: #efefef;
 }
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-    text-align: left;
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  text-align: left;
 }
 
 h2 {
-    font-size: 1.7rem;
-    margin-bottom: 0.75rem;
-    text-align: left;
+  font-size: 1.7rem;
+  margin-bottom: 0.75rem;
+  text-align: left;
 }
 
 h3 {
-    font-size: 1.6rem;
-    margin-bottom: 0.75rem;
-    text-align: left;
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+  text-align: left;
 }
 
 p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .menu {
-    margin-left: -15px;
-    margin-right: -15px;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .page {
-    background-color: white;
-    min-height: 95vh;
+  background-color: white;
+  min-height: 95vh;
 }
 
 .motto {
-    font-size: 1.35rem;
-    color: #17a2b8;
+  font-size: 1.35rem;
+  color: #17a2b8;
 }
 
 .editor-output h5 {
-    font-size: 1.1rem;
-    color: gray;
-    text-align: center;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid #b7b7b7;
+  font-size: 1.1rem;
+  color: gray;
+  text-align: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #b7b7b7;
 }
 
 .editor-output pre {
-    font-family: monospace;
+  font-family: monospace;
 }
 
 .inline-editor-frame {
-    margin-top: 1em;
-    margin-bottom: 1.5em;
+  margin-top: 1em;
+  margin-bottom: 1.5em;
 }
 
 .inline-editor-code {
-    padding: 1em 1.5em;
-    background-color: #f7f7f7;
+  padding: 1em 1.5em;
+  background-color: #f7f7f7;
 }
 
 .nav-item {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .navbar-nav .nav-item .nav-link {
-    color: rgba(255, 255, 255, .85)
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-    color: rgba(255, 255, 255, 1.00)
+  color: rgba(255, 255, 255, 1);
 }
 
-.btn-group .btn, .btn-xs {
-    padding: .1rem .5rem;
-    font-size: .875rem;
-    line-height: 1.5;
-    border-radius: .2rem;
+.btn-group .btn,
+.btn-xs {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
 }
 
 .card-title {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .ace_hidden-cursors {
-    opacity: 0
+  opacity: 0;
 }
 
 .w-33 {
-    width: 33%;
+  width: 33%;
 }

@@ -1,161 +1,152 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import {
-    Button,
-    Card,
-    CardBody,
-    CardImg,
-    CardText,
-    CardTitle,
-    Col,
-    Container,
-    Row,
-    UncontrolledCarousel
-} from 'reactstrap';
-import {Link} from "react-router-dom";
-import Codebox from "../util/Codebox";
-import InlineEditor from "../util/InlineEditor";
-import {Timeline} from 'react-twitter-widgets'
+  Button,
+  Card,
+  CardBody,
+  CardImg,
+  CardText,
+  CardTitle,
+  Col,
+  Container,
+  Row,
+  UncontrolledCarousel,
+} from 'reactstrap'
+import { Link } from 'react-router-dom'
+import Codebox from '../util/Codebox'
+import InlineEditor from '../util/InlineEditor'
+import { Timeline } from 'react-twitter-widgets'
 
 class Home extends Component {
+  componentDidMount() {
+    document.title = 'The Flix Programming Language'
+  }
 
-    componentDidMount() {
-        document.title = "The Flix Programming Language";
-    }
+  carousel = [
+    {
+      src: '/images/vscode1.png',
+      caption: 'Slide 1',
+      header: 'VSCode: Syntax Highlighting',
+    },
+    {
+      src: '/images/vscode2.png',
+      caption: 'Slide 2',
+      header: 'VSCode: Contextual Information',
+    },
+    {
+      src: '/images/vscode3.png',
+      caption: 'Slide 3',
+      header: 'VSCode: Highlight References',
+    },
+    {
+      src: '/images/vscode4.png',
+      caption: 'Slide 4',
+      header: 'VSCode: Inline Errors',
+    },
+  ]
 
-    carousel = [
-        {
-            src: '/images/vscode1.png',
-            caption: 'Slide 1',
-            header: 'VSCode: Syntax Highlighting',
-        },
-        {
-            src: '/images/vscode2.png',
-            caption: 'Slide 2',
-            header: 'VSCode: Contextual Information',
-        },
-        {
-            src: '/images/vscode3.png',
-            caption: 'Slide 3',
-            header: 'VSCode: Highlight References',
-        },
-        {
-            src: '/images/vscode4.png',
-            caption: 'Slide 4',
-            header: 'VSCode: Inline Errors',
-        }
-    ];
+  render() {
+    return (
+      <Container>
+        <Row className="mb-3">
+          <Col md="6">
+            <h1>The Flix Programming Language</h1>
 
-    render() {
-        return (
-            <Container>
-                <Row className="mb-3">
-                    <Col md="6">
-                        <h1>The Flix Programming Language</h1>
+            <h2 className="motto">
+              Next-generation reliable, safe, concise, and functional-first programming language.
+            </h2>
 
-                        <h2 className="motto">Next-generation reliable, safe, concise, and functional-first programming
-                            language.</h2>
+            <p className="text-justify">
+              Flix is a principled functional, imperative, and logic programming language developed at{' '}
+              <a href="https://cs.au.dk/">Aarhus University</a>, at the{' '}
+              <a href="https://uwaterloo.ca/">University of Waterloo</a>, and by a community of{' '}
+              <a href="https://github.com/flix/flix/graphs/contributors">open source contributors</a>.
+            </p>
 
-                        <p className="text-justify">
-                            Flix is a principled functional, imperative, and logic programming language
-                            developed at <a href="https://cs.au.dk/">Aarhus University</a>, at the <a
-                            href="https://uwaterloo.ca/">University of Waterloo</a>, and by a community of <a
-                            href="https://github.com/flix/flix/graphs/contributors">open source contributors</a>.
-                        </p>
+            <p className="text-justify">
+              Flix is inspired by OCaml and Haskell with ideas from Rust and Scala. Flix looks like Scala, but its type
+              system is based on Hindley-Milner. Two unique features of Flix are its polymorphic effect system and its
+              support for first-class Datalog constraints.
+            </p>
 
-                        <p className="text-justify">
-                            Flix is inspired by OCaml and Haskell with ideas from Rust and Scala. Flix looks like
-                            Scala, but its type system is based on Hindley-Milner. Two unique features
-                            of Flix are its polymorphic effect system and its support for first-class Datalog
-                            constraints.
-                        </p>
+            <p className="text-justify">
+              Flix compiles to JVM bytecode, runs on the Java Virtual Machine, and supports full tail call elimination.
+              A VSCode plugin for Flix is available.
+            </p>
 
-                        <p className="text-justify">
-                            Flix compiles to JVM bytecode, runs on the Java Virtual Machine, and supports full tail call
-                            elimination. A VSCode plugin for Flix is available.
-                        </p>
+            <p>
+              <Button color="success" tag={Link} to="/get-started/">
+                Get Started
+              </Button>
 
-                        <p>
-                            <Button color="success" tag={Link} to="/get-started/">
-                                Get Started
-                            </Button>
+              <a href="https://play.flix.dev/">
+                <Button color="info" className="ml-2">
+                  Playground
+                </Button>
+              </a>
 
-                            <a href="https://play.flix.dev/">
-                                <Button color="info" className="ml-2">
-                                    Playground
-                                </Button>
-                            </a>
+              <Button color="info" tag={Link} to="/documentation/" className="ml-2">
+                Documentation
+              </Button>
 
-                            <Button color="info" tag={Link} to="/documentation/" className="ml-2">
-                                Documentation
-                            </Button>
+              <a href="https://api.flix.dev/">
+                <Button color="info" className="ml-2">
+                  Library
+                </Button>
+              </a>
+            </p>
+          </Col>
+          <Col md="6">
+            <Codebox flix={this.props.flix} />
+          </Col>
+        </Row>
 
-                            <a href="https://api.flix.dev/">
-                                <Button color="info" className="ml-2">
-                                    Library
-                                </Button>
-                            </a>
-                        </p>
+        <hr className="mb-3" />
 
-                    </Col>
-                    <Col md="6">
-                        <Codebox flix={this.props.flix}/>
-                    </Col>
-                </Row>
+        <Row className="mb-3">
+          <Col md={12}>
+            <h2>Why Flix? </h2>
 
-                <hr className="mb-3"/>
+            <p className="p-2 text-justify">
+              Flix aims to offer a <span className="font-weight-bold text-info">unique combination of features</span>{' '}
+              that no other programming language offers, including:{' '}
+              <span className="font-weight-bold">algebraic data types and pattern matching</span> (like Haskell, OCaml),{' '}
+              <span className="font-weight-bold">extensible records</span> (like Elm),{' '}
+              <span className="font-weight-bold">type classes</span> (like Haskell, Rust),{' '}
+              <span className="font-weight-bold">higher-kinded types</span> (like Haskell),{' '}
+              <span className="font-weight-bold">typematch</span> (like Scala),{' '}
+              <span className="font-weight-bold">type inference</span> (like Haskell, OCaml),{' '}
+              <span className="font-weight-bold">structured channel and process-based concurrency</span> (like Go),{' '}
+              <span className="font-weight-bold text-success">a polymorphic effect system</span> (a unique feature),{' '}
+              <span className="font-weight-bold text-success">region-based local mutation</span> (a unique feature),{' '}
+              <span className="font-weight-bold text-success">purity reflection</span> (a unique feature),{' '}
+              <span className="font-weight-bold text-success">first-class Datalog constraints</span> (a unique feature),
+              and <span className="font-weight-bold">compilation to JVM bytecode</span> (like Scala).
+            </p>
+          </Col>
+        </Row>
 
-                <Row className="mb-3">
-                    <Col md={12}>
+        <hr className="mb-3" />
 
-                        <h2>Why Flix? </h2>
+        <Row className="mb-4">
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Algebraic Data Types and Pattern Matching</h4>
+                </CardTitle>
+                <CardText>
+                  <p>
+                    Algebraic data types and pattern matching are the bread-and-butter of functional programming and are
+                    supported by Flix with minimal fuss.
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
 
-                        <p className="p-2 text-justify">
-                            Flix aims to offer a <span className="font-weight-bold text-info">unique combination of
-                                features</span> that no other programming language offers, including: <span
-                            className="font-weight-bold">algebraic
-                                data types and pattern matching</span> (like Haskell, OCaml), <span
-                            className="font-weight-bold">extensible records</span> (like Elm), <span
-                            className="font-weight-bold">type classes</span> (like Haskell, Rust), <span
-                            className="font-weight-bold">higher-kinded types</span> (like Haskell), <span
-                            className="font-weight-bold">typematch</span> (like Scala), <span
-                            className="font-weight-bold">type inference</span> (like Haskell, OCaml), <span
-                            className="font-weight-bold">structured channel and process-based concurrency</span> (like
-                            Go), <span
-                            className="font-weight-bold text-success">a polymorphic effect system</span> (a unique
-                            feature), <span
-                            className="font-weight-bold text-success">region-based local mutation</span> (a unique
-                            feature), <span
-                            className="font-weight-bold text-success">purity reflection</span> (a unique
-                            feature), <span
-                            className="font-weight-bold text-success">first-class Datalog constraints</span> (a unique
-                            feature),
-                            and <span
-                            className="font-weight-bold">compilation to JVM bytecode</span> (like Scala).
-                        </p>
-
-                    </Col>
-                </Row>
-
-                <hr className="mb-3"/>
-
-                <Row className="mb-4">
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Algebraic Data Types and Pattern Matching</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Algebraic data types and pattern matching are the bread-and-butter of functional
-                                        programming and are supported by Flix with minimal fuss.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-
-                    <Col md="6">
-                        <InlineEditor>
-                            {`enum Shape {
+          <Col md="6">
+            <InlineEditor>
+              {`enum Shape {
     case Circle(Int32),
     case Square(Int32),
     case Rectangle(Int32, Int32)
@@ -166,14 +157,14 @@ def area(s: Shape): Int32 = match s {
     case Square(w)       => w * w
     case Rectangle(h, w) => h * w
 }`}
-                        </InlineEditor>
-                    </Col>
-                </Row>
+            </InlineEditor>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <InlineEditor>
-                            {`def origin(): (Int32, Int32) = (0, 0)
+        <Row className="mb-4">
+          <Col md="6">
+            <InlineEditor>
+              {`def origin(): (Int32, Int32) = (0, 0)
 
 def oneByOne():  {w = Int32, h = Int32} = {w = 1, h = 1}
 
@@ -183,48 +174,46 @@ def area(rect: {w = Int32, h = Int32 | r}): Int32 =
     rect.w * rect.h
 
 def f(): Int32 = area({h = 1, color = "Blue", w = 2})`}
-                        </InlineEditor>
-                    </Col>
+            </InlineEditor>
+          </Col>
 
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Tuples and Records</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix has built-in support for tuples and records.
-                                    </p>
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Tuples and Records</h4>
+                </CardTitle>
+                <CardText>
+                  <p>Flix has built-in support for tuples and records.</p>
 
-                                    <p>
-                                        Records use structural typing and are extensible.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
+                  <p>Records use structural typing and are extensible.</p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Purity and Impurity</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix precisely tracks the purity of every expression in a program.
-                                    </p>
+        <Row className="mb-4">
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Purity and Impurity</h4>
+                </CardTitle>
+                <CardText>
+                  <p>Flix precisely tracks the purity of every expression in a program.</p>
 
-                                    <p>
-                                        The Flix compiler provides an ironclad guarantee that if an expression is pure
-                                        then it cannot have side-effects and it is referentially transparent.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="6">
-                        <InlineEditor>
-                            {`/// A pure function is annotated with \`\\ {}\`.
+                  <p>
+                    The Flix compiler provides an ironclad guarantee that if an expression is pure then it cannot have
+                    side-effects and it is referentially transparent.
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col md="6">
+            <InlineEditor>
+              {`/// A pure function is annotated with \`\\ {}\`.
 def inc1(x: Int32): Int32 \\ {} = x + 1
 
 /// An impure function is annotated with \`\\ IO\`.
@@ -236,14 +225,14 @@ def f(): Int32 \\ IO =    // f is impure
     let r1 = inc1(123);   // pure
     let r2 = inc2(456);   // impure
     r1 + r2               // pure`}
-                        </InlineEditor>
-                    </Col>
-                </Row>
+            </InlineEditor>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <InlineEditor>
-                            {`/// 
+        <Row className="mb-4">
+          <Col md="6">
+            <InlineEditor>
+              {`/// 
 /// The purity of \`map\` depends on the purity of \`f\`.
 ///
 def map(f: a -> b \\ ef, l: List[a]): List[b] \\ ef =
@@ -252,56 +241,57 @@ def map(f: a -> b \\ ef, l: List[a]): List[b] \\ ef =
         case x :: xs => f(x) :: map(f, xs)
     }
 `}
-                        </InlineEditor>
-                    </Col>
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Polymorphic Effects</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix is able to track purity through higher-order effect polymorphic functions.
-                                    </p>
+            </InlineEditor>
+          </Col>
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Polymorphic Effects</h4>
+                </CardTitle>
+                <CardText>
+                  <p>Flix is able to track purity through higher-order effect polymorphic functions.</p>
 
-                                    <p>
-                                        For example, Flix knows that the purity of <code>List.map</code> depends on the
-                                        purity of its function argument <code>f</code>.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
+                  <p>
+                    For example, Flix knows that the purity of <code>List.map</code> depends on the purity of its
+                    function argument <code>f</code>.
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Region-based Local Mutation</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix supports region-based local mutation, which makes it possible to
-                                        implement <i>pure</i> functions that internally uses mutable state and
-                                        destructive operations, as long as these operations are confined to the region.
-                                    </p>
+        <Row className="mb-4">
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Region-based Local Mutation</h4>
+                </CardTitle>
+                <CardText>
+                  <p>
+                    Flix supports region-based local mutation, which makes it possible to implement <i>pure</i>{' '}
+                    functions that internally uses mutable state and destructive operations, as long as these operations
+                    are confined to the region.
+                  </p>
 
-                                    <p>
-                                        We can use local mutation when it is more natural to write a function using
-                                        mutable data and in a familiar imperative-style while still remaining pure
-                                        to the outside world.
-                                    </p>
+                  <p>
+                    We can use local mutation when it is more natural to write a function using mutable data and in a
+                    familiar imperative-style while still remaining pure to the outside world.
+                  </p>
 
-                                    <p>
-                                        We can also use local mutation when it is more efficient to use mutable
-                                        data structures, e.g. when implementing a sorting algorithm.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="6">
-                        <InlineEditor>
-                            {`///
+                  <p>
+                    We can also use local mutation when it is more efficient to use mutable data structures, e.g. when
+                    implementing a sorting algorithm.
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col md="6">
+            <InlineEditor>
+              {`///
 /// We can implement a *pure* \`sort\` function which 
 /// internally converts an immutable list to an array,
 /// sorts the array in-place, and then converts it 
@@ -326,14 +316,14 @@ def toString(l: List[a]): String with ToString[a] =
         StringBuilder.toString(sb)
     }
 `}
-                        </InlineEditor>
-                    </Col>
-                </Row>
+            </InlineEditor>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <InlineEditor>
-                            {`/// 
+        <Row className="mb-4">
+          <Col md="6">
+            <InlineEditor>
+              {`/// 
 /// We can inspect the purity of a function argument.
 /// 
 def inspect(f: a -> b \\ ef): Unit \\ IO =
@@ -352,56 +342,55 @@ def map(f: a -> b \\ ef, l: LazyList[a]): LazyList[b] \\ ef =
         case Pure(g) => mapL(g, l)
         case _       => mapE(f, l)
     }`}
-                        </InlineEditor>
-                    </Col>
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Purity Reflection</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix supports a meta-programming construct that enables higher-order functions
-                                        to inspect the purity of a function argument and use that information to vary
-                                        their behavior.
-                                    </p>
+            </InlineEditor>
+          </Col>
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Purity Reflection</h4>
+                </CardTitle>
+                <CardText>
+                  <p>
+                    Flix supports a meta-programming construct that enables higher-order functions to inspect the purity
+                    of a function argument and use that information to vary their behavior.
+                  </p>
 
-                                    <p>
-                                        For example, the <code>DelayList.map</code> function varies its behavior between
-                                        eager and lazy evaluation depending on the purity of its function argument.
-                                    </p>
+                  <p>
+                    For example, the <code>DelayList.map</code> function varies its behavior between eager and lazy
+                    evaluation depending on the purity of its function argument.
+                  </p>
 
-                                    <p>
-                                        We can exploit purity reflection to selectively use lazy or parallel
-                                        evaluation inside a library without changing the semantics from the
-                                        point-of-view of the clients.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
+                  <p>
+                    We can exploit purity reflection to selectively use lazy or parallel evaluation inside a library
+                    without changing the semantics from the point-of-view of the clients.
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Type Classes</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix uses type classes to abstract over types that support a common set of
-                                        operations.
-                                    </p>
-                                    <p>
-                                        For example, the <code>Eq</code> type class captures the notion of equality
-                                        and is used throughout the standard library.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="6">
-                        <InlineEditor>
-                            {`class Eq[a] {
+        <Row className="mb-4">
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Type Classes</h4>
+                </CardTitle>
+                <CardText>
+                  <p>Flix uses type classes to abstract over types that support a common set of operations.</p>
+                  <p>
+                    For example, the <code>Eq</code> type class captures the notion of equality and is used throughout
+                    the standard library.
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col md="6">
+            <InlineEditor>
+              {`class Eq[a] {
     def eq(x: a, y: a): Bool
     def neq(x: a, y: a): Bool = not Eq.eq(x, y)
 }
@@ -412,14 +401,14 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
         let (y1, y2) = t2;
         x1 == y1 and x2 == y2
 }`}
-                        </InlineEditor>
-                    </Col>
-                </Row>
+            </InlineEditor>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <InlineEditor>
-                            {`class Foldable[t : Type -> Type] {
+        <Row className="mb-4">
+          <Col md="6">
+            <InlineEditor>
+              {`class Foldable[t : Type -> Type] {
 
     ///
     /// Left-associative fold of a structure.
@@ -432,49 +421,51 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
     def foldRight(f: (a, b) -> b \\ ef, s: b, t: t[a]): b \\ ef
 
 }`}
-                        </InlineEditor>
-                    </Col>
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Higher-Kinded Types</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix supports higher-kinded types making it possible to abstract over type
-                                        constructors. For example,
-                                        both <code>Option</code> and <code>List</code> implement <code>Foldable</code>.
-                                    </p>
+            </InlineEditor>
+          </Col>
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Higher-Kinded Types</h4>
+                </CardTitle>
+                <CardText>
+                  <p>
+                    Flix supports higher-kinded types making it possible to abstract over type constructors. For
+                    example, both <code>Option</code> and <code>List</code> implement <code>Foldable</code>.
+                  </p>
 
-                                    <p>
-                                        The Flix standard library ships with many common type classes, such
-                                        as <code>Monoid</code>, <code>Functor</code>, and <code>Foldable</code>.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
+                  <p>
+                    The Flix standard library ships with many common type classes, such as <code>Monoid</code>,{' '}
+                    <code>Functor</code>, and <code>Foldable</code>.
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Monadic For-Yield</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix supports a monadic <code>forM</code>-yield construct similar to Scala's
-                                        <code>for</code>-comprehensions and Haskell's <code>do</code> notation.
-                                        The <code>forM</code> construct is syntactic sugar for uses
-                                        of <code>point</code> and <code>flatMap</code> (which are provided by the Monad
-                                        type class).
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="6">
-                        <InlineEditor>
-                            {`def divide(x: Int32, y: Int32): Option[Int32] = 
+        <Row className="mb-4">
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Monadic For-Yield</h4>
+                </CardTitle>
+                <CardText>
+                  <p>
+                    Flix supports a monadic <code>forM</code>-yield construct similar to Scala's
+                    <code>for</code>-comprehensions and Haskell's <code>do</code> notation. The <code>forM</code>{' '}
+                    construct is syntactic sugar for uses of <code>point</code> and <code>flatMap</code> (which are
+                    provided by the Monad type class).
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col md="6">
+            <InlineEditor>
+              {`def divide(x: Int32, y: Int32): Option[Int32] = 
     if (y == 0) None else Some(x / y)
 
 def f(): Option[Int32] = 
@@ -484,14 +475,14 @@ def f(): Option[Int32] =
         z <- divide(9, y)
     ) yield x + y + z
 `}
-                        </InlineEditor>
-                    </Col>
-                </Row>
+            </InlineEditor>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <InlineEditor>
-                            {`def validateUser(s: String): Validation[Err, String] = ...
+        <Row className="mb-4">
+          <Col md="6">
+            <InlineEditor>
+              {`def validateUser(s: String): Validation[Err, String] = ...
 
 def validatePass(s: String): Validation[Err, String] = ...
 
@@ -501,98 +492,97 @@ def conn(u: String, p: String): Validation[Err, Connection] =
         pass <- validatePass(p)
     ) yield Connection(user, pass)
 `}
-                        </InlineEditor>
-                    </Col>
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Applicative For-Yield</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        In addition to the monadic <code>forM</code> expression, Flix supports an
-                                        applicative <code>forA</code> expression that builds on
-                                        the <code>Applicative</code> type class. The <code>forA</code> construct makes
-                                        it simple to write error-handling code which uses the <code>Validation[e,
-                                        t]</code> data type.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
+            </InlineEditor>
+          </Col>
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Applicative For-Yield</h4>
+                </CardTitle>
+                <CardText>
+                  <p>
+                    In addition to the monadic <code>forM</code> expression, Flix supports an applicative{' '}
+                    <code>forA</code> expression that builds on the <code>Applicative</code> type class. The{' '}
+                    <code>forA</code> construct makes it simple to write error-handling code which uses the{' '}
+                    <code>Validation[e, t]</code> data type.
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="12">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>First-class Datalog Constraints</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Another unique feature of Flix is its embedded Datalog support. Datalog, a
-                                        powerful logic programming language in its own right, makes it simple and
-                                        elegant to express many fixpoint problems (including various graph reachability
-                                        problems):
-                                    </p>
+        <Row className="mb-4">
+          <Col md="12">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>First-class Datalog Constraints</h4>
+                </CardTitle>
+                <CardText>
+                  <p>
+                    Another unique feature of Flix is its embedded Datalog support. Datalog, a powerful logic
+                    programming language in its own right, makes it simple and elegant to express many fixpoint problems
+                    (including various graph reachability problems):
+                  </p>
 
-                                    <InlineEditor>
-                                        {`def reachable(g: List[(String, Int32, String)], minSpeed: Int32): List[(String, String)] =
+                  <InlineEditor>
+                    {`def reachable(g: List[(String, Int32, String)], minSpeed: Int32): List[(String, String)] =
     let facts = inject g into Road;
     let rules = #{
         Path(x, y) :- Road(x, maxSpeed, y), if maxSpeed >= minSpeed.
         Path(x, z) :- Path(x, y), Road(y, maxSpeed, z), if maxSpeed >= minSpeed.
     };
     query facts, rules select (src, dst) from Path(src, dst) |> Foldable.toList`}
-                                    </InlineEditor>
+                  </InlineEditor>
 
-                                    <p>
-                                        Datalog constraints are <i>first-class</i> which means that they may be passed
-                                        to and returned from functions, stored in data structures, composed with other
-                                        Datalog constraints, and solved. This makes it possible to express families of
-                                        Datalog programs.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
+                  <p>
+                    Datalog constraints are <i>first-class</i> which means that they may be passed to and returned from
+                    functions, stored in data structures, composed with other Datalog constraints, and solved. This
+                    makes it possible to express families of Datalog programs.
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
 
-                <Row className="mb-4">
-                    <Col md="6">
-                        <Card className="border-0">
-                            <CardBody>
-                                <CardTitle><h4>Datalog Enriched with Lattice Semantics</h4></CardTitle>
-                                <CardText>
-                                    <p>
-                                        Flix supports Datalog constraints enriched with lattice semantics.
-                                    </p>
+        <Row className="mb-4">
+          <Col md="6">
+            <Card className="border-0">
+              <CardBody>
+                <CardTitle>
+                  <h4>Datalog Enriched with Lattice Semantics</h4>
+                </CardTitle>
+                <CardText>
+                  <p>Flix supports Datalog constraints enriched with lattice semantics.</p>
 
-                                    <p>
-                                        The program on the right computes the delivery date for a collection of
-                                        parts. Each part is assembled from a collection of sub-components with various
-                                        delivery dates. For example, a car depends on a chassis and an engine. To build
-                                        a car, we need to wait for the chassis and engine to assembled and then we can
-                                        assemble the car itself.
-                                    </p>
+                  <p>
+                    The program on the right computes the delivery date for a collection of parts. Each part is
+                    assembled from a collection of sub-components with various delivery dates. For example, a car
+                    depends on a chassis and an engine. To build a car, we need to wait for the chassis and engine to
+                    assembled and then we can assemble the car itself.
+                  </p>
 
-                                    <p>
-                                        Note that parts may depend on sub-components that themselves may depend on other
-                                        sub-components. In other words, the problem is recursive.
-                                    </p>
+                  <p>
+                    Note that parts may depend on sub-components that themselves may depend on other sub-components. In
+                    other words, the problem is recursive.
+                  </p>
 
-                                    <hr/>
+                  <hr />
 
-                                    <p>
-                                        Datalog constraints enriched with lattice semantics is one of the more
-                                        advanced features of Flix and requires some background knowledge of lattice
-                                        theory and fixpoints.
-                                    </p>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                    <Col md="6">
-                        <InlineEditor>
-                            {`let p = #{
+                  <p>
+                    Datalog constraints enriched with lattice semantics is one of the more advanced features of Flix and
+                    requires some background knowledge of lattice theory and fixpoints.
+                  </p>
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col md="6">
+            <InlineEditor>
+              {`let p = #{
     /// Parts and the components they depend on.
     PartDepends("Car",       "Chassis").
     PartDepends("Car",       "Engine").
@@ -622,180 +612,173 @@ def conn(u: String, p: String): Validation[Err, Connection] =
 // Computes the delivery date for each component.
 let r = query p select (c, d) from ReadyDate(c; d)
 `}
-                        </InlineEditor>
-                    </Col>
-                </Row>
+            </InlineEditor>
+          </Col>
+        </Row>
 
-                <hr className="mb-3"/>
+        <hr className="mb-3" />
 
-                <Row className="mb-3">
-                    <Col md="12">
-                        <h2>Complete Feature List</h2>
-                    </Col>
-                    <Col md="4">
-                        <ul>
-                            <li>algebraic data types</li>
-                            <li>pattern matching</li>
-                            <li>first-class functions</li>
-                            <li>extensible records</li>
-                            <li>parametric polymorphism</li>
-                            <li>type classes</li>
-                            <li>higher-kinded types</li>
-                            <li>light-weight polymorphic effects</li>
-                            <li>type aliases</li>
-                            <li>Hindley-Milner type inference</li>
-                        </ul>
-                    </Col>
+        <Row className="mb-3">
+          <Col md="12">
+            <h2>Complete Feature List</h2>
+          </Col>
+          <Col md="4">
+            <ul>
+              <li>algebraic data types</li>
+              <li>pattern matching</li>
+              <li>first-class functions</li>
+              <li>extensible records</li>
+              <li>parametric polymorphism</li>
+              <li>type classes</li>
+              <li>higher-kinded types</li>
+              <li>light-weight polymorphic effects</li>
+              <li>type aliases</li>
+              <li>Hindley-Milner type inference</li>
+            </ul>
+          </Col>
 
-                    <Col md="4">
-                        <ul>
-                            <li>CSP-style concurrency</li>
-                            <li>buffered &amp; unbuffered channels</li>
-                            <li>first-class datalog constraints</li>
-                            <li>polymorphic datalog predicates</li>
-                            <li>constraints with lattice semantics</li>
-                            <li>stratified negation</li>
-                            <li>interoperability with Java</li>
-                            <li>unboxed primitives</li>
-                            <li>keyword-based syntax</li>
-                            <li>redundancy checks</li>
-                        </ul>
-                    </Col>
+          <Col md="4">
+            <ul>
+              <li>CSP-style concurrency</li>
+              <li>buffered &amp; unbuffered channels</li>
+              <li>first-class datalog constraints</li>
+              <li>polymorphic datalog predicates</li>
+              <li>constraints with lattice semantics</li>
+              <li>stratified negation</li>
+              <li>interoperability with Java</li>
+              <li>unboxed primitives</li>
+              <li>keyword-based syntax</li>
+              <li>redundancy checks</li>
+            </ul>
+          </Col>
 
-                    <Col md="4">
-                        <ul>
-                            <li>monadic forM expressions</li>
-                            <li>applicative forA expressions</li>
-                            <li>expressions holes</li>
-                            <li>compilation to JVM bytecode</li>
-                            <li>full tail call elimination</li>
-                            <li>core standard library</li>
-                            <li>parallel compiler architecture</li>
-                            <li>human friendly errors</li>
-                            <li>interactive mode</li>
-                            <li>Visual Studio Code support</li>
-                        </ul>
-                    </Col>
-                </Row>
+          <Col md="4">
+            <ul>
+              <li>monadic forM expressions</li>
+              <li>applicative forA expressions</li>
+              <li>expressions holes</li>
+              <li>compilation to JVM bytecode</li>
+              <li>full tail call elimination</li>
+              <li>core standard library</li>
+              <li>parallel compiler architecture</li>
+              <li>human friendly errors</li>
+              <li>interactive mode</li>
+              <li>Visual Studio Code support</li>
+            </ul>
+          </Col>
+        </Row>
 
-                <hr className="mb-3"/>
+        <hr className="mb-3" />
 
-                <Row className="mb-3">
-                    <Col md={12}>
-                        <h2>Visual Studio Code Support</h2>
+        <Row className="mb-3">
+          <Col md={12}>
+            <h2>Visual Studio Code Support</h2>
 
-                        <p>
-                            The Flix compiler integrates with Visual Studio Code providing a richer development
-                            experience:
-                        </p>
+            <p>The Flix compiler integrates with Visual Studio Code providing a richer development experience:</p>
 
-                        <UncontrolledCarousel autoPlay={false} items={this.carousel} className="ml-2 mr-2"/>
-                    </Col>
-                </Row>
+            <UncontrolledCarousel autoPlay={false} items={this.carousel} className="ml-2 mr-2" />
+          </Col>
+        </Row>
 
-                <hr className="mb-3"/>
+        <hr className="mb-3" />
 
-                <Row className="mb-4">
-                    <Col md={6}>
-                        <Card className="mb-4">
-                            <CardBody>
-                                <CardTitle>Principled Design</CardTitle>
-                                <CardText className="text-justify">
-                                    It is our goal to build Flix on a solid foundation of ideas from programming
-                                    language research. We aim to identify and document a collection of design
-                                    principles. We try to adopt great and proven ideas from other programming languages
-                                    such as F#, Go, OCaml, Haskell, Rust, and Scala.
-                                </CardText>
-                            </CardBody>
-                        </Card>
+        <Row className="mb-4">
+          <Col md={6}>
+            <Card className="mb-4">
+              <CardBody>
+                <CardTitle>Principled Design</CardTitle>
+                <CardText className="text-justify">
+                  It is our goal to build Flix on a solid foundation of ideas from programming language research. We aim
+                  to identify and document a collection of design principles. We try to adopt great and proven ideas
+                  from other programming languages such as F#, Go, OCaml, Haskell, Rust, and Scala.
+                </CardText>
+              </CardBody>
+            </Card>
 
-                        <Card>
-                            <CardBody>
-                                <CardTitle>Visual Studio Code Support</CardTitle>
-                                <CardText className="text-justify">
-                                    Flix supports integration with Visual Studio Code through LSP. This includes support
-                                    for features such as: inline compiler errors, hover to show the type and effect of
-                                    an expression, jump to definition, find all usages of local variables, functions,
-                                    algebraic data types, and rename support.
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
+            <Card>
+              <CardBody>
+                <CardTitle>Visual Studio Code Support</CardTitle>
+                <CardText className="text-justify">
+                  Flix supports integration with Visual Studio Code through LSP. This includes support for features such
+                  as: inline compiler errors, hover to show the type and effect of an expression, jump to definition,
+                  find all usages of local variables, functions, algebraic data types, and rename support.
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
 
-                    <Col md={6}>
-                        <Timeline
-                            dataSource={{
-                                sourceType: 'profile',
-                                screenName: 'flixlang'
-                            }}
-                            options={{
-                                chrome: "nofooter",
-                                height: '430',
-                                dnt: true
-                            }}
-                        />
-                    </Col>
-                </Row>
+          <Col md={6}>
+            <Timeline
+              dataSource={{
+                sourceType: 'profile',
+                screenName: 'flixlang',
+              }}
+              options={{
+                chrome: 'nofooter',
+                height: '430',
+                dnt: true,
+              }}
+            />
+          </Col>
+        </Row>
 
-                <hr className="mb-3"/>
+        <hr className="mb-3" />
 
-                <Row className="mb-3">
-                    <Col md="12">
-                        <h2>Sponsors, Funding, and Collaborations</h2>
-                    </Col>
+        <Row className="mb-3">
+          <Col md="12">
+            <h2>Sponsors, Funding, and Collaborations</h2>
+          </Col>
 
-                    <Col>
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/dff.png" alt="Independent Research Fund Denmark"/>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/direc.png" alt="Digital Research Centre Denmark"/>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/amazon-science.png" alt="Amazon Research Award"/>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/stibo.png" alt="StiboFonden"/>
-                        </Card>
-                    </Col>
-                </Row>
+          <Col>
+            <Card className="border-0 p-3">
+              <CardImg src="/logo/dff.png" alt="Independent Research Fund Denmark" />
+            </Card>
+          </Col>
+          <Col>
+            <Card className="border-0 p-3">
+              <CardImg src="/logo/direc.png" alt="Digital Research Centre Denmark" />
+            </Card>
+          </Col>
+          <Col>
+            <Card className="border-0 p-3">
+              <CardImg src="/logo/amazon-science.png" alt="Amazon Research Award" />
+            </Card>
+          </Col>
+          <Col>
+            <Card className="border-0 p-3">
+              <CardImg src="/logo/stibo.png" alt="StiboFonden" />
+            </Card>
+          </Col>
+        </Row>
 
-                <Row>
-                    <Col>
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/aarhusu.png" alt="Aarhus University"/>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/uwaterloo.png" alt="University of Waterloo"/>
-                        </Card>
-                    </Col>
-                </Row>
+        <Row>
+          <Col>
+            <Card className="border-0 p-3">
+              <CardImg src="/logo/aarhusu.png" alt="Aarhus University" />
+            </Card>
+          </Col>
+          <Col>
+            <Card className="border-0 p-3">
+              <CardImg src="/logo/uwaterloo.png" alt="University of Waterloo" />
+            </Card>
+          </Col>
+        </Row>
 
-                <hr className="mb-3"/>
+        <hr className="mb-3" />
 
-                <Row className="mb-3 pb-3">
-                    <Col xs="12">
-                        <p className="small float-right">
-                            We kindly thank <a href="https://www.ej-technologies.com/">EJ Technologies</a> for providing
-                            us with <a
-                            href="https://www.ej-technologies.com/products/jprofiler/overview.html">JProfiler</a> and <a
-                            href="https://www.jetbrains.com/">JetBrains</a> for providing us with <a
-                            href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>.
-                        </p>
-                    </Col>
-                </Row>
-
-            </Container>
-        );
-    }
+        <Row className="mb-3 pb-3">
+          <Col xs="12">
+            <p className="small float-right">
+              We kindly thank <a href="https://www.ej-technologies.com/">EJ Technologies</a> for providing us with{' '}
+              <a href="https://www.ej-technologies.com/products/jprofiler/overview.html">JProfiler</a> and{' '}
+              <a href="https://www.jetbrains.com/">JetBrains</a> for providing us with{' '}
+              <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>.
+            </p>
+          </Col>
+        </Row>
+      </Container>
+    )
+  }
 }
 
-export default Home;
+export default Home

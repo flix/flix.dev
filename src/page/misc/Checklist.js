@@ -1,24 +1,24 @@
-import React, {Component} from 'react';
-import {Container} from "reactstrap";
+import React, { Component } from 'react'
+import { Container } from 'reactstrap'
 
 class Checklist extends Component {
+  componentDidMount() {
+    document.title = 'Flix | Programming Language Checklist'
+  }
 
-    componentDidMount() {
-        document.title = "Flix | Programming Language Checklist";
-    }
+  render() {
+    return (
+      <Container>
+        <h1>Programming Language Checklist</h1>
 
-    render() {
-        return (
-            <Container>
-                <h1>Programming Language Checklist</h1>
+        <p>
+          For completeness (and fun), here is the{' '}
+          <a href="http://colinm.org/language_checklist.html">programming language check list</a> for Flix:
+        </p>
 
-                <p>
-                    For completeness (and fun), here is the <a href="http://colinm.org/language_checklist.html">programming
-                    language check list</a> for Flix:
-                </p>
-
-                <code>
-                            <pre>{`You appear to be advocating a new:
+        <code>
+          <pre>
+            {`You appear to be advocating a new:
 [x] functional [x] imperative [ ] object-oriented [ ] procedural [ ] stack-based
 [x] "multi-paradigm" [x] lazy [x] eager [x] statically-typed [ ] dynamically-typed
 [x] pure [x] impure [ ] non-hygienic [ ] visual [ ] beginner-friendly
@@ -119,11 +119,11 @@ In conclusion, this is what I think of you:
 [ ] This is a bad language, and you should feel bad for inventing it.
 [ ] Programming in this language is an adequate punishment for inventing it.
 `}
-                            </pre>
-                </code>
-            </Container>
-        );
-    }
+          </pre>
+        </code>
+      </Container>
+    )
+  }
 }
 
 export default Checklist
