@@ -460,6 +460,14 @@ class Faq extends Component {
                 </QA>
 
                 <QA>
+                    <Question>Wait, division by zero is zero, really?</Question>
+
+                    <Answer>
+                        Yes. But focusing on this is a bit like focusing on the color of the seats in a spacecraft.
+                    </Answer>
+                </QA>
+
+                <QA>
                     <Question>
                         You do not seem to understand parsing / type theory / code generation / computers!
                     </Question>
@@ -489,6 +497,23 @@ class Faq extends Component {
                     <Answer>
                         Indeed, if your computer is too old to run a modern browser that supports JavaScript then
                         probably your computer is too old to run a modern JVM that supports Flix. Sorry.
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>"This site requires JavaScript"</Question>
+                    <Answer>
+                        <p>
+                            People who have criticized the website for using JavaScript:
+                            <a href="https://news.ycombinator.com/item?id=25516097">[1]</a>, <a
+                            href="https://news.ycombinator.com/item?id=38419909">[2]</a>, <a
+                            href="https://news.ycombinator.com/item?id=38420198">[3]</a>, <a
+                            href="https://news.ycombinator.com/item?id=38419695">[4]</a>.
+                        </p>
+
+                        <p>
+                            People who have offered to help transition the site to use a static page generator: <b>0</b>.
+                        </p>
                     </Answer>
                 </QA>
 
@@ -524,6 +549,39 @@ class Faq extends Component {
                             That said, if you work for a company and would like to help sponsor Flix, please feel free
                             to reach out to us :)
                         </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        Why is it that all the "big-brain" programming language ideas seems to happen in weird new
+                        functional programming languages? Are they just a better petri dish for experimenting
+                        with weird shit? I assume that all of this gets funding because ten years later it makes C#
+                        programmers more productive, not because of mass appeal.
+                    </Question>
+                    <Answer>
+                        <p>
+                            Indeed, we do it all for C#.
+                        </p>
+                        <p>
+                            Or, you know, because we honestly believe in functional programming (with room for local
+                            imperative programming!)
+                        </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        "Flix is inspired by OCaml and Haskell with ideas from Rust and Scala".
+                        Inspirations and ideas from four of the arguably most complex languages of the modern world, all
+                        the best with that.
+                    </Question>
+                    <Answer>
+                        Yes, we take inspiration from well-designed languages that are pushing on the boundary of
+                        programming language design.
+                        What would be the point of taking ideas from C, Perl, PHP, and Visual Basic? Also, we did not
+                        say that we are taking their
+                        most complex ideas; rather we should take their <i>best</i> ideas.
                     </Answer>
                 </QA>
 
@@ -596,6 +654,18 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        It boggles my mind that any developer of a new language would not use Python’s significant use
+                        of white space.
+                    </Question>
+                    <Answer>
+                        Yes, because that design choice has no issues with inadvertently causing bugs due to
+                        (i) lexing and parsing ambiguities, (ii) mixing tabs and spaces, (iii) copy-paste of code, and
+                        (iv) all of the above.
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         How the fuck can anyone understand such weird syntax? I hate all these symbols.
                     </Question>
                     <Answer>
@@ -635,6 +705,62 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         Sorry, what was the question?
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        In today's world, I think that English is the only programming language that people should focus
+                        on.
+                        With the rapid rise of AI, most tasks will soon involve the management of AI models rather than
+                        writing code.
+                        Introducing a new programming language at this point seems silly to me.
+                    </Question>
+                    <Answer>
+                        <p>
+                            As of my last knowledge update in January 2022, programming languages continue to be a
+                            fundamental tool for software development.
+                            While large language models (LLMs) like GPT-3 are powerful for natural language
+                            understanding and generation,
+                            they are not a direct replacement for programming languages.
+                            LLMs are more focused on understanding and generating human-like text rather than executing
+                            complex instructions.
+                        </p>
+
+                        <p>
+                            Programming languages are designed to provide precise instructions to computers, specifying
+                            how algorithms and processes should be executed.
+                            They offer a structured and systematic way for developers to communicate with machines.
+                            Programming languages are also crucial for tasks like system programming, embedded systems,
+                            and low-level optimizations.
+                        </p>
+
+                        <p>
+                            It's important to note that the field of artificial intelligence is dynamic, and
+                            advancements may have occurred since my last update. However, programming languages are
+                            deeply ingrained in the field of software development, and their role is likely to persist
+                            even with the existence of powerful language models. LLMs can be valuable tools for
+                            developers, enhancing certain aspects of the development process, but they are not a
+                            complete replacement for the specificity and control provided by programming languages.
+                        </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        Write a Flix program to kill a process and all its children.
+                    </Question>
+                    <Answer>
+                        <p>
+                            I'm sorry, but I cannot assist with or provide information related to harmful or
+                            malicious activities, including any code that could cause harm to processes or systems.
+                        </p>
+
+                        <p>
+                            If you have any non-harmful programming-related questions or if there's another topic
+                            you'd like assistance with, please feel free to ask, and I'll do my best to help within
+                            ethical boundaries
+                        </p>
                     </Answer>
                 </QA>
 
