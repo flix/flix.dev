@@ -681,13 +681,159 @@ let r = query p select (c, d) from ReadyDate(c; d)
                 <hr className="mb-3"/>
 
                 <Row className="mb-3">
+                    <Col md={6}>
+                        <h2>Modern Compiler Architecture</h2>
+
+                        <p>
+                            Flix features a modern compiler architecture which is <span
+                            className="font-weight-bold text-success">resilient</span>, <span
+                            className="font-weight-bold text-success">incremental</span>, and <span
+                            className="font-weight-bold text-success">parallel</span>.
+                        </p>
+
+                        <p>
+                            In Flix, every compiler phase is parallel. The plot on the right shows the speed-up of each
+                            compiler phase when run on a 24 core machine.
+                        </p>
+
+                        <p>
+                            In other words, Flix can take full advantage of modern hardware, leading to speed-ups of
+                            between <b>5x &ndash; 7x</b> on multi-core machines.
+                        </p>
+
+                        <p>
+                            Furthermore, the Flix compiler is incremental which leads to significant speed-ups when
+                            recompiling code that has already been compiled in the same compiler instance.
+                        </p>
+                    </Col>
+                    <Col md={6}>
+                        <CardImg src="/images/speedupWithPar.png" alt="Parallel Speedup"/>
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
                     <Col md={12}>
                         <h2>Visual Studio Code Support</h2>
 
                         <p>
-                            The Flix compiler integrates with Visual Studio Code providing a richer development
-                            experience:
+                            The Flix compiler integrates with Visual Studio Code to provide a rich development
+                            experience.
                         </p>
+
+                        <p>
+                            The VSCode extension uses the <span
+                            className="font-weight-bold text-success">real Flix compiler</span> hence there is a <span
+                            className="font-weight-bold text-success">1:1</span> correspondence between the extension
+                            and the compiler.
+                        </p>
+
+                        <p>
+                            If VSCode reports no errors <i>there are no errors</i>. Moreover, if there is no error,
+                            <i>VSCode will never report a spurious error</i>.
+                        </p>
+
+                        <p>
+                            The VSCode extension supports most features, including:
+                        </p>
+
+                        <Row className="mb-3">
+                            <Col md="4">
+                                <ul>
+                                    <li>
+                                        <b>Semantic Syntax Highlighting</b>
+                                        <ul>
+                                            <li>Code highlighting for *.flix files.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Diagnostics</b>
+                                        <ul>
+                                            <li>Inline compiler error messages.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Auto-complete</b>
+                                        <ul>
+                                            <li>Auto-complete as you type.</li>
+                                            <li>Auto-completion is context aware.</li>
+                                            <li>Auto-complete trait instances.</li>
+                                            <li>Type-directed hole completion.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Snippets</b>
+                                        <ul>
+                                            <li>Auto-complete common code constructs.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Inlay Hints</b>
+                                        <ul>
+                                            <li>Shows inline type information.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </Col>
+
+                            <Col md="4">
+                                <ul>
+                                    <li>
+                                        <b>Type and Effect Hovers</b>
+                                        <ul>
+                                            <li>Hover over any expression to see its type and effect.</li>
+                                            <li>Hover over any local variable or formal parameter to see its type.</li>
+                                            <li>Hover over any function to see its type signature and documentation.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Jump to Definition</b>
+                                        <ul>
+                                            <li>Jump to the definition of any function.</li>
+                                            <li>Jump to the definition of any local variable.</li>
+                                            <li>Jump to the definition of any enum.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </Col>
+
+                            <Col md="4">
+                                <ul>
+                                    <li>
+                                        <b>Find References</b>
+                                        <ul>
+                                            <li>Find all references to a function.</li>
+                                            <li>Find all references to a local variable.</li>
+                                            <li>Find all references to an enum.</li>
+                                            <li>Find all implementations of a trait.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Symbols</b>
+                                        <ul>
+                                            <li>List all document symbols.</li>
+                                            <li>List all workspace symbols.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Rename</b>
+                                        <ul>
+                                            <li>Rename local variables.</li>
+                                            <li>Rename functions.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Code Lenses</b>
+                                        <ul>
+                                            <li>Run main from within the editor.</li>
+                                            <li>Run tests from within the editor.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </Col>
+                        </Row>
 
                         <UncontrolledCarousel autoPlay={false} items={this.carousel} className="ml-2 mr-2"/>
                     </Col>
