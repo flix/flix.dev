@@ -681,6 +681,39 @@ let r = query p select (c, d) from ReadyDate(c; d)
                 <hr className="mb-3"/>
 
                 <Row className="mb-3">
+                    <Col md={6}>
+                        <h2>Modern Compiler Architecture</h2>
+
+                        <p>
+                            Flix features a modern compiler architecture which is <span
+                            className="font-weight-bold text-success">resilient</span>, <span
+                            className="font-weight-bold text-success">incremental</span>, and <span
+                            className="font-weight-bold text-success">parallel</span>.
+                        </p>
+
+                        <p>
+                            In Flix, every compiler phase is parallel. The plot on the right shows the speed-up of each
+                            compiler phase when run on a 24 core machine.
+                        </p>
+
+                        <p>
+                            In other words, Flix can take full advantage of modern hardware, leading to speed-ups of
+                            between <b>5x &ndash; 7x</b> on multi-core machines.
+                        </p>
+
+                        <p>
+                            Furthermore, the Flix compiler is incremental which leads to significant speed-ups when
+                            recompiling code that has already been compiled in the same compiler instance.
+                        </p>
+                    </Col>
+                    <Col md={6}>
+                        <CardImg src="/images/speedupWithPar.png" alt="Parallel Speedup"/>
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
                     <Col md={12}>
                         <h2>Visual Studio Code Support</h2>
 
