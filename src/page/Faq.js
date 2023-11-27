@@ -70,8 +70,7 @@ class Faq extends Component {
                     </Question>
 
                     <Answer>
-                        No, but the compiler does have an interactive mode that can be started by passing
-                        the <code>--interactive</code> argument.
+                        Flix has a nascent REPL. It can be started with the <code>repl</code> command.
                     </Answer>
                 </QA>
 
@@ -109,12 +108,14 @@ class Faq extends Component {
                         Why does Flix target the Java Virtual Machine (JVM)?
                     </Question>
                     <Answer>
-                        The Java Virtual Machine is a state-of-the-art virtual machine that runs on virtually every
-                        platform, comes with a huge ecosystem of libraries, and supports garbage collection. While not
-                        the ideal target for functional programming languages, due to its absence of tail call
-                        instructions, it is still a strong choice. Moreover, if <a
-                        href="https://openjdk.java.net/projects/loom/">Project Loom</a> (or similar efforts) turn out
-                        successful then the JVM will offer an unbeatable feature set.
+                        The Java Virtual Machine has many attractive features not found on other VMs, including:
+                        <ul>
+                            <li>A state-of-the-art JIT compiler.</li>
+                            <li>Multiple state-of-the-art garbage collectors.</li>
+                            <li>Access to a huge ecosystem of libraries.</li>
+                            <li>A multitude of concurrency primitives including light-weight threads.</li>
+                            <li>Advanced introspection and debugging facilities.</li>
+                        </ul>
                     </Answer>
                 </QA>
 
@@ -192,11 +193,6 @@ class Faq extends Component {
                             elimination
                             which has some run-time performance cost.
                         </p>
-
-                        <p>
-                            Our goal to be faster than any interpreted language and within a few factors of
-                            equivalent functional Scala code.
-                        </p>
                     </Answer>
                 </QA>
 
@@ -231,9 +227,9 @@ class Faq extends Component {
                         </p>
 
                         <p>
-                            A simple experiment shows that the compiler runs about <code>20.0x</code> times faster
+                            A simple experiment shows that the compiler runs about <code>4.0x</code> times faster
                             when warmed up compared to when cold. We estimate that Flix, when warmed up, compiles
-                            around <code>20,000</code> lines of code per second, which we believe to be faster than the
+                            around <code>50,000</code> lines of code per second, which we believe to be faster than the
                             Scala compiler, but slower than the Java compiler. We take compiler performance
                             seriously and continuously track the <a href="https://arewefast.flix.dev/">performance of
                             the compiler</a>.
@@ -247,51 +243,46 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            Compiler throughput on an Intel i5-K8600k with 16GB of RAM.
+                            Compiler throughput on an AMD Ryzen 9 5900x with 12 cores and 32GB memory.
                         </p>
 
                         <p>
-                            Experimental results from the 30th of May 2020.
+                            Experimental results from the 27th of November 2023.
                         </p>
 
                         <Table striped>
                             <thead>
                             <tr>
-                                <th className="text-center" style={{"width": "20%"}}>Threads</th>
+                                <th className="text-left" style={{"width": "20%"}}>What</th>
+                                <th className="text-right">Threads</th>
                                 <th className="text-right">Throughput (lines/sec)</th>
                                 <th className="text-right">Ratio</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td className="text-center">1</td>
-                                <td className="text-right">9,673</td>
+                                <td className="text-left">Entire Compiler</td>
+                                <td className="text-right">1</td>
+                                <td className="text-right">12,062</td>
                                 <td className="text-right">1.0x</td>
                             </tr>
                             <tr>
-                                <td className="text-center">2</td>
-                                <td className="text-right">14,482</td>
-                                <td className="text-right">1.5x</td>
+                                <td className="text-left">Entire Compiler</td>
+                                <td className="text-right">24</td>
+                                <td className="text-right">56,632</td>
+                                <td className="text-right font-weight-bold">4.7x</td>
                             </tr>
                             <tr>
-                                <td className="text-center">3</td>
-                                <td className="text-right">17,100</td>
-                                <td className="text-right">1.8x</td>
+                                <td className="text-left">Compiler Frontend</td>
+                                <td className="text-right">1</td>
+                                <td className="text-right">19,191</td>
+                                <td className="text-right">1.0x</td>
                             </tr>
                             <tr>
-                                <td className="text-center">4</td>
-                                <td className="text-right">18,722</td>
-                                <td className="text-right">1.9x</td>
-                            </tr>
-                            <tr>
-                                <td className="text-center">5</td>
-                                <td className="text-right">20,118</td>
-                                <td className="text-right">2.1x</td>
-                            </tr>
-                            <tr>
-                                <td className="text-center">6</td>
-                                <td className="text-right">21,052</td>
-                                <td className="text-right">2.2x</td>
+                                <td className="text-left">Compiler Frontend</td>
+                                <td className="text-right">24</td>
+                                <td className="text-right">112,898</td>
+                                <td className="text-right font-weight-bold">5,9x</td>
                             </tr>
                             </tbody>
                         </Table>
@@ -424,6 +415,14 @@ class Faq extends Component {
                 </QA>
 
                 <QA>
+                    <Question>Wait, division by zero is zero, really?</Question>
+
+                    <Answer>
+                        Yes. But focusing on this is a bit like focusing on the color of the seats in a spacecraft.
+                    </Answer>
+                </QA>
+
+                <QA>
                     <Question>
                         Who works on Flix? Is Flix a hobby project?
                     </Question>
@@ -456,14 +455,6 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         Not yet, but maybe we could call it net-flix?
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>Wait, division by zero is zero, really?</Question>
-
-                    <Answer>
-                        Yes. But focusing on this is a bit like focusing on the color of the seats in a spacecraft.
                     </Answer>
                 </QA>
 
