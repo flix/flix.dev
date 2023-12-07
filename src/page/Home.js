@@ -307,9 +307,9 @@ def map(f: a -> b \\ ef, l: List[a]): List[b] \\ ef =
 /// sorts the array in-place, and then converts it 
 /// back to an immutable list.
 /// 
-def sort(l: List[a]): List[a] with Order[a] = 
+def sort(l: List[a]): List[a] \ {} with Order[a] = 
     region r {
-        toArray(l, r) !> Array.sort! |> Array.toList
+        List.toArray(r,l) !> Array.sort! |> Array.toList
     }
 
 ///
@@ -318,9 +318,9 @@ def sort(l: List[a]): List[a] with Order[a] =
 ///
 def toString(l: List[a]): String with ToString[a] = 
     region r {
-        let sb = new StringBuilder(r);
-        for (x <- List.iterator(r, l)) {
-            StringBuilder.appendString!("\${x} :: ", sb), l)
+        let sb = StringBuilder.new(r);
+        foreach (x <- l) {
+            StringBuilder.appendString!("${x} :: ", sb)
         };
         StringBuilder.appendString!("Nil", sb);
         StringBuilder.toString(sb)
