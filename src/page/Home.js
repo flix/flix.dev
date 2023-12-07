@@ -318,9 +318,9 @@ def sort(l: List[a]): List[a] \ {} with Order[a] =
 ///
 def toString(l: List[a]): String with ToString[a] = 
     region r {
-        let sb = new StringBuilder(r);
-        for (x <- List.iterator(r, l)) {
-            StringBuilder.appendString!("\${x} :: ", sb), l)
+        let sb = StringBuilder.new(r);
+        foreach (x <- l) {
+            StringBuilder.appendString!("${x} :: ", sb)
         };
         StringBuilder.appendString!("Nil", sb);
         StringBuilder.toString(sb)
