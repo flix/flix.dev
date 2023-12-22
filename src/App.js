@@ -6,7 +6,6 @@ import GetStarted from "./page/GetStarted";
 import Documentation from "./page/Documentation";
 import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
-import Research from "./page/Research";
 import Faq from "./page/Faq";
 import {Container, Navbar, Nav, NavItem, NavLink, Row} from 'reactstrap';
 import {Route} from "react-router";
@@ -98,10 +97,6 @@ class App extends Component {
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
-                            <NavLink tag={Link} to="/research/">Research</NavLink>
-                        </NavItem>
-
-                        <NavItem className="pl-1 pr-1">
                             <NavLink tag={Link} to="/faq/">FAQ</NavLink>
                         </NavItem>
 
@@ -123,7 +118,6 @@ class App extends Component {
                 <Route path="/get-started/" component={GetStarted}/>
                 <Route path="/principles/" component={Principles}/>
                 <Route path="/documentation/" component={Documentation}/>
-                <Route path="/research/" component={Research}/>
                 <Route path="/faq/" component={Faq}/>
                 <Route path="/blog/" component={Blog}/>
                 <Route path="/contribute/" component={Contribute}/>

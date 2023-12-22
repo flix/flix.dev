@@ -627,7 +627,7 @@ class Faq extends Component {
                         This sounds like vaporware. All big promises and no delivery.
                     </Question>
                     <Answer>
-                        The <Link to="/research/">research</Link>,
+                        The <a href="https://doc.flix.dev/research-literature.html">research</a>,
                         the <a href="https://github.com/flix/flix">code</a>,
                         and the <a href="https://arewefast.flix.dev/">performance</a>.
                     </Answer>

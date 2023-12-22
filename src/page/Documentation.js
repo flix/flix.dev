@@ -7,7 +7,6 @@ import { FaStream } from 'react-icons/fa';
 import { FaMicroblog } from 'react-icons/fa';
 import { FaGitter } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa';
-import { MdSchool } from 'react-icons/md';
 import { GoGraph } from 'react-icons/go';
 
 class Documentation extends Component {
@@ -68,19 +67,6 @@ class Documentation extends Component {
                 </Row>
 
                 <Row className="mb-3">
-                    <Col lg="2">
-                        <Link to="/research">
-                            <Card body className="h-100">
-                                <CardSubtitle className="text-center m-4 text-black-50">
-                                    <MdSchool style={{ fontSize: '3em' }} />
-                                </CardSubtitle>
-                                <CardTitle className="text-center link-primary">
-                                    Research Papers
-                                </CardTitle>
-                            </Card>
-                        </Link>
-                    </Col>
-
                     <Col lg="2">
                         <Link to="/blog/">
                             <Card body className="h-100">
