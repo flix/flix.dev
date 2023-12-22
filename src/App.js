@@ -8,13 +8,11 @@ import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
 import Research from "./page/Research";
 import Faq from "./page/Faq";
-import Checklist from "./page/misc/Checklist";
 import {Container, Navbar, Nav, NavItem, NavLink, Row} from 'reactstrap';
 import {Route} from "react-router";
 import {Link} from "react-router-dom";
 
 import ReconnectingWebSocket from 'reconnecting-websocket';
-import About from "./page/About";
 import Blog from "./page/Blog";
 import Koans from "./page/Koans";
 import Internships from "./page/Internships";
@@ -129,7 +127,6 @@ class App extends Component {
                 </Navbar>
 
                 <Route path="/" exact render={() => this.getHome()}/>
-                <Route path="/about/" component={About}/>
                 <Route path="/get-started/" component={GetStarted}/>
                 <Route path="/principles/" component={Principles}/>
                 <Route path="/documentation/" component={Documentation}/>
@@ -139,7 +136,6 @@ class App extends Component {
                 <Route path="/contribute/" component={Contribute}/>
                 <Route path="/internships/" component={Internships}/>
 
-                <Route path="/misc/checklist/" component={Checklist}/>
                 <Route path="/misc/koans/" component={Koans}/>
 
                 <Row/>

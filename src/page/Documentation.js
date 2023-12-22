@@ -7,7 +7,6 @@ import { FaStream } from 'react-icons/fa';
 import { FaMicroblog } from 'react-icons/fa';
 import { FaGitter } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa';
-import { FaRegLaughSquint } from 'react-icons/fa';
 import { MdSchool } from 'react-icons/md';
 import { GoGraph } from 'react-icons/go';
 
@@ -132,19 +131,6 @@ class Documentation extends Component {
                                 </CardTitle>
                             </Card>
                         </a>
-                    </Col>
-
-                    <Col lg="2">
-                        <Link to="/misc/checklist">
-                            <Card body className="h-100">
-                                <CardSubtitle className="text-center m-4 text-black-50">
-                                    <FaRegLaughSquint style={{ fontSize: '3em' }} />
-                                </CardSubtitle>
-                                <CardTitle className="text-center link-primary">
-                                    Language Checklist
-                                </CardTitle>
-                            </Card>
-                        </Link>
                     </Col>
                 </Row>
             </Container>
