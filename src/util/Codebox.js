@@ -47,10 +47,10 @@ class Codebox extends Component {
     };
 
     getRunButton() {
-        let enabled = this.props.flix.connected;
-        return <Button color="success" onClick={this.onRunClick} size="sm" disabled={!enabled}>
-            Run <FontAwesome name="play" className="ml-2"/>
-        </Button>;
+        return <a href={"http://play.flix.dev/"}><Button color="success" size="sm" >
+            Play <FontAwesome name="external-link" className="ml-2"/>
+        </Button>
+        </a>;
     }
 
     getDropDown() {
@@ -58,7 +58,7 @@ class Codebox extends Component {
             value={this.state.choice}
             onChange={this.onDropdownChoice.bind(this)}
             style={{"textOverflow": "ellipsis"}}
-            className="ml-2 w-75">
+            className="mr-2 w-75">
             {this.state.samples.map((sample, index) =>
                 <option key={index} value={index}>{sample.name}</option>)
             }
@@ -111,8 +111,8 @@ class Codebox extends Component {
         return (
             <div>
                 <InputGroup className="mt-2 mb-3">
-                    {this.getRunButton()}
                     {this.getDropDown()}
+                    {this.getRunButton()}
                 </InputGroup>
                 {this.getEditor()}
                 {this.getOutput()}
