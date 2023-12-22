@@ -14,7 +14,6 @@ import {Link} from "react-router-dom";
 
 import ReconnectingWebSocket from 'reconnecting-websocket';
 import Blog from "./page/Blog";
-import Koans from "./page/Koans";
 import Internships from "./page/Internships";
 
 const SocketAddress = 'wss://evaluator.flix.dev/ws';
@@ -135,8 +134,6 @@ class App extends Component {
                 <Route path="/blog/" component={Blog}/>
                 <Route path="/contribute/" component={Contribute}/>
                 <Route path="/internships/" component={Internships}/>
-
-                <Route path="/misc/koans/" component={Koans}/>
 
                 <Row/>
 
