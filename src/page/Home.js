@@ -14,7 +14,6 @@ import {
 import {Link} from "react-router-dom";
 import Codebox from "../util/Codebox";
 import InlineEditor from "../util/InlineEditor";
-import {Timeline} from 'react-twitter-widgets'
 
 class Home extends Component {
 
@@ -836,50 +835,6 @@ let r = query p select (c, d) from ReadyDate(c; d)
                         </Row>
 
                         <UncontrolledCarousel autoPlay={false} items={this.carousel} className="ml-2 mr-2"/>
-                    </Col>
-                </Row>
-
-                <hr className="mb-3"/>
-
-                <Row className="mb-4">
-                    <Col md={6}>
-                        <Card className="mb-4">
-                            <CardBody>
-                                <CardTitle>Principled Design</CardTitle>
-                                <CardText className="text-justify">
-                                    It is our goal to build Flix on a solid foundation of ideas from programming
-                                    language research. We aim to identify and document a collection of design
-                                    principles. We try to adopt great and proven ideas from other programming languages
-                                    such as F#, Go, OCaml, Haskell, Rust, and Scala.
-                                </CardText>
-                            </CardBody>
-                        </Card>
-
-                        <Card>
-                            <CardBody>
-                                <CardTitle>Visual Studio Code Support</CardTitle>
-                                <CardText className="text-justify">
-                                    Flix supports integration with Visual Studio Code through LSP. This includes support
-                                    for features such as: inline compiler errors, hover to show the type and effect of
-                                    an expression, jump to definition, find all usages of local variables, functions,
-                                    algebraic data types, and rename support.
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-
-                    <Col md={6}>
-                        <Timeline
-                            dataSource={{
-                                sourceType: 'profile',
-                                screenName: 'flixlang'
-                            }}
-                            options={{
-                                chrome: "nofooter",
-                                height: '430',
-                                dnt: true
-                            }}
-                        />
                     </Col>
                 </Row>
 
