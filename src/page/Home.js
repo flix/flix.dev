@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-    Button,
     Card,
     CardBody,
     CardImg,
@@ -11,7 +10,6 @@ import {
     Row,
     UncontrolledCarousel
 } from 'reactstrap';
-import {Link} from "react-router-dom";
 import Codebox from "../util/Codebox";
 import InlineEditor from "../util/InlineEditor";
 
@@ -71,28 +69,6 @@ class Home extends Component {
                         <p className="text-justify">
                             Flix compiles to JVM bytecode, runs on the Java Virtual Machine, and supports full tail call
                             elimination. A VSCode plugin for Flix is available.
-                        </p>
-
-                        <p>
-                            <Button color="success" tag={Link} to="/get-started/">
-                                Get Started
-                            </Button>
-
-                            <a href="https://play.flix.dev/">
-                                <Button color="info" className="ml-2">
-                                    Playground
-                                </Button>
-                            </a>
-
-                            <Button color="info" tag={Link} to="/documentation/" className="ml-2">
-                                Documentation
-                            </Button>
-
-                            <a href="https://api.flix.dev/">
-                                <Button color="info" className="ml-2">
-                                    Library
-                                </Button>
-                            </a>
                         </p>
 
                     </Col>
@@ -868,12 +844,12 @@ let r = query p select (c, d) from ReadyDate(c; d)
                 </Row>
 
                 <Row>
-                    <Col>
+                    <Col md="3">
                         <Card className="border-0 p-3">
                             <CardImg src="/logo/aarhusu.png" alt="Aarhus University"/>
                         </Card>
                     </Col>
-                    <Col>
+                    <Col md="4">
                         <Card className="border-0 p-3">
                             <CardImg src="/logo/uwaterloo.png" alt="University of Waterloo"/>
                         </Card>
