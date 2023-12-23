@@ -376,7 +376,7 @@ def map(f: a -> b \\ ef, l: LazyList[a]): LazyList[b] \\ ef =
                     </Col>
                     <Col md="6">
                         <InlineEditor>
-                            {`class Eq[a] {
+                            {`trait Eq[a] {
     def eq(x: a, y: a): Bool
     def neq(x: a, y: a): Bool = not Eq.eq(x, y)
 }
@@ -394,7 +394,7 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                 <Row className="mb-4">
                     <Col md="6">
                         <InlineEditor>
-                            {`class Foldable[t : Type -> Type] {
+                            {`trait Foldable[t : Type -> Type] {
 
     ///
     /// Left-associative fold of a structure.
