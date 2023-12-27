@@ -689,52 +689,6 @@ let r = query p select (c, d) from ReadyDate(c; d)
                 <hr className="mb-3"/>
 
                 <Row className="mb-3">
-                    <Col md={6}>
-                        <h2>Actively Developed and Maintained</h2>
-
-                        <p className="text-justify">
-                            Flix is actively developed by programming language researchers from <a
-                            href="https://cs.au.dk/">Aarhus University</a> in Denmark in collaboration with researchers
-                            from the <a href="https://uwaterloo.ca/">University
-                            of Waterloo</a> in Canada, the <a href="https://uni-tuebingen.de/en/">University of
-                            Tubingen</a> in Germany, and <a
-                            href="https://di.ku.dk/english/">Copenhagen University</a> in Denmark.
-                        </p>
-
-                        <p>
-                            Flix is also increasingly developed by a growing community of open source
-                            contributors from all over the world.
-                        </p>
-
-                    </Col>
-                    <Col md={6}>
-                        <h2 className="text-center">Project Statistics</h2>
-                        <table className="table">
-                            <tbody>
-                            <tr>
-                                <td className="h4 text-right text-success font-weight-bold">3,800+</td>
-                                <td className="h4">Merged Pull Requests (PRs)</td>
-                            </tr>
-                            <tr>
-                                <td className="h4 text-right text-success font-weight-bold">2,500+</td>
-                                <td className="h4">Resolved Issues (Tickets)</td>
-                            </tr>
-                            <tr>
-                                <td className="h4 text-right text-success font-weight-bold">60+</td>
-                                <td className="h4">Contributors</td>
-                            </tr>
-                            <tr>
-                                <td className="h4 text-right text-success font-weight-bold">244,000+</td>
-                                <td className="h4">Lines in Compiler Codebase</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </Col>
-                </Row>
-
-                <hr className="mb-3"/>
-
-                <Row className="mb-3">
                     <Col md={12}>
                         <h2>Visual Studio Code Support</h2>
 
@@ -863,12 +817,80 @@ let r = query p select (c, d) from ReadyDate(c; d)
                 <hr className="mb-3"/>
 
                 <Row className="mb-3">
+                    <Col md={6}>
+                        <h2>Actively Developed and Maintained</h2>
+
+                        <p className="text-justify">
+                            Flix is actively developed by programming language researchers from <a
+                            href="https://cs.au.dk/">Aarhus University</a> in Denmark in collaboration with researchers
+                            from the <a href="https://uwaterloo.ca/">University
+                            of Waterloo</a> in Canada, the <a href="https://uni-tuebingen.de/en/">University of
+                            Tubingen</a> in Germany, and <a
+                            href="https://di.ku.dk/english/">Copenhagen University</a> in Denmark.
+                        </p>
+
+                        <p>
+                            Flix is also increasingly developed by a growing community of open source
+                            contributors from all over the world.
+                        </p>
+
+                    </Col>
+                    <Col md={6}>
+                        <h2 className="text-center">Project Statistics</h2>
+                        <table className="table">
+                            <tbody>
+                            <tr>
+                                <td className="h4 text-right text-success font-weight-bold">3,800+</td>
+                                <td className="h4">Merged Pull Requests (PRs)</td>
+                            </tr>
+                            <tr>
+                                <td className="h4 text-right text-success font-weight-bold">2,500+</td>
+                                <td className="h4">Resolved Issues (Tickets)</td>
+                            </tr>
+                            <tr>
+                                <td className="h4 text-right text-success font-weight-bold">60+</td>
+                                <td className="h4">Contributors</td>
+                            </tr>
+                            <tr>
+                                <td className="h4 text-right text-success font-weight-bold">244,000+</td>
+                                <td className="h4">Lines in Compiler Codebase</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
+                    <Col md={6}>
+                        <h2>Funding and Grants</h2>
+
+                        <p className="text-justify">
+                            Flix is generously funded by a range of instruments from:
+                        </p>
+
+                        <ul>
+                            <li><a href="https://dff.dk/">Independent Research Fund Denmark</a></li>
+                            <li><a href="https://dff.dk/">Digital Research Centre Denmark</a></li>
+                            <li><a href="https://www.stibofonden.dk/">Stibo Foundation</a></li>
+                            <li><a href="https://www.amazon.science/research-awards">Amazon Research Awards</a></li>
+                        </ul>
+                    </Col>
+                    <Col md={6} className="align-self-center">
+                        <h4 className="text-center">Total Funding: <span className="text-success font-weight-bold">€1.3 million</span></h4>
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
                     <Col md="12">
                         <h2>Sponsors, Funding, and Collaborations</h2>
                     </Col>
 
                     <Col>
-                        <Card className="border-0 p-3">
+                    <Card className="border-0 p-3">
                             <CardImg src="/logo/dff.png" alt="Independent Research Fund Denmark"/>
                         </Card>
                     </Col>
