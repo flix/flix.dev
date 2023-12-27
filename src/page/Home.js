@@ -834,6 +834,10 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             contributors from all over the world.
                         </p>
 
+                        <p>
+                            We invite everyone to contribute.
+                        </p>
+
                     </Col>
                     <Col md={6}>
                         <h2 className="text-center">Project Statistics</h2>
@@ -878,7 +882,12 @@ let r = query p select (c, d) from ReadyDate(c; d)
                         </ul>
                     </Col>
                     <Col md={6} className="align-self-center">
-                        <h4 className="text-center">Total Funding: <span className="text-success font-weight-bold">€1.3 million</span></h4>
+                        <h4 className="text-center">Total Funding: <span className="text-success font-weight-bold">€1.3 million</span>
+                        </h4>
+
+                        <p className="mt-3 small text-center">
+                            This funding helps ensure the continuity and independence of the project.
+                        </p>
                     </Col>
                 </Row>
 
@@ -890,7 +899,7 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
 
                     <Col>
-                    <Card className="border-0 p-3">
+                        <Card className="border-0 p-3">
                             <CardImg src="/logo/dff.png" alt="Independent Research Fund Denmark"/>
                         </Card>
                     </Col>
