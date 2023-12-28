@@ -690,6 +690,51 @@ let r = query p select (c, d) from ReadyDate(c; d)
 
                 <Row className="mb-3">
                     <Col md={12}>
+                        <h2>Compiler Performance: The Raw Numbers</h2>
+
+                        <p>
+                            The following table illustrates the performance of the Flix compiler on an Apple M2 Pro with
+                            a 10‑core CPU running on OpenJDK 21:
+                        </p>
+
+                        <Col md={6}>
+                            <table className="table">
+                                <tbody>
+                                <tr>
+                                    <td className="h5">Throughput (entire compiler):</td>
+                                    <td className="h5 text-right text-success font-weight-bold">41,700 lines/sec</td>
+                                </tr>
+                                <tr>
+                                    <td className="h5">Throughput (frontend only):</td>
+                                    <td className="h5 text-right text-success font-weight-bold">93,000 lines/sec</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </Col>
+
+                        <p className="small text-muted">
+                            The above results can be reproduced by running the commands: <code>java -jar flix.jar Xperf
+                            --n 21</code> and <code>java -jar flix.jar Xperf --frontend --n 21</code>.
+                        </p>
+
+                        <p>
+                            The Flix compiler achieves these results despite supporting costly programming language
+                            features, including: (a) type and effect inference, (b) monomorphization, and (c)
+                            whole-program optimization.
+                        </p>
+
+                        <p>
+                            The performance of Flix compiler is mostly determined by CPU performance and memory
+                            bandwidth.
+                        </p>
+
+                    </Col>
+                </Row>
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
+                    <Col md={12}>
                         <h2>Visual Studio Code Support</h2>
 
                         <p>
