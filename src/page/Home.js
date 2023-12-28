@@ -810,7 +810,8 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             </Col>
                         </Row>
 
-                        <UncontrolledCarousel autoPlay={false} interval={false} items={this.carousel} className="ml-2 mr-2"/>
+                        <UncontrolledCarousel autoPlay={false} interval={false} items={this.carousel}
+                                              className="ml-2 mr-2"/>
                     </Col>
                 </Row>
 
@@ -930,42 +931,57 @@ let r = query p select (c, d) from ReadyDate(c; d)
 
                 <Row className="mb-3">
                     <Col md="12">
-                        <h2>Sponsors, Funding, and Collaborations</h2>
+                        <h2>Sponsors and Funding</h2>
                     </Col>
 
-                    <Col>
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/dff.png" alt="Independent Research Fund Denmark"/>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/direc.png" alt="Digital Research Centre Denmark"/>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/amazon-science.png" alt="Amazon Research Award"/>
-                        </Card>
-                    </Col>
-                    <Col>
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/stibo.png" alt="StiboFonden"/>
-                        </Card>
-                    </Col>
+                    <Row>
+                        <Col>
+                            <Card className="border-0 p-3">
+                                <CardImg src="/logo/dff.png" alt="Independent Research Fund Denmark"/>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card className="border-0 p-3">
+                                <CardImg src="/logo/direc.png" alt="Digital Research Centre Denmark"/>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card className="border-0 p-3">
+                                <CardImg src="/logo/amazon-science.png" alt="Amazon Research Award"/>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card className="border-0 p-3">
+                                <CardImg src="/logo/stibo.png" alt="StiboFonden"/>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Row>
 
-                <Row>
-                    <Col md="3">
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/aarhusu.png" alt="Aarhus University"/>
-                        </Card>
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
+                    <Col md="12">
+                        <h2>Collaborators</h2>
                     </Col>
-                    <Col md="4">
-                        <Card className="border-0 p-3">
-                            <CardImg src="/logo/uwaterloo.png" alt="University of Waterloo"/>
-                        </Card>
-                    </Col>
+
+                    <Row>
+                        <Col md="3">
+                            <Card className="border-0 p-3">
+                                <CardImg src="/logo/aarhusu.png" alt="Aarhus University"/>
+                            </Card>
+                        </Col>
+                        <Col md="4">
+                            <Card className="border-0 p-3">
+                                <CardImg src="/logo/uwaterloo.png" alt="University of Waterloo"/>
+                            </Card>
+                        </Col>
+                        <Col md="3">
+                            <Card className="border-0 p-3">
+                                <CardImg src="/logo/tubingen.png" alt="University of Tubingen"/>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Row>
 
                 <hr className="mb-3"/>
