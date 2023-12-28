@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Col, Container, Row} from "reactstrap";
+import {CardImg, Col, Container, Row} from "reactstrap";
 
 class Internships extends Component {
 
@@ -10,33 +10,27 @@ class Internships extends Component {
     render() {
         return (<Container>
             <Row className="mb-3">
-                <Col>
-
+                <Col md={12}>
                     <h1>Research Internships</h1>
+                </Col>
 
-                    <p className="font-weight-bold mt-4 mb-4">
+                <Col md={6} className="text-justify">
+                    <p className="font-weight-bold mb-4">
                         Interested in programming language research?
                         Want to work on compilers?
                         Want to work on Flix?
                     </p>
 
                     <p>
-                        Then join us for a research internship at Aarhus University in Denmark!
+                        Then join us for a internship at Aarhus University in Denmark!
                     </p>
 
                     <hr/>
 
                     <p>
-                        To apply, send an email to <code>magnusm at cs dot au dot dk</code> with a bit of
-                        information about yourself.
-                    </p>
-
-                    <p>
-                        A typical research internship lasts 6-8 weeks in the summer period (but other times of year
+                        A typical internship lasts 6-8 weeks in the summer period (but other times of year
                         may also be possible).
                     </p>
-
-                    <hr/>
 
                     <p>
                         Aarhus University will reimburse travel and visa costs for coming to Denmark.
@@ -50,10 +44,22 @@ class Internships extends Component {
                         (exceptions can be made for especially talented students.)
                     </p>
 
+                    <hr/>
+
                     <p>
                         If you have questions, feel free to head over to <a
                         href="https://gitter.im/flix/Lobby">Gitter</a> and talk to us.
                     </p>
+
+                    <hr/>
+
+                    <p>
+                        To apply, send an email to <code>magnusm at cs dot au dot dk</code> with a bit of
+                        information about yourself.
+                    </p>
+                </Col>
+                <Col md={6}>
+                    <CardImg src="/images/katrinebjerg.jpg" alt="Dept. of Computer Science"/>
                 </Col>
             </Row>
         </Container>);
