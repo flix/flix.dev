@@ -864,6 +864,41 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
                 </Row>
 
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
+                    <Col md={6}>
+                        <CardImg src="/logo/java.png" alt="Java Logo" className="p-4"/>
+                    </Col>
+                    <Col md={6}>
+                        <h2>Flix runs on Java</h2>
+
+                        <p>
+                            Flix targets the Java Virtual Machine (JVM) for a multitude of reasons:
+                        </p>
+
+                        <ul>
+                            <li>The JVM has multiple battle-tested, open-source and commercial implementations,
+                                including OpenJDK, J9, Azul, Graal, and more.
+                            </li>
+                            <li>JVMs exists for all platforms: Mac, Linux, and Windows.</li>
+                            <li>
+                                Modern JVMs feature multiple state-of-the-art garbage collectors.
+                            </li>
+                            <li>Modern JVMs have excellent support for concurrency and parallelism. In particular,
+                                light-weight threads added in Java 21.
+                            </li>
+                            <li>
+                                Excellent tool support, including debuggers and profilers.
+                            </li>
+                            <li>The Java Platform comes with a rich ecosystem of packages which is accessible thru
+                                integration with Maven.
+                            </li>
+                        </ul>
+                    </Col>
+                </Row>
+
                 <hr className="mb-3"/>
 
                 <Row className="mb-3">
@@ -882,7 +917,7 @@ let r = query p select (c, d) from ReadyDate(c; d)
                         </ul>
                     </Col>
                     <Col md={6} className="align-self-center">
-                        <h4 className="text-center">Total Funding: <span className="text-success font-weight-bold">€1.3 million</span>
+                        <h4 className="text-center">Total Funding: <span className="text-success font-weight-bold">€1.1 million</span>
                         </h4>
 
                         <p className="mt-3 small text-center">
