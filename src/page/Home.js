@@ -23,22 +23,22 @@ class Home extends Component {
         {
             src: '/images/vscode1.png',
             caption: 'Slide 1',
-            header: 'VSCode: Syntax Highlighting',
+            header: 'Semantic Highlighting',
         },
         {
             src: '/images/vscode2.png',
             caption: 'Slide 2',
-            header: 'VSCode: Contextual Information',
+            header: 'Hover to Inspect',
         },
         {
             src: '/images/vscode3.png',
             caption: 'Slide 3',
-            header: 'VSCode: Highlight References',
+            header: 'Highlight References',
         },
         {
             src: '/images/vscode4.png',
             caption: 'Slide 4',
-            header: 'VSCode: Inline Errors',
+            header: 'Inline Errors',
         }
     ];
 

@@ -94,3 +94,11 @@ p:last-child {
 .w-33 {
     width: 33%;
 }
+
+.carousel-caption {
+    filter: invert(100%);
+}
+
+.carousel-control-next, .carousel-control-prev {
+    filter: invert(100%);
+}
