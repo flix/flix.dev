@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Card, CardImg, Col, Container, Row} from "reactstrap";
-import VSCode from '../gif/vscode.png'
+import VSCode from '../gif/install.png'
 
 class GetStarted extends Component {
 
