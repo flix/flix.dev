@@ -810,7 +810,7 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             </Col>
                         </Row>
 
-                        <UncontrolledCarousel autoPlay={false} items={this.carousel} className="ml-2 mr-2"/>
+                        <UncontrolledCarousel autoPlay={false} interval={false} items={this.carousel} className="ml-2 mr-2"/>
                     </Col>
                 </Row>
 
