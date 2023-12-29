@@ -3,6 +3,7 @@ import './App.css';
 
 import Home from "./page/Home";
 import GetStarted from "./page/GetStarted";
+import VSCode from "./page/VSCode";
 import Documentation from "./page/Documentation";
 import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
@@ -88,6 +89,10 @@ class App extends Component {
                         </NavItem>
 
                         <NavItem className="pl-1 pr-1">
+                            <NavLink tag={Link} to="/vscode/">VSCode</NavLink>
+                        </NavItem>
+
+                        <NavItem className="pl-1 pr-1">
                             <NavLink tag={Link}
                                      to="/principles/">Principles</NavLink>
                         </NavItem>
@@ -116,6 +121,7 @@ class App extends Component {
 
                 <Route path="/" exact render={() => this.getHome()}/>
                 <Route path="/get-started/" component={GetStarted}/>
+                <Route path="/vscode/" component={VSCode}/>
                 <Route path="/principles/" component={Principles}/>
                 <Route path="/documentation/" component={Documentation}/>
                 <Route path="/faq/" component={Faq}/>
