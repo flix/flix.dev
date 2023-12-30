@@ -38,8 +38,7 @@ class Contribute extends Component {
                         </p>
 
                         <p>
-                            If you are interested working on Flix, please feel free to reach out to us. We have already
-                            had several positive experiences with mentorship and open source contributors.
+                            If you are interested working on Flix, please feel free to reach out to us.
                         </p>
                     </Col>
                 </Row>
@@ -86,12 +85,6 @@ class Contribute extends Component {
                         </Card>
                     </Col>
                 </Row>
-
-                <p>
-                    If you want to become involved, send us a ping on <a
-                    href="https://gitter.im/flix/Lobby">Gitter</a>, and we can have a chat about your
-                    interests.
-                </p>
             </Container>
         );
     }

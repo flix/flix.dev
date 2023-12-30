@@ -19,6 +19,9 @@ class VSCode extends Component {
             <Row className="mb-3">
                 <Col md={12}>
                     <h1>Visual Studio Code Features</h1>
+                    <p>
+                        A few short videos to demonstrate various Visual Studio Code features.
+                    </p>
                 </Col>
             </Row>
 
@@ -51,6 +54,8 @@ class VSCode extends Component {
                     <h4>Snippet Completion</h4>
                     <p>
                         Flix supports snippet completion for large program fragments.
+                    </p>
+                    <p>
                         For example, we can auto-complete trait instances.
                     </p>
                     <Card>
@@ -98,7 +103,7 @@ class VSCode extends Component {
 
             <Row className="mb-5">
                 <Col md={6}>
-                    <h4>Code Lens</h4>
+                    <h4>Code Lenses</h4>
                     <p>
                         Flix supports code lenses for running main, functions, and tests.
                     </p>
