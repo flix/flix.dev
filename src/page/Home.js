@@ -440,8 +440,7 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                                         Flix supports a monadic <code>forM</code>-yield construct similar to Scala's
                                         <code>for</code>-comprehensions and Haskell's <code>do</code> notation.
                                         The <code>forM</code> construct is syntactic sugar for uses
-                                        of <code>point</code> and <code>flatMap</code> (which are provided by the
-                                        <code>Monad</code> trait).
+                                        of <code>point</code> and <code>flatMap</code> (which are provided by the <code>Monad</code> trait).
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -650,6 +649,39 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             <li>interactive mode</li>
                             <li>Visual Studio Code support</li>
                         </ul>
+                    </Col>
+                </Row>
+
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
+                    <Col md={6}>
+                        <h2>Standard Library with Batteries Included</h2>
+
+                        <p>
+                            Flix comes with a fully-featured Standard Library that offers access to more than <span
+                            className="text-success font-weight-bold">3,100+</span> functions.
+                        </p>
+
+                        <p>
+                            For example, the <code>List</code> module has more than 100 functions and
+                            the <code>Foldable</code> trait has more than 47 functions.
+                        </p>
+
+                        <p>
+                            The full library can be explored at: <a href="https://api.flix.dev/">https://api.flix.dev/</a>
+                        </p>
+
+                        <p>
+                            In addition, Flix also provides access to the entire Java ecosystem via Maven.
+                        </p>
+
+                    </Col>
+                    <Col md={6}>
+                        <Card>
+                            <CardImg src="/images/standardLibrary.png" alt="Standard Library"/>
+                        </Card>
                     </Col>
                 </Row>
 
