@@ -59,32 +59,9 @@ class Home extends Component {
                             href="https://github.com/flix/flix/graphs/contributors">open source contributors</a>.
                         </p>
 
-                        <p className="text-justify">
-                            Flix is inspired by OCaml and Haskell with ideas from Rust and Scala. Flix looks like
-                            Scala, but its type system is based on Hindley-Milner. Two unique features
-                            of Flix are its polymorphic effect system and its support for first-class Datalog
-                            constraints.
-                        </p>
-
-                        <p className="text-justify">
-                            Flix compiles to JVM bytecode, runs on the Java Virtual Machine, and supports full tail call
-                            elimination. A VSCode plugin for Flix is available.
-                        </p>
-
-                    </Col>
-                    <Col md="6">
-                        <Codebox flix={this.props.flix}/>
-                    </Col>
-                </Row>
-
-                <hr className="mb-3"/>
-
-                <Row className="mb-3">
-                    <Col md={12}>
-
                         <h2>Why Flix? </h2>
 
-                        <p className="p-2 text-justify">
+                        <p className="text-justify">
                             Flix aims to offer a <span className="font-weight-bold text-info">unique combination of
                                 features</span> that no other programming language offers, including: <span
                             className="font-weight-bold">algebraic
@@ -95,19 +72,22 @@ class Home extends Component {
                             className="font-weight-bold">typematch</span> (like Scala), <span
                             className="font-weight-bold">type inference</span> (like Haskell, OCaml), <span
                             className="font-weight-bold">structured channel and process-based concurrency</span> (like
-                            Go), <span
-                            className="font-weight-bold text-success">a polymorphic effect system</span> (a unique
-                            feature), <span
-                            className="font-weight-bold text-success">region-based local mutation</span> (a unique
-                            feature), <span
-                            className="font-weight-bold text-success">purity reflection</span> (a unique
-                            feature), <span
-                            className="font-weight-bold text-success">first-class Datalog constraints</span> (a unique
-                            feature),
-                            and <span
+                            Go), and <span
                             className="font-weight-bold">compilation to JVM bytecode</span> (like Scala).
                         </p>
 
+                        <p className="text-justify">
+                            Flix also supports several <span className="font-weight-bold text-info">unique features</span>,
+                            including: <span
+                            className="font-weight-bold text-success">a polymorphic effect system</span>, <span
+                            className="font-weight-bold text-success">region-based local mutation</span>, <span
+                            className="font-weight-bold text-success">purity reflection</span>, and <span
+                            className="font-weight-bold text-success">first-class Datalog constraints</span>.
+                        </p>
+
+                    </Col>
+                    <Col md="6">
+                        <Codebox flix={this.props.flix}/>
                     </Col>
                 </Row>
 
@@ -440,7 +420,8 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                                         Flix supports a monadic <code>forM</code>-yield construct similar to Scala's
                                         <code>for</code>-comprehensions and Haskell's <code>do</code> notation.
                                         The <code>forM</code> construct is syntactic sugar for uses
-                                        of <code>point</code> and <code>flatMap</code> (which are provided by the <code>Monad</code> trait).
+                                        of <code>point</code> and <code>flatMap</code> (which are provided by
+                                        the <code>Monad</code> trait).
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -669,7 +650,8 @@ let r = query p select (c, d) from ReadyDate(c; d)
                         </p>
 
                         <p>
-                            The full library can be explored at: <a href="https://api.flix.dev/">https://api.flix.dev/</a>
+                            The full library can be explored at: <a
+                            href="https://api.flix.dev/">https://api.flix.dev/</a>
                         </p>
 
                         <p>

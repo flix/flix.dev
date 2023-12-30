@@ -21,7 +21,7 @@ class Editor extends Component {
                 onChange={this.onChange.bind(this)}
                 value={this.props.code}
                 autoScrollEditorIntoView={true}
-                maxLines={25}
+                maxLines={32}
                 editorProps={{$blockScrolling: true}}/>
         )
     }
