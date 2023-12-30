@@ -37,7 +37,8 @@ class Faq extends Component {
                     <Answer>
                         <p>
                             Yes, with the <code>import</code> mechanism.
-                            The documentation is here: <a href="https://doc.flix.dev/interoperability.html">Interoperability</a>.
+                            You can read more in the documentation, in the section: <a
+                            href="https://doc.flix.dev/interoperability.html">Interoperability</a>.
                         </p>
                     </Answer>
                 </QA>
@@ -49,19 +50,28 @@ class Faq extends Component {
                     <Answer>
                         <p>
                             Flix borrows a lot of syntax from Scala, hence the two languages have a similar feel.
-                            We think Scala made many good design choices with respect to syntax, including:
-                            (a) the use of short keywords,
-                            (b) the <code>x : T</code> syntax for type annotations,
-                            (c) the <code>List[Int32]</code> syntax for type parameters, and
-                            (d) <code>if</code>, <code>match</code>, etc. as expressions.
                         </p>
+                        <p>
+                            We think Scala made many good design choices with respect to syntax, including:
+                        </p>
+
+                        <ul>
+                            <li>the use of short keywords,</li>
+                            <li>the <code>x : T</code> syntax for type annotations,</li>
+                            <li>the <code>List[Int32]</code> syntax for type parameters, and</li>
+                            <li><code>if</code>, <code>match</code>, etc. as expressions.</li>
+                        </ul>
 
                         <p>
                             However, other than syntax, the two languages are very different:
-                            Scala is object-oriented, Flix is not.
-                            Scala has sub-typing, Flix does not.
-                            Flix has an effect system, Scala does not. And so on.
                         </p>
+
+                        <ul>
+                            <li>Scala is object-oriented, Flix is not.</li>
+                            <li>Scala has sub-typing, Flix does not.</li>
+                            <li>Flix has an effect system, Scala does not.</li>
+                            <li>And so on.</li>
+                        </ul>
                     </Answer>
                 </QA>
 
@@ -109,7 +119,7 @@ class Faq extends Component {
                         Is the Flix type system sound? Does it support complete inference?
                     </Question>
                     <Answer>
-                        Yes and yes. It is a variant of Hindley-Milner.
+                        Yes and yes. The type system is a variant of Hindley-Milner.
                     </Answer>
                 </QA>
 
@@ -515,7 +525,8 @@ class Faq extends Component {
                         </p>
 
                         <p>
-                            Also, who said that we are taking their most complex ideas? Rather we should take their <i>best</i> ideas.
+                            Also, who said that we are taking their most complex ideas? Rather we should take
+                            their <i>best</i> ideas.
                         </p>
                     </Answer>
                 </QA>
