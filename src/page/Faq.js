@@ -456,12 +456,12 @@ class Faq extends Component {
                     <Answer>
                         <p>
                             The latest compiler version and the website is not always in sync, hence occasionally some
-                            examples may stop to work. Feel free to open a bug report if this happens.
+                            examples may stop to work.
                         </p>
 
                         <p>
                             Occasionally a mischievous visitor will crash the online editor (or rather the virtual
-                            machine on which the compiler runs). We usually discover and fix this within a few days.
+                            machine on which the compiler runs).
                         </p>
                     </Answer>
                 </QA>
@@ -493,11 +493,7 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            Indeed, we do it all for C#.
-                        </p>
-                        <p>
-                            Or, you know, because we honestly believe in functional programming (with room for local
-                            imperative programming!)
+                            Yes, we do it all for C#.
                         </p>
                     </Answer>
                 </QA>
@@ -509,11 +505,18 @@ class Faq extends Component {
                         the best with that.
                     </Question>
                     <Answer>
-                        Yes, we take inspiration from well-designed languages that are pushing on the boundary of
-                        programming language design.
-                        What would be the point of taking ideas from C, Perl, PHP, and Visual Basic? Also, we did not
-                        say that we are taking their
-                        most complex ideas; rather we should take their <i>best</i> ideas.
+                        <p>
+                            Yes, we take inspiration from programming languages that are pushing on the boundary of
+                            language design.
+                        </p>
+
+                        <p>
+                            What would be the point of taking ideas from C, Perl, PHP, and Visual Basic?
+                        </p>
+
+                        <p>
+                            Also, who said that we are taking their most complex ideas? Rather we should take their <i>best</i> ideas.
+                        </p>
                     </Answer>
                 </QA>
 
@@ -532,7 +535,7 @@ class Faq extends Component {
                         existing programming languages is not enough.
                     </Question>
                     <Answer>
-                        Flix aims to offer a combination of features that are not found in any existing programming
+                        Flix aims to offer a collection of features that are not found in any existing programming
                         language.
                     </Answer>
                 </QA>
@@ -590,9 +593,7 @@ class Faq extends Component {
                         of white space.
                     </Question>
                     <Answer>
-                        Yes, because that design choice has no issues with inadvertently causing bugs due to
-                        (i) lexing and parsing ambiguities, (ii) mixing tabs and spaces, (iii) copy-paste of code, and
-                        (iv) all of the above.
+                        Right, because significant whitespace poses no challenges or gotchas whatsoever.
                     </Answer>
                 </QA>
 
@@ -611,9 +612,6 @@ class Faq extends Component {
                                 :: xs</code>.
                             </li>
                             <li>The underscore <code>_</code> denotes a wildcard (or an unused variable).</li>
-                            <li>The expression <code>&lt;- c</code> reads a value from a channel whereas <code>c &lt;-
-                                v</code> writes a value to a channel.
-                            </li>
                             <li>The symbol <code>:-</code> denotes logical implication in Datalog rules.</li>
                         </ul>
                     </Answer>
