@@ -90,7 +90,7 @@ class Home extends Component {
                             className="font-weight-bold">algebraic
                                 data types and pattern matching</span> (like Haskell, OCaml), <span
                             className="font-weight-bold">extensible records</span> (like Elm), <span
-                            className="font-weight-bold">type classes</span> (like Haskell, Rust), <span
+                            className="font-weight-bold">traits (type classes)</span> (like Haskell, Rust), <span
                             className="font-weight-bold">higher-kinded types</span> (like Haskell), <span
                             className="font-weight-bold">typematch</span> (like Scala), <span
                             className="font-weight-bold">type inference</span> (like Haskell, OCaml), <span
@@ -360,14 +360,14 @@ def map(f: a -> b \\ ef, l: LazyList[a]): LazyList[b] \\ ef =
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
-                                <CardTitle><h4>Type Classes</h4></CardTitle>
+                                <CardTitle><h4>Traits (Type Classes)</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        Flix uses type classes to abstract over types that support a common set of
+                                        Flix uses traits to abstract over types that support a common set of
                                         operations.
                                     </p>
                                     <p>
-                                        For example, the <code>Eq</code> type class captures the notion of equality
+                                        For example, the <code>Eq</code> trait captures the notion of equality
                                         and is used throughout the standard library.
                                     </p>
                                 </CardText>
@@ -421,7 +421,7 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                                     </p>
 
                                     <p>
-                                        The Flix standard library ships with many common type classes, such
+                                        The Flix standard library ships with many common traits, such
                                         as <code>Monoid</code>, <code>Functor</code>, and <code>Foldable</code>.
                                     </p>
                                 </CardText>
@@ -440,8 +440,7 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                                         Flix supports a monadic <code>forM</code>-yield construct similar to Scala's
                                         <code>for</code>-comprehensions and Haskell's <code>do</code> notation.
                                         The <code>forM</code> construct is syntactic sugar for uses
-                                        of <code>point</code> and <code>flatMap</code> (which are provided by the Monad
-                                        type class).
+                                        of <code>point</code> and <code>flatMap</code> (which are provided by the <code>Monad</code> trait).
                                     </p>
                                 </CardText>
                             </CardBody>
@@ -486,7 +485,7 @@ def conn(u: String, p: String): Validation[Err, Connection] =
                                     <p>
                                         In addition to the monadic <code>forM</code> expression, Flix supports an
                                         applicative <code>forA</code> expression that builds on
-                                        the <code>Applicative</code> type class. The <code>forA</code> construct makes
+                                        the <code>Applicative</code> trait. The <code>forA</code> construct makes
                                         it simple to write error-handling code which uses the <code>Validation[e,
                                         t]</code> data type.
                                     </p>
@@ -614,7 +613,7 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             <li>first-class functions</li>
                             <li>extensible records</li>
                             <li>parametric polymorphism</li>
-                            <li>type classes</li>
+                            <li>traits (type classes)</li>
                             <li>higher-kinded types</li>
                             <li>light-weight polymorphic effects</li>
                             <li>type aliases</li>
@@ -650,6 +649,39 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             <li>interactive mode</li>
                             <li>Visual Studio Code support</li>
                         </ul>
+                    </Col>
+                </Row>
+
+
+                <hr className="mb-3"/>
+
+                <Row className="mb-3">
+                    <Col md={6}>
+                        <h2>Standard Library with Batteries Included</h2>
+
+                        <p>
+                            Flix comes with a fully-featured Standard Library that offers access to more than <span
+                            className="text-success font-weight-bold">3,100+</span> functions.
+                        </p>
+
+                        <p>
+                            For example, the <code>List</code> module has more than 100 functions and
+                            the <code>Foldable</code> trait has more than 47 functions.
+                        </p>
+
+                        <p>
+                            The full library can be explored at: <a href="https://api.flix.dev/">https://api.flix.dev/</a>
+                        </p>
+
+                        <p>
+                            In addition, Flix also provides access to the entire Java ecosystem via Maven.
+                        </p>
+
+                    </Col>
+                    <Col md={6}>
+                        <Card>
+                            <CardImg src="/images/standardLibrary.png" alt="Standard Library"/>
+                        </Card>
                     </Col>
                 </Row>
 
