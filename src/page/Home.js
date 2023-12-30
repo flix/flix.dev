@@ -600,9 +600,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
                 </Row>
 
-                <hr className="mb-3"/>
+                <hr className="mb-4"/>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md="12">
                         <h2>Complete Feature List</h2>
                     </Col>
@@ -652,10 +652,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
                 </Row>
 
+                <hr className="mb-4"/>
 
-                <hr className="mb-3"/>
-
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md={6}>
                         <h2>Standard Library with Batteries Included</h2>
 
@@ -685,9 +684,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
                 </Row>
 
-                <hr className="mb-3"/>
+                <hr className="mb-4"/>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md={6}>
                         <h2>Modern Compiler Architecture</h2>
 
@@ -718,9 +717,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
                 </Row>
 
-                <hr className="mb-3"/>
+                <hr className="mb-4"/>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md={12}>
                         <h2>Compiler Performance: The Raw Numbers</h2>
 
@@ -763,9 +762,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
                 </Row>
 
-                <hr className="mb-3"/>
+                <hr className="mb-4"/>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md={12}>
                         <h2>Visual Studio Code Support</h2>
 
@@ -892,9 +891,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
                 </Row>
 
-                <hr className="mb-3"/>
+                <hr className="mb-4"/>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md={6}>
                         <h2>Actively Developed and Maintained</h2>
 
@@ -942,10 +941,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
                 </Row>
 
+                <hr className="mb-4"/>
 
-                <hr className="mb-3"/>
-
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md={6}>
                         <CardImg src="/logo/java.png" alt="Java Logo" className="p-4"/>
                     </Col>
@@ -977,9 +975,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
                 </Row>
 
-                <hr className="mb-3"/>
+                <hr className="mb-4"/>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md={6}>
                         <h2>Funding and Grants</h2>
 
@@ -1004,9 +1002,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Col>
                 </Row>
 
-                <hr className="mb-3"/>
+                <hr className="mb-4"/>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md="12">
                         <h2>Sponsors and Funding</h2>
                     </Col>
@@ -1035,9 +1033,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Row>
                 </Row>
 
-                <hr className="mb-3"/>
+                <hr className="mb-4"/>
 
-                <Row className="mb-3">
+                <Row className="mb-4">
                     <Col md="12">
                         <h2>Collaborators</h2>
                     </Col>
@@ -1061,9 +1059,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                     </Row>
                 </Row>
 
-                <hr className="mb-3"/>
+                <hr className="mb-4"/>
 
-                <Row className="mb-3 pb-3">
+                <Row className="mb-4 pb-3">
                     <Col xs="12">
                         <p className="small float-right">
                             We kindly thank <a href="https://www.ej-technologies.com/">EJ Technologies</a> for providing

@@ -37,30 +37,41 @@ class Faq extends Component {
                     <Answer>
                         <p>
                             Yes, with the <code>import</code> mechanism.
+                            You can read more in the documentation, in the section: <a
+                            href="https://doc.flix.dev/interoperability.html">Interoperability</a>.
                         </p>
                     </Answer>
                 </QA>
 
                 <QA>
                     <Question>
-                        Flix looks quite similar to Scala. How are the two languages related?
+                        Flix looks similar to Scala. How are the two languages related?
                     </Question>
                     <Answer>
                         <p>
                             Flix borrows a lot of syntax from Scala, hence the two languages have a similar feel.
+                        </p>
+                        <p>
                             We think Scala made many good design choices with respect to syntax, including:
-                            (a) the use of short keywords,
-                            (b) the <code>x : T</code> syntax for type annotations,
-                            (c) the <code>List[Int32]</code> syntax for type parameters, and
-                            (d) <code>if</code>, <code>match</code>, etc. as expressions.
                         </p>
 
+                        <ul>
+                            <li>the use of short keywords,</li>
+                            <li>the <code>x : T</code> syntax for type annotations,</li>
+                            <li>the <code>List[Int32]</code> syntax for type parameters, and</li>
+                            <li><code>if</code>, <code>match</code>, etc. as expressions.</li>
+                        </ul>
+
                         <p>
-                            Other than syntax, the two languages are very different: Scala is object-oriented, Flix is
-                            not.
-                            Scala has sub-typing, Flix does not. The Scala type system is unsound and has imperfect
-                            type inference, whereas the Flix type system is both sound and supports type inference.
+                            However, other than syntax, the two languages are very different:
                         </p>
+
+                        <ul>
+                            <li>Scala is object-oriented, Flix is not.</li>
+                            <li>Scala has sub-typing, Flix does not.</li>
+                            <li>Flix has an effect system, Scala does not.</li>
+                            <li>And so on.</li>
+                        </ul>
                     </Answer>
                 </QA>
 
@@ -98,52 +109,17 @@ class Faq extends Component {
                         Does Flix compile to WebAssembly (WASM)?
                     </Question>
                     <Answer>
-                        No, not at the moment. It is something we are open to, but we are waiting for WebAssembly to
-                        gain a garbage collector and tail calls.
+                        Not yet. It is something we are open to.
+                        We are waiting for WebAssembly to offer native support for garbage collection and tail calls.
                     </Answer>
                 </QA>
 
                 <QA>
                     <Question>
-                        Why does Flix target the Java Virtual Machine (JVM)?
+                        Is the Flix type system sound? Does it support complete inference?
                     </Question>
                     <Answer>
-                        The Java Virtual Machine has many attractive features not found on other VMs, including:
-                        <ul>
-                            <li>A state-of-the-art JIT compiler.</li>
-                            <li>Multiple state-of-the-art garbage collectors.</li>
-                            <li>Access to a huge ecosystem of libraries.</li>
-                            <li>A multitude of concurrency primitives including light-weight threads.</li>
-                            <li>Advanced introspection and debugging facilities.</li>
-                        </ul>
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        Is the Flix type system sound?
-                    </Question>
-                    <Answer>
-                        Yes. It is based on Hindley-Milner.
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        I want to learn Flix! What should I know about before hand?
-                    </Question>
-                    <Answer>
-                        <p>
-                            At the moment, Flix has not yet reached version 1.0. That means you will be an early
-                            adopter, so you should expect for the language to evolve and be prepared for the rare
-                            compiler bug. (The Flix compiler has 9,500 manually written tests and we
-                            take correctness seriously.)
-                        </p>
-
-                        <p>
-                            To write Flix programs, a solid background in functional programming is useful. That means
-                            prior experience with OCaml, Haskell, Scala, or similar programming languages.
-                        </p>
+                        Yes and yes. The type system is a variant of Hindley-Milner.
                     </Answer>
                 </QA>
 
@@ -153,14 +129,17 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            We recommend that you start with a small offering to the Great Dreamer, the Sleeper of
-                            R'lyeh, Cthulhu. And coffee. Lots of coffee. All kidding aside, the best place to start is
-                            to look at the examples and to read the <a href="https://doc.flix.dev/">Programming
-                            Flix</a> book.
+                            We recommand that you have some prior experience with functional programming.
                         </p>
 
                         <p>
-                            If you get stuck or need help feel free to reach out to us on Gitter.
+                            Other than that, the best place to start is to look at the examples and to
+                            read the <a href="https://doc.flix.dev/">Programming Flix</a> book.
+                        </p>
+
+                        <p>
+                            If you get stuck or need help feel free to reach out to
+                            us on <a href="https://gitter.im/flix/Lobby">Gitter</a>.
                         </p>
                     </Answer>
                 </QA>
@@ -198,7 +177,7 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        Haskell and OCaml compile to native code thus – by definition – they must be faster than Flix.
+                        Haskell and OCaml compile to native code thus by definition they must be faster than Flix.
                     </Question>
                     <Answer>
                         This is not necessarily true. For example, Java sometimes beats both <a
@@ -308,16 +287,6 @@ class Faq extends Component {
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Exceptions</td>
-                                <td>Exceptions have been used to deal with two types of errors that may arise during
-                                    execution of a program: predictable errors (e.g. a file does not exist) and program
-                                    bugs (e.g. stack overflow). Flix has no exceptions. Instead, all predictable errors
-                                    should be encoded as partial functions (e.g. using <code>Option</code>) or as
-                                    potentially error returning functions (e.g. using <code>Result</code>). We are still
-                                    in the process of deciding how to handle program bugs.
-                                </td>
-                            </tr>
-                            <tr>
                                 <td>Null Values</td>
                                 <td>
                                     Null, famously called <a href="https://en.wikipedia.org/wiki/Tony_Hoare">Tony
@@ -424,28 +393,10 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        Who works on Flix? Is Flix a hobby project?
-                    </Question>
-                    <Answer>
-                        <p>
-                            Flix is a research project carried out by faculty and students at <a
-                            href="http://cs.au.dk/">Aarhus University</a> and the <a href="http://uwaterloo.ca/">University
-                            of Waterloo</a>.
-                        </p>
-
-                        <p>
-                            Flix is partially supported by a grant of 2,500,000 DKK from the <a href="http://dff.dk/">Independent
-                            Research Fund of Denmark.</a>
-                        </p>
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
                         Where does the "Flix" name come from?
                     </Question>
                     <Answer>
-                        We do not entirely remember, but we believe it came from <span className="text-monospace">FIXpoint Language</span>.
+                        We do not remember, but we believe it may have come from <span className="text-monospace">FIXpoint Language</span>.
                     </Answer>
                 </QA>
 
@@ -463,9 +414,8 @@ class Faq extends Component {
                         You do not seem to understand parsing / type theory / code generation / computers!
                     </Question>
                     <Answer>
-                        We are happy to learn and to revisit design decisions if we come to a greater understanding
-                        of the problem at hand. If you think we have overlooked something, we would be happy to talk
-                        about it if you post a ticket on GitHub or write to us on Gitter.
+                        We are always happy to learn! We are ready to discuss design choices made in Flix.
+                        Swing by Gitter or on GitHub.
                     </Answer>
                 </QA>
 
@@ -474,9 +424,9 @@ class Faq extends Component {
                         Why does the website require JavaScript?
                     </Question>
                     <Answer>
-                        We built the website using the popular React framework. We use JavaScript for the online code
-                        editor. Using React was easy. Ultimately, we want to spend our time writing compilers, not
-                        writing websites.
+                        We built the website using the popular React framework.
+                        Using React was easy.
+                        Ultimately, we want to spend our time writing compilers, not writing websites.
                     </Answer>
                 </QA>
 
@@ -495,15 +445,16 @@ class Faq extends Component {
                     <Question>"This site requires JavaScript"</Question>
                     <Answer>
                         <p>
-                            People who have criticized the website for using JavaScript:
-                            <a href="https://news.ycombinator.com/item?id=25516097">[1]</a>, <a
+                            People who have criticized the website for using JavaScript: <a
+                            href="https://news.ycombinator.com/item?id=25516097">[1]</a>, <a
                             href="https://news.ycombinator.com/item?id=38419909">[2]</a>, <a
                             href="https://news.ycombinator.com/item?id=38420198">[3]</a>, <a
-                            href="https://news.ycombinator.com/item?id=38419695">[4]</a>.
+                            href="https://news.ycombinator.com/item?id=38419695">[4]</a>, <a
+                            href="https://lobste.rs/s/ygbpw3/defense_programming_languages#c_yc6jle">[5]</a>.
                         </p>
 
                         <p>
-                            People who have offered to help transition the site to use a static page generator: <b>0</b>.
+                            People who have offered to help refactor the site to use static html: <b>0</b>.
                         </p>
                     </Answer>
                 </QA>
@@ -515,12 +466,12 @@ class Faq extends Component {
                     <Answer>
                         <p>
                             The latest compiler version and the website is not always in sync, hence occasionally some
-                            examples may stop to work. Feel free to open a bug report if this happens.
+                            examples may stop to work.
                         </p>
 
                         <p>
                             Occasionally a mischievous visitor will crash the online editor (or rather the virtual
-                            machine on which the compiler runs). We usually discover and fix this within a few days.
+                            machine on which the compiler runs).
                         </p>
                     </Answer>
                 </QA>
@@ -552,11 +503,7 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            Indeed, we do it all for C#.
-                        </p>
-                        <p>
-                            Or, you know, because we honestly believe in functional programming (with room for local
-                            imperative programming!)
+                            Yes, we do it all for C#.
                         </p>
                     </Answer>
                 </QA>
@@ -568,11 +515,19 @@ class Faq extends Component {
                         the best with that.
                     </Question>
                     <Answer>
-                        Yes, we take inspiration from well-designed languages that are pushing on the boundary of
-                        programming language design.
-                        What would be the point of taking ideas from C, Perl, PHP, and Visual Basic? Also, we did not
-                        say that we are taking their
-                        most complex ideas; rather we should take their <i>best</i> ideas.
+                        <p>
+                            Yes, we take inspiration from programming languages that are pushing on the boundary of
+                            language design.
+                        </p>
+
+                        <p>
+                            What would be the point of taking ideas from C, Perl, PHP, and Visual Basic?
+                        </p>
+
+                        <p>
+                            Also, who said that we are taking their most complex ideas? Rather we should take
+                            their <i>best</i> ideas.
+                        </p>
                     </Answer>
                 </QA>
 
@@ -591,7 +546,7 @@ class Faq extends Component {
                         existing programming languages is not enough.
                     </Question>
                     <Answer>
-                        Flix aims to offer a combination of features that are not found in any existing programming
+                        Flix aims to offer a collection of features that are not found in any existing programming
                         language.
                     </Answer>
                 </QA>
@@ -649,9 +604,7 @@ class Faq extends Component {
                         of white space.
                     </Question>
                     <Answer>
-                        Yes, because that design choice has no issues with inadvertently causing bugs due to
-                        (i) lexing and parsing ambiguities, (ii) mixing tabs and spaces, (iii) copy-paste of code, and
-                        (iv) all of the above.
+                        Right, because significant whitespace poses no challenges or gotchas whatsoever.
                     </Answer>
                 </QA>
 
@@ -670,9 +623,6 @@ class Faq extends Component {
                                 :: xs</code>.
                             </li>
                             <li>The underscore <code>_</code> denotes a wildcard (or an unused variable).</li>
-                            <li>The expression <code>&lt;- c</code> reads a value from a channel whereas <code>c &lt;-
-                                v</code> writes a value to a channel.
-                            </li>
                             <li>The symbol <code>:-</code> denotes logical implication in Datalog rules.</li>
                         </ul>
                     </Answer>
