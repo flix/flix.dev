@@ -77,7 +77,8 @@ class Home extends Component {
                         </p>
 
                         <p className="text-justify">
-                            Flix also supports several <span className="font-weight-bold text-info">unique features</span>,
+                            Flix also supports several <span
+                            className="font-weight-bold text-info">unique features</span>,
                             including: <span
                             className="font-weight-bold text-success">a polymorphic effect system</span>, <span
                             className="font-weight-bold text-success">region-based local mutation</span>, <span
@@ -340,7 +341,88 @@ def map(f: a -> b \\ ef, l: LazyList[a]): LazyList[b] \\ ef =
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
-                                <CardTitle><h4>Traits (Type Classes)</h4></CardTitle>
+                                <CardTitle><h4>Parallelism</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix makes it simple and easy to evaluate <i>pure</i> code in parallel.
+                                    </p>
+                                    <p>
+                                        For example, the code on the right shows a parallel implementation of
+                                        the <code>List.map</code> function using the <code>par</code> construct.
+                                    </p>
+                                    <p>
+                                        Internally, the <code>par</code> construct uses
+                                        light-weight <code>VirtualThread</code>s.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`///
+/// A parallel implementation of the List.map function.
+/// 
+def parMap(f: a -> b, l: List[a]): List[b] = match l {
+    case Nil     => Nil
+    case x :: xs =>
+        // Evaluate f(x) and parMap(f, xs) in parallel.
+        par (r <- f(x); rs <- parMap(f, xs))
+            yield r :: rs
+}`}
+                        </InlineEditor>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <InlineEditor>
+                            {`def main(): Unit \\ IO = 
+    region rc {
+        // A channel which can buffer one message.
+        let (tx, rx) = Channel.buffered(rc, 1);
+        spawn say("Meow!", tx) @ rc; // thread 1
+        spawn say("Woof!", tx) @ rc; // thread 2
+        Channel.recv(rx) |> println
+    } // Execution is blocked until both threads finish.
+
+/// Sends the string s on the given channel tx.
+def say(s: String, tx: Sender[String, r]): Unit \\ r = 
+    Channel.send(s, tx)
+
+`}
+                        </InlineEditor>
+                    </Col>
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Structured Concurrency</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports <a
+                                        href="https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/">structured
+                                        concurrency</a>.
+                                    </p>
+                                    <p>
+                                        For example, the code on the left shows the creation of a fresh
+                                        region named <code>rc</code> in which two threads are spawned.
+                                    </p>
+                                    <p>
+                                        Importantly, control-flow does not leave the region before <i>both</i> threads
+                                        have terminated. Hence the two threads cannot outlive the lifetime of their
+                                        enclosing region.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Traits</h4></CardTitle>
                                 <CardText>
                                     <p>
                                         Flix uses traits to abstract over types that support a common set of

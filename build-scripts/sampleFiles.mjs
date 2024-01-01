@@ -100,17 +100,5 @@ export const sampleFiles = [
     {
         name: "Working with Files and Directories",
         file: "working-with-files-and-directories.flix",
-    },
-    {
-        name: "Using Laziness for Infinite Streams",
-        file: "using-laziness-for-infinite-streams.flix",
-    },
-    {
-        name: "Using Laziness for Logging",
-        file: "using-laziness-for-logging.flix",
-    },
-    {
-        name: "Using Laziness to Compute Fibonacci",
-        file: "using-laziness-to-compute-fibonacci.flix",
     }
 ];
