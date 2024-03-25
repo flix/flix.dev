@@ -959,6 +959,77 @@ let r = query p select (c, d) from ReadyDate(c; d)
 
                 <Row className="mb-4">
                     <Col md={6}>
+                        <h2>Tooling Comparison Table</h2>
+
+                        <p>
+                            Many programming languages come with a lot of external tooling.
+                        </p>
+
+                        <p>
+                            Such tooling must be installed and configured correctly.
+                        </p>
+
+                        <p>
+                            In Flix, most tooling is built directly into the compiler.
+                        </p>
+                    </Col>
+
+                    <Col md={6}>
+                        <table className="table table-sm table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Tool</th>
+                                <th scope="col">Flix</th>
+                                <th scope="col">OCaml</th>
+                                <th scope="col">Haskell</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Compiler</td>
+                                <td>flix</td>
+                                <td>ocaml</td>
+                                <td>ghc</td>
+                            </tr>
+                            <tr>
+                                <td>LSP</td>
+                                <td>flix</td>
+                                <td>ocaml-lsp</td>
+                                <td>HLS</td>
+                            </tr>
+                            <tr>
+                                <td>REPL</td>
+                                <td>flix</td>
+                                <td>utop</td>
+                                <td>ghci</td>
+                            </tr>
+                            <tr>
+                                <td>Build Tool</td>
+                                <td>flix</td>
+                                <td>dune</td>
+                                <td>cabal, stack</td>
+                            </tr>
+                            <tr>
+                                <td>Package Manager</td>
+                                <td>flix</td>
+                                <td>opam</td>
+                                <td>cabal</td>
+                            </tr>
+                            <tr>
+                                <td>Package Repository</td>
+                                <td>GitHub</td>
+                                <td>opam</td>
+                                <td>Hackage</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </Col>
+                </Row>
+
+                <hr className="mb-4"/>
+
+                <Row className="mb-4">
+                    <Col md={6}>
                         <h2>Actively Developed and Maintained</h2>
 
                         <p className="text-justify">
