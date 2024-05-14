@@ -40,8 +40,8 @@ class Internships extends Component {
 
                     <p>
                         To apply, you should be enrolled in a bachelor's or master's degree programme at an accredited
-                        university. You should have taken one or two courses on programming languages and on compilers
-                        (exceptions can be made for especially talented students.)
+                        university. The ideal candidate has experience with compilers, programming languages,
+                        and functional programming.
                     </p>
 
                     <hr/>
