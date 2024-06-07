@@ -496,6 +496,91 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
+                                <CardTitle><h4>Associated Types</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports associate types, which allow the types in instance signatures
+                                        to depend on the instance type.
+                                    </p>
+
+                                    <p>
+                                        The code on the right defines a trait with an associated type <code>Elm</code>,
+                                        which enables each <code>Coll</code> instance to define its element type.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`trait Coll[a] {
+
+    /// The element type of the collection.
+    type Elm
+
+    /// Converts the collection to a list of its elements.
+    def toList(coll: x): List[Coll.Elm[a]]
+}
+
+instance Coll[Map[k, v]] {
+    type Elm = (k, v)
+
+    def toList(m: Map[K, V]): List[(k, v)] = ...
+}
+`}
+                        </InlineEditor>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <InlineEditor>
+                            {`trait Coll[a] {
+
+    /// The element type of the collection.
+    type Elm
+
+    /// The effect associated with the collection.
+    type Aef
+
+    /// Converts the collection to a list of its elements.
+    def toList(coll: x): List[Coll.Elm[a]] \\ Coll.Aef[a]
+}
+
+instance Coll[MutMap[k, v, r]] {
+    type Elm = (k, v)
+    type Aef = r
+
+    def toList(m: Map[K, V]): List[(k, v)] \\ r = ...
+}
+`}
+                        </InlineEditor>
+                    </Col>
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Associated Effects</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Associated effects allow the effects in trait members to depend on the instance type.
+                                        This makes it easy to create abstractions over both pure and effectful operations,
+                                        and mutable and immutable data structures.
+                                    </p>
+
+                                    <p>
+                                        The code on the left adds an associated effect <code>Aef</code> to the <code>Coll</code> trait,
+                                        which makes it possible to add instances for mutable collections.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
                                 <CardTitle><h4>Monadic For-Yield</h4></CardTitle>
                                 <CardText>
                                     <p>
