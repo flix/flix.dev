@@ -562,13 +562,16 @@ instance Coll[MutMap[k, v, r]] {
                                 <CardTitle><h4>Associated Effects</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        Associated effects allow the effects in trait members to depend on the instance type.
-                                        This makes it easy to create abstractions over both pure and effectful operations,
+                                        Associated effects allow the effects in trait members to depend on the instance
+                                        type.
+                                        This makes it easy to create abstractions over both pure and effectful
+                                        operations,
                                         and mutable and immutable data structures.
                                     </p>
 
                                     <p>
-                                        The code on the left adds an associated effect <code>Aef</code> to the <code>Coll</code> trait,
+                                        The code on the left adds an associated effect <code>Aef</code> to
+                                        the <code>Coll</code> trait,
                                         which makes it possible to add instances for mutable collections.
                                     </p>
                                 </CardText>
@@ -640,6 +643,44 @@ def conn(u: String, p: String): Validation[Err, Connection] =
                                 </CardText>
                             </CardBody>
                         </Card>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Seamless Java Interoperability</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports seamless Java interoperability, making it possible to reuse code
+                                        from the Java Standard Library and the Java ecosystem, e.g., via Maven.
+                                    </p>
+                                    <p>
+                                        Java support includes object creation, method invocation, exceptions, and
+                                        class/interface extension.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`import java.io.File
+import java.io.FileWriter
+import java.io.IOException
+
+def main(): Unit \\ IO = 
+    let f = new File("foo.txt");
+    try {
+        let w = new FileWriter(f);
+        w.append("Hello World\\n");
+        w.close()
+    } catch {
+        case ex: IOException => 
+            println("Unable to write file")
+    }`}
+                        </InlineEditor>
                     </Col>
                 </Row>
 
