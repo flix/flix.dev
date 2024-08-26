@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardColumns, CardTitle, Container } from 'reactstrap';
+import React, {Component} from 'react';
+import {Badge, Card, CardBody, CardColumns, CardTitle, Container} from 'reactstrap';
 
 class Principles extends Component {
 
@@ -26,8 +26,8 @@ class Principles extends Component {
 
                 <p>
                     <b>Update:</b> The Flix Principles has been published in a paper at Onward! '22. Read it here: <a
-                        href="https://dl.acm.org/doi/10.1145/3563835.3567661">The Principles of the Flix Programming
-                        Language</a>.
+                    href="https://dl.acm.org/doi/10.1145/3563835.3567661">The Principles of the Flix Programming
+                    Language</a>.
                 </p>
 
                 <h2 className="mt-3">Language Principles</h2>
@@ -36,8 +36,8 @@ class Principles extends Component {
 
                     <Principle name="Simple is not easy">
                         We believe in Rich Hickey's creed: <a
-                            href="https://www.infoq.com/presentations/Simple-Made-Easy">simple
-                            is not easy</a>. We prefer a language that gets things right to one that makes things
+                        href="https://www.infoq.com/presentations/Simple-Made-Easy">simple
+                        is not easy</a>. We prefer a language that gets things right to one that makes things
                         easy. Such a language might take longer to learn in the short run, but its simplicity pays off
                         in the long run.
                     </Principle>
@@ -85,15 +85,15 @@ class Principles extends Component {
 
                     <Principle name="Principle of least surprise">
                         We should strive to adhere to the <a
-                            href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment">principle of least
-                            surprise</a>. That is, we should favor sane defaults, and when there is no immediately obvious
+                        href="https://en.wikipedia.org/wiki/Principle_of_least_astonishment">principle of least
+                        surprise</a>. That is, we should favor sane defaults, and when there is no immediately obvious
                         default, we should not have a default at all, but force the programmer to be explicit about his
                         or her intention.
                     </Principle>
 
                     <Principle name="Local type inference">
                         The Flix type system is based on <a
-                            href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> which
+                        href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">Hindley-Milner</a> which
                         supports full type inference. As a design choice, we require all functions to be annotated with
                         their argument and return types. We believe that requiring type signatures has three distinct
                         advantages that outweigh the disadvantages.
@@ -108,7 +108,7 @@ class Principles extends Component {
                     <Principle name="Type parameter elision">
                         While we require type signatures, we also believe that such signatures should be as minimal
                         as possible. Thus, while the full type signature of <code>List.map</code> is <code>def map[a,
-                            b](f: a -{'>'} b, xs: List[a]): List[b]</code>, we can use <i>type parameter elision</i> to
+                        b](f: a -{'>'} b, xs: List[a]): List[b]</code>, we can use <i>type parameter elision</i> to
                         write it
                         simply as: <code>def map(f: a -{'>'} b, xs: List[a]): List[b]</code> omitting the type
                         arguments.
@@ -117,9 +117,9 @@ class Principles extends Component {
                     <Principle name="Syntax vs. Semantics">
                         Syntax is important. Semantics are important. But we should not confuse the two. A syntactic
                         issue should not be resolved by a enrichment of the semantics. For example, <a
-                            href=" https://en.wikipedia.org/wiki/Extension_method">extension methods</a> and <a
-                                href="https://docs.scala-lang.org/overviews/core/implicit-classes.html">implicit
-                            classes</a> seem to be semantic solutions to (mostly) syntactic issues. Flix aims to avoid such
+                        href=" https://en.wikipedia.org/wiki/Extension_method">extension methods</a> and <a
+                        href="https://docs.scala-lang.org/overviews/core/implicit-classes.html">implicit
+                        classes</a> seem to be semantic solutions to (mostly) syntactic issues. Flix aims to avoid such
                         pitfalls.
                     </Principle>
 
@@ -152,7 +152,7 @@ class Principles extends Component {
 
                     <Principle name="Human-readable errors">
                         In the spirit of <a href="https://elm-lang.org/blog/compilers-as-assistants">Elm</a> and <a
-                            href="https://blog.rust-lang.org/2016/08/10/Shape-of-errors-to-come.html">Rust</a>,
+                        href="https://blog.rust-lang.org/2016/08/10/Shape-of-errors-to-come.html">Rust</a>,
                         Flix aims to have human readable and understandable compiler messages.
                         Messages should describe the problem in
                         detail and provide information about the context, including suggestions for how to correct
@@ -185,7 +185,7 @@ class Principles extends Component {
                         In Flix, in the future, we want to take this a step further, and allow refinement of some types.
                         For example, to express that some value must not only be an integer, but also that it must
                         fall within a range, e.g. <code>[0-99]</code>.
-                        <br />
+                        <br/>
                         <Badge>in progress</Badge>
                     </Principle>
 
@@ -218,7 +218,7 @@ class Principles extends Component {
                         We believe that a programming language should reduce the volume of declarations
                         it <i>requires</i>. Declarations may be useful and are sometimes necessary, but Flix aims to
                         minimize its internal dependence on them. To give an example, Flix supports <i>extensible
-                            records</i> which permits the usage of flexible and type-safe records <i>without</i> a strict
+                        records</i> which permits the usage of flexible and type-safe records <i>without</i> a strict
                         requirement that record types must be declared upfront.
                     </Principle>
 
@@ -233,17 +233,17 @@ class Principles extends Component {
 
                     <Principle name="Share memory by communicating">
                         Flix follows the Go mantra: <a href="https://blog.golang.org/share-memory-by-communicating"><i>Do
-                            not communicate by sharing memory; instead, share memory by
-                            communicating.</i></a> In other words: mutable memory should never be shared between processes.
+                        not communicate by sharing memory; instead, share memory by
+                        communicating.</i></a> In other words: mutable memory should never be shared between processes.
                         Processes should only share immutable messages (and data structures). We believe this
                         significantly reduces the risk of <a href="https://en.wikipedia.org/wiki/Race_condition">race
-                            conditions</a>.
+                        conditions</a>.
                     </Principle>
 
                     <Principle name="Bugs are not recoverable errors">
                         We believe in the <a href="http://joeduffyblog.com/2016/02/07/the-error-model/">Midori Error
-                            Model</a>; that is, there are two kinds of errors: <i>recoverable errors</i> and <i>program
-                                bugs</i>. Recoverable errors are things like illegal user input, network errors, etc. Errors
+                        Model</a>; that is, there are two kinds of errors: <i>recoverable errors</i> and <i>program
+                        bugs</i>. Recoverable errors are things like illegal user input, network errors, etc. Errors
                         that can be anticipated and where there is a chance of recovery. Program bugs, on the other
                         hand, are unanticipated and we cannot expect to recover from them. We should treat these two
                         types of errors differently: For recoverable errors, we should enforce that they are checked
@@ -311,8 +311,8 @@ class Principles extends Component {
                     <Principle name="No unused variables">
                         Flix disallows unused local variables, whether they are introduced by let, introduced by pattern
                         matching, or part of the formal parameters of a function. Research [<a
-                            href="https://dl.acm.org/citation.cfm?id=587060">1</a>] [<a
-                                href="https://dl.acm.org/citation.cfm?id=1052895">2</a>] has repeatedly shown that minor
+                        href="https://dl.acm.org/citation.cfm?id=587060">1</a>] [<a
+                        href="https://dl.acm.org/citation.cfm?id=1052895">2</a>] has repeatedly shown that minor
                         mistakes are a common source of bugs, e.g. using the wrong local variable. Disallowing unused
                         local variables help avoid such mistakes.
                     </Principle>
@@ -418,7 +418,7 @@ class Principles extends Component {
                             A message should be <b>crisp</b>, <b>concise</b>, and <b>clear</b>.
                             The language should be friendly or neutral. An error message should not blame
                             the programmer. For example, we should prefer <code>Unexpected foo</code> over <code>Illegal
-                                foo</code>, since the latter implies that the programmer did something wrong.
+                            foo</code>, since the latter implies that the programmer did something wrong.
                         </p>
                     </Principle>
 
@@ -549,9 +549,9 @@ class Principles extends Component {
                         </p>
                     </Principle>
 
-                    <Principle name="Explicit Override / Redefinition">
-                        A type class instance that wants to override / redefine a default implementation must explicitly do
-                        so using the <code>redef</code> keyword. This ensures that there are no dangling overrides / redefinitions,
+                    <Principle name="Explicit Override">
+                        A type class instance that wants to override a default implementation must explicitly do
+                        so using the <code>override</code> keyword. This ensures that there are no dangling overrides,
                         i.e. functions definitions that do not match any signature of the type class.
                     </Principle>
 
