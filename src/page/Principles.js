@@ -549,9 +549,9 @@ class Principles extends Component {
                         </p>
                     </Principle>
 
-                    <Principle name="Explicit Override">
-                        A type class instance that wants to override a default implementation must explicitly do
-                        so using the <code>override</code> keyword. This ensures that there are no dangling overrides,
+                    <Principle name="Explicit Override / Redefinition">
+                        A type class instance that wants to override / redefine a default implementation must explicitly do
+                        so using the <code>redef</code> keyword. This ensures that there are no dangling overrides / redefinitions,
                         i.e. functions definitions that do not match any signature of the type class.
                     </Principle>
 
