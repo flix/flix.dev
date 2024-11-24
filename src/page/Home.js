@@ -60,12 +60,12 @@ class Home extends Component {
                             href="https://github.com/flix/flix/graphs/contributors">open source contributors</a>.
                         </p>
 
-                        <h4>Why Effect-Oriented? And Why Flix?</h4>
+                        <h4>Why effect-oriented? And why Flix?</h4>
 
                         <p className="text-justify">
-                            <span className="font-italic">Why Effects?</span> Effects are the next big thing for
+                            <span className="font-italic">Why Effects?</span> Effects are the next big step for
                             statically-typed programming languages. Effects &mdash; like types &mdash; enable
-                            programmers to structure and understand their programs. Specifically, effects enable
+                            programmers to better structure and understand their programs. Specifically, effects enable
                             modularity, improved program reasoning, new compiler optimizations, and user-defined
                             effects and handlers allow programmers to implement their own control structures.
                         </p>
@@ -86,7 +86,7 @@ class Home extends Component {
                             className="font-weight-bold">traits</span>, <span
                             className="font-weight-bold">higher-kinded types</span>, <span
                             className="font-weight-bold">associated types and effects</span>, <span
-                            className="font-weight-bold">structured channel and process-based concurrency</span>,
+                            className="font-weight-bold">structured concurrency</span>,
                             and more.
                         </p>
 
