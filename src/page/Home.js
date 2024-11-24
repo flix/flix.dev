@@ -923,11 +923,11 @@ let r = query p select (c, d) from ReadyDate(c; d)
                                 <tbody>
                                 <tr>
                                     <td className="h5">Throughput (entire compiler):</td>
-                                    <td className="h5 text-right text-success font-weight-bold">41,700 lines/sec</td>
+                                    <td className="h5 text-right text-success font-weight-bold">52,800 lines/sec</td>
                                 </tr>
                                 <tr>
                                     <td className="h5">Throughput (frontend only):</td>
-                                    <td className="h5 text-right text-success font-weight-bold">93,000 lines/sec</td>
+                                    <td className="h5 text-right text-success font-weight-bold">95,500 lines/sec</td>
                                 </tr>
                                 </tbody>
                             </table>
