@@ -63,10 +63,9 @@ class Home extends Component {
                         <h4>Why effect-oriented? And why Flix?</h4>
 
                         <p className="text-justify">
-                            <span className="font-italic">Why Effects?</span> Effects are the next big step for
-                            statically-typed programming languages. Effects &mdash; like types &mdash; enable
-                            programmers to better structure and understand their programs. Specifically, effects enable
-                            modularity, improved program reasoning, new compiler optimizations, and user-defined
+                            <span className="font-italic">Why Effects?</span> Effect systems represent the next major
+                            evolution in statically typed programming languages. By explicitly modeling side effects,
+                            effect-oriented programming enforces modularity and helps program reasoning. User-defined
                             effects and handlers allow programmers to implement their own control structures.
                         </p>
 
@@ -89,12 +88,6 @@ class Home extends Component {
                             className="font-weight-bold">structured concurrency</span>,
                             and more.
                         </p>
-
-                        <p>
-                            Flix comes with excellent and extensive <span
-                            className="font-weight-bold">Visual Studio Code support.</span>
-                        </p>
-
                     </Col>
                     <Col md="6">
                     <Codebox flix={this.props.flix}/>
