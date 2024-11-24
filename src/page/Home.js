@@ -249,10 +249,10 @@ def map(f: a -> b \\ ef, l: List[a]): List[b] \\ ef =
                                     </p>
 
                                     <p>
-                                        For example, the program expresses a <code>greeting</code> function that is pure
-                                        modulo the current time of the day. In <code>main</code> we call the function
-                                        and handle the <code>HourOfDay</code> effect by getting the real-world time
-                                        from Java's <code>LocalDateTime</code>.
+                                        For example, the program on the right expresses a <code>greeting</code> function
+                                        that is pure modulo the current time of the day. In <code>main</code> we call
+                                        the function and handle the <code>HourOfDay</code> effect by getting the
+                                        real-world time from Java's <code>LocalDateTime</code>.
                                     </p>
                                 </CardText>
                             </CardBody>
