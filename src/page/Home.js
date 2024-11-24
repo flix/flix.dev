@@ -47,48 +47,50 @@ class Home extends Component {
             <Container>
                 <Row className="mb-3">
                     <Col md="6">
-                        <h1>The Flix Programming Language</h1>
+                        <h1>Flix &mdash;</h1>
 
-                        <h2 className="motto">Next-generation reliable, safe, concise, and functional-first programming
-                            language.</h2>
+                        <h2 className="motto">
+                            A powerful <span className="font-weight-bold text-success">effect-oriented</span> programming language
+                        </h2>
 
                         <p className="text-justify">
-                            Flix is a principled functional, imperative, and logic programming language
-                            developed at <a href="https://cs.au.dk/">Aarhus University</a>, at the <a
-                            href="https://uwaterloo.ca/">University of Waterloo</a>, and by a community of <a
+                            Flix is a principled effect-oriented functional,
+                            imperative, and logic programming language developed at <a
+                            href="https://cs.au.dk/">Aarhus University</a> and by a community of <a
                             href="https://github.com/flix/flix/graphs/contributors">open source contributors</a>.
                         </p>
 
-                        <h2>Why Flix? </h2>
+                        <h4>Why effect-oriented? And why Flix?</h4>
 
                         <p className="text-justify">
-                            Flix aims to offer a <span className="font-weight-bold text-info">unique combination of
-                                features</span> that no other programming language offers, including: <span
-                            className="font-weight-bold">algebraic
-                                data types and pattern matching</span> (like Haskell, OCaml), <span
-                            className="font-weight-bold">extensible records</span> (like Elm), <span
-                            className="font-weight-bold">traits (type classes)</span> (like Haskell, Rust), <span
-                            className="font-weight-bold">higher-kinded types</span> (like Haskell), <span
-                            className="font-weight-bold">typematch</span> (like Scala), <span
-                            className="font-weight-bold">type inference</span> (like Haskell, OCaml), <span
-                            className="font-weight-bold">structured channel and process-based concurrency</span> (like
-                            Go), and <span
-                            className="font-weight-bold">compilation to JVM bytecode</span> (like Scala).
+                            <span className="font-italic">Why Effects?</span> Effect systems represent the next major
+                            evolution in statically typed programming languages. By explicitly modeling side effects,
+                            effect-oriented programming enforces modularity and helps program reasoning. User-defined
+                            effects and handlers allow programmers to implement their own control structures.
                         </p>
 
                         <p className="text-justify">
-                            Flix also supports several <span
-                            className="font-weight-bold text-info">unique features</span>,
-                            including: <span
-                            className="font-weight-bold text-success">a polymorphic effect system</span>, <span
-                            className="font-weight-bold text-success">region-based local mutation</span>, <span
-                            className="font-weight-bold text-success">purity reflection</span>, and <span
-                            className="font-weight-bold text-success">first-class Datalog constraints</span>.
+                            <span className="font-italic">Why Flix?</span> We claim that of all the upcoming
+                            effect-oriented programming languages, Flix offers the most <span
+                            className="font-weight-bold">complete language implementation</span>, the most <span
+                            className="font-weight-bold">extensive standard library</span>, the most <span
+                            className="font-weight-bold">detailed documentation</span>, and the <span
+                            className="font-weight-bold">best tool support.</span>
                         </p>
 
+                        <p className="text-justify">
+                            Moreover, Flix builds on proven programming language technology, including: <span
+                            className="font-weight-bold">algebraic data types and pattern matching</span>, <span
+                            className="font-weight-bold">extensible records</span>, <span
+                            className="font-weight-bold">traits</span>, <span
+                            className="font-weight-bold">higher-kinded types</span>, <span
+                            className="font-weight-bold">associated types and effects</span>, <span
+                            className="font-weight-bold">structured concurrency</span>,
+                            and more.
+                        </p>
                     </Col>
                     <Col md="6">
-                        <Codebox flix={this.props.flix}/>
+                    <Codebox flix={this.props.flix}/>
                     </Col>
                 </Row>
 
@@ -226,6 +228,60 @@ def map(f: a -> b \\ ef, l: List[a]): List[b] \\ ef =
                                 </CardText>
                             </CardBody>
                         </Card>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
+                                <CardTitle><h4>Algebraic Effects</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports algebraic effects, i.e. user-defined effects and handlers.
+                                        In particular, Flix supports multi-shot resumptions.
+                                    </p>
+
+                                    <p>
+                                        Effect-oriented programming, with algebraic effects, allow programmers to
+                                        write pure functions modulo effects. Effect handlers enable program reasoning,
+                                        modularity, and testability.
+                                    </p>
+
+                                    <p>
+                                        For example, the program on the right expresses a <code>greeting</code> function
+                                        that is pure modulo the current time of the day. In <code>main</code> we call
+                                        the function and handle the <code>HourOfDay</code> effect by getting the
+                                        real-world time from Java's <code>LocalDateTime</code>.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`import java.time.LocalDateTime
+
+eff HourOfDay {
+    def getCurrentHour(): Int32
+}
+
+def greeting(): String \\ {HourOfDay} = 
+    let h = HourOfDay.getCurrentHour();
+    if (h <= 12) "Good morning"
+    else if (h <= 18) "Good afternoon"
+    else "Good evening"
+
+def main(): Unit \\ IO = 
+    run {
+        println(greeting())
+    } with HourOfDay {
+        def getCurrentHour(_, resume) = 
+            let dt = LocalDateTime.now();
+            resume(dt.getHour())
+    }
+`}
+                        </InlineEditor>
                     </Col>
                 </Row>
 
@@ -802,26 +858,22 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             <li>first-class functions</li>
                             <li>extensible records</li>
                             <li>parametric polymorphism</li>
-                            <li>traits (type classes)</li>
+                            <li>traits (i.e. type classes)</li>
                             <li>higher-kinded types</li>
-                            <li>light-weight polymorphic effects</li>
-                            <li>type aliases</li>
-                            <li>Hindley-Milner type inference</li>
+                            <li>associated types and effects</li>
                         </ul>
                     </Col>
 
                     <Col md="4">
                         <ul>
+                            <li>effect polymorphism + subeffecting</li>
+                            <li>purity reflection</li>
                             <li>CSP-style concurrency</li>
                             <li>buffered &amp; unbuffered channels</li>
                             <li>first-class datalog constraints</li>
-                            <li>polymorphic datalog predicates</li>
-                            <li>constraints with lattice semantics</li>
-                            <li>stratified negation</li>
-                            <li>interoperability with Java</li>
+                            <li>seamless interoperability with Java</li>
                             <li>unboxed primitives</li>
                             <li>keyword-based syntax</li>
-                            <li>redundancy checks</li>
                         </ul>
                     </Col>
 
@@ -832,11 +884,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             <li>expressions holes</li>
                             <li>compilation to JVM bytecode</li>
                             <li>full tail call elimination</li>
-                            <li>core standard library</li>
+                            <li>resilient compiler architecture</li>
                             <li>parallel compiler architecture</li>
                             <li>human friendly errors</li>
-                            <li>interactive mode</li>
-                            <li>Visual Studio Code support</li>
                         </ul>
                     </Col>
                 </Row>
@@ -923,11 +973,11 @@ let r = query p select (c, d) from ReadyDate(c; d)
                                 <tbody>
                                 <tr>
                                     <td className="h5">Throughput (entire compiler):</td>
-                                    <td className="h5 text-right text-success font-weight-bold">41,700 lines/sec</td>
+                                    <td className="h5 text-right text-success font-weight-bold">52,800 lines/sec</td>
                                 </tr>
                                 <tr>
                                     <td className="h5">Throughput (frontend only):</td>
-                                    <td className="h5 text-right text-success font-weight-bold">93,000 lines/sec</td>
+                                    <td className="h5 text-right text-success font-weight-bold">95,500 lines/sec</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -1182,19 +1232,19 @@ let r = query p select (c, d) from ReadyDate(c; d)
                         <table className="table">
                             <tbody>
                             <tr>
-                                <td className="h4 text-right text-success font-weight-bold">3,800+</td>
+                                <td className="h4 text-right text-success font-weight-bold">4,900+</td>
                                 <td className="h4">Merged Pull Requests (PRs)</td>
                             </tr>
                             <tr>
-                                <td className="h4 text-right text-success font-weight-bold">2,500+</td>
+                                <td className="h4 text-right text-success font-weight-bold">3,100+</td>
                                 <td className="h4">Resolved Issues (Tickets)</td>
                             </tr>
                             <tr>
-                                <td className="h4 text-right text-success font-weight-bold">60+</td>
+                                <td className="h4 text-right text-success font-weight-bold">70+</td>
                                 <td className="h4">Contributors</td>
                             </tr>
                             <tr>
-                                <td className="h4 text-right text-success font-weight-bold">244,000+</td>
+                                <td className="h4 text-right text-success font-weight-bold">272,000+</td>
                                 <td className="h4">Lines in Compiler Codebase</td>
                             </tr>
                             </tbody>
