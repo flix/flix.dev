@@ -341,6 +341,60 @@ def map(f: a -> b \\ ef, l: LazyList[a]): LazyList[b] \\ ef =
                     <Col md="6">
                         <Card className="border-0">
                             <CardBody>
+                                <CardTitle><h4>Algebraic Effects</h4></CardTitle>
+                                <CardText>
+                                    <p>
+                                        Flix supports algebraic effects, i.e. user-defined effects and handlers.
+                                        In particular, Flix supports multi-shot resumptions.
+                                    </p>
+
+                                    <p>
+                                        Effect-oriented programming, with algebraic effects, allow programmers to
+                                        write pure functions modulo effects. Effect handlers enable program reasoning,
+                                        modularity, and testability.
+                                    </p>
+
+                                    <p>
+                                        For example, the program expresses a <code>greeting</code> function that is pure
+                                        modulo the current time of the day. In <code>main</code> we call the function
+                                        and handle the <code>HourOfDay</code> effect by getting the real-world time
+                                        from Java's <code>LocalDateTime</code>.
+                                    </p>
+                                </CardText>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Col md="6">
+                        <InlineEditor>
+                            {`import java.time.LocalDateTime
+
+eff HourOfDay {
+    def getCurrentHour(): Int32
+}
+
+def greeting(): String \\ {HourOfDay} = 
+    let h = HourOfDay.getCurrentHour();
+    if (h <= 12) "Good morning"
+    else if (h <= 18) "Good afternoon"
+    else "Good evening"
+
+def main(): Unit \\ IO = 
+    run {
+        println(greeting())
+    } with HourOfDay {
+        def getCurrentHour(_, resume) = 
+            let dt = LocalDateTime.now();
+            resume(dt.getHour())
+    }
+`}
+                        </InlineEditor>
+                    </Col>
+                </Row>
+
+                <Row className="mb-4">
+                    <Col md="6">
+                        <Card className="border-0">
+                            <CardBody>
                                 <CardTitle><h4>Parallelism</h4></CardTitle>
                                 <CardText>
                                     <p>
