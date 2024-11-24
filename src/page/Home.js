@@ -47,48 +47,57 @@ class Home extends Component {
             <Container>
                 <Row className="mb-3">
                     <Col md="6">
-                        <h1>The Flix Programming Language</h1>
+                        <h1>Flix &mdash;</h1>
 
-                        <h2 className="motto">Next-generation reliable, safe, concise, and functional-first programming
-                            language.</h2>
+                        <h2 className="motto">
+                            A powerful <span className="font-weight-bold text-success">effect-oriented</span> programming language
+                        </h2>
 
                         <p className="text-justify">
-                            Flix is a principled functional, imperative, and logic programming language
-                            developed at <a href="https://cs.au.dk/">Aarhus University</a>, at the <a
-                            href="https://uwaterloo.ca/">University of Waterloo</a>, and by a community of <a
+                            Flix is a principled effect-oriented functional,
+                            imperative, and logic programming language developed at <a
+                            href="https://cs.au.dk/">Aarhus University</a> and by a community of <a
                             href="https://github.com/flix/flix/graphs/contributors">open source contributors</a>.
                         </p>
 
-                        <h2>Why Flix? </h2>
+                        <h4>Why Effect-Oriented? And Why Flix?</h4>
 
                         <p className="text-justify">
-                            Flix aims to offer a <span className="font-weight-bold text-info">unique combination of
-                                features</span> that no other programming language offers, including: <span
-                            className="font-weight-bold">algebraic
-                                data types and pattern matching</span> (like Haskell, OCaml), <span
-                            className="font-weight-bold">extensible records</span> (like Elm), <span
-                            className="font-weight-bold">traits (type classes)</span> (like Haskell, Rust), <span
-                            className="font-weight-bold">higher-kinded types</span> (like Haskell), <span
-                            className="font-weight-bold">typematch</span> (like Scala), <span
-                            className="font-weight-bold">type inference</span> (like Haskell, OCaml), <span
-                            className="font-weight-bold">structured channel and process-based concurrency</span> (like
-                            Go), and <span
-                            className="font-weight-bold">compilation to JVM bytecode</span> (like Scala).
+                            <span className="font-italic">Why Effects?</span> Effects are the next big thing for
+                            statically-typed programming languages. Effects &mdash; like types &mdash; enable
+                            programmers to structure and understand their programs. Specifically, effects enable
+                            modularity, improved program reasoning, new compiler optimizations, and user-defined
+                            effects and handlers allow programmers to implement their own control structures.
                         </p>
 
                         <p className="text-justify">
-                            Flix also supports several <span
-                            className="font-weight-bold text-info">unique features</span>,
-                            including: <span
-                            className="font-weight-bold text-success">a polymorphic effect system</span>, <span
-                            className="font-weight-bold text-success">region-based local mutation</span>, <span
-                            className="font-weight-bold text-success">purity reflection</span>, and <span
-                            className="font-weight-bold text-success">first-class Datalog constraints</span>.
+                            <span className="font-italic">Why Flix?</span> We claim that of all the upcoming
+                            effect-oriented programming languages, Flix offers the most <span
+                            className="font-weight-bold">complete language implementation</span>, the most <span
+                            className="font-weight-bold">extensive standard library</span>, the most <span
+                            className="font-weight-bold">detailed documentation</span>, and the <span
+                            className="font-weight-bold">best tool support.</span>
+                        </p>
+
+                        <p className="text-justify">
+                            Moreover, Flix builds on proven programming language technology, including: <span
+                            className="font-weight-bold">algebraic data types and pattern matching</span>, <span
+                            className="font-weight-bold">extensible records</span>, <span
+                            className="font-weight-bold">traits</span>, <span
+                            className="font-weight-bold">higher-kinded types</span>, <span
+                            className="font-weight-bold">associated types and effects</span>, <span
+                            className="font-weight-bold">structured channel and process-based concurrency</span>,
+                            and more.
+                        </p>
+
+                        <p>
+                            Flix comes with excellent and extensive <span
+                            className="font-weight-bold">Visual Studio Code support.</span>
                         </p>
 
                     </Col>
                     <Col md="6">
-                        <Codebox flix={this.props.flix}/>
+                    <Codebox flix={this.props.flix}/>
                     </Col>
                 </Row>
 
