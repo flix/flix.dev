@@ -858,26 +858,22 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             <li>first-class functions</li>
                             <li>extensible records</li>
                             <li>parametric polymorphism</li>
-                            <li>traits (type classes)</li>
+                            <li>traits (i.e. type classes)</li>
                             <li>higher-kinded types</li>
-                            <li>light-weight polymorphic effects</li>
-                            <li>type aliases</li>
-                            <li>Hindley-Milner type inference</li>
+                            <li>associated types and effects</li>
                         </ul>
                     </Col>
 
                     <Col md="4">
                         <ul>
+                            <li>effect polymorphism + subeffecting</li>
+                            <li>purity reflection</li>
                             <li>CSP-style concurrency</li>
                             <li>buffered &amp; unbuffered channels</li>
                             <li>first-class datalog constraints</li>
-                            <li>polymorphic datalog predicates</li>
-                            <li>constraints with lattice semantics</li>
-                            <li>stratified negation</li>
-                            <li>interoperability with Java</li>
+                            <li>seamless interoperability with Java</li>
                             <li>unboxed primitives</li>
                             <li>keyword-based syntax</li>
-                            <li>redundancy checks</li>
                         </ul>
                     </Col>
 
@@ -888,11 +884,9 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             <li>expressions holes</li>
                             <li>compilation to JVM bytecode</li>
                             <li>full tail call elimination</li>
-                            <li>core standard library</li>
+                            <li>resilient compiler architecture</li>
                             <li>parallel compiler architecture</li>
                             <li>human friendly errors</li>
-                            <li>interactive mode</li>
-                            <li>Visual Studio Code support</li>
                         </ul>
                     </Col>
                 </Row>
