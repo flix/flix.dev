@@ -1182,19 +1182,19 @@ let r = query p select (c, d) from ReadyDate(c; d)
                         <table className="table">
                             <tbody>
                             <tr>
-                                <td className="h4 text-right text-success font-weight-bold">3,800+</td>
+                                <td className="h4 text-right text-success font-weight-bold">4,900+</td>
                                 <td className="h4">Merged Pull Requests (PRs)</td>
                             </tr>
                             <tr>
-                                <td className="h4 text-right text-success font-weight-bold">2,500+</td>
+                                <td className="h4 text-right text-success font-weight-bold">3,100+</td>
                                 <td className="h4">Resolved Issues (Tickets)</td>
                             </tr>
                             <tr>
-                                <td className="h4 text-right text-success font-weight-bold">60+</td>
+                                <td className="h4 text-right text-success font-weight-bold">70+</td>
                                 <td className="h4">Contributors</td>
                             </tr>
                             <tr>
-                                <td className="h4 text-right text-success font-weight-bold">244,000+</td>
+                                <td className="h4 text-right text-success font-weight-bold">272,000+</td>
                                 <td className="h4">Lines in Compiler Codebase</td>
                             </tr>
                             </tbody>
