@@ -755,7 +755,7 @@ def main(): Unit \\ IO =
 
                                     <InlineEditor>
                                         {`def reachable(g: List[(String, Int32, String)], minSpeed: Int32): List[(String, String)] =
-    let facts = inject g into Road;
+    let facts = inject g into Road/3;
     let rules = #{
         Path(x, y) :- Road(x, maxSpeed, y), if maxSpeed >= minSpeed.
         Path(x, z) :- Path(x, y), Road(y, maxSpeed, z), if maxSpeed >= minSpeed.
