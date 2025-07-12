@@ -610,6 +610,21 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        Interesting project but whoever decided "forM" is a good name for a language keyword should be made to gurgle Tabasco sauce for a few minutes.
+                    </Question>
+                    <Answer>
+                        <p>
+                            We much prefer <a href="https://en.wikipedia.org/wiki/Cholula_Hot_Sauce">Cholula Hot Sauce.</a>
+                        </p>
+                        <p>
+                            That said, <code>forM</code> is clear, concise, and works well with <code>forA</code> allowing one to easily switch
+                            between monadic-code and applicative-code.
+                        </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         How the fuck can anyone understand such weird syntax? I hate all these symbols.
                     </Question>
                     <Answer>
