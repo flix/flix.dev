@@ -275,7 +275,7 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            The latest compiler version and the website is not always in sync, hence occasionally some
+                            The latest compiler version and the website are not always in sync, hence occasionally some
                             examples may stop to work.
                         </p>
 
