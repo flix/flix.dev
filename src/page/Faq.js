@@ -20,6 +20,42 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
+                        What is the best way to start learning Flix?
+                    </Question>
+                    <Answer>
+                        <p>
+                            We recommend to read the <a href="https://doc.flix.dev/">Programming Flix</a> book.
+                        </p>
+
+                        <p>
+                            If you get stuck or need help feel free to reach out to
+                            us on <a href="https://gitter.im/flix/Lobby">Gitter</a>.
+                        </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        Does Flix have IDE support? VSCode Support? Language Server Protocol (LSP) support?
+                    </Question>
+                    <Answer>
+                        Yes, we have a <a href="https://marketplace.visualstudio.com/items?itemName=flix.flix">Visual
+                        Studio Code extension for Flix</a> and generic LSP support.
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        Does Flix have a read-eval-print-loop (REPL)?
+                    </Question>
+
+                    <Answer>
+                        Flix has a nascent REPL. It can be started with the <code>repl</code> command.
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
                         Are you looking for help with the compiler or language design?
                     </Question>
                     <Answer>
@@ -27,19 +63,6 @@ class Faq extends Component {
                         on the compiler. We are also open to general feedback and discussion about the language
                         design. Head on over to <a href="https://github.com/flix/flix">GitHub</a> or <a
                         href="https://gitter.im/flix/Lobby">Gitter</a> and reach out to us!
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        Does Flix support integration with Java, Kotlin, Scala etc?
-                    </Question>
-                    <Answer>
-                        <p>
-                            Yes, with the <code>import</code> mechanism.
-                            You can read more in the documentation, in the section: <a
-                            href="https://doc.flix.dev/interoperability.html">Interoperability</a>.
-                        </p>
                     </Answer>
                 </QA>
 
@@ -77,26 +100,6 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        Does Flix have a read-eval-print-loop (REPL)?
-                    </Question>
-
-                    <Answer>
-                        Flix has a nascent REPL. It can be started with the <code>repl</code> command.
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        Does Flix have IDE support? Language Server Protocol (LSP) support?
-                    </Question>
-                    <Answer>
-                        Yes. There is a <a href="https://marketplace.visualstudio.com/items?itemName=flix.flix">Visual
-                        Studio Code plugin available for Flix</a>.
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
                         Does Flix compile to LLVM?
                     </Question>
                     <Answer>
@@ -109,38 +112,7 @@ class Faq extends Component {
                         Does Flix compile to WebAssembly (WASM)?
                     </Question>
                     <Answer>
-                        Not yet. It is something we are open to.
-                        We are waiting for WebAssembly to offer native support for garbage collection and tail calls.
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        Is the Flix type system sound? Does it support complete inference?
-                    </Question>
-                    <Answer>
-                        Yes and yes. The type system is a variant of Hindley-Milner.
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        What is the best way to start learning Flix?
-                    </Question>
-                    <Answer>
-                        <p>
-                            We recommand that you have some prior experience with functional programming.
-                        </p>
-
-                        <p>
-                            Other than that, the best place to start is to look at the examples and to
-                            read the <a href="https://doc.flix.dev/">Programming Flix</a> book.
-                        </p>
-
-                        <p>
-                            If you get stuck or need help feel free to reach out to
-                            us on <a href="https://gitter.im/flix/Lobby">Gitter</a>.
-                        </p>
+                        Not yet. It is something we are open to. We are waiting for the WASM ecosystem to mature.
                     </Answer>
                 </QA>
 
@@ -610,14 +582,17 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        Interesting project but whoever decided "forM" is a good name for a language keyword should be made to gurgle Tabasco sauce for a few minutes.
+                        Interesting project but whoever decided "forM" is a good name for a language keyword should be
+                        made to gurgle Tabasco sauce for a few minutes.
                     </Question>
                     <Answer>
                         <p>
-                            We much prefer <a href="https://en.wikipedia.org/wiki/Cholula_Hot_Sauce">Cholula Hot Sauce.</a>
+                            We much prefer <a href="https://en.wikipedia.org/wiki/Cholula_Hot_Sauce">Cholula Hot
+                            Sauce.</a>
                         </p>
                         <p>
-                            That said, <code>forM</code> is clear, concise, and works well with <code>forA</code> allowing one to easily switch
+                            That said, <code>forM</code> is clear, concise, and works well
+                            with <code>forA</code> allowing one to easily switch
                             between monadic-code and applicative-code.
                         </p>
                     </Answer>
