@@ -36,11 +36,10 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        Does Flix have IDE support? VSCode Support? Language Server Protocol (LSP) support?
+                        Does Flix have Language Server Protocol (LSP) support?
                     </Question>
                     <Answer>
-                        Yes, we have a <a href="https://marketplace.visualstudio.com/items?itemName=flix.flix">Visual
-                        Studio Code extension for Flix</a> and generic LSP support.
+                        Yes, in addition to Visual Studio Code support, Flix also has generic LSP support.
                     </Answer>
                 </QA>
 
