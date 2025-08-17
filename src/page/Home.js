@@ -555,7 +555,7 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
                                 <CardTitle><h4>Associated Types</h4></CardTitle>
                                 <CardText>
                                     <p>
-                                        Flix supports associate types, which allow the types in instance signatures
+                                        Flix supports associated types, which allow the types in instance signatures
                                         to depend on the instance type.
                                     </p>
 
@@ -575,13 +575,13 @@ instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
     type Elm
 
     /// Converts the collection to a list of its elements.
-    def toList(coll: x): List[Coll.Elm[a]]
+    def toList(coll: a): List[Coll.Elm[a]]
 }
 
 instance Coll[Map[k, v]] {
     type Elm = (k, v)
 
-    def toList(m: Map[K, V]): List[(k, v)] = ...
+    def toList(m: Map[k, v]): List[(k, v)] = ...
 }
 `}
                         </InlineEditor>
@@ -600,14 +600,14 @@ instance Coll[Map[k, v]] {
     type Aef
 
     /// Converts the collection to a list of its elements.
-    def toList(coll: x): List[Coll.Elm[a]] \\ Coll.Aef[a]
+    def toList(coll: a): List[Coll.Elm[a]] \\ Coll.Aef[a]
 }
 
 instance Coll[MutMap[k, v, r]] {
     type Elm = (k, v)
     type Aef = r
 
-    def toList(m: Map[K, V]): List[(k, v)] \\ r = ...
+    def toList(m: Map[k, v]): List[(k, v)] \\ r = ...
 }
 `}
                         </InlineEditor>

@@ -90,11 +90,7 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            No, Flix is a full-blown functional programming language.
-                        </p>
-
-                        <p>
-                            That said, Flix could be considered a meta-programming language for Datalog.
+                            No, Flix is a full-blown general-purpose programming language.
                         </p>
                     </Answer>
                 </QA>
@@ -137,12 +133,14 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            Flix runs on the Java Virtual Machine (JVM) hence the performance of Flix is limited by the
-                            performance of the JVM. Luckily, the JVM is a mature and performant virtual machine. Flix
-                            uses monomorphization which eliminates boxing and in theory can make code execute faster
-                            than ordinary Java / Kotlin / Scala code. However, Flix also features full tail call
-                            elimination
-                            which has some run-time performance cost.
+                            Flix runs on the Java Virtual Machine (JVM) which means that the performance of Flix
+                            programs is comparable to that of Java and Scala programs.
+                        </p>
+
+                        <p>
+                            Flix is a whole-program optimizing compiler that uses monomorphization and inlining (like
+                            Rust and MLton). Hence, sometimes, Flix programs run faster than their Java or Scala
+                            equivalent.
                         </p>
                     </Answer>
                 </QA>
