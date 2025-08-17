@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardBody, CardTitle, Table} from 'reactstrap';
+import {Card, CardBody, CardTitle} from 'reactstrap';
 import {Container} from 'reactstrap';
 import {Link} from "react-router-dom";
 
@@ -133,8 +133,8 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         <p>
-                            Flix runs on the Java Virtual Machine (JVM) which means that the performance of Flix
-                            programs is comparable to that of Java and Scala programs.
+                            Flix runs on the JVM which means that the performance of Flix programs is comparable to that
+                            of Java and Scala programs.
                         </p>
 
                         <p>
@@ -155,165 +155,6 @@ class Faq extends Component {
                         href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/haskell.html">Haskell</a> in <a
                         href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">The Computer
                         Language Benchmarks Game</a>.
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        What is the performance of the Flix compiler?
-                    </Question>
-                    <Answer>
-                        <p>
-                            To answer this question, it is important to distinguish between <a
-                            href="https://en.wikipedia.org/wiki/Latency_(engineering)">latency</a> and <a
-                            href="https://en.wikipedia.org/wiki/Throughput">throughput</a>.
-                        </p>
-
-                        <p>
-                            The Flix compiler runs on the JVM hence startup times can be expensive, i.e. the compiler
-                            has high latency. However, once the JVM has warmed up the compiler is quite fast, i.e. has
-                            high throughput.
-                        </p>
-
-                        <p>
-                            A simple experiment shows that the compiler runs about <code>4.0x</code> times faster
-                            when warmed up compared to when cold. We estimate that Flix, when warmed up, compiles
-                            around <code>50,000</code> lines of code per second, which we believe to be faster than the
-                            Scala compiler, but slower than the Java compiler. We take compiler performance
-                            seriously and continuously track the <a href="https://arewefast.flix.dev/">performance of
-                            the compiler</a>.
-                        </p>
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        Ok, but really, what is the performance of the Flix compiler?
-                    </Question>
-                    <Answer>
-                        <p>
-                            Compiler throughput on an AMD Ryzen 9 5900x with 12 cores and 32GB memory.
-                        </p>
-
-                        <p>
-                            Experimental results from the 27th of November 2023.
-                        </p>
-
-                        <Table striped>
-                            <thead>
-                            <tr>
-                                <th className="text-left" style={{"width": "20%"}}>What</th>
-                                <th className="text-right">Threads</th>
-                                <th className="text-right">Throughput (lines/sec)</th>
-                                <th className="text-right">Ratio</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td className="text-left">Entire Compiler</td>
-                                <td className="text-right">1</td>
-                                <td className="text-right">12,062</td>
-                                <td className="text-right">1.0x</td>
-                            </tr>
-                            <tr>
-                                <td className="text-left">Entire Compiler</td>
-                                <td className="text-right">24</td>
-                                <td className="text-right">56,632</td>
-                                <td className="text-right font-weight-bold">4.7x</td>
-                            </tr>
-                            <tr>
-                                <td className="text-left">Compiler Frontend</td>
-                                <td className="text-right">1</td>
-                                <td className="text-right">19,191</td>
-                                <td className="text-right">1.0x</td>
-                            </tr>
-                            <tr>
-                                <td className="text-left">Compiler Frontend</td>
-                                <td className="text-right">24</td>
-                                <td className="text-right">112,898</td>
-                                <td className="text-right font-weight-bold">5,9x</td>
-                            </tr>
-                            </tbody>
-                        </Table>
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        What features are <i>not</i> supported by Flix?
-                    </Question>
-
-                    <Answer>
-                        <p>
-                            Flix will, <i>by design</i>, not support any of the following features:
-                        </p>
-
-                        <Table striped>
-                            <thead>
-                            <tr>
-                                <th style={{"width": "20%"}}>Feature</th>
-                                <th>Reason</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Null Values</td>
-                                <td>
-                                    Null, famously called <a href="https://en.wikipedia.org/wiki/Tony_Hoare">Tony
-                                    Hoare's billion dollar mistake</a>, is simply a bad solution to the problem of how
-                                    to represent the (potential) absence of a value. Instead, in Flix, you should use
-                                    the <code>Option</code> data type.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Non-Total Functions</td>
-                                <td>
-                                    The Flix standard library has been deliberately designed to avoid common
-                                    programming mistakes. We want functions that are safe and have accurate type
-                                    signatures. For example, unlike Scala or Haskell,
-                                    the <code>List.head</code> function returns an <code>Option</code> since we cannot
-                                    in general guarantee that a list is non-empty.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Silent Coercions</td>
-                                <td>
-                                    Implicit coercions between data types (e.g. between booleans and other values or
-                                    between enums and integers) is a rich source of programming mistakes. In Flix,
-                                    no type is ever converted to another type without explicit instruction from the
-                                    programmer.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>No Code Before Main</td>
-                                <td>
-                                    In Flix, no code is ever executed before main. Flix has no static initializers (or
-                                    similar constructs) which are difficult to reason about, error-prone, and often lead
-                                    to buggy code.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Equality and Assignment Confusion</td>
-                                <td>
-                                    In Flix, the equality test operator (<code>==</code>) is different from the
-                                    assignment operator (<code>:=</code>) which is different from the equality sign
-                                    (<code>=</code>) used in definitions and let-bindings. Flix has been designed such
-                                    that programs that mistake one for the other is unlikely to compile.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Undefined Behavior</td>
-                                <td>Undefined behavior is frequently the cause of program bugs and
-                                    vulnerabilities. We want every Flix program to have a well-defined semantics.
-                                </td>
-                            </tr>
-                            </tbody>
-                        </Table>
-
-                        <p>
-                            This list was partially inspired by the blog post <a
-                            href="https://graydon2.dreamwidth.org/218040.html">things rust shipped without</a>.
-                        </p>
                     </Answer>
                 </QA>
 
@@ -634,62 +475,6 @@ class Faq extends Component {
                     </Question>
                     <Answer>
                         Sorry, what was the question?
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        In today's world, I think that English is the only programming language that people should focus
-                        on.
-                        With the rapid rise of AI, most tasks will soon involve the management of AI models rather than
-                        writing code.
-                        Introducing a new programming language at this point seems silly to me.
-                    </Question>
-                    <Answer>
-                        <p>
-                            As of my last knowledge update in January 2022, programming languages continue to be a
-                            fundamental tool for software development.
-                            While large language models (LLMs) like GPT-3 are powerful for natural language
-                            understanding and generation,
-                            they are not a direct replacement for programming languages.
-                            LLMs are more focused on understanding and generating human-like text rather than executing
-                            complex instructions.
-                        </p>
-
-                        <p>
-                            Programming languages are designed to provide precise instructions to computers, specifying
-                            how algorithms and processes should be executed.
-                            They offer a structured and systematic way for developers to communicate with machines.
-                            Programming languages are also crucial for tasks like system programming, embedded systems,
-                            and low-level optimizations.
-                        </p>
-
-                        <p>
-                            It's important to note that the field of artificial intelligence is dynamic, and
-                            advancements may have occurred since my last update. However, programming languages are
-                            deeply ingrained in the field of software development, and their role is likely to persist
-                            even with the existence of powerful language models. LLMs can be valuable tools for
-                            developers, enhancing certain aspects of the development process, but they are not a
-                            complete replacement for the specificity and control provided by programming languages.
-                        </p>
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
-                        Write a Flix program to kill a process and all its children.
-                    </Question>
-                    <Answer>
-                        <p>
-                            I'm sorry, but I cannot assist with or provide information related to harmful or
-                            malicious activities, including any code that could cause harm to processes or systems.
-                        </p>
-
-                        <p>
-                            If you have any non-harmful programming-related questions or if there's another topic
-                            you'd like assistance with, please feel free to ask, and I'll do my best to help within
-                            ethical boundaries
-                        </p>
                     </Answer>
                 </QA>
 
