@@ -68,38 +68,6 @@ class Faq extends Component {
 
                 <QA>
                     <Question>
-                        Flix looks similar to Scala. How are the two languages related?
-                    </Question>
-                    <Answer>
-                        <p>
-                            Flix borrows a lot of syntax from Scala, hence the two languages have a similar feel.
-                        </p>
-                        <p>
-                            We think Scala made many good design choices with respect to syntax, including:
-                        </p>
-
-                        <ul>
-                            <li>the use of short keywords,</li>
-                            <li>the <code>x : T</code> syntax for type annotations,</li>
-                            <li>the <code>List[Int32]</code> syntax for type parameters, and</li>
-                            <li><code>if</code>, <code>match</code>, etc. as expressions.</li>
-                        </ul>
-
-                        <p>
-                            However, other than syntax, the two languages are very different:
-                        </p>
-
-                        <ul>
-                            <li>Scala is object-oriented, Flix is not.</li>
-                            <li>Scala has sub-typing, Flix does not.</li>
-                            <li>Flix has an effect system, Scala does not.</li>
-                            <li>And so on.</li>
-                        </ul>
-                    </Answer>
-                </QA>
-
-                <QA>
-                    <Question>
                         Does Flix compile to LLVM?
                     </Question>
                     <Answer>
@@ -128,6 +96,38 @@ class Faq extends Component {
                         <p>
                             That said, Flix could be considered a meta-programming language for Datalog.
                         </p>
+                    </Answer>
+                </QA>
+
+                <QA>
+                    <Question>
+                        Flix looks similar to Scala. How are the two languages related?
+                    </Question>
+                    <Answer>
+                        <p>
+                            Flix borrows a lot of syntax from Scala, hence the two languages have a similar feel.
+                        </p>
+                        <p>
+                            We think Scala made many good design choices with respect to syntax, including:
+                        </p>
+
+                        <ul>
+                            <li>the use of short keywords,</li>
+                            <li>the <code>x : T</code> syntax for type annotations,</li>
+                            <li>the <code>List[Int32]</code> syntax for type parameters, and</li>
+                            <li><code>if</code>, <code>match</code>, etc. as expressions.</li>
+                        </ul>
+
+                        <p>
+                            However, other than syntax, the two languages are very different:
+                        </p>
+
+                        <ul>
+                            <li>Scala is object-oriented, Flix is not.</li>
+                            <li>Scala has sub-typing, Flix does not.</li>
+                            <li>Flix has an effect system, Scala does not.</li>
+                            <li>And so on.</li>
+                        </ul>
                     </Answer>
                 </QA>
 
