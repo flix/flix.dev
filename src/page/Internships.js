@@ -28,7 +28,7 @@ class Internships extends Component {
                     <hr/>
 
                     <p>
-                        A typical internship lasts 6-8 weeks in the summer period (but other times of year
+                        A typical internship lasts 8-10 weeks in the summer period (but other times of year
                         may also be possible).
                     </p>
 
@@ -40,8 +40,13 @@ class Internships extends Component {
 
                     <p>
                         To apply, you should be enrolled in a bachelor's or master's degree programme at an accredited
-                        university. The ideal candidate has experience with compilers, programming languages,
-                        and functional programming.
+                        university.
+                    </p>
+
+                    <p>
+                        We are looking for candidates that have experience with compilers,
+                        programming languages, and functional programming — either through course work or from
+                        working on their own language.
                     </p>
 
                     <hr/>
@@ -55,7 +60,7 @@ class Internships extends Component {
 
                     <p>
                         To apply, send an email to <code>magnusm at cs dot au dot dk</code> with a bit of
-                        information about yourself.
+                        information about yourself and why you want to work on Flix.
                     </p>
                 </Col>
                 <Col md={6}>
