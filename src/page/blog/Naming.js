@@ -6,6 +6,7 @@ class Naming extends Component {
 
     componentDidMount() {
         document.title = "Flix | Naming Functional and Destructive Operations";
+        window.location.replace("https://blog.flix.dev/blog/naming-functional-and-destructive-operations/");
     }
 
     render() {

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Col, Container, Row} from "reactstrap";
-import {Link} from "react-router-dom";
 import {Route, Switch} from "react-router";
 import ProgrammingLanguageDefense from "./blog/ProgrammingLanguageDefense";
 import DesignFlaws from "./blog/DesignFlaws";
@@ -43,29 +42,29 @@ class Blog extends Component {
                             <Col>
                                 <ul>
                                     <li>
-                                        <Link to="/blog/in-defense-of-programming-languages/">
+                                        <a href="https://blog.flix.dev/blog/in-defense-of-programming-languages/">
                                             In Defense of Programming Languages
-                                        </Link>
+                                        </a>
                                     </li>
                                     <li>
-                                        <Link to="/blog/taming-impurity-with-polymorphic-effects/">
+                                        <a href="https://blog.flix.dev/blog/taming-impurity-with-polymorphic-effects/">
                                             Taming Impurity with Polymorphic Effects
-                                        </Link>
+                                        </a>
                                     </li>
                                     <li>
-                                        <Link to="/blog/naming-functional-and-destructive-operations/">
+                                        <a href="https://blog.flix.dev/blog/naming-functional-and-destructive-operations/">
                                             Naming Functional and Destructive Operations
-                                        </Link>
+                                        </a>
                                     </li>
                                     <li>
-                                        <Link to="/blog/redundancies-as-compile-time-errors/">
+                                        <a href="https://blog.flix.dev/blog/redundancies-as-compile-time-errors/">
                                             Redundancies as Compile-Time Errors
-                                        </Link>
+                                        </a>
                                     </li>
                                     <li>
-                                        <Link to="/blog/design-flaws-in-flix/">
+                                        <a href="https://blog.flix.dev/blog/design-flaws-in-flix/">
                                             Design Flaws in the Flix Programming Language
-                                        </Link>
+                                        </a>
                                     </li>
                                 </ul>
                             </Col>

@@ -6,6 +6,7 @@ class PolymorphicEffects extends Component {
 
     componentDidMount() {
         document.title = "Flix | Taming Impurity with Polymorphic Effects";
+        window.location.replace("https://blog.flix.dev/blog/taming-impurity-with-polymorphic-effects/");
     }
 
     render() {

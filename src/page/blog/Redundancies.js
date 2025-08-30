@@ -6,6 +6,7 @@ class Redundancies extends Component {
 
     componentDidMount() {
         document.title = "Flix | Redundancies as Compile-Time Errors";
+        window.location.replace("https://blog.flix.dev/blog/redundancies-as-compile-time-errors/");
     }
 
     render() {

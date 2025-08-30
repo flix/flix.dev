@@ -6,6 +6,7 @@ class ProgrammingLanguageDefense extends Component {
 
     componentDidMount() {
         document.title = "Flix | In Defense of Programming Languages";
+        window.location.replace("https://blog.flix.dev/blog/in-defense-of-programming-languages/");
     }
 
     render() {
