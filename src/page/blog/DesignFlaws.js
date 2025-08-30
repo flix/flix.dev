@@ -6,6 +6,7 @@ class DesignFlaws extends Component {
 
     componentDidMount() {
         document.title = "Flix | Design Flaws in Flix";
+        window.location.replace("https://blog.flix.dev/blog/design-flaws-in-flix/");
     }
 
     render() {
