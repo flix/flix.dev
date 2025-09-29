@@ -24,49 +24,11 @@ class Blog extends Component {
                             <Col>
                                 <h1>Blog</h1>
 
-                                <p>
-                                    We maintain a blog about the development of the Flix programming language.
-                                    The blog is slow-moving since most of our writing bandwidth is directed towards
-                                    writing documentation and research papers.
-                                </p>
+                                The Flix Blog is now available at: <br/>
 
-                                <p>
-                                    The blog has a more personal style and its intended audience is primarily
-                                    programming language enthusiasts.
-                                </p>
-
-                            </Col>
-                        </Row>
-
-                        <Row className="mb-3">
-                            <Col>
-                                <ul>
-                                    <li>
-                                        <a href="https://blog.flix.dev/blog/in-defense-of-programming-languages/">
-                                            In Defense of Programming Languages
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://blog.flix.dev/blog/taming-impurity-with-polymorphic-effects/">
-                                            Taming Impurity with Polymorphic Effects
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://blog.flix.dev/blog/naming-functional-and-destructive-operations/">
-                                            Naming Functional and Destructive Operations
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://blog.flix.dev/blog/redundancies-as-compile-time-errors/">
-                                            Redundancies as Compile-Time Errors
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://blog.flix.dev/blog/design-flaws-in-flix/">
-                                            Design Flaws in the Flix Programming Language
-                                        </a>
-                                    </li>
-                                </ul>
+                                <div className="mt-3">
+                                    <a href="https://blog.flix.dev/"><h2>https://blog.flix.dev/</h2></a>
+                                </div>
                             </Col>
                         </Row>
                     </Route>
