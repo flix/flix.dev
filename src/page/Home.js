@@ -275,7 +275,7 @@ def greeting(): String \\ {HourOfDay} =
 def main(): Unit \\ IO = 
     run {
         println(greeting())
-    } with HourOfDay {
+    } with handler HourOfDay {
         def getCurrentHour(_, resume) = 
             let dt = LocalDateTime.now();
             resume(dt.getHour())
