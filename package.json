@@ -2,7 +2,6 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://flix.dev/",
   "dependencies": {
     "bootstrap": "^4.5.3",
     "react": "^16.0.0",
@@ -12,28 +11,18 @@
     "react-icons": "^4.1.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^5.0.1",
     "react-spinners": "^0.10.6",
     "reactstrap": "^8.8.0",
     "reconnecting-websocket": "^4.4.0"
   },
   "scripts": {
     "build-script": "node build-scripts/main.mjs",
-    "start": "npm run build-script && react-scripts start",
-    "build": "npm run build-script && react-scripts build",
-    "test": "npm run build-script && react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "npm run build-script && vite",
+    "build": "npm run build-script && vite build",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "overrides": {
-    "autoprefixer": "10.4.5"
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.2"
   }
 }
