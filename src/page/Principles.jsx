@@ -1,14 +1,12 @@
-import React, {Component} from 'react';
+import { useEffect } from 'react';
 import {Badge, Card, CardBody, CardColumns, CardTitle, Container} from 'reactstrap';
 
-class Principles extends Component {
-
-    componentDidMount() {
+function Principles() {
+    useEffect(() => {
         document.title = "Flix | Principles";
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container>
                 <h1>Design Principles</h1>
 
@@ -602,21 +600,18 @@ class Principles extends Component {
                 </CardColumns>
 
             </Container>
-        );
-    }
+    );
 }
 
-class Principle extends Component {
-    render() {
-        return (
-            <Card>
-                <CardBody>
-                    <CardTitle>{this.props.name}</CardTitle>
-                    {this.props.children}
-                </CardBody>
-            </Card>
-        );
-    }
+function Principle({ name, children }) {
+    return (
+        <Card>
+            <CardBody>
+                <CardTitle>{name}</CardTitle>
+                {children}
+            </CardBody>
+        </Card>
+    );
 }
 
 export default Principles;

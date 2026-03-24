@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import { useEffect } from 'react';
 import {Card, CardImg, Col, Container, Row} from "reactstrap";
 import inlineDiagnostics from '../gif/inlineDiagnostics.png'
 import autoComplete from '../gif/autoComplete.png'
@@ -8,14 +8,12 @@ import rename from '../gif/rename.png'
 import quickfix from '../gif/quickfix.png'
 import codelens from '../gif/codelens.png'
 
-class VSCode extends Component {
-
-    componentDidMount() {
+function VSCode() {
+    useEffect(() => {
         document.title = "Flix | Visual Studio Code Features";
-    }
+    }, []);
 
-    render() {
-        return (<Container>
+    return (<Container>
             <Row className="mb-3">
                 <Col md={12}>
                     <h1>Visual Studio Code Features</h1>
@@ -112,8 +110,7 @@ class VSCode extends Component {
                     </Card>
                 </Col>
             </Row>
-        </Container>);
-    }
+    </Container>);
 }
 
 export default VSCode;

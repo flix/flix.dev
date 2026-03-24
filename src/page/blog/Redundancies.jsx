@@ -1,16 +1,15 @@
-import React, {Component} from "react";
+import { useEffect } from 'react';
 import {Col, Container, Row} from "reactstrap";
 import InlineEditor from "../../util/InlineEditor";
 
-class Redundancies extends Component {
+function Redundancies() {
 
-    componentDidMount() {
+    useEffect(() => {
         document.title = "Flix | Redundancies as Compile-Time Errors";
         window.location.replace("https://blog.flix.dev/blog/redundancies-as-compile-time-errors/");
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container style={{"text-align": "justify"}}>
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
@@ -488,8 +487,6 @@ Compilation failed with 1 error(s).`}
                 </Row>
             </Container>
         );
-    }
-
 }
 
 export default Redundancies

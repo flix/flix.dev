@@ -3,11 +3,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [
-    react({
-      jsxRuntime: 'classic', // Required for React 16 (no jsx-runtime export)
-    }),
+    react(),
   ],
-  base: '/',
   build: {
     outDir: 'dist',
   },

@@ -1,16 +1,15 @@
-import React, {Component} from "react";
+import { useEffect } from 'react';
 import {Col, Container, Row} from "reactstrap";
 import InlineEditor from "../../util/InlineEditor";
 
-class PolymorphicEffects extends Component {
+function PolymorphicEffects() {
 
-    componentDidMount() {
+    useEffect(() => {
         document.title = "Flix | Taming Impurity with Polymorphic Effects";
         window.location.replace("https://blog.flix.dev/blog/taming-impurity-with-polymorphic-effects/");
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container style={{"text-align": "justify"}}>
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
@@ -614,8 +613,6 @@ def stripIndentHelper(n: Int32, s: String): String \\ IO =
                 </Row>
             </Container>
         );
-    }
-
 }
 
 export default PolymorphicEffects

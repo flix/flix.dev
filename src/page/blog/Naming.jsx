@@ -1,16 +1,15 @@
-import React, {Component} from "react";
+import { useEffect } from 'react';
 import {Card, CardText, CardTitle, Col, Container, Row} from "reactstrap";
 import InlineEditor from "../../util/InlineEditor";
 
-class Naming extends Component {
+function Naming() {
 
-    componentDidMount() {
+    useEffect(() => {
         document.title = "Flix | Naming Functional and Destructive Operations";
         window.location.replace("https://blog.flix.dev/blog/naming-functional-and-destructive-operations/");
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container style={{"text-align": "justify"}}>
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
@@ -362,8 +361,6 @@ class Naming extends Component {
                 </Row>
             </Container>
         );
-    }
-
 }
 
 export default Naming

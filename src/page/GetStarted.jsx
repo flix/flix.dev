@@ -1,15 +1,13 @@
-import React, {Component} from 'react';
+import { useEffect } from 'react';
 import {Card, CardImg, Col, Container, Row} from "reactstrap";
 import VSCode from '../gif/install.png'
 
-class GetStarted extends Component {
-
-    componentDidMount() {
+function GetStarted() {
+    useEffect(() => {
         document.title = "Flix | Getting Started";
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container>
                 <h1>Get Started</h1>
 
@@ -33,8 +31,7 @@ class GetStarted extends Component {
                 </Row>
 
             </Container>
-        );
-    }
+    );
 }
 
 export default GetStarted;

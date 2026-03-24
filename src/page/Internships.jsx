@@ -1,14 +1,12 @@
-import React, {Component} from 'react';
+import { useEffect } from 'react';
 import {CardImg, Col, Container, Row} from "reactstrap";
 
-class Internships extends Component {
-
-    componentDidMount() {
+function Internships() {
+    useEffect(() => {
         document.title = "Flix | Internships";
-    }
+    }, []);
 
-    render() {
-        return (<Container>
+    return (<Container>
             <Row className="mb-3">
                 <Col md={12}>
                     <h1>Research Internships</h1>
@@ -67,8 +65,7 @@ class Internships extends Component {
                     <CardImg src="/images/katrinebjerg.jpg" alt="Dept. of Computer Science"/>
                 </Col>
             </Row>
-        </Container>);
-    }
+    </Container>);
 }
 
 export default Internships;
