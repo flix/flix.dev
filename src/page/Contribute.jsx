@@ -1,14 +1,12 @@
-import React, {Component} from 'react';
+import { useEffect } from 'react';
 import {Card, CardBody, CardTitle, Col, Container, Row} from "reactstrap";
 
-class Contribute extends Component {
-
-    componentDidMount() {
+function Contribute() {
+    useEffect(() => {
         document.title = "Flix | Contribute";
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container>
                 <Row className="mb-3">
                     <Col>
@@ -86,8 +84,7 @@ class Contribute extends Component {
                     </Col>
                 </Row>
             </Container>
-        );
-    }
+    );
 }
 
 export default Contribute;

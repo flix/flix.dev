@@ -1,16 +1,15 @@
-import React, {Component} from "react";
+import { useEffect } from 'react';
 import {Col, Container, Row} from "reactstrap";
 import InlineEditor from "../../util/InlineEditor";
 
-class DesignFlaws extends Component {
+function DesignFlaws() {
 
-    componentDidMount() {
+    useEffect(() => {
         document.title = "Flix | Design Flaws in Flix";
         window.location.replace("https://blog.flix.dev/blog/design-flaws-in-flix/");
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container style={{"text-align": "justify"}}>
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
@@ -313,7 +312,6 @@ Map#{1 -> 2, 3 -> 4}`}
                 </Row>
             </Container>
         )
-    }
 }
 
 export default DesignFlaws

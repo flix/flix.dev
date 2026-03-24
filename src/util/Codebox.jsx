@@ -1,89 +1,67 @@
-import React, {Component} from "react";
+import { useState } from "react";
 import SamplesData from "../data/Samples";
 import Editor from "./Editor";
 import {
     Button, Col, Container, InputGroup, Row
 } from "reactstrap";
-import FontAwesome from 'react-fontawesome';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 import PulseLoader from 'react-spinners/PulseLoader';
 
-class Codebox extends Component {
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
 
-    constructor(props) {
-        super(props);
-        let randomChoice = getRandomInt(SamplesData.length);
-        this.state = {
-            choice: randomChoice,
-            samples: SamplesData,
-            dropdown: false,
-            input: SamplesData[randomChoice].code,
-            output: undefined
-        };
-    }
+function Codebox({ flix }) {
+    const [initialChoice] = useState(() => getRandomInt(SamplesData.length));
+    const [choice, setChoice] = useState(initialChoice);
+    const [input, setInput] = useState(SamplesData[initialChoice].code);
+    const [output, setOutput] = useState(undefined);
 
-    toggleDropDown() {
-        this.setState({dropdown: !this.state.dropdown});
-    }
-
-    onDropdownChoice(event) {
+    function onDropdownChoice(event) {
         let newChoice = Number(event.target.value);
-        this.setState({
-            choice: newChoice,
-            input: this.state.samples[newChoice].code,
-            output: undefined
-        });
+        setChoice(newChoice);
+        setInput(SamplesData[newChoice].code);
+        setOutput(undefined);
     }
 
-    onTextChanged(input) {
-        this.setState({input: input});
+    function onRunClick() {
+        setOutput(null);
+        flix.run(input, data => setOutput(data));
     }
 
-    onRunClick = () => {
-        this.setState({output: null}, () => {
-            this.props.flix.run(this.state.input, data =>
-                this.setState({output: data})
-            );
-        });
-    };
-
-    getRunButton() {
-        return <a href={"http://play.flix.dev/"}><Button color="success" size="sm" >
-            Play <FontAwesome name="external-link" className="ml-2"/>
+    function getRunButton() {
+        return <a href={"http://play.flix.dev/"}><Button color="success" size="sm">
+            Play <FaExternalLinkAlt className="ml-2"/>
         </Button>
         </a>;
     }
 
-    getDropDown() {
+    function getDropDown() {
         return <select
-            value={this.state.choice}
-            onChange={this.onDropdownChoice.bind(this)}
+            value={choice}
+            onChange={onDropdownChoice}
             style={{"textOverflow": "ellipsis"}}
             className="mr-2 w-75">
-            {this.state.samples.map((sample, index) =>
+            {SamplesData.map((sample, index) =>
                 <option key={index} value={index}>{sample.name}</option>)
             }
         </select>
     }
 
-    getNameOfSelection() {
-        return this.state.samples[this.state.choice].name;
+    function getEditor() {
+        return <Editor key={input.leading}
+                       code={input}
+                       notifyTextChanged={setInput}/>
     }
 
-    getEditor() {
-        return <Editor key={this.state.input.leading}
-                       code={this.state.input}
-                       notifyTextChanged={this.onTextChanged.bind(this)}/>
-    }
-
-    getOutput() {
-        if (this.state.output === undefined) {
+    function getOutput() {
+        if (output === undefined) {
             return undefined;
-        } else if (this.state.output === null) {
+        } else if (output === null) {
             return <Row>
                 <Col md="12" className="text-center">
                     <PulseLoader
                         size={16}
-                        sizeUnit={"px"}
                         color={'#28a745'}
                         loading={true}
                         className="loader"
@@ -91,38 +69,24 @@ class Codebox extends Component {
                 </Col>
             </Row>
         } else {
-            if (this.state.output.status === "success") {
-                return (
-                    <Container className="mt-3 editor-output">
-                        <h5>Standard Output</h5>
-                        <pre>{this.state.output.result}</pre>
-                    </Container>);
-            } else {
-                return (
-                    <Container className="mt-3 editor-output">
-                        <h5>Standard Output</h5>
-                        <pre>{this.state.output.result}</pre>
-                    </Container>);
-            }
+            return (
+                <Container className="mt-3 editor-output">
+                    <h5>Standard Output</h5>
+                    <pre>{output.result}</pre>
+                </Container>);
         }
     }
 
-    render() {
-        return (
-            <div>
-                <InputGroup className="mt-2 mb-3">
-                    {this.getDropDown()}
-                    {this.getRunButton()}
-                </InputGroup>
-                {this.getEditor()}
-                {this.getOutput()}
-            </div>
-        );
-    }
-}
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
+    return (
+        <div>
+            <InputGroup className="mt-2 mb-3">
+                {getDropDown()}
+                {getRunButton()}
+            </InputGroup>
+            {getEditor()}
+            {getOutput()}
+        </div>
+    );
 }
 
 export default Codebox;

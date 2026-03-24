@@ -1,16 +1,14 @@
-import React, {Component} from 'react';
+import { useEffect } from 'react';
 import {Card, CardBody, CardTitle} from 'reactstrap';
 import {Container} from 'reactstrap';
 import {Link} from "react-router-dom";
 
-class Faq extends Component {
-
-    componentDidMount() {
+function Faq() {
+    useEffect(() => {
         document.title = "Flix | FAQ";
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container>
                 <h1>Frequently Asked Questions</h1>
 
@@ -478,36 +476,25 @@ class Faq extends Component {
                 </QA>
 
             </Container>
-        );
-    }
+    );
 }
 
-class Question extends Component {
-    render() {
-        return (
-            <CardTitle>{this.props.children}</CardTitle>
-        );
-    }
+function Question({ children }) {
+    return <CardTitle>{children}</CardTitle>;
 }
 
-
-class Answer extends Component {
-    render() {
-        return (
-            <div>{this.props.children}</div>
-        );
-    }
+function Answer({ children }) {
+    return <div>{children}</div>;
 }
 
-class QA extends Component {
-    render() {
-        return (
-            <Card className="mb-3">
-                <CardBody>
-                    {this.props.children}
-                </CardBody>
-            </Card>);
-    }
+function QA({ children }) {
+    return (
+        <Card className="mb-3">
+            <CardBody>
+                {children}
+            </CardBody>
+        </Card>
+    );
 }
 
 export default Faq;

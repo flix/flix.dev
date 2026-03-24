@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import { useEffect } from 'react';
 import {Card, CardSubtitle, CardText, CardTitle, Col, Container, Row} from "reactstrap";
 import {Link} from "react-router-dom";
 
@@ -11,14 +11,12 @@ import {FaTwitter} from 'react-icons/fa';
 import {GoGraph} from 'react-icons/go';
 import {MdSchool} from 'react-icons/md';
 
-class Documentation extends Component {
-
-    componentDidMount() {
+function Documentation() {
+    useEffect(() => {
         document.title = "Flix | Documentation";
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container>
                 <Row className="mb-3">
                     <Col>
@@ -151,8 +149,7 @@ class Documentation extends Component {
                     </Col>
                 </Row>
             </Container>
-        );
-    }
+    );
 }
 
 export default Documentation;

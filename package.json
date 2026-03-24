@@ -4,15 +4,14 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.5.3",
-    "react": "^16.0.0",
-    "react-ace": "^10.1.0",
-    "react-dom": "^16.0.0",
-    "react-fontawesome": "^1.7.1",
+    "react": "^19.2.4",
+    "react-ace": "^14.0.1",
+    "react-dom": "^19.2.4",
     "react-icons": "^4.1.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-spinners": "^0.10.6",
-    "reactstrap": "^8.8.0",
+    "react-spinners": "^0.15.0",
+    "reactstrap": "^9.2.3",
     "reconnecting-websocket": "^4.4.0"
   },
   "scripts": {

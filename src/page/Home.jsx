@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import { useEffect } from 'react';
 import {
     Card,
     CardBody,
@@ -13,38 +13,36 @@ import {
 import Codebox from "../util/Codebox";
 import InlineEditor from "../util/InlineEditor";
 
-class Home extends Component {
-
-    componentDidMount() {
-        document.title = "The Flix Programming Language";
+const carousel = [
+    {
+        src: '/images/vscode1.png',
+        caption: 'Slide 1',
+        header: 'Semantic Highlighting',
+    },
+    {
+        src: '/images/vscode2.png',
+        caption: 'Slide 2',
+        header: 'Hover to Inspect',
+    },
+    {
+        src: '/images/vscode3.png',
+        caption: 'Slide 3',
+        header: 'Highlight References',
+    },
+    {
+        src: '/images/vscode4.png',
+        caption: 'Slide 4',
+        header: 'Inline Errors',
     }
+];
 
-    carousel = [
-        {
-            src: '/images/vscode1.png',
-            caption: 'Slide 1',
-            header: 'Semantic Highlighting',
-        },
-        {
-            src: '/images/vscode2.png',
-            caption: 'Slide 2',
-            header: 'Hover to Inspect',
-        },
-        {
-            src: '/images/vscode3.png',
-            caption: 'Slide 3',
-            header: 'Highlight References',
-        },
-        {
-            src: '/images/vscode4.png',
-            caption: 'Slide 4',
-            header: 'Inline Errors',
-        }
-    ];
+function Home({ flix }) {
+    useEffect(() => {
+        document.title = "The Flix Programming Language";
+    }, []);
 
-    render() {
-        return (
-            <Container>
+    return (
+        <Container>
                 <Row className="mb-3">
                     <Col md="6">
                         <h1>Flix &mdash;</h1>
@@ -90,7 +88,7 @@ class Home extends Component {
                         </p>
                     </Col>
                     <Col md="6">
-                    <Codebox flix={this.props.flix}/>
+                    <Codebox flix={flix}/>
                     </Col>
                 </Row>
 
@@ -1126,7 +1124,7 @@ let r = query p select (c, d) from ReadyDate(c; d)
                             </Col>
                         </Row>
 
-                        <UncontrolledCarousel autoPlay={false} interval={false} items={this.carousel}
+                        <UncontrolledCarousel autoPlay={false} interval={false} items={carousel}
                                               className="ml-2 mr-2"/>
                     </Col>
                 </Row>
@@ -1385,8 +1383,7 @@ let r = query p select (c, d) from ReadyDate(c; d)
                 </Row>
 
             </Container>
-        );
-    }
+    );
 }
 
 export default Home;

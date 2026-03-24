@@ -1,16 +1,15 @@
-import React, {Component} from "react";
+import { useEffect } from 'react';
 import {Col, Container, Row} from "reactstrap";
 import {Link} from "react-router-dom";
 
-class ProgrammingLanguageDefense extends Component {
+function ProgrammingLanguageDefense() {
 
-    componentDidMount() {
+    useEffect(() => {
         document.title = "Flix | In Defense of Programming Languages";
         window.location.replace("https://blog.flix.dev/blog/in-defense-of-programming-languages/");
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container style={{"text-align": "justify"}}>
                 <Row className="mb-3">
                     <Col sm={12} md={8}>
@@ -335,8 +334,6 @@ class ProgrammingLanguageDefense extends Component {
                 </Row>
             </Container>
         );
-    }
-
 }
 
 export default ProgrammingLanguageDefense

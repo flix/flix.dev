@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import { useEffect } from 'react';
 import {Col, Container, Row} from "reactstrap";
 import {Route, Switch} from "react-router";
 import ProgrammingLanguageDefense from "./blog/ProgrammingLanguageDefense";
@@ -7,16 +7,14 @@ import Naming from "./blog/Naming";
 import Redundancies from "./blog/Redundancies";
 import PolymorphicEffects from "./blog/PolymorphicEffects";
 
-class Blog extends Component {
-
-    componentDidMount() {
+function Blog() {
+    useEffect(() => {
         if (!document.title) {
             document.title = "Flix | Blog";
         }
-    }
+    }, []);
 
-    render() {
-        return (
+    return (
             <Container>
                 <Switch>
                     <Route exact path="/blog/">
@@ -56,8 +54,7 @@ class Blog extends Component {
 
                 </Switch>
             </Container>
-        );
-    }
+    );
 }
 
 export default Blog;
