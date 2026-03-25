@@ -14,9 +14,8 @@
     "reactstrap": "^9.2.3"
   },
   "scripts": {
-    "build-script": "node build-scripts/main.mjs",
-    "dev": "npm run build-script && vite",
-    "build": "npm run build-script && vite build",
+    "dev": "vite",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
