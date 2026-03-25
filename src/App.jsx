@@ -9,7 +9,7 @@ import Principles from "./page/Principles";
 import Contribute from "./page/Contribute";
 import Faq from "./page/Faq";
 import { Container, Navbar, Nav, NavItem, NavLink, Row } from 'reactstrap';
-import { Route } from "react-router";
+import { Route, Routes } from "react-router";
 import { Link } from "react-router-dom";
 
 import ReconnectingWebSocket from 'reconnecting-websocket';
@@ -113,15 +113,17 @@ function App() {
                 </Nav>
             </Navbar>
 
-            <Route path="/" exact render={() => <Home flix={{ connected, run: runProgram }} />} />
-            <Route path="/get-started/" component={GetStarted} />
-            <Route path="/vscode/" component={VSCode} />
-            <Route path="/principles/" component={Principles} />
-            <Route path="/documentation/" component={Documentation} />
-            <Route path="/faq/" component={Faq} />
-            <Route path="/blog/" component={Blog} />
-            <Route path="/contribute/" component={Contribute} />
-            <Route path="/internships/" component={Internships} />
+            <Routes>
+                <Route path="/" element={<Home flix={{ connected, run: runProgram }} />} />
+                <Route path="/get-started/" element={<GetStarted />} />
+                <Route path="/vscode/" element={<VSCode />} />
+                <Route path="/principles/" element={<Principles />} />
+                <Route path="/documentation/" element={<Documentation />} />
+                <Route path="/faq/" element={<Faq />} />
+                <Route path="/blog/*" element={<Blog />} />
+                <Route path="/contribute/" element={<Contribute />} />
+                <Route path="/internships/" element={<Internships />} />
+            </Routes>
 
             <Row />
 

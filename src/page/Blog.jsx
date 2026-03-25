@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import {Col, Container, Row} from "reactstrap";
-import {Route, Switch} from "react-router";
+import {Route, Routes} from "react-router";
 import ProgrammingLanguageDefense from "./blog/ProgrammingLanguageDefense";
 import DesignFlaws from "./blog/DesignFlaws";
 import Naming from "./blog/Naming";
@@ -16,8 +16,8 @@ function Blog() {
 
     return (
             <Container>
-                <Switch>
-                    <Route exact path="/blog/">
+                <Routes>
+                    <Route index element={
                         <Row className="mb-3">
                             <Col>
                                 <h1>Blog</h1>
@@ -29,30 +29,14 @@ function Blog() {
                                 </div>
                             </Col>
                         </Row>
-                    </Route>
+                    } />
 
-
-                    <Route path="/blog/in-defense-of-programming-languages/">
-                        <ProgrammingLanguageDefense/>
-                    </Route>
-
-                    <Route path="/blog/taming-impurity-with-polymorphic-effects/">
-                        <PolymorphicEffects/>
-                    </Route>
-
-                    <Route path="/blog/naming-functional-and-destructive-operations/">
-                        <Naming/>
-                    </Route>
-
-                    <Route path="/blog/redundancies-as-compile-time-errors/">
-                        <Redundancies/>
-                    </Route>
-
-                    <Route path="/blog/design-flaws-in-flix/">
-                        <DesignFlaws/>
-                    </Route>
-
-                </Switch>
+                    <Route path="in-defense-of-programming-languages/" element={<ProgrammingLanguageDefense/>} />
+                    <Route path="taming-impurity-with-polymorphic-effects/" element={<PolymorphicEffects/>} />
+                    <Route path="naming-functional-and-destructive-operations/" element={<Naming/>} />
+                    <Route path="redundancies-as-compile-time-errors/" element={<Redundancies/>} />
+                    <Route path="design-flaws-in-flix/" element={<DesignFlaws/>} />
+                </Routes>
             </Container>
     );
 }
