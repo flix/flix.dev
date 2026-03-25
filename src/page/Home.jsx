@@ -10,7 +10,6 @@ import {
     Row,
     UncontrolledCarousel
 } from 'reactstrap';
-import Codebox from "../util/Codebox";
 import InlineEditor from "../util/InlineEditor";
 
 const carousel = [
@@ -36,7 +35,7 @@ const carousel = [
     }
 ];
 
-function Home({ flix }) {
+function Home() {
     useEffect(() => {
         document.title = "The Flix Programming Language";
     }, []);
@@ -88,7 +87,39 @@ function Home({ flix }) {
                         </p>
                     </Col>
                     <Col md="6">
-                    <Codebox flix={flix}/>
+                        <InlineEditor>{`/// Demonstrates composing multiple HTTP middleware
+/// via \`with\` clauses. Stacks base URL, default
+/// headers, retry, circuit breaker, and logging.
+/// Each \`with\` wraps the
+/// preceding block. The \`Http\` and \`Logger\` effects
+/// propagate to \`main\` and are handled automatically
+/// via their default handlers. Relative paths are
+/// resolved against the base URL; absolute URLs
+/// bypass it.
+def main(): Unit \\ { Clock, Http, Logger, IO } =
+    let defaultHeaders = Map#{
+        "Accept"        => List#{"application/json"},
+        "Authorization" => List#{"Bearer tok123"}
+    };
+    run {
+        let urls = List#{"/api/users", "/api/posts"};
+        foreach (url <- urls) {
+            match Http.get(url) {
+                case Ok(res) => println("\${url} -> \${status(res)}")
+                case Err(err) => println("\${url} -> \${err}")
+            }
+        };
+        match Http.get("https://notfound.flix.dev/") {
+            case Ok(res) => println("notfound -> \${status(res)}")
+            case Err(err) => println("notfound -> \${err}")
+        }
+    } with Http.withBaseUrl("https://flix.dev")
+      with Http.withDefaultHeaders(defaultHeaders)
+      with Http.withRetry(
+        Retry.linear(maxRetries = 2, delay = milliseconds(100)))
+      with Http.withCircuitBreaker(
+        failureThreshold = 3, cooldown = seconds(5))
+      with Http.withLogging`}</InlineEditor>
                     </Col>
                 </Row>
 
