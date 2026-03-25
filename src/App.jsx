@@ -1,4 +1,3 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
 
 import Home from "./page/Home";
@@ -12,64 +11,10 @@ import { Container, Navbar, Nav, NavItem, NavLink, Row } from 'reactstrap';
 import { Route, Routes } from "react-router";
 import { Link } from "react-router-dom";
 
-import ReconnectingWebSocket from 'reconnecting-websocket';
 import Blog from "./page/Blog";
 import Internships from "./page/Internships";
 
-const SocketAddress = 'wss://evaluator.flix.dev/ws';
-
 function App() {
-    const [connected, setConnected] = useState(false);
-    const websocketRef = useRef(null);
-
-    useEffect(() => {
-        console.log("Connecting to: " + SocketAddress);
-
-        let options = {
-            connectionTimeout: 2500
-        };
-
-        const ws = new ReconnectingWebSocket(SocketAddress, [], options);
-
-        ws.addEventListener("open", () => {
-            console.log("Connected to: " + SocketAddress);
-            setConnected(true);
-        });
-        ws.addEventListener("close", event => {
-            console.log("Disconnected from: " + SocketAddress);
-            console.log(event);
-            setConnected(false);
-        });
-        ws.addEventListener("error", event => {
-            console.log("Disconnected from: " + SocketAddress);
-            console.log(event);
-            setConnected(false);
-        });
-
-        websocketRef.current = ws;
-
-        return () => {
-            ws.close();
-        };
-    }, []);
-
-    const runProgram = useCallback((src, callback) => {
-        if (!connected) {
-            console.log("Not connected yet");
-            return;
-        }
-
-        websocketRef.current.onmessage = event => {
-            console.log("Received reply from: " + SocketAddress);
-            const data = JSON.parse(event.data);
-
-            console.log(data);
-            callback(data);
-        };
-
-        websocketRef.current.send(JSON.stringify({ src }));
-    }, [connected]);
-
     return (
         <Container className="page">
             <Navbar dark color="info" expand="md" className="menu shadow-sm mb-4">
@@ -114,7 +59,7 @@ function App() {
             </Navbar>
 
             <Routes>
-                <Route path="/" element={<Home flix={{ connected, run: runProgram }} />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/get-started/" element={<GetStarted />} />
                 <Route path="/vscode/" element={<VSCode />} />
                 <Route path="/principles/" element={<Principles />} />

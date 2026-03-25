@@ -41,18 +41,6 @@ p:last-child {
     font-size: 1.35rem;
 }
 
-.editor-output h5 {
-    font-size: 1.1rem;
-    color: gray;
-    text-align: center;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid #b7b7b7;
-}
-
-.editor-output pre {
-    font-family: monospace;
-}
-
 .inline-editor-frame {
     margin-top: 1em;
     margin-bottom: 1.5em;
