@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {FaBookReader} from 'react-icons/fa';
 import {FaStream} from 'react-icons/fa';
 import {FaMicroblog} from 'react-icons/fa';
-import {FaGitter} from 'react-icons/fa';
+import {SiZulip} from 'react-icons/si';
 import {FaGithub} from 'react-icons/fa';
 import {FaTwitter} from 'react-icons/fa';
 import {GoGraph} from 'react-icons/go';
@@ -97,13 +97,13 @@ function Documentation() {
                     </Col>
 
                     <Col lg="2">
-                        <a href="https://gitter.im/flix/Lobby">
+                        <a href="https://flix.zulipchat.com/">
                             <Card body className="h-100">
                                 <CardSubtitle className="text-center m-4 text-black-50">
-                                    <FaGitter style={{fontSize: '3em'}}/>
+                                    <SiZulip style={{fontSize: '3em'}}/>
                                 </CardSubtitle>
                                 <CardTitle className="text-center link-primary">
-                                    Gitter
+                                    Zulip
                                 </CardTitle>
                             </Card>
                         </a>

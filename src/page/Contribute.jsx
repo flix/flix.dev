@@ -32,7 +32,7 @@ function Contribute() {
 
                             We organize development using <a
                             href="https://github.com/flix/flix/issues">GitHub issues</a> and <a
-                            href="https://gitter.im/flix/Lobby">Gitter</a>.
+                            href="https://flix.zulipchat.com/">Zulip</a>.
                         </p>
 
                         <p>

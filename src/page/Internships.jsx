@@ -51,7 +51,7 @@ function Internships() {
 
                     <p>
                         If you have questions, feel free to head over to <a
-                        href="https://gitter.im/flix/Lobby">Gitter</a> and talk to us.
+                        href="https://flix.zulipchat.com/">Zulip</a> and talk to us.
                     </p>
 
                     <hr/>
