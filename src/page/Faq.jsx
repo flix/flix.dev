@@ -27,7 +27,7 @@ function Faq() {
 
                         <p>
                             If you get stuck or need help feel free to reach out to
-                            us on <a href="https://gitter.im/flix/Lobby">Gitter</a>.
+                            us on <a href="https://flix.zulipchat.com/">Zulip</a>.
                         </p>
                     </Answer>
                 </QA>
@@ -59,7 +59,7 @@ function Faq() {
                         Yes! We welcome any contributions and we are happy to mentor someone who wants to work
                         on the compiler. We are also open to general feedback and discussion about the language
                         design. Head on over to <a href="https://github.com/flix/flix">GitHub</a> or <a
-                        href="https://gitter.im/flix/Lobby">Gitter</a> and reach out to us!
+                        href="https://flix.zulipchat.com/">Zulip</a> and reach out to us!
                     </Answer>
                 </QA>
 
@@ -223,7 +223,7 @@ function Faq() {
                     </Question>
                     <Answer>
                         We are always happy to learn! We are ready to discuss design choices made in Flix.
-                        Swing by Gitter or on GitHub.
+                        Swing by <a href="https://flix.zulipchat.com/">Zulip</a> or on GitHub.
                     </Answer>
                 </QA>
 
