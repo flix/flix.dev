@@ -84,7 +84,7 @@ function Documentation() {
                     </Col>
 
                     <Col lg="2">
-                        <Link to="/blog/">
+                        <Link to="https://blog.flix.dev/">
                             <Card body className="h-100">
                                 <CardSubtitle className="text-center m-4 text-black-50">
                                     <FaMicroblog style={{fontSize: '3em'}}/>
