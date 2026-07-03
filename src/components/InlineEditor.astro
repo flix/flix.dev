@@ -1,0 +1,10 @@
+---
+import { Code } from 'astro:components';
+const { code } = Astro.props;
+---
+<div class="inline-editor-frame">
+  <div class="inline-editor-code">
+    <!-- TODO Flix, not Scala -->
+    <Code code={code} lang="scala" theme="github-light" />
+  </div>
+</div>

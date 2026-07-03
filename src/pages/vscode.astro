@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const base = "/gif/";
+
+const features = [
+  {
+    title: "Inline Diagnostics",
+    desc: "Flix shows inline diagnostics.",
+    img: base + "inlineDiagnostics.png",
+    alt: "Inline Diagnostics",
+  },
+  {
+    title: "Auto Completion",
+    desc: "Flix supports auto-completion of a range of program elements.",
+    img: base + "autoComplete.png",
+    alt: "Auto Completion",
+  },
+  {
+    title: "Snippet Completion",
+    desc: "Flix supports snippet completion for large program fragments. For example, we can auto-complete trait instances.",
+    img: base + "snippetComplete.png",
+    alt: "Snippet Completion",
+  },
+  {
+    title: "Hover",
+    desc: "Flix supports hovering over program fragments to show their documentation, type, effect, and kind.",
+    img: base + "hover.png",
+    alt: "Hover",
+  },
+  {
+    title: "Rename",
+    desc: "Flix supports automatic renaming of most program elements.",
+    img: base + "rename.png",
+    alt: "Rename",
+  },
+  {
+    title: "Quick Fixes",
+    desc: "Flix supports some quick fixes for simple program errors. Here we automatically derive a missing <code>eq</code> instance.",
+    img: base + "quickfix.png",
+    alt: "Quick Fixes",
+  },
+  {
+    title: "Code Lenses",
+    desc: "Flix supports code lenses for running main, functions, and tests.",
+    img: base + "codelens.png",
+    alt: "Code Lenses",
+  },
+];
+---
+
+<Layout title="Flix | Visual Studio Code Features">
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col">
+        <h1>Visual Studio Code Features</h1>
+        <p>A few short videos to demonstrate various Visual Studio Code features.</p>
+      </div>
+    </div>
+
+    {features.map(f => (
+      <div class="row mb-5">
+        <div class="col-md-6">
+          <h4>{f.title}</h4>
+          <p set:html={f.desc}></p>
+          <div class="card">
+            <img class="card-img-top" src={f.img} alt={f.alt} />
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</Layout>

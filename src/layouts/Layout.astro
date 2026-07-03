@@ -1,0 +1,57 @@
+---
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const { title } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/get-started/", label: "Get Started" },
+  { href: "/vscode/", label: "VSCode" },
+  { href: "/principles/", label: "Principles" },
+  { href: "/documentation/", label: "Documentation" },
+  { href: "/faq/", label: "FAQ" },
+  { href: "/blog/", label: "Blog" },
+  { href: "/contribute/", label: "Contribute" },
+  { href: "/internships/", label: "Internships" },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.0/css/all.min.css" integrity="sha256-O2p11mherUYPja5rjeK2afvVekcdkigTHg/bG+cj8qk=" crossorigin="anonymous">
+    <link href="/favicon.png" rel="icon">
+  </head>
+  <body>
+    <a href="https://github.com/flix/flix">
+      <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9999;"
+          src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png"
+          alt="Fork me on GitHub">
+    </a>
+    <div class="container page">
+      <nav class="navbar navbar-dark bg-info navbar-expand-md menu shadow-sm mb-4">
+        <div class="container-fluid">
+          <ul class="navbar-nav mr-lg-auto">
+            {navLinks.map(({ href, label }) => (
+              <li class="nav-item pl-1 pr-1">
+                <a class={`nav-link${currentPath === href ? " active font-weight-bold" : ""}`} href={href}>
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+
+      <slot />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

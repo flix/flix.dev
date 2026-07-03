@@ -1,7 +1,6 @@
 body {
     font-family: 'Open Sans', sans-serif;
     overflow-y: scroll;
-
     background-color: #efefef;
 }
 
@@ -49,6 +48,13 @@ p:last-child {
 .inline-editor-code {
     padding: 1em 1.5em;
     background-color: #f7f7f7;
+    overflow-x: auto;
+    font-size: 0.875rem;
+}
+
+.inline-editor-code pre {
+    margin: 0;
+    background: transparent !important;
 }
 
 .nav-item {
@@ -56,26 +62,19 @@ p:last-child {
 }
 
 .navbar-nav .nav-item .nav-link {
-    color: rgba(255, 255, 255, .85)
+    color: rgba(255, 255, 255, .85);
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-    color: rgba(255, 255, 255, 1.00)
-}
-
-.btn-group .btn, .btn-xs {
-    padding: .1rem .5rem;
-    font-size: .875rem;
-    line-height: 1.5;
-    border-radius: .2rem;
+    color: rgba(255, 255, 255, 1.00);
 }
 
 .card-title {
     font-size: 1.2rem;
 }
 
-.ace_hidden-cursors {
-    opacity: 0
+h4 {
+    font-size: 1.5 rem;
 }
 
 .w-33 {
