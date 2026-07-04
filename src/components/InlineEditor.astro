@@ -1,10 +1,152 @@
 ---
-import { Code } from 'astro:components';
+import { Code } from "astro:components";
 const { code } = Astro.props;
+
+// TODO write a proper TextMate grammar and contribute upstream
+// (this one has been vibe-converted from react-ace)
+const flixGrammar = {
+  name: "Flix",
+  scopeName: "source.flix",
+  fileTypes: [".flix"],
+  patterns: [
+    { include: "#comments" },
+    { include: "#strings" },
+    { include: "#regex" },
+    { include: "#chars" },
+    { include: "#numbers" },
+    { include: "#keywords" },
+    { include: "#operators" },
+    { include: "#brackets" },
+  ],
+  repository: {
+    comments: {
+      patterns: [
+        { name: "comment.line.double-slash.flix", match: "//.*$" },
+        {
+          name: "comment.block.flix",
+          begin: "/\\*",
+          end: "\\*/",
+        },
+      ],
+    },
+    strings: {
+      patterns: [
+        {
+          name: "string.quoted.double.flix",
+          begin: '"',
+          end: '"',
+          patterns: [
+            {
+              name: "constant.character.escape.flix",
+              match: "\\\\(u[0-9a-fA-F]{4}|.)",
+            },
+          ],
+        },
+      ],
+    },
+    regex: {
+      patterns: [
+        {
+          name: "string.regexp.flix",
+          begin: 'regex"',
+          end: '"',
+          patterns: [
+            {
+              name: "constant.character.escape.flix",
+              match: "\\\\(u[0-9a-fA-F]{4}|.)",
+            },
+          ],
+        },
+      ],
+    },
+    chars: {
+      patterns: [
+        {
+          name: "string.quoted.single.flix",
+          begin: "'",
+          end: "'",
+          patterns: [
+            {
+              name: "constant.character.escape.flix",
+              match: "\\\\(u[0-9a-fA-F]{4}|.)",
+            },
+          ],
+        },
+      ],
+    },
+    numbers: {
+      patterns: [
+        {
+          name: "constant.numeric.hex.flix",
+          match: "\\b0x[a-fA-F0-9](_*[a-fA-F0-9])*(i8|i16|i32|i64|ii)?\\b",
+        },
+        {
+          name: "constant.numeric.float.flix",
+          match: "\\b[0-9](_*[0-9])*\\.[0-9](_*[0-9])*(f32|f64)?\\b",
+        },
+        {
+          name: "constant.numeric.integer.flix",
+          match: "\\b[0-9](_*[0-9])*(i8|i16|i32|i64|ii)?\\b",
+        },
+        { name: "constant.language.boolean.flix", match: "\\b(true|false)\\b" },
+        { name: "constant.language.null.flix", match: "\\bnull\\b" },
+      ],
+    },
+    keywords: {
+      patterns: [
+        {
+          name: "keyword.control.flix",
+          match:
+            "\\b(choose|forA|forM|foreach|yield|if|else|case|match|ematch|try|catch|throw|spawn|par)\\b",
+        },
+        {
+          name: "keyword.flix",
+          match:
+            "\\b(use|checked_cast|checked_ecast|unchecked_cast|as|discard|from|into|inject|project|solve|query|where|select|force|import|region|handler|instanceof|new|pquery|psolve|run|super)\\b",
+        },
+        {
+          name: "storage.type.flix",
+          match:
+            "\\b(eff|def|redef|law|enum|case|type|alias|trait|instance|mod|struct|let)\\b",
+        },
+        {
+          name: "storage.modifier.flix",
+          match:
+            "\\b(with|lazy|lawful|pub|override|sealed|static|mut|unsafe)\\b",
+        },
+        {
+          name: "support.type.primitive.flix",
+          match:
+            "\\b(Unit|Bool|Char|Float32|Float64|Int8|Int16|Int32|Int64|BigInt|String)\\b",
+        },
+        { name: "keyword.operator.flix", match: "\\b(not|and|or|fix)\\b" },
+        {
+          name: "storage.modifier.annotation.flix",
+          match:
+            "@(Deprecated|Experimental|Internal|ParallelWhenPure|Parallel|LazyWhenPure|Lazy|Skip|Test)\\b",
+        },
+        { name: "keyword.flix", match: "(\\?\\?\\?|\\?[a-zA-Z0-9]+)" },
+      ],
+    },
+    operators: {
+      patterns: [{ name: "keyword.operator.flix", match: "->|~>|<\\-|=>" }],
+    },
+    brackets: {
+      patterns: [
+        { name: "punctuation.section.parens.begin.flix", match: "\\(" },
+        { name: "punctuation.section.parens.end.flix", match: "\\)" },
+        { name: "punctuation.section.brackets.begin.flix", match: "\\[" },
+        { name: "punctuation.section.brackets.end.flix", match: "\\]" },
+        { name: "punctuation.section.braces.begin.flix", match: "\\{" },
+        { name: "punctuation.section.braces.end.flix", match: "\\}" },
+      ],
+    },
+  },
+};
 ---
+
 <div class="inline-editor-frame">
   <div class="inline-editor-code">
-    <!-- TODO Flix, not Scala -->
-    <Code code={code} lang="scala" theme="github-light" />
+    <Code code={code} theme="light-plus" lang={flixGrammar} />
   </div>
 </div>
