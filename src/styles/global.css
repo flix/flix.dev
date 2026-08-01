@@ -46,10 +46,18 @@ p:last-child {
 }
 
 .inline-editor-code {
-    padding: 1em 1.5em;
+    padding: 1em 1.75em;
     background-color: #f7f7f7;
     overflow-x: auto;
-    font-size: 0.875rem;
+
+    pre,
+    code {
+      font-size: 12px;
+      font-family:
+        Monaco, Menlo, "Ubuntu Mono", Consolas, "Source Code Pro",
+        source-code-pro, monospace;
+      line-height: 16px;
+    }
 }
 
 .inline-editor-code pre {
