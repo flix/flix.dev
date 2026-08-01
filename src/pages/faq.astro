@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import QA from "../components/FAQ/QA.astro";
 import Question from "../components/FAQ/Question.astro";
-import Answer from "../components/FAQ/Answer.astro";
 ---
 
 <Layout title="Flix | FAQ">
@@ -14,7 +13,7 @@ import Answer from "../components/FAQ/Answer.astro";
 
     <QA>
       <Question> What is the best way to start learning Flix? </Question>
-      <Answer>
+      <div>
         <p>
           We recommend to read the <a href="https://doc.flix.dev/"
             >Programming Flix</a
@@ -26,65 +25,65 @@ import Answer from "../components/FAQ/Answer.astro";
             href="https://flix.zulipchat.com/">Zulip</a
           >.
         </p>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question>
         Does Flix have Language Server Protocol (LSP) support?
       </Question>
-      <Answer>
+      <div>
         Yes, in addition to Visual Studio Code support, Flix also has generic
         LSP support.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question> Does Flix have a read-eval-print-loop (REPL)? </Question>
 
-      <Answer>
+      <div>
         Flix has a nascent REPL. It can be started with the <code>repl</code> command.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question>
         Are you looking for help with the compiler or language design?
       </Question>
-      <Answer>
+      <div>
         Yes! We welcome any contributions and we are happy to mentor someone who
         wants to work on the compiler. We are also open to general feedback and
         discussion about the language design. Head on over to <a
           href="https://github.com/flix/flix">GitHub</a
         > or <a href="https://flix.zulipchat.com/">Zulip</a> and reach out to us!
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question> Does Flix compile to LLVM? </Question>
-      <Answer> No and we don't have any plans to target LLVM. </Answer>
+      <div> No and we don't have any plans to target LLVM. </div>
     </QA>
 
     <QA>
       <Question> Does Flix compile to WebAssembly (WASM)? </Question>
-      <Answer>
+      <div>
         Not yet. It is something we are open to. We are waiting for the WASM
         ecosystem to mature.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question> Is Flix a domain specific language (DSL)? </Question>
-      <Answer>
+      <div>
         <p>No, Flix is a full-blown general-purpose programming language.</p>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question>
         Flix looks similar to Scala. How are the two languages related?
       </Question>
-      <Answer>
+      <div>
         <p>
           Flix borrows a lot of syntax from Scala, hence the two languages have
           a similar feel.
@@ -109,12 +108,12 @@ import Answer from "../components/FAQ/Answer.astro";
           <li>Flix has an effect system, Scala does not.</li>
           <li>And so on.</li>
         </ul>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question> What is the runtime performance of Flix programs? </Question>
-      <Answer>
+      <div>
         <p>
           Flix runs on the JVM which means that the performance of Flix programs
           is comparable to that of Java and Scala programs.
@@ -125,7 +124,7 @@ import Answer from "../components/FAQ/Answer.astro";
           and inlining (like Rust and MLton). Hence, sometimes, Flix programs
           run faster than their Java or Scala equivalent.
         </p>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
@@ -133,7 +132,7 @@ import Answer from "../components/FAQ/Answer.astro";
         Haskell and OCaml compile to native code thus by definition they must be
         faster than Flix.
       </Question>
-      <Answer>
+      <div>
         This is not necessarily true. For example, Java sometimes beats both <a
           href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/ocaml-java.html"
           >OCaml</a
@@ -144,13 +143,13 @@ import Answer from "../components/FAQ/Answer.astro";
           href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html"
           >The Computer Language Benchmarks Game</a
         >.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question> What controversial design choices are made in Flix? </Question>
 
-      <Answer>
+      <div>
         <p>
           The following design choices may be considered controversial by some:
         </p>
@@ -169,32 +168,32 @@ import Answer from "../components/FAQ/Answer.astro";
             >.
           </li>
         </ul>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question>Wait, division by zero is zero, really?</Question>
 
-      <Answer>
+      <div>
         Yes. But focusing on this is a bit like focusing on the color of the
         seats in a spacecraft.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question> Where does the "Flix" name come from? </Question>
-      <Answer>
+      <div>
         We do not remember, but we believe it may have come from <span
           class="text-monospace">FIXpoint Language</span
         >.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question>
         Does Flix have a network library with streaming support?
       </Question>
-      <Answer> Not yet, but maybe we could call it net-flix? </Answer>
+      <div> Not yet, but maybe we could call it net-flix? </div>
     </QA>
 
     <QA>
@@ -202,20 +201,20 @@ import Answer from "../components/FAQ/Answer.astro";
         You do not seem to understand parsing / type theory / code generation /
         computers!
       </Question>
-      <Answer>
+      <div>
         We are always happy to learn! We are ready to discuss design choices
         made in Flix. Swing by <a href="https://flix.zulipchat.com/">Zulip</a> or
         on GitHub.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question> Why does the website require JavaScript? </Question>
-      <Answer>
+      <div>
         We built the website using the popular React framework. Using React was
         easy. Ultimately, we want to spend our time writing compilers, not
         writing websites.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
@@ -223,16 +222,16 @@ import Answer from "../components/FAQ/Answer.astro";
         The page does not load without JavaScript enabled. If I cannot even view
         the website without that bloat, I wonder what the language is like?
       </Question>
-      <Answer>
+      <div>
         Indeed, if your computer is too old to run a modern browser that
         supports JavaScript then probably your computer is too old to run a
         modern JVM that supports Flix. Sorry.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question>"This site requires JavaScript"</Question>
-      <Answer>
+      <div>
         <p>
           People who have criticized the website for using JavaScript: <a
             href="https://news.ycombinator.com/item?id=25516097">[1]</a
@@ -249,14 +248,14 @@ import Answer from "../components/FAQ/Answer.astro";
             >0</b
           >.
         </p>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question>
         It appears that an example on the website does not work?
       </Question>
-      <Answer>
+      <div>
         <p>
           The latest compiler version and the website are not always in sync,
           hence occasionally some examples may stop to work.
@@ -266,7 +265,7 @@ import Answer from "../components/FAQ/Answer.astro";
           Occasionally a mischievous visitor will crash the online editor (or
           rather the virtual machine on which the compiler runs).
         </p>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
@@ -274,7 +273,7 @@ import Answer from "../components/FAQ/Answer.astro";
         The language is probably great from a technical point of view, but
         unless Apple, Google, Mozilla, or Microsoft is on-board it is pointless.
       </Question>
-      <Answer>
+      <div>
         <p>
           Yes, no programming language developed outside of those four
           corporations have ever been successful. See also C, C++, Java, Python,
@@ -285,7 +284,7 @@ import Answer from "../components/FAQ/Answer.astro";
           That said, if you work for a company and would like to help sponsor
           Flix, please feel free to reach out to us :)
         </p>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
@@ -296,9 +295,9 @@ import Answer from "../components/FAQ/Answer.astro";
         of this gets funding because ten years later it makes C# programmers
         more productive, not because of mass appeal.
       </Question>
-      <Answer>
+      <div>
         <p>Yes, we do it all for C#.</p>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
@@ -307,7 +306,7 @@ import Answer from "../components/FAQ/Answer.astro";
         Inspirations and ideas from four of the arguably most complex languages
         of the modern world, all the best with that.
       </Question>
-      <Answer>
+      <div>
         <p>
           Yes, we take inspiration from programming languages that are pushing
           on the boundary of language design.
@@ -322,7 +321,7 @@ import Answer from "../components/FAQ/Answer.astro";
           Also, who said that we are taking their most complex ideas? Rather we
           should take their <i>best</i> ideas.
         </p>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
@@ -330,7 +329,7 @@ import Answer from "../components/FAQ/Answer.astro";
         Wow! Amazing! A language where you can iterate through lists and call
         functions recursively.
       </Question>
-      <Answer> Magical, isn't it? </Answer>
+      <div> Magical, isn't it? </div>
     </QA>
 
     <QA>
@@ -338,15 +337,15 @@ import Answer from "../components/FAQ/Answer.astro";
         Great! Yet-another-programming-language™. This is exactly what we need;
         the gazillion of existing programming languages is not enough.
       </Question>
-      <Answer>
+      <div>
         Flix aims to offer a collection of features that are not found in any
         existing programming language.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question> Do we really need any more programming languages? </Question>
-      <Answer>
+      <div>
         <p>
           <i>Do we really need safer airplanes?</i>
           <i>Do we really need electric cars?</i>
@@ -367,19 +366,19 @@ import Answer from "../components/FAQ/Answer.astro";
           And we want to increase developer happiness. It should be a pleasure
           to use Flix!
         </p>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
       <Question>
         This sounds like vaporware. All big promises and no delivery.
       </Question>
-      <Answer>
+      <div>
         The <a href="https://doc.flix.dev/research-literature.html">research</a
         >, the <a href="https://github.com/flix/flix">code</a>, and the <a
           href="https://arewefast.flix.dev/">performance</a
         >.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
@@ -387,7 +386,7 @@ import Answer from "../components/FAQ/Answer.astro";
         I was disappointed to learn that Flix has feature <b>X</b> instead of my favorite
         feature <b>Y</b>.
       </Question>
-      <Answer> We are deeply sorry to have let you down. </Answer>
+      <div> We are deeply sorry to have let you down. </div>
     </QA>
 
     <QA>
@@ -395,10 +394,10 @@ import Answer from "../components/FAQ/Answer.astro";
         It boggles my mind that any developer of a new language would not use
         Python’s significant use of white space.
       </Question>
-      <Answer>
+      <div>
         Right, because significant whitespace poses no challenges or gotchas
         whatsoever.
-      </Answer>
+      </div>
     </QA>
 
     <QA>
@@ -407,7 +406,7 @@ import Answer from "../components/FAQ/Answer.astro";
         language keyword should be made to gurgle Tabasco sauce for a few
         minutes.
       </Question>
-      <Answer>
+      <div>
         <p>
           We much prefer <a
             href="https://en.wikipedia.org/wiki/Cholula_Hot_Sauce"
@@ -419,7 +418,7 @@ import Answer from "../components/FAQ/Answer.astro";
             >forA</code
           > allowing one to easily switch between monadic-code and applicative-code.
         </p>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
@@ -427,7 +426,7 @@ import Answer from "../components/FAQ/Answer.astro";
         How the fuck can anyone understand such weird syntax? I hate all these
         symbols.
       </Question>
-      <Answer>
+      <div>
         <p>
           The Flix syntax is <a href="/principles/">based on keywords</a> except when
           there is a
@@ -447,7 +446,7 @@ import Answer from "../components/FAQ/Answer.astro";
             The symbol <code>:-</code> denotes logical implication in Datalog rules.
           </li>
         </ul>
-      </Answer>
+      </div>
     </QA>
 
     <QA>
@@ -456,7 +455,7 @@ import Answer from "../components/FAQ/Answer.astro";
         language. Semicolons, braces, symbolic soup, et al. It is like if Scala,
         Java and Haskell had a one night stand in the center of Chernobyl.
       </Question>
-      <Answer> Quite an achievement, wouldn't you say? </Answer>
+      <div> Quite an achievement, wouldn't you say? </div>
     </QA>
 
     <QA>
@@ -465,7 +464,7 @@ import Answer from "../components/FAQ/Answer.astro";
         lot of work before it gets close to anything I would even consider
         using.
       </Question>
-      <Answer> Sorry, what was the question? </Answer>
+      <div> Sorry, what was the question? </div>
     </QA>
   </div>
 </Layout>
