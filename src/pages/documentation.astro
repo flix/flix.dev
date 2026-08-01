@@ -1,9 +1,42 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Icon } from 'astro-icon/components';
+import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
 
 const BIG_ICON_SIZE = "6em";
 const SMALL_ICON_SIZE = "3em";
+
+const smallLinks = [
+  {
+    text: "Research",
+    link: "https://doc.flix.dev/research-literature.html",
+    icon: "material-symbols:school",
+  },
+  {
+    text: "Blog",
+    link: "/blog/",
+    icon: "fa-brands:microblog",
+  },
+  {
+    text: "Zulip",
+    link: "https://flix.zulipchat.com/",
+    icon: "simple-icons:zulip",
+  },
+  {
+    text: "GitHub",
+    link: "https://github.com/flix/flix",
+    icon: "fa-brands:github",
+  },
+  {
+    text: "Twitter",
+    link: "https://twitter.com/flixlang",
+    icon: "fa-brands:twitter",
+  },
+  {
+    text: "Perf",
+    link: "https://arewefast.flix.dev/",
+    icon: "octicon:graph-24",
+  },
+];
 ---
 
 <Layout title="Flix | Documentation">
@@ -16,30 +49,38 @@ const SMALL_ICON_SIZE = "3em";
 
     <div class="row mb-4">
       <div class="col-md-6">
-        <a href="https://doc.flix.dev/" class="text-decoration-none">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <div class="m-4 text-primary">
-                <Icon name="fa-solid:book-reader" size={BIG_ICON_SIZE}  />
-              </div>
-              <h5 class="card-title text-primary">Programming Flix (doc.flix.dev)</h5>
-              <p class="card-text text-dark">A detailed introduction to the Flix Programming Language.</p>
-            </div>
+        <div class="card card-body h-100">
+          <div class="text-center m-4 card-subtitle">
+            <a href="https://doc.flix.dev/">
+              <Icon name="fa-solid:book-reader" size={BIG_ICON_SIZE} />
+            </a>
           </div>
-        </a>
+          <div class="card-title text-center">
+            <a href="https://doc.flix.dev/" class="text-primary">
+              Programming Flix (doc.flix.dev)
+            </a>
+          </div>
+          <p class="card-text text-dark text-center">
+            A detailed introduction to the Flix Programming Language.
+          </p>
+        </div>
       </div>
       <div class="col-md-6">
-        <a href="https://api.flix.dev/" class="text-decoration-none">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <div class="m-4 text-success">
-                <Icon name="fa-solid:stream" size={BIG_ICON_SIZE} />
-              </div>
-              <h5 class="card-title text-success">Standard Library (api.flix.dev)</h5>
-              <p class="card-text text-dark">A Javadoc-style description of the Flix Standard Library.</p>
-            </div>
+        <div class="card card-body h-100">
+          <div class="text-center m-4 card-subtitle">
+            <a href="https://api.flix.dev/" class="text-success">
+              <Icon name="fa-solid:stream" size={BIG_ICON_SIZE} />
+            </a>
           </div>
-        </a>
+          <div class="card-title text-center">
+            <a href="https://api.flix.dev/" class="text-success">
+              Standard Library (api.flix.dev)
+            </a>
+          </div>
+          <p class="card-text text-dark text-center">
+            A Javadoc-style description of the Flix Standard Library.
+          </p>
+        </div>
       </div>
     </div>
 
@@ -50,83 +91,20 @@ const SMALL_ICON_SIZE = "3em";
     </div>
 
     <div class="row mb-3">
-      <div class="col-lg-2 mb-3">
-        <a href="https://doc.flix.dev/research-literature.html" class="text-decoration-none">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <div class="m-4 text-muted">
-                <Icon name="material-symbols:school" size={SMALL_ICON_SIZE} />
+      {
+        smallLinks.map(({text, link, icon}) => (
+          <div class="col-lg-2">
+            <a href={link}>
+              <div class="card h-100 card-body">
+                <div class="text-center m-4 text-black-50 card-subtitle">
+                  <Icon name={icon} size={SMALL_ICON_SIZE} />
+                </div>
+                <div class="text-center link-primary card-title">{text}</div>
               </div>
-              <h6 class="card-title text-primary">Research</h6>
-            </div>
+            </a>
           </div>
-        </a>
-      </div>
-
-      <div class="col-lg-2 mb-3">
-        <a href="/blog/" class="text-decoration-none">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <div class="m-4 text-muted">
-                <Icon name="fa-brands:microblog" size={SMALL_ICON_SIZE} /> 
-              </div>
-              <h6 class="card-title text-primary">Blog</h6>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-2 mb-3">
-        <a href="https://flix.zulipchat.com/" class="text-decoration-none">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <div class="m-4 text-muted">
-                <Icon name="simple-icons:zulip" size={SMALL_ICON_SIZE} /> 
-              </div>
-              <h6 class="card-title text-primary">Zulip</h6>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-2 mb-3">
-        <a href="https://github.com/flix/flix" class="text-decoration-none">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <div class="m-4 text-muted">
-                <Icon name="fa-brands:github" size={SMALL_ICON_SIZE} /> 
-              </div>
-              <h6 class="card-title text-primary">GitHub</h6>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-2 mb-3">
-        <a href="https://twitter.com/flixlang" class="text-decoration-none">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <div class="m-4 text-muted">
-                <Icon name="fa-brands:twitter" size={SMALL_ICON_SIZE} /> 
-              </div>
-              <h6 class="card-title text-primary">Twitter</h6>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="col-lg-2 mb-3">
-        <a href="https://arewefast.flix.dev/" class="text-decoration-none">
-          <div class="card h-100">
-            <div class="card-body text-center">
-              <div class="m-4 text-muted">
-                <Icon name="octicon:graph-24" size={SMALL_ICON_SIZE} /> 
-              </div>
-              <h6 class="card-title text-primary">Perf</h6>
-            </div>
-          </div>
-        </a>
-      </div>
+        ))
+      }
     </div>
   </div>
 </Layout>
