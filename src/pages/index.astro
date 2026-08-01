@@ -360,7 +360,9 @@ let r = query p select (c, d) from ReadyDate(c; d)`;
       <div class="col-md-6">
         <div class="card border-0">
           <div class="card-body">
-            <div class="card-title"><h4>Algebraic Data Types and Pattern Matching</h4></div>
+            <div class="card-title">
+              <h4>Algebraic Data Types and Pattern Matching</h4>
+            </div>
             <p>
               Algebraic data types and pattern matching are the bread-and-butter
               of functional programming and are supported by Flix with minimal
@@ -713,7 +715,9 @@ let r = query p select (c, d) from ReadyDate(c; d)`;
       <div class="col-md-6">
         <div class="card border-0">
           <div class="card-body">
-            <div class="card-title"><h4>Seamless Java Interoperability</h4></div>
+            <div class="card-title">
+              <h4>Seamless Java Interoperability</h4>
+            </div>
             <p>
               Flix supports seamless Java interoperability, making it possible
               to reuse code from the Java Standard Library and the Java
@@ -735,7 +739,9 @@ let r = query p select (c, d) from ReadyDate(c; d)`;
       <div class="col-md-12">
         <div class="card border-0">
           <div class="card-body">
-            <div class="card-title"><h4>First-class Datalog Constraints</h4></div>
+            <div class="card-title">
+              <h4>First-class Datalog Constraints</h4>
+            </div>
             <p>
               Another unique feature of Flix is its embedded Datalog support.
               Datalog, a powerful logic programming language in its own right,
@@ -758,7 +764,9 @@ let r = query p select (c, d) from ReadyDate(c; d)`;
       <div class="col-md-6">
         <div class="card border-0">
           <div class="card-body">
-            <div class="card-title"><h4>Datalog Enriched with Lattice Semantics</h4></div>
+            <div class="card-title">
+              <h4>Datalog Enriched with Lattice Semantics</h4>
+            </div>
             <p>
               Flix supports Datalog constraints enriched with lattice semantics.
             </p>
@@ -1069,45 +1077,13 @@ let r = query p select (c, d) from ReadyDate(c; d)`;
         </ul>
       </div>
 
-      <!-- VS Code screenshots: static grid replaces JS carousel -->
-      <!-- FIXME links from here -->
-      <div class="col-12 mt-3">
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <img
-              src="/images/vscode1.png"
-              class="img-fluid border"
-              alt="Semantic Highlighting"
-            />
-            <p class="text-center small mt-1 text-muted">
-              Semantic Highlighting
-            </p>
-          </div>
-          <div class="col-md-6 mb-3">
-            <img
-              src="/images/vscode2.png"
-              class="img-fluid border"
-              alt="Hover to Inspect"
-            />
-            <p class="text-center small mt-1 text-muted">Hover to Inspect</p>
-          </div>
-          <div class="col-md-6 mb-3">
-            <img
-              src="/images/vscode3.png"
-              class="img-fluid border"
-              alt="Highlight References"
-            />
-            <p class="text-center small mt-1 text-muted">
-              Highlight References
-            </p>
-          </div>
-          <div class="col-md-6 mb-3">
-            <img
-              src="/images/vscode4.png"
-              class="img-fluid border"
-              alt="Inline Errors"
-            />
-            <p class="text-center small mt-1 text-muted">Inline Errors</p>
+      <!-- TODO add the rest of images (we need to find a good carousel replacement for Astro) -->
+      <div class="mt-3 ml-4 mr-4 carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active"><img class="d-block w-100" src="/images/vscode1.png">
+            <div class="carousel-caption d-none d-md-block mb-4">
+              <h3>Semantic Highlighting</h3>
+            </div>
           </div>
         </div>
       </div>
@@ -1229,11 +1205,7 @@ let r = query p select (c, d) from ReadyDate(c; d)`;
 
     <div class="row mb-4">
       <div class="col-md-6">
-        <img
-          src="/logo/java.png"
-          class="img-fluid p-4"
-          alt="Java Logo"
-        />
+        <img src="/logo/java.png" class="img-fluid p-4" alt="Java Logo" />
       </div>
       <div class="col-md-6">
         <h2>Flix runs on Java</h2>
@@ -1333,11 +1305,7 @@ let r = query p select (c, d) from ReadyDate(c; d)`;
         </div>
         <div class="col">
           <div class="card border-0 p-3">
-            <img
-              src="/logo/stibo.png"
-              class="card-img"
-              alt="StiboFonden"
-            />
+            <img src="/logo/stibo.png" class="card-img" alt="StiboFonden" />
           </div>
         </div>
       </div>
@@ -1385,11 +1353,13 @@ let r = query p select (c, d) from ReadyDate(c; d)`;
     <div class="row mb-4 pb-3">
       <div class="col-12">
         <p class="small float-right">
-            We kindly thank <a href="https://www.ej-technologies.com/">EJ Technologies</a> for providing
-            us with <a
-            href="https://www.ej-technologies.com/products/jprofiler/overview.html">JProfiler</a> and <a
-            href="https://www.jetbrains.com/">JetBrains</a> for providing us with <a
-            href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>.
+          We kindly thank <a href="https://www.ej-technologies.com/"
+            >EJ Technologies</a
+          > for providing us with <a
+            href="https://www.ej-technologies.com/products/jprofiler/overview.html"
+            >JProfiler</a
+          > and <a href="https://www.jetbrains.com/">JetBrains</a> for providing us
+          with <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>.
         </p>
       </div>
     </div>
