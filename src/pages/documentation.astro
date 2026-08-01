@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const BIG_ICON_SIZE = "6em";
+const SMALL_ICON_SIZE = "3em";
 ---
 
 <Layout title="Flix | Documentation">
@@ -16,7 +20,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="card h-100">
             <div class="card-body text-center">
               <div class="m-4 text-primary">
-                <i class="fa fa-book-open-reader fa-6x"></i>
+                <Icon name="fa-solid:book-reader" size={BIG_ICON_SIZE}  />
               </div>
               <h5 class="card-title text-primary">Programming Flix (doc.flix.dev)</h5>
               <p class="card-text text-dark">A detailed introduction to the Flix Programming Language.</p>
@@ -29,7 +33,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="card h-100">
             <div class="card-body text-center">
               <div class="m-4 text-success">
-                <i class="fa fa-bars-staggered fa-6x"></i>
+                <Icon name="fa-solid:stream" size={BIG_ICON_SIZE} />
               </div>
               <h5 class="card-title text-success">Standard Library (api.flix.dev)</h5>
               <p class="card-text text-dark">A Javadoc-style description of the Flix Standard Library.</p>
@@ -51,7 +55,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="card h-100">
             <div class="card-body text-center">
               <div class="m-4 text-muted">
-                <i class="fa fa-graduation-cap fa-3x"></i>
+                <Icon name="material-symbols:school" size={SMALL_ICON_SIZE} />
               </div>
               <h6 class="card-title text-primary">Research</h6>
             </div>
@@ -64,7 +68,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="card h-100">
             <div class="card-body text-center">
               <div class="m-4 text-muted">
-                <i class="fa-brands fa-microblog fa-3x"></i>
+                <Icon name="fa-brands:microblog" size={SMALL_ICON_SIZE} /> 
               </div>
               <h6 class="card-title text-primary">Blog</h6>
             </div>
@@ -77,7 +81,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="card h-100">
             <div class="card-body text-center">
               <div class="m-4 text-muted">
-                <i class="fa-brands fa-zulip fa-3x"></i>
+                <Icon name="simple-icons:zulip" size={SMALL_ICON_SIZE} /> 
               </div>
               <h6 class="card-title text-primary">Zulip</h6>
             </div>
@@ -90,7 +94,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="card h-100">
             <div class="card-body text-center">
               <div class="m-4 text-muted">
-                <i class="fa-brands fa-github fa-3x"></i>
+                <Icon name="fa-brands:github" size={SMALL_ICON_SIZE} /> 
               </div>
               <h6 class="card-title text-primary">GitHub</h6>
             </div>
@@ -103,7 +107,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="card h-100">
             <div class="card-body text-center">
               <div class="m-4 text-muted">
-                <i class="fa-brands fa-twitter fa-3x"></i>
+                <Icon name="fa-brands:twitter" size={SMALL_ICON_SIZE} /> 
               </div>
               <h6 class="card-title text-primary">Twitter</h6>
             </div>
@@ -116,7 +120,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="card h-100">
             <div class="card-body text-center">
               <div class="m-4 text-muted">
-                <i class="fa-solid fa-chart-line fa-3x"></i>
+                <Icon name="octicon:graph-24" size={SMALL_ICON_SIZE} /> 
               </div>
               <h6 class="card-title text-primary">Perf</h6>
             </div>
