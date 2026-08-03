@@ -10,7 +10,12 @@ const { items, class: className } = Astro.props;
     {
       items.map((item, i) => (
         <div class:list={["carousel-item", { active: i === 0 }]}>
-          <img class="d-block w-100" src={item.src} alt={item.header} />
+          <img
+            class="d-block w-100"
+            src={item.src}
+            alt={item.header}
+            loading="lazy"
+          />
           <div class="carousel-caption d-none d-md-block mb-4">
             <h3>{item.header}</h3>
           </div>
