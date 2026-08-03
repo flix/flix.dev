@@ -100,6 +100,24 @@ def main(): Unit \\ IO =
             resume(dt.getHour())
     }`;
 
+export const libraryEffectsExample = `use Fs.FileRead
+use Sys.Env
+use Time.Clock
+use Time.TimeUnit
+
+/// The \`Clock\`, \`Env\`, \`FileRead\`, and \`Logger\`
+/// effects all have default handlers, hence \`main\`
+/// requires no explicit handlers.
+def main(): Unit \\ { Clock, Env, FileRead, Logger } =
+    let ts = Clock.currentTime(TimeUnit.Milliseconds);
+    let os = Env.getOsName();
+    Logger.info("Timestamp: \${ts}");
+    Logger.info("Operating System: \${os}");
+    match FileRead.read("data.txt") {
+        case Ok(content) => Logger.info("Read: \${content}")
+        case Err(err)    => Logger.warn("Error: \${err}")
+    }`;
+
 export const regionExample = `///
 /// We can implement a *pure* \`sort\` function which
 /// internally converts an immutable list to an array,
@@ -124,6 +142,25 @@ def toString(l: List[a]): String with ToString[a] =
         StringBuilder.appendString!("Nil", sb);
         StringBuilder.toString(sb)
     }`;
+
+export const structsExample = `struct Person[r] {
+    name: String,
+    mut age: Int32
+}
+
+mod Person {
+    /// Creates a fresh \`Person\` in the region \`rc\`.
+    pub def mkPerson(name: String, rc: Region[r]): Person[r] \\ r =
+        new Person @ rc { name = name, age = 0 }
+
+    /// Increments the age of the given person \`p\`.
+    pub def birthday(p: Person[r]): Unit \\ r =
+        p->age = p->age + 1
+
+    /// Returns a description of the given person \`p\`.
+    pub def describe(p: Person[r]): String \\ r =
+        "\${p->name} is \${p->age} years old"
+}`;
 
 export const purityReflectionExample = `///
 /// We can inspect the purity of a function argument.
@@ -263,6 +300,19 @@ def main(): Unit \\ IO =
         case ex: IOException =>
             println("Unable to write file")
     }`;
+
+export const terminationExample = `enum Tree[a] {
+    case Leaf(a)
+    case Node(Tree[a], Tree[a])
+}
+
+/// The compiler verifies that \`size\` is structurally
+/// recursive and hence terminates on all inputs.
+@Terminates
+def size(t: Tree[Int32]): Int32 = match t {
+    case Tree.Leaf(_)    => 1
+    case Tree.Node(l, r) => size(l) + size(r)
+}`;
 
 export const datalogExample = `def reachable(g: List[(String, Int32, String)], minSpeed: Int32): List[(String, String)] =
     let facts = inject g into Road/3;

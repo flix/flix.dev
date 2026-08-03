@@ -9,7 +9,9 @@ import {
   purityExample,
   polyEffectsExample,
   effectsExample,
+  libraryEffectsExample,
   regionExample,
+  structsExample,
   purityReflectionExample,
   parallelismExample,
   concurrencyExample,
@@ -20,6 +22,7 @@ import {
   monadicForExample,
   applicativeForExample,
   javaInteropExample,
+  terminationExample,
   datalogExample,
   latticeExample,
 } from "../lib/indexExamples.js";
@@ -88,6 +91,9 @@ const vscodeSlides = [
 
     <div class="row mb-4">
       <div class="col-md-6">
+        <CodeSnippet code={adtExample} />
+      </div>
+      <div class="col-md-6">
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title">
@@ -101,15 +107,9 @@ const vscodeSlides = [
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <CodeSnippet code={adtExample} />
-      </div>
     </div>
 
     <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={recordExample} />
-      </div>
       <div class="col-md-6">
         <div class="card border-0">
           <div class="card-body">
@@ -119,9 +119,15 @@ const vscodeSlides = [
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <CodeSnippet code={recordExample} />
+      </div>
     </div>
 
     <div class="row mb-4">
+      <div class="col-md-6">
+        <CodeSnippet code={purityExample} />
+      </div>
       <div class="col-md-6">
         <div class="card border-0">
           <div class="card-body">
@@ -137,15 +143,9 @@ const vscodeSlides = [
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <CodeSnippet code={purityExample} />
-      </div>
     </div>
 
     <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={polyEffectsExample} />
-      </div>
       <div class="col-md-6">
         <div class="card border-0">
           <div class="card-body">
@@ -161,9 +161,15 @@ const vscodeSlides = [
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <CodeSnippet code={polyEffectsExample} />
+      </div>
     </div>
 
     <div class="row mb-4">
+      <div class="col-md-6">
+        <CodeSnippet code={effectsExample} />
+      </div>
       <div class="col-md-6">
         <div class="card border-0">
           <div class="card-body">
@@ -178,7 +184,7 @@ const vscodeSlides = [
               handlers enable program reasoning, modularity, and testability.
             </p>
             <p>
-              For example, the program on the right expresses a <code
+              For example, the program on the left expresses a <code
                 >greeting</code
               > function that is pure modulo the current time of the day. In <code
                 >main</code
@@ -190,12 +196,42 @@ const vscodeSlides = [
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row mb-4">
       <div class="col-md-6">
-        <CodeSnippet code={effectsExample} />
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Library Effects</h4></div>
+            <p>
+              The Flix Standard Library comes with a rich collection of
+              built-in effects, including <code>Clock</code>, <code>Console</code
+              >, <code>Env</code>, <code>FileSystem</code>, <code>Http</code>, <code
+                >Logger</code
+              >, <code>Process</code>, and <code>Random</code>.
+            </p>
+            <p>
+              Every library effect has a default handler, hence programs can
+              use them without any handler boilerplate.
+            </p>
+            <p>
+              Library effects support composable middleware: HTTP requests can
+              be configured with retries and circuit breakers, and the
+              filesystem can be sandboxed, made read-only, or replaced with an
+              in-memory implementation, e.g. for testing.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <CodeSnippet code={libraryEffectsExample} />
       </div>
     </div>
 
     <div class="row mb-4">
+      <div class="col-md-6">
+        <CodeSnippet code={regionExample} />
+      </div>
       <div class="col-md-6">
         <div class="card border-0">
           <div class="card-body">
@@ -219,8 +255,34 @@ const vscodeSlides = [
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row mb-4">
       <div class="col-md-6">
-        <CodeSnippet code={regionExample} />
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Mutable Structs</h4></div>
+            <p>
+              Flix supports mutable scoped structs. Fields are immutable by
+              default, but can be marked with the <code>mut</code> modifier.
+              Like all mutable memory in Flix, every struct belongs to a
+              region.
+            </p>
+            <p>
+              Struct fields are unboxed, i.e. primitive fields do not require
+              indirection. This makes structs a memory efficient building
+              block for higher-level data structures, e.g. mutable lists,
+              stacks, and queues.
+            </p>
+            <p>
+              The fields of a struct are only visible from within its
+              companion module, providing compiler-enforced encapsulation.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <CodeSnippet code={structsExample} />
       </div>
     </div>
 
@@ -466,6 +528,31 @@ const vscodeSlides = [
     </div>
 
     <div class="row mb-4">
+      <div class="col-md-6">
+        <CodeSnippet code={terminationExample} />
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Termination Checking</h4></div>
+            <p>
+              Flix supports the <code>@Terminates</code> annotation, which
+              asks the compiler to verify that a function is structurally
+              recursive &mdash; and hence guaranteed to terminate on all
+              inputs.
+            </p>
+            <p>
+              The compiler checks that every recursive call is on a strict
+              substructure of a formal parameter. The check supports tree
+              recursion, functions with multiple parameters, local
+              definitions, and higher-order functions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
       <div class="col-md-12">
         <div class="card border-0">
           <div class="card-body">
@@ -541,6 +628,7 @@ const vscodeSlides = [
           <li>extensible records</li>
           <li>parametric polymorphism</li>
           <li>traits (i.e. type classes)</li>
+          <li>automatic trait derivation</li>
           <li>higher-kinded types</li>
           <li>associated types and effects</li>
         </ul>
@@ -548,6 +636,7 @@ const vscodeSlides = [
       <div class="col-md-4">
         <ul>
           <li>effect polymorphism + subeffecting</li>
+          <li>default effect handlers</li>
           <li>purity reflection</li>
           <li>CSP-style concurrency</li>
           <li>buffered &amp; unbuffered channels</li>
@@ -561,6 +650,7 @@ const vscodeSlides = [
         <ul>
           <li>monadic forM expressions</li>
           <li>applicative forA expressions</li>
+          <li>string interpolation</li>
           <li>expression holes</li>
           <li>compilation to JVM bytecode</li>
           <li>full tail call elimination</li>
@@ -849,6 +939,12 @@ const vscodeSlides = [
               <td>flix</td>
               <td>utop</td>
               <td>ghci</td>
+            </tr>
+            <tr>
+              <td>Test Framework</td>
+              <td>flix</td>
+              <td>OUnit, alcotest</td>
+              <td>HUnit, tasty</td>
             </tr>
             <tr>
               <td>Build Tool</td>
