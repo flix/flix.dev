@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Open Graph card for flix.dev, rendered to public/og.png at 1200x630.
+
+  Rasterize with a renderer that has Open Sans available, e.g.:
+      rsvg-convert design/og.svg -w 1200 -h 630 -o public/og.png
+  Open Sans is not a system font on most machines; it ships with the
+  @fontsource/open-sans dependency as .woff, which fontconfig cannot read
+  directly. Convert it to .ttf first (fontTools reads WOFF natively) and point
+  FONTCONFIG_FILE at a config listing that directory.
+
+  The F mark is Ubuntu Bold Italic, matching the favicon's italic letterform.
+  It is outlined rather than set as live text, so the tile needs no font
+  installed and cannot shift if a renderer substitutes. Sized so its cap height
+  is 62.5% of the tile, the same ratio the favicon uses.
+
+  Code tokens use the exact colors src/components/InlineEditor.astro produces
+  for this line, except { Console }, which is tinted #CC5500 to draw the eye to
+  the effect. The `\` stays black so it reads as syntax, not part of the effect.
+
+  The code line is positioned with explicit per-token x offsets because the
+  effect name needs its own fill. Offsets assume a monospace advance of
+  0.6001 em (Monaco, first in the site's code font stack) at 42px,
+  i.e. 25.20px per character. Editing the code text means recomputing them.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect width="14" height="630" fill="#cf4647"/>
+
+  <rect x="88" y="76" width="104" height="104" rx="22" fill="#cf4647"/>
+  <path transform="translate(104.05 160.57) scale(0.09400 -0.09400)"
+        d="M75 0 241 693H690L658 564H365L330 416H589L558 287H299L230 0Z" fill="#ffffff"/>
+
+  <text x="216" y="157" font-family="Open Sans" font-weight="700" font-size="82"
+        fill="#212529">Flix</text>
+
+  <text x="88" y="258" font-family="Open Sans" font-weight="400" font-size="38"
+        fill="#495057" xml:space="preserve">A powerful <tspan font-weight="700"
+        fill="#28a745">effect-oriented</tspan> programming language</text>
+
+  <rect x="88" y="320" width="1024" height="168" rx="10" fill="#f7f7f7"
+        stroke="#e6e6e6" stroke-width="1"/>
+  <text x="132.0" y="418" font-family="Monaco, Menlo, monospace" font-size="42" fill="#AF00DB" xml:space="preserve">def</text>
+  <text x="207.6" y="418" font-family="Monaco, Menlo, monospace" font-size="42" fill="#000000" xml:space="preserve"> helloWorld(): </text>
+  <text x="585.7" y="418" font-family="Monaco, Menlo, monospace" font-size="42" fill="#267F99" xml:space="preserve">Unit</text>
+  <text x="686.5" y="418" font-family="Monaco, Menlo, monospace" font-size="42" fill="#000000" xml:space="preserve"> \ </text>
+  <text x="762.1" y="418" font-family="Monaco, Menlo, monospace" font-size="42" fill="#CC5500" xml:space="preserve">{ Console }</text>
+
+  <text x="1112" y="560" font-family="Open Sans" font-weight="400" font-size="30"
+        fill="#6c757d" text-anchor="end">flix.dev</text>
+</svg>
