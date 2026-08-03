@@ -1,5 +1,6 @@
 ---
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fontsource/open-sans/400.css';
 
 const { title } = Astro.props;
 const currentPath = Astro.url.pathname;
@@ -26,9 +27,6 @@ import '../styles/global.css';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <link rel="canonical" href={canonicalURL} />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="/favicon.png" rel="icon">
   </head>
   <body>
