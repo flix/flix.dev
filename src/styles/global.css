@@ -4,6 +4,12 @@ body {
     background-color: #efefef;
 }
 
+/* Bootstrap sets headings to 500. Now that the variable font actually has
+   that weight, keep headings at the regular weight instead. */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+}
+
 h1 {
     font-size: 2rem;
     margin-bottom: 0.75rem;
