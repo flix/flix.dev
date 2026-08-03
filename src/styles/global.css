@@ -7,19 +7,20 @@ body {
 h1 {
     font-size: 2rem;
     margin-bottom: 0.75rem;
-    text-align: left;
 }
 
 h2 {
     font-size: 1.7rem;
     margin-bottom: 0.75rem;
-    text-align: left;
 }
 
 h3 {
     font-size: 1.6rem;
     margin-bottom: 0.75rem;
-    text-align: left;
+}
+
+h4 {
+    font-size: 1.5rem;
 }
 
 p:last-child {
@@ -49,15 +50,15 @@ p:last-child {
     padding: 1em 1.75em;
     background-color: #f7f7f7;
     overflow-x: auto;
+}
 
-    pre,
-    code {
-      font-size: 12px;
-      font-family:
+.inline-editor-code pre,
+.inline-editor-code code {
+    font-size: 12px;
+    font-family:
         Monaco, Menlo, "Ubuntu Mono", Consolas, "Source Code Pro",
         source-code-pro, monospace;
-      line-height: 16px;
-    }
+    line-height: 16px;
 }
 
 .inline-editor-code pre {
@@ -79,14 +80,6 @@ p:last-child {
 
 .card-title {
     font-size: 1.2rem;
-}
-
-h4 {
-    font-size: 1.5 rem;
-}
-
-.w-33 {
-    width: 33%;
 }
 
 .carousel-caption {
