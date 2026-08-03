@@ -53,19 +53,43 @@ import '../styles/global.css';
     <div class="container page">
       <nav class="navbar navbar-dark bg-info navbar-expand-md menu shadow-sm mb-4">
         <div class="container-fluid">
-          <ul class="navbar-nav mr-lg-auto">
-            {navLinks.map(({ href, label }) => (
-              <li class="nav-item pl-1 pr-1">
-                <a class={`nav-link${currentPath === href ? " active font-weight-bold" : ""}`} href={href}>
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <button
+            class="navbar-toggler"
+            type="button"
+            aria-controls="main-nav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="main-nav">
+            <ul class="navbar-nav mr-lg-auto">
+              {navLinks.map(({ href, label }) => (
+                <li class="nav-item pl-1 pr-1">
+                  <a class={`nav-link${currentPath === href ? " active font-weight-bold" : ""}`} href={href}>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </nav>
 
       <slot />
     </div>
+
+    <script>
+      // Bootstrap's collapse JS needs jQuery, which the site does not load. Its
+      // CSS hides .collapse:not(.show) below the md breakpoint, so this script
+      // only toggles that class. Above md, .navbar-collapse is display:flex
+      // !important, so a stale .show is harmless when resizing back up.
+      const toggler = document.querySelector<HTMLButtonElement>(".navbar-toggler");
+      const target = document.getElementById("main-nav");
+      toggler?.addEventListener("click", () => {
+        const open = target?.classList.toggle("show") ?? false;
+        toggler.setAttribute("aria-expanded", String(open));
+      });
+    </script>
   </body>
 </html>
