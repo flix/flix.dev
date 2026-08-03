@@ -1,3 +1,16 @@
+/* Cross-fade same-origin navigations instead of flashing white. Browsers
+   without cross-document view transitions (e.g. Firefox) ignore this and
+   keep plain full-page loads. */
+@view-transition {
+    navigation: auto;
+}
+
+@media (prefers-reduced-motion) {
+    @view-transition {
+        navigation: none;
+    }
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     overflow-y: scroll;
@@ -30,6 +43,9 @@ p:last-child {
 .menu {
     margin-left: -15px;
     margin-right: -15px;
+    /* The navbar is identical on every page; naming it lifts it out of the
+       root cross-fade so it holds still during transitions. */
+    view-transition-name: navbar;
 }
 
 .page {
