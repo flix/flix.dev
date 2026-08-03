@@ -214,9 +214,8 @@ import Question from "../components/FAQ/Question.astro";
     <QA>
       <Question> Why does the website require JavaScript? </Question>
       <div>
-        We built the website using the popular React framework. Using React was
-        easy. Ultimately, we want to spend our time writing compilers, not
-        writing websites.
+        It no longer does. Well, almost: the carousel spins better with
+        JavaScript, doesn't it?
       </div>
     </QA>
 
@@ -226,9 +225,8 @@ import Question from "../components/FAQ/Question.astro";
         the website without that bloat, I wonder what the language is like?
       </Question>
       <div>
-        Indeed, if your computer is too old to run a modern browser that
-        supports JavaScript then probably your computer is too old to run a
-        modern JVM that supports Flix. Sorry.
+        Good news: the website is now static HTML and loads fine without
+        JavaScript. You can even browse it with <code>curl</code>.
       </div>
     </QA>
 
@@ -236,7 +234,7 @@ import Question from "../components/FAQ/Question.astro";
       <Question>"This site requires JavaScript"</Question>
       <div>
         <p>
-          People who have criticized the website for using JavaScript: <a
+          People who criticized the website for using JavaScript: <a
             href="https://news.ycombinator.com/item?id=25516097">[1]</a
           >, <a href="https://news.ycombinator.com/item?id=38419909">[2]</a>, <a
             href="https://news.ycombinator.com/item?id=38420198">[3]</a
@@ -247,10 +245,12 @@ import Question from "../components/FAQ/Question.astro";
         </p>
 
         <p>
-          People who have offered to help refactor the site to use static html: <b
-            >0</b
+          People who have offered to help refactor the site to use static html: <a
+            href="https://github.com/flix/flix.dev/pull/165"><b>1</b></a
           >.
         </p>
+
+        <p>People who can now complain about the CSS: everyone.</p>
       </div>
     </QA>
 
