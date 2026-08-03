@@ -1,0 +1,108 @@
+---
+interface Props {
+  kind: "value" | "principle" | "abandoned";
+  number?: number;
+  name: string;
+  id: string;
+}
+
+const { kind, number, name, id } = Astro.props;
+
+const label =
+  kind === "value" ? `Value ${number}` :
+  kind === "principle" ? `Principle ${number}` :
+  "Abandoned Principle";
+---
+
+<article class="paper-entry" id={id}>
+  <div class="statement">
+    <a class="entry-anchor" href={`#${id}`}><strong>{label} ({name}).</strong></a>
+    <slot name="statement" />
+  </div>
+  {Astro.slots.has("rationale") && (
+    <div class="part">
+      <span class="part-label">Rationale.</span>
+      <slot name="rationale" />
+    </div>
+  )}
+  {Astro.slots.has("discussion") && (
+    <div class="part">
+      <span class="part-label">Discussion.</span>
+      <slot name="discussion" />
+    </div>
+  )}
+  {Astro.slots.has("hypothesis") && (
+    <div class="part">
+      <span class="part-label">Hypothesis.</span>
+      <slot name="hypothesis" />
+    </div>
+  )}
+  {Astro.slots.has("limitations") && (
+    <div class="part">
+      <span class="part-label">Limitations.</span>
+      <slot name="limitations" />
+    </div>
+  )}
+  {Astro.slots.has("footnotes") && (
+    <aside class="entry-footnotes">
+      <slot name="footnotes" />
+    </aside>
+  )}
+</article>
+
+<style>
+  .paper-entry {
+    margin-bottom: 2.5rem;
+  }
+
+  .statement {
+    font-style: italic;
+  }
+
+  .entry-anchor {
+    font-style: normal;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .entry-anchor:hover {
+    text-decoration: underline;
+  }
+
+  .part {
+    margin-top: 0.75rem;
+  }
+
+  .part-label {
+    font-style: italic;
+  }
+
+  .part :global(p) {
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  .part :global(ul),
+  .part :global(ol) {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .part :global(.code-snippet-frame) {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .entry-footnotes {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #ddd;
+    font-size: 85%;
+    color: #555;
+  }
+
+  .entry-footnotes :global(p) {
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+  }
+</style>
