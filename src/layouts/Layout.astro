@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const { title } = Astro.props;
 const currentPath = Astro.url.pathname;
+const canonicalURL = new URL(currentPath, Astro.site);
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -24,6 +25,7 @@ import '../styles/global.css';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <link rel="canonical" href={canonicalURL} />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="/favicon.png" rel="icon">
   </head>
