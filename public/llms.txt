@@ -1,0 +1,29 @@
+# Flix
+
+> Flix is a principled effect-oriented functional, imperative, and logic programming language developed at Aarhus University and by a community of open source contributors. Flix runs on the Java Virtual Machine and features a polymorphic type and effect system, purity tracking, structured concurrency, and first-class Datalog constraints.
+
+## Documentation
+
+- [Programming Flix](https://doc.flix.dev/): The official book on how to program in Flix.
+- [Standard Library API](https://api.flix.dev/): API reference for the Flix standard library.
+
+## Website
+
+- [Home](https://flix.dev/): Overview of the Flix language and its features.
+- [Get Started](https://flix.dev/get-started/): Install the Visual Studio Code extension, try the online playground, or install the compiler locally.
+- [Documentation](https://flix.dev/documentation/): Entry point to the book, API reference, research literature, and community resources.
+- [FAQ](https://flix.dev/faq/): Common questions about Flix.
+- [Design Principles](https://flix.dev/principles/): The design principles behind Flix and the rationale for its language, tooling, and library decisions.
+- [Visual Studio Code Extension](https://flix.dev/vscode/): The Flix Visual Studio Code extension with diagnostics, auto-completion, hovers, and more.
+- [Contribute](https://flix.dev/contribute/): How to contribute to Flix, which is open source under the Apache 2.0 license.
+
+## Tools
+
+- [Online Playground](https://play.flix.dev/): Run Flix programs in the browser.
+- [Compiler Performance](https://perf.flix.dev/): Dashboard tracking the performance of the Flix compiler over time.
+
+## Community
+
+- [GitHub](https://github.com/flix/flix): Source code, issues, and pull requests for the Flix compiler.
+- [Zulip](https://flix.zulipchat.com/): Chat with the Flix community and developers.
+- [Blog](https://blog.flix.dev/): Posts about programming languages, language design, compilers, and type and effect systems.
