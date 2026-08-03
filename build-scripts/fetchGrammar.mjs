@@ -1,4 +1,6 @@
-const URL = `https://raw.githubusercontent.com/flix/textmate/refs/heads/master/syntaxes/flix.tmLanguage.json`;
+// Pinned to a specific commit of flix/textmate for reproducible builds. Bump the SHA to pick up grammar changes.
+const COMMIT = 'befa883ecec4b0c84e436bdd176dec5475e584ab';
+const URL = `https://raw.githubusercontent.com/flix/textmate/${COMMIT}/syntaxes/flix.tmLanguage.json`;
 const DEST = 'src/grammars/flix.tmLanguage.json';
 
 import { existsSync } from 'node:fs';

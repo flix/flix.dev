@@ -8,7 +8,6 @@
 .DS_Store
 
 # generated
-/src/data
 .astro/
 
 # fetched on build from external repo
