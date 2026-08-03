@@ -57,19 +57,19 @@ p:last-child {
     font-size: 1.35rem;
 }
 
-.inline-editor-frame {
+.code-snippet-frame {
     margin-top: 1em;
     margin-bottom: 1.5em;
 }
 
-.inline-editor-code {
+.code-snippet-code {
     padding: 1em 1.75em;
     background-color: #f7f7f7;
     overflow-x: auto;
 }
 
-.inline-editor-code pre,
-.inline-editor-code code {
+.code-snippet-code pre,
+.code-snippet-code code {
     font-size: 12px;
     font-family:
         Monaco, Menlo, "Ubuntu Mono", Consolas, "Source Code Pro",
@@ -77,7 +77,7 @@ p:last-child {
     line-height: 14px;
 }
 
-.inline-editor-code pre {
+.code-snippet-code pre {
     margin: 0;
     background: transparent !important;
 }
