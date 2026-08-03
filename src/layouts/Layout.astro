@@ -2,7 +2,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fontsource/open-sans/400.css';
 
-const { title } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
 const currentPath = Astro.url.pathname;
 const canonicalURL = new URL(currentPath, Astro.site);
 
@@ -26,6 +31,7 @@ import '../styles/global.css';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <link href="/favicon.png" rel="icon">
   </head>
