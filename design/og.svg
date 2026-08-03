@@ -9,6 +9,11 @@
   directly. Convert it to .ttf first (fontTools reads WOFF natively) and point
   FONTCONFIG_FILE at a config listing that directory.
 
+  The F mark is Ubuntu Bold Italic, matching the favicon's italic letterform.
+  It is outlined rather than set as live text, so the tile needs no font
+  installed and cannot shift if a renderer substitutes. Sized so its cap height
+  is 62.5% of the tile, the same ratio the favicon uses.
+
   Code tokens use the exact colors src/components/InlineEditor.astro produces
   for this line, except { Console }, which is tinted #CC5500 to draw the eye to
   the effect. The `\` stays black so it reads as syntax, not part of the effect.
@@ -23,8 +28,8 @@
   <rect width="14" height="630" fill="#cf4647"/>
 
   <rect x="88" y="76" width="104" height="104" rx="22" fill="#cf4647"/>
-  <text x="140" y="153" font-family="Open Sans" font-weight="700" font-size="68"
-        fill="#ffffff" text-anchor="middle">F</text>
+  <path transform="translate(104.05 160.57) scale(0.09400 -0.09400)"
+        d="M75 0 241 693H690L658 564H365L330 416H589L558 287H299L230 0Z" fill="#ffffff"/>
 
   <text x="216" y="157" font-family="Open Sans" font-weight="700" font-size="82"
         fill="#212529">Flix</text>
