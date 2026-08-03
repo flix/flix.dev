@@ -1,6 +1,10 @@
 ---
 import { Code } from "astro:components";
 import lightPlus from "@shikijs/themes/light-plus";
+interface Props {
+  code: string;
+}
+
 const { code } = Astro.props;
 
 import flixGrammar from "../grammars/flix.tmLanguage.json";
