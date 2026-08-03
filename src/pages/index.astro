@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import InlineEditor from "../components/InlineEditor.astro";
+import Carousel from "../components/Carousel.astro";
 import {
   httpExample,
   adtExample,
@@ -22,6 +23,13 @@ import {
   datalogExample,
   latticeExample,
 } from "../lib/indexExamples.js";
+
+const vscodeSlides = [
+  { src: "/images/vscode1.png", header: "Semantic Highlighting" },
+  { src: "/images/vscode2.png", header: "Hover to Inspect" },
+  { src: "/images/vscode3.png", header: "Highlight References" },
+  { src: "/images/vscode4.png", header: "Inline Errors" },
+];
 ---
 
 <Layout title="The Flix Programming Language">
@@ -798,16 +806,7 @@ import {
         </ul>
       </div>
 
-      <!-- TODO add the rest of images (we need to find a good carousel replacement for Astro) -->
-      <div class="mt-3 ml-4 mr-4 carousel slide">
-        <div class="carousel-inner">
-          <div class="carousel-item active"><img class="d-block w-100" src="/images/vscode1.png" loading="lazy">
-            <div class="carousel-caption d-none d-md-block mb-4">
-              <h3>Semantic Highlighting</h3>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Carousel items={vscodeSlides} class="mt-3 ml-4 mr-4" />
     </div>
 
     <hr class="mb-4" />
