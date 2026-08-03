@@ -11,7 +11,7 @@ const theme = {
   ...lightPlus,
   name: "light-plus-flix",
   tokenColors: [
-    ...lightPlus.tokenColors,
+    ...(lightPlus.tokenColors ?? []),
     { scope: ["keyword", "storage"], settings: { foreground: "#AF00DB" } },
   ],
 };
