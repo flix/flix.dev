@@ -9,3 +9,7 @@
 
 # generated
 /src/data
+.astro/
+
+# fetched on build from external repo
+src/grammars/flix.tmLanguage.json

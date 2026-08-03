@@ -1,0 +1,1367 @@
+---
+import Layout from "../layouts/Layout.astro";
+import InlineEditor from "../components/InlineEditor.astro";
+
+const httpExample = `/// Demonstrates composing multiple HTTP middleware
+/// via \`with\` clauses. Stacks base URL, default
+/// headers, retry, circuit breaker, and logging.
+/// Each \`with\` wraps the
+/// preceding block. The \`Http\` and \`Logger\` effects
+/// propagate to \`main\` and are handled automatically
+/// via their default handlers. Relative paths are
+/// resolved against the base URL; absolute URLs
+/// bypass it.
+def main(): Unit \\ { Clock, Http, Logger, IO } =
+    let defaultHeaders = Map#{
+        "Accept"        => List#{"application/json"},
+        "Authorization" => List#{"Bearer tok123"}
+    };
+    run {
+        let urls = List#{"/api/users", "/api/posts"};
+        foreach (url <- urls) {
+            match Http.get(url) {
+                case Ok(res) => println("\${url} -> \${status(res)}")
+                case Err(err) => println("\${url} -> \${err}")
+            }
+        };
+        match Http.get("https://notfound.flix.dev/") {
+            case Ok(res) => println("notfound -> \${status(res)}")
+            case Err(err) => println("notfound -> \${err}")
+        }
+    } with Http.withBaseUrl("https://flix.dev")
+      with Http.withDefaultHeaders(defaultHeaders)
+      with Http.withRetry(
+        Retry.linear(maxRetries = 2, delay = milliseconds(100)))
+      with Http.withCircuitBreaker(
+        failureThreshold = 3, cooldown = seconds(5))
+      with Http.withLogging`;
+
+const adtExample = `enum Shape {
+    case Circle(Int32),
+    case Square(Int32),
+    case Rectangle(Int32, Int32)
+}
+
+def area(s: Shape): Int32 = match s {
+    case Circle(r)       => 3 * (r * r)
+    case Square(w)       => w * w
+    case Rectangle(h, w) => h * w
+}`;
+
+const recordExample = `def origin(): (Int32, Int32) = (0, 0)
+
+def oneByOne():  {w = Int32, h = Int32} = {w = 1, h = 1}
+
+def twoByFour(): {w = Int32, h = Int32} = {w = 2, h = 4}
+
+def area(rect: {w = Int32, h = Int32 | r}): Int32 =
+    rect#w * rect#h
+
+def f(): Int32 = area({h = 1, color = "Blue", w = 2})`;
+
+const purityExample = `/// A pure function is annotated with \`\\ {}\`.
+def inc1(x: Int32): Int32 \\ {} = x + 1
+
+/// An impure function is annotated with \`\\ IO\`.
+def inc2(x: Int32): Int32 \\ IO =
+    println("x = \${x}");
+    x + 1
+
+def f(): Int32 \\ IO =     // f is impure
+    let r1 = inc1(123);   // pure
+    let r2 = inc2(456);   // impure
+    r1 + r2               // pure`;
+
+const polyEffectsExample = `///
+/// The purity of \`map\` depends on the purity of \`f\`.
+///
+def map(f: a -> b \\ ef, l: List[a]): List[b] \\ ef =
+    match l {
+        case Nil     => Nil
+        case x :: xs => f(x) :: map(f, xs)
+    }`;
+
+const effectsExample = `import java.time.LocalDateTime
+
+eff HourOfDay {
+    def getCurrentHour(): Int32
+}
+
+def greeting(): String \\ {HourOfDay} = 
+    let h = HourOfDay.getCurrentHour();
+    if (h <= 12) "Good morning"
+    else if (h <= 18) "Good afternoon"
+    else "Good evening"
+
+def main(): Unit \\ IO = 
+    run {
+        println(greeting())
+    } with handler HourOfDay {
+        def getCurrentHour(_, resume) = 
+            let dt = LocalDateTime.now();
+            resume(dt.getHour())
+    }`;
+
+const regionExample = `///
+/// We can implement a *pure* \`sort\` function which
+/// internally converts an immutable list to an array,
+/// sorts the array in-place, and then converts it
+/// back to an immutable list.
+///
+def sort(l: List[a]): List[a] \\ {} with Order[a] =
+    region r {
+        List.toArray(r,l) !> Array.sort! |> Array.toList
+    }
+
+///
+/// We can also write a *pure* \`toString\` function which
+/// internally uses a mutable StringBuilder.
+///
+def toString(l: List[a]): String with ToString[a] =
+    region r {
+        let sb = StringBuilder.new(r);
+        foreach (x <- l) {
+            StringBuilder.appendString!("\${x} :: ", sb)
+        };
+        StringBuilder.appendString!("Nil", sb);
+        StringBuilder.toString(sb)
+    }`;
+
+const purityReflectionExample = `///
+/// We can inspect the purity of a function argument.
+///
+def inspect(f: a -> b \\ ef): Unit \\ IO =
+    reifyEff(f) {
+        case Pure(g) => println("f is pure")
+        case _       => println("f is not pure")
+    }
+
+///
+/// We can use purity information to safely switch between
+/// lazy (or parallel) evaluation. In this case, if f is
+/// pure then perform the map operation lazily.
+///
+def map(f: a -> b \\ ef, l: LazyList[a]): LazyList[b] \\ ef =
+    reifyEff(f) {
+        case Pure(g) => mapL(g, l)
+        case _       => mapE(f, l)
+    }`;
+
+const parallelismExample = `///
+/// A parallel implementation of the List.map function.
+///
+def parMap(f: a -> b, l: List[a]): List[b] = match l {
+    case Nil     => Nil
+    case x :: xs =>
+        // Evaluate f(x) and parMap(f, xs) in parallel.
+        par (r <- f(x); rs <- parMap(f, xs))
+            yield r :: rs
+}`;
+
+const concurrencyExample = `def main(): Unit \\ IO =
+    region rc {
+        // A channel which can buffer one message.
+        let (tx, rx) = Channel.buffered(rc, 1);
+        spawn say("Meow!", tx) @ rc; // thread 1
+        spawn say("Woof!", tx) @ rc; // thread 2
+        Channel.recv(rx) |> println
+    } // Execution is blocked until both threads finish.
+
+/// Sends the string s on the given channel tx.
+def say(s: String, tx: Sender[String, r]): Unit \\ r =
+    Channel.send(s, tx)`;
+
+const traitsExample = `trait Eq[a] {
+    def eq(x: a, y: a): Bool
+    def neq(x: a, y: a): Bool = not Eq.eq(x, y)
+}
+
+instance Eq[(a1, a2)] with Eq[a1], Eq[a2] {
+    def eq(t1: (a1, a2), t2: (a1, a2)): Bool =
+        let (x1, x2) = t1;
+        let (y1, y2) = t2;
+        x1 == y1 and x2 == y2
+}`;
+
+const hktExample = `trait Foldable[t : Type -> Type] {
+
+    ///
+    /// Left-associative fold of a structure.
+    ///
+    def foldLeft(f: (b, a) -> b \\ ef, s: b, t: t[a]): b \\ ef
+
+    ///
+    /// Right-associative fold of a structure.
+    ///
+    def foldRight(f: (a, b) -> b \\ ef, s: b, t: t[a]): b \\ ef
+
+}`;
+
+const associatedTypesExample = `trait Coll[a] {
+
+    /// The element type of the collection.
+    type Elm
+
+    /// Converts the collection to a list of its elements.
+    def toList(coll: a): List[Coll.Elm[a]]
+}
+
+instance Coll[Map[k, v]] {
+    type Elm = (k, v)
+
+    def toList(m: Map[k, v]): List[(k, v)] = ...
+}`;
+
+const associatedEffectsExample = `trait Coll[a] {
+
+    /// The element type of the collection.
+    type Elm
+
+    /// The effect associated with the collection.
+    type Aef
+
+    /// Converts the collection to a list of its elements.
+    def toList(coll: a): List[Coll.Elm[a]] \\ Coll.Aef[a]
+}
+
+instance Coll[MutMap[k, v, r]] {
+    type Elm = (k, v)
+    type Aef = r
+
+    def toList(m: Map[k, v]): List[(k, v)] \\ r = ...
+}`;
+
+const monadicForExample = `def divide(x: Int32, y: Int32): Option[Int32] =
+    if (y == 0) None else Some(x / y)
+
+def f(): Option[Int32] =
+    forM (
+        x <- divide(5, 2);
+        y <- divide(x, 8);
+        z <- divide(9, y)
+    ) yield x + y + z`;
+
+const applicativeForExample = `def validateUser(s: String): Validation[Err, String] = ...
+
+def validatePass(s: String): Validation[Err, String] = ...
+
+def conn(u: String, p: String): Validation[Err, Connection] =
+    forA (
+        user <- validateUser(u);
+        pass <- validatePass(p)
+    ) yield Connection(user, pass)`;
+
+const javaInteropExample = `import java.io.File
+import java.io.FileWriter
+import java.io.IOException
+
+def main(): Unit \\ IO =
+    let f = new File("foo.txt");
+    try {
+        let w = new FileWriter(f);
+        w.append("Hello World\\n");
+        w.close()
+    } catch {
+        case ex: IOException =>
+            println("Unable to write file")
+    }`;
+
+const datalogExample = `def reachable(g: List[(String, Int32, String)], minSpeed: Int32): List[(String, String)] =
+    let facts = inject g into Road/3;
+    let rules = #{
+        Path(x, y) :- Road(x, maxSpeed, y), if maxSpeed >= minSpeed.
+        Path(x, z) :- Path(x, y), Road(y, maxSpeed, z), if maxSpeed >= minSpeed.
+    };
+    query facts, rules select (src, dst) from Path(src, dst) |> Foldable.toList`;
+
+const latticeExample = `let p = #{
+    /// Parts and the components they depend on.
+    PartDepends("Car",       "Chassis").
+    PartDepends("Car",       "Engine").
+    PartDepends("Engine",    "Piston").
+    PartDepends("Engine",    "Ignition").
+
+    /// Time required to assemble a part from its components.
+    AssemblyTime("Car",     7).
+    AssemblyTime("Engine",  2).
+
+    /// Expected delivery date for certain components.
+    DeliveryDate("Chassis";  2).
+    DeliveryDate("Piston";   1).
+    DeliveryDate("Ignition"; 7).
+
+    /// A part is ready when it is delivered.
+    ReadyDate(part; date) :-
+        DeliveryDate(part; date).
+
+    /// Or when it can be assembled from its components.
+    ReadyDate(part; assemblyTime + componentDate) :-
+        PartDepends(part, component),
+        AssemblyTime(part, assemblyTime),
+        ReadyDate(component; componentDate).
+};
+
+// Computes the delivery date for each component.
+let r = query p select (c, d) from ReadyDate(c; d)`;
+---
+
+<Layout title="The Flix Programming Language">
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <h1>Flix &mdash;</h1>
+        <h2 class="motto">
+          A powerful <span class="font-weight-bold text-success"
+            >effect-oriented</span
+          > programming language
+        </h2>
+        <p class="text-justify">
+          Flix is a principled effect-oriented functional, imperative, and logic
+          programming language developed at <a href="https://cs.au.dk/"
+            >Aarhus University</a
+          > and by a community of <a
+            href="https://github.com/flix/flix/graphs/contributors"
+            >open source contributors</a
+          >.
+        </p>
+        <h4>Why effect-oriented? And why Flix?</h4>
+        <p class="text-justify">
+          <span class="font-italic">Why Effects?</span> Effect systems represent the
+          next major evolution in statically typed programming languages. By explicitly
+          modeling side effects, effect-oriented programming enforces modularity and
+          helps program reasoning. User-defined effects and handlers allow programmers
+          to implement their own control structures.
+        </p>
+        <p class="text-justify">
+          <span class="font-italic">Why Flix?</span> We claim that of all the upcoming
+          effect-oriented programming languages, Flix offers the most <strong
+            >complete language implementation</strong
+          >, the most <strong>extensive standard library</strong>, the most <strong
+            >detailed documentation</strong
+          >, and the <strong>best tool support.</strong>
+        </p>
+        <p class="text-justify">
+          Moreover, Flix builds on proven programming language technology,
+          including: <strong>algebraic data types and pattern matching</strong>, <strong
+            >extensible records</strong
+          >, <strong>traits</strong>, <strong>higher-kinded types</strong>, <strong
+            >associated types and effects</strong
+          >, <strong>structured concurrency</strong>, and more.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={httpExample} />
+      </div>
+    </div>
+
+    <hr class="mb-3" />
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title">
+              <h4>Algebraic Data Types and Pattern Matching</h4>
+            </div>
+            <p>
+              Algebraic data types and pattern matching are the bread-and-butter
+              of functional programming and are supported by Flix with minimal
+              fuss.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={adtExample} />
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <InlineEditor code={recordExample} />
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Tuples and Records</h4></div>
+            <p>Flix has built-in support for tuples and records.</p>
+            <p>Records use structural typing and are extensible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Purity and Impurity</h4></div>
+            <p>
+              Flix precisely tracks the purity of every expression in a program.
+            </p>
+            <p>
+              The Flix compiler provides an ironclad guarantee that if an
+              expression is pure then it cannot have side-effects and it is
+              referentially transparent.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={purityExample} />
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <InlineEditor code={polyEffectsExample} />
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Polymorphic Effects</h4></div>
+            <p>
+              Flix is able to track purity through higher-order effect
+              polymorphic functions.
+            </p>
+            <p>
+              For example, Flix knows that the purity of <code>List.map</code> depends
+              on the purity of its function argument <code>f</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Algebraic Effects</h4></div>
+            <p>
+              Flix supports algebraic effects, i.e. user-defined effects and
+              handlers. In particular, Flix supports multi-shot resumptions.
+            </p>
+            <p>
+              Effect-oriented programming, with algebraic effects, allow
+              programmers to write pure functions modulo effects. Effect
+              handlers enable program reasoning, modularity, and testability.
+            </p>
+            <p>
+              For example, the program on the right expresses a <code
+                >greeting</code
+              > function that is pure modulo the current time of the day. In <code
+                >main</code
+              > we call the function and handle the <code>HourOfDay</code> effect
+              by getting the real-world time from Java's <code
+                >LocalDateTime</code
+              >.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={effectsExample} />
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Region-based Local Mutation</h4></div>
+            <p>
+              Flix supports region-based local mutation, which makes it possible
+              to implement <i>pure</i> functions that internally uses mutable state
+              and destructive operations, as long as these operations are confined
+              to the region.
+            </p>
+            <p>
+              We can use local mutation when it is more natural to write a
+              function using mutable data and in a familiar imperative-style
+              while still remaining pure to the outside world.
+            </p>
+            <p>
+              We can also use local mutation when it is more efficient to use
+              mutable data structures, e.g. when implementing a sorting
+              algorithm.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={regionExample} />
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <InlineEditor code={purityReflectionExample} />
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Purity Reflection</h4></div>
+            <p>
+              Flix supports a meta-programming construct that enables
+              higher-order functions to inspect the purity of a function
+              argument and use that information to vary their behavior.
+            </p>
+            <p>
+              For example, the <code>DelayList.map</code> function varies its behavior
+              between eager and lazy evaluation depending on the purity of its function
+              argument.
+            </p>
+            <p>
+              We can exploit purity reflection to selectively use lazy or
+              parallel evaluation inside a library without changing the
+              semantics from the point-of-view of the clients.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Parallelism</h4></div>
+            <p>
+              Flix makes it simple and easy to evaluate <i>pure</i> code in parallel.
+            </p>
+            <p>
+              For example, the code on the right shows a parallel implementation
+              of the <code>List.map</code> function using the <code>par</code> construct.
+            </p>
+            <p>
+              Internally, the <code>par</code> construct uses light-weight <code
+                >VirtualThread</code
+              >s.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={parallelismExample} />
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <InlineEditor code={concurrencyExample} />
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Structured Concurrency</h4></div>
+            <p>
+              Flix supports <a
+                href="https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/"
+                >structured concurrency</a
+              >.
+            </p>
+            <p>
+              For example, the code on the left shows the creation of a fresh
+              region named <code>rc</code> in which two threads are spawned.
+            </p>
+            <p>
+              Importantly, control-flow does not leave the region before <i
+                >both</i
+              > threads have terminated. Hence the two threads cannot outlive the
+              lifetime of their enclosing region.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Traits</h4></div>
+            <p>
+              Flix uses traits to abstract over types that support a common set
+              of operations.
+            </p>
+            <p>
+              For example, the <code>Eq</code> trait captures the notion of equality
+              and is used throughout the standard library.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={traitsExample} />
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <InlineEditor code={hktExample} />
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Higher-Kinded Types</h4></div>
+            <p>
+              Flix supports higher-kinded types making it possible to abstract
+              over type constructors. For example, both <code>Option</code> and <code
+                >List</code
+              > implement <code>Foldable</code>.
+            </p>
+            <p>
+              The Flix standard library ships with many common traits, such as <code
+                >Monoid</code
+              >, <code>Functor</code>, and <code>Foldable</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Associated Types</h4></div>
+            <p>
+              Flix supports associated types, which allow the types in instance
+              signatures to depend on the instance type.
+            </p>
+            <p>
+              The code on the right defines a trait with an associated type <code
+                >Elm</code
+              >, which enables each <code>Coll</code> instance to define its element
+              type.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={associatedTypesExample} />
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <InlineEditor code={associatedEffectsExample} />
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Associated Effects</h4></div>
+            <p>
+              Associated effects allow the effects in trait members to depend on
+              the instance type. This makes it easy to create abstractions over
+              both pure and effectful operations, and mutable and immutable data
+              structures.
+            </p>
+            <p>
+              The code on the left adds an associated effect <code>Aef</code> to the
+              <code> Coll</code> trait, which makes it possible to add instances for
+              mutable collections.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Monadic For-Yield</h4></div>
+            <p>
+              Flix supports a monadic <code>forM</code>-yield construct similar
+              to Scala's
+              <code>for</code>-comprehensions and Haskell's <code>do</code> notation.
+              The <code>forM</code> construct is syntactic sugar for uses of <code
+                >point</code
+              > and <code>flatMap</code> (which are provided by the <code
+                >Monad</code
+              > trait).
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={monadicForExample} />
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <InlineEditor code={applicativeForExample} />
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title"><h4>Applicative For-Yield</h4></div>
+            <p>
+              In addition to the monadic <code>forM</code> expression, Flix supports
+              an applicative <code>forA</code> expression that builds on the <code
+                >Applicative</code
+              > trait. The <code>forA</code> construct makes it simple to write error-handling
+              code which uses the <code>Validation[e, t]</code> data type.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title">
+              <h4>Seamless Java Interoperability</h4>
+            </div>
+            <p>
+              Flix supports seamless Java interoperability, making it possible
+              to reuse code from the Java Standard Library and the Java
+              ecosystem, e.g., via Maven.
+            </p>
+            <p>
+              Java support includes object creation, method invocation,
+              exceptions, and class/interface extension.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={javaInteropExample} />
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title">
+              <h4>First-class Datalog Constraints</h4>
+            </div>
+            <p>
+              Another unique feature of Flix is its embedded Datalog support.
+              Datalog, a powerful logic programming language in its own right,
+              makes it simple and elegant to express many fixpoint problems
+              (including various graph reachability problems):
+            </p>
+            <InlineEditor code={datalogExample} />
+            <p class="card-text mt-3">
+              Datalog constraints are <i>first-class</i> which means that they may
+              be passed to and returned from functions, stored in data structures,
+              composed with other Datalog constraints, and solved. This makes it possible
+              to express families of Datalog programs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
+            <div class="card-title">
+              <h4>Datalog Enriched with Lattice Semantics</h4>
+            </div>
+            <p>
+              Flix supports Datalog constraints enriched with lattice semantics.
+            </p>
+            <p>
+              The program on the right computes the delivery date for a
+              collection of parts. Each part is assembled from a collection of
+              sub-components with various delivery dates. For example, a car
+              depends on a chassis and an engine. To build a car, we need to
+              wait for the chassis and engine to be assembled and then we can
+              assemble the car itself.
+            </p>
+            <p>
+              Note that parts may depend on sub-components that themselves may
+              depend on other sub-components. In other words, the problem is
+              recursive.
+            </p>
+            <hr />
+            <p>
+              Datalog constraints enriched with lattice semantics is one of the
+              more advanced features of Flix and requires some background
+              knowledge of lattice theory and fixpoints.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <InlineEditor code={latticeExample} />
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <h2>Complete Feature List</h2>
+      </div>
+      <div class="col-md-4">
+        <ul>
+          <li>algebraic data types</li>
+          <li>pattern matching</li>
+          <li>first-class functions</li>
+          <li>extensible records</li>
+          <li>parametric polymorphism</li>
+          <li>traits (i.e. type classes)</li>
+          <li>higher-kinded types</li>
+          <li>associated types and effects</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul>
+          <li>effect polymorphism + subeffecting</li>
+          <li>purity reflection</li>
+          <li>CSP-style concurrency</li>
+          <li>buffered &amp; unbuffered channels</li>
+          <li>first-class datalog constraints</li>
+          <li>seamless interoperability with Java</li>
+          <li>unboxed primitives</li>
+          <li>keyword-based syntax</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul>
+          <li>monadic forM expressions</li>
+          <li>applicative forA expressions</li>
+          <li>expressions holes</li>
+          <li>compilation to JVM bytecode</li>
+          <li>full tail call elimination</li>
+          <li>resilient compiler architecture</li>
+          <li>parallel compiler architecture</li>
+          <li>human friendly errors</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h2>Standard Library with Batteries Included</h2>
+        <p>
+          Flix comes with a fully-featured Standard Library that offers access
+          to more than
+          <span class="text-success font-weight-bold">3,100+</span> functions.
+        </p>
+        <p>
+          For example, the <code>List</code> module has more than 100 functions and
+          the <code>Foldable</code> trait has more than 47 functions.
+        </p>
+        <p>
+          The full library can be explored at: <a href="https://api.flix.dev/"
+            >https://api.flix.dev/</a
+          >
+        </p>
+        <p>
+          In addition, Flix also provides access to the entire Java ecosystem
+          via Maven.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <img
+            src="/images/standardLibrary.png"
+            class="card-img"
+            alt="Standard Library"
+          />
+        </div>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h2>Modern Compiler Architecture</h2>
+        <p>
+          Flix features a modern compiler architecture which is <span
+            class="font-weight-bold text-success">resilient</span
+          >, <span class="font-weight-bold text-success">incremental</span>, and <span
+            class="font-weight-bold text-success">parallel</span
+          >.
+        </p>
+        <p>
+          In Flix, every compiler phase is parallel. The plot on the right shows
+          the speed-up of each compiler phase when run on a 24 core machine.
+        </p>
+        <p>
+          In other words, Flix can take full advantage of modern hardware,
+          leading to speed-ups of between <b>5x &ndash; 7x</b> on multi-core machines.
+        </p>
+        <p>
+          Furthermore, the Flix compiler is incremental which leads to
+          significant speed-ups when recompiling code that has already been
+          compiled in the same compiler instance.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <img
+          src="/images/speedupWithPar.png"
+          class="img-fluid"
+          alt="Parallel Speedup"
+        />
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <h2>Compiler Performance: The Raw Numbers</h2>
+        <p>
+          The following table illustrates the performance of the Flix compiler
+          on an Apple M2 Pro with a 10&#8209;core CPU running on OpenJDK 21:
+        </p>
+        <div class="col-md-6 p-0">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="h5">Throughput (entire compiler):</td>
+                <td class="h5 text-right text-success font-weight-bold"
+                  >60,159 lines/sec</td
+                >
+              </tr>
+              <tr>
+                <td class="h5">Throughput (frontend only):</td>
+                <td class="h5 text-right text-success font-weight-bold"
+                  >140,382 lines/sec</td
+                >
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small text-muted">
+          The above results can be reproduced by running the commands: <code
+            >java -jar flix.jar Xperf --n 21</code
+          >
+          and <code>java -jar flix.jar Xperf --frontend --n 21</code>.
+        </p>
+        <p>
+          The Flix compiler achieves these results despite supporting costly
+          programming language features, including: (a) type and effect
+          inference, (b) monomorphization, and (c) whole-program optimization.
+        </p>
+
+        <p>
+          The performance of Flix compiler is mostly determined by CPU
+          performance and memory bandwidth.
+        </p>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row">
+      <div class="col-12 mb-3">
+        <h2>Visual Studio Code Support</h2>
+
+        <p>
+          The Flix compiler integrates with Visual Studio Code to provide a rich
+          development experience.
+        </p>
+
+        <p>
+          The VSCode extension uses the <span
+            class="font-weight-bold text-success">real Flix compiler</span
+          > hence there is a <span class="font-weight-bold text-success"
+            >1:1</span
+          > correspondence between the extension and the compiler.
+        </p>
+
+        <p>
+          If VSCode reports no errors <i>there are no errors</i>. Moreover, if
+          there is no error,
+          <i>VSCode will never report a spurious error</i>.
+        </p>
+
+        <p>The VSCode extension supports most features, including:</p>
+      </div>
+
+      <div class="col-md-4">
+        <ul>
+          <li>
+            <b>Semantic Syntax Highlighting</b>
+            <ul><li>Code highlighting for *.flix files.</li></ul>
+          </li>
+          <li>
+            <b>Diagnostics</b>
+            <ul><li>Inline compiler error messages.</li></ul>
+          </li>
+          <li>
+            <b>Auto-complete</b>
+            <ul>
+              <li>Auto-complete as you type.</li>
+              <li>Auto-completion is context aware.</li>
+              <li>Auto-complete trait instances.</li>
+              <li>Type-directed hole completion.</li>
+            </ul>
+          </li>
+          <li>
+            <b>Snippets</b>
+            <ul><li>Auto-complete common code constructs.</li></ul>
+          </li>
+          <li>
+            <b>Inlay Hints</b>
+            <ul><li>Shows inline type information.</li></ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <ul>
+          <li>
+            <b>Type and Effect Hovers</b>
+            <ul>
+              <li>Hover over any expression to see its type and effect.</li>
+              <li>
+                Hover over any local variable or formal parameter to see its
+                type.
+              </li>
+              <li>
+                Hover over any function to see its type signature and
+                documentation.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>Jump to Definition</b>
+            <ul>
+              <li>Jump to the definition of any function.</li>
+              <li>Jump to the definition of any local variable.</li>
+              <li>Jump to the definition of any enum.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <ul>
+          <li>
+            <b>Find References</b>
+            <ul>
+              <li>Find all references to a function.</li>
+              <li>Find all references to a local variable.</li>
+              <li>Find all references to an enum.</li>
+              <li>Find all implementations of a trait.</li>
+            </ul>
+          </li>
+          <li>
+            <b>Symbols</b>
+            <ul>
+              <li>List all document symbols.</li>
+              <li>List all workspace symbols.</li>
+            </ul>
+          </li>
+          <li>
+            <b>Rename</b>
+            <ul>
+              <li>Rename local variables.</li>
+              <li>Rename functions.</li>
+            </ul>
+          </li>
+          <li>
+            <b>Code Lenses</b>
+            <ul>
+              <li>Run main from within the editor.</li>
+              <li>Run tests from within the editor.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- TODO add the rest of images (we need to find a good carousel replacement for Astro) -->
+      <div class="mt-3 ml-4 mr-4 carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active"><img class="d-block w-100" src="/images/vscode1.png">
+            <div class="carousel-caption d-none d-md-block mb-4">
+              <h3>Semantic Highlighting</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h2>Tooling Comparison Table</h2>
+        <p>Many programming languages come with a lot of external tooling.</p>
+        <p>Such tooling must be installed and configured correctly.</p>
+        <p>In Flix, most tooling is built directly into the compiler.</p>
+      </div>
+      <div class="col-md-6">
+        <table class="table table-sm table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Tool</th>
+              <th scope="col">Flix</th>
+              <th scope="col">OCaml</th>
+              <th scope="col">Haskell</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Compiler</td>
+              <td>flix</td>
+              <td>ocaml</td>
+              <td>ghc</td>
+            </tr>
+            <tr>
+              <td>LSP</td>
+              <td>flix</td>
+              <td>ocaml-lsp</td>
+              <td>HLS</td>
+            </tr>
+            <tr>
+              <td>REPL</td>
+              <td>flix</td>
+              <td>utop</td>
+              <td>ghci</td>
+            </tr>
+            <tr>
+              <td>Build Tool</td>
+              <td>flix</td>
+              <td>dune</td>
+              <td>cabal, stack</td>
+            </tr>
+            <tr>
+              <td>Package Manager</td>
+              <td>flix</td>
+              <td>opam</td>
+              <td>cabal</td>
+            </tr>
+            <tr>
+              <td>Package Repository</td>
+              <td>GitHub</td>
+              <td>opam</td>
+              <td>Hackage</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h2>Actively Developed and Maintained</h2>
+        <p class="text-justify">
+          Flix is actively developed by programming language researchers from <a
+            href="https://cs.au.dk/">Aarhus University</a
+          > in Denmark in collaboration with researchers from the <a
+            href="https://uwaterloo.ca/">University of Waterloo</a
+          > in Canada, the <a href="https://uni-tuebingen.de/en/"
+            >University of Tubingen</a
+          > in Germany, and <a href="https://di.ku.dk/english/"
+            >Copenhagen University</a
+          > in Denmark.
+        </p>
+        <p>
+          Flix is also increasingly developed by a growing community of open
+          source contributors from all over the world.
+        </p>
+        <p>We invite everyone to contribute.</p>
+      </div>
+      <div class="col-md-6">
+        <h2 class="text-center">Project Statistics</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class="h4 text-right text-success font-weight-bold">4,900+</td
+              >
+              <td class="h4">Merged Pull Requests (PRs)</td>
+            </tr>
+            <tr>
+              <td class="h4 text-right text-success font-weight-bold">3,100+</td
+              >
+              <td class="h4">Resolved Issues (Tickets)</td>
+            </tr>
+            <tr>
+              <td class="h4 text-right text-success font-weight-bold">70+</td>
+              <td class="h4">Contributors</td>
+            </tr>
+            <tr>
+              <td class="h4 text-right text-success font-weight-bold"
+                >272,000+</td
+              >
+              <td class="h4">Lines in Compiler Codebase</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <img src="/logo/java.png" class="img-fluid p-4" alt="Java Logo" />
+      </div>
+      <div class="col-md-6">
+        <h2>Flix runs on Java</h2>
+        <p>
+          Flix targets the Java Virtual Machine (JVM) for a multitude of
+          reasons:
+        </p>
+        <ul>
+          <li>
+            The JVM has multiple battle-tested, open-source and commercial
+            implementations, including OpenJDK, J9, Azul, Graal, and more.
+          </li>
+          <li>JVMs exists for all platforms: Mac, Linux, and Windows.</li>
+          <li>
+            Modern JVMs feature multiple state-of-the-art garbage collectors.
+          </li>
+          <li>
+            Modern JVMs have excellent support for concurrency and parallelism.
+            In particular, light-weight threads added in Java 21.
+          </li>
+          <li>Excellent tool support, including debuggers and profilers.</li>
+          <li>
+            The Java Platform comes with a rich ecosystem of packages which is
+            accessible thru integration with Maven.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h2>Funding and Grants</h2>
+        <p class="text-justify">
+          Flix is generously funded by a range of instruments from:
+        </p>
+        <ul>
+          <li>
+            <a href="https://dff.dk/">Independent Research Fund Denmark</a>
+          </li>
+          <li><a href="https://dff.dk/">Digital Research Centre Denmark</a></li>
+          <li><a href="https://www.stibofonden.dk/">Stibo Foundation</a></li>
+          <li>
+            <a href="https://www.amazon.science/research-awards"
+              >Amazon Research Awards</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-6 align-self-center">
+        <h4 class="text-center">
+          Total Funding: <span class="text-success font-weight-bold"
+            >&euro;1.1 million</span
+          >
+        </h4>
+        <p class="mt-3 small text-center">
+          This funding helps ensure the continuity and independence of the
+          project.
+        </p>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <h2>Sponsors and Funding</h2>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card border-0 p-3">
+            <img
+              src="/logo/dff.png"
+              class="card-img"
+              alt="Independent Research Fund Denmark"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card border-0 p-3">
+            <img
+              src="/logo/direc.png"
+              class="card-img"
+              alt="Digital Research Centre Denmark"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card border-0 p-3">
+            <img
+              src="/logo/amazon-science.png"
+              class="card-img"
+              alt="Amazon Research Award"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="card border-0 p-3">
+            <img src="/logo/stibo.png" class="card-img" alt="StiboFonden" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <h2>Collaborators</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card border-0 p-3">
+            <img
+              src="/logo/aarhusu.png"
+              class="card-img"
+              alt="Aarhus University"
+            />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 p-3">
+            <img
+              src="/logo/uwaterloo.png"
+              class="card-img"
+              alt="University of Waterloo"
+            />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card border-0 p-3">
+            <img
+              src="/logo/tubingen.png"
+              class="card-img"
+              alt="University of Tubingen"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4 pb-3">
+      <div class="col-12">
+        <p class="small float-right">
+          We kindly thank <a href="https://www.ej-technologies.com/"
+            >EJ Technologies</a
+          > for providing us with <a
+            href="https://www.ej-technologies.com/products/jprofiler/overview.html"
+            >JProfiler</a
+          > and <a href="https://www.jetbrains.com/">JetBrains</a> for providing us
+          with <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

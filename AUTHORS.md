@@ -5,3 +5,4 @@ By adding your name to this document, you agree to release all your contribution
 - [Magnus Madsen](https://github.com/magnus-madsen)
 - [Jakob Schneider Villumsen](https://github.com/jaschdoc)
 - [Michał Kukieła](https://github.com/kukimik)
+- [Dawid Łakomy](https://github.com/DLakomy)

@@ -1,25 +1,21 @@
 {
   "name": "web",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.6.2",
-    "react": "^19.2.4",
-    "react-ace": "^14.0.1",
-    "react-dom": "^19.2.4",
-    "react-icons": "^5.6.0",
-    "react-router": "^7.13.2",
-    "react-router-dom": "^7.13.2",
-    "react-spinners": "^0.17.0",
-    "reactstrap": "^9.2.3"
+    "@iconify-json/fa-brands": "^1.2.2",
+    "@iconify-json/fa-solid": "^1.2.2",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/octicon": "^1.2.29",
+    "@iconify-json/simple-icons": "^1.2.91",
+    "astro": "^7.0.3",
+    "astro-icon": "^1.1.5",
+    "bootstrap": "^4.6.2"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^6.0.1",
-    "vite": "^8.0.2"
+    "fetch-grammar": "node build-scripts/fetchGrammar.mjs",
+    "dev": "npm run fetch-grammar && astro dev --port 3000 --host 127.0.0.1",
+    "build": "npm run fetch-grammar && astro build",
+    "preview": "astro preview"
   }
 }

@@ -1,0 +1,12 @@
+---
+import { Code } from "astro:components";
+const { code } = Astro.props;
+
+import flixGrammar from "../grammars/flix.tmLanguage.json";
+---
+
+<div class="inline-editor-frame">
+  <div class="inline-editor-code">
+    <Code code={code} theme="light-plus" lang={flixGrammar} />
+  </div>
+</div>
