@@ -65,38 +65,44 @@ import '../styles/global.css';
     <link href="/favicon.png" rel="icon">
   </head>
   <body>
-    <a href="https://github.com/flix/flix">
-      <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9999;"
-          src="/forkme_right_green_007200.png"
-          alt="Fork me on GitHub">
-    </a>
     <div class="container page">
-      <nav class="navbar navbar-dark bg-info navbar-expand-md menu shadow-sm mb-4">
-        <div class="container-fluid">
-          <button
-            class="navbar-toggler"
-            type="button"
-            aria-controls="main-nav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="main-nav">
-            <ul class="navbar-nav mr-lg-auto">
-              {navLinks.map(({ href, label }) => (
-                <li class="nav-item pl-1 pr-1">
-                  <a class={`nav-link${currentPath === href ? " active font-weight-bold" : ""}`} href={href}>
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+      <header>
+        {/* The ribbon is absolutely positioned against the viewport, so its
+            place in the DOM only affects the reading order, not the layout. */}
+        <a href="https://github.com/flix/flix">
+          <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9999;"
+              src="/forkme_right_green_007200.png"
+              alt="Fork me on GitHub">
+        </a>
+        <nav class="navbar navbar-dark bg-info navbar-expand-md menu shadow-sm mb-4" aria-label="Main">
+          <div class="container-fluid">
+            <button
+              class="navbar-toggler"
+              type="button"
+              aria-controls="main-nav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main-nav">
+              <ul class="navbar-nav mr-lg-auto">
+                {navLinks.map(({ href, label }) => (
+                  <li class="nav-item pl-1 pr-1">
+                    <a class={`nav-link${currentPath === href ? " active font-weight-bold" : ""}`} href={href}>
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
-      <slot />
+      <main>
+        <slot />
+      </main>
     </div>
 
     <script>
