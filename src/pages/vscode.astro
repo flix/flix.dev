@@ -58,13 +58,13 @@ const features = [
       </div>
     </div>
 
-    {features.map(f => (
+    {features.map((f, i) => (
       <div class="row mb-5">
         <div class="col-md-6">
           <h4>{f.title}</h4>
           <p set:html={f.desc}></p>
           <div class="card">
-            <img class="card-img-top" src={f.img} alt={f.alt} />
+            <img class="card-img-top" src={f.img} alt={f.alt} loading={i === 0 ? "eager" : "lazy"} />
           </div>
         </div>
       </div>
