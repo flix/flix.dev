@@ -11,10 +11,10 @@
 
 - [Home](https://flix.dev/): Overview of the Flix language and its features.
 - [Get Started](https://flix.dev/get-started/): Install the Visual Studio Code extension, try the online playground, or install the compiler locally.
+- [Visual Studio Code Extension](https://flix.dev/vscode/): The Flix Visual Studio Code extension with diagnostics, auto-completion, hovers, and more.
+- [Design Principles](https://flix.dev/principles/): The design principles behind Flix and the rationale for its language, tooling, and library decisions.
 - [Documentation](https://flix.dev/documentation/): Entry point to the book, API reference, research literature, and community resources.
 - [FAQ](https://flix.dev/faq/): Common questions about Flix.
-- [Design Principles](https://flix.dev/principles/): The design principles behind Flix and the rationale for its language, tooling, and library decisions.
-- [Visual Studio Code Extension](https://flix.dev/vscode/): The Flix Visual Studio Code extension with diagnostics, auto-completion, hovers, and more.
 - [Contribute](https://flix.dev/contribute/): How to contribute to Flix, which is open source under the Apache 2.0 license.
 
 ## Tools
