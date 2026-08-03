@@ -1,29 +1,35 @@
 # The Flix Website (flix.dev)
 
-## Available Scripts
+The website of the [Flix programming language](https://flix.dev/), built with [Astro](https://astro.build/).
 
-In the project directory, you can run:
+## Development
 
-### `npm run dev`
+Requires [Node.js](https://nodejs.org/) 22 or later.
 
-Starts the development server at [http://localhost:3000](http://localhost:3000).
+```sh
+npm install
+npm run dev
+```
 
-### `npm run build`
+The development server runs at [http://127.0.0.1:3000](http://127.0.0.1:3000).
 
-Builds the app for production to the `dist` folder.
-It correctly bundles and optimizes the site for the best performance.
+## Building
 
-The build is minified and the filenames include the hashes.
-Your site is ready to be deployed!
+```sh
+npm run build
+```
 
-See the section about [deployment](https://docs.astro.build/en/guides/deploy/) for more information.
+Builds the production site to the `dist/` folder.
 
-### `npm run preview`
+```sh
+npm run preview
+```
 
-Preview your production build locally before deploying.
+Previews the production build locally before deploying. See the Astro [deployment guide](https://docs.astro.build/en/guides/deploy/) for more information.
+
+Note: `dev` and `build` first run `npm run fetch-grammar`, which downloads the Flix [TextMate grammar](https://github.com/flix/textmate) used for syntax highlighting into `src/grammars/`. The download is skipped if the file already exists.
 
 ## Learn More
 
-You can learn more in the [Astro documentation](https://docs.astro.build/).
-
-To learn more about Bootstrap 4 (used in this project), check out the [Bootstrap documentation](https://getbootstrap.com/docs/4.6/getting-started/introduction/).
+- [Astro documentation](https://docs.astro.build/)
+- [Bootstrap 4 documentation](https://getbootstrap.com/docs/4.6/getting-started/introduction/) (used for styling)
