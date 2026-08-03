@@ -2,6 +2,9 @@
   "name": "web",
   "version": "0.2.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
     "@iconify-json/fa-brands": "^1.2.2",
@@ -17,6 +20,11 @@
     "fetch-grammar": "node build-scripts/fetchGrammar.mjs",
     "dev": "npm run fetch-grammar && astro dev --port 3000 --host 127.0.0.1",
     "build": "npm run fetch-grammar && astro build",
+    "check": "npm run fetch-grammar && astro check",
     "preview": "astro preview"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
   }
 }
