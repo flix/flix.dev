@@ -1,12 +1,24 @@
 ---
 import { Code } from "astro:components";
+import lightPlus from "@shikijs/themes/light-plus";
 const { code } = Astro.props;
 
 import flixGrammar from "../grammars/flix.tmLanguage.json";
+
+// Light+ colors `keyword`/`storage` blue but `keyword.control` magenta;
+// unify them so all Flix keywords share the magenta.
+const theme = {
+  ...lightPlus,
+  name: "light-plus-flix",
+  tokenColors: [
+    ...lightPlus.tokenColors,
+    { scope: ["keyword", "storage"], settings: { foreground: "#AF00DB" } },
+  ],
+};
 ---
 
 <div class="inline-editor-frame">
   <div class="inline-editor-code">
-    <Code code={code} theme="light-plus" lang={flixGrammar} />
+    <Code code={code} theme={theme} lang={flixGrammar} />
   </div>
 </div>

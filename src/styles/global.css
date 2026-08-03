@@ -58,7 +58,7 @@ p:last-child {
     font-family:
         Monaco, Menlo, "Ubuntu Mono", Consolas, "Source Code Pro",
         source-code-pro, monospace;
-    line-height: 16px;
+    line-height: 14px;
 }
 
 .inline-editor-code pre {
