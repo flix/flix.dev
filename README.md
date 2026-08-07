@@ -32,4 +32,4 @@ Note: `dev` and `build` first run `npm run fetch-grammar`, which downloads the F
 ## Learn More
 
 - [Astro documentation](https://docs.astro.build/)
-- [Bootstrap 4 documentation](https://getbootstrap.com/docs/4.6/getting-started/introduction/) (used for styling)
+- [Bootstrap 5 documentation](https://getbootstrap.com/docs/5.3/getting-started/introduction/) (used for styling)

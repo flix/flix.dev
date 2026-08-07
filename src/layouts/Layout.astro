@@ -1,6 +1,15 @@
 ---
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fontsource/open-sans/400.css';
+// 700 is not optional: Bootstrap sets every heading to 500 and the site leans
+// on fw-bold, <b>, and <strong> throughout, all of which the browser would
+// otherwise fake by smearing the regular weight. The two Latin subsets cover
+// every character the site uses and leave room for accented names; the other
+// seven Open Sans ships (Cyrillic, Greek, Hebrew, math, symbols, Vietnamese)
+// are unreachable here and only bulk out the build.
+import '@fontsource/open-sans/latin-400.css';
+import '@fontsource/open-sans/latin-ext-400.css';
+import '@fontsource/open-sans/latin-700.css';
+import '@fontsource/open-sans/latin-ext-700.css';
 
 interface Props {
   title: string;
@@ -68,17 +77,37 @@ import '../styles/global.css';
     <div class="container page">
       <header>
         {/* The ribbon is absolutely positioned against the viewport, so its
-            place in the DOM only affects the reading order, not the layout. */}
-        <a href="https://github.com/flix/flix">
+            place in the DOM only affects the reading order, not the layout.
+            Hidden below the navbar's breakpoint, where it would claim the same
+            149px of top-right corner that the collapsed navbar puts its
+            toggler in. */}
+        <a class="d-none d-lg-block" href="https://github.com/flix/flix">
           <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9999;"
               src="/forkme_right_green_007200.png"
               alt="Fork me on GitHub">
         </a>
-        <nav class="navbar navbar-dark bg-info navbar-expand-md menu shadow-sm mb-4" aria-label="Main">
+        {/* data-bs-theme has to sit on the .navbar itself: Bootstrap keys the
+            light-on-dark link and toggler colours off .navbar[data-bs-theme="dark"]. */}
+        <nav class="navbar bg-dark navbar-expand-lg menu shadow-sm mb-4" data-bs-theme="dark" aria-label="Main">
           <div class="container-fluid">
+            {/* The same mark as the favicon and the social card, taken from
+                design/og.svg. Inlined rather than fetched: it is two shapes,
+                and a request for them would cost more than they weigh. */}
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+              <svg width="24" height="24" viewBox="0 0 104 104" aria-hidden="true">
+                <rect width="104" height="104" rx="22" fill="#cf4647"></rect>
+                <path
+                  transform="translate(16.05 84.57) scale(0.094 -0.094)"
+                  d="M75 0 241 693H690L658 564H365L330 416H589L558 287H299L230 0Z"
+                  fill="#fff"></path>
+              </svg>
+              Flix
+            </a>
             <button
               class="navbar-toggler"
               type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#main-nav"
               aria-controls="main-nav"
               aria-expanded="false"
               aria-label="Toggle navigation"
@@ -86,10 +115,10 @@ import '../styles/global.css';
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="main-nav">
-              <ul class="navbar-nav mr-lg-auto">
+              <ul class="navbar-nav me-lg-auto">
                 {navLinks.map(({ href, label }) => (
-                  <li class="nav-item pl-1 pr-1">
-                    <a class={`nav-link${currentPath === href ? " active font-weight-bold" : ""}`} href={href}>
+                  <li class="nav-item ps-1 pe-1">
+                    <a class={`nav-link${currentPath === href ? " active fw-bold" : ""}`} href={href}>
                       {label}
                     </a>
                   </li>
@@ -106,16 +135,12 @@ import '../styles/global.css';
     </div>
 
     <script>
-      // Bootstrap's collapse JS needs jQuery, which the site does not load. Its
-      // CSS hides .collapse:not(.show) below the md breakpoint, so this script
-      // only toggles that class. Above md, .navbar-collapse is display:flex
-      // !important, so a stale .show is harmless when resizing back up.
-      const toggler = document.querySelector<HTMLButtonElement>(".navbar-toggler");
-      const target = document.getElementById("main-nav");
-      toggler?.addEventListener("click", () => {
-        const open = target?.classList.toggle("show") ?? false;
-        toggler.setAttribute("aria-expanded", String(open));
-      });
+      // Importing these registers Bootstrap's click handlers for the
+      // data-bs-toggle and data-bs-slide attributes; nothing else is needed.
+      // They must load in the browser, so they belong here rather than in the
+      // frontmatter alongside the stylesheet import.
+      import "bootstrap/js/dist/collapse";
+      import "bootstrap/js/dist/carousel";
     </script>
   </body>
 </html>

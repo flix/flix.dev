@@ -11,28 +11,54 @@
     }
 }
 
+/* The Flix red, from design/og.svg. It exists at two strengths because one
+   value cannot do both jobs: #cf4647 is the mark's own colour and reads
+   correctly in shapes, but as text on white it only reaches 4.5:1, right on
+   the limit. Darkening it 20% gives 6.5:1, so anything made of words uses that
+   instead. Overriding Bootstrap's primary as well keeps .link-primary and
+   .text-primary in step with ordinary links. */
+:root {
+    --flix-red: #cf4647;
+
+    --bs-primary: #a63839;
+    --bs-primary-rgb: 166, 56, 57;
+    --bs-link-color-rgb: 166, 56, 57;
+    --bs-link-hover-color-rgb: 124, 42, 43;
+
+    /* A greener green. Bootstrap's own success is only 69% saturated and sits
+       at hue 152, already halfway to teal, which is what made it look flat.
+       This is fully saturated at hue 145 and no lighter -- it cannot be, since
+       the inline spans in body copy hold the whole palette to 4.5:1 and this
+       clears it by 0.03, the same margin Bootstrap left itself. */
+    --bs-success: #008938;
+    --bs-success-rgb: 0, 137, 56;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     overflow-y: scroll;
     background-color: #efefef;
 }
 
-h1 {
+/* Matching Bootstrap's own `h1, .h1` pairing keeps the utility classes in step
+   with the elements. Without it the .h4 cells in the stats tables would opt
+   into Bootstrap 5's fluid type while every <h4> stayed fixed. */
+h1, .h1 {
     font-size: 2rem;
     margin-bottom: 0.75rem;
 }
 
-h2 {
+h2, .h2 {
     font-size: 1.7rem;
     margin-bottom: 0.75rem;
 }
 
-h3 {
+h3, .h3 {
     font-size: 1.6rem;
     margin-bottom: 0.75rem;
 }
 
-h4 {
+h4, .h4 {
     font-size: 1.5rem;
 }
 
@@ -41,11 +67,25 @@ p:last-child {
 }
 
 .menu {
-    margin-left: -15px;
-    margin-right: -15px;
+    /* Bleed the navbar back out over the container's padding so it spans the
+       full width of the page card. Deriving it from the gutter keeps the two
+       in step instead of hard-coding whatever the padding happens to be. */
+    margin-left: calc(var(--bs-gutter-x) * -0.5);
+    margin-right: calc(var(--bs-gutter-x) * -0.5);
+    /* Bootstrap 5 zeroes the navbar's own horizontal padding. Restoring it
+       keeps the nav links roughly aligned with the page content below. */
+    --bs-navbar-padding-x: 1rem;
     /* The navbar is identical on every page; naming it lifts it out of the
        root cross-fade so it holds still during transitions. */
     view-transition-name: navbar;
+}
+
+/* Bootstrap 5 adds an xxl breakpoint that widens .container to 1320px. Hold
+   the page at the width it has always had; line lengths here are tuned for it. */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1140px;
+    }
 }
 
 .page {
@@ -86,22 +126,63 @@ p:last-child {
     cursor: pointer;
 }
 
-.navbar-nav .nav-item .nav-link {
-    color: rgba(255, 255, 255, .85);
-}
+/* Mark the current page with the brand red as well as weight and brightness.
+   Every link carries the transparent border so the active one does not shift
+   the row by 3px. Only once the navbar has expanded: in the collapsed menu the
+   links stack, and a rule under one of them reads as a divider. */
+@media (min-width: 992px) {
+    .navbar-nav .nav-link {
+        border-bottom: 3px solid transparent;
+    }
 
-.navbar-nav .nav-item .nav-link:hover {
-    color: rgba(255, 255, 255, 1.00);
+    .navbar-nav .nav-link.active {
+        border-bottom-color: var(--flix-red);
+    }
 }
 
 .card-title {
     font-size: 1.2rem;
 }
 
-.carousel-caption {
-    filter: invert(100%);
+/* Bootstrap 5 removed .card-columns. These are Bootstrap 4's rules, kept
+   because four sections of the principles page are laid out with them. */
+.card-columns .card {
+    margin-bottom: 0.75rem;
 }
 
-.carousel-control-next, .carousel-control-prev {
-    filter: invert(100%);
+@media (min-width: 576px) {
+    .card-columns {
+        column-count: 3;
+        column-gap: 1.25rem;
+        orphans: 1;
+        widows: 1;
+    }
+
+    .card-columns .card {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+/* Bootstrap 5 underlines links by default. The site's links live in running
+   prose and inside whole-card anchors, where a permanent underline reads as a
+   rendering fault, so keep them underlined on hover only. The navbar opts out
+   again: Bootstrap sets text-decoration on .nav-link and .navbar-brand at a
+   specificity a:hover beats, so they need saying a second time. */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.nav-link:hover, .nav-link:focus,
+.navbar-brand:hover, .navbar-brand:focus {
+    text-decoration: none;
+}
+
+/* Bootstrap 5 removed .text-justify. */
+.text-justify {
+    text-align: justify;
 }
