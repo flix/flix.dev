@@ -1,6 +1,15 @@
 ---
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fontsource/open-sans/400.css';
+// 700 is not optional: Bootstrap sets every heading to 500 and the site leans
+// on fw-bold, <b>, and <strong> throughout, all of which the browser would
+// otherwise fake by smearing the regular weight. The two Latin subsets cover
+// every character the site uses and leave room for accented names; the other
+// seven Open Sans ships (Cyrillic, Greek, Hebrew, math, symbols, Vietnamese)
+// are unreachable here and only bulk out the build.
+import '@fontsource/open-sans/latin-400.css';
+import '@fontsource/open-sans/latin-ext-400.css';
+import '@fontsource/open-sans/latin-700.css';
+import '@fontsource/open-sans/latin-ext-700.css';
 
 interface Props {
   title: string;
