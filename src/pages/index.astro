@@ -99,7 +99,7 @@ const vscodeSlides = [
             <div class="card-title">
               <h4>Algebraic Data Types and Pattern Matching</h4>
             </div>
-            <p>
+            <p class="card-text">
               Algebraic data types and pattern matching are the bread-and-butter
               of functional programming and are supported by Flix with minimal
               fuss.
@@ -114,8 +114,8 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Tuples and Records</h4></div>
-            <p>Flix has built-in support for tuples and records.</p>
-            <p>Records use structural typing and are extensible.</p>
+            <p class="card-text">Flix has built-in support for tuples and records.</p>
+            <p class="card-text">Records use structural typing and are extensible.</p>
           </div>
         </div>
       </div>
@@ -132,10 +132,10 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Purity and Impurity</h4></div>
-            <p>
+            <p class="card-text">
               Flix precisely tracks the purity of every expression in a program.
             </p>
-            <p>
+            <p class="card-text">
               The Flix compiler provides an ironclad guarantee that if an
               expression is pure then it cannot have side-effects and it is
               referentially transparent.
@@ -150,11 +150,11 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Polymorphic Effects</h4></div>
-            <p>
+            <p class="card-text">
               Flix is able to track purity through higher-order effect
               polymorphic functions.
             </p>
-            <p>
+            <p class="card-text">
               For example, Flix knows that the purity of <code>List.map</code> depends
               on the purity of its function argument <code>f</code>.
             </p>
@@ -174,16 +174,16 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Algebraic Effects</h4></div>
-            <p>
+            <p class="card-text">
               Flix supports algebraic effects, i.e. user-defined effects and
               handlers. In particular, Flix supports multi-shot resumptions.
             </p>
-            <p>
+            <p class="card-text">
               Effect-oriented programming, with algebraic effects, allows
               programmers to write pure functions modulo effects. Effect
               handlers enable program reasoning, modularity, and testability.
             </p>
-            <p>
+            <p class="card-text">
               For example, the program on the left expresses a <code
                 >greeting</code
               > function that is pure modulo the current time of the day. In <code
@@ -203,18 +203,18 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Library Effects</h4></div>
-            <p>
+            <p class="card-text">
               The Flix Standard Library comes with a rich collection of
               built-in effects, including <code>Clock</code>, <code>Console</code
               >, <code>Env</code>, <code>FileSystem</code>, <code>Http</code>, <code
                 >Logger</code
               >, <code>Process</code>, and <code>Random</code>.
             </p>
-            <p>
+            <p class="card-text">
               Every library effect has a default handler, hence programs can
               use them without any handler boilerplate.
             </p>
-            <p>
+            <p class="card-text">
               Library effects support composable middleware: HTTP requests can
               be configured with retries and circuit breakers, and the
               filesystem can be sandboxed, made read-only, or replaced with an
@@ -236,18 +236,18 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Region-based Local Mutation</h4></div>
-            <p>
+            <p class="card-text">
               Flix supports region-based local mutation, which makes it possible
               to implement <i>pure</i> functions that internally use mutable state
               and destructive operations, as long as these operations are confined
               to the region.
             </p>
-            <p>
+            <p class="card-text">
               We can use local mutation when it is more natural to write a
               function using mutable data and in a familiar imperative-style
               while still remaining pure to the outside world.
             </p>
-            <p>
+            <p class="card-text">
               We can also use local mutation when it is more efficient to use
               mutable data structures, e.g. when implementing a sorting
               algorithm.
@@ -262,19 +262,19 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Mutable Structs</h4></div>
-            <p>
+            <p class="card-text">
               Flix supports mutable structs. Fields are immutable by
               default, but can be marked with the <code>mut</code> modifier.
               Like all mutable memory in Flix, every struct belongs to a
               region.
             </p>
-            <p>
+            <p class="card-text">
               Struct fields are unboxed, i.e. primitive fields do not require
               indirection. This makes structs a memory efficient building
               block for higher-level data structures, e.g. mutable lists,
               stacks, and queues.
             </p>
-            <p>
+            <p class="card-text">
               The fields of a struct are only visible from within its
               companion module, providing compiler-enforced encapsulation.
             </p>
@@ -294,17 +294,17 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Purity Reflection</h4></div>
-            <p>
+            <p class="card-text">
               Flix supports a meta-programming construct that enables
               higher-order functions to inspect the purity of a function
               argument and use that information to vary their behavior.
             </p>
-            <p>
+            <p class="card-text">
               For example, the <code>DelayList.map</code> function varies its behavior
               between eager and lazy evaluation depending on the purity of its function
               argument.
             </p>
-            <p>
+            <p class="card-text">
               We can exploit purity reflection to selectively use lazy or
               parallel evaluation inside a library without changing the
               semantics from the point-of-view of the clients.
@@ -319,14 +319,14 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Parallelism</h4></div>
-            <p>
+            <p class="card-text">
               Flix makes it simple and easy to evaluate <i>pure</i> code in parallel.
             </p>
-            <p>
+            <p class="card-text">
               For example, the code on the right shows a parallel implementation
               of the <code>List.map</code> function using the <code>par</code> construct.
             </p>
-            <p>
+            <p class="card-text">
               Internally, the <code>par</code> construct uses light-weight <code
                 >VirtualThread</code
               >s.
@@ -347,17 +347,17 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Structured Concurrency</h4></div>
-            <p>
+            <p class="card-text">
               Flix supports <a
                 href="https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/"
                 >structured concurrency</a
               >.
             </p>
-            <p>
+            <p class="card-text">
               For example, the code on the left shows the creation of a fresh
               region named <code>rc</code> in which two threads are spawned.
             </p>
-            <p>
+            <p class="card-text">
               Importantly, control-flow does not leave the region before <i
                 >both</i
               > threads have terminated. Hence the two threads cannot outlive the
@@ -373,11 +373,11 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Traits</h4></div>
-            <p>
+            <p class="card-text">
               Flix uses traits to abstract over types that support a common set
               of operations.
             </p>
-            <p>
+            <p class="card-text">
               For example, the <code>Eq</code> trait captures the notion of equality
               and is used throughout the standard library.
             </p>
@@ -397,13 +397,13 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Higher-Kinded Types</h4></div>
-            <p>
+            <p class="card-text">
               Flix supports higher-kinded types making it possible to abstract
               over type constructors. For example, both <code>Option</code> and <code
                 >List</code
               > implement <code>Foldable</code>.
             </p>
-            <p>
+            <p class="card-text">
               The Flix standard library ships with many common traits, such as <code
                 >Monoid</code
               >, <code>Functor</code>, and <code>Foldable</code>.
@@ -418,11 +418,11 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Associated Types</h4></div>
-            <p>
+            <p class="card-text">
               Flix supports associated types, which allow the types in instance
               signatures to depend on the instance type.
             </p>
-            <p>
+            <p class="card-text">
               The code on the right defines a trait with an associated type <code
                 >Elm</code
               >, which enables each <code>Coll</code> instance to define its element
@@ -444,13 +444,13 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Associated Effects</h4></div>
-            <p>
+            <p class="card-text">
               Associated effects allow the effects in trait members to depend on
               the instance type. This makes it easy to create abstractions over
               both pure and effectful operations, and mutable and immutable data
               structures.
             </p>
-            <p>
+            <p class="card-text">
               The code on the left adds an associated effect <code>Aef</code> to
               the <code>Coll</code> trait, which makes it possible to add
               instances for mutable collections.
@@ -465,7 +465,7 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Monadic For-Yield</h4></div>
-            <p>
+            <p class="card-text">
               Flix supports a monadic <code>forM</code>-yield construct similar
               to Scala's
               <code>for</code>-comprehensions and Haskell's <code>do</code> notation.
@@ -491,7 +491,7 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Applicative For-Yield</h4></div>
-            <p>
+            <p class="card-text">
               In addition to the monadic <code>forM</code> expression, Flix supports
               an applicative <code>forA</code> expression that builds on the <code
                 >Applicative</code
@@ -510,12 +510,12 @@ const vscodeSlides = [
             <div class="card-title">
               <h4>Seamless Java Interoperability</h4>
             </div>
-            <p>
+            <p class="card-text">
               Flix supports seamless Java interoperability, making it possible
               to reuse code from the Java Standard Library and the Java
               ecosystem, e.g., via Maven.
             </p>
-            <p>
+            <p class="card-text">
               Java support includes object creation, method invocation,
               exceptions, and class/interface extension.
             </p>
@@ -535,13 +535,13 @@ const vscodeSlides = [
         <div class="card border-0">
           <div class="card-body">
             <div class="card-title"><h4>Termination Checking</h4></div>
-            <p>
+            <p class="card-text">
               Flix supports the <code>@Terminates</code> annotation, which
               asks the compiler to verify that a function is structurally
               recursive &mdash; and hence guaranteed to terminate on all
               inputs.
             </p>
-            <p>
+            <p class="card-text">
               The compiler checks that every recursive call is on a strict
               substructure of a formal parameter. The check supports tree
               recursion, functions with multiple parameters, local
@@ -559,7 +559,7 @@ const vscodeSlides = [
             <div class="card-title">
               <h4>First-class Datalog Constraints</h4>
             </div>
-            <p>
+            <p class="card-text">
               Another unique feature of Flix is its embedded Datalog support.
               Datalog, a powerful logic programming language in its own right,
               makes it simple and elegant to express many fixpoint problems
@@ -584,10 +584,10 @@ const vscodeSlides = [
             <div class="card-title">
               <h4>Datalog Enriched with Lattice Semantics</h4>
             </div>
-            <p>
+            <p class="card-text">
               Flix supports Datalog constraints enriched with lattice semantics.
             </p>
-            <p>
+            <p class="card-text">
               The program on the right computes the delivery date for a
               collection of parts. Each part is assembled from a collection of
               sub-components with various delivery dates. For example, a car
@@ -595,13 +595,13 @@ const vscodeSlides = [
               wait for the chassis and engine to be assembled and then we can
               assemble the car itself.
             </p>
-            <p>
+            <p class="card-text">
               Note that parts may depend on sub-components that themselves may
               depend on other sub-components. In other words, the problem is
               recursive.
             </p>
             <hr />
-            <p>
+            <p class="card-text">
               Support for Datalog constraints enriched with lattice semantics is
               one of the more advanced features of Flix and requires some
               background knowledge of lattice theory and fixpoints.

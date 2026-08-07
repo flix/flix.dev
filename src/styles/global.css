@@ -62,10 +62,6 @@ h4, .h4 {
     font-size: 1.5rem;
 }
 
-p:last-child {
-    margin-bottom: 0;
-}
-
 .menu {
     /* Bleed the navbar back out over the container's padding so it spans the
        full width of the page card. Deriving it from the gutter keeps the two
@@ -120,10 +116,6 @@ p:last-child {
 .code-snippet-code pre {
     margin: 0;
     background: transparent !important;
-}
-
-.nav-item {
-    cursor: pointer;
 }
 
 /* Mark the current page with the brand red as well as weight and brightness.

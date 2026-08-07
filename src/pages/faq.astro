@@ -17,13 +17,13 @@ import Question from "../components/FAQ/Question.astro";
     <QA>
       <Question> What is the best way to start learning Flix? </Question>
       <div>
-        <p>
+        <p class="card-text">
           We recommend reading the <a href="https://doc.flix.dev/"
             >Programming Flix</a
           > book.
         </p>
 
-        <p>
+        <p class="card-text">
           If you get stuck or need help feel free to reach out to us on <a
             href="https://flix.zulipchat.com/">Zulip</a
           >.
@@ -78,7 +78,7 @@ import Question from "../components/FAQ/Question.astro";
     <QA>
       <Question> Is Flix a domain specific language (DSL)? </Question>
       <div>
-        <p>No, Flix is a full-blown general-purpose programming language.</p>
+        <p class="card-text">No, Flix is a full-blown general-purpose programming language.</p>
       </div>
     </QA>
 
@@ -87,11 +87,11 @@ import Question from "../components/FAQ/Question.astro";
         Flix looks similar to Scala. How are the two languages related?
       </Question>
       <div>
-        <p>
+        <p class="card-text">
           Flix borrows a lot of syntax from Scala, hence the two languages have
           a similar feel.
         </p>
-        <p>
+        <p class="card-text">
           We think Scala made many good design choices with respect to syntax,
           including:
         </p>
@@ -103,7 +103,7 @@ import Question from "../components/FAQ/Question.astro";
           <li><code>if</code>, <code>match</code>, etc. as expressions.</li>
         </ul>
 
-        <p>However, other than syntax, the two languages are very different:</p>
+        <p class="card-text">However, other than syntax, the two languages are very different:</p>
 
         <ul>
           <li>Scala is object-oriented, Flix is not.</li>
@@ -117,12 +117,12 @@ import Question from "../components/FAQ/Question.astro";
     <QA>
       <Question> What is the runtime performance of Flix programs? </Question>
       <div>
-        <p>
+        <p class="card-text">
           Flix runs on the JVM which means that the performance of Flix programs
           is comparable to that of Java and Scala programs.
         </p>
 
-        <p>
+        <p class="card-text">
           Flix is a whole-program optimizing compiler that uses monomorphization
           and inlining (like Rust and MLton). Hence, sometimes, Flix programs
           run faster than their Java or Scala equivalent.
@@ -153,7 +153,7 @@ import Question from "../components/FAQ/Question.astro";
       <Question> What controversial design choices are made in Flix? </Question>
 
       <div>
-        <p>
+        <p class="card-text">
           The following design choices may be considered controversial by some:
         </p>
 
@@ -233,7 +233,7 @@ import Question from "../components/FAQ/Question.astro";
     <QA>
       <Question>"This site requires JavaScript"</Question>
       <div>
-        <p>
+        <p class="card-text">
           People who criticized the website for using JavaScript: <a
             href="https://news.ycombinator.com/item?id=25516097">[1]</a
           >, <a href="https://news.ycombinator.com/item?id=38419909">[2]</a>, <a
@@ -244,13 +244,13 @@ import Question from "../components/FAQ/Question.astro";
           >.
         </p>
 
-        <p>
+        <p class="card-text">
           People who have offered to help refactor the site to use static html: <a
             href="https://github.com/flix/flix.dev/pull/165"><b>1</b></a
           >.
         </p>
 
-        <p>People who can now complain about the CSS: everyone.</p>
+        <p class="card-text">People who can now complain about the CSS: everyone.</p>
       </div>
     </QA>
 
@@ -259,12 +259,12 @@ import Question from "../components/FAQ/Question.astro";
         It appears that an example on the website does not work?
       </Question>
       <div>
-        <p>
+        <p class="card-text">
           The latest compiler version and the website are not always in sync,
           hence occasionally some examples may stop working.
         </p>
 
-        <p>
+        <p class="card-text">
           Occasionally a mischievous visitor will crash the online editor (or
           rather the virtual machine on which the compiler runs).
         </p>
@@ -277,13 +277,13 @@ import Question from "../components/FAQ/Question.astro";
         unless Apple, Google, Mozilla, or Microsoft is on-board it is pointless.
       </Question>
       <div>
-        <p>
+        <p class="card-text">
           Yes, no programming language developed outside of those four
           corporations has ever been successful. See also C, C++, Java, Python,
           PHP, MATLAB, Perl, R, Ruby, Scala, ...
         </p>
 
-        <p>
+        <p class="card-text">
           That said, if you work for a company and would like to help sponsor
           Flix, please feel free to reach out to us :)
         </p>
@@ -299,7 +299,7 @@ import Question from "../components/FAQ/Question.astro";
         more productive, not because of mass appeal.
       </Question>
       <div>
-        <p>Yes, we do it all for C#.</p>
+        <p class="card-text">Yes, we do it all for C#.</p>
       </div>
     </QA>
 
@@ -310,17 +310,17 @@ import Question from "../components/FAQ/Question.astro";
         of the modern world, all the best with that.
       </Question>
       <div>
-        <p>
+        <p class="card-text">
           Yes, we take inspiration from programming languages that are pushing
           on the boundary of language design.
         </p>
 
-        <p>
+        <p class="card-text">
           What would be the point of taking ideas from C, Perl, PHP, and Visual
           Basic?
         </p>
 
-        <p>
+        <p class="card-text">
           Also, who said that we are taking their most complex ideas? Rather we
           should take their <i>best</i> ideas.
         </p>
@@ -349,15 +349,15 @@ import Question from "../components/FAQ/Question.astro";
     <QA>
       <Question> Do we really need any more programming languages? </Question>
       <div>
-        <p>
+        <p class="card-text">
           <i>Do we really need safer airplanes?</i>
           <i>Do we really need electric cars?</i>
           <i>Do we really need more ergonomic chairs?</i>
         </p>
 
-        <p>I mean, after all, we already have airplanes, cars, and chairs!</p>
+        <p class="card-text">I mean, after all, we already have airplanes, cars, and chairs!</p>
 
-        <p>
+        <p class="card-text">
           We build new programming languages and we conduct research on
           programming language design because we want to offer developers <i
             >better tools to write programs</i
@@ -365,7 +365,7 @@ import Question from "../components/FAQ/Question.astro";
           write correct programs.
         </p>
 
-        <p>
+        <p class="card-text">
           And we want to increase developer happiness. It should be a pleasure
           to use Flix!
         </p>
@@ -410,13 +410,13 @@ import Question from "../components/FAQ/Question.astro";
         minutes.
       </Question>
       <div>
-        <p>
+        <p class="card-text">
           We much prefer <a
             href="https://en.wikipedia.org/wiki/Cholula_Hot_Sauce"
             >Cholula Hot Sauce.</a
           >
         </p>
-        <p>
+        <p class="card-text">
           That said, <code>forM</code> is clear, concise, and works well with <code
             >forA</code
           > allowing one to easily switch between monadic-code and applicative-code.
@@ -430,7 +430,7 @@ import Question from "../components/FAQ/Question.astro";
         symbols.
       </Question>
       <div>
-        <p>
+        <p class="card-text">
           The Flix syntax is <a href="/principles/">based on keywords</a> except when
           there is a
           <i>clearly established historical precedent</i> for using a symbol. For
