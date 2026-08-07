@@ -62,7 +62,13 @@ h4, .h4 {
     font-size: 1.5rem;
 }
 
-p:last-child {
+/* A card sizes itself to its contents, so the last paragraph's bottom margin
+   becomes dead space inside the border. Bootstrap solves this with
+   .card-text:last-child, but the site writes plain <p> inside .card-body, and
+   in the FAQ they sit one <div> further in, so match on the container instead.
+   Anywhere else the margin is wanted: it is what separates a column's last
+   paragraph from whatever the next row brings. */
+.card-body p:last-child {
     margin-bottom: 0;
 }
 
@@ -120,10 +126,6 @@ p:last-child {
 .code-snippet-code pre {
     margin: 0;
     background: transparent !important;
-}
-
-.nav-item {
-    cursor: pointer;
 }
 
 /* Mark the current page with the brand red as well as weight and brightness.
