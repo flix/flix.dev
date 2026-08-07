@@ -103,9 +103,6 @@ p:last-child {
     cursor: pointer;
 }
 
-/* Bootstrap 5's default navbar colours are dark, which is what the brighter
-   $info cyan needs; white text on it only reaches about 2:1. */
-
 .card-title {
     font-size: 1.2rem;
 }

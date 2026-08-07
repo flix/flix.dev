@@ -74,7 +74,9 @@ import '../styles/global.css';
               src="/forkme_right_green_007200.png"
               alt="Fork me on GitHub">
         </a>
-        <nav class="navbar bg-info navbar-expand-md menu shadow-sm mb-4" aria-label="Main">
+        {/* data-bs-theme has to sit on the .navbar itself: Bootstrap keys the
+            light-on-dark link and toggler colours off .navbar[data-bs-theme="dark"]. */}
+        <nav class="navbar bg-dark navbar-expand-md menu shadow-sm mb-4" data-bs-theme="dark" aria-label="Main">
           <div class="container-fluid">
             <button
               class="navbar-toggler"
