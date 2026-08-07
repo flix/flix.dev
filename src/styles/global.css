@@ -186,11 +186,3 @@ a:hover {
 .text-justify {
     text-align: justify;
 }
-
-.carousel-caption {
-    filter: invert(100%);
-}
-
-.carousel-control-next, .carousel-control-prev {
-    filter: invert(100%);
-}
