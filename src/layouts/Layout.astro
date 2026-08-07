@@ -78,6 +78,19 @@ import '../styles/global.css';
             light-on-dark link and toggler colours off .navbar[data-bs-theme="dark"]. */}
         <nav class="navbar bg-dark navbar-expand-md menu shadow-sm mb-4" data-bs-theme="dark" aria-label="Main">
           <div class="container-fluid">
+            {/* The same mark as the favicon and the social card, taken from
+                design/og.svg. Inlined rather than fetched: it is two shapes,
+                and a request for them would cost more than they weigh. */}
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+              <svg width="24" height="24" viewBox="0 0 104 104" aria-hidden="true">
+                <rect width="104" height="104" rx="22" fill="#cf4647"></rect>
+                <path
+                  transform="translate(16.05 84.57) scale(0.094 -0.094)"
+                  d="M75 0 241 693H690L658 564H365L330 416H589L558 287H299L230 0Z"
+                  fill="#fff"></path>
+              </svg>
+              Flix
+            </a>
             <button
               class="navbar-toggler"
               type="button"

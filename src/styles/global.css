@@ -11,6 +11,21 @@
     }
 }
 
+/* The Flix red, from design/og.svg. It exists at two strengths because one
+   value cannot do both jobs: #cf4647 is the mark's own colour and reads
+   correctly in shapes, but as text on white it only reaches 4.5:1, right on
+   the limit. Darkening it 20% gives 6.5:1, so anything made of words uses that
+   instead. Overriding Bootstrap's primary as well keeps .link-primary and
+   .text-primary in step with ordinary links. */
+:root {
+    --flix-red: #cf4647;
+
+    --bs-primary: #a63839;
+    --bs-primary-rgb: 166, 56, 57;
+    --bs-link-color-rgb: 166, 56, 57;
+    --bs-link-hover-color-rgb: 124, 42, 43;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     overflow-y: scroll;
@@ -103,6 +118,20 @@ p:last-child {
     cursor: pointer;
 }
 
+/* Mark the current page with the brand red as well as weight and brightness.
+   Every link carries the transparent border so the active one does not shift
+   the row by 3px. Only once the navbar has expanded: in the collapsed menu the
+   links stack, and a rule under one of them reads as a divider. */
+@media (min-width: 768px) {
+    .navbar-nav .nav-link {
+        border-bottom: 3px solid transparent;
+    }
+
+    .navbar-nav .nav-link.active {
+        border-bottom-color: var(--flix-red);
+    }
+}
+
 .card-title {
     font-size: 1.2rem;
 }
@@ -129,8 +158,9 @@ p:last-child {
 
 /* Bootstrap 5 underlines links by default. The site's links live in running
    prose and inside whole-card anchors, where a permanent underline reads as a
-   rendering fault, so keep them underlined on hover only. Nav links opt out:
-   .nav-link loses to a:hover on specificity. */
+   rendering fault, so keep them underlined on hover only. The navbar opts out
+   again: Bootstrap sets text-decoration on .nav-link and .navbar-brand at a
+   specificity a:hover beats, so they need saying a second time. */
 a {
     text-decoration: none;
 }
@@ -139,7 +169,8 @@ a:hover {
     text-decoration: underline;
 }
 
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover, .nav-link:focus,
+.navbar-brand:hover, .navbar-brand:focus {
     text-decoration: none;
 }
 
