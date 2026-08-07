@@ -122,7 +122,7 @@ p:last-child {
    Every link carries the transparent border so the active one does not shift
    the row by 3px. Only once the navbar has expanded: in the collapsed menu the
    links stack, and a rule under one of them reads as a divider. */
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .navbar-nav .nav-link {
         border-bottom: 3px solid transparent;
     }

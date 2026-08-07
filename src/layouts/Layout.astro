@@ -68,15 +68,18 @@ import '../styles/global.css';
     <div class="container page">
       <header>
         {/* The ribbon is absolutely positioned against the viewport, so its
-            place in the DOM only affects the reading order, not the layout. */}
-        <a href="https://github.com/flix/flix">
+            place in the DOM only affects the reading order, not the layout.
+            Hidden below the navbar's breakpoint, where it would claim the same
+            149px of top-right corner that the collapsed navbar puts its
+            toggler in. */}
+        <a class="d-none d-lg-block" href="https://github.com/flix/flix">
           <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9999;"
               src="/forkme_right_green_007200.png"
               alt="Fork me on GitHub">
         </a>
         {/* data-bs-theme has to sit on the .navbar itself: Bootstrap keys the
             light-on-dark link and toggler colours off .navbar[data-bs-theme="dark"]. */}
-        <nav class="navbar bg-dark navbar-expand-md menu shadow-sm mb-4" data-bs-theme="dark" aria-label="Main">
+        <nav class="navbar bg-dark navbar-expand-lg menu shadow-sm mb-4" data-bs-theme="dark" aria-label="Main">
           <div class="container-fluid">
             {/* The same mark as the favicon and the social card, taken from
                 design/og.svg. Inlined rather than fetched: it is two shapes,
