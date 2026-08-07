@@ -24,6 +24,14 @@
     --bs-primary-rgb: 166, 56, 57;
     --bs-link-color-rgb: 166, 56, 57;
     --bs-link-hover-color-rgb: 124, 42, 43;
+
+    /* A greener green. Bootstrap's own success is only 69% saturated and sits
+       at hue 152, already halfway to teal, which is what made it look flat.
+       This is fully saturated at hue 145 and no lighter -- it cannot be, since
+       the inline spans in body copy hold the whole palette to 4.5:1 and this
+       clears it by 0.03, the same margin Bootstrap left itself. */
+    --bs-success: #008938;
+    --bs-success-rgb: 0, 137, 56;
 }
 
 body {
