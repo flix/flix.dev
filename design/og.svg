@@ -18,8 +18,11 @@
   for this line, except { Console }, which is tinted #CC5500 to draw the eye to
   the effect. The `\` stays black so it reads as syntax, not part of the effect.
 
-  The green on "effect-oriented" tracks --bs-success in src/styles/global.css.
-  Keep the two in step; they are the same word in the same colour on the site.
+  The green on "effect-oriented" is the same value as the Bootstrap success
+  custom property set in src/styles/global.css. Keep the two in step; they are
+  the same word in the same colour on the site. (Note for editors: a double
+  hyphen cannot appear inside an XML comment, so that property is named here
+  without its prefix.)
 
   The code line is positioned with explicit per-token x offsets because the
   effect name needs its own fill. Offsets assume a monospace advance of
