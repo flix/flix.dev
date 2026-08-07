@@ -1,16 +1,30 @@
 ---
 interface Props {
   items: { src: string; header: string }[];
+  /** Bootstrap targets the controls and indicators by selector, so a carousel
+      has to be addressable by id. */
+  id: string;
   class?: string;
 }
 
-const { items, class: className } = Astro.props;
+const { items, id, class: className } = Astro.props;
 ---
 
-<div class:list={["carousel", "slide", className]}>
-  <ol class="carousel-indicators">
-    {items.map((_, i) => <li class={i === 0 ? "active" : undefined}></li>)}
-  </ol>
+<div class:list={["carousel", "slide", className]} id={id}>
+  <div class="carousel-indicators">
+    {
+      items.map((item, i) => (
+        <button
+          type="button"
+          data-bs-target={`#${id}`}
+          data-bs-slide-to={i}
+          class={i === 0 ? "active" : undefined}
+          aria-current={i === 0 ? "true" : undefined}
+          aria-label={item.header}
+        />
+      ))
+    }
+  </div>
   <div class="carousel-inner">
     {
       items.map((item, i) => (
@@ -30,78 +44,20 @@ const { items, class: className } = Astro.props;
   </div>
   <button
     type="button"
-    class="carousel-control-prev border-0 bg-transparent"
-    data-slide="prev"
+    class="carousel-control-prev"
+    data-bs-target={`#${id}`}
+    data-bs-slide="prev"
   >
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
+    <span class="visually-hidden">Previous</span>
   </button>
   <button
     type="button"
-    class="carousel-control-next border-0 bg-transparent"
-    data-slide="next"
+    class="carousel-control-next"
+    data-bs-target={`#${id}`}
+    data-bs-slide="next"
   >
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
+    <span class="visually-hidden">Next</span>
   </button>
 </div>
-
-<script>
-  // Bootstrap's carousel JS needs jQuery, which the site does not load. Its CSS
-  // has all the styling and transitions, so this script only swaps the classes.
-  function setupCarousel(carousel: Element) {
-    const items = Array.from(carousel.querySelectorAll(".carousel-item"));
-    const indicators = Array.from(
-      carousel.querySelectorAll(".carousel-indicators li"),
-    );
-    let current = items.findIndex((item) => item.classList.contains("active"));
-    let sliding = false;
-
-    function goTo(index: number, direction: "prev" | "next") {
-      const target = (index + items.length) % items.length;
-      if (sliding || target === current) return;
-      sliding = true;
-
-      const active = items[current];
-      const incoming = items[target];
-      const orderClass =
-        direction === "next" ? "carousel-item-next" : "carousel-item-prev";
-      const moveClass =
-        direction === "next" ? "carousel-item-left" : "carousel-item-right";
-
-      incoming.classList.add(orderClass);
-      void (incoming as HTMLElement).offsetHeight; // reflow so the transition animates
-      active.classList.add(moveClass);
-      incoming.classList.add(moveClass);
-      indicators[current].classList.remove("active");
-      indicators[target].classList.add("active");
-
-      let finished = false;
-      const finish = () => {
-        if (finished) return;
-        finished = true;
-        incoming.classList.remove(orderClass, moveClass);
-        incoming.classList.add("active");
-        active.classList.remove("active", moveClass);
-        current = target;
-        sliding = false;
-      };
-      active.addEventListener("transitionend", finish, { once: true });
-      setTimeout(finish, 700); // transitionend never fires under prefers-reduced-motion
-    }
-
-    carousel
-      .querySelector('[data-slide="prev"]')
-      ?.addEventListener("click", () => goTo(current - 1, "prev"));
-    carousel
-      .querySelector('[data-slide="next"]')
-      ?.addEventListener("click", () => goTo(current + 1, "next"));
-    indicators.forEach((indicator, i) =>
-      indicator.addEventListener("click", () =>
-        goTo(i, i > current ? "next" : "prev"),
-      ),
-    );
-  }
-
-  document.querySelectorAll(".carousel").forEach(setupCarousel);
-</script>

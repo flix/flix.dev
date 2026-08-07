@@ -17,22 +17,25 @@ body {
     background-color: #efefef;
 }
 
-h1 {
+/* Matching Bootstrap's own `h1, .h1` pairing keeps the utility classes in step
+   with the elements. Without it the .h4 cells in the stats tables would opt
+   into Bootstrap 5's fluid type while every <h4> stayed fixed. */
+h1, .h1 {
     font-size: 2rem;
     margin-bottom: 0.75rem;
 }
 
-h2 {
+h2, .h2 {
     font-size: 1.7rem;
     margin-bottom: 0.75rem;
 }
 
-h3 {
+h3, .h3 {
     font-size: 1.6rem;
     margin-bottom: 0.75rem;
 }
 
-h4 {
+h4, .h4 {
     font-size: 1.5rem;
 }
 
@@ -41,11 +44,25 @@ p:last-child {
 }
 
 .menu {
-    margin-left: -15px;
-    margin-right: -15px;
+    /* Bleed the navbar back out over the container's padding so it spans the
+       full width of the page card. Deriving it from the gutter keeps the two
+       in step instead of hard-coding whatever the padding happens to be. */
+    margin-left: calc(var(--bs-gutter-x) * -0.5);
+    margin-right: calc(var(--bs-gutter-x) * -0.5);
+    /* Bootstrap 5 zeroes the navbar's own horizontal padding. Restoring it
+       keeps the nav links roughly aligned with the page content below. */
+    --bs-navbar-padding-x: 1rem;
     /* The navbar is identical on every page; naming it lifts it out of the
        root cross-fade so it holds still during transitions. */
     view-transition-name: navbar;
+}
+
+/* Bootstrap 5 adds an xxl breakpoint that widens .container to 1320px. Hold
+   the page at the width it has always had; line lengths here are tuned for it. */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1140px;
+    }
 }
 
 .page {
@@ -86,16 +103,52 @@ p:last-child {
     cursor: pointer;
 }
 
-.navbar-nav .nav-item .nav-link {
-    color: rgba(255, 255, 255, .85);
-}
-
-.navbar-nav .nav-item .nav-link:hover {
-    color: rgba(255, 255, 255, 1.00);
-}
+/* Bootstrap 5's default navbar colours are dark, which is what the brighter
+   $info cyan needs; white text on it only reaches about 2:1. */
 
 .card-title {
     font-size: 1.2rem;
+}
+
+/* Bootstrap 5 removed .card-columns. These are Bootstrap 4's rules, kept
+   because four sections of the principles page are laid out with them. */
+.card-columns .card {
+    margin-bottom: 0.75rem;
+}
+
+@media (min-width: 576px) {
+    .card-columns {
+        column-count: 3;
+        column-gap: 1.25rem;
+        orphans: 1;
+        widows: 1;
+    }
+
+    .card-columns .card {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+/* Bootstrap 5 underlines links by default. The site's links live in running
+   prose and inside whole-card anchors, where a permanent underline reads as a
+   rendering fault, so keep them underlined on hover only. Nav links opt out:
+   .nav-link loses to a:hover on specificity. */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.nav-link:hover, .nav-link:focus {
+    text-decoration: none;
+}
+
+/* Bootstrap 5 removed .text-justify. */
+.text-justify {
+    text-align: justify;
 }
 
 .carousel-caption {

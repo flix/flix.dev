@@ -74,11 +74,13 @@ import '../styles/global.css';
               src="/forkme_right_green_007200.png"
               alt="Fork me on GitHub">
         </a>
-        <nav class="navbar navbar-dark bg-info navbar-expand-md menu shadow-sm mb-4" aria-label="Main">
+        <nav class="navbar bg-info navbar-expand-md menu shadow-sm mb-4" aria-label="Main">
           <div class="container-fluid">
             <button
               class="navbar-toggler"
               type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#main-nav"
               aria-controls="main-nav"
               aria-expanded="false"
               aria-label="Toggle navigation"
@@ -86,10 +88,10 @@ import '../styles/global.css';
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="main-nav">
-              <ul class="navbar-nav mr-lg-auto">
+              <ul class="navbar-nav me-lg-auto">
                 {navLinks.map(({ href, label }) => (
-                  <li class="nav-item pl-1 pr-1">
-                    <a class={`nav-link${currentPath === href ? " active font-weight-bold" : ""}`} href={href}>
+                  <li class="nav-item ps-1 pe-1">
+                    <a class={`nav-link${currentPath === href ? " active fw-bold" : ""}`} href={href}>
                       {label}
                     </a>
                   </li>
@@ -106,16 +108,12 @@ import '../styles/global.css';
     </div>
 
     <script>
-      // Bootstrap's collapse JS needs jQuery, which the site does not load. Its
-      // CSS hides .collapse:not(.show) below the md breakpoint, so this script
-      // only toggles that class. Above md, .navbar-collapse is display:flex
-      // !important, so a stale .show is harmless when resizing back up.
-      const toggler = document.querySelector<HTMLButtonElement>(".navbar-toggler");
-      const target = document.getElementById("main-nav");
-      toggler?.addEventListener("click", () => {
-        const open = target?.classList.toggle("show") ?? false;
-        toggler.setAttribute("aria-expanded", String(open));
-      });
+      // Importing these registers Bootstrap's click handlers for the
+      // data-bs-toggle and data-bs-slide attributes; nothing else is needed.
+      // They must load in the browser, so they belong here rather than in the
+      // frontmatter alongside the stylesheet import.
+      import "bootstrap/js/dist/collapse";
+      import "bootstrap/js/dist/carousel";
     </script>
   </body>
 </html>

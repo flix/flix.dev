@@ -15,7 +15,7 @@
     "@iconify-json/simple-icons": "^1.2.91",
     "astro": "^7.0.3",
     "astro-icon": "^1.1.5",
-    "bootstrap": "^4.6.2"
+    "bootstrap": "^5.3.8"
   },
   "scripts": {
     "fetch-grammar": "node build-scripts/fetchGrammar.mjs",
