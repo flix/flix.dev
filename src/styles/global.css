@@ -164,24 +164,6 @@ p:last-child {
     }
 }
 
-/* Bootstrap 5 underlines links by default. The site's links live in running
-   prose and inside whole-card anchors, where a permanent underline reads as a
-   rendering fault, so keep them underlined on hover only. The navbar opts out
-   again: Bootstrap sets text-decoration on .nav-link and .navbar-brand at a
-   specificity a:hover beats, so they need saying a second time. */
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.nav-link:hover, .nav-link:focus,
-.navbar-brand:hover, .navbar-brand:focus {
-    text-decoration: none;
-}
-
 /* Bootstrap 5 removed .text-justify. */
 .text-justify {
     text-align: justify;
