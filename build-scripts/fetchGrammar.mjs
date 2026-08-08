@@ -1,28 +1,11 @@
-// Pinned to a specific commit of flix/textmate for reproducible builds. Bump the SHA to pick up grammar changes.
+// Pinned to a specific commit of flix/textmate for reproducible builds. To pick
+// up grammar changes, bump the SHA *and* delete the file below: the fetch is
+// skipped whenever it already exists, so on a working tree that has built once
+// the new SHA alone changes nothing.
 const COMMIT = 'befa883ecec4b0c84e436bdd176dec5475e584ab';
 const URL = `https://raw.githubusercontent.com/flix/textmate/${COMMIT}/syntaxes/flix.tmLanguage.json`;
 const DEST = 'src/grammars/flix.tmLanguage.json';
 
-import { existsSync } from 'node:fs';
-import { mkdir, writeFile } from 'node:fs/promises';
-import { dirname } from 'node:path';
+import { fetchOnce } from './fetchOnce.mjs';
 
-async function fetchGrammar() {
-  if (existsSync(DEST)) {
-    console.log(`${DEST} already exists, skipping fetch`);
-    return;
-  }
-
-  const res = await fetch(URL);
-  if (!res.ok) {
-    throw new Error(`Failed to fetch ${URL}: ${res.status} ${res.statusText}`);
-  }
-
-  await mkdir(dirname(DEST), { recursive: true });
-
-  const buf = Buffer.from(await res.arrayBuffer());
-  await writeFile(DEST, buf);
-  console.log(`Wrote ${DEST}`);
-}
-
-fetchGrammar();
+await fetchOnce({ url: URL, dest: DEST });

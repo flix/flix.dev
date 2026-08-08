@@ -91,7 +91,7 @@ h4, .h4 {
     flex-direction: column;
 }
 
-/* The card is 95vh tall whatever it holds, so on a short page - /blog/, /404/ -
+/* The card is 95vh tall whatever it holds, so on a short page - /404/ -
    the footer would otherwise sit wherever the content happened to stop, with
    the rest of the card blank below it. Letting main absorb the slack pins it to
    the bottom edge instead. */

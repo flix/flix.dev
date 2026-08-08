@@ -20,9 +20,11 @@
   },
   "scripts": {
     "fetch-grammar": "node build-scripts/fetchGrammar.mjs",
-    "dev": "npm run fetch-grammar && astro dev --port 3000 --host 127.0.0.1",
-    "build": "npm run fetch-grammar && astro build",
-    "check": "npm run fetch-grammar && astro check",
+    "fetch-blog-posts": "node build-scripts/fetchBlogPosts.mjs",
+    "fetch": "npm run fetch-grammar && npm run fetch-blog-posts",
+    "dev": "npm run fetch && astro dev --port 3000 --host 127.0.0.1",
+    "build": "npm run fetch && astro build",
+    "check": "npm run fetch && astro check",
     "preview": "astro preview"
   },
   "devDependencies": {

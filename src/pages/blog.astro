@@ -1,19 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { recentPosts } from '../lib/blogPosts.js';
+
+// Read out of the Atom feed that `npm run fetch-blog-posts` downloads before
+// the build; nothing is fetched here.
+const posts = recentPosts();
 ---
 <Layout
   title="Flix | Blog"
-  description="The Flix blog has moved to blog.flix.dev, where we write about programming languages, language design, compilers, and type and effect systems."
+  description="The Flix blog lives at blog.flix.dev, where we write about programming languages, language design, compilers, and type and effect systems."
   noindex
 >
   <div class="container">
     <div class="row mb-3">
-      <div class="col">
+      <div class="col-md-8">
         <h1>Blog</h1>
-        <p>The Flix Blog is now available at:</p>
-        <div class="mt-3">
-          <h2><a href="https://blog.flix.dev/">https://blog.flix.dev/</a></h2>
-        </div>
+        <p>
+          We write about programming languages, language design, compilers, and
+          type and effect systems. The blog lives at <a
+            href="https://blog.flix.dev/">blog.flix.dev</a
+          >.
+        </p>
+
+        <hr />
+
+        <h2 class="h4">Latest Posts</h2>
+
+        {/* Unstyled because the markers would sit oddly against multi-line
+            entries; each post is a heading and a paragraph, not a bullet. */}
+        <ul class="list-unstyled">
+          {
+            posts.map((post) => (
+              <li class="mb-4">
+                <h3 class="h5 mb-1">
+                  <a href={post.url}>{post.title}</a>
+                </h3>
+                <p class="text-muted small mb-1">
+                  <time datetime={post.dateISO}>{post.date}</time>
+                </p>
+                {post.summary && <p class="mb-0">{post.summary}</p>}
+              </li>
+            ))
+          }
+        </ul>
+
+        <p>
+          <a href="https://blog.flix.dev/">All posts on blog.flix.dev &rarr;</a>
+        </p>
       </div>
     </div>
   </div>

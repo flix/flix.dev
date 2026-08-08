@@ -11,5 +11,6 @@
 # generated
 .astro/
 
-# fetched on build from external repo
+# fetched on build from elsewhere; see build-scripts/
 src/grammars/flix.tmLanguage.json
+src/data/blog-atom.xml
