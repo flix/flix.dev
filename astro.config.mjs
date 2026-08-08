@@ -11,8 +11,9 @@ export default defineConfig({
   },
   integrations: [
     icon(),
-    // /blog is a stub pointing at blog.flix.dev and is marked noindex, so it
-    // does not belong in the sitemap either.
+    // /blog only indexes posts that live on blog.flix.dev, so the pages worth
+    // finding are all off-site. It stays noindex to keep it from competing with
+    // them in search, and a noindex page does not belong in the sitemap either.
     sitemap({
       filter: (page) => !page.endsWith('/blog/')
     })
