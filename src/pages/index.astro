@@ -24,7 +24,6 @@ import {
   javaInteropExample,
   terminationExample,
   datalogExample,
-  latticeExample,
 } from "../lib/indexExamples.js";
 
 const vscodeSlides = [
@@ -570,43 +569,6 @@ const vscodeSlides = [
             </p>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title">
-              <h4>Datalog Enriched with Lattice Semantics</h4>
-            </div>
-            <p class="card-text">
-              Flix supports Datalog constraints enriched with lattice semantics.
-            </p>
-            <p class="card-text">
-              The program on the right computes the delivery date for a
-              collection of parts. Each part is assembled from a collection of
-              sub-components with various delivery dates. For example, a car
-              depends on a chassis and an engine. To build a car, we need to
-              wait for the chassis and engine to be assembled and then we can
-              assemble the car itself.
-            </p>
-            <p class="card-text">
-              Note that parts may depend on sub-components that themselves may
-              depend on other sub-components. In other words, the problem is
-              recursive.
-            </p>
-            <hr />
-            <p class="card-text">
-              Support for Datalog constraints enriched with lattice semantics is
-              one of the more advanced features of Flix and requires some
-              background knowledge of lattice theory and fixpoints.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={latticeExample} />
       </div>
     </div>
 
