@@ -22,7 +22,10 @@ const posts = recentPosts();
           >.
         </p>
 
-        <h2 class="h4">Latest Posts</h2>
+        {/* mb-3 rather than a smaller step: global.css already gives every h2
+            0.75rem, so anything below mb-3 would tighten the gap instead of
+            opening it. */}
+        <h2 class="h4 mb-3">Latest Posts</h2>
 
         {/* Unstyled because the markers would sit oddly against multi-line
             entries; each post is a heading and a paragraph, not a bullet. */}
