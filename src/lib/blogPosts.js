@@ -1,24 +1,20 @@
-// Posts shown on /blog/, read out of the Atom feed that build-scripts/
-// fetchBlogPosts.mjs downloads from blog.flix.dev before Astro runs.
-//
-// Nothing here touches the network: by the time this module loads, the feed is
-// a file in the working tree like any other, so the page renders the same way
-// on every build from the same checkout.
+// Posts for /blog/, parsed from the Atom feed that build-scripts/fetchBlogPosts.mjs
+// downloads before Astro runs. Nothing here touches the network.
 
-// ?raw inlines the file here as a string, and is not optional: without it the
-// bundler reads the .xml as source and fails parsing it. Contrast the TextMate
-// grammar in CodeSnippet.astro, imported with no suffix because .json has a
-// loader of its own and so arrives already parsed.
+// ?raw is required: without it the bundler reads the .xml as source and fails to
+// parse it. A .json needs no suffix, having a loader of its own.
 import feedXml from '../data/blog-atom.xml?raw';
 
+// Named only for the error message below.
 const FEED = 'src/data/blog-atom.xml';
 
-// Kept to genuinely recent work rather than the whole archive, which the page
-// links to blog.flix.dev for.
+// Recent work only; the page links to blog.flix.dev for the archive.
 const DEFAULT_LIMIT = 3;
 
+// One entry as the page renders it.
 /** @typedef {{title: string, url: string, author: string, date: string, dateISO: string, summary: string}} Post */
 
+// The five entities XML predefines. Everything else arrives numerically.
 const NAMED_ENTITIES = {
   amp: '&',
   lt: '<',
@@ -27,9 +23,8 @@ const NAMED_ENTITIES = {
   apos: "'",
 };
 
-// Zola escapes aggressively -- some URLs arrive with every slash as &#x2F; -- so
-// nothing read out of the feed is usable before this. One pass, so text that
-// decodes to an entity reference is left alone rather than decoded twice.
+// Zola escapes heavily -- URLs arrive with every slash as &#x2F;. One pass, so
+// text that decodes to an entity reference is not decoded a second time.
 function decodeEntities(xml) {
   return xml.replace(/&(?:#(\d+)|#x([\da-f]+)|([a-z]+));/gi, (match, dec, hex, name) => {
     if (dec) return String.fromCodePoint(Number(dec));
@@ -38,14 +33,14 @@ function decodeEntities(xml) {
   });
 }
 
+// Decoded text of the first matching child element, or '' if there is none.
 function childText(entry, name) {
   const match = entry.match(new RegExp(`<${name}\\b[^>]*>([\\s\\S]*?)</${name}>`));
   return match ? decodeEntities(match[1]).trim() : '';
 }
 
-// Atom puts the post's own address on <link rel="alternate">, and rel defaults
-// to alternate when absent. Attributes are read out of the matched tag rather
-// than pinned in one order, since which comes first is the generator's whim.
+// The post's own address. rel defaults to alternate when absent, and attribute
+// order is the generator's whim, so neither is relied on.
 function alternateLink(entry) {
   for (const [, attributes] of entry.matchAll(/<link\b([^>]*)>/g)) {
     const rel = attributes.match(/\brel="([^"]*)"/);
@@ -57,55 +52,50 @@ function alternateLink(entry) {
   return '';
 }
 
-// The name sits inside <author>, so it cannot be read off the entry directly --
-// and an entry is allowed more than one author, of which the first is the one
-// the listing has room for.
+// First <author><name>. Atom allows several; the listing has room for one.
 function authorName(entry) {
   const author = entry.match(/<author\b[^>]*>([\s\S]*?)<\/author>/);
   return author ? childText(author[1], 'name') : '';
 }
 
+// Renders a date as "30 January 2026".
 const formatDate = new Intl.DateTimeFormat('en-GB', {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
-  // The feed timestamps posts at midnight UTC. Left to the build machine's zone
-  // that lands on the previous evening anywhere west of Greenwich, and every
-  // date on the page would be a day early.
+  // The feed timestamps midnight UTC; the build machine's own zone would put
+  // every date a day early anywhere west of Greenwich.
   timeZone: 'UTC',
 });
 
+// Parsed once, when the module loads.
 /** @type {Post[]} */
 const posts = [];
 
+// Entries missing a title, an address, or a usable date are skipped rather than
+// rendered half-empty.
 for (const [, entry] of feedXml.matchAll(/<entry\b[^>]*>([\s\S]*?)<\/entry>/g)) {
   const title = childText(entry, 'title');
   const url = alternateLink(entry);
-  // Entries always carry <updated> but only carry <published> once a post has
-  // been dated. Sorting on the former would reshuffle the list every time an
-  // old post got a typo fix.
+  // <published> is absent until a post is dated; <updated> moves on every edit.
   const dateISO = childText(entry, 'published') || childText(entry, 'updated');
   if (!title || !url || !Number.isFinite(Date.parse(dateISO))) continue;
 
   posts.push({
     title,
     url,
-    // Absent from the listing rather than dropping the post, since a feed is
-    // free to leave the author off an entry.
+    // Optional: a feed may omit it, which should not cost us the post.
     author: authorName(entry),
     dateISO,
     date: formatDate.format(new Date(dateISO)),
-    // <summary type="html"> is entitled to hold markup. It is plain prose in
-    // every post today, but a stray <p> would otherwise be printed at the
-    // reader rather than rendered.
+    // <summary type="html"> may legally hold markup; strip it rather than print
+    // tags at the reader.
     summary: childText(entry, 'summary').replace(/<[^>]*>/g, '').trim(),
   });
 }
 
-// A feed that arrived intact and parsed to nothing means its shape has moved out
-// from under the patterns above. Throwing during module evaluation fails the
-// build, which is the point: the alternative is publishing a page that looks
-// finished and lists nothing.
+// Parsing to nothing means the feed's shape changed. Fail the build rather than
+// publish a page that looks finished and lists nothing.
 if (posts.length === 0) {
   throw new Error(
     `Parsed zero entries out of ${FEED}, so the feed format has probably ` +
@@ -114,6 +104,7 @@ if (posts.length === 0) {
   );
 }
 
+// Newest first. Feed order is conventional, not guaranteed.
 posts.sort((a, b) => Date.parse(b.dateISO) - Date.parse(a.dateISO));
 
 /**
