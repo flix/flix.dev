@@ -15,7 +15,7 @@ const FEED = 'src/data/blog-atom.xml';
 // links to blog.flix.dev for.
 const DEFAULT_LIMIT = 3;
 
-/** @typedef {{title: string, url: string, date: string, dateISO: string, summary: string}} Post */
+/** @typedef {{title: string, url: string, author: string, date: string, dateISO: string, summary: string}} Post */
 
 const NAMED_ENTITIES = {
   amp: '&',
@@ -55,6 +55,14 @@ function alternateLink(entry) {
   return '';
 }
 
+// The name sits inside <author>, so it cannot be read off the entry directly --
+// and an entry is allowed more than one author, of which the first is the one
+// the listing has room for.
+function authorName(entry) {
+  const author = entry.match(/<author\b[^>]*>([\s\S]*?)<\/author>/);
+  return author ? childText(author[1], 'name') : '';
+}
+
 const formatDate = new Intl.DateTimeFormat('en-GB', {
   day: 'numeric',
   month: 'long',
@@ -80,6 +88,9 @@ for (const [, entry] of feedXml.matchAll(/<entry\b[^>]*>([\s\S]*?)<\/entry>/g)) 
   posts.push({
     title,
     url,
+    // Absent from the listing rather than dropping the post, since a feed is
+    // free to leave the author off an entry.
+    author: authorName(entry),
     dateISO,
     date: formatDate.format(new Date(dateISO)),
     // <summary type="html"> is entitled to hold markup. It is plain prose in

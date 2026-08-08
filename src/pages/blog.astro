@@ -35,8 +35,17 @@ const posts = recentPosts();
                 <h3 class="h5 mb-1">
                   <a href={post.url}>{post.title}</a>
                 </h3>
+                {/* The middot carries its own padding because the compiler
+                    strips the whitespace between adjacent elements, the same
+                    way the footer's separator does. */}
                 <p class="text-muted small mb-1">
                   <time datetime={post.dateISO}>{post.date}</time>
+                  {post.author && (
+                    <>
+                      <span class="px-1">&middot;</span>
+                      {post.author}
+                    </>
+                  )}
                 </p>
                 {post.summary && <p class="mb-0">{post.summary}</p>}
               </li>
