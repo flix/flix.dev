@@ -155,8 +155,3 @@ h4, .h4 {
         width: 100%;
     }
 }
-
-/* Bootstrap 5 removed .text-justify. */
-.text-justify {
-    text-align: justify;
-}
