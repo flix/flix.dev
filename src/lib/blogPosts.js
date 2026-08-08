@@ -5,8 +5,10 @@
 // a file in the working tree like any other, so the page renders the same way
 // on every build from the same checkout.
 
-// ?raw hands over the file as a string at build time, the same way
-// CodeSnippet.astro imports the TextMate grammar it is given.
+// ?raw inlines the file here as a string, and is not optional: without it the
+// bundler reads the .xml as source and fails parsing it. Contrast the TextMate
+// grammar in CodeSnippet.astro, imported with no suffix because .json has a
+// loader of its own and so arrives already parsed.
 import feedXml from '../data/blog-atom.xml?raw';
 
 const FEED = 'src/data/blog-atom.xml';
