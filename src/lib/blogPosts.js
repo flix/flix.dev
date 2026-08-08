@@ -11,9 +11,9 @@ import feedXml from '../data/blog-atom.xml?raw';
 
 const FEED = 'src/data/blog-atom.xml';
 
-// Enough to show the blog is active without reproducing the whole archive; the
-// page links to blog.flix.dev for the rest.
-const DEFAULT_LIMIT = 5;
+// Kept to genuinely recent work rather than the whole archive, which the page
+// links to blog.flix.dev for.
+const DEFAULT_LIMIT = 3;
 
 /** @typedef {{title: string, url: string, date: string, dateISO: string, summary: string}} Post */
 
