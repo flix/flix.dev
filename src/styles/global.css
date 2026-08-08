@@ -94,10 +94,15 @@ h4, .h4 {
     margin-bottom: 1.5em;
 }
 
+/* No overflow here on purpose. Astro ships the <pre> with its own inline
+   overflow-x:auto, so a scroller here would be the second of two nested ones,
+   and that is what put a vertical scrollbar on the wider snippets. Scrolling
+   the <pre> instead also keeps the side padding as a fixed gutter rather than
+   letting the left one scroll away and the code run flush to the edge. The
+   bottom padding lives on the <pre> for the same reason. */
 .code-snippet-code {
-    padding: 1em 1.75em;
+    padding: 0.9em 1.6em 0;
     background-color: #f7f7f7;
-    overflow-x: auto;
 }
 
 .code-snippet-code pre,
@@ -109,9 +114,17 @@ h4, .h4 {
     line-height: 14px;
 }
 
+/* overflow-x:auto arrives inline from Astro. overflow-y has to be stated: left
+   at its initial `visible` the spec promotes it to `auto` alongside a non-visible
+   x, and the horizontal scrollbar - laid out inside the box - then steals just
+   enough height to trigger the vertical one. The padding-bottom is where that
+   scrollbar sits, so it covers padding instead of the last line of code; the box
+   looks the same as before when no scrollbar is present. */
 .code-snippet-code pre {
     margin: 0;
     background: transparent !important;
+    overflow-y: hidden;
+    padding-bottom: 0.9em;
 }
 
 /* Mark the current page with the brand red as well as weight and brightness.
