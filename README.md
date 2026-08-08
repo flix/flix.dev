@@ -41,7 +41,9 @@ rm -f src/grammars/flix.tmLanguage.json src/data/blog-atom.xml
 npm run fetch
 ```
 
-Either can also be fetched on its own with `npm run fetch-grammar` or `npm run fetch-blog-posts`. See [`build-scripts/`](build-scripts/README.md) for details.
+Either can also be fetched on its own with `npm run fetch-grammar` or `npm run fetch-blog-posts`.
+
+Note that the grammar is pinned to a commit of [flix/textmate](https://github.com/flix/textmate): bumping the SHA in `build-scripts/fetchGrammar.mjs` has no effect on its own, since the download is skipped whenever the file is already there. Delete it as well.
 
 ## Learn More
 
