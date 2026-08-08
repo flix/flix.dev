@@ -87,6 +87,16 @@ h4, .h4 {
 .page {
     background-color: white;
     min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* The card is 95vh tall whatever it holds, so on a short page - /blog/, /404/ -
+   the footer would otherwise sit wherever the content happened to stop, with
+   the rest of the card blank below it. Letting main absorb the slack pins it to
+   the bottom edge instead. */
+.page > main {
+    flex: 1;
 }
 
 .code-snippet-frame {

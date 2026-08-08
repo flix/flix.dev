@@ -1,0 +1,19 @@
+---
+/** The mark from design/og.svg, the same one used by the favicon and the social
+    card. Inlined rather than fetched: it is two shapes, and a request for them
+    would cost more than they weigh. Shared by the navbar and the footer, which
+    draw it at different sizes. */
+interface Props {
+  size: number;
+}
+
+const { size } = Astro.props;
+---
+
+<svg width={size} height={size} viewBox="0 0 104 104" aria-hidden="true">
+  <rect width="104" height="104" rx="22" fill="#cf4647"></rect>
+  <path
+    transform="translate(16.05 84.57) scale(0.094 -0.094)"
+    d="M75 0 241 693H690L658 564H365L330 416H589L558 287H299L230 0Z"
+    fill="#fff"></path>
+</svg>

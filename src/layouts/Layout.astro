@@ -25,6 +25,11 @@ const canonicalURL = new URL(currentPath, Astro.site);
 // Social cards need an absolute URL; relative paths are ignored by every scraper.
 const ogImageURL = new URL('/og.png', Astro.site);
 
+// Every route is a flat file in src/pages, so the path is the filename: "/" is
+// index, "/faq/" is faq, and the 404 handler prerenders at "/404".
+const pageSlug = currentPath === '/' ? 'index' : currentPath.replace(/^\/|\/$/g, '');
+const editURL = `https://github.com/flix/flix.dev/edit/master/src/pages/${pageSlug}.astro`;
+
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/get-started/", label: "Get Started" },
@@ -37,6 +42,59 @@ const navLinks = [
   { href: "/internships/", label: "Internships" },
 ];
 
+// The footer's internal entries come from navLinks so that a renamed route is
+// changed in one place. Looking them up by label rather than href keeps the two
+// lists from drifting silently: rename a label and the build stops here instead
+// of shipping a footer full of undefined hrefs.
+const page = (label: string) => {
+  const link = navLinks.find((navLink) => navLink.label === label);
+  if (!link) throw new Error(`Footer links to a missing nav page: ${label}`);
+  return link;
+};
+
+// What the columns add over the nav is the off-site half - the book, the API,
+// the playground, releases, and the community - each of which otherwise appears
+// on one page of the site.
+const footerGroups = [
+  {
+    title: "Learn",
+    links: [
+      page("Get Started"),
+      page("Documentation"),
+      { href: "https://doc.flix.dev/", label: "Programming Flix" },
+      { href: "https://api.flix.dev/", label: "Standard Library" },
+      { href: "https://play.flix.dev/", label: "Playground" },
+      page("VSCode"),
+    ],
+  },
+  {
+    title: "Project",
+    links: [
+      page("Principles"),
+      page("FAQ"),
+      {
+        href: "https://doc.flix.dev/research-literature.html",
+        label: "Research",
+      },
+      { href: "https://github.com/flix/flix/releases", label: "Releases" },
+      page("Contribute"),
+      page("Internships"),
+    ],
+  },
+  {
+    title: "Community",
+    links: [
+      { href: "https://github.com/flix/flix", label: "GitHub" },
+      { href: "https://flix.zulipchat.com/", label: "Zulip" },
+      { href: "https://blog.flix.dev/", label: "Blog" },
+      { href: "https://x.com/flixlang", label: "Twitter" },
+      { href: "https://perf.flix.dev/", label: "Perf Dashboard" },
+      { href: "https://github.com/flix/flix.dev", label: "Website source" },
+    ],
+  },
+];
+
+import FlixMark from '../components/FlixMark.astro';
 import '../styles/global.css';
 ---
 <!doctype html>
@@ -90,17 +148,8 @@ import '../styles/global.css';
             light-on-dark link and toggler colours off .navbar[data-bs-theme="dark"]. */}
         <nav class="navbar bg-dark navbar-expand-lg menu shadow-sm mb-4" data-bs-theme="dark" aria-label="Main">
           <div class="container-fluid">
-            {/* The same mark as the favicon and the social card, taken from
-                design/og.svg. Inlined rather than fetched: it is two shapes,
-                and a request for them would cost more than they weigh. */}
             <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-              <svg width="24" height="24" viewBox="0 0 104 104" aria-hidden="true">
-                <rect width="104" height="104" rx="22" fill="#cf4647"></rect>
-                <path
-                  transform="translate(16.05 84.57) scale(0.094 -0.094)"
-                  d="M75 0 241 693H690L658 564H365L330 416H589L558 287H299L230 0Z"
-                  fill="#fff"></path>
-              </svg>
+              <FlixMark size={24} />
               Flix
             </a>
             <button
@@ -132,6 +181,68 @@ import '../styles/global.css';
       <main>
         <slot />
       </main>
+
+      {/* The container mirrors the one every page wraps its own content in, so
+          the rule lines up with the <hr>s above it rather than with the navbar,
+          which bleeds the other way. */}
+      <footer class="mt-4">
+        <div class="container">
+          <div class="border-top pt-4 pb-3 small">
+            <div class="row">
+              {footerGroups.map(({ title, links }) => (
+                <div class="col-6 col-md-3 mb-3">
+                  <h2 class="h6 fw-bold">{title}</h2>
+                  <ul class="list-unstyled mb-0">
+                    {links.map(({ href, label }) => (
+                      <li class="mb-1">
+                        <a href={href}>{label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+
+              {/* Last in the source but first on the row from md up. Four
+                  half-width cells wrap 2x2 on a phone with nothing ragged,
+                  which a full-width brand followed by three halves does not:
+                  that leaves the third group alone on its own row. */}
+              <div class="col-6 col-md-3 mb-3 order-md-first">
+                <div class="d-flex align-items-center gap-2 mb-2 fw-bold">
+                  <FlixMark size={20} />
+                  Flix
+                </div>
+                <p class="text-muted mb-0">
+                  A principled effect-oriented functional, imperative, and logic
+                  programming language.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="d-flex flex-column flex-sm-row justify-content-between gap-1 border-top pt-3 text-muted"
+            >
+              {/* The middot carries its own padding because the compiler
+                  strips the whitespace between adjacent elements: spacing left
+                  to the source layout does not survive the build. */}
+              <div>
+                Open source under Apache 2.0<span class="px-1">&middot;</span><a
+                  href={editURL}>Edit this page</a
+                >
+              </div>
+              <div>
+                Thanks to <a href="https://www.ej-technologies.com/"
+                  >EJ Technologies</a
+                > for <a
+                  href="https://www.ej-technologies.com/products/jprofiler/overview.html"
+                  >JProfiler</a
+                > and <a href="https://www.jetbrains.com/">JetBrains</a> for <a
+                  href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a
+                >.
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
 
     <script>
