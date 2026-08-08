@@ -1,0 +1,1445 @@
+---
+import Layout from "../layouts/Layout.astro"
+import CodeSnippet from "../components/CodeSnippet.astro"
+import PaperEntry from "../components/PaperEntry.astro"
+---
+<Layout
+  title="Flix | Principles (v2)"
+  description="The design values and principles of the Flix programming language, as published in the Onward! '22 paper."
+  noindex={true}
+>
+  <div class="container">
+    <h1>Design Values and Principles</h1>
+
+    <p class="mb-3">
+        The design of Flix is guided by a set of explicitly stated values and principles. These were
+        published in the paper <a href="https://dl.acm.org/doi/10.1145/3563835.3567661"><em>The
+        Principles of the Flix Programming Language</em></a> at Onward! '22. This page reproduces
+        the values and principles from the paper, with terminology and code examples updated to
+        current Flix (e.g., <em>traits</em> rather than <em>type classes</em>); figures and
+        statistics are as of the paper's publication in 2022.
+    </p>
+
+    <p class="mb-3">
+        Jump to:
+        <a href="#values">Values</a> &middot;
+        <a href="#syntax-principles">Syntax</a> &middot;
+        <a href="#static-semantic-principles">Static Semantics</a> &middot;
+        <a href="#correctness-and-safety-principles">Correctness and Safety</a> &middot;
+        <a href="#compiler-messages">Compiler Messages</a> &middot;
+        <a href="#standard-library">Standard Library</a> &middot;
+        <a href="#miscellaneous-principles">Miscellaneous</a> &middot;
+        <a href="#abandoned-principles">Abandoned Principles</a>
+    </p>
+
+    <div class="definition">
+        <strong>Definition (Value).</strong> A <em>value</em>, in the broadest sense, is a
+        subscription to a particular view on how programs should be written. A value, in a more
+        concrete sense, is a property of a programming language that its designers consider to be
+        important, worthy, or useful.
+    </div>
+
+    <div class="definition">
+        <strong>Definition (Principle).</strong> A <em>principle</em> is a design guideline; it
+        expresses a particular property or collection of design choices about how something should
+        work.
+    </div>
+
+    <h2 class="mt-4" id="values">The Flix Values</h2>
+
+    <p>
+        We anchor the Flix design principles in a collection of <em>values</em>. Each value is a
+        <em>quality</em> or <em>trait</em> we, as language designers, find valuable and want Flix to
+        have.
+    </p>
+
+    <p class="mb-4">
+        We now discuss the most important Flix design values:
+    </p>
+
+    <PaperEntry kind="value" number={1} name="Simple is Not Easy" id="simple-is-not-easy">
+        <Fragment slot="statement">
+            Flix adopts Rich Hickey's maxim: <a
+            href="https://www.infoq.com/presentations/Simple-Made-Easy">&ldquo;simple is not
+            easy&rdquo;</a>. That is, we prefer design choices that get things right over ones that
+            make things easy.
+        </Fragment>
+        <Fragment slot="rationale">
+            Rich Hickey's maxim is really about necessary complexity: whether to hide it (and hope
+            for the best) or whether to surface it (and force the user to deal with it). What Hickey
+            expresses, which we agree with, is that it is fundamentally necessary to deal with
+            inherent complexity. For example, many programming languages have a <code>null</code>
+            value. If <code>null</code> is a member of every type then it is <em>easy</em> to
+            represent absent or uninitialized values, but it also makes it incredible difficult,
+            i.e., not <em>simple</em>, to understand when a value is guaranteed to be non-null.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="value" number={2} name="Principle of Least Surprise" id="principle-of-least-surprise">
+        <Fragment slot="statement">
+            Flix should use safe and predictable defaults. When no reasonable default is apparent,
+            there should not be a default; instead the programmer should make an explicit choice.
+        </Fragment>
+        <Fragment slot="rationale">
+            This value, which we can describe as &ldquo;explicit is better than implicit&rdquo;,
+            says that a programming language should never surprise the programmer. We give two
+            counter-examples: First, JavaScript supports implicit coercions that silently convert
+            one type into another following a complex collection of rules. Programmers often
+            struggle to understand these rules leading to many bugs. Second, in Java every class
+            implicitly implements the <code>equals</code> and <code>hashCode</code> methods even
+            though not all objects may have a meaningful equality relation (e.g. objects that
+            represent closures).
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="value" number={3} name="Functional-First" id="functional-first">
+        <Fragment slot="statement">
+            Flix is a functional, imperative, and logic programming language. But, Flix is foremost
+            a functional language, and if there is a conflict between these paradigms, then it
+            should be resolved in favor of the functional aspects of the language.
+        </Fragment>
+        <Fragment slot="rationale">
+            There is an inherent tension between functional- and imperative programming. The value
+            states that when a trade-off is made, it should never be at the expense of the
+            functional language. For example, we have already seen that Flix uses its type and
+            effect system to separate pure and impure code. Thus a functional programmer does not
+            lose the benefits of equational reasoning when writing pure code.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="value" number={4} name="One Language" id="one-language">
+        <Fragment slot="statement">
+            Flix is one programming language. Flix does not have feature flags, compiler plugins, or
+            any other means of changing the language.
+        </Fragment>
+        <Fragment slot="rationale">
+            We want to avoid fragmentation of the nascent Flix ecosystem. We do not want programs
+            written in different dialects of Flix. There should be one Flix language. This is about
+            control; we should always have a clear mental model of what is and what is not in the
+            language.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="value" number={5} name="Productivity Over Performance" id="productivity-over-performance">
+        <Fragment slot="statement">
+            Flix values developer productivity over runtime performance. If there is trade-off
+            between development speed and runtime performance, then it should resolved in favor of
+            development speed.
+        </Fragment>
+        <Fragment slot="rationale">
+            Flix aims to support developer productivity; the ability to get a lot done with little
+            ceremony and boilerplate. The fundamental value is that development time is a more
+            expensive resource than hardware. A carefully crafted C program might run faster than a
+            Flix program by default, but it will not be as short, concise, or quick to write as the
+            Flix program. Flix aims to be a language with powerful constructs and high-level
+            abstractions. In Flix, programmers should be able to write programs quickly, even if it
+            may come at the cost of performance. For example, functional data structures are simpler
+            to reason about than their imperative counterparts but are often a logarithmic factor
+            slower. A programmer can still write blazingly fast Flix code (and the compiler still
+            optimizes code), but programmers should not be forced to deal with performance aspects
+            unless they choose to.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="value" number={6} name="Correctness Over Performance" id="correctness-over-performance">
+        <Fragment slot="statement">
+            Flix values program correctness over performance. If there is a trade-off between
+            correctness and performance, then it should be resolved in favor of correctness.
+        </Fragment>
+        <Fragment slot="rationale">
+            Low-level programming languages like C and C++ often rely on undefined behavior to
+            achieve stellar performance. In contrast, higher-level languages like Haskell, Java, and
+            JavaScript try to avoid undefined behavior. Both Java and Flix benefit from being hosted
+            on the Java Virtual Machine (JVM) which ensures memory safety. For example, the JVM
+            performs dynamic checks to ensure that every array access is within bounds and safely
+            aborts the execution if an access is out-of-bounds. However, Flix goes further. For
+            example, Flix supports full tail call elimination<sup>1</sup> to ensure that tail calls
+            never overflow the stack. Since the JVM lacks native tail calls, Flix must emulate tail
+            calls using trampolines. This is an example where Flix trades performance for
+            correctness: A Flix programmer can safely write programs using tail calls without
+            worrying of the program crashing, but it comes at a (small) price.
+        </Fragment>
+        <Fragment slot="footnotes">
+            <p>
+                1. Note that full tail call elimination
+                [<a href="https://doi.org/10.1016/S1571-0661(05)80459-1">1</a>,
+                <a href="https://doi.org/10.1145/3178372.3179499">2</a>] is more powerful than
+                simple tail recursion optimization. In Flix, any call that is in tail position is
+                guaranteed not to increase the stack height. Thus, a program in CPS can be evaluated
+                without blowing the stack, which is not necessarily the case in other functional
+                programming languages on the JVM (e.g. Scala).
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <h2 class="mt-4" id="principles">The Flix Principles</h2>
+
+    <p class="mb-4">
+        We now discuss the Flix design principles. A principle, unlike a value, is a particular
+        property of a programming language design that is actionable and decidable, i.e., we should
+        be able to enforce it, and we should be able to assess whether a language satisfies a
+        specific principle.
+    </p>
+
+    <h3 class="mt-4" id="syntax-principles">Syntax Principles</h3>
+
+    <PaperEntry kind="principle" number={1} name="Syntax vs. Semantics" id="syntax-vs-semantics">
+        <Fragment slot="statement">
+            Syntax and semantics are essential, but the two should not be confused.
+        </Fragment>
+        <Fragment slot="rationale">
+            The essence of this principle is to avoid confusion between syntactic and semantic
+            issues: a syntactic issue should not be solved with enrichment of semantics. We give two
+            counter-examples: <a href="https://en.wikipedia.org/wiki/Extension_method">extension
+            methods</a> and <a
+            href="https://docs.scala-lang.org/overviews/core/implicit-classes.html">implicit
+            classes</a>. Both techniques allow programmers to enrich classes with new methods. For
+            example, the <code>String</code> class does not have a <code>center</code> method, but
+            programmers can use extension methods (or implicit classes) to add such a method
+            retroactively. Thus programmers can then write <code>s.center()</code>, as if
+            <code>center</code> was a method on <code>String</code>. The problem is that extension
+            methods and implicit classes come with a lot of semantic baggage. For example, in Scala
+            2.x, using an implicit class has the downside that, in certain circumstances, the
+            compiler cannot eliminate the construction of the implicit object. Thus the ability to
+            write <code>s.center()</code> instead of <code>center(s)</code> may incur an unexpected
+            performance penalty. In summary, the purpose of this principle is to encourage a strong
+            separation between syntactic issues (which may be solved by syntactic sugar) and
+            semantic issues (which may be solved by language extensions).
+        </Fragment>
+        <Fragment slot="discussion">
+            As a functional language, Flix does not have traditional for- or while-loops. However,
+            we recently added syntactic sugar for two kinds of &ldquo;for-loops&rdquo;; one is a
+            foreach-loop that is syntactic sugar for using an <code>Iterable</code>, and the other
+            is a monadic-do that is syntactic sugar for using the <code>map</code> and
+            <code>flatMap</code> functions. Importantly these additions are purely syntactic and
+            <em>do not</em> modify the semantics of Flix.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={2} name="Expression-based Syntax" id="expression-based-syntax">
+        <Fragment slot="statement">
+            Flix is primarily a functional language and embraces the idea that every construct
+            should be an expression.
+        </Fragment>
+        <Fragment slot="rationale">
+            The idea is that every programming construct should reduce to a value that can be used
+            for further computation. For example, Flix has no local variable <em>declarations</em>
+            or if-then-else <em>statements</em>, instead it has let-bindings and if-then-else
+            <em>expressions</em>.
+        </Fragment>
+        <Fragment slot="discussion">
+            Flix does not take this idea as far as the Scheme languages where every construct is an
+            expression. Flix still has module declarations and type declarations, neither of which
+            are expressions. Flix also has statement expressions: <code>e1; e2</code> for working
+            with expressions that are executed purely for their side-effects.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={3} name="Keyword-based Syntax" id="keyword-based-syntax">
+        <Fragment slot="statement">
+            The Flix syntax is based on keywords. A keyword should be short, ideally three letters,
+            and visually help the programmer understand the structure of a program.
+        </Fragment>
+        <Fragment slot="rationale">
+            We make the following observations:
+            <ul>
+                <li>
+                    We conjecture that keywords help programmers read and understand the structure
+                    of code better than just symbols and punctuation.
+                </li>
+                <li>
+                    Keywords enable basic syntax highlighting in most IDEs and editors.
+                </li>
+                <li>
+                    The length of a keyword is essential to ensure a pleasing visual alignment. Flix
+                    uses 4-space indentation, which works well with three-letter keywords since
+                    three letters and a space aligns with 4-spaces.
+                </li>
+            </ul>
+        </Fragment>
+        <Fragment slot="discussion">
+            Early versions of Flix used <code>!</code>, <code>&amp;&amp;</code>, and
+            <code>||</code> as the syntax for the standard Boolean operators. Inspired by this
+            principle, these operators were changed to the keywords: <code>not</code>,
+            <code>and</code>, and <code>or</code>. This design choice was supported by two
+            additional observations: First, a single <code>!</code> symbol is easy to overlook while
+            scanning through or reading source code. Second, unlike all other operators, the
+            semantics of <code>and</code> and <code>or</code> short-circuit. We felt that turning
+            these operators into keywords would also help highlight this aspect.
+        </Fragment>
+        <Fragment slot="hypothesis">
+            We propose the hypothesis that keywords help programmers understand the structure of
+            their code better than symbols and punctuation.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={4} name="Mirrored Term and Type Syntax" id="mirrored-term-and-type-syntax">
+        <Fragment slot="statement">
+            Flix should have consistent term and type-level syntax.
+        </Fragment>
+        <Fragment slot="rationale">
+            A Flix programmer should not have to learn and remember two different syntaxes for every
+            construct. Instead, the syntax of an expression and the syntax of its corresponding type
+            should be similar. For example:
+            <ul>
+                <li>
+                    A function application is written as <code>f(a, b, c)</code> whereas a type
+                    application is written as <code>f[a, b, c]</code>.
+                </li>
+                <li>
+                    A function expression is written as <code>x -&gt; x + 1</code> whereas a
+                    function type is written as <code>Int32 -&gt; Int32</code>.
+                </li>
+                <li>
+                    A tuple expression is written as <code>(true, 12345)</code> whereas a tuple type
+                    is written as <code>(Bool, Int32)</code>.
+                </li>
+                <li>
+                    A record expression is written as <code>{"{ x = 123 }"}</code> whereas a record
+                    type is written as <code>{"{ x = Int32 }"}</code>.
+                </li>
+                <li>
+                    A Datalog expression is written as <code>{"#{ A(123). }"}</code> whereas a
+                    Datalog type is written as <code>{"#{ A(Int32) }"}</code>.
+                </li>
+            </ul>
+        </Fragment>
+        <Fragment slot="discussion">
+            While revisiting this principle, we discovered that the syntax for records and record
+            types was inconsistent. Without any particular reason, we had adopted the syntax
+            <code>{"{ x :: Int32 }"}</code> for records types. This has now been corrected.
+            <p>
+                Flix has infix function applications which allow a function call
+                <code>sum(x, y)</code> to be written as <code>x `sum` y</code>. We experimented with
+                allowing the same for types, i.e., <code>Map[k, v]</code> could be written as
+                <code>k `Map` v</code>, but ultimately we found this too strange and unfamiliar, and
+                it was removed.
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <h3 class="mt-4" id="static-semantic-principles">Static Semantic Principles</h3>
+
+    <PaperEntry kind="principle" number={5} name="Separate Pure and Impure Code" id="separate-pure-and-impure-code">
+        <Fragment slot="statement">
+            Flix should separate pure and impure code. A programmer should know when a function
+            behaves as a mathematical function, i.e., returns the same output when given the same
+            input(s) without causing any side effects.
+        </Fragment>
+        <Fragment slot="rationale">
+            An essential property of functional programming is <em>equational reasoning</em>, i.e.,
+            the ability to reason about functions based solely on their inputs. However, in a hybrid
+            programming language with side effects, such reasoning is often lost. This principle, a
+            cornerstone of the Flix language, states that it should be possible to write functional
+            code in Flix <em>and</em> know that it supports equation reasoning.
+            <p>
+                Flix uses a powerful type and effect system to precisely track the purity or
+                impurity of every expression [<a href="https://doi.org/10.1145/3428222">1</a>]. The
+                effect system enables programmers to enforce purity and to know <em>when</em> a
+                function behaves as a mathematical function.
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={6} name="Separate Pure and Impure Data" id="separate-pure-and-impure-data">
+        <Fragment slot="statement">
+            Flix should separate pure and impure data; i.e., data that is immutable from data that
+            is mutable.
+        </Fragment>
+        <Fragment slot="rationale">
+            This principle, which is related to the previous, states that all data should be divided
+            into two categories: immutable and mutable. Immutable data is unchanging and functions
+            that only operate immutable data, and which do not access the outside world, are
+            guaranteed to be pure. Moreover, immutable data can freely be sent between threads,
+            whereas mutable data must never be shared to prevent data races and race conditions. In
+            Flix, all mutable data belongs to a region and cannot escape the lifetime of the region.
+            When the region goes out of scope, any effects associated with the region also vanish.
+            Thus, pure functions can be implemented using local mutable data, as shown in <a
+            href="https://dl.acm.org/doi/10.1145/3563835.3567661">Section 2 of the paper</a>.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={7} name="Complete Local Type Inference" id="complete-local-type-inference">
+        <Fragment slot="statement">
+            Flix should be able to infer all types and effects within a function while only
+            requiring type signatures for top-level declarations.
+        </Fragment>
+        <Fragment slot="rationale">
+            We believe that the rise of untyped programming languages, such as Python and
+            JavaScript, demonstrates that type inference is essential for statically typed
+            programming languages to become successful. Consequently, Flix aims to support local,
+            but infallible, type inference.
+            <p>
+                In Flix, all top-level functions must have type signatures, but within a function no
+                type annotations are ever required; not for nested functions nor for lambdas. This
+                has three distinct advantages:
+            </p>
+            <ul>
+                <li>Type signatures are useful as documentation.</li>
+                <li>Type signatures accurately assign blame.</li>
+                <li>Type signatures enable parallel type inference.</li>
+            </ul>
+        </Fragment>
+        <Fragment slot="discussion">
+            Broadly speaking, there are two classes of type systems that support type inference:
+            bi-directional type systems
+            [<a href="https://doi.org/10.1145/345099.345100">1</a>,
+            <a href="https://doi.org/10.1145/3450952">2</a>] and Hindley-Milner-style systems
+            [<a href="https://doi.org/10.2307/1995158">3</a>,
+            <a href="https://doi.org/10.1016/0022-0000(78)90014-4">4</a>,
+            <a href="https://era.ed.ac.uk/handle/1842/13555">5</a>,
+            <a href="https://doi.org/10.1006/inco.1994.1093">6</a>]. A bi-directional type system
+            supports type inference but may require annotations on function arguments (or risk
+            incompleteness). In contrast, a Hindley-Milner-style type system has complete type
+            inference but is typically less expressive than a bi-directional system. The Flix type
+            and effect system is based on Hindley-Milner and the papers that describe it all use
+            Hindley-Milner as the formal framework
+            [<a href="https://doi.org/10.1145/3428222">7</a>,
+            <a href="https://doi.org/10.1145/3485487">8</a>]. This is reasonable since
+            Hindley-Milner guarantees completeness of type inference. However, Flix does not fully
+            take advantage of Hindley-Milner because of the requirement that top-level declarations
+            must have type signatures. In our experience, this design is very effective: Programmers
+            write top-level signatures, as they would also do in Kotlin, Java, Scala, and many other
+            programming languages, but within a function, type inference is infallible and cannot
+            give spurious type errors like in the aforementioned languages.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={8} name="Whole-Program Compilation" id="whole-program-compilation">
+        <Fragment slot="statement">
+            Flix requires all code to be available at compile-time.
+        </Fragment>
+        <Fragment slot="rationale">
+            The requirement that the compiler must have access to the entire source code has several
+            advantages, it:
+            <ul>
+                <li>
+                    Enables monomorphization which increases inlining opportunities and avoids the
+                    need to box primitives.
+                </li>
+                <li>
+                    Enables aggressive dead code elimination and tree shaking which significantly
+                    reduces code size.
+                </li>
+                <li>
+                    Enables cross module optimizations.
+                </li>
+                <li>
+                    Ensures global uniqueness of trait instances
+                    [<a href="https://doi.org/10.1145/3341695">1</a>].
+                </li>
+            </ul>
+            In the past, requiring access to the entire source code of a program may been
+            impractical. Today, many programming languages, including JavaScript, Python, PHP, and
+            Rust have ecosystems where packages include the entire source code.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={9} name="Single Entry Point" id="single-entry-point">
+        <Fragment slot="statement">
+            A Flix program has a single entry point and no code is executed before it.
+        </Fragment>
+        <Fragment slot="rationale">
+            Dijkstra, in his <a
+            href="https://www.cs.utexas.edu/users/EWD/ewd02xx/EWD249.PDF">&ldquo;Notes on Structured
+            Programming&rdquo;</a>, proposed that procedures should only have a single entry- and
+            single exit point. In a similar spirit, this principle states that an entire Flix
+            program should have one entry point: <code>main</code>. The rationale is simple: to
+            enable programmers to understand and control the execution flow from start to finish.
+            Today, this is not the case in many programming languages. For example, in many
+            scripting languages, like JavaScript and Python, a program is just a script, and it may
+            be challenging to identify where the main entry point is. Even in C# and Java, which
+            have a designated <code>main</code> method, it is not the first thing to be executed.
+            For example, in Java, static initializers, of all loaded classes, are executed before
+            entering <code>main</code>. Worse, such initializers are allowed to have arbitrary
+            side-effects. The existence of class loaders and over-reliance on reflection only
+            exacerbates this problem. Thus, Flix enforces that <code>main</code> is the single
+            entry-point and that it is the first and only thing executed.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={10} name="Minimize Declarations" id="minimize-declarations">
+        <Fragment slot="statement">
+            Flix should require as few declarations as possible.
+        </Fragment>
+        <Fragment slot="rationale">
+            Flix is statically typed but wants to emulate the flexibility and ease of use of
+            dynamically typed languages. We believe one way to achieve that is by using structural
+            typing combined with complete type inference. Flix uses structural types for tuples and
+            extensible records
+            [<a href="https://www.microsoft.com/en-us/research/publication/extensible-records-with-scoped-labels/">1</a>],
+            but also for first-class Datalog values
+            [<a href="https://doi.org/10.1145/3428193">2</a>].
+        </Fragment>
+        <Fragment slot="discussion">
+            Early versions of Flix also supported first-class Datalog programs but required every
+            predicate symbol and the types of its terms to be explicitly and globally declared. This
+            design was inflexible and verbose, but fortunately, we were able to switch to a
+            structurally typed system later.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={11} name="Private by Default" id="private-by-default">
+        <Fragment slot="statement">
+            In Flix, declarations are private by default and cannot be accessed from outside their
+            module. A declaration must be explicitly marked as public to be visible to the outside
+            world.
+        </Fragment>
+        <Fragment slot="rationale">
+            Flix embraces the principle of least privilege. We believe that programmers must make a
+            conscious choice before a program construct is made publicly available, and other
+            programmers start depending on it.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={12} name="Timeless Design" id="timeless-design">
+        <Fragment slot="statement">
+            The Flix compiler and standard library should not add support for a technology before it
+            has matured and established its permanency.
+        </Fragment>
+        <Fragment slot="rationale">
+            If Flix had been designed two decades ago, adding language support for HTML and XML
+            would have been tempting. If Flix had been designed one decade ago, adding language
+            support for JSON would have been tempting. If Flix had been designed five years ago,
+            adding language support for YAML would have been tempting. We are not saying these
+            technologies are necessarily dated or bad, but just observing that their popularity
+            waxes and wanes. Today, most programmers would probably be surprised and dissatisfied if
+            one designed a new programming language with comments expressed in XML. This principle
+            exists to ensure that the Flix language and standard library remain timeless.
+        </Fragment>
+    </PaperEntry>
+
+    <h3 class="mt-4" id="correctness-and-safety-principles">Correctness and Safety Principles</h3>
+
+    <PaperEntry kind="principle" number={13} name="No Warnings, Only Errors" id="no-warnings-only-errors">
+        <Fragment slot="statement">
+            Flix should never emit warnings; only errors that abort compilation.
+        </Fragment>
+        <Fragment slot="rationale">
+            Warnings occupy a gray zone where software developers may not fully understand whether
+            they are harmless and can be safely ignored or if they are dangerous and should be
+            fixed. Worse, software companies and developers may have different standards; some may
+            ignore all warnings, while others may turn all warnings into hard errors. We believe
+            that it is the responsibility of the language designer to determine if something is
+            harmful and should be banned; or if something is safe and should be permitted.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={14} name="No Global State" id="no-global-state">
+        <Fragment slot="statement">
+            Flix has no global shared state; there are no global constants or static fields. The
+            only global state is the external environment, i.e., the operating system, the file
+            system, and so on.
+        </Fragment>
+        <Fragment slot="rationale">
+            Global state is the source of a plethora of issues, including its anti-modular nature,
+            issues with initialization, and the threat of data races or race conditions in a
+            multi-threaded environment. A Flix programmer can still emulate global state; he or she
+            can create mutable memory in <code>main</code> and pass it around, but must do so
+            explicitly.
+        </Fragment>
+        <Fragment slot="discussion">
+            Global state is, as the principle states, impossible to avoid: the outside world is
+            stateful. The operating system, file system, network, remote services, and so forth are
+            all stateful. But, Flix programmers and the Flix compiler can use the type and effect
+            system to know when a computation depends on the external environment, i.e., is impure.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={15} name="Share Memory by Communicating" id="share-memory-by-communicating">
+        <Fragment slot="statement">
+            Flix follows the Go mantra: <a href="https://go.dev/blog/codelab-share">&ldquo;Do not
+            communicate by sharing memory; instead, share memory by communicating&rdquo;</a>. In
+            other words: communicate using immutable messages, not by sharing mutable memory.
+        </Fragment>
+        <Fragment slot="rationale">
+            The Flix concurrency model is based on channels and light-weight processes
+            [<a href="https://doi.org/10.1145/359576.359585">1</a>]. As discussed earlier, Flix
+            separates immutable and mutable data and uses the type and effect system to enforce
+            that only immutable values can be sent over channels, i.e., between processes. This
+            approach, although heavy-handed, ensures the absence of data races, except on channels
+            and through interoperability with Java. In the future, it may be possible to reduce this
+            requirement by exploiting regions to ensure that mutable memory is never accessed by
+            more than one thread.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={16} name="Concurrency vs. Parallelism" id="concurrency-vs-parallelism">
+        <Fragment slot="statement">
+            Flix should support both concurrency and parallelism but not confuse the two. In
+            particular, it should be possible to write parallel programs without the inherent
+            dangers of concurrency.
+        </Fragment>
+        <Fragment slot="rationale">
+            Roughly speaking, concurrency is the ability for two or more tasks to start, run, and
+            complete in overlapping time-periods, whereas parallelism is the ability for two or more
+            tasks to execute simultaneously. Concurrency can lead to dangers due to unexpected
+            thread interleavings (e.g. race conditions) which can be prevented with proper usage of
+            locks, but these can lead to deadlocks. This principle captures that Flix should support
+            (safe) parallelism allowing programmers to execute two or more <em>independent</em>
+            tasks simultaneously.
+        </Fragment>
+        <Fragment slot="discussion">
+            Flix supports safe parallelism via two constructs: <code>par</code>- and
+            <code>par-yield</code>-expressions. The <code>par (exp1, exp2, exp3)</code> expression
+            evaluates <code>exp1</code>, <code>exp2</code>, and <code>exp3</code> in parallel to
+            three values <em>v<sub>1</sub></em>, <em>v<sub>2</sub></em>, and
+            <em>v<sub>3</sub></em>, and returns the tuple (<em>v<sub>1</sub></em>,
+            <em>v<sub>2</sub></em>, <em>v<sub>3</sub></em>). The Flix type and effect system
+            enforces that the expressions must be pure, hence they can be evaluated completely
+            independently.
+            <p>
+                The <code>par-yield</code> construct is similar, but allows the programmer to bind
+                the results to variables:
+            </p>
+            <CodeSnippet code={`par (x <- exp1; y <- exp2; z <- exp3)
+    yield x + y + z`} />
+            Here the expressions <code>exp1</code>, <code>exp2</code>, and <code>exp3</code> are
+            evaluated in parallel, their results bound to the variables <code>x</code>,
+            <code>y</code>, and <code>z</code>, and then the body expression is evaluated.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={17} name="Bugs are Not Recoverable" id="bugs-are-not-recoverable">
+        <Fragment slot="statement">
+            Flix follows the <a href="http://joeduffyblog.com/2016/02/07/the-error-model/">Midori
+            Error Model</a> which states that there are two types of errors: (a) recoverable errors,
+            and (b) program bugs. Recoverable errors are things like illegal user input, network
+            errors, etc. Errors that can be anticipated and where there is a chance of recovery.
+            Program bugs, on the other hand, are always unexpected and cannot be recovered.
+        </Fragment>
+        <Fragment slot="rationale">
+            Inspired by both the Midori Error Model and the Rust standard library, the Flix standard
+            library goes to great lengths to model every fallible operation as returning a value of
+            the <code>Result</code> data type, i.e., either <code>Ok(v)</code> or
+            <code>Err(v)</code>. Thus the programmer is forced to consider the possibility of
+            failure. For example, the <code>File.readLines</code> function has the return type
+            <code>Result[IoError, List[String]]</code> which forces the programmer to handle both
+            the happy path and the error path.
+        </Fragment>
+        <Fragment slot="discussion">
+            Flix has been designed to minimize the way a program can go wrong. For example, Flix
+            defines division by zero as returning zero
+            [<a href="https://tutorial.ponylang.io/gotchas/divide-by-zero.html">1</a>].
+            Nevertheless, there are a few ways a Flix program can crash:
+            <ul>
+                <li>by running out of resources, e.g., stack or heap space.</li>
+                <li>by indexing an array with an out-of-bounds index.</li>
+                <li>by calling Java code that crashes.</li>
+            </ul>
+            For completeness, we also mention that a Flix program can deadlock by waiting forever on
+            a channel, e.g., waiting for a message to arrive or to be sent.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={18} name="No Useless Expressions" id="no-useless-expressions">
+        <Fragment slot="statement">
+            Flix rejects programs that contain expressions that have no effect.
+        </Fragment>
+        <Fragment slot="rationale">
+            Redundant or dead code is a code smell and is correlated with program bugs
+            [<a href="https://doi.org/10.1145/587051.587060">1</a>]. Flix uses its powerful type and
+            effect system to reject such useless expressions. For example, in the expression
+            statement: <code>e1; e2</code>, Flix requires that <code>e1</code> must have a
+            side-effect, i.e., if <code>e1</code> is pure then the program is rejected. Moreover,
+            <code>e1</code> must also have the <code>Unit</code> type. If not, the programmer must
+            insert an explicit <code>discard</code> expression to inform the compiler that it is
+            okay to throw away the non-<code>Unit</code> value of <code>e1</code>.
+            <p>
+                We believe such simple checks may help programmers avoid trivial mistakes. For
+                example, a programmer might write:
+                <code>checkPermission(...); sensitiveOperation(...)</code> expecting that the call
+                to <code>checkPermission</code> will ensure that we do not call
+                <code>sensitiveOperation</code> unless we have permission. But it is possible that
+                <code>checkPermission</code> returns a <code>Bool</code> that the programmer is
+                supposed to inspect. Flix helps catch and prevent such mistakes.
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={19} name="No Unused Variables" id="no-unused-variables">
+        <Fragment slot="statement">
+            Flix rejects programs with unused local variables, whether they are introduced by
+            let-bindings, pattern matching, or as the formal parameters of a function.
+        </Fragment>
+        <Fragment slot="rationale">
+            While unused local variables are common during the programming process, their existence
+            in finished code is a code smell. Moreover, research has shown that minor mistakes are a
+            common source of bugs, e.g., using the wrong local variable. Disallowing unused local
+            variables helps avoid such mistakes
+            [<a href="https://doi.org/10.1145/587051.587060">1</a>,
+            <a href="https://doi.org/10.1145/1052883.1052895">2</a>].
+        </Fragment>
+        <Fragment slot="discussion">
+            As a practical convenience, Flix allows any variable to be prefixed by an underscore to
+            mark it as unused. This removes the variable from its scope and allows the program to
+            compile and run.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={20} name="No Variable Shadowing" id="no-variable-shadowing">
+        <Fragment slot="statement">
+            Flix rejects programs with variable shadowing.
+        </Fragment>
+        <Fragment slot="rationale">
+            The rationale is the same as for unused variables; local variable shadowing is a common
+            source of bugs.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={21} name="No Unused Declarations" id="no-unused-declarations">
+        <Fragment slot="statement">
+            Flix rejects programs with unused declarations.
+        </Fragment>
+        <Fragment slot="rationale">
+            While unused declarations are less likely to be a source of bugs, they are nevertheless
+            a code smell. By rejecting programs that contain unused declarations (functions, types,
+            type aliases, etcetera), Flix ensures that all source code is actively in use.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={22} name="No Implicit Coercions" id="no-implicit-coercions">
+        <Fragment slot="statement">
+            Flix never coerces a value of one type into a value of another type.
+        </Fragment>
+        <Fragment slot="rationale">
+            Programming languages with implicit type coercions allow programmers to provide values
+            of one type where values of another type are expected. The compiler or runtime
+            automatically inserts code that re-interprets one value as another, often according to a
+            sophisticated set of rules. For example, integer values may be promoted or truncated.
+            Likewise, strings may be coerced to integers and vice versa. In some languages, all
+            values may be coerced to Booleans. Unfortunately, such implicit coercions are brittle
+            and error-prone. In some cases, information may be lost (e.g., when an integer is
+            truncated), and in other cases, coercions may lead to unexpected results. JavaScript is
+            notorious for its byzantine coercion rules and developers often use non-coercive
+            operators to avoid such pitfalls. For these reasons, Flix never performs any coercions,
+            not even information preserving promotions. Instead, programmers must manually and
+            explicitly convert between types.
+        </Fragment>
+        <Fragment slot="discussion">
+            While the Flix language does not support implicit coercions, a form of structured and
+            predictable &ldquo;implicit coercions&rdquo; has snuck in using the backdoor. We might
+            expect the <code>println</code> function to have the signature:
+            <CodeSnippet code={`def println(s: String): Unit \\ IO`} />
+            but in the Flix standard library it actually has the signature:
+            <CodeSnippet code={`def println(x: t): Unit \\ IO with ToString[t]`} />
+            which means that <code>println</code> can be called with any value of type
+            <code>t</code> as long as <code>t</code> implements the <code>ToString</code> trait.
+            This effectively works as an implicit coercion, except that:
+            <ul>
+                <li>it is a very specific type of coercion,</li>
+                <li>it is implemented using the trait system,</li>
+                <li>
+                    it is clear from the signature of <code>println</code> that it makes use of this
+                    form of coercion, and finally
+                </li>
+                <li>
+                    the coercion rules are defined by the programmer as instances of the
+                    <code>ToString</code> trait.
+                </li>
+            </ul>
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={23} name="Declaration Monotonicity" id="declaration-monotonicity">
+        <Fragment slot="statement">
+            Adding a new declaration to a program should neither change its original semantics nor
+            render it illegal.
+        </Fragment>
+        <Fragment slot="rationale">
+            It should always be safe to <em>extend</em> a program by adding new declarations. For
+            example, adding a new function to a program should not make the original program behave
+            differently nor should it prevent the program from compiling. (Of course, not every
+            addition is safe; re-declaring the same function has to be a compile-time error.)
+        </Fragment>
+        <Fragment slot="discussion">
+            This principle is the reason why Flix does not support wildcard imports. Imagine that we
+            wrote:
+            <CodeSnippet code={`use Foo.*
+use Bar.*
+qux()`} />
+            where the module <code>Foo</code> contains the <code>qux</code> function. Now, if we
+            extend the module <code>Bar</code> with a <code>qux</code> function then suddenly the
+            use of <code>qux</code> becomes ambiguous. Worse, this ambiguity may occur in an
+            entirely different file from where the module <code>Bar</code> is declared.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={24} name="No Null" id="no-null">
+        <Fragment slot="statement">
+            Flix does not support the null value.
+        </Fragment>
+        <Fragment slot="rationale">
+            Null &mdash; infamously dubbed the Billion Dollar Mistake by its inventor Sir Tony Hoare
+            &mdash; is a special value that is an inhabitant of (reference) every type
+            [<a href="https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/">1</a>].
+            Today, the null value is widely considered a design mistake and languages such as C#,
+            Dart, Kotlin and Scala are scrambling to adopt nullable type systems
+            [<a href="https://doi.org/10.4230/LIPIcs.ECOOP.2020.25">2</a>,
+            <a href="https://doi.org/10.4230/LIPIcs.ECOOP.2020.3">3</a>,
+            <a href="https://doi.org/10.1145/949305.949332">4</a>].
+            <p>
+                Flix, like other functional programming languages, does not have a null value, but
+                instead relies on the <code>Option</code> data type to explicitly represents values
+                that may be absent. This solution is simple to understand, works well, and
+                guarantees the absence of the dreaded <code>NullPointerException</code>s.
+            </p>
+        </Fragment>
+        <Fragment slot="discussion">
+            Unfortunately, this is not the entire story since Flix still needs interoperability with
+            Java. We require that programmers explicitly check for null at the boundary between Flix
+            and Java code. Sometimes it can be necessary to call into Java code with a null value.
+            To support this, Flix does have a special <code>null</code> value of type
+            <code>Null</code>, which is incompatible with any other type. Thus, to use the
+            <code>null</code> value, the programmer must explicitly cast it to the desired type.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={25} name="No Unprincipled Overloading" id="no-unprincipled-overloading">
+        <Fragment slot="statement">
+            Flix does not support function overloading, i.e., the ability to define multiple
+            functions that share the same name but have different signatures.
+        </Fragment>
+        <Fragment slot="rationale">
+            In programming languages like C++, C#, and Java, programmers can define multiple
+            functions with the same name, as long as they take a different number of arguments
+            and/or arguments of a different type. The relation between the overloaded functions in
+            these languages is up to the programmer. Flix does not support such
+            &ldquo;unprincipled&rdquo; overloading. Instead, Flix encourages using meaningful names
+            for functions that share similar functionality. For example, <code>List.join</code> and
+            <code>List.joinWith</code>, or <code>Map.filter</code> and
+            <code>Map.filterWithKey</code>.
+            <p>
+                Flix does support <em>principled</em> overloading via traits. For example, the
+                <code>Eq</code> trait defines a signature <code>eq</code> (i.e., <code>==</code>)
+                which can be implemented by types that support equality. We say such overloading is
+                <em>principled</em> because each trait lays out requirements for the overload (e.g.,
+                equality must be reflexive, symmetric, and transitive), and each trait can only be
+                implemented once per type.
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <h3 class="mt-4" id="compiler-messages">Compiler Messages</h3>
+
+    <PaperEntry kind="principle" number={26} name="The 80/20 Rule" id="the-80-20-rule">
+        <Fragment slot="statement">
+            A compiler message must serve the programmer in two situations:
+            <ul>
+                <li>
+                    as a minimally invasive hint to the programmer when he or she has made a small
+                    mistake, and
+                </li>
+                <li>
+                    as an explanatory message with lots of contextual information when the
+                    &ldquo;hint&rdquo; is insufficient for the programmer to understand what is
+                    wrong.
+                </li>
+            </ul>
+        </Fragment>
+        <Fragment slot="rationale">
+            We call this the 80/20 rule because that 80% of the time, a software developer will have
+            seen a specific compiler message before and require minimal information to understand
+            and fix the underlying issue. But, 20% of the time, a software developer will encounter
+            a compiler message he or she has not seen before and will require more information to
+            understand and fix the problem.
+            <p>
+                For example, the message &ldquo;<code>Expected Int32, but found String</code>&rdquo;
+                may contain enough information for the programmer to understand and fix the issue.
+                On the other hand, the message &ldquo;<code>Unable to generalize a -&gt; a to a
+                -&gt; b</code>&rdquo; may require more information for the programmer to understand
+                what is wrong, if he or she has not seen that message before. Flix tries to achieve
+                this with a message structure where the first sentence gets to the root of the issue
+                and rest of the message provides more detail. Moreover, Flix has an
+                <code>--explain</code> flag which can be used to obtain even more information.
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={27} name="Compiler Message Structure" id="compiler-message-structure">
+        <Fragment slot="statement">
+            A compiler message should have three distinct parts:
+            <ul>
+                <li><strong>Summary:</strong> A one sentence summary.</li>
+                <li>
+                    <strong>Message:</strong> A multi-line text that contains all relevant details,
+                    including the program symbol(s) and fragment(s) relevant for the message.
+                </li>
+                <li>
+                    <strong>Explanation:</strong> A description of why the problem occurs and what
+                    can be done to fix it.
+                </li>
+            </ul>
+        </Fragment>
+        <Fragment slot="rationale">
+            Today's compilers do not exist in isolation but are always part of a broader ecosystem.
+            Compiler messages are not only consumed from the command line but also from integrated
+            development environments (IDEs) and continuous integration (CI) pipelines. A compiler
+            message must be usable in all three environments. A single-sentence summary is essential
+            in IDEs and CIs to overview all the current messages. A full-length message is necessary
+            to understand the details of the identified problem. Finally, a long-form and detailed
+            explanation may be helpful for when a programmer encounters a specific error for the
+            first time.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={28} name="Straight to the Point" id="straight-to-the-point">
+        <Fragment slot="statement">
+            A compiler message should be quick to scan. Ideally, the first sentence or even the
+            first word should contain the essence of the message.
+        </Fragment>
+        <Fragment slot="rationale">
+            A programmer must be able to quickly scan a compiler message. For example, a message
+            like: &ldquo;<code>Duplicate definition: 'foo'</code>&rdquo; is better than the message:
+            &ldquo;<code>The definition 'foo' is defined twice</code>&rdquo; because the programmer
+            has to read fewer words before he or she sees the word &ldquo;duplicate&rdquo; which may
+            be sufficient to understand the problem.
+        </Fragment>
+        <Fragment slot="discussion">
+            Before we adopted this principle, Flix compiler messages tended to be wordy and
+            academic. For example, a message might read &ldquo;<code>The trait 'foo' contains a
+            duplicate definition of the signature 'bar'</code>&rdquo;. While such a sentence reads
+            nicely, it is too long. It is better to simply state the root cause:
+            &ldquo;<code>'bar' is defined twice</code>&rdquo;.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={29} name="Style and Tone" id="style-and-tone">
+        <Fragment slot="statement">
+            A compiler message should be crisp, clear, and concise. In addition, the language should
+            be friendly or at least neutral. Specifically, an error message should not blame the
+            programmer.
+        </Fragment>
+        <Fragment slot="rationale">
+            A compiler should work as an assistant, not as an adversary
+            [<a href="https://elm-lang.org/news/compilers-as-assistants">1</a>,
+            <a href="https://doi.org/10.1145/3344429.3372508">2</a>]. Blaming the programmer for
+            mistakes is counter-productive. For example, the sentence
+            &ldquo;<code>Unexpected foo</code>&rdquo; is better than
+            &ldquo;<code>Illegal foo</code>&rdquo; because it communicates the same information
+            without scolding the programmer. The Elm programming language goes further and tries to
+            humanize the compiler
+            [<a href="https://elm-lang.org/news/compiler-errors-for-humans">3</a>]. For example, it
+            will report, &ldquo;<code>I see Foo but was expecting to see Bar</code>&rdquo;.
+        </Fragment>
+        <Fragment slot="discussion">
+            Early Flix compiler messages were direct and blamed the programmer; they were a product
+            of the way compiler-writers think: &ldquo;<code>illegal this</code>&rdquo; and
+            &ldquo;<code>invalid that</code>&rdquo;. It took a while, and the process is still
+            ongoing, for our view to change in three significant ways:
+            <ul>
+                <li>to ensure that compiler messages are friendly,</li>
+                <li>
+                    to explain a problem from a programmer's point of view and not from the
+                    compiler's point of view, and
+                </li>
+                <li>
+                    to have the compiler retell the information it has and why it is problematic.
+                </li>
+            </ul>
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={30} name="Split Compiler Messages" id="split-compiler-messages">
+        <Fragment slot="statement">
+            When possible, a compiler message should be broken down into several more specific
+            compiler messages.
+        </Fragment>
+        <Fragment slot="rationale">
+            The idea is that instead of having a few generic error messages that cover all cases, we
+            should subdivide errors into as specific messages as possible.
+        </Fragment>
+        <Fragment slot="discussion">
+            Before this principle, Flix had only three type error messages:
+            <code>MismatchedTypes</code>, <code>GeneralizationError</code>, and
+            <code>MissingInstance</code>. We noticed that these three error messages can be split
+            into more specific and detailed ones. For example,
+            <ul>
+                <li>
+                    <code>MismatchedTypes</code> now has two sub-cases: <code>OverApplied</code> and
+                    <code>UnderApplied</code> for when a function is called with too many or too few
+                    arguments.
+                </li>
+                <li>
+                    <code>GeneralizationError</code> now has two sub-cases:
+                    <code>ImpureDeclaredAsPure</code> (an impure function is declared as pure) and
+                    <code>EffectPolymorphicDeclaredAsPure</code> (an effect polymorphic function is
+                    declared as pure).
+                </li>
+                <li>
+                    <code>MissingInstance</code> now has several sub-cases, including
+                    <code>MissingEq</code>, <code>MissingOrder</code>, and
+                    <code>MissingToString</code>. For example, the <code>MissingToString</code>
+                    message hints that a <code>ToString</code> instance can be automatically derived
+                    by adding <code>with ToString</code> to the type declaration.
+                </li>
+            </ul>
+        </Fragment>
+        <Fragment slot="hypothesis">
+            Giving specific type errors is more useful to programmers than giving general type
+            errors.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={31} name="Relate to Other Languages" id="relate-to-other-languages">
+        <Fragment slot="statement">
+            A compiler message, when relevant, should explain how Flix relates to and differs from
+            other programming languages.
+        </Fragment>
+        <Fragment slot="rationale">
+            Programmers learning Flix will likely be familiar with other programming languages.
+            Therefore, it seems helpful to build on this knowledge by relating features and compiler
+            errors to other widely used languages. For example, a compiler message can explain how
+            the Flix trait system differs from that of Haskell or Rust. As another example, an error
+            message related to purity or impurity can teach the programmer how the Flix effect
+            system works.
+        </Fragment>
+        <Fragment slot="discussion">
+            We think it is a missed opportunity that every programming language pretends no other
+            languages exist! We should build on and reuse the knowledge a programmer may already
+            have.
+        </Fragment>
+        <Fragment slot="hypothesis">
+            We hypothesize that compiler messages that relate concepts, constructs, and errors to
+            other programming languages are an effective communication form.
+        </Fragment>
+    </PaperEntry>
+
+    <h3 class="mt-4" id="standard-library">Standard Library</h3>
+
+    <PaperEntry kind="principle" number={32} name="Minimal Prelude" id="minimal-prelude">
+        <Fragment slot="statement">
+            The Flix prelude should be kept minimal and only include common functionality.
+        </Fragment>
+        <Fragment slot="rationale">
+            The Flix Prelude contains common data types and functions that are implicitly imported
+            into the scope of every Flix file. As the Flix standard library grows, there has been a
+            tendency for the Prelude to expand, becoming a hodgepodge of functionality. This
+            principle aims to arrest that trend and avoid a situation like in Haskell where the
+            Prelude is notorious for being bloated and including unsafe functions, which has led to
+            multiple efforts to design a new and safer prelude
+            [<a href="https://hackage.haskell.org/package/intro">1</a>,
+            <a href="https://hackage.haskell.org/package/relude">2</a>].
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={33} name="Layered Abstractions" id="layered-abstractions">
+        <Fragment slot="statement">
+            Flix and the Flix standard library should be useable without understanding all of its
+            features and abstractions.
+        </Fragment>
+        <Fragment slot="rationale">
+            Flix has a rich collection of functional abstractions, but a programmer should be able
+            to gradually learn them. We envision several &ldquo;levels&rdquo; of programming:
+            <ul>
+                <li>
+                    <strong>Basic</strong> &mdash; At the basic level, a Flix programmer writes code
+                    that uses algebraic data types, pattern matching, and recursion. A programmer
+                    may also use mutable data structures for a more imperative style of programming.
+                    In both cases, basic knowledge of the type and effect system is
+                    required<sup>1</sup>.
+                </li>
+                <li>
+                    <strong>Intermediate</strong> &mdash; At the intermediate level, a Flix
+                    programmer writes code that relies more on the standard library. The
+                    <code>Option</code>, <code>List</code>, <code>Set</code>, and <code>Map</code>
+                    data structures are readily used. At this level, knowledge of higher-order
+                    functions and parametric polymorphism is required. Knowledge of basic traits
+                    like <code>Eq</code>, <code>Order</code>, and <code>ToString</code> is also
+                    required<sup>2</sup>.
+                </li>
+                <li>
+                    <strong>Advanced</strong> &mdash; At the advanced level, a Flix programmer can
+                    use the entire standard library, including powerful functional abstractions such
+                    as <code>Functor</code>s, <code>Applicative</code>s, <code>Monad</code>s,
+                    <code>Monoid</code>s, and <code>Foldable</code>s. Knowledge of higher-kinded
+                    types, traits, and functional abstractions is required.
+                </li>
+            </ul>
+            <p>
+                What is important is that Flix &ldquo;duplicates&rdquo; functionality to support the
+                intermediate level. For example, Flix has both <code>List.map</code> and
+                <code>Functor.map</code>. Since <code>List</code> is a <code>Functor</code> there is
+                no reason to have <code>List.map</code>. However, by having <code>List.map</code>
+                programmers do not have to know about <code>Functor</code> and equally important the
+                signature of <code>List.map</code> is simpler and leads to better error messages. As
+                another example, Flix has <code>List.sum</code> which simply computes the sum of a
+                <code>List[Int32]</code>. But Flix also has <code>List.fold</code> which reduces a
+                list of <code>List[a]</code> to a single <code>a</code> provided there is a
+                <code>Monoid</code> instance of <code>a</code>. Thus, <code>List.fold</code> could
+                also be used to compute the sum, but a Flix programmer is not required to know about
+                that before they are ready.
+            </p>
+        </Fragment>
+        <Fragment slot="footnotes">
+            <p>
+                1. It is possible, if inelegant, to write Flix in a programming style where every
+                function is marked with the <code>IO</code> effect. This reduces Flix to an
+                OCaml-like or Standard ML-like language where side-effects are permitted everywhere.
+            </p>
+            <p>
+                2. The <code>Eq</code> and <code>Order</code> traits are required for
+                <code>Set</code>s and <code>Map</code>s whereas the <code>ToString</code> trait is
+                used for printing. Helpfully to the intermediate programmer, Flix supports automatic
+                derivation of these traits.
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={34} name="No Dangerous Functions" id="no-dangerous-functions">
+        <Fragment slot="statement">
+            The Flix standard library should not include dangerous functions nor functions that
+            encourage dangerous programming patterns.
+        </Fragment>
+        <Fragment slot="rationale">
+            We consider a function dangerous if it may lead to a crash. Infamously, the Haskell
+            Prelude contains many functions that are dangerous due to their partiality, e.g.
+            <code>head</code>, <code>tail</code>, and <code>!!</code>. These
+            &ldquo;functions&rdquo; are not defined for all inputs and may raise exceptions at
+            runtime, e.g. when taking the head of an empty list. Today, their inclusion in the
+            standard library is widely considered as mistake. In Flix, our goal is that all
+            functions in the standard library should be total. Thus functions such as
+            <code>head</code> and <code>tail</code> return <code>Option</code>s. As of today, the
+            Flix standard library has 2,600 functions of which less than ten are partial.
+            <p>
+                But Flix goes further: The standard library tries to avoid functions that encourage
+                dangerous programming patterns. For example, Flix used to have the functions:
+                <code>Option.isNone</code> and <code>Option.isSome</code>, but such functions could
+                mislead developers into writing code like
+                <code>if (isSome(o)) /* unpack o */</code> which would potentially be dangerous.
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={35} name="Subject-Last" id="subject-last">
+        <Fragment slot="statement">
+            Every function in the Flix standard library must accept its subject, i.e., the argument
+            it &ldquo;acts on&rdquo;, as its last argument.
+        </Fragment>
+        <Fragment slot="rationale">
+            The idea is to ensure a uniform standard library and to enable programmers to write
+            pipelines. For example:
+            <CodeSnippet code={`l |> List.map(x -> x + 123)
+  |> List.filter(x -> x < 100)
+  |> List.take(5)`} />
+            The pipeline uses the <code>|&gt;</code> operator which is really just infix function
+            application. More importantly, the pipeline pattern works because of partial application
+            <em>and</em> because the <code>map</code>, <code>filter</code>, and <code>take</code>
+            functions are subject-last. In particular, the signature of <code>List.map</code> is:
+            <CodeSnippet code={`def map(f: a -> b, l: List[a]): List[b]`} />
+            where it is important that the list is the <em>last</em> argument.
+            <p>
+                In object-oriented programming, the <code>this</code> parameter is (often
+                implicitly) passed as the first argument to a method. This principle expresses a
+                similar sentiment but puts the &ldquo;<code>this</code>&rdquo; last in the list of
+                arguments. Of all the Flix standard library principles, this principle has been one
+                of the most influential and impactful since it touches on every function signature
+                and requires us to identify its subject.
+            </p>
+        </Fragment>
+        <Fragment slot="discussion">
+            Sometimes it can be hard to identify the subject of a function. For example, which
+            argument to <code>List.append</code> is the subject? Or which argument to
+            <code>List.zip</code> is the subject? Perhaps, for this reason, it is uncommon for
+            pipelines to use these functions.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={36} name="Non-Commutative Functions" id="non-commutative-functions">
+        <Fragment slot="statement">
+            A non-commutative function that accepts multiple arguments of the same type should use
+            records to explicitly force the programmer to distinguish between the arguments.
+        </Fragment>
+        <Fragment slot="rationale">
+            When a function takes two arguments of the same type there is potential for confusion:
+            which argument is which? For example, in the call
+            <code>String.contains(s1, s2)</code> which argument is the haystack and which is the
+            needle? Mistakenly swapping the two arguments looks innocuous and type checks but is
+            incorrect. Many programming languages attempt to overcome the confusion with labelled
+            arguments. But labelled arguments, in their typical implementation, has at least two
+            downsides:
+            <ul>
+                <li>they are optional; hence programmers may forget to use them, and</li>
+                <li>
+                    they are typically not part of the type system, hence they do not work with
+                    first-class functions.
+                </li>
+            </ul>
+            Flix overcomes both problems by using records to implement labelled arguments. If a
+            function requires a record argument, it becomes part of its type, and every call site
+            must pass a record, making it explicit which arguments are which.
+        </Fragment>
+        <Fragment slot="discussion">
+            We could give <code>String.contains</code> the signature:
+            <CodeSnippet code={`def contains(args: {needle = String,
+                    haystack = String}): Bool`} />
+            which can be called as:
+            <CodeSnippet code={`contains({needle = "a", haystack = "abc"})`} />
+            Unfortunately, this signature does not work with pipelines:
+            <CodeSnippet code={`"Hello" :: "Bonjour" :: "Guten Tag" :: Nil
+    |> List.map(String.toLowerCase)
+    |> List.map(String.contains(needle = "Hola"))
+    |> println`} />
+            because the call to <code>String.contains</code> expects a record with two fields:
+            <code>needle</code> and <code>haystack</code> and cannot be partially applied to a
+            record with only one field. This situation is unacceptable because it breaks support for
+            pipelines. However, perhaps surprisingly, there is a good solution: We require every
+            argument <em>except the last</em> (i.e., the subject) to be a record. The updated
+            signature of <code>String.contains</code> is:
+            <CodeSnippet code={`def contains(needle: { needle = String },
+             haystack: String): Bool`} />
+            The <code>contains</code> function now takes a singleton record as its first argument
+            and a regular string as its second argument. The two arguments cannot be confused
+            because a record and a string are not the same type. We call the new
+            <code>contains</code> as:
+            <CodeSnippet code={`contains({needle = "a"}, "abc")`} />
+            which, using syntactic sugar, can be shortened to:
+            <CodeSnippet code={`contains(needle = "a", "abc")`} />
+            <p>We have achieved three objectives:</p>
+            <ul>
+                <li>
+                    We cannot mistakenly swap the arguments to <code>contains</code> because one of
+                    them must be a record.
+                </li>
+                <li>
+                    At every call site, we can immediately identify which string is the needle and
+                    which is the haystack because the former is always explicitly named.
+                </li>
+                <li>We have retained the ability to use pipelines.</li>
+            </ul>
+            <p>
+                We have applied this principle to the Flix standard library. In total 66 functions
+                out of 2,600 functions use this principle. Note that the principle only applies to
+                non-commutative functions, e.g. it does not apply to <code>Set.union</code> because
+                the order of its arguments is immaterial.
+            </p>
+        </Fragment>
+        <Fragment slot="limitations">
+            An important question that arose during the refactoring of the library was whether to
+            apply this principle indiscriminately. For example, Flix has a function
+            <code>List.append</code>, which is not commutative. Nevertheless, it seems intuitive
+            that the &ldquo;left&rdquo; argument is appended to the &ldquo;right&rdquo; argument.
+            Similarly, for <code>List.zip</code>. Consequently, we decided to apply the principle on
+            a case-by-case basis to the standard library.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={37} name="Symbolic Operators Must Have Names" id="symbolic-operators-must-have-names">
+        <Fragment slot="statement">
+            Flix supports symbolic operators, i.e., defining functions with names such as
+            <code>+</code>, <code>++</code>, <code>|+|</code>, and so forth, but requires that every
+            symbolic function should also be given a &ldquo;pronounceable&rdquo; ASCII name, e.g.
+            &ldquo;plus&rdquo;, &ldquo;append&rdquo;, and so on.
+        </Fragment>
+        <Fragment slot="rationale">
+            Flix tries to strike a balance between conciseness and understandability. Expert
+            programmers can define and use symbolic operators when it makes their source code
+            compact and easy to understand (from an expert point-of-view). However, at the same
+            time, they must also provide human-readable names accessible to non-expert programmers.
+            <p>
+                To give two examples, the <code>List.append</code> function can be referred to as
+                <code>:::</code>, and the <code>SemiGroup.combine</code> function can be referred to
+                as <code>++</code>.
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={38} name="Destructive Operations are Marked" id="destructive-operations-are-marked">
+        <Fragment slot="statement">
+            In Flix, every destructive operation is suffixed with &ldquo;!&rdquo;.
+        </Fragment>
+        <Fragment slot="rationale">
+            Flix supports both destructive and non-destructive operations on mutable data
+            structures. For example, the <code>Array.reverse(a)</code> function returns a copy of
+            the array <code>a</code> with the elements in reverse order, whereas
+            <code>Array.reverse!(a)</code> destructively re-orders the elements of <code>a</code>.
+            The purpose of this principle is two-fold:
+            <ul>
+                <li>
+                    to ensure that Flix programmers can readily determine whether they are using a
+                    destructive or non-destructive operation on mutable data, and
+                </li>
+                <li>
+                    to provide a consistent naming scheme for operations that exists in both
+                    destructive and non-destructive flavours (e.g. <code>reverse</code> vs.
+                    <code>reverse!</code>).
+                </li>
+            </ul>
+        </Fragment>
+        <Fragment slot="discussion">
+            This principle, which is inspired by Scheme, applies to destructive and non-destructive
+            operations on <em>mutable data</em>. In particular, it <em>does not</em> apply to all
+            impure functions nor to functions that modify the outside world. For example,
+            <code>println</code> and <code>deleteFile</code> do not end in an exclamation mark,
+            despite their impure behavior. Currently the Flix type and effect system tracks reads
+            and writes to mutable memory, but it does not distinguish between them. There is
+            on-going discussion on whether to change that. If so, this principle might become
+            enforceable by the compiler.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={39} name="Mirrored Names of Destructive and non-Destructive Operations" id="mirrored-names">
+        <Fragment slot="statement">
+            In Flix, non-destructive and destructive operations that share similar behavior and
+            similar type signatures should share similar names.
+        </Fragment>
+        <Fragment slot="rationale">
+            This principle aims to ensure that similarly named operations have similar type
+            signatures. For example, <code>Array.reverse</code> and <code>Array.reverse!</code>
+            share similar signatures, except one returns a new array and the other destructively
+            updates the array. On the other hand, while there is a <code>Array.map</code> there is
+            no <code>Array.map!</code> because the signature of <code>Array.map</code> is:
+            <code>(a -&gt; b) -&gt; Array[a] -&gt; Array[b]</code> but the signature of the
+            destructive update cannot take a function from <code>a -&gt; b</code> because the type
+            of an array cannot change once constructed. Instead, Flix offers a
+            <code>Array.transform!</code> operation with the signature:
+            <code>(a -&gt; a) -&gt; Array[a] -&gt; Unit</code>.
+        </Fragment>
+    </PaperEntry>
+
+    <h3 class="mt-4" id="miscellaneous-principles">Miscellaneous Principles</h3>
+
+    <PaperEntry kind="principle" number={40} name="Annotation vs. Modifiers" id="annotation-vs-modifiers">
+        <Fragment slot="statement">
+            Flix has <em>annotations</em> and <em>modifiers</em>. We define an <em>annotation</em>
+            as a specific piece of meta-data associated with a specific construct (e.g., a function
+            or type declaration). We define a <em>modifier</em> as a keyword that affects the
+            semantics of a program.
+        </Fragment>
+        <Fragment slot="rationale">
+            In Flix, a modifier may impact both the semantics and well-formedness of a program. For
+            example, the <code>pub</code> access modifier controls name resolution; marking a
+            construct as private (i.e., non-<code>pub</code>) may cause a program to no longer
+            compile. As another example, the <code>redef</code> modifier is <em>required</em> to
+            make a trait instance well-formed when it overrides a function from the trait. In Flix,
+            annotations, on the other hand, have no impact on semantics or well-formedness. Instead,
+            they are purely a mechanism to attach meta-data to a programming construct.
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="principle" number={41} name="Annotations are Built-in" id="annotations-are-built-in">
+        <Fragment slot="statement">
+            In Flix, annotations are built-in; they cannot be user defined.
+        </Fragment>
+        <Fragment slot="rationale">
+            Annotations typically have two use cases: (i) as an ad-hoc mechanism to document program
+            constructs (e.g., classes, methods), and (ii) as a mechanism to support reflective
+            programming. Flix does not have reflection and does not need annotations to support that
+            use case. Flix does support a small collection of built-in annotations for
+            documentation.
+            <p>
+                The issue with user-defined annotations is that it is hard to ensure they have
+                well-defined semantics and are only declared once. For example, Java has
+                <code>@Deprecated</code> which is defined in the Java standard library, has a
+                well-defined meaning, and is widely used. On the other hand, Java did not define a
+                <code>@NonNull</code> annotation with the consequence that there are at least eight
+                different variants in use, and each has subtly different semantics. We want to avoid
+                such a situation by making annotations part of the language. If new annotations are
+                needed, they can be added after discussion.
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <h2 class="mt-4" id="abandoned-principles">Abandoned Principles</h2>
+
+    <p class="mb-4">
+        We conclude with a discussion of principles we had adopted but that we later had to abandon.
+        We do not believe these principles are broken, but they did not work out for Flix.
+    </p>
+
+    <PaperEntry kind="abandoned" name="No Blessed Library" id="no-blessed-library">
+        <Fragment slot="statement">
+            The Flix programming language and its compiler should be independent of the Flix
+            standard library.
+        </Fragment>
+        <Fragment slot="rationale">
+            The idea behind this principle was to ensure a clear separation between the Flix
+            language and compiler, and the Flix standard library. In particular, a programmer should
+            be able to write a program that does not depend on the standard library and also to
+            substitute his or her own standard library, if so desired.
+        </Fragment>
+        <Fragment slot="discussion">
+            Initially, while the standard library was small, the separation between language and
+            library was straightforward to enforce. But, as the language grew, the separation became
+            more and more challenging to enforce.
+            <p>
+                We will give a few examples. The traits <code>Eq</code>, <code>Order</code>, and
+                <code>ToString</code> are declared in the library, but the compiler needs to know
+                about them for several reasons: (i) to support translation of <code>==</code> into a
+                call to <code>Eq.eq</code>, (ii) to support translation of string interpolators into
+                calls to <code>ToString</code>, (iii) to support automatic derivation of
+                <code>Eq</code>, <code>Order</code>, and <code>ToString</code>, and (iv) for the
+                compiler to give more specific error messages related to missing instances of these
+                traits.
+            </p>
+            <p>
+                As similar set of dependencies arose between the logic part of the language and
+                dependencies on the traits that define a lattice.
+            </p>
+            <p>
+                Over time it simply became &ldquo;too convenient&rdquo; for the compiler to know
+                about the standard library; the upside is greatly improved usability, but the
+                downside is a hard dependence between language and compiler.
+            </p>
+        </Fragment>
+    </PaperEntry>
+
+    <PaperEntry kind="abandoned" name="Uniform Function Call Syntax" id="uniform-function-call-syntax">
+        <Fragment slot="statement">
+            In Flix, the syntax of a function call is <code>f(a, b, c)</code>. With UFCS, the same
+            function call can be written with syntactic sugar and in an object-oriented style as:
+            <code>a.f(b, c)</code>.
+        </Fragment>
+        <Fragment slot="rationale">
+            The idea behind uniform function call syntax (UFCS)
+            [<a href="https://dlang.org/spec/function.html#pseudo-member">1</a>,
+            <a href="https://isocpp.org/files/papers/N4165.pdf">2</a>] is three-fold:
+            <ul>
+                <li>to emulate the syntax of a method call, i.e., <code>o.f()</code>,</li>
+                <li>to enable &ldquo;auto-completion on the dot&rdquo;, and</li>
+                <li>to enable method chaining, i.e., <code>x.f().g()</code>.</li>
+            </ul>
+            The latter is sometimes referred to as &ldquo;fluent-style&rdquo;
+            [<a href="https://martinfowler.com/bliki/FluentInterface.html">3</a>] or inaccurately as
+            the &ldquo;builder-pattern&rdquo;. All three reasons seem useful and we speculate that
+            they may enable object-oriented programmers to feel more at home in a functional
+            programming language.
+        </Fragment>
+        <Fragment slot="discussion">
+            UFCS is good in that it does not confuse syntax with semantics (<a
+            href="#syntax-vs-semantics">Principle 1</a>). D and Nim support UFCS, and there is
+            discussion of adding it to C++. Flix used to support UFCS, but we had to abandon it for
+            two reasons:
+            <ol type="a">
+                <li>It is ambiguous in the presence of records.</li>
+                <li>It requires the subject to be the first argument.</li>
+            </ol>
+            For (a), the problem is that the expression <code>a.f(b, c)</code> can be parsed as
+            both: (i) <code>(a.f)(b, c)</code> (i.e., a field access of <code>f</code> which is then
+            invoked), and (ii) as the UFCS function call <code>f(a, b, c)</code>. Which is right?
+            Which would the programmer expect? For (b), the problem is that a call
+            <code>a.f(b, c)</code> is only sensible if <code>a</code> is the subject. But, if we
+            have e.g. <code>List.map(f: a -&gt; b, l: List[a])</code>, where the function argument
+            is first, then we cannot write <code>l.map(x -&gt; x + 1)</code> as we wanted. Thus we
+            have to change the signature to <code>List.map(l: List[a], f: a -&gt; b)</code>, but
+            this now prevents partial application like <code>List.map(x -&gt; x + 1)</code>.
+            <p>
+                The fundamental problem is a tension between subject-first or subject-last. We
+                cannot have both. We briefly considered whether to treat a UFCS call
+                <code>a.f(b, c)</code> as <code>f(c, b, a)</code>, but this was quickly abandoned,
+                and ultimately we dropped UFCS support and settled on the principle of
+                &ldquo;subject-last&rdquo; to fully support pipelines.
+            </p>
+        </Fragment>
+    </PaperEntry>
+  </div>
+</Layout>
+
+<style>
+  .definition {
+    border-left: 4px solid #17a2b8;
+    background-color: #f8f9fa;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+  }
+</style>

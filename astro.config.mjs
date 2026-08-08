@@ -11,10 +11,11 @@ export default defineConfig({
   },
   integrations: [
     icon(),
-    // /blog is a stub pointing at blog.flix.dev and is marked noindex, so it
-    // does not belong in the sitemap either.
+    // /blog is a stub pointing at blog.flix.dev and /principles2 is an
+    // unreleased draft; both are marked noindex, so neither belongs in the
+    // sitemap either.
     sitemap({
-      filter: (page) => !page.endsWith('/blog/')
+      filter: (page) => !page.endsWith('/blog/') && !page.endsWith('/principles2/')
     })
   ]
 });
