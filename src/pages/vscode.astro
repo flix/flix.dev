@@ -61,16 +61,20 @@ const features = [
       </div>
     </div>
 
-    {features.map((f, i) => (
-      <div class="row mb-5">
-        <div class="col-md-6">
-          <h4>{f.title}</h4>
-          <p set:html={f.desc}></p>
-          <div class="card">
-            <img class="card-img-top" src={f.img} alt={f.alt} loading={i === 0 ? "eager" : "lazy"} />
+    {/* Two per row from md up. The cards stretch to the tallest in the row, so
+        the screenshots line up along the bottom however long the prose runs. */}
+    <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+      {features.map((f, i) => (
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <h4 class="card-title">{f.title}</h4>
+              <p class="card-text mb-0" set:html={f.desc}></p>
+            </div>
+            <img class="card-img-bottom" src={f.img} alt={f.alt} loading={i < 2 ? "eager" : "lazy"} />
           </div>
         </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 </Layout>
