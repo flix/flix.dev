@@ -167,10 +167,19 @@ import '../styles/global.css';
       <header>
         {/* The ribbon is absolutely positioned against the viewport, so its
             place in the DOM only affects the reading order, not the layout.
-            Hidden below the navbar's breakpoint, where it would claim the same
-            149px of top-right corner that the collapsed navbar puts its
-            toggler in. */}
-        <a class="d-none d-lg-block" href="https://github.com/flix/flix">
+            What it does claim is the top-right corner, which is also where the
+            navbar ends, and the whole 149px square is inside the link - so
+            wherever the two meet, the ribbon swallows the clicks meant for the
+            theme toggle rather than merely sitting over it.
+
+            They stop meeting once the margin beside the card, (viewport -
+            container) / 2, clears the ribbon's 149px less the 28px of navbar
+            and container padding the toggle already sits inside: 121px, so
+            from viewport = container + 242px up. The container is held at
+            1140px above, which puts that at 1382px and makes xxl the first
+            breakpoint where the ribbon fits - by 9px, and by more from there
+            on, since that cap stops the container growing to meet it. */}
+        <a class="d-none d-xxl-block" href="https://github.com/flix/flix">
           <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9999;"
               src="/forkme_right_green_007200.png"
               alt="Fork me on GitHub">
