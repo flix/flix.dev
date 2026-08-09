@@ -20,6 +20,16 @@
 :root {
     --flix-red: #cf4647;
 
+    /* The site is made of four surfaces: the page behind the card, the card,
+       the navbar, and the code blocks. Three are named here so the dark theme
+       below can swap them in one place. The fourth is not: the card is
+       Bootstrap's --bs-body-bg, which is what .card, .list-group and .dropdown
+       all already resolve to, so giving it a name of its own would only be a
+       second value to keep in step with it by hand. */
+    --flix-bg-page: #efefef;
+    --flix-bg-navbar: #212529;
+    --flix-bg-code: #f7f7f7;
+
     --bs-primary: #a63839;
     --bs-primary-rgb: 166, 56, 57;
     --bs-link-color-rgb: 166, 56, 57;
@@ -34,10 +44,39 @@
     --bs-success-rgb: 0, 137, 56;
 }
 
+/* Bootstrap 5.3's dark palette is driven entirely by this attribute: the
+   precompiled stylesheet the layout imports contains no prefers-color-scheme
+   at all, which is why the media query is read by the inline script in
+   Layout.astro and written here instead. That block also sets color-scheme,
+   and turns --bs-body-bg to #212529, which is where the card gets its colour.
+
+   Scoped to :root rather than bare [data-bs-theme="dark"] because the navbar
+   carries the same attribute permanently -- an unscoped rule would re-declare
+   the whole palette inside it in light mode too.
+
+   The contrast argument in :root runs backwards here. #a63839 and #008938 were
+   darkened to clear 4.5:1 on white and both fall to 3.4:1 on the dark card, so
+   these are the same two colours taken the other way: 6.4:1 for the red, which
+   is what the light one measures, and 5.5:1 for the green, still fully
+   saturated at hue 145 with only its lightness moved. */
+:root[data-bs-theme="dark"] {
+    --flix-bg-page: #16181b;
+    --flix-bg-navbar: #2b3035;
+    --flix-bg-code: #1a1d20;
+
+    --bs-primary: #ef8b8c;
+    --bs-primary-rgb: 239, 139, 140;
+    --bs-link-color-rgb: 239, 139, 140;
+    --bs-link-hover-color-rgb: 244, 166, 167;
+
+    --bs-success: #00b34a;
+    --bs-success-rgb: 0, 179, 74;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     overflow-y: scroll;
-    background-color: #efefef;
+    background-color: var(--flix-bg-page);
 }
 
 /* Matching Bootstrap's own `h1, .h1` pairing keeps the utility classes in step
@@ -74,6 +113,14 @@ h4, .h4 {
     /* The navbar is identical on every page; naming it lifts it out of the
        root cross-fade so it holds still during transitions. */
     view-transition-name: navbar;
+
+    /* Its own surface rather than Bootstrap's .bg-dark, which resolves to
+       #212529 -- in dark mode the colour of the card, so the bar would dissolve
+       into the page it sits on. The dark value is one step up from the card
+       instead, and the light one is what .bg-dark was already painting, so the
+       light navbar is unchanged. A token also keeps this out of a fight with
+       .bg-dark's !important. */
+    background-color: var(--flix-bg-navbar);
 }
 
 /* Bootstrap 5 adds an xxl breakpoint that widens .container to 1320px. Hold
@@ -85,7 +132,7 @@ h4, .h4 {
 }
 
 .page {
-    background-color: white;
+    background-color: var(--bs-body-bg);
     min-height: 95vh;
     display: flex;
     flex-direction: column;
@@ -112,7 +159,20 @@ h4, .h4 {
    bottom padding lives on the <pre> for the same reason. */
 .code-snippet-code {
     padding: 0.9em 1.6em 0;
-    background-color: #f7f7f7;
+    background-color: var(--flix-bg-code);
+}
+
+/* Shiki's dual-theme output leaves the light colour in `color` and parks the
+   dark one in a --shiki-dark custom property on the same element, so switching
+   themes is a matter of choosing which of the two to read. !important because
+   the colours arrive as inline styles on every token. The background is not
+   included: .code-snippet-code owns it, and the <pre> is transparent below.
+
+   .astro-code, not Shiki's own .shiki -- Astro renames the class on the way
+   out, and the documented one matches nothing here. */
+:root[data-bs-theme="dark"] .code-snippet-code .astro-code,
+:root[data-bs-theme="dark"] .code-snippet-code .astro-code span {
+    color: var(--shiki-dark) !important;
 }
 
 .code-snippet-code pre,
@@ -149,6 +209,57 @@ h4, .h4 {
     .navbar-nav .nav-link.active {
         border-bottom-color: var(--flix-red);
     }
+}
+
+/* Everything pictorial on the site assumes a light ground: the editor captures
+   were taken in a light theme, the matplotlib figures label their axes in
+   black, and the sponsor logos are dark ink on transparency. None of it can be
+   recoloured -- other organisations' marks least of all -- so each keeps a
+   white ground of its own in both themes. Unconditional, because in light mode
+   it is already the colour of the card underneath and changes nothing there.
+
+   Background only, deliberately: the elements this lands on already carry the
+   right corners from Bootstrap -- .card-img-bottom rounds its bottom two and
+   squares the top two against the card body above it -- and global.css loads
+   after Bootstrap, so a radius here would overwrite that with all four. */
+.plate {
+    background-color: #ffffff;
+}
+
+/* The toggle sits among the nav links and should read as one of them rather
+   than as a control, so it carries no box. No .btn-* variant, because the
+   variants are what supply the border and the filled background; base .btn on
+   its own is already transparent. What a variant would also have set are the
+   two colour tokens below, which .btn and .btn:hover read -- pointing them at
+   the navbar's own colours is what makes the icon track the links either side
+   of it. The border is zeroed rather than left transparent so it stops taking
+   up a pixel on each side. */
+.theme-toggle {
+    --bs-btn-color: var(--bs-navbar-color);
+    --bs-btn-hover-color: var(--bs-navbar-hover-color);
+    border: 0;
+}
+
+/* An outline rather than the --bs-btn-focus-shadow-rgb ring base .btn leaves
+   unset: a soft glow is easy to lose against the navbar, and this has to stay
+   obvious enough to keyboard-navigate by. */
+.theme-toggle:focus-visible {
+    color: var(--bs-navbar-active-color);
+    outline: 2px solid var(--bs-navbar-active-color);
+    outline-offset: 2px;
+}
+
+/* Only one of the two icons in the toggle is ever shown, and which one cannot
+   be decided at build time -- the theme is not known until the inline script
+   runs. Both ship, and the attribute picks. Hiding is all that is stated: the
+   button is a flex container, so the icon left standing is a flex item and is
+   blockified whatever its display says. :not() rather than a plain rule and a
+   restore, so that with the script blocked and no attribute set at all the
+   moon still shows against the light theme the page falls back to. :root on
+   both because the button sits inside the permanently dark navbar. */
+:root:not([data-bs-theme="dark"]) .theme-toggle-to-light,
+:root[data-bs-theme="dark"] .theme-toggle-to-dark {
+    display: none;
 }
 
 .card-title {
