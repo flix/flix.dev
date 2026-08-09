@@ -327,15 +327,35 @@ def testDivide01(): Unit \\ Assert =
 def testDivide02(): Unit \\ Assert =
     assertErr(divide(10, 0))`;
 
-// Terminal output rather than Flix, so the home page renders this one through a
-// plain <pre>: the CodeSnippet component only knows the Flix grammar and would
-// colour the PASS lines as if they were code.
+// Neither this nor the two that follow are Flix, so the home page renders them
+// with PlainSnippet: CodeSnippet only knows the Flix grammar and would colour
+// terminal output and TOML as if they were code.
 export const testOutput = `Running 2 tests...
 
    PASS  testDivide01 1.4ms
    PASS  testDivide02 0.3ms
 
 Passed: 2, Failed: 0. Skipped: 0. Elapsed: 2.1ms.`;
+
+export const manifestExample = `[package]
+name        = "hello-world"
+description = "A simple Flix package"
+version     = "0.1.0"
+license     = "Apache-2.0"
+
+[dependencies]
+"github:flix/museum" = "1.4.0"
+
+[mvn-dependencies]
+"org.apache.commons:commons-lang3" = "3.12.0"`;
+
+export const manifestOutput = `Found \`flix.toml'. Checking dependencies...
+Resolving Flix dependencies...
+  Downloading \`flix/museum.toml\` (v1.4.0)... OK.
+  Downloading \`flix/museum.fpkg\` (v1.4.0)... OK.
+Resolving Maven dependencies...
+  Adding \`org.apache.commons:commons-lang3' (3.12.0).
+Dependency resolution completed.`;
 
 export const datalogExample = `def reachable(g: List[(String, Int32, String)], minSpeed: Int32): List[(String, String)] =
     let facts = inject g into Road/3;
