@@ -213,7 +213,7 @@ import '../styles/global.css';
               <ul class="navbar-nav me-lg-auto">
                 {navLinks.map(({ href, label }) => (
                   <li class="nav-item ps-1 pe-1">
-                    <a class={`nav-link${currentPath === href ? " active fw-bold" : ""}`} href={href}>
+                    <a class={`nav-link${currentPath === href ? " active fw-bold" : ""}`} href={href} data-label={label}>
                       {label}
                     </a>
                   </li>
