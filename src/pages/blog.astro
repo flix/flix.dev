@@ -27,28 +27,33 @@ const posts = recentPosts();
             opening it. */}
         <h2 class="h4 mb-3">Latest Posts</h2>
 
-        {/* Unstyled because the markers would sit oddly against multi-line
-            entries; each post is a heading and a paragraph, not a bullet. */}
+        {/* One card per post, stacked full width, the same shape the FAQ's
+            questions take. Unstyled because a marker would sit outside the box
+            entirely, level with the border rather than with the text it belongs
+            to. The card class goes on the <li> itself; a wrapper inside it
+            would only repeat what the list item already is. */}
         <ul class="list-unstyled">
           {
             posts.map((post) => (
-              <li class="mb-4">
-                <h3 class="h5 mb-1">
-                  <a href={post.url}>{post.title}</a>
-                </h3>
-                {/* The middot carries its own padding because the compiler
-                    strips the whitespace between adjacent elements, the same
-                    way the footer's separator does. */}
-                <p class="text-muted small mb-1">
-                  <time datetime={post.dateISO}>{post.date}</time>
-                  {post.author && (
-                    <>
-                      <span class="px-1">&middot;</span>
-                      {post.author}
-                    </>
-                  )}
-                </p>
-                {post.summary && <p class="mb-0">{post.summary}</p>}
+              <li class="card mb-3">
+                <div class="card-body">
+                  <h3 class="card-title mb-1">
+                    <a href={post.url}>{post.title}</a>
+                  </h3>
+                  {/* The middot carries its own padding because the compiler
+                      strips the whitespace between adjacent elements, the same
+                      way the footer's separator does. */}
+                  <p class="text-muted small mb-1">
+                    <time datetime={post.dateISO}>{post.date}</time>
+                    {post.author && (
+                      <>
+                        <span class="px-1">&middot;</span>
+                        {post.author}
+                      </>
+                    )}
+                  </p>
+                  {post.summary && <p class="card-text mb-0">{post.summary}</p>}
+                </div>
               </li>
             ))
           }
