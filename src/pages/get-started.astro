@@ -1,38 +1,193 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CodeSnippet from "../components/CodeSnippet.astro";
+
+// Verified against Flix 0.75.1. The book's getting-started chapter shows the
+// install steps but no code, so this is the one program the site owns: the
+// front page's httpExample cut down to the part that shows the idea, which is
+// that fetching a URL is visible in the type.
+const httpExample = `use Net.Http
+use Net.HttpResponse.status
+
+/// Fetching a URL is the Http effect, so it appears
+/// in the signature. It uses the default handler,
+/// which performs the actual HTTP request.
+def main(): Unit \\ { Http, IO } =
+    match Http.get("https://flix.dev/") {
+        case Ok(res)  => println("Status: \${status(res)}")
+        case Err(err) => println("Failed: \${err}")
+    }`;
+
+const installs = [
+  { name: "Homebrew", command: "brew install flix" },
+  { name: "Nix", command: "nix-shell -p flix" },
+  {
+    name: "JAR",
+    // -o names the output file rather than -O deriving it, whose capital O is
+    // easy to misread as a zero in a command meant to be copied.
+    command:
+      "curl -L -o flix.jar https://github.com/flix/flix/releases/latest/download/flix.jar",
+  },
+];
 ---
 
 <Layout
   title="Flix | Getting Started"
-  description="Start writing Flix: install the Visual Studio Code extension, try the online playground at play.flix.dev, or install the compiler locally."
+  description="Try Flix in your browser, install the Visual Studio Code extension, and write your first program."
 >
   <div class="container">
     <h1>Get Started</h1>
 
-    <div class="row mb-1">
+    <div class="row mb-4">
       <div class="col">
         <p>
-          We recommend using Flix from Visual Studio Code. In addition, Flix
-          has an <a href="https://play.flix.dev/">online playground</a> and can be <a
-          href="https://doc.flix.dev/getting-started.html"
-            >installed locally</a
+          You can try Flix in your browser, install the Visual Studio Code
+          extension, or use the command line via Homebrew, Nix, or the JAR.
+        </p>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <h2>Try Flix in your browser</h2>
+        <p>
+          The online playground compiles and runs Flix programs for you, with
+          nothing to install.
+        </p>
+      </div>
+      <div class="col-md-4 align-self-center text-center">
+        <a class="btn btn-success btn-lg" href="https://play.flix.dev/"
+          >Go to the Playground</a
+        >
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-3">
+      <div class="col">
+        <h2>Install the Visual Studio Code extension</h2>
+        <p>
+          Open the Extensions view, search for <b>Flix</b>, and click install.
+          The extension brings the compiler with it, so there is nothing else to
+          download.
+        </p>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col">
+        <div class="card ms-5 me-5">
+          <img
+            class="card-img-top"
+            src="/gif/install.png"
+            alt="Installing the Flix extension from the Visual Studio Code Extensions view"
+          />
+          <div class="card-body small text-muted">
+            Flix requires <b>Java 21</b> or later. The extension is also
+            available on the <a
+              href="https://marketplace.visualstudio.com/items?itemName=flix.flix"
+              >Visual Studio Marketplace</a
+            >.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-3">
+      <div class="col">
+        <h2>Or use Flix from the command line</h2>
+        <p>
+          Flix is one self-contained tool: compiler, build tool, package
+          manager, test runner, and REPL.
+        </p>
+      </div>
+    </div>
+
+    {/* One row per route, each showing the command that gets you Flix. The
+        blocks reuse the code snippet styling so that shell and Flix code look
+        the same everywhere on the site; full width because the JAR's download
+        URL does not fit in a third of one. */}
+    <div class="mb-3">
+      {installs.map(({ name, command }) => (
+        <div class="row align-items-center mb-2">
+          <div class="col-md-2">
+            <h3 class="h6 fw-bold mb-0">{name}</h3>
+          </div>
+          <div class="col-md-10">
+            <div class="code-snippet-code">
+              <pre><code>{command}</code></pre>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="row mb-4">
+      <div class="col">
+        <p>
+          Homebrew and Nix give you a <code>flix</code> command, so a project is <code
+            >flix init</code
+          > and then <code>flix run</code>. With the JAR, which works anywhere Java
+          does, the same two are <code>java -jar flix.jar init</code> and <code
+            >java -jar flix.jar run</code
           >.
         </p>
       </div>
     </div>
 
-    <div class="row">
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h2>Your first program</h2>
+        <CodeSnippet code={httpExample} />
+      </div>
+      <div class="col-md-6 align-self-center">
+        <p>
+          The program fetches <code>https://flix.dev/</code> and prints the
+          status code that comes back, or the error if the request failed.
+        </p>
+        <p>
+          <code>Http</code> is one of many effects the standard library provides,
+          alongside <code>Clock</code>, <code>Console</code>, <code>FileSystem</code
+          >, <code>Logger</code>, <code>Process</code>, and <code>Random</code>. Each
+          comes with a default handler, so a program can use them without any
+          setup.
+        </p>
+        <p>
+          <code>Http</code> also comes with a lot of middleware: retries, circuit
+          breakers, rate limiting, logging, base URLs, and default headers.
+        </p>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
       <div class="col">
-        <h3 class="text-center mb-3">
-          Installing the Flix Visual Studio Code Extension
-        </h3>
-        <div class="card ms-5 me-5">
-          <img
-            class="card-img-top"
-            src="/gif/install.png"
-            alt="Install VSCode extension"
-          />
-        </div>
+        <h2>Where to go next</h2>
+        <ul>
+          <li>
+            <a href="https://doc.flix.dev/">Programming Flix</a> is the book: a
+            detailed introduction to the language, from the basics, to the
+            trait system, to effects and handlers.
+          </li>
+          <li>
+            Prefer Neovim, Emacs, or running the JAR directly? The book's <a
+              href="https://doc.flix.dev/getting-started.html">getting started</a
+            > chapter covers every install route.
+          </li>
+          <li>
+            Questions, or stuck on something? Come and say hello on <a
+              href="https://flix.zulipchat.com/">Zulip</a
+            >.
+          </li>
+        </ul>
       </div>
     </div>
   </div>
