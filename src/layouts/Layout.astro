@@ -299,35 +299,10 @@ import '../styles/global.css';
       import "bootstrap/js/dist/collapse";
       import "bootstrap/js/dist/carousel";
 
-      // The head script already picked the theme; this only handles changing it
-      // afterwards, so it can wait for the bundle. Writing to localStorage is
-      // what turns a choice into a preference: from then on the branch above
-      // reads it and stops consulting the OS.
-      const root = document.documentElement;
-
-      document.querySelector(".theme-toggle")?.addEventListener("click", () => {
-        const next =
-          root.getAttribute("data-bs-theme") === "dark" ? "light" : "dark";
-        root.setAttribute("data-bs-theme", next);
-        try {
-          localStorage.setItem("theme", next);
-        } catch {}
-      });
-
-      // Follow the OS live, but only for visitors who have never used the
-      // toggle -- once they have, their choice outranks it.
-      matchMedia("(prefers-color-scheme: dark)").addEventListener(
-        "change",
-        (event) => {
-          let stored = null;
-          try {
-            stored = localStorage.getItem("theme");
-          } catch {}
-          if (stored !== "light" && stored !== "dark") {
-            root.setAttribute("data-bs-theme", event.matches ? "dark" : "light");
-          }
-        },
-      );
+      // In a file of its own so it is typechecked as one -- a script block here
+      // is not. The theme's other half cannot join it: that one has to be
+      // is:inline in the head, and is up there.
+      import "../scripts/theme-toggle.ts";
     </script>
   </body>
 </html>
