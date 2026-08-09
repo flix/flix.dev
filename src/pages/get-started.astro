@@ -5,9 +5,9 @@ import CodeSnippet from "../components/CodeSnippet.astro";
 const httpExample = `use Net.Http
 use Net.HttpResponse.status
 
-/// Fetching a URL is the Http effect, so it appears
-/// in the signature. It uses the default handler,
-/// which performs the actual HTTP request.
+/// Fetching a URL uses the Http effect, so it appears
+/// in the signature. Here it runs with the default
+/// handler, which performs the actual HTTP request.
 def main(): Unit \\ { Http, IO } =
     match Http.get("https://flix.dev/") {
         case Ok(res)  => println("Status: \${status(res)}")
