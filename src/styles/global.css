@@ -209,6 +209,22 @@ h4, .h4 {
     .navbar-nav .nav-link.active {
         border-bottom-color: var(--flix-red);
     }
+
+    /* The same problem along the other axis: 700 is wider than 400, so bolding
+       the active link would push every item after it to the right. Each link
+       carries an invisible bold copy of its own label, which sets the width for
+       both states and leaves the measuring to the browser rather than to nine
+       hard-coded numbers that would drift the next time a label is renamed.
+       visibility is what keeps that copy out of the accessibility tree; a zero
+       height alone hides it from the eye but not from a screen reader. */
+    .navbar-nav .nav-link::after {
+        content: attr(data-label);
+        display: block;
+        font-weight: 700;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+    }
 }
 
 /* Everything pictorial on the site assumes a light ground: the editor captures
