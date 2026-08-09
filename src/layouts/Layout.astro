@@ -176,8 +176,9 @@ import '../styles/global.css';
               alt="Fork me on GitHub">
         </a>
         {/* data-bs-theme has to sit on the .navbar itself: Bootstrap keys the
-            light-on-dark link and toggler colours off .navbar[data-bs-theme="dark"]. */}
-        <nav class="navbar bg-dark navbar-expand-lg menu shadow-sm mb-4" data-bs-theme="dark" aria-label="Main">
+            light-on-dark link and toggler colours off .navbar[data-bs-theme="dark"].
+            It says nothing about the background, which .menu paints. */}
+        <nav class="navbar navbar-expand-lg menu shadow-sm mb-4" data-bs-theme="dark" aria-label="Main">
           <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center gap-2" href="/">
               <FlixMark size={24} />

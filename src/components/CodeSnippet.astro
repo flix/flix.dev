@@ -1,6 +1,5 @@
 ---
 import { Code } from "astro:components";
-import type { ThemeRegistration } from "shiki";
 import lightPlus from "@shikijs/themes/light-plus";
 import darkPlus from "@shikijs/themes/dark-plus";
 interface Props {
@@ -17,13 +16,14 @@ import flixGrammar from "../grammars/flix.tmLanguage.json";
 // last one, so a bare `storage` here loses to the theme's own
 // `storage.modifier` rule. The two magentas are each theme's own, not one value
 // used twice: #AF00DB is legible on white and would be far too dark on #1a1d20.
-const unifyKeywords = (
-  base: ThemeRegistration,
-  name: string,
-  foreground: string,
-): ThemeRegistration => ({
+// The name is derived rather than passed so it cannot drift from the theme it
+// describes; it reaches the markup as a class, so it wants to stay truthful.
+// Typed off lightPlus because `shiki` itself is not a dependency here -- it
+// resolves only through astro -- and @shikijs/themes already declares its
+// exports as ThemeRegistration.
+const unifyKeywords = (base: typeof lightPlus, foreground: string) => ({
   ...base,
-  name,
+  name: `${base.name}-flix`,
   tokenColors: [
     ...(base.tokenColors ?? []),
     {
@@ -38,8 +38,8 @@ const unifyKeywords = (
 // switches between. Keeping light as the default means the markup renders
 // correctly for the light theme with no CSS applied at all.
 const themes = {
-  light: unifyKeywords(lightPlus, "light-plus-flix", "#AF00DB"),
-  dark: unifyKeywords(darkPlus, "dark-plus-flix", "#C586C0"),
+  light: unifyKeywords(lightPlus, "#AF00DB"),
+  dark: unifyKeywords(darkPlus, "#C586C0"),
 };
 ---
 

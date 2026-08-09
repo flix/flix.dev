@@ -20,11 +20,14 @@
 :root {
     --flix-red: #cf4647;
 
-    /* The site is made of three surfaces and nothing else: the page behind the
-       card, the card itself, and the code blocks on it. Naming them is what
-       lets the dark theme below swap the lot in one place. */
+    /* The site is made of four surfaces: the page behind the card, the card,
+       the navbar, and the code blocks. Three are named here so the dark theme
+       below can swap them in one place. The fourth is not: the card is
+       Bootstrap's --bs-body-bg, which is what .card, .list-group and .dropdown
+       all already resolve to, so giving it a name of its own would only be a
+       second value to keep in step with it by hand. */
     --flix-bg-page: #efefef;
-    --flix-bg-card: #ffffff;
+    --flix-bg-navbar: #212529;
     --flix-bg-code: #f7f7f7;
 
     --bs-primary: #a63839;
@@ -44,9 +47,8 @@
 /* Bootstrap 5.3's dark palette is driven entirely by this attribute: the
    precompiled stylesheet the layout imports contains no prefers-color-scheme
    at all, which is why the media query is read by the inline script in
-   Layout.astro and written here instead. That block also sets color-scheme
-   and --bs-body-bg: #212529, so the card matches what every Bootstrap
-   component is already drawing itself against.
+   Layout.astro and written here instead. That block also sets color-scheme,
+   and turns --bs-body-bg to #212529, which is where the card gets its colour.
 
    Scoped to :root rather than bare [data-bs-theme="dark"] because the navbar
    carries the same attribute permanently -- an unscoped rule would re-declare
@@ -59,7 +61,7 @@
    saturated at hue 145 with only its lightness moved. */
 :root[data-bs-theme="dark"] {
     --flix-bg-page: #16181b;
-    --flix-bg-card: #212529;
+    --flix-bg-navbar: #2b3035;
     --flix-bg-code: #1a1d20;
 
     --bs-primary: #ef8b8c;
@@ -111,15 +113,14 @@ h4, .h4 {
     /* The navbar is identical on every page; naming it lifts it out of the
        root cross-fade so it holds still during transitions. */
     view-transition-name: navbar;
-}
 
-/* .bg-dark resolves to #212529, which in dark mode is also the card's colour --
-   the bar would dissolve into the page it sits on. Lifting it one step keeps it
-   reading as a bar. Done by moving the token .bg-dark reads rather than by
-   restating the background, since Bootstrap ships that declaration !important
-   and overriding it directly would mean matching that. */
-:root[data-bs-theme="dark"] .menu {
-    --bs-dark-rgb: 43, 48, 53;
+    /* Its own surface rather than Bootstrap's .bg-dark, which resolves to
+       #212529 -- in dark mode the colour of the card, so the bar would dissolve
+       into the page it sits on. The dark value is one step up from the card
+       instead, and the light one is what .bg-dark was already painting, so the
+       light navbar is unchanged. A token also keeps this out of a fight with
+       .bg-dark's !important. */
+    background-color: var(--flix-bg-navbar);
 }
 
 /* Bootstrap 5 adds an xxl breakpoint that widens .container to 1320px. Hold
@@ -131,7 +132,7 @@ h4, .h4 {
 }
 
 .page {
-    background-color: var(--flix-bg-card);
+    background-color: var(--bs-body-bg);
     min-height: 95vh;
     display: flex;
     flex-direction: column;
@@ -226,23 +227,22 @@ h4, .h4 {
 }
 
 /* The toggle sits among the nav links and should read as one of them rather
-   than as a control, so it carries no box. Stating the three properties here
-   rather than reaching for a .btn-* variant is what removes it: the variants
-   are what supply the border in the first place, and without one the
-   --bs-btn-* tokens .btn refers to are simply undefined. The colours are the
-   navbar's own, so the icon tracks the links either side of it exactly. */
+   than as a control, so it carries no box. No .btn-* variant, because the
+   variants are what supply the border and the filled background; base .btn on
+   its own is already transparent. What a variant would also have set are the
+   two colour tokens below, which .btn and .btn:hover read -- pointing them at
+   the navbar's own colours is what makes the icon track the links either side
+   of it. The border is zeroed rather than left transparent so it stops taking
+   up a pixel on each side. */
 .theme-toggle {
-    background-color: transparent;
+    --bs-btn-color: var(--bs-navbar-color);
+    --bs-btn-hover-color: var(--bs-navbar-hover-color);
     border: 0;
-    color: var(--bs-navbar-color);
 }
 
-.theme-toggle:hover {
-    color: var(--bs-navbar-hover-color);
-}
-
-/* Restored explicitly for the same reason: dropping the variant dropped the
-   focus ring with it, and the button has to stay reachable by keyboard. */
+/* An outline rather than the --bs-btn-focus-shadow-rgb ring base .btn leaves
+   unset: a soft glow is easy to lose against the navbar, and this has to stay
+   obvious enough to keyboard-navigate by. */
 .theme-toggle:focus-visible {
     color: var(--bs-navbar-active-color);
     outline: 2px solid var(--bs-navbar-active-color);
@@ -251,16 +251,13 @@ h4, .h4 {
 
 /* Only one of the two icons in the toggle is ever shown, and which one cannot
    be decided at build time -- the theme is not known until the inline script
-   runs. Both ship, and the attribute picks. :root again because the button sits
-   inside the permanently dark navbar. */
-.theme-toggle-to-light {
-    display: none;
-}
-
-:root[data-bs-theme="dark"] .theme-toggle-to-light {
-    display: inline-block;
-}
-
+   runs. Both ship, and the attribute picks. Hiding is all that is stated: the
+   button is a flex container, so the icon left standing is a flex item and is
+   blockified whatever its display says. :not() rather than a plain rule and a
+   restore, so that with the script blocked and no attribute set at all the
+   moon still shows against the light theme the page falls back to. :root on
+   both because the button sits inside the permanently dark navbar. */
+:root:not([data-bs-theme="dark"]) .theme-toggle-to-light,
 :root[data-bs-theme="dark"] .theme-toggle-to-dark {
     display: none;
 }
