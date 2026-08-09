@@ -2,7 +2,7 @@
 // up grammar changes, bump the SHA *and* delete the file below: the fetch is
 // skipped whenever it already exists, so on a working tree that has built once
 // the new SHA alone changes nothing.
-const COMMIT = 'befa883ecec4b0c84e436bdd176dec5475e584ab';
+const COMMIT = '1da5462a560b45eb7d8dbb25955fbf31606f90bd';
 const URL = `https://raw.githubusercontent.com/flix/textmate/${COMMIT}/syntaxes/flix.tmLanguage.json`;
 const DEST = 'src/grammars/flix.tmLanguage.json';
 

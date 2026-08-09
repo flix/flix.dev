@@ -10,13 +10,18 @@ const { code } = Astro.props;
 import flixGrammar from "../grammars/flix.tmLanguage.json";
 
 // Light+ colors `keyword`/`storage` blue but `keyword.control` magenta;
-// unify them so all Flix keywords share the magenta.
+// unify them so all Flix keywords share the magenta. `storage.modifier` is
+// named explicitly because the most specific selector wins rather than the last
+// one, so a bare `storage` here loses to Light+'s own `storage.modifier` rule.
 const theme = {
   ...lightPlus,
   name: "light-plus-flix",
   tokenColors: [
     ...(lightPlus.tokenColors ?? []),
-    { scope: ["keyword", "storage"], settings: { foreground: "#AF00DB" } },
+    {
+      scope: ["keyword", "storage", "storage.modifier"],
+      settings: { foreground: "#AF00DB" },
+    },
   ],
 };
 ---
