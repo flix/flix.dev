@@ -1,0 +1,18 @@
+---
+interface Props {
+  code: string;
+}
+
+const { code } = Astro.props;
+---
+
+{/* For blocks that are not Flix - terminal output, TOML - which CodeSnippet
+    would colour through the Flix grammar. Reuses that component's frame, so a
+    plain block and a highlighted one stack in a column without a seam.
+    overflow-x is set here because Astro's <Code> ships it inline on the <pre>
+    it renders, and a bare <pre> has nothing. */}
+<div class="code-snippet-frame">
+  <div class="code-snippet-code">
+    <pre style="overflow-x: auto">{code}</pre>
+  </div>
+</div>

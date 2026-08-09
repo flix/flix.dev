@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import CodeSnippet from "../components/CodeSnippet.astro";
+import PlainSnippet from "../components/PlainSnippet.astro";
 import Carousel from "../components/Carousel.astro";
 import {
   httpExample,
@@ -25,6 +26,8 @@ import {
   terminationExample,
   testExample,
   testOutput,
+  manifestExample,
+  manifestOutput,
   datalogExample,
 } from "../lib/indexExamples.js";
 
@@ -554,6 +557,44 @@ const vscodeSlides = [
       <div class="col-md-6">
         <div class="card border-0">
           <div class="card-body">
+            <div class="card-title"><h4>Build and Package Management</h4></div>
+            <p class="card-text">
+              Flix has its own build tool and package manager. A project is
+              described by a single <code>flix.toml</code> manifest, shown on
+              the right, and <code>flix init</code> writes the first one for
+              you.
+            </p>
+            <p class="card-text">
+              Dependencies are Flix packages published on GitHub, or JARs
+              published on Maven &mdash; so pulling in the Java ecosystem is one
+              line in the manifest. Flix resolves both, transitively, and
+              downloads them on the next build.
+            </p>
+            <p class="card-text">
+              The commands <code>check</code>, <code>build</code>, <code
+                >run</code
+              >, <code>test</code>, <code>build-fatjar</code>, and <code
+                >release</code
+              > are built into the compiler itself, and each one works from the command
+              line, from the REPL, and from Visual Studio Code.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <PlainSnippet code={manifestExample} />
+        <PlainSnippet code={manifestOutput} />
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <CodeSnippet code={testExample} />
+        <PlainSnippet code={testOutput} />
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0">
+          <div class="card-body">
             <div class="card-title"><h4>Built-in Test Framework</h4></div>
             <p class="card-text">
               Flix comes with a built-in test framework. A test is a function
@@ -571,17 +612,6 @@ const vscodeSlides = [
               them one at a time from the code lens above each test in Visual
               Studio Code.
             </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={testExample} />
-        {/* Terminal output, not Flix, so it bypasses CodeSnippet and reuses
-            only its frame. overflow-x is set here because Astro's <Code> ships
-            that inline on the <pre> it renders and a bare one has nothing. */}
-        <div class="code-snippet-frame">
-          <div class="code-snippet-code">
-            <pre style="overflow-x: auto">{testOutput}</pre>
           </div>
         </div>
       </div>
