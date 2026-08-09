@@ -314,6 +314,29 @@ def size(t: Tree[Int32]): Int32 = match t {
     case Tree.Node(l, r) => size(l) + size(r)
 }`;
 
+export const testExample = `use Assert.{assertEq, assertErr}
+
+def divide(x: Int32, y: Int32): Result[String, Int32] =
+    if (y == 0) Err("Division by zero") else Ok(x / y)
+
+@Test
+def testDivide01(): Unit \\ Assert =
+    assertEq(expected = Ok(5), divide(10, 2))
+
+@Test
+def testDivide02(): Unit \\ Assert =
+    assertErr(divide(10, 0))`;
+
+// Terminal output rather than Flix, so the home page renders this one through a
+// plain <pre>: the CodeSnippet component only knows the Flix grammar and would
+// colour the PASS lines as if they were code.
+export const testOutput = `Running 2 tests...
+
+   PASS  testDivide01 1.4ms
+   PASS  testDivide02 0.3ms
+
+Passed: 2, Failed: 0. Skipped: 0. Elapsed: 2.1ms.`;
+
 export const datalogExample = `def reachable(g: List[(String, Int32, String)], minSpeed: Int32): List[(String, String)] =
     let facts = inject g into Road/3;
     let rules = #{
