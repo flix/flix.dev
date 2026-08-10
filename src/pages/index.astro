@@ -29,6 +29,8 @@ import {
   manifestExample,
   manifestOutput,
   datalogExample,
+  optimizerExample,
+  optimizerBytecode,
 } from "../lib/indexExamples.js";
 
 const vscodeSlides = [
@@ -813,68 +815,52 @@ const vscodeSlides = [
 
     <div class="row mb-4">
       <div class="col-md-12">
-        <h2>An Optimizing Compiler</h2>
+        <h2>A Whole-Program Optimizing Compiler</h2>
         <p>
-          Flix compiles to JVM bytecode through an optimizing pipeline. The
-          aim is that you can write in whatever style reads best &mdash;
+          Flix is a whole-program optimizing compiler. It uses
+          monomorphization, inlining, closure elimination, tail call
+          elimination, and aggressive tree shaking to turn high-level code into
+          tight low-level code. Write code in whatever style you prefer &mdash;
           generic, higher-order, split into many small functions &mdash;
-          without paying for it at runtime:
+          without paying for it at runtime.
         </p>
       </div>
+
       <div class="col-md-6">
-        <ul>
+        <h5>What you write</h5>
+        <CodeSnippet code={optimizerExample} />
+        <ul class="mt-3">
           <li>
-            <b>Monomorphization</b> &mdash; a generic function is compiled
-            separately for each type it is actually used at. A <code
-              >List[Int32]</code
-            > holds real unboxed integers, and a trait method call is an ordinary
-            direct call rather than a lookup at runtime.
+            <b>No closure allocation.</b> Neither <code>sumWith</code> nor the
+            lambda <code>x -&gt; x * x</code> survives as a closure. Both are
+            inlined, and the compiler emits no closure class for either.
           </li>
           <li>
-            <b>Inlining</b> &mdash; small functions and lambdas are copied into
-            the code that calls them, so you can break a computation into as
-            many little helpers as you like. The compiler keeps track of where
-            each expression is used, so inlining never turns one piece of work
-            into two.
+            <b>No recursion.</b> <code>Array.foldLeft</code> is written recursively,
+            but nothing calls itself here: the fold is a counted loop that ends
+            in <code>goto 0</code>.
           </li>
           <li>
-            <b>Dead code elimination</b> &mdash; if you compute a pure value
-            and then never use it, the computation is removed. Bindings that
-            merely rename another variable disappear as well.
+            <b>No boxing.</b> The loop takes a bare <code>int[]</code> and three
+            raw <code>int</code>s. Elements are read off the array with <code
+              >iaload</code
+            >, and the index and accumulator never leave the stack. Only the final
+            result is boxed.
+          </li>
+          <li>
+            <b>No dispatch.</b> The call to <code>f</code> is one <code>imul</code
+            >. The loop body contains no method call and no allocation at all
+            &mdash; only loads, stores, arithmetic, and branches.
           </li>
         </ul>
       </div>
       <div class="col-md-6">
-        <ul>
-          <li>
-            <b>Compile-time pattern matching</b> &mdash; when the compiler
-            already knows which case a value is, it chooses the branch while
-            compiling and deletes the ones that can never be taken.
-          </li>
-          <li>
-            <b>Lambda dropping</b> &mdash; a recursive function that carries a
-            function argument around stops passing it along on every call,
-            since that argument never changes.
-          </li>
-          <li>
-            <b>Tree shaking</b> &mdash; functions you never call, including
-            those in the libraries you depend on, are left out of the generated
-            code entirely.
-          </li>
-          <li>
-            <b>Tail call elimination</b> &mdash; a function that calls itself
-            as its last step becomes a loop, and any other call in tail
-            position runs without growing the stack. Recursive code does not
-            overflow.
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-12">
-        <p>
-          All of this rests on the effect system: because the compiler knows
-          exactly which expressions are pure, it knows which ones it may safely
-          move, copy, or delete &mdash; and which ones it must leave precisely
-          where you wrote them.
+        <h5>What the JVM runs</h5>
+        <PlainSnippet code={optimizerBytecode} />
+        <p class="small text-muted mt-3">
+          Reproduce with <code>flix build</code> followed by <code
+            >javap -c -p</code
+          >; the listing above elides only the trailing boxing of the result.
         </p>
       </div>
     </div>
