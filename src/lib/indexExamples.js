@@ -364,3 +364,44 @@ export const datalogExample = `def reachable(g: List[(String, Int32, String)], m
         Path(x, z) :- Path(x, y), Road(y, maxSpeed, z), if maxSpeed >= minSpeed.
     };
     query facts, rules select (src, dst) from Path(src, dst) |> Foldable.toList`;
+
+export const optimizerExample = `/// Sums \`f\` applied to every element of \`arr\`.
+/// Polymorphic in \`a\`, higher-order in \`f\`, and
+/// generic over the region \`r\` the array lives in.
+def sumWith(f: a -> Int32, arr: Array[a, r]): Int32 \\ r =
+    Array.foldLeft((acc, x) -> acc + f(x), 0, arr)
+
+def main(): Unit \\ IO =
+    region rc {
+        let arr = Array#{1, 2, 3, 4, 5} @ rc;
+        println(sumWith(x -> x * x, arr))
+    }`;
+
+export const optimizerBytecode = `static Result$ staticApply(int[], int, int, int);
+   0: iload_2
+   1: iload_1
+   2: if_icmplt    9
+   5: iconst_1
+   6: goto         10
+   9: iconst_0
+  10: ifne         40         // i >= len: done
+  13: aload_0
+  14: iload_2
+  15: iaload                  // x = arr[i], unboxed
+  16: istore       4
+  18: aload_0
+  19: iload_1
+  20: iload_2
+  21: iconst_1
+  22: iadd                    // i + 1
+  23: iload_3                 // acc
+  24: iload        4
+  26: iload        4
+  28: imul                    // f(x) => x * x
+  29: iadd                    // acc + f(x)
+  30: istore_3
+  31: istore_2
+  32: istore_1
+  33: astore_0
+  34: goto         0          // a loop, not a call
+  40: iload_3                 // return acc`;

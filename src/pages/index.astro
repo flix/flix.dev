@@ -29,6 +29,8 @@ import {
   manifestExample,
   manifestOutput,
   datalogExample,
+  optimizerExample,
+  optimizerBytecode,
 } from "../lib/indexExamples.js";
 
 const vscodeSlides = [
@@ -805,6 +807,61 @@ const vscodeSlides = [
         <p>
           The performance of the Flix compiler is mostly determined by CPU
           performance and memory bandwidth.
+        </p>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <h2>A Whole-Program Optimizing Compiler</h2>
+        <p>
+          Flix is a whole-program optimizing compiler. It uses
+          monomorphization, inlining, closure elimination, tail call
+          elimination, and aggressive tree shaking to turn high-level code into
+          tight low-level code. Write code in whatever style you prefer* &mdash;
+          generic, higher-order, split into many small functions &mdash;
+          without paying for it at runtime.
+        </p>
+      </div>
+
+      <div class="col-md-6">
+        <h5>What you write</h5>
+        <CodeSnippet code={optimizerExample} />
+        <ul class="mt-3">
+          <li>
+            <b>No closure allocation.</b> Neither <code>sumWith</code> nor the
+            lambda <code>x -&gt; x * x</code> survives as a closure. Both are
+            inlined, and the compiler emits no closure class for either.
+          </li>
+          <li>
+            <b>No recursion.</b> <code>Array.foldLeft</code> is written recursively,
+            but nothing calls itself here: the fold is a counted loop that ends
+            in <code>goto 0</code>.
+          </li>
+          <li>
+            <b>No boxing.</b> The loop takes a bare <code>int[]</code> and three
+            raw <code>int</code>s. Elements are read off the array with <code
+              >iaload</code
+            >, and the index and accumulator never leave the stack. Only the final
+            result is boxed.
+          </li>
+          <li>
+            <b>No dispatch.</b> The call to <code>f</code> is one <code>imul</code
+            >. The loop body contains no method call and no allocation at all
+            &mdash; only loads, stores, arithmetic, and branches.
+          </li>
+        </ul>
+        <p class="small text-muted">*: Some terms and conditions apply.</p>
+      </div>
+      <div class="col-md-6">
+        <h5>What the JVM runs</h5>
+        <PlainSnippet code={optimizerBytecode} />
+        <p class="small text-muted mt-3">
+          Reproduce with <code>flix build</code> followed by <code
+            >javap -c -p</code
+          >; the listing above elides only the trailing boxing of the result.
         </p>
       </div>
     </div>
