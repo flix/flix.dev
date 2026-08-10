@@ -820,6 +820,8 @@ const vscodeSlides = [
           generic, higher-order, split into many small functions &mdash;
           without paying for it at runtime:
         </p>
+      </div>
+      <div class="col-md-6">
         <ul>
           <li>
             <b>Monomorphization</b> &mdash; a generic function is compiled
@@ -840,6 +842,10 @@ const vscodeSlides = [
             and then never use it, the computation is removed. Bindings that
             merely rename another variable disappear as well.
           </li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul>
           <li>
             <b>Compile-time pattern matching</b> &mdash; when the compiler
             already knows which case a value is, it chooses the branch while
@@ -862,6 +868,8 @@ const vscodeSlides = [
             overflow.
           </li>
         </ul>
+      </div>
+      <div class="col-md-12">
         <p>
           All of this rests on the effect system: because the compiler knows
           exactly which expressions are pure, it knows which ones it may safely
