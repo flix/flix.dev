@@ -732,142 +732,6 @@ const vscodeSlides = [
 
     <hr class="mb-4" />
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <h2>Modern Compiler Architecture</h2>
-        <p>
-          Flix features a modern compiler architecture which is <span
-            class="fw-bold text-success">resilient</span
-          >, <span class="fw-bold text-success">incremental</span>, and <span
-            class="fw-bold text-success">parallel</span
-          >.
-        </p>
-        <p>
-          In Flix, every compiler phase is parallel. The plot on the right shows
-          the speed-up of each compiler phase when run on a 24 core machine.
-        </p>
-        <p>
-          In other words, Flix can take full advantage of modern hardware,
-          leading to speed-ups of between <b>5x &ndash; 7x</b> on multi-core machines.
-        </p>
-        <p>
-          Furthermore, the Flix compiler is incremental which leads to
-          significant speed-ups when recompiling code that has already been
-          compiled in the same compiler instance.
-        </p>
-      </div>
-      <div class="col-md-6">
-        <img
-          src="/images/speedupWithPar.png"
-          class="img-fluid plate p-3"
-          alt="Parallel Speedup"
-          loading="lazy"
-        />
-      </div>
-    </div>
-
-    <hr class="mb-4" />
-
-    <div class="row mb-4">
-      <div class="col-md-12">
-        <h2>Compiler Performance: The Raw Numbers</h2>
-        <p>
-          The following table illustrates the performance of the Flix compiler
-          on an Apple M2 Pro with a 10&#8209;core CPU running on OpenJDK 26:
-        </p>
-        <div class="col-md-6 p-0">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td class="h5">Throughput (entire compiler):</td>
-                <td class="h5 text-end text-success fw-bold"
-                  >64,956 lines/sec</td
-                >
-              </tr>
-              <tr>
-                <td class="h5">Throughput (frontend only):</td>
-                <td class="h5 text-end text-success fw-bold"
-                  >133,287 lines/sec</td
-                >
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="small text-muted">
-          The above results can be reproduced by running the commands: <code
-            >java -jar flix.jar Xperf --n 21</code
-          > and <code>java -jar flix.jar Xperf --frontend --n 21</code>.
-        </p>
-        <p>
-          The Flix compiler achieves these results despite supporting costly
-          programming language features, including: (a) type and effect
-          inference, (b) monomorphization, and (c) whole-program optimization.
-        </p>
-
-        <p>
-          The performance of the Flix compiler is mostly determined by CPU
-          performance and memory bandwidth.
-        </p>
-      </div>
-    </div>
-
-    <hr class="mb-4" />
-
-    <div class="row mb-4">
-      <div class="col-md-12">
-        <h2>A Whole-Program Optimizing Compiler</h2>
-        <p>
-          Flix is a whole-program optimizing compiler. It uses
-          monomorphization, inlining, closure elimination, tail call
-          elimination, and aggressive tree shaking to turn high-level code into
-          tight low-level code. Write code in whatever style you prefer* &mdash;
-          generic, higher-order, split into many small functions &mdash;
-          without paying for it at runtime.
-        </p>
-      </div>
-
-      <div class="col-md-6">
-        <h5>What you write</h5>
-        <CodeSnippet code={optimizerExample} />
-        <ul class="mt-3">
-          <li>
-            <b>No closure allocation.</b> Neither <code>sumWith</code> nor the
-            lambda <code>x -&gt; x * x</code> survives as a closure. Both are
-            inlined, and the compiler emits no closure class for either.
-          </li>
-          <li>
-            <b>No recursion.</b> <code>Array.foldLeft</code> is written recursively,
-            but nothing calls itself here: the fold is a counted loop that ends
-            in <code>goto 0</code>.
-          </li>
-          <li>
-            <b>No boxing.</b> The loop takes a bare <code>int[]</code> and three
-            raw <code>int</code>s. Elements are read off the array with <code
-              >iaload</code
-            >, and the index and accumulator never leave the stack. Only the final
-            result is boxed.
-          </li>
-          <li>
-            <b>No dispatch.</b> The call to <code>f</code> is one <code>imul</code
-            >. The loop body contains no method call and no allocation at all
-            &mdash; only loads, stores, arithmetic, and branches.
-          </li>
-        </ul>
-        <p class="small text-muted">*: Some terms and conditions apply.</p>
-      </div>
-      <div class="col-md-6">
-        <h5>What the JVM runs</h5>
-        <PlainSnippet code={optimizerBytecode} />
-        <p class="small text-muted mt-3">
-          Reproduce with <code>flix build</code> followed by <code
-            >javap -c -p</code
-          >; the listing above elides only the trailing boxing of the result.
-        </p>
-      </div>
-    </div>
-
-    <hr class="mb-4" />
-
     <div class="row">
       <div class="col-12 mb-3">
         <h2>Visual Studio Code Support</h2>
@@ -1053,6 +917,142 @@ const vscodeSlides = [
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h2>Modern Compiler Architecture</h2>
+        <p>
+          Flix features a modern compiler architecture which is <span
+            class="fw-bold text-success">resilient</span
+          >, <span class="fw-bold text-success">incremental</span>, and <span
+            class="fw-bold text-success">parallel</span
+          >.
+        </p>
+        <p>
+          In Flix, every compiler phase is parallel. The plot on the right shows
+          the speed-up of each compiler phase when run on a 24 core machine.
+        </p>
+        <p>
+          In other words, Flix can take full advantage of modern hardware,
+          leading to speed-ups of between <b>5x &ndash; 7x</b> on multi-core machines.
+        </p>
+        <p>
+          Furthermore, the Flix compiler is incremental which leads to
+          significant speed-ups when recompiling code that has already been
+          compiled in the same compiler instance.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <img
+          src="/images/speedupWithPar.png"
+          class="img-fluid plate p-3"
+          alt="Parallel Speedup"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <h2>Compiler Performance: The Raw Numbers</h2>
+        <p>
+          The following table illustrates the performance of the Flix compiler
+          on an Apple M2 Pro with a 10&#8209;core CPU running on OpenJDK 26:
+        </p>
+        <div class="col-md-6 p-0">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="h5">Throughput (entire compiler):</td>
+                <td class="h5 text-end text-success fw-bold"
+                  >64,956 lines/sec</td
+                >
+              </tr>
+              <tr>
+                <td class="h5">Throughput (frontend only):</td>
+                <td class="h5 text-end text-success fw-bold"
+                  >133,287 lines/sec</td
+                >
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small text-muted">
+          The above results can be reproduced by running the commands: <code
+            >java -jar flix.jar Xperf --n 21</code
+          > and <code>java -jar flix.jar Xperf --frontend --n 21</code>.
+        </p>
+        <p>
+          The Flix compiler achieves these results despite supporting costly
+          programming language features, including: (a) type and effect
+          inference, (b) monomorphization, and (c) whole-program optimization.
+        </p>
+
+        <p>
+          The performance of the Flix compiler is mostly determined by CPU
+          performance and memory bandwidth.
+        </p>
+      </div>
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <h2>A Whole-Program Optimizing Compiler</h2>
+        <p>
+          Flix is a whole-program optimizing compiler. It uses
+          monomorphization, inlining, closure elimination, tail call
+          elimination, and aggressive tree shaking to turn high-level code into
+          tight low-level code. Write code in whatever style you prefer* &mdash;
+          generic, higher-order, split into many small functions &mdash;
+          without paying for it at runtime.
+        </p>
+      </div>
+
+      <div class="col-md-6">
+        <h5>What you write</h5>
+        <CodeSnippet code={optimizerExample} />
+        <ul class="mt-3">
+          <li>
+            <b>No closure allocation.</b> Neither <code>sumWith</code> nor the
+            lambda <code>x -&gt; x * x</code> survives as a closure. Both are
+            inlined, and the compiler emits no closure class for either.
+          </li>
+          <li>
+            <b>No recursion.</b> <code>Array.foldLeft</code> is written recursively,
+            but nothing calls itself here: the fold is a counted loop that ends
+            in <code>goto 0</code>.
+          </li>
+          <li>
+            <b>No boxing.</b> The loop takes a bare <code>int[]</code> and three
+            raw <code>int</code>s. Elements are read off the array with <code
+              >iaload</code
+            >, and the index and accumulator never leave the stack. Only the final
+            result is boxed.
+          </li>
+          <li>
+            <b>No dispatch.</b> The call to <code>f</code> is one <code>imul</code
+            >. The loop body contains no method call and no allocation at all
+            &mdash; only loads, stores, arithmetic, and branches.
+          </li>
+        </ul>
+        <p class="small text-muted">*: Some terms and conditions apply.</p>
+      </div>
+      <div class="col-md-6">
+        <h5>What the JVM runs</h5>
+        <PlainSnippet code={optimizerBytecode} />
+        <p class="small text-muted mt-3">
+          Reproduce with <code>flix build</code> followed by <code
+            >javap -c -p</code
+          >; the listing above elides only the trailing boxing of the result.
+        </p>
       </div>
     </div>
 
