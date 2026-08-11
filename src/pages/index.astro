@@ -858,13 +858,15 @@ const vscodeSlides = [
 
     <div class="row mb-4">
       <div class="col-md-6">
-        <h2>Any Editor, via LSP</h2>
+        <h2>Any Text Editor, via LSP</h2>
         <p>
           The Flix compiler <i>is</i> the language server. It speaks the <a
             href="https://microsoft.github.io/language-server-protocol/"
             >Language Server Protocol</a
           >, so any LSP-capable editor &mdash; Neovim, Emacs, Helix &mdash; gets
-          the same types, effects, errors, and completions as VSCode.
+          the same inline diagnostics, hovers, completions, signature help,
+          jump-to-definition, find-references, rename, and quick fixes as
+          VSCode, plus semantic highlighting wherever the editor supports it.
         </p>
         <p>
           The command <code>flix lsp</code> starts the server on standard input
@@ -875,7 +877,7 @@ const vscodeSlides = [
         <p>
           The <a href="https://doc.flix.dev/getting-started.html"
             >getting started</a
-          > chapter of the book covers setup editor by editor.
+          > chapter of the book covers editor configuration.
         </p>
       </div>
       <div class="col-md-6">
