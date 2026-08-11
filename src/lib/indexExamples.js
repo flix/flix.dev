@@ -405,16 +405,3 @@ export const optimizerBytecode = `static Result$ staticApply(int[], int, int, in
   33: astore_0
   34: goto         0          // a loop, not a call
   40: iload_3                 // return acc`;
-
-// Neovim 0.11+ config. `flix lsp` speaks LSP over stdin/stdout, so there is no
-// port to pick; with the JAR the cmd is { "java", "-jar", "flix.jar", "lsp" }.
-export const neovimExample = `-- init.lua (Neovim 0.11+)
-vim.filetype.add({ extension = { flix = "flix" } })
-
-vim.lsp.config.flix = {
-  cmd = { "flix", "lsp" },
-  filetypes = { "flix" },
-  root_markers = { "flix.toml" },
-}
-
-vim.lsp.enable("flix")`;

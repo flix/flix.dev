@@ -31,15 +31,7 @@ import {
   datalogExample,
   optimizerExample,
   optimizerBytecode,
-  neovimExample,
 } from "../lib/indexExamples.js";
-
-// The Neovim capture has to be taken on a machine with a real Neovim setup, so
-// it is not here yet. Drop the file in public/images/ and set this to its path
-// -- the figure below then renders itself. Until then the section ships without
-// it rather than with a broken image. Match the carousel captures: 1064x611, a
-// light theme, because .plate forces a white ground in both site themes.
-const neovimShot: string | null = null;
 
 const vscodeSlides = [
   { src: "/images/vscode1.png", header: "Semantic Highlighting" },
@@ -872,8 +864,7 @@ const vscodeSlides = [
             href="https://microsoft.github.io/language-server-protocol/"
             >Language Server Protocol</a
           >, so any LSP-capable editor &mdash; Neovim, Emacs, Helix, Zed &mdash;
-          gets the same types, effects, errors, and completions as Visual Studio
-          Code.
+          gets the same types, effects, errors, and completions as VSCode.
         </p>
         <p>
           The command <code>flix lsp</code> starts the server on standard input
@@ -889,27 +880,19 @@ const vscodeSlides = [
         </p>
       </div>
       <div class="col-md-6">
-        <PlainSnippet code={neovimExample} />
+        {/* Bare, where the other captures on the site sit in a .card: this one
+            is a picture of a window and brings its own border and 24px corners,
+            so a card would draw a second outline at a 6px radius across them.
+            No .plate either -- it was taken in a dark theme, and its corners
+            are transparent, so it wants the page under it rather than a forced
+            white ground it would then have to sit on in dark mode. */}
+        <img
+          class="img-fluid"
+          src="/images/neovim.png"
+          alt="A Flix source file open in Neovim, coloured by the Flix language server"
+          loading="lazy"
+        />
       </div>
-
-      {
-        neovimShot && (
-          <div class="col-12 mt-3">
-            <div class="card">
-              <img
-                class="card-img-top plate"
-                src={neovimShot}
-                alt="A Flix source file open in Neovim, coloured by the Flix language server"
-                loading="lazy"
-              />
-              <div class="card-body small text-muted">
-                Flix in Neovim. No tree-sitter grammar is involved: every colour
-                here comes from the compiler, over LSP.
-              </div>
-            </div>
-          </div>
-        )
-      }
     </div>
 
     <hr class="mb-4" />
