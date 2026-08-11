@@ -36,8 +36,12 @@ import Question from "../components/FAQ/Question.astro";
         Does Flix have Language Server Protocol (LSP) support?
       </Question>
       <div>
-        Yes, in addition to Visual Studio Code support, Flix also has generic
-        LSP support.
+        Yes. The compiler itself is the language server: <code>flix lsp</code> starts
+        it on standard input and output, so Neovim, Emacs, Helix, Zed, and any other
+        LSP-capable editor get the same types, effects, errors, and completions as
+        the Visual Studio Code extension. The <a
+          href="https://doc.flix.dev/getting-started.html">getting started</a
+        > chapter of the book covers setup editor by editor.
       </div>
     </QA>
 

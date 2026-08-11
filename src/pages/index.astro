@@ -31,7 +31,15 @@ import {
   datalogExample,
   optimizerExample,
   optimizerBytecode,
+  neovimExample,
 } from "../lib/indexExamples.js";
+
+// The Neovim capture has to be taken on a machine with a real Neovim setup, so
+// it is not here yet. Drop the file in public/images/ and set this to its path
+// -- the figure below then renders itself. Until then the section ships without
+// it rather than with a broken image. Match the carousel captures: 1064x611, a
+// light theme, because .plate forces a white ground in both site themes.
+const neovimShot: string | null = null;
 
 const vscodeSlides = [
   { src: "/images/vscode1.png", header: "Semantic Highlighting" },
@@ -686,6 +694,7 @@ const vscodeSlides = [
           <li>expression holes</li>
           <li>termination checking</li>
           <li>compilation to JVM bytecode</li>
+          <li>language server protocol (LSP)</li>
           <li>full tail call elimination</li>
           <li>resilient compiler architecture</li>
           <li>parallel compiler architecture</li>
@@ -734,7 +743,7 @@ const vscodeSlides = [
 
     <div class="row">
       <div class="col-12 mb-3">
-        <h2>Visual Studio Code Support</h2>
+        <h2>Visual Studio Code</h2>
 
         <p>
           The Flix compiler integrates with Visual Studio Code to provide a rich
@@ -851,6 +860,56 @@ const vscodeSlides = [
       </div>
 
       <Carousel id="vscode-carousel" items={vscodeSlides} class="mt-3" />
+    </div>
+
+    <hr class="mb-4" />
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <h2>Any Editor, via LSP</h2>
+        <p>
+          The Flix compiler <i>is</i> the language server. It speaks the <a
+            href="https://microsoft.github.io/language-server-protocol/"
+            >Language Server Protocol</a
+          >, so any LSP-capable editor &mdash; Neovim, Emacs, Helix, Zed &mdash;
+          gets the same types, effects, errors, and completions as Visual Studio
+          Code.
+        </p>
+        <p>
+          The command <code>flix lsp</code> starts the server on standard input
+          and output, which is what most editors expect. Point your client at it
+          and you are done: there is no separate indexer to install and keep in
+          sync, so the editor and <code>flix build</code> can never disagree
+          about your code.
+        </p>
+        <p>
+          The <a href="https://doc.flix.dev/getting-started.html"
+            >getting started</a
+          > chapter of the book covers setup editor by editor.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <PlainSnippet code={neovimExample} />
+      </div>
+
+      {
+        neovimShot && (
+          <div class="col-12 mt-3">
+            <div class="card">
+              <img
+                class="card-img-top plate"
+                src={neovimShot}
+                alt="A Flix source file open in Neovim, coloured by the Flix language server"
+                loading="lazy"
+              />
+              <div class="card-body small text-muted">
+                Flix in Neovim. No tree-sitter grammar is involved: every colour
+                here comes from the compiler, over LSP.
+              </div>
+            </div>
+          </div>
+        )
+      }
     </div>
 
     <hr class="mb-4" />
