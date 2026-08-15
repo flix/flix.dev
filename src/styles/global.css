@@ -282,6 +282,14 @@ h4, .h4 {
     font-size: 1.2rem;
 }
 
+/* The feature rows on the front page slot plain paragraphs into a card body.
+   Bootstrap only trims the bottom margin off a last paragraph that is a
+   .card-text, so do it here for whatever comes last, or the final <p> would
+   add its 1rem to the padding the body already has below it. */
+.feature-text > :last-child {
+    margin-bottom: 0;
+}
+
 /* Bootstrap 5 removed .card-columns. These are Bootstrap 4's rules, kept
    because four sections of the principles page are laid out with them. */
 .card-columns .card {
