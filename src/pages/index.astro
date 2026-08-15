@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import CodeSnippet from "../components/CodeSnippet.astro";
 import PlainSnippet from "../components/PlainSnippet.astro";
 import Carousel from "../components/Carousel.astro";
+import Feature from "../components/Feature.astro";
 import {
   httpExample,
   adtExample,
@@ -91,533 +92,312 @@ const vscodeSlides = [
 
     <hr class="mb-3" />
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={adtExample} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title">
-              <h4>Algebraic Data Types and Pattern Matching</h4>
-            </div>
-            <p class="card-text">
-              Algebraic data types and pattern matching are the bread-and-butter
-              of functional programming and are supported by Flix with minimal
-              fuss.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature
+      title="Algebraic Data Types and Pattern Matching"
+      code={adtExample}
+      codeLeft
+    >
+      <p>
+        Algebraic data types and pattern matching are the bread-and-butter of
+        functional programming and are supported by Flix with minimal fuss.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Tuples and Records</h4></div>
-            <p class="card-text">Flix has built-in support for tuples and records.</p>
-            <p class="card-text">Records use structural typing and are extensible.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={recordExample} />
-      </div>
-    </div>
+    <Feature title="Tuples and Records" code={recordExample}>
+      <p>Flix has built-in support for tuples and records.</p>
+      <p>Records use structural typing and are extensible.</p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={purityExample} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Purity and Impurity</h4></div>
-            <p class="card-text">
-              Flix precisely tracks the purity of every expression in a program.
-            </p>
-            <p class="card-text">
-              The Flix compiler provides an ironclad guarantee that if an
-              expression is pure then it cannot have side-effects and it is
-              referentially transparent.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature title="Purity and Impurity" code={purityExample} codeLeft>
+      <p>Flix precisely tracks the purity of every expression in a program.</p>
+      <p>
+        The Flix compiler provides an ironclad guarantee that if an expression
+        is pure then it cannot have side-effects and it is referentially
+        transparent.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Polymorphic Effects</h4></div>
-            <p class="card-text">
-              Flix is able to track purity through higher-order effect
-              polymorphic functions.
-            </p>
-            <p class="card-text">
-              For example, Flix knows that the purity of <code>List.map</code> depends
-              on the purity of its function argument <code>f</code>.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={polyEffectsExample} />
-      </div>
-    </div>
+    <Feature title="Polymorphic Effects" code={polyEffectsExample}>
+      <p>
+        Flix is able to track purity through higher-order effect polymorphic
+        functions.
+      </p>
+      <p>
+        For example, Flix knows that the purity of <code>List.map</code> depends on
+        the purity of its function argument <code>f</code>.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={effectsExample} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Algebraic Effects</h4></div>
-            <p class="card-text">
-              Flix supports algebraic effects, i.e. user-defined effects and
-              handlers. In particular, Flix supports multi-shot resumptions.
-            </p>
-            <p class="card-text">
-              Effect-oriented programming, with algebraic effects, allows
-              programmers to write pure functions modulo effects. Effect
-              handlers enable program reasoning, modularity, and testability.
-            </p>
-            <p class="card-text">
-              For example, the program on the left expresses a <code
-                >greeting</code
-              > function that is pure modulo the current time of the day. In <code
-                >main</code
-              > we call the function and handle the <code>HourOfDay</code> effect
-              by getting the real-world time from Java's <code
-                >LocalDateTime</code
-              >.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature title="Algebraic Effects" code={effectsExample} codeLeft>
+      <p>
+        Flix supports algebraic effects, i.e. user-defined effects and handlers.
+        In particular, Flix supports multi-shot resumptions.
+      </p>
+      <p>
+        Effect-oriented programming, with algebraic effects, allows programmers
+        to write pure functions modulo effects. Effect handlers enable program
+        reasoning, modularity, and testability.
+      </p>
+      <p>
+        For example, the program on the left expresses a <code>greeting</code> function
+        that is pure modulo the current time of the day. In <code>main</code> we call
+        the function and handle the <code>HourOfDay</code> effect by getting the real-world
+        time from Java's <code>LocalDateTime</code>.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Library Effects</h4></div>
-            <p class="card-text">
-              The Flix Standard Library comes with a rich collection of
-              built-in effects, including <code>Clock</code>, <code>Console</code
-              >, <code>Env</code>, <code>FileSystem</code>, <code>Http</code>, <code
-                >Logger</code
-              >, <code>Process</code>, and <code>Random</code>.
-            </p>
-            <p class="card-text">
-              Every library effect has a default handler, hence programs can
-              use it without any handler boilerplate.
-            </p>
-            <p class="card-text">
-              Library effects support composable middleware: HTTP requests can
-              be configured with retries and circuit breakers, and the
-              filesystem can be sandboxed, made read-only, or replaced with an
-              in-memory implementation, e.g. for testing.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={libraryEffectsExample} />
-      </div>
-    </div>
+    <Feature title="Library Effects" code={libraryEffectsExample}>
+      <p>
+        The Flix Standard Library comes with a rich collection of built-in
+        effects, including <code>Clock</code>, <code>Console</code>, <code
+          >Env</code
+        >, <code>FileSystem</code>, <code>Http</code>, <code>Logger</code>, <code
+          >Process</code
+        >, and <code>Random</code>.
+      </p>
+      <p>
+        Every library effect has a default handler, hence programs can use it
+        without any handler boilerplate.
+      </p>
+      <p>
+        Library effects support composable middleware: HTTP requests can be
+        configured with retries and circuit breakers, and the filesystem can be
+        sandboxed, made read-only, or replaced with an in-memory implementation,
+        e.g. for testing.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={regionExample} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Region-based Local Mutation</h4></div>
-            <p class="card-text">
-              Flix supports region-based local mutation, which makes it possible
-              to implement <i>pure</i> functions that internally use mutable state
-              and destructive operations, as long as these operations are confined
-              to the region.
-            </p>
-            <p class="card-text">
-              We can use local mutation when it is more natural to write a
-              function using mutable data and in a familiar imperative style
-              while still remaining pure to the outside world.
-            </p>
-            <p class="card-text">
-              We can also use local mutation when it is more efficient to use
-              mutable data structures, e.g. when implementing a sorting
-              algorithm.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature title="Region-based Local Mutation" code={regionExample} codeLeft>
+      <p>
+        Flix supports region-based local mutation, which makes it possible to
+        implement <i>pure</i> functions that internally use mutable state and destructive
+        operations, as long as these operations are confined to the region.
+      </p>
+      <p>
+        We can use local mutation when it is more natural to write a function
+        using mutable data and in a familiar imperative style while still
+        remaining pure to the outside world.
+      </p>
+      <p>
+        We can also use local mutation when it is more efficient to use mutable
+        data structures, e.g. when implementing a sorting algorithm.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Mutable Structs</h4></div>
-            <p class="card-text">
-              Flix supports mutable structs. Fields are immutable by
-              default, but can be marked with the <code>mut</code> modifier.
-              Like all mutable memory in Flix, every struct belongs to a
-              region.
-            </p>
-            <p class="card-text">
-              Struct fields are unboxed, i.e. primitive fields do not require
-              indirection. This makes structs a memory-efficient building
-              block for higher-level data structures, e.g. mutable lists,
-              stacks, and queues.
-            </p>
-            <p class="card-text">
-              The fields of a struct are only visible from within its
-              companion module, providing compiler-enforced encapsulation.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={structsExample} />
-      </div>
-    </div>
+    <Feature title="Mutable Structs" code={structsExample}>
+      <p>
+        Flix supports mutable structs. Fields are immutable by default, but can
+        be marked with the <code>mut</code> modifier. Like all mutable memory in Flix,
+        every struct belongs to a region.
+      </p>
+      <p>
+        Struct fields are unboxed, i.e. primitive fields do not require
+        indirection. This makes structs a memory-efficient building block for
+        higher-level data structures, e.g. mutable lists, stacks, and queues.
+      </p>
+      <p>
+        The fields of a struct are only visible from within its companion
+        module, providing compiler-enforced encapsulation.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={purityReflectionExample} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Purity Reflection</h4></div>
-            <p class="card-text">
-              Flix supports a meta-programming construct that enables
-              higher-order functions to inspect the purity of a function
-              argument and use that information to vary their behavior.
-            </p>
-            <p class="card-text">
-              For example, the <code>DelayList.map</code> function varies its behavior
-              between eager and lazy evaluation depending on the purity of its function
-              argument.
-            </p>
-            <p class="card-text">
-              We can exploit purity reflection to selectively use lazy or
-              parallel evaluation inside a library without changing the
-              semantics from the point-of-view of the clients.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature title="Purity Reflection" code={purityReflectionExample} codeLeft>
+      <p>
+        Flix supports a meta-programming construct that enables higher-order
+        functions to inspect the purity of a function argument and use that
+        information to vary their behavior.
+      </p>
+      <p>
+        For example, the <code>DelayList.map</code> function varies its behavior between
+        eager and lazy evaluation depending on the purity of its function argument.
+      </p>
+      <p>
+        We can exploit purity reflection to selectively use lazy or parallel
+        evaluation inside a library without changing the semantics from the
+        point-of-view of the clients.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Parallelism</h4></div>
-            <p class="card-text">
-              Flix makes it simple and easy to evaluate <i>pure</i> code in parallel.
-            </p>
-            <p class="card-text">
-              For example, the code on the right shows a parallel implementation
-              of the <code>List.map</code> function using the <code>par</code> construct.
-            </p>
-            <p class="card-text">
-              Internally, the <code>par</code> construct uses light-weight <code
-                >VirtualThread</code
-              >s.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={parallelismExample} />
-      </div>
-    </div>
+    <Feature title="Parallelism" code={parallelismExample}>
+      <p>
+        Flix makes it simple and easy to evaluate <i>pure</i> code in parallel.
+      </p>
+      <p>
+        For example, the code on the right shows a parallel implementation of
+        the <code>List.map</code> function using the <code>par</code> construct.
+      </p>
+      <p>
+        Internally, the <code>par</code> construct uses light-weight <code
+          >VirtualThread</code
+        >s.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={concurrencyExample} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Structured Concurrency</h4></div>
-            <p class="card-text">
-              Flix supports <a
-                href="https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/"
-                >structured concurrency</a
-              >.
-            </p>
-            <p class="card-text">
-              For example, the code on the left shows the creation of a fresh
-              region named <code>rc</code> in which two threads are spawned.
-            </p>
-            <p class="card-text">
-              Importantly, control-flow does not leave the region before <i
-                >both</i
-              > threads have terminated. Hence the two threads cannot outlive the
-              lifetime of their enclosing region.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature title="Structured Concurrency" code={concurrencyExample} codeLeft>
+      <p>
+        Flix supports <a
+          href="https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/"
+          >structured concurrency</a
+        >.
+      </p>
+      <p>
+        For example, the code on the left shows the creation of a fresh region
+        named <code>rc</code> in which two threads are spawned.
+      </p>
+      <p>
+        Importantly, control-flow does not leave the region before <i>both</i> threads
+        have terminated. Hence the two threads cannot outlive the lifetime of their
+        enclosing region.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Traits</h4></div>
-            <p class="card-text">
-              Flix uses traits to abstract over types that support a common set
-              of operations.
-            </p>
-            <p class="card-text">
-              For example, the <code>Eq</code> trait captures the notion of equality
-              and is used throughout the standard library.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={traitsExample} />
-      </div>
-    </div>
+    <Feature title="Traits" code={traitsExample}>
+      <p>
+        Flix uses traits to abstract over types that support a common set of
+        operations.
+      </p>
+      <p>
+        For example, the <code>Eq</code> trait captures the notion of equality and
+        is used throughout the standard library.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={hktExample} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Higher-Kinded Types</h4></div>
-            <p class="card-text">
-              Flix supports higher-kinded types making it possible to abstract
-              over type constructors. For example, both <code>Option</code> and <code
-                >List</code
-              > implement <code>Foldable</code>.
-            </p>
-            <p class="card-text">
-              The Flix standard library ships with many common traits, such as <code
-                >Monoid</code
-              >, <code>Functor</code>, and <code>Foldable</code>.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature title="Higher-Kinded Types" code={hktExample} codeLeft>
+      <p>
+        Flix supports higher-kinded types making it possible to abstract over
+        type constructors. For example, both <code>Option</code> and <code
+          >List</code
+        > implement <code>Foldable</code>.
+      </p>
+      <p>
+        The Flix standard library ships with many common traits, such as <code
+          >Monoid</code
+        >, <code>Functor</code>, and <code>Foldable</code>.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Associated Types</h4></div>
-            <p class="card-text">
-              Flix supports associated types, which allow the types in instance
-              signatures to depend on the instance type.
-            </p>
-            <p class="card-text">
-              The code on the right defines a trait with an associated type <code
-                >Elm</code
-              >, which enables each <code>Coll</code> instance to define its element
-              type.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={associatedTypesExample} />
-      </div>
-    </div>
+    <Feature title="Associated Types" code={associatedTypesExample}>
+      <p>
+        Flix supports associated types, which allow the types in instance
+        signatures to depend on the instance type.
+      </p>
+      <p>
+        The code on the right defines a trait with an associated type <code
+          >Elm</code
+        >, which enables each <code>Coll</code> instance to define its element type.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={associatedEffectsExample} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Associated Effects</h4></div>
-            <p class="card-text">
-              Associated effects allow the effects in trait members to depend on
-              the instance type. This makes it easy to create abstractions over
-              both pure and effectful operations, and mutable and immutable data
-              structures.
-            </p>
-            <p class="card-text">
-              The code on the left adds an associated effect <code>Aef</code> to
-              the <code>Coll</code> trait, which makes it possible to add
-              instances for mutable collections.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature
+      title="Associated Effects"
+      code={associatedEffectsExample}
+      codeLeft
+    >
+      <p>
+        Associated effects allow the effects in trait members to depend on the
+        instance type. This makes it easy to create abstractions over both pure
+        and effectful operations, and mutable and immutable data structures.
+      </p>
+      <p>
+        The code on the left adds an associated effect <code>Aef</code> to the <code
+          >Coll</code
+        > trait, which makes it possible to add instances for mutable collections.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Monadic For-Yield</h4></div>
-            <p class="card-text">
-              Flix supports a monadic <code>forM</code>-yield construct similar to
-              Scala's <code>for</code>-comprehensions and Haskell's <code
-                >do</code
-              > notation.
-              The <code>forM</code> construct is syntactic sugar for uses of <code
-                >point</code
-              > and <code>flatMap</code> (which are provided by the <code
-                >Monad</code
-              > trait).
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={monadicForExample} />
-      </div>
-    </div>
+    <Feature title="Monadic For-Yield" code={monadicForExample}>
+      <p>
+        Flix supports a monadic <code>forM</code>-yield construct similar to
+        Scala's <code>for</code>-comprehensions and Haskell's <code>do</code> notation.
+        The <code>forM</code> construct is syntactic sugar for uses of <code
+          >point</code
+        > and <code>flatMap</code> (which are provided by the <code>Monad</code> trait).
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={applicativeForExample} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Applicative For-Yield</h4></div>
-            <p class="card-text">
-              In addition to the monadic <code>forM</code> expression, Flix supports
-              an applicative <code>forA</code> expression that builds on the <code
-                >Applicative</code
-              > trait. The <code>forA</code> construct makes it simple to write error-handling
-              code which uses the <code>Validation[e, t]</code> data type.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature
+      title="Applicative For-Yield"
+      code={applicativeForExample}
+      codeLeft
+    >
+      <p>
+        In addition to the monadic <code>forM</code> expression, Flix supports an
+        applicative <code>forA</code> expression that builds on the <code
+          >Applicative</code
+        > trait. The <code>forA</code> construct makes it simple to write error-handling
+        code which uses the <code>Validation[e, t]</code> data type.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title">
-              <h4>Seamless Java Interoperability</h4>
-            </div>
-            <p class="card-text">
-              Flix supports seamless Java interoperability, making it possible
-              to reuse code from the Java Standard Library and the Java
-              ecosystem, e.g., via Maven.
-            </p>
-            <p class="card-text">
-              Java support includes object creation, method invocation,
-              exceptions, and class/interface extension.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <CodeSnippet code={javaInteropExample} />
-      </div>
-    </div>
+    <Feature title="Seamless Java Interoperability" code={javaInteropExample}>
+      <p>
+        Flix supports seamless Java interoperability, making it possible to
+        reuse code from the Java Standard Library and the Java ecosystem, e.g.,
+        via Maven.
+      </p>
+      <p>
+        Java support includes object creation, method invocation, exceptions,
+        and class/interface extension.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={terminationExample} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Termination Checking</h4></div>
-            <p class="card-text">
-              Flix supports the <code>@Terminates</code> annotation, which
-              asks the compiler to verify that a function is structurally
-              recursive &mdash; and hence guaranteed to terminate on all
-              inputs.
-            </p>
-            <p class="card-text">
-              The compiler checks that every recursive call is on a strict
-              substructure of a formal parameter. The check supports tree
-              recursion, functions with multiple parameters, local
-              definitions, and higher-order functions.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature title="Termination Checking" code={terminationExample} codeLeft>
+      <p>
+        Flix supports the <code>@Terminates</code> annotation, which asks the compiler
+        to verify that a function is structurally recursive &mdash; and hence guaranteed
+        to terminate on all inputs.
+      </p>
+      <p>
+        The compiler checks that every recursive call is on a strict
+        substructure of a formal parameter. The check supports tree recursion,
+        functions with multiple parameters, local definitions, and higher-order
+        functions.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Build and Package Management</h4></div>
-            <p class="card-text">
-              Flix has its own build tool and package manager. A project is
-              described by a single <code>flix.toml</code> manifest, shown on
-              the right, and <code>flix init</code> writes the first one for
-              you.
-            </p>
-            <p class="card-text">
-              Dependencies are Flix packages published on GitHub, or JARs
-              published on Maven &mdash; so pulling in the Java ecosystem is one
-              line in the manifest. Flix resolves both, transitively, and
-              downloads them on the next build.
-            </p>
-            <p class="card-text">
-              The commands <code>check</code>, <code>build</code>, <code
-                >run</code
-              >, <code>test</code>, <code>build-fatjar</code>, and <code
-                >release</code
-              > are built into the compiler itself, and each one works from the command
-              line, from the REPL, and from Visual Studio Code.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
+    <Feature title="Build and Package Management">
+      <Fragment slot="code">
         <PlainSnippet code={manifestExample} />
         <PlainSnippet code={manifestOutput} />
-      </div>
-    </div>
+      </Fragment>
+      <p>
+        Flix has its own build tool and package manager. A project is described
+        by a single <code>flix.toml</code> manifest, shown on the right, and <code
+          >flix init</code
+        > writes the first one for you.
+      </p>
+      <p>
+        Dependencies are Flix packages published on GitHub, or JARs published on
+        Maven &mdash; so pulling in the Java ecosystem is one line in the
+        manifest. Flix resolves both, transitively, and downloads them on the
+        next build.
+      </p>
+      <p>
+        The commands <code>check</code>, <code>build</code>, <code>run</code>, <code
+          >test</code
+        >, <code>build-fatjar</code>, and <code>release</code> are built into the
+        compiler itself, and each one works from the command line, from the REPL,
+        and from Visual Studio Code.
+      </p>
+    </Feature>
 
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <CodeSnippet code={testExample} />
-        <PlainSnippet code={testOutput} />
-      </div>
-      <div class="col-md-6">
-        <div class="card border-0">
-          <div class="card-body">
-            <div class="card-title"><h4>Built-in Test Framework</h4></div>
-            <p class="card-text">
-              Flix comes with a built-in test framework. A test is a function
-              marked with the <code>@Test</code> annotation that takes no
-              arguments and returns <code>Unit</code>.
-            </p>
-            <p class="card-text">
-              Assertions come from the <code>Assert</code> module in the
-              standard library. Asserting is itself an effect, so a test
-              carries <code>Assert</code> in its signature and the test runner
-              is nothing more than its handler.
-            </p>
-            <p class="card-text">
-              Run every test in a project with <code>flix test</code>, or run
-              them one at a time from the code lens above each test in Visual
-              Studio Code.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Feature title="Built-in Test Framework" code={testExample} codeLeft>
+      <PlainSnippet code={testOutput} slot="code" />
+      <p>
+        Flix comes with a built-in test framework. A test is a function marked
+        with the <code>@Test</code> annotation that takes no arguments and
+        returns <code>Unit</code>.
+      </p>
+      <p>
+        Assertions come from the <code>Assert</code> module in the standard library.
+        Asserting is itself an effect, so a test carries <code>Assert</code> in its
+        signature and the test runner is nothing more than its handler.
+      </p>
+      <p>
+        Run every test in a project with <code>flix test</code>, or run them one
+        at a time from the code lens above each test in Visual Studio Code.
+      </p>
+    </Feature>
 
     <div class="row mb-4">
       <div class="col-md-12">

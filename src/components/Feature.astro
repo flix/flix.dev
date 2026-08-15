@@ -1,0 +1,37 @@
+---
+import CodeSnippet from "./CodeSnippet.astro";
+
+interface Props {
+  title: string;
+  /** Flix source, shown highlighted beside the text. Anything else that
+      belongs in the code column -- a manifest, terminal output, a second
+      snippet -- goes in the "code" slot, which renders under this. */
+  code?: string;
+  /** The code sits to the right of the text unless this is set. The text
+      comes first in the markup either way, so on a narrow screen every feature
+      reads heading, text, code, whichever side the code takes on a wide one. */
+  codeLeft?: boolean;
+}
+
+const { title, code, codeLeft = false } = Astro.props;
+---
+
+{/* One row of the feature tour on the front page: a heading and a paragraph
+    or two beside the code that shows the feature off. The card is borderless
+    and there only for the inset its body gives the text; global.css takes the
+    bottom margin off whatever ends the slot, so the paragraphs can be plain
+    <p>s rather than Bootstrap's .card-text. */}
+<div class="row mb-4">
+  <div class="col-md-6">
+    <div class="card border-0">
+      <div class="card-body feature-text">
+        <div class="card-title"><h4>{title}</h4></div>
+        <slot />
+      </div>
+    </div>
+  </div>
+  <div class:list={["col-md-6", { "order-md-first": codeLeft }]}>
+    {code && <CodeSnippet code={code} />}
+    <slot name="code" />
+  </div>
+</div>
