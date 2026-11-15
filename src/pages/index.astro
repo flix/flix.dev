@@ -756,11 +756,13 @@ const vscodeSlides = [
         </p>
         <p>
           In Flix, every compiler phase is parallel. The plot on the right shows
-          the speed-up of each compiler phase when run on a 24 core machine.
+          the speed-up of each compiler phase when run with 24 threads on an AMD
+          Ryzen 9 5900X with a 12&#8209;core CPU.
         </p>
         <p>
           In other words, Flix can take full advantage of modern hardware,
-          leading to speed-ups of between <b>5x &ndash; 7x</b> on multi-core machines.
+          leading to speed-ups of up to <b>7.9x</b> per phase and <b>4.9x</b> for
+          the compiler as a whole.
         </p>
         <p>
           Furthermore, the Flix compiler is incremental which leads to
@@ -785,30 +787,30 @@ const vscodeSlides = [
         <h2>Compiler Performance: The Raw Numbers</h2>
         <p>
           The following table illustrates the performance of the Flix compiler
-          on an Apple M2 Pro with a 10&#8209;core CPU running on OpenJDK 26:
+          on an AMD Ryzen 9 5900X with a 12&#8209;core CPU running on OpenJDK 27:
         </p>
         <div class="col-md-6 p-0">
           <table class="table">
             <tbody>
               <tr>
-                <td class="h5">Throughput (entire compiler):</td>
+                <td class="h5">Throughput (frontend only):</td>
                 <td class="h5 text-end text-success fw-bold"
-                  >64,956 lines/sec</td
+                  >303,740 lines/sec</td
                 >
               </tr>
               <tr>
-                <td class="h5">Throughput (frontend only):</td>
+                <td class="h5">Throughput (entire compiler):</td>
                 <td class="h5 text-end text-success fw-bold"
-                  >133,287 lines/sec</td
+                  >100,645 lines/sec</td
                 >
               </tr>
             </tbody>
           </table>
         </div>
         <p class="small text-muted">
-          The above results can be reproduced by running the commands: <code
-            >java -jar flix.jar Xperf --n 21</code
-          > and <code>java -jar flix.jar Xperf --frontend --n 21</code>.
+          Reproduce with <code
+            >java -Xms8g -Xmx8g -jar flix.jar Xperf --par --n 500</code
+          >.
         </p>
         <p>
           The Flix compiler achieves these results despite supporting costly
